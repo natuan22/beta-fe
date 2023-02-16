@@ -9,14 +9,14 @@ import Marquee from "react-fast-marquee";
 
 const Carousel = () => {
   const dataCarousel = useSelector((state) => state.chart.dataCarousel);
-  console.log(dataCarousel);
+
   return (
     <div className=" bg-slate-700 p-2">
       <Marquee speed={100} pauseOnHover="true" gradientColor="[0,0,0]">
         <div className="flex">
-          {dataCarousel.recordset?.map((item, index) => {
+          {dataCarousel.data?.map((item, index) => {
             return (
-              <div className="flex flex-col items-center ml-4">
+              <div key={index} className="flex flex-col items-center ml-4">
                 <span className="ml-4 text-sm font-semibold text-white">
                   {item.ticker}: {item.diemso}
                 </span>
@@ -46,7 +46,7 @@ const Carousel = () => {
         </div>
       </Marquee>
       <Marquee speed={80} pauseOnHover="true" gradientColor="[0,0,0]">
-        <div className="blog-news flex  " style={{height:'150px'}}>
+        <div className="blog-news flex  " style={{ height: "150px" }}>
           <Card
             bordered={false}
             style={{
@@ -64,11 +64,13 @@ const Carousel = () => {
               />
               <div className="ml-2">
                 <span className="text-xs font-semibold text-white items-center justify-center w-12">
-                  Dự thảo sửa đổi NĐ65:Cho phép thanh toán trái phiếu bằng sản phẩm bất động sản,...
+                  Dự thảo sửa đổi NĐ65:Cho phép thanh toán trái phiếu bằng sản
+                  phẩm bất động sản,...
                 </span>
                 <br />
                 <span className="text-xs text-white items-center justify-center w-12">
-                Trong bối cảnh hàng loạt khó khăn xuất hiện trên thị trường trái phiếu doanh nghiệp,..
+                  Trong bối cảnh hàng loạt khó khăn xuất hiện trên thị trường
+                  trái phiếu doanh nghiệp,..
                 </span>
               </div>
             </div>
@@ -80,7 +82,6 @@ const Carousel = () => {
               height: 90,
               backgroundColor: "#334155",
             }}
-            
           >
             <div className="flex items-center">
               <img
@@ -91,16 +92,45 @@ const Carousel = () => {
               />
               <div className="ml-2">
                 <span className="text-xs font-semibold text-white items-center justify-center w-12">
-                  Dự thảo sửa đổi NĐ65:Cho phép thanh toán trái phiếu bằng sản phẩm bất động sản,...
+                  Dự thảo sửa đổi NĐ65:Cho phép thanh toán trái phiếu bằng sản
+                  phẩm bất động sản,...
                 </span>
                 <br />
                 <span className="text-xs text-white items-center justify-center w-12">
-                Trong bối cảnh hàng loạt khó khăn xuất hiện trên thị trường trái phiếu doanh nghiệp,..
+                  Trong bối cảnh hàng loạt khó khăn xuất hiện trên thị trường
+                  trái phiếu doanh nghiệp,..
                 </span>
               </div>
             </div>
           </Card>
-          
+          <Card
+            bordered={false}
+            style={{
+              width: 470,
+              height: 90,
+              backgroundColor: "#334155",
+            }}
+          >
+            <div className="flex items-center">
+              <img
+                src="./image/betaBlog.webp"
+                alt="img blog news"
+                width={175}
+                height={90}
+              />
+              <div className="ml-2">
+                <span className="text-xs font-semibold text-white items-center justify-center w-12">
+                  Dự thảo sửa đổi NĐ65:Cho phép thanh toán trái phiếu bằng sản
+                  phẩm bất động sản,...
+                </span>
+                <br />
+                <span className="text-xs text-white items-center justify-center w-12">
+                  Trong bối cảnh hàng loạt khó khăn xuất hiện trên thị trường
+                  trái phiếu doanh nghiệp,..
+                </span>
+              </div>
+            </div>
+          </Card>
         </div>
       </Marquee>
     </div>

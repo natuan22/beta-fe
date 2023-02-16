@@ -1,3 +1,6 @@
 // dùng để lưu những giá trị không đổi
 
 export const UPDATE_DATA_CAROUSEL = "beta/UPDATE_DATA_CAROUSEL"
+export const UPDATE_DATA_BARCHART_RIGHT = "beta/UPDATE_DATA_BARCHART_RIGHT"
+export const SET_INDEX_BARCHART_LEFT = "beta/SET_INDEX_BARCHART_LEFT"
+export const UPDATE_DATA_BARCHART_LEFT = "beta/UPDATE_DATA_BARCHART_LEFT"
