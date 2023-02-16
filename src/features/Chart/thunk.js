@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchBanners = async (dispatch) => {
+export const fetchDataCarousel = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
@@ -9,7 +9,7 @@ export const fetchBanners = async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_CAROUSEL",
-      payload: res.data.content,
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);
