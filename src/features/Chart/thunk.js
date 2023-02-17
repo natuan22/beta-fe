@@ -31,7 +31,7 @@ export const fetchDataBarChartRight = async (dispatch) => {
   }
 };
 
-export const fetchDataBarChartLeft =(index) =>async (dispatch) => {
+export const fetchDataBarChartLeft = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
@@ -44,6 +44,23 @@ export const fetchDataBarChartLeft =(index) =>async (dispatch) => {
     dispatch({
       type: "beta/UPDATE_DATA_BARCHART_LEFT",
       payload: res,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+=
+export const fetchDataNews = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.15.174:3000/lichsukien.dat",
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_NEWS",
+        payload: res,
     });
   } catch (err) {
     console.log(err);
@@ -64,4 +81,44 @@ export const fetchDataTableDetail = async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+  };
+
+export const fetchDataTop10Sell = (index) => async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.15.174:3000/topforeign.dat",
+      method: "GET",
+      params: {
+        exchange: index
+      }
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_TOP10_SELL",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const fetchDataTop10Buy = (index) => async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.15.174:3000/topforeign.dat",
+      method: "GET",
+      params: {
+        exchange: index
+      }
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_TOP10_BUY",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 }
+
