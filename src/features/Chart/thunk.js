@@ -60,7 +60,7 @@ export const fetchDataNews = async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_NEWS",
-        payload: res,
+        payload: res.data,
     });
   } catch (err) {
     console.log(err);

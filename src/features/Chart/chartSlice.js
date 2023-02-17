@@ -26,13 +26,14 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === actionType.UPDATE_DATA_TOP10_BUY) {
       draft.dataTop10Buy = payload
+    }
     if(type === actionType.UPDATE_DATA_BARCHART_LEFT){
        draft.dataBarChartLeft = payload
     }
     if(type === actionType.UPDATE_DATA_TABLEDETAIL){
       draft.dataTableDetail = payload
     }
-  }});
+  });
 };
 
 export default reducer;

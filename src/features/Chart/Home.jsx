@@ -8,10 +8,18 @@ import GeneralIndustry from "./components/GeneralIndustry";
 import News from "./components/News";
 import Top10Sell from "./components/Top10Sell";
 import Top10Buy from "./components/Top10Buy";
-import { fetchDataCarousel,fetchDataTableDetail, fetchDataBarChartRight, fetchDataBarChartLeft, fetchDataNews, fetchDataTop10Sell, fetchDataTop10Buy } from "./thunk";
+import {
+  fetchDataCarousel,
+  fetchDataTableDetail,
+  fetchDataBarChartRight,
+  fetchDataBarChartLeft,
+  fetchDataNews,
+  fetchDataTop10Sell,
+  fetchDataTop10Buy,
+} from "./thunk";
 import LineChart from "./components/LineChart";
+import chartStyle from "./utils/Chart.module.css";
 import TableDetail from "./components/TableDetail";
-import chartStyle from "./utils/Chart.module.css"
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,19 +27,17 @@ const Home = () => {
     (state) => state.chart.indexApiBarChartLeft
   );
   useEffect(() => {
-    dispatch(fetchDataCarousel);
-    dispatch(fetchDataBarChartRight);
     dispatch(fetchDataNews);
-    dispatch(fetchDataTop10Sell('HSX'));
-    dispatch(fetchDataTop10Buy('HSX'));
+    dispatch(fetchDataTop10Sell("HSX"));
+    dispatch(fetchDataTop10Buy("HSX"));
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchDataTableDetail)
-    dispatch(fetchDataBarChartRight)
-    dispatch(fetchDataBarChartLeft('VNINDEX'));
+    dispatch(fetchDataCarousel);
+    dispatch(fetchDataTableDetail);
+    dispatch(fetchDataBarChartRight);
+    dispatch(fetchDataBarChartLeft("VNINDEX"));
   }, [dispatch]);
-
 
   return (
     <div className="container mx-auto">
@@ -48,7 +54,13 @@ const Home = () => {
               gap: "10px",
             }}
           >
-            <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr", gap: '5px' }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "2fr 2fr",
+                gap: "5px",
+              }}
+            >
               <div>
                 <TableDetail />
               </div>
@@ -57,12 +69,16 @@ const Home = () => {
               </div>
               <div>
                 <div className="text-center">
-                  <span className="font-semibold">Nhóm cổ phiếu dẫn dắt thị trường</span>
-                  <select 
+                  <span className="font-semibold">
+                    Nhóm cổ phiếu dẫn dắt thị trường
+                  </span>
+                  <select
                     className={`${chartStyle.selectStyle} border-none`}
                     value={selectedIndex}
                     onChange={(event) => {
-                      dispatch(dispatch(fetchDataBarChartLeft(event.target.value )));
+                      dispatch(
+                        dispatch(fetchDataBarChartLeft(event.target.value))
+                      );
                     }}
                   >
                     <option value="VNINDEX">VNINDEX</option>
@@ -79,25 +95,42 @@ const Home = () => {
             <div>
               <GeneralIndustry />
             </div>
+           
             <div className="grid grid-cols-2">
               <div className="w-auto">
-                <select onChange={(event) => { dispatch(dispatch(fetchDataTop10Sell(event.target.value))) }}>
-                  <option value="HSX" selected="selected">HSX</option>
+                <select
+                  onChange={(event) => {
+                    dispatch(dispatch(fetchDataTop10Sell(event.target.value)));
+                  }}
+                >
+                  <option value="HSX" selected="selected">
+                    HSX
+                  </option>
                   <option value="HNX">HNX</option>
                   <option value="UPCOM">UPCOM</option>
                 </select>
                 <Top10Sell />
               </div>
               <div className="w-auto">
-                <select onChange={(event) => { dispatch(dispatch(fetchDataTop10Buy(event.target.value))) }}>
-                  <option value="HSX" selected="selected">HSX</option>
+                <select
+                  onChange={(event) => {
+                    dispatch(dispatch(fetchDataTop10Buy(event.target.value)));
+                  }}
+                >
+                  <option value="HSX" selected="selected">
+                    HSX
+                  </option>
                   <option value="HNX">HNX</option>
                   <option value="UPCOM">UPCOM</option>
                 </select>
                 <Top10Buy />
               </div>
             </div>
+            
           </div>
+          <div>
+              <News />
+            </div>
         </div>
       </div>
     </div>
