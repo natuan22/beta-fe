@@ -4,7 +4,7 @@ const initialState = {
   dataCarousel: {},
   dataBarChartRight: {},
   dataBarChartLeft: {},
-  indexApiBarChartLeft:'',
+  dataTableDetail: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -15,11 +15,11 @@ const reducer = (state = initialState, { type, payload }) => {
     if(type === actionType.UPDATE_DATA_BARCHART_RIGHT){
       draft.dataBarChartRight = payload
     }
-    if(type === actionType.SET_INDEX_BARCHART_LEFT){
-      draft.indexApiBarChartLeft = payload
-    }
     if(type === actionType.UPDATE_DATA_BARCHART_LEFT){
        draft.dataBarChartLeft = payload
+    }
+    if(type === actionType.UPDATE_DATA_TABLEDETAIL){
+      draft.dataTableDetail = payload
     }
   });
 };

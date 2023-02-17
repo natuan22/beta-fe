@@ -38,7 +38,7 @@ export const fetchDataBarChartLeft =(index) =>async (dispatch) => {
       url: "https://mkw-socket.vndirect.com.vn/mkwsocket/leaderlarger",
       method: "GET",
       params:{
-        index: index || undefined
+        index: index
       }
     });
     dispatch({
@@ -49,3 +49,19 @@ export const fetchDataBarChartLeft =(index) =>async (dispatch) => {
     console.log(err);
   }
 };
+
+export const fetchDataTableDetail = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.9.250:5000/chiso/trongnuoc",
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_TABLEDETAIL",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
