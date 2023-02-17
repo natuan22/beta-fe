@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
 import Banner from "./components/Banner";
 import BarChartLeft from "./components/BarChartLeft";
 import BarChartRight from "./components/BarChartRight";
@@ -11,15 +10,19 @@ import Top10Sell from "./components/Top10Sell";
 import Top10Buy from "./components/Top10Buy";
 import { fetchDataCarousel, fetchDataBarChartRight, fetchDataBarChartLeft, fetchDataNews, fetchDataTop10Sell, fetchDataTop10Buy } from "./thunk";
 import { setIndex } from "./utils";
+import LineChart from "./components/LineChart";
+import TableDetail from "./components/TableDetail";
+import { fetchDataCarousel, fetchDataBarChartRight, fetchDataBarChartLeft, fetchDataTableDetail } from "./thunk";
+import chartStyle from "./utils/Chart.module.css"
 
 const Home = () => {
   const dispatch = useDispatch();
   const selectedIndex = useSelector(
     (state) => state.chart.indexApiBarChartLeft
   );
-  const [searchParam, setUseSearchParam] = useSearchParams()
   useEffect(() => {
     dispatch(fetchDataCarousel);
+
 
     dispatch(fetchDataBarChartRight);
 
@@ -31,10 +34,10 @@ const Home = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchDataBarChartLeft(searchParam.get(`selectedIndex`)))
-  }, [searchParam.get(`selectedIndex`)])
-
-
+    dispatch(fetchDataTableDetail)
+    dispatch(fetchDataBarChartRight)
+    dispatch(fetchDataBarChartLeft('VNINDEX'));
+  }, [dispatch]);
 
 
   return (
@@ -54,12 +57,19 @@ const Home = () => {
           >
             <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr", gap: '5px' }}>
               <div>
-                <div>
-                  <select
+                <TableDetail />
+              </div>
+              <div>
+                <LineChart />
+              </div>
+              <div>
+                <div className="text-center">
+                  <span className="font-semibold">Nhóm cổ phiếu dẫn dắt thị trường</span>
+                  <select 
+                    className={`${chartStyle.selectStyle} border-none`}
                     value={selectedIndex}
                     onChange={(event) => {
-                      dispatch(setIndex(event.target.value));
-                      fetchDataBarChartLeft(selectedIndex)
+                      dispatch(dispatch(fetchDataBarChartLeft(event.target.value )));
                     }}
                   >
                     <option value="VNINDEX">VNINDEX</option>

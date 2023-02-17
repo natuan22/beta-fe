@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import ReactApexChart from 'react-apexcharts';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import ReactApexChart from "react-apexcharts";
 
 const BarChartRight = () => {
-  const dataBarChartRight = useSelector(state => state.chart.dataBarChartRight);
+  const dataBarChartRight = useSelector(
+    (state) => state.chart.dataBarChartRight
+  );
   const [data, setData] = useState(dataBarChartRight.data);
   useEffect(() => {
     setData(dataBarChartRight.data);
@@ -11,7 +13,7 @@ const BarChartRight = () => {
 
   const options = {
     chart: {
-      type: 'bar',
+      type: "bar",
       height: 350,
     },
     plotOptions: {
@@ -21,16 +23,16 @@ const BarChartRight = () => {
             {
               from: 0,
               to: 100,
-              color: '#19d216',
+              color: "#19d216",
             },
             {
               from: -45,
               to: 0,
-              color: '#f10000',
+              color: "#f10000",
             },
           ],
         },
-        columnWidth: '80%',
+        columnWidth: "80%",
       },
     },
     dataLabels: {
@@ -38,17 +40,17 @@ const BarChartRight = () => {
     },
     yaxis: {
       labels: {
-        formatter: function(y) {
+        formatter: function (y) {
           return (y / 10).toFixed(1);
         },
       },
     },
     xaxis: {
-      categories: data?.map(item => item.ticker),
+      categories: data?.map((item) => item.ticker),
       labels: {
         rotate: -90,
         style: {
-          fontWeight: 'bold',
+          fontWeight: "bold",
         },
       },
     },
@@ -56,14 +58,20 @@ const BarChartRight = () => {
 
   const series = [
     {
-      name: 'Volume trade',
-      data: data?.map(item => item.net_value_foreign),
+      name: "Volume trade",
+      data: data?.map((item) => item.net_value_foreign),
     },
   ];
 
   return (
-    <div className="chart">
-      <ReactApexChart options={options} series={series} type="bar" height={350} />
+    <div className="chart" style={{transform: 'translateY(4%)'}}>
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="bar"
+        height={475}
+       
+      />
     </div>
   );
 };

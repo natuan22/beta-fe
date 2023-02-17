@@ -1,25 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import ReactApexChart from 'react-apexcharts'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
 
 const BarChartLeft = () => {
-  const dataBarChartLeft = useSelector(state => state.chart.dataBarChartLeft)
-  const [data, setData] = useState(dataBarChartLeft.data)
+  const dataBarChartLeft = useSelector((state) => state.chart.dataBarChartLeft);
+  const [data, setData] = useState(dataBarChartLeft?.data ?? []);
+  useEffect(() => {
+    
+    setData(dataBarChartLeft?.data ?? []);
+  }, [dataBarChartLeft]);
 
-  useEffect(()=> {
-    setData(dataBarChartLeft.data)
-  },[dataBarChartLeft])
+  const sortedData = data && data.data ? [...data.data].sort((a, b) => b.point - a.point) : [];
+  const top10 = sortedData.slice(0, 10);
+  const bottom10 = sortedData.slice(-10);
+  const dataStockRender = top10.concat(bottom10)
+  console.log(dataStockRender)
 
   const series = [
     {
-      name: 'Volume trade',
-      data: data?.data?.map(item => item.point.toFixed(2)),
+      name: "Volume trade",
+      data: dataStockRender.map((item) => item.point.toFixed(2)),
     },
   ];
 
   const options = {
     chart: {
-      type: 'bar',
+      type: "bar",
       height: 350,
     },
     plotOptions: {
@@ -29,16 +35,16 @@ const BarChartLeft = () => {
             {
               from: 0,
               to: 100,
-              color: '#19d216',
+              color: "#19d216",
             },
             {
               from: -45,
               to: 0,
-              color: '#f10000',
+              color: "#f10000",
             },
           ],
         },
-        columnWidth: '80%',
+        columnWidth: "70%",
       },
     },
     dataLabels: {
@@ -46,17 +52,18 @@ const BarChartLeft = () => {
     },
     yaxis: {
       labels: {
-        formatter: function(y) {
-          return (y / 10).toFixed(1);
+        formatter: function (y) {
+          return  y.toFixed(2);
         },
       },
     },
     xaxis: {
-      categories: [1,2,3,4,5,6,7],
+      categories: dataStockRender.map(item => item.symbol),
       labels: {
         rotate: 0,
         style: {
-          fontWeight: 'bold',
+          fontWeight: "bold",
+          fontSize: "7px"
         },
       },
     },
@@ -64,9 +71,15 @@ const BarChartLeft = () => {
 
   return (
     <div className="chart">
-      <ReactApexChart options={options} series={series} type="bar" height={350} />
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="bar"
+        height={400}
+        width={550}
+      />
     </div>
   );
-}
+};
 
-export default BarChartLeft
+export default BarChartLeft;

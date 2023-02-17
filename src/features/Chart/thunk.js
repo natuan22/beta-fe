@@ -37,8 +37,8 @@ export const fetchDataBarChartLeft = (index) => async (dispatch) => {
       // url: domain + endpoint
       url: "https://mkw-socket.vndirect.com.vn/mkwsocket/leaderlarger",
       method: "GET",
-      params: {
-        index: index || undefined
+      params:{
+        index: index
       }
     });
     dispatch({
@@ -50,6 +50,7 @@ export const fetchDataBarChartLeft = (index) => async (dispatch) => {
   }
 };
 
+=
 export const fetchDataNews = async (dispatch) => {
   try {
     const res = await axios({
@@ -59,12 +60,28 @@ export const fetchDataNews = async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_NEWS",
-      payload: res.data,
+        payload: res,
     });
   } catch (err) {
     console.log(err);
   }
 };
+
+export const fetchDataTableDetail = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.9.250:5000/chiso/trongnuoc",
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_TABLEDETAIL",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+  };
 
 export const fetchDataTop10Sell = (index) => async (dispatch) => {
   try {
@@ -103,3 +120,5 @@ export const fetchDataTop10Buy = (index) => async (dispatch) => {
     console.log(err);
   }
 };
+}
+
