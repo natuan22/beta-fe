@@ -8,11 +8,9 @@ import GeneralIndustry from "./components/GeneralIndustry";
 import News from "./components/News";
 import Top10Sell from "./components/Top10Sell";
 import Top10Buy from "./components/Top10Buy";
-import { fetchDataCarousel, fetchDataBarChartRight, fetchDataBarChartLeft, fetchDataNews, fetchDataTop10Sell, fetchDataTop10Buy } from "./thunk";
-import { setIndex } from "./utils";
+import { fetchDataCarousel,fetchDataTableDetail, fetchDataBarChartRight, fetchDataBarChartLeft, fetchDataNews, fetchDataTop10Sell, fetchDataTop10Buy } from "./thunk";
 import LineChart from "./components/LineChart";
 import TableDetail from "./components/TableDetail";
-import { fetchDataCarousel, fetchDataBarChartRight, fetchDataBarChartLeft, fetchDataTableDetail } from "./thunk";
 import chartStyle from "./utils/Chart.module.css"
 
 const Home = () => {
@@ -22,13 +20,8 @@ const Home = () => {
   );
   useEffect(() => {
     dispatch(fetchDataCarousel);
-
-
     dispatch(fetchDataBarChartRight);
-
-
     dispatch(fetchDataNews);
-
     dispatch(fetchDataTop10Sell('HSX'));
     dispatch(fetchDataTop10Buy('HSX'));
   }, [dispatch]);

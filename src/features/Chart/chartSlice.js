@@ -6,7 +6,7 @@ const initialState = {
   dataBarChartLeft: {},
   dataNews: {},
   dataTop10Sell: {},
-  dataTop10Buy: {}
+  dataTop10Buy: {},
   dataTableDetail: {},
 };
 
@@ -32,7 +32,7 @@ const reducer = (state = initialState, { type, payload }) => {
     if(type === actionType.UPDATE_DATA_TABLEDETAIL){
       draft.dataTableDetail = payload
     }
-  });
+  }});
 };
 
 export default reducer;

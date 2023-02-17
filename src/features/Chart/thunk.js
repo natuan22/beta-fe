@@ -50,7 +50,7 @@ export const fetchDataBarChartLeft = (index) => async (dispatch) => {
   }
 };
 
-=
+
 export const fetchDataNews = async (dispatch) => {
   try {
     const res = await axios({
@@ -120,5 +120,5 @@ export const fetchDataTop10Buy = (index) => async (dispatch) => {
     console.log(err);
   }
 };
-}
+
 

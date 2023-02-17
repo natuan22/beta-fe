@@ -1,8 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { Table, Tag } from 'antd';
-import moment from 'moment';
-
 
 const News = () => {
     const dataNews = useSelector((state) => state.chart.dataNews.recordset);
