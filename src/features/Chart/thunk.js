@@ -150,6 +150,11 @@ export const fetchDataDiemAnhHuong5PhienGiam = (index) => async (dispatch) => {
       type: "beta/UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_GIAM",
       payload: res,
 
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
 export const fetchDataGoodsDetail = async (dispatch) => {
   try {
     const res = await axios({
@@ -165,8 +170,7 @@ export const fetchDataGoodsDetail = async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
-
-};
+}
 
 export const fetchDataKhoaNgoaiMuaRong = async (dispatch) => {
   try {
@@ -177,7 +181,12 @@ export const fetchDataKhoaNgoaiMuaRong = async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_KHOA_NGOAI_MUA_RONG",
+      payload: res.data,
 
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export const fetchDataRateDetail = async (dispatch) => {
@@ -196,9 +205,9 @@ export const fetchDataRateDetail = async (dispatch) => {
     console.log(err);
   }
 
-};
-
 }
+
+
 
 
 export const fetchDataGeneralIndustry = async (dispatch) => {
