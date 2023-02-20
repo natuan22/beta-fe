@@ -8,6 +8,9 @@ const initialState = {
   dataTop10Sell: {},
   dataTop10Buy: {},
   dataTableDetail: {},
+  dataGoodsDetail: {},
+  dataRateDetail: {},
+  dataGeneral : {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -32,6 +35,15 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if(type === actionType.UPDATE_DATA_TABLEDETAIL){
       draft.dataTableDetail = payload
+    }
+    if(type === actionType.UPDATE_DATA_GOODSDETAIL) {
+      draft.dataGoodsDetail = payload
+    }
+    if(type === actionType.UPDATE_DATA_RATEDETAIL) {
+      draft.dataRateDetail = payload
+    }
+    if(type === actionType.UPDATE_DATA_GENERAL){
+      draft.dataGeneral = payload
     }
   });
 };

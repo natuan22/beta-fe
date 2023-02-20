@@ -16,10 +16,14 @@ import {
   fetchDataNews,
   fetchDataTop10Sell,
   fetchDataTop10Buy,
+  fetchDataGoodsDetail,
+  fetchDataRateDetail,
+  fetchDataGeneralIndustry,
 } from "./thunk";
 import LineChart from "./components/LineChart";
 import chartStyle from "./utils/Chart.module.css";
 import TableDetail from "./components/TableDetail";
+import GoodsDetail from "./components/GoodsDetail";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -37,6 +41,9 @@ const Home = () => {
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataBarChartRight);
     dispatch(fetchDataBarChartLeft("VNINDEX"));
+    dispatch(fetchDataGoodsDetail)
+    dispatch(fetchDataRateDetail)
+    dispatch(fetchDataGeneralIndustry)
   }, [dispatch]);
 
   return (
@@ -91,13 +98,16 @@ const Home = () => {
               <div>
                 <BarChartRight />
               </div>
+              <div>
+                <GoodsDetail />
+              </div>
             </div>
             <div>
               <GeneralIndustry />
             </div>
-           
+
             <div className="grid grid-cols-2">
-              <div className="w-auto">
+              <div>
                 <select
                   onChange={(event) => {
                     dispatch(dispatch(fetchDataTop10Sell(event.target.value)));
@@ -111,7 +121,7 @@ const Home = () => {
                 </select>
                 <Top10Sell />
               </div>
-              <div className="w-auto">
+              <div>
                 <select
                   onChange={(event) => {
                     dispatch(dispatch(fetchDataTop10Buy(event.target.value)));
@@ -126,11 +136,10 @@ const Home = () => {
                 <Top10Buy />
               </div>
             </div>
-            
           </div>
           <div>
-              <News />
-            </div>
+            <News />
+          </div>
         </div>
       </div>
     </div>
