@@ -54,6 +54,21 @@ const Top10Sell = () => {
         },
         xaxis: {
             categories: last10.map(item => item.ticker),
+
+            // labels: {
+            //     style: {
+            //         colors: '#fff',
+            //     }
+            // }
+        },
+        yaxis: {
+            opposite: true,
+            // labels: {
+            //     style: {
+            //         colors: '#fff',
+            //     }
+            // }
+
             labels: {
                 // style: {
                 //     colors: '#fff',
@@ -67,6 +82,7 @@ const Top10Sell = () => {
                 //     colors: '#fff',
                 // }
             }
+
         }
     };
 

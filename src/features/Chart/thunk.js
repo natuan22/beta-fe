@@ -38,7 +38,7 @@ export const fetchDataBarChartLeft = (index) => async (dispatch) => {
       // url: domain + endpoint
       url: "https://mkw-socket.vndirect.com.vn/mkwsocket/leaderlarger",
       method: "GET",
-      params:{
+      params: {
         index: index
       }
     });
@@ -61,7 +61,7 @@ export const fetchDataNews = async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_NEWS",
-        payload: res.data,
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);
@@ -82,7 +82,7 @@ export const fetchDataTableDetail = async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
-  };
+};
 
 export const fetchDataTop10Sell = (index) => async (dispatch) => {
   try {
@@ -122,6 +122,34 @@ export const fetchDataTop10Buy = (index) => async (dispatch) => {
   }
 };
 
+
+export const fetchDataDiemAnhHuong5PhienTang = (index) => async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: `http://192.168.9.250:5000/diemanhhuong5phien/${index}`,
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_TANG",
+      payload: res,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const fetchDataDiemAnhHuong5PhienGiam = (index) => async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: `http://192.168.9.250:5000/diemanhhuong5phien/${index}`,
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_GIAM",
+      payload: res,
+
 export const fetchDataGoodsDetail = async (dispatch) => {
   try {
     const res = await axios({
@@ -132,10 +160,24 @@ export const fetchDataGoodsDetail = async (dispatch) => {
     dispatch({
       type: "beta/UPDATE_DATA_GOODSDETAIL",
       payload: res.data,
+
     });
   } catch (err) {
     console.log(err);
   }
+
+};
+
+export const fetchDataKhoaNgoaiMuaRong = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: `http://192.168.15.174:3000/foreign.dat?exchange=HSX`,
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_KHOA_NGOAI_MUA_RONG",
+
 }
 
 export const fetchDataRateDetail = async (dispatch) => {
@@ -147,12 +189,17 @@ export const fetchDataRateDetail = async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_RATEDETAIL",
+
       payload: res.data,
     });
   } catch (err) {
     console.log(err);
   }
+
+};
+
 }
+
 
 export const fetchDataGeneralIndustry = async (dispatch) => {
   try {
