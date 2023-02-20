@@ -19,6 +19,9 @@ import {
   fetchDataDiemAnhHuong5PhienTang,
   fetchDataDiemAnhHuong5PhienGiam,
   fetchDataKhoaNgoaiMuaRong,
+  fetchDataGoodsDetail,
+  fetchDataRateDetail,
+  fetchDataGeneralIndustry,
 } from "./thunk";
 import LineChart from "./components/LineChart";
 import chartStyle from "./utils/Chart.module.css";
@@ -26,6 +29,8 @@ import TableDetail from "./components/TableDetail";
 import Top10Incr from "./components/Top10Incr";
 import Top10Decr from "./components/Top10Decr";
 import TreemapChart from "./components/TreemapChart";
+import GoodsDetail from "./components/GoodsDetail";
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -46,6 +51,9 @@ const Home = () => {
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataBarChartRight);
     dispatch(fetchDataBarChartLeft("VNINDEX"));
+    dispatch(fetchDataGoodsDetail)
+    dispatch(fetchDataRateDetail)
+    dispatch(fetchDataGeneralIndustry)
   }, [dispatch]);
 
   return (
@@ -100,6 +108,9 @@ const Home = () => {
               <div>
                 <BarChartRight />
               </div>
+              <div>
+                <GoodsDetail />
+              </div>
             </div>
             <div>
               <GeneralIndustry />
@@ -110,6 +121,7 @@ const Home = () => {
                 <span className="font-semibold">
                   TOP 10 CỔ PHIẾU KHỐI NGOẠI BÁN NHIỀU NHẤT SÀN
                 </span>
+              <div>
                 <select
                   className={`${chartStyle.selectStyle} border-none`}
                   onChange={(event) => {
@@ -127,10 +139,12 @@ const Home = () => {
                 </span>
                 <Top10Sell />
               </div>
+
               <div className="w-auto">
                 <span className="font-semibold">
                   TOP 10 CỔ PHIẾU KHỐI NGOẠI MUA NHIỀU NHẤT SÀN
                 </span>
+              <div>
                 <select
                   className={`${chartStyle.selectStyle} border-none`}
                   onChange={(event) => {
@@ -149,13 +163,11 @@ const Home = () => {
                 <Top10Buy />
               </div>
             </div>
-
           </div>
 
           <div>
             <News />
           </div>
-
           <div className="grid grid-cols-2">
 
             <div>

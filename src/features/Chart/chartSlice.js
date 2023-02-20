@@ -11,6 +11,9 @@ const initialState = {
   dataDiemAnhHuong5PhienTang: {},
   dataDiemAnhHuong5PhienGiam: {},
   dataKhoaNgoaiMuaRong: {}
+  dataGoodsDetail: {},
+  dataRateDetail: {},
+  dataGeneral : {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -36,6 +39,7 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_TABLEDETAIL) {
       draft.dataTableDetail = payload
     }
+
     if (type === actionType.UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_TANG) {
       draft.dataDiemAnhHuong5PhienTang = payload
     }
@@ -44,6 +48,15 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === actionType.UPDATE_DATA_KHOA_NGOAI_MUA_RONG) {
       draft.dataKhoaNgoaiMuaRong = payload
+}
+    if(type === actionType.UPDATE_DATA_GOODSDETAIL) {
+      draft.dataGoodsDetail = payload
+    }
+    if(type === actionType.UPDATE_DATA_RATEDETAIL) {
+      draft.dataRateDetail = payload
+    }
+    if(type === actionType.UPDATE_DATA_GENERAL){
+      draft.dataGeneral = payload
     }
   });
 };
