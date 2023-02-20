@@ -49,9 +49,10 @@ const TableDetail = () => {
   const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
   };
+
   return (
     <div  >
-      <Table  columns={columns} dataSource={dataTable} onChange={onChange} />
+      <Table columns={columns} dataSource={dataTable} onChange={onChange} />
     </div>
   );
 };

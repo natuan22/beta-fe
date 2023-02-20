@@ -8,6 +8,9 @@ const initialState = {
   dataTop10Sell: {},
   dataTop10Buy: {},
   dataTableDetail: {},
+  dataDiemAnhHuong5PhienTang: {},
+  dataDiemAnhHuong5PhienGiam: {},
+  dataKhoaNgoaiMuaRong: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -27,11 +30,20 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_TOP10_BUY) {
       draft.dataTop10Buy = payload
     }
-    if(type === actionType.UPDATE_DATA_BARCHART_LEFT){
-       draft.dataBarChartLeft = payload
+    if (type === actionType.UPDATE_DATA_BARCHART_LEFT) {
+      draft.dataBarChartLeft = payload
     }
-    if(type === actionType.UPDATE_DATA_TABLEDETAIL){
+    if (type === actionType.UPDATE_DATA_TABLEDETAIL) {
       draft.dataTableDetail = payload
+    }
+    if (type === actionType.UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_TANG) {
+      draft.dataDiemAnhHuong5PhienTang = payload
+    }
+    if (type === actionType.UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_GIAM) {
+      draft.dataDiemAnhHuong5PhienGiam = payload
+    }
+    if (type === actionType.UPDATE_DATA_KHOA_NGOAI_MUA_RONG) {
+      draft.dataKhoaNgoaiMuaRong = payload
     }
   });
 };

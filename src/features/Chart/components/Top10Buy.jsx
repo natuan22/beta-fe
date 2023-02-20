@@ -24,7 +24,7 @@ const Top10Buy = () => {
 
     const options = {
         chart: {
-            background: '#020203',
+            // background: '#020203',
             toolbar: {
                 show: false,
             },
@@ -50,24 +50,24 @@ const Top10Buy = () => {
         dataLabels: {
             enabled: true,
             offsetX: 43,
-            // style: {
-            //     colors: ['#212529']
-            // },
+            style: {
+                colors: ['#212529']
+            },
         },
         xaxis: {
             categories: top10.map(item => item.ticker),
-            labels: {
-                style: {
-                    colors: '#fff',
-                }
-            }
+            // labels: {
+            //     style: {
+            //         colors: '#fff',
+            //     }
+            // }
         },
         yaxis: {
-            labels: {
-                style: {
-                    colors: '#fff',
-                }
-            }
+            // labels: {
+            //     style: {
+            //         colors: '#fff',
+            //     }
+            // }
         }
     };
 
