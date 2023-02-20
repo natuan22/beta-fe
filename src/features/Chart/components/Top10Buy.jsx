@@ -29,7 +29,8 @@ const Top10Buy = () => {
                 show: false,
             },
             type: 'bar',
-            fontFamily: 'Segoe UI'
+            fontFamily: 'Segoe UI',
+            width: '50%'
         },
         title: {
             text: '',
@@ -48,7 +49,7 @@ const Top10Buy = () => {
             colors: '#19d216'
         },
         dataLabels: {
-            enabled: true,
+            enabled: false,
             offsetX: 43,
             style: {
                 colors: ['#212529']

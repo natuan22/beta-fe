@@ -26,6 +26,7 @@ const Top10Decr = () => {
       },
       type: 'bar',
       fontFamily: 'Segoe UI',
+      width: '50%'
     },
     title: {
       text: '',
@@ -44,7 +45,7 @@ const Top10Decr = () => {
       colors: '#fe0001'
     },
     dataLabels: {
-      enabled: true,
+      enabled: false,
       offsetX: 30,
       style: {
         colors: ['#212529']

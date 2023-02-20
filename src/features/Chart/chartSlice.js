@@ -14,6 +14,7 @@ const initialState = {
   dataGoodsDetail: {},
   dataRateDetail: {},
   dataGeneral: {},
+  dataTreemap: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -57,6 +58,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === actionType.UPDATE_DATA_GENERAL) {
       draft.dataGeneral = payload;
+    }
+    if (type === actionType.UPDATE_DATA_TREEMAP) {
+      draft.dataTreemap = payload
     }
   });
 };

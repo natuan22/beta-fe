@@ -28,6 +28,7 @@ const Top10Sell = () => {
             },
             type: 'bar',
             fontFamily: 'Segoe UI',
+            width: '50%'
         },
         title: {
             text: '',
@@ -46,7 +47,7 @@ const Top10Sell = () => {
             colors: '#fe0001'
         },
         dataLabels: {
-            enabled: true,
+            enabled: false,
             offsetX: 43,
             style: {
                 colors: ['#212529']

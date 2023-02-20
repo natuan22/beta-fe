@@ -27,7 +27,8 @@ const Top10Incr = () => {
         show: false,
       },
       type: 'bar',
-      fontFamily: 'Segoe UI'
+      fontFamily: 'Segoe UI',
+      width: '50%'
     },
     title: {
       text: '',
@@ -46,7 +47,7 @@ const Top10Incr = () => {
       colors: '#19d216'
     },
     dataLabels: {
-      enabled: true,
+      enabled: false,
       offsetX: 30,
       style: {
         colors: ['#212529']

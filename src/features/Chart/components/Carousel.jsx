@@ -11,8 +11,8 @@ const Carousel = () => {
   const dataCarousel = useSelector((state) => state.chart.dataCarousel);
 
   return (
-    <div className=" bg-slate-700 p-2">
-      <Marquee speed={100} pauseOnHover="true" gradientColor="[0,0,0]">
+    <div className="bg-gray-800 p-2">
+      <Marquee speed={70} pauseOnHover="true" gradientColor="[0,0,0]">
         <div className="flex">
           {dataCarousel.data?.map((item, index) => {
             return (
@@ -45,14 +45,14 @@ const Carousel = () => {
           })}
         </div>
       </Marquee>
-      <Marquee speed={80} pauseOnHover="true" gradientColor="[0,0,0]">
+      <Marquee speed={60} pauseOnHover="true" gradientColor="[0,0,0]">
         <div className="blog-news flex  " style={{ height: "150px" }}>
           <Card
             bordered={false}
             style={{
               width: 470,
               height: 90,
-              backgroundColor: "#334155",
+              backgroundColor: "#1F2937",
             }}
           >
             <div className="flex items-center">
@@ -80,7 +80,7 @@ const Carousel = () => {
             style={{
               width: 470,
               height: 90,
-              backgroundColor: "#334155",
+              backgroundColor: "#1F2937",
             }}
           >
             <div className="flex items-center">
@@ -108,7 +108,7 @@ const Carousel = () => {
             style={{
               width: 470,
               height: 90,
-              backgroundColor: "#334155",
+              backgroundColor: "#1F2937",
             }}
           >
             <div className="flex items-center">
