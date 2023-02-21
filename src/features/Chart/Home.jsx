@@ -166,7 +166,7 @@ const Home = () => {
                 </select>
           </div>
           <TreemapChart />
-          <RateDetail />
+          {/* <RateDetail /> */}
         </div>
       </div>
     </div>

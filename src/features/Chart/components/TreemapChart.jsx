@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const TreeMapChart = () => {
   const dataTreemap = useSelector((state) => state.chart.dataTreemap);
   const [data = dataTreemap.recordset || [], setData] = useState();
-  console.log(data);
+  
   const arrGlobal = [
     [
       "Location",
@@ -33,7 +33,6 @@ const TreeMapChart = () => {
   });
 
 const dataTreeMapRender = arrGlobal.concat(arrTicker)
-console.log(dataTreeMapRender)
 
   const options = {
     highlightOnMouseOver: true,
