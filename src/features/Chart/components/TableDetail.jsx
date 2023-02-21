@@ -1,60 +1,77 @@
-import { Table } from 'antd';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import Loading from "../utils/Loading";
 
 const TableDetail = () => {
-  const dataTable = useSelector(state => state.chart.dataTableDetail);
+  const dataTable = useSelector((state) => state.chart.dataTableDetail);
+  console.log(dataTable);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  if (!Array.isArray(dataTable)) {
-    return null; // Return null if dataTable is not an array
+  useEffect(() => {
+    if (dataTable[0]) {
+      setLoading(false);
+      setData(dataTable)
+      console.log('change')
+    }
+  }, [dataTable]);
+
+
+  if (loading) {
+    return <Loading />;
+  } else {
+    return (
+      <div style={{ border: "solid 1px black" }} className="p-2">
+        <table className="table-auto " style={{ width: "100%" }}>
+          <thead>
+            <tr className="font-bold text-sm ">
+              <th className="w-24 text-left">Chỉ số</th>
+              <th className="w-25 text-left">Điểm </th>
+              <th className="w-32 mr-3">Thay đổi (điểm)</th>
+              <th className="w-25">Thay đổi (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.isArray(data) &&
+              data.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td className="font-semibold text-base">{item.ticker}</td>
+                    {item.close_price < "0" ? (
+                      <td className="font-semibold text-red-500">
+                        {item.close_price}
+                      </td>
+                    ) : (
+                      <td className="font-semibold text-green-500">
+                        {item.close_price}
+                      </td>
+                    )}
+                    {item.percent_d < "0" ? (
+                      <td className="font-semibold text-red-500 text-center">
+                        {item.percent_d}%
+                      </td>
+                    ) : (
+                      <td className="font-semibold text-green-500 text-center">
+                        {item.percent_d}%
+                      </td>
+                    )}
+                    {item.percent_d < "0" ? (
+                      <td className="font-semibold text-red-500 text-center">
+                        {item.percent_d}%
+                      </td>
+                    ) : (
+                      <td className="font-semibold text-green-500 text-center">
+                        {item.percent_d}%
+                      </td>
+                    )}
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
+    );
   }
-  const columns = [
-    {
-      title: 'Chỉ số',
-      dataIndex: 'ticker',
-      style: { background: '#000' },
-      render: (text) => {
-        return <span className='font-bold' >{text}</span>;
-      },
-    },
-    {
-      title: 'Điểm',
-      dataIndex: 'close_price',
-      sorter: {
-        compare: (a, b) => a.close_price - b.close_price,
-        multiple: 2,
-      },
-    },
-    {
-      title: 'Thay đổi (điểm)',
-      dataIndex: 'change_price',
-      sorter: {
-        compare: (a, b) => a.change_price - b.change_price,
-        multiple: 3,
-      },
-
-    },
-    {
-      title: 'Thay đổi (%)',
-      dataIndex: 'percent_d',
-      sorter: {
-        compare: (a, b) => a.percent_d - b.percent_d,
-        multiple: 4,
-      },
-      render: (text, record) => {
-        const color = record.percent_d < 0 ? 'red' : 'green';
-        return <span className='font-semibold' style={{ color }}>{text}%</span>;
-      },
-    },
-  ];
-  const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
-  };
-
-  return (
-    <div  >
-      <Table columns={columns} dataSource={dataTable} onChange={onChange} />
-    </div>
-  );
 };
 
 export default TableDetail;

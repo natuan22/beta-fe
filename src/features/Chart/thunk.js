@@ -1,5 +1,5 @@
 import axios from "axios";
-import { async } from "q";
+
 
 export const fetchDataCarousel = async (dispatch) => {
   try {
@@ -225,3 +225,23 @@ export const fetchDataGeneralIndustry = async (dispatch) => {
     console.log(err);
   }
 }
+
+export const fetchDataTreeMap = (index) => async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.15.174:3000/foreign.dat",
+      method: "GET",
+      params: {
+        exchange: index || undefined
+      }
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_TREEMAP",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+

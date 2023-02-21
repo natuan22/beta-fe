@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Chart } from "react-google-charts";
 import { useSelector } from "react-redux";
 
-const TreeMapChart = () => {
+const TreeMapChart2 = () => {
   const dataTreemap = useSelector((state) => state.chart.dataTreemap);
   const [data = dataTreemap.recordset || [], setData] = useState();
-  
+  console.log(data);
   const arrGlobal = [
     [
       "Location",
@@ -33,17 +33,18 @@ const TreeMapChart = () => {
   });
 
 const dataTreeMapRender = arrGlobal.concat(arrTicker)
+console.log(dataTreeMapRender)
 
   const options = {
     highlightOnMouseOver: true,
     maxDepth: 1,
     maxPostDepth: 2,
-    minHighlightColor: "green",
-    midHighlightColor: "green",
-    maxHighlightColor: "#green",
-    minColor: "green",
-    midColor: "#green",
-    maxColor: "#green",
+    minHighlightColor: "red",
+    midHighlightColor: "red",
+    maxHighlightColor: "red",
+    minColor: "red",
+    midColor: "red",
+    maxColor: "red",
     headerHeight: 30,
     showScale: false,
     height: 500,
@@ -95,4 +96,4 @@ const dataTreeMapRender = arrGlobal.concat(arrTicker)
   );
 };
 
-export default TreeMapChart;
+export default TreeMapChart2;
