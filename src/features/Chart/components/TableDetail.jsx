@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 const TableDetail = () => {
   const dataTable = useSelector(state => state.chart.dataTableDetail);
-  
+
   if (!Array.isArray(dataTable)) {
     return null; // Return null if dataTable is not an array
   }

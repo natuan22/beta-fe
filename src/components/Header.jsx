@@ -186,7 +186,7 @@ const Header = () => {
                     </NavLink>
                   </div>
                 </div>
-                <div className='hidden xl:flex items-center flex ml-3 xl:ml-32 lg:ml-72'>
+                <div className='hidden xl:flex items-center flex ml-3 xl:ml-28 lg:ml-72'>
                   <div className='flex'>
                     <BellOutlined className='ml-2' style={{ fontSize: '20px', color: '#fff' }} />
                     <MessageOutlined className='ml-2 mr-2' style={{ fontSize: '20px', color: '#fff' }} />
@@ -200,7 +200,7 @@ const Header = () => {
                 </div>
                 <div className="hidden xl:block">
                   <NavLink to="/signin" className={({ isActive }) =>
-                    isActive ? 'no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium' : 'no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium'
+                    isActive ? 'ml-1 no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium' : 'ml-1 no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium'
                   }>
                     Sign in
                   </NavLink>

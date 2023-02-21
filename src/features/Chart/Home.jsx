@@ -66,7 +66,58 @@ const Home = () => {
 
         <div style={{ width: "90%" }}>
           <Carousel />
-          <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr", gap: "2px", }}>
+          <div className="flex">
+            <div style={{ width: "60%" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr", gap: "2px", }}>
+                <div>
+                  <TableDetail />
+                </div>
+                <div>
+                  <LineChart />
+                </div>
+              </div>
+            </div>
+            <div style={{ width: "40%" }}>
+
+              <div className="grid grid-cols-2 gap-0.5">
+                <div className="text-center">
+                  <span className="font-semibold">
+                    Top 10 cổ phiếu giảm mạnh nhất sàn
+                  </span>
+                  <select className={`${chartStyle.selectStyle} border-none`} onChange={(event) => {
+                    dispatch(dispatch(fetchDataDiemAnhHuong5PhienGiam(event.target.value)));
+                  }}>
+                    <option value="hose" selected="selected">
+                      HSX
+                    </option>
+                    <option value="hnx">HNX</option>
+                    <option value="upcom">UPCOM</option>
+                  </select>
+                  <span className="font-semibold">qua 05 phiên gần nhất</span>
+                  <Top10Decr />
+                </div>
+
+                <div className="text-center">
+                  <span className="font-semibold">
+                    Top 10 cổ phiếu tăng mạnh nhất sàn
+                  </span>
+                  <select className={`${chartStyle.selectStyle} border-none`} onChange={(event) => {
+                    dispatch(dispatch(fetchDataDiemAnhHuong5PhienTang((event.target.value))))
+                  }}>
+                    <option value="hose" selected="selected">
+                      HSX
+                    </option>
+                    <option value="hnx">HNX</option>
+                    <option value="upcom">UPCOM</option>
+                  </select>
+                  <span className="font-semibold">qua 05 phiên gần nhất</span>
+                  <Top10Incr />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* <div style={{ display: "grid", gridTemplateColumns: "2.5fr 1.5fr", gap: "2px", }}>
             <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr", gap: "2px", }}>
               <div>
                 <TableDetail />
@@ -110,9 +161,9 @@ const Home = () => {
                 <GoodsDetail />
               </div>
 
-              {/* <div>
+              <div>
                 <RateDetail />
-              </div> */}
+              </div>
 
             </div>
 
@@ -202,11 +253,11 @@ const Home = () => {
                     dispatch(dispatch(fetchDataTop10Sell(event.target.value)));
                   }}
                 >
-                  <option value="hsx" selected="selected">
+                  <option value="HSX" selected="selected">
                     HSX
                   </option>
-                  <option value="hnx">HNX</option>
-                  <option value="upcom">UPCOM</option>
+                  <option value="HNX">HNX</option>
+                  <option value="UPCOM">UPCOM</option>
                 </select>
                 <span className="font-semibold">qua 05 phiên gần nhất</span>
                 <Top10Sell />
@@ -220,17 +271,17 @@ const Home = () => {
                     dispatch(dispatch(fetchDataTop10Buy((event.target.value))))
                   }}
                 >
-                  <option value="hsx" selected="selected">
+                  <option value="HSX" selected="selected">
                     HSX
                   </option>
-                  <option value="hnx">HNX</option>
-                  <option value="upcom">UPCOM</option>
+                  <option value="HNX">HNX</option>
+                  <option value="UPCOM">UPCOM</option>
                 </select>
                 <span className="font-semibold">qua 05 phiên gần nhất</span>
                 <Top10Buy />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

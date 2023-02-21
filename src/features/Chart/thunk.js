@@ -1,5 +1,4 @@
 import axios from "axios";
-import { async } from "q";
 
 export const fetchDataCarousel = async (dispatch) => {
   try {
@@ -88,15 +87,15 @@ export const fetchDataTop10Sell = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.174:3000/topforeign.dat",
+      url: "http://192.168.9.250:5000/khoingoai5phien",
       method: "GET",
       params: {
-        exchange: index
+        'EXCHANGE': index
       }
     });
     dispatch({
       type: "beta/UPDATE_DATA_TOP10_SELL",
-      payload: res.data,
+      payload: res,
     });
   } catch (err) {
     console.log(err);
@@ -107,15 +106,15 @@ export const fetchDataTop10Buy = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.174:3000/topforeign.dat",
+      url: "http://192.168.9.250:5000/khoingoai5phien",
       method: "GET",
       params: {
-        exchange: index
+        'EXCHANGE': index
       }
     });
     dispatch({
       type: "beta/UPDATE_DATA_TOP10_BUY",
-      payload: res.data,
+      payload: res,
     });
   } catch (err) {
     console.log(err);
@@ -199,7 +198,7 @@ export const fetchDataRateDetail = async (dispatch) => {
     dispatch({
       type: "beta/UPDATE_DATA_RATEDETAIL",
 
-      payload: res.data,
+      payload: res,
     });
   } catch (err) {
     console.log(err);

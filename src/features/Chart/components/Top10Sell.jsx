@@ -12,12 +12,12 @@ const Top10Sell = () => {
         setData(dataTop10Sell)
     }, [dataTop10Sell])
 
-    const sortedData = data && data.recordset ? [...data.recordset].sort((a, b) => a.total_net_value_foreign - b.total_net_value_foreign) : []
+    const sortedData = data && data.data ? [...data.data].sort((a, b) => a.value - b.value) : []
     const last10 = sortedData.slice(0, 10)
 
     const series = [{
         name: 'Bán',
-        data: last10.map(item => item.total_net_value_foreign.toFixed(2)),
+        data: last10.map(item => item.value.toFixed(2)),
     }]
 
     const options = {
@@ -61,20 +61,6 @@ const Top10Sell = () => {
             //         colors: '#fff',
             //     }
             // }
-        },
-        yaxis: {
-            opposite: true,
-            // labels: {
-            //     style: {
-            //         colors: '#fff',
-            //     }
-            // }
-
-            labels: {
-                // style: {
-                //     colors: '#fff',
-                // }
-            }
         },
         yaxis: {
             opposite: true,

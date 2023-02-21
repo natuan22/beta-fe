@@ -30,7 +30,7 @@ export default function TradingViewWidget() {
       function createWidget() {
         if (document.getElementById('tradingview_29ec6') && 'TradingView' in window) {
           new window.TradingView.widget({
-            width: 500,
+            width: 400,
             height: 400,
             symbol: "NASDAQ:AAPL",
             interval: "D",
