@@ -30,8 +30,8 @@ export default function TradingViewWidget() {
       function createWidget() {
         if (document.getElementById('tradingview_29ec6') && 'TradingView' in window) {
           new window.TradingView.widget({
-            width: 600,
-            height: 500,
+            width: 400,
+            height: 400,
             symbol: "NASDAQ:AAPL",
             interval: "D",
             timezone: "Etc/UTC",
@@ -53,9 +53,9 @@ export default function TradingViewWidget() {
   return (
     <div className='tradingview-widget-container'>
       <div id='tradingview_29ec6' />
-      <div className="tradingview-widget-copyright">
+      {/* <div className="tradingview-widget-copyright">
         <a href="https://vn.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span className="blue-text">AAPL biểu đồ chứng khoán</span></a> từ TradingView
-      </div>
+      </div> */}
     </div>
   );
 }

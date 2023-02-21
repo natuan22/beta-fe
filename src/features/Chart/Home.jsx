@@ -30,7 +30,12 @@ import TableDetail from "./components/TableDetail";
 import GoodsDetail from "./components/GoodsDetail";
 import Top10Incr from "./components/Top10Incr";
 import Top10Decr from "./components/Top10Decr";
+
+import TreeMapChart from "./components/TreemapChart";
 import RateDetail from "./components/RateDetail";
+import TreeMapChart2 from "./components/TreeMapChart2";
+import RateDetail from "./components/RateDetail";
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -57,33 +62,75 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div className="container mx-auto">
+    <div className="mx-auto">
       <div className="flex">
         <div style={{ width: "10%" }}>
           <Banner />
         </div>
+
         <div style={{ width: "90%" }}>
           <Carousel />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "2.5fr 1.5fr",
-              gap: "10px",
-            }}
-          >
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "2fr 2fr",
-                gap: "5px",
-              }}
-            >
+          <div className="flex">
+            <div style={{ width: "60%" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr", gap: "2px", }}>
+                <div>
+                  <TableDetail />
+                </div>
+                <div>
+                  <LineChart />
+                </div>
+              </div>
+            </div>
+            <div style={{ width: "40%" }}>
+
+              <div className="grid grid-cols-2 gap-0.5">
+                <div className="text-center">
+                  <span className="font-semibold">
+                    Top 10 cổ phiếu giảm mạnh nhất sàn
+                  </span>
+                  <select className={`${chartStyle.selectStyle} border-none`} onChange={(event) => {
+                    dispatch(dispatch(fetchDataDiemAnhHuong5PhienGiam(event.target.value)));
+                  }}>
+                    <option value="hose" selected="selected">
+                      HSX
+                    </option>
+                    <option value="hnx">HNX</option>
+                    <option value="upcom">UPCOM</option>
+                  </select>
+                  <span className="font-semibold">qua 05 phiên gần nhất</span>
+                  <Top10Decr />
+                </div>
+
+                <div className="text-center">
+                  <span className="font-semibold">
+                    Top 10 cổ phiếu tăng mạnh nhất sàn
+                  </span>
+                  <select className={`${chartStyle.selectStyle} border-none`} onChange={(event) => {
+                    dispatch(dispatch(fetchDataDiemAnhHuong5PhienTang((event.target.value))))
+                  }}>
+                    <option value="hose" selected="selected">
+                      HSX
+                    </option>
+                    <option value="hnx">HNX</option>
+                    <option value="upcom">UPCOM</option>
+                  </select>
+                  <span className="font-semibold">qua 05 phiên gần nhất</span>
+                  <Top10Incr />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* <div style={{ display: "grid", gridTemplateColumns: "2.5fr 1.5fr", gap: "2px", }}>
+            <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr", gap: "2px", }}>
               <div>
                 <TableDetail />
               </div>
+
               <div>
                 <LineChart />
               </div>
+
               <div>
                 <div className="text-center">
                   <span className="font-semibold">
@@ -105,20 +152,107 @@ const Home = () => {
                 </div>
                 <BarChartLeft />
               </div>
-              <div>
+
+              <div className="text-center">
+                <span className="font-semibold">
+                  Top nước ngoài mua bán ròng
+                </span>
+
                 <BarChartRight />
               </div>
+
               <div>
                 <GoodsDetail />
               </div>
+
+              <div>
+                <RateDetail />
+              </div>
+
             </div>
+
             <div>
               <GeneralIndustry />
             </div>
 
-            <div className="grid grid-cols-2">
+            <div>
+              <News />
+            </div>
+
+            <div className="grid grid-cols-2 gap-0.5">
+              <div className="text-center">
+                <span className="font-semibold">
+                  Top 10 cổ phiếu giảm mạnh nhất sàn
+                </span>
+                <select className={`${chartStyle.selectStyle} border-none`} onChange={(event) => {
+                  dispatch(dispatch(fetchDataDiemAnhHuong5PhienGiam(event.target.value)));
+                }}>
+                  <option value="hose" selected="selected">
+                    HSX
+                  </option>
+                  <option value="hnx">HNX</option>
+                  <option value="upcom">UPCOM</option>
+                </select>
+                <span className="font-semibold">qua 05 phiên gần nhất</span>
+                <Top10Decr />
+              </div>
+
+              <div className="text-center">
+                <span className="font-semibold">
+                  Top 10 cổ phiếu tăng mạnh nhất sàn
+                </span>
+                <select className={`${chartStyle.selectStyle} border-none`} onChange={(event) => {
+                  dispatch(dispatch(fetchDataDiemAnhHuong5PhienTang((event.target.value))))
+                }}>
+                  <option value="hose" selected="selected">
+                    HSX
+                  </option>
+                  <option value="hnx">HNX</option>
+                  <option value="upcom">UPCOM</option>
+                </select>
+                <span className="font-semibold">qua 05 phiên gần nhất</span>
+                <Top10Incr />
+              </div>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr", gap: "2px", }}>
+              <div>
+                <div>
+                  <select
+                    onChange={(event) => {
+                      dispatch(dispatch(fetchDataTreeMap(event.target.value)));
+                    }}
+                  >
+                    <option value="HSX" selected="selected">
+                      HSX
+                    </option>
+                    <option value="HNX">HNX</option>
+                    <option value="UPCOM">UPCOM</option>
+                  </select>
+                </div>
+                <TreeMapChart />
+              </div>
               <div>
                 <select
+                  onChange={(event) => {
+                    dispatch(dispatch(fetchDataTreeMap(event.target.value)));
+                  }}
+                >
+                  <option value="HSX" selected="selected">
+                    HSX
+                  </option>
+                  <option value="HNX">HNX</option>
+                  <option value="UPCOM">UPCOM</option>
+                </select>
+                <TreeMapChart2 />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-0.5">
+              <div className="text-center">
+                <span className="font-semibold">
+                  Top 10 khối ngoại bán nhiều nhất sàn
+                </span>
+                <select className={`${chartStyle.selectStyle} border-none`}
                   onChange={(event) => {
                     dispatch(dispatch(fetchDataTop10Sell(event.target.value)));
                   }}
@@ -129,12 +263,16 @@ const Home = () => {
                   <option value="HNX">HNX</option>
                   <option value="UPCOM">UPCOM</option>
                 </select>
+                <span className="font-semibold">qua 05 phiên gần nhất</span>
                 <Top10Sell />
               </div>
-              <div>
-                <select
+              <div className="text-center">
+                <span className="font-semibold">
+                  Top 10 khối ngoại mua nhiều nhất sàn
+                </span>
+                <select className={`${chartStyle.selectStyle} border-none`}
                   onChange={(event) => {
-                    dispatch(dispatch(fetchDataTop10Buy(event.target.value)));
+                    dispatch(dispatch(fetchDataTop10Buy((event.target.value))))
                   }}
                 >
                   <option value="HSX" selected="selected">
@@ -143,9 +281,13 @@ const Home = () => {
                   <option value="HNX">HNX</option>
                   <option value="UPCOM">UPCOM</option>
                 </select>
+                <span className="font-semibold">qua 05 phiên gần nhất</span>
                 <Top10Buy />
               </div>
             </div>
+
+          </div> */}
+
           </div>
           <div>
             <News />
@@ -167,6 +309,7 @@ const Home = () => {
           </div>
           <TreemapChart />
           {/* <RateDetail /> */}
+
         </div>
       </div>
     </div>

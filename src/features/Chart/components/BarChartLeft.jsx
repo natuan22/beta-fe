@@ -6,7 +6,7 @@ const BarChartLeft = () => {
   const dataBarChartLeft = useSelector((state) => state.chart.dataBarChartLeft);
   const [data, setData] = useState(dataBarChartLeft?.data ?? []);
   useEffect(() => {
-    
+
     setData(dataBarChartLeft?.data ?? []);
   }, [dataBarChartLeft]);
 
@@ -26,6 +26,9 @@ const BarChartLeft = () => {
     chart: {
       type: "bar",
       height: 350,
+      toolbar: {
+        show: false,
+      },
     },
     plotOptions: {
       bar: {
@@ -52,7 +55,7 @@ const BarChartLeft = () => {
     yaxis: {
       labels: {
         formatter: function (y) {
-          return  y.toFixed(2);
+          return y.toFixed(2);
         },
       },
     },
@@ -75,7 +78,7 @@ const BarChartLeft = () => {
         series={series}
         type="bar"
         height={400}
-        width={550}
+        width={450}
       />
     </div>
   );

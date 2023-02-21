@@ -12,14 +12,14 @@ const Top10Buy = () => {
         setData(dataTop10Buy)
     }, [dataTop10Buy])
 
-    const sortedData = data && data.recordset ? [...data.recordset].sort((a, b) => a.total_net_value_foreign - b.total_net_value_foreign) : []
+    const sortedData = data && data.data ? [...data.data].sort((a, b) => a.value- b.value) : []
     const top10 = sortedData.slice(-10).sort(function () {
         return -1;
     })
 
     const series = [{
         name: 'Mua',
-        data: top10.map(item => item.total_net_value_foreign.toFixed(2)),
+        data: top10.map(item => item.value.toFixed(2)),
     }]
 
     const options = {
@@ -29,7 +29,8 @@ const Top10Buy = () => {
                 show: false,
             },
             type: 'bar',
-            fontFamily: 'Segoe UI'
+            fontFamily: 'Segoe UI',
+            width: '50%'
         },
         title: {
             text: '',
@@ -48,7 +49,7 @@ const Top10Buy = () => {
             colors: '#19d216'
         },
         dataLabels: {
-            enabled: true,
+            enabled: false,
             offsetX: 43,
             style: {
                 colors: ['#212529']
