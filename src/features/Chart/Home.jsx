@@ -32,7 +32,6 @@ import Top10Incr from "./components/Top10Incr";
 import Top10Decr from "./components/Top10Decr";
 
 import TreeMapChart from "./components/TreemapChart";
-import RateDetail from "./components/RateDetail";
 import TreeMapChart2 from "./components/TreeMapChart2";
 import RateDetail from "./components/RateDetail";
 
@@ -126,11 +125,9 @@ const Home = () => {
               <div>
                 <TableDetail />
               </div>
-
               <div>
                 <LineChart />
               </div>
-
               <div>
                 <div className="text-center">
                   <span className="font-semibold">
@@ -152,33 +149,25 @@ const Home = () => {
                 </div>
                 <BarChartLeft />
               </div>
-
               <div className="text-center">
                 <span className="font-semibold">
                   Top nước ngoài mua bán ròng
                 </span>
-
                 <BarChartRight />
               </div>
-
               <div>
                 <GoodsDetail />
               </div>
-
               <div>
                 <RateDetail />
               </div>
-
             </div>
-
             <div>
               <GeneralIndustry />
             </div>
-
             <div>
               <News />
             </div>
-
             <div className="grid grid-cols-2 gap-0.5">
               <div className="text-center">
                 <span className="font-semibold">
@@ -196,7 +185,6 @@ const Home = () => {
                 <span className="font-semibold">qua 05 phiên gần nhất</span>
                 <Top10Decr />
               </div>
-
               <div className="text-center">
                 <span className="font-semibold">
                   Top 10 cổ phiếu tăng mạnh nhất sàn
@@ -246,7 +234,6 @@ const Home = () => {
                 <TreeMapChart2 />
               </div>
             </div>
-
             <div className="grid grid-cols-2 gap-0.5">
               <div className="text-center">
                 <span className="font-semibold">
@@ -285,10 +272,9 @@ const Home = () => {
                 <Top10Buy />
               </div>
             </div>
-
           </div> */}
 
-          </div>
+          {/* </div>
           <div>
             <News />
           </div>
@@ -307,10 +293,14 @@ const Home = () => {
                   <option value="UPCOM">UPCOM</option>
                 </select>
           </div>
-          <TreemapChart />
+          <TreemapChart /> */}
           {/* <RateDetail /> */}
 
         </div>
+      </div>
+      <div>
+        <TableDetail />
+        <GoodsDetail />
       </div>
     </div>
   );

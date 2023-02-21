@@ -59,9 +59,6 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_GENERAL) {
       draft.dataGeneral = payload;
     }
-
-    if (type === actionType.UPDATE_DATA_TREEMAP) {
-
     if(type === actionType.UPDATE_DATA_TREEMAP){
 
       draft.dataTreemap = payload

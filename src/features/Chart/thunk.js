@@ -245,6 +245,6 @@ export const fetchDataTreeMap = (index) => async (dispatch) => {
 
 };
 
-};
+
 
 
