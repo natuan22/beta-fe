@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import CurrencyFormat from 'react-currency-format';
 import { useSelector } from 'react-redux';
@@ -68,3 +69,5 @@ const RateDetail = () => {
 }
 
 export default RateDetail;
+
+

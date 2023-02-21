@@ -8,6 +8,7 @@ import GeneralIndustry from "./components/GeneralIndustry";
 import News from "./components/News";
 import Top10Sell from "./components/Top10Sell";
 import Top10Buy from "./components/Top10Buy";
+import TreemapChart from "./components/TreemapChart";
 import {
   fetchDataCarousel,
   fetchDataTableDetail,
@@ -29,9 +30,12 @@ import TableDetail from "./components/TableDetail";
 import GoodsDetail from "./components/GoodsDetail";
 import Top10Incr from "./components/Top10Incr";
 import Top10Decr from "./components/Top10Decr";
+
 import TreeMapChart from "./components/TreemapChart";
 import RateDetail from "./components/RateDetail";
 import TreeMapChart2 from "./components/TreeMapChart2";
+import RateDetail from "./components/RateDetail";
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -281,7 +285,31 @@ const Home = () => {
                 <Top10Buy />
               </div>
             </div>
+
           </div> */}
+
+          </div>
+          <div>
+            <News />
+          </div>
+          <Top10Incr />
+          <Top10Decr />
+          <div>
+          <select
+                  onChange={(event) => {
+                    dispatch(dispatch(fetchDataTreeMap(event.target.value)));
+                  }}
+                >
+                  <option value="HSX" selected="selected">
+                    HSX
+                  </option>
+                  <option value="HNX">HNX</option>
+                  <option value="UPCOM">UPCOM</option>
+                </select>
+          </div>
+          <TreemapChart />
+          {/* <RateDetail /> */}
+
         </div>
       </div>
     </div>

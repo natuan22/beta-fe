@@ -1,5 +1,8 @@
 import axios from "axios";
 
+
+
+
 export const fetchDataCarousel = async (dispatch) => {
   try {
     const res = await axios({
@@ -239,4 +242,9 @@ export const fetchDataTreeMap = (index) => async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+
 };
+
+};
+
+
