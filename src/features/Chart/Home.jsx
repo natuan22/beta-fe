@@ -35,16 +35,8 @@ import {
   fetchDataAreaChart2,
 } from "./thunk";
 
-import LineChart from "./components/LineChart";
-import chartStyle from "./utils/Chart.module.css";
-import TableDetail from "./components/TableDetail";
-import GoodsDetail from "./components/GoodsDetail";
-import Top10Incr from "./components/Top10Incr";
-import Top10Decr from "./components/Top10Decr";
 
-import TreeMapChart from "./components/TreemapChart";
-import TreeMapChart2 from "./components/TreeMapChart2";
-import RateDetail from "./components/RateDetail";
+
 import AreaChart from "./components/AreaChart";
 
 
@@ -241,13 +233,13 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </>
-     <div>
+      <div>
           <AreaChart />
       </div>
-    </div>
-
-  );
-};
+    </>
+  
+   
+ 
+)};
 
 export default Home;
