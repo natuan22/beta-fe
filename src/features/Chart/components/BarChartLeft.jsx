@@ -25,7 +25,6 @@ const BarChartLeft = () => {
   const options = {
     chart: {
       type: "bar",
-      height: 350,
       toolbar: {
         show: false,
       },
@@ -78,7 +77,7 @@ const BarChartLeft = () => {
         series={series}
         type="bar"
         height={400}
-        width={450}
+        width={400}
       />
     </div>
   );

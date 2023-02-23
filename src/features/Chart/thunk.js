@@ -1,8 +1,5 @@
 import axios from "axios";
 
-
-
-
 export const fetchDataCarousel = async (dispatch) => {
   try {
     const res = await axios({
@@ -18,6 +15,7 @@ export const fetchDataCarousel = async (dispatch) => {
     console.log(err);
   }
 };
+
 export const fetchDataBarChartRight = async (dispatch) => {
   try {
     const res = await axios({
@@ -52,7 +50,6 @@ export const fetchDataBarChartLeft = (index) => async (dispatch) => {
     console.log(err);
   }
 };
-
 
 export const fetchDataNews = async (dispatch) => {
   try {
@@ -124,7 +121,6 @@ export const fetchDataTop10Buy = (index) => async (dispatch) => {
   }
 };
 
-
 export const fetchDataDiemAnhHuong5PhienTang = (index) => async (dispatch) => {
   try {
     const res = await axios({
@@ -157,6 +153,7 @@ export const fetchDataDiemAnhHuong5PhienGiam = (index) => async (dispatch) => {
     console.log(err);
   }
 }
+
 export const fetchDataGoodsDetail = async (dispatch) => {
   try {
     const res = await axios({
@@ -242,7 +239,6 @@ export const fetchDataTreeMap = (index) => async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
-
 };
 
 

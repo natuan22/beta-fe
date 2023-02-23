@@ -26,7 +26,6 @@ const Top10Decr = () => {
       },
       type: 'bar',
       fontFamily: 'Segoe UI',
-      width: '50%'
     },
     title: {
       text: '',
@@ -39,6 +38,8 @@ const Top10Decr = () => {
         },
         borderRadius: 4,
         horizontal: true,
+        barHeight: '60%',
+        borderRadius: 0
       }
     },
     fill: {
@@ -54,28 +55,37 @@ const Top10Decr = () => {
     xaxis: {
       categories: last10.map(item => item.ticker),
       labels: {
+
+        formatter: function (y) {
+          return y.toFixed(2);
+        },
+        //     style: {
+        //         colors: '#fff',
+        //     }
+
           // style: {
           //     colors: '#fff',
           // }
           formatter: function (y) {
             return y.toFixed(1);
           },
+
       }
     },
     yaxis: {
       opposite: true,
-      // labels: {
-      //     style: {
-      //         colors: '#fff',
-      //     }
-      // }
+      labels: {
+        //     style: {
+        //         colors: '#fff',
+        //     }
+      }
     }
   };
 
   return (
     <>
       <div className="chart">
-        <ReactApexChart options={options} series={series} type="bar" height={350} />
+        <ReactApexChart options={options} series={series} type="bar" height={450} />
       </div>
     </>
   )

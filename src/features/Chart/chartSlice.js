@@ -42,7 +42,6 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_TABLEDETAIL) {
       draft.dataTableDetail = payload;
     }
-
     if (type === actionType.UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_TANG) {
       draft.dataDiemAnhHuong5PhienTang = payload;
     }
@@ -61,7 +60,7 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_GENERAL) {
       draft.dataGeneral = payload;
     }
-    if(type === actionType.UPDATE_DATA_TREEMAP){
+    if (type === actionType.UPDATE_DATA_TREEMAP) {
 
       draft.dataTreemap = payload
     }

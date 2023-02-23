@@ -17,7 +17,7 @@ const Top10Sell = () => {
 
     const series = [{
         name: 'Bán',
-        data: last10.map(item => item.value.toFixed(2)),
+        data: last10.map(item => item.value),
     }]
 
     const options = {
@@ -28,7 +28,6 @@ const Top10Sell = () => {
             },
             type: 'bar',
             fontFamily: 'Segoe UI',
-            width: '50%'
         },
         title: {
             text: '',
@@ -41,6 +40,8 @@ const Top10Sell = () => {
                 },
                 borderRadius: 4,
                 horizontal: true,
+                barHeight: '60%',
+                borderRadius: 0
             }
         },
         fill: {
@@ -55,12 +56,14 @@ const Top10Sell = () => {
         },
         xaxis: {
             categories: last10.map(item => item.ticker),
-
-            // labels: {
-            //     style: {
-            //         colors: '#fff',
-            //     }
-            // }
+            labels: {
+                formatter: function (y) {
+                    return y.toFixed(2);
+                },
+                // style: {
+                //     colors: '#fff',
+                // }
+            }
         },
         yaxis: {
             opposite: true,
@@ -69,14 +72,13 @@ const Top10Sell = () => {
                 //     colors: '#fff',
                 // }
             }
-
         }
     };
 
     return (
         <>
             <div className="chart">
-                <ReactApexChart options={options} series={series} type="bar" height={350} />
+                <ReactApexChart options={options} series={series} type="bar" height={450} />
             </div>
         </>
     )
