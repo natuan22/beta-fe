@@ -1,46 +1,50 @@
-
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
+import Loading from '../utils/Loading';
 
 const News = () => {
     const dataNews = useSelector((state) => state.chart.dataNews.recordset);
-    const [data, setData] = useState(dataNews)
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setData(dataNews)
+        if (dataNews) {
+            setLoading(false);
+            setData(dataNews)
+        }
     }, [dataNews])
 
     const sortedData = data && data ? [...data].sort((a, b) => new Date(b.NgayDKCC) - new Date(a.NgayDKCC)) : []
     const news = sortedData.slice(0, 30)
 
     return (
-        <>
-            <section className="bg-blueGray-50">
-                <div className="w-full">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
-                        <div className="block w-full h-80 overflow-y-scroll">
-                            <table className="items-center bg-transparent w-full border-collapse">
-                                <thead className="sticky top-0 bg-slate-300">
-                                    <tr>
-                                        <th className="w-20 px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm uppercase whitespace-nowrap font-semibold">
-                                            Mã chứng khoán
-                                        </th>
-                                        <th className="w-40 text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm uppercase whitespace-nowrap font-semibold">
-                                            Loại sự kiện
-                                        </th>
-                                        <th className="w-20 text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm uppercase whitespace-nowrap font-semibold">
-                                            Ngày
-                                        </th>
-                                        <th className="w-64 text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm uppercase whitespace-nowrap font-semibold">
-                                            Nội dung sự kiện
-                                        </th>
-                                    </tr>
-                                </thead>
+        <section className="bg-blueGray-50" >
+            <div className="w-full">
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
+                    <div className="block w-full h-80 overflow-y-scroll">
+                        <table className="items-center bg-transparent w-full border-collapse">
+                            <thead className="sticky top-0 bg-slate-300">
+                                <tr>
+                                    <th className="px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                                        Mã chứng khoán
+                                    </th>
+                                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                                        Loại sự kiện
+                                    </th>
+                                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                                        Ngày
+                                    </th>
+                                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                                        Nội dung sự kiện
+                                    </th>
+                                </tr>
+                            </thead>
 
-                                <tbody>
-                                    {news.map(item => {
+                            <tbody>
+                                {!loading ? (Array.isArray(data) &&
+                                    news.map((item, index) => {
                                         return (
-                                            <tr>
+                                            <tr key={index}>
                                                 <th className="text-center border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left text-blueGray-700 ">
                                                     {item.ticker}
                                                 </th>
@@ -55,14 +59,13 @@ const News = () => {
                                                 </td>
                                             </tr>
                                         )
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
+                                    })) : (<td colSpan={4}><Loading /></td>)}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </section>
-        </>
+            </div>
+        </section >
     )
 }
 

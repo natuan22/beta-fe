@@ -14,10 +14,9 @@ const BarChartRight = () => {
   const options = {
     chart: {
       type: "bar",
-      height: 350,
       toolbar: {
         show: false,
-    },
+      },
     },
     plotOptions: {
       bar: {
@@ -35,7 +34,7 @@ const BarChartRight = () => {
             },
           ],
         },
-        columnWidth: "80%",
+        columnWidth: "70%",
       },
     },
     dataLabels: {
@@ -67,15 +66,15 @@ const BarChartRight = () => {
   ];
 
   return (
-    <div className="chart" style={{transform: 'translateY(4%)'}}>
-      <ReactApexChart
-        options={options}
-        series={series}
-        type="bar"
-        height={475}
-       
-      />
-    </div>
+    // <div className="chart" style={{ transform: 'translateY(4%)' }}>
+    <ReactApexChart
+      options={options}
+      series={series}
+      type="bar"
+      height={400}
+      width={400}
+    />
+    // </div>
   );
 };
 

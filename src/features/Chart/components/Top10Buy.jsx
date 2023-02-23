@@ -12,14 +12,14 @@ const Top10Buy = () => {
         setData(dataTop10Buy)
     }, [dataTop10Buy])
 
-    const sortedData = data && data.data ? [...data.data].sort((a, b) => a.value- b.value) : []
+    const sortedData = data && data.data ? [...data.data].sort((a, b) => a.value - b.value) : []
     const top10 = sortedData.slice(-10).sort(function () {
         return -1;
     })
 
     const series = [{
         name: 'Mua',
-        data: top10.map(item => item.value.toFixed(2)),
+        data: top10.map(item => item.value),
     }]
 
     const options = {
@@ -30,7 +30,6 @@ const Top10Buy = () => {
             },
             type: 'bar',
             fontFamily: 'Segoe UI',
-            width: '50%'
         },
         title: {
             text: '',
@@ -43,6 +42,8 @@ const Top10Buy = () => {
                 },
                 borderRadius: 4,
                 horizontal: true,
+                barHeight: '60%',
+                borderRadius: 0
             }
         },
         fill: {
@@ -57,40 +58,28 @@ const Top10Buy = () => {
         },
         xaxis: {
             categories: top10.map(item => item.ticker),
-
-            // labels: {
-            //     style: {
-            //         colors: '#fff',
-            //     }
-            // }
-        },
-        yaxis: {
-            // labels: {
-            //     style: {
-            //         colors: '#fff',
-            //     }
-            // }
-
             labels: {
-                // style: {
-                //     colors: '#fff',
-                // }
+                formatter: function (y) {
+                    return y.toFixed(2);
+                },
+                //     style: {
+                //         colors: '#fff',
+                //     }
             }
         },
         yaxis: {
             labels: {
-                // style: {
-                //     colors: '#fff',
-                // }
+                //     style: {
+                //         colors: '#fff',
+                //     }
             }
-
-        }
+        },
     };
 
     return (
         <>
             <div className="chart">
-                <ReactApexChart options={options} series={series} type="bar" height={350} />
+                <ReactApexChart options={options} series={series} type="bar" height={450} />
             </div>
         </>
     )
