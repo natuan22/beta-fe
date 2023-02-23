@@ -31,9 +31,18 @@ const GoodsDetail = () => {
           <tbody>
             {Array.isArray(data) &&
               data.map((item, index) => {
+                let color = ''
+                if (item.Day < "0") {
+                  return color = 'text-red-500'
+                } else if (item.Day === '0') {
+                  return color = 'text-yellow-500'
+                } else {
+                   color = 'text-green-500'
+                }
+
                 return (
                   <tr key={index}>
-                    <td className="font-semibold">{item.name}</td>
+                    {/* <td className="font-semibold">{item.name}</td>
                     {item.Day < "0" ? (
                       <td className="text-red-500 font-semibold text-center">
                         {item.price}
@@ -51,7 +60,10 @@ const GoodsDetail = () => {
                       <td className="text-green-500 font-semibold text-center">
                         {item.Day}
                       </td>
-                    )}
+                    )} */}
+                    <td>{item.name}</td>
+                    <td className={`${color} `}>{item.price}</td>
+                    <td className={`${color} `}>{item.Day}</td>
                   </tr>
                 );
               })}

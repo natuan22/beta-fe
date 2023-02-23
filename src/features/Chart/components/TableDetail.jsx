@@ -8,16 +8,7 @@ const TableDetail = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (dataTable[0]) {
-      setLoading(false);
-      setData(dataTable)
-      console.log('change')
-    }
-  }, [dataTable]);
-
-
-  if (loading) {
+  if (!dataTable.length) {
     return <Loading />;
   } else {
     return (
@@ -32,8 +23,8 @@ const TableDetail = () => {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(data) &&
-              data.map((item, index) => {
+            {Array.isArray(dataTable) &&
+              dataTable.map((item, index) => {
                 return (
                   <tr key={index}>
                     <td className="font-semibold text-base">{item.ticker}</td>

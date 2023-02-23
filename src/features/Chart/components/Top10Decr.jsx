@@ -15,7 +15,7 @@ const Top10Decr = () => {
 
   const series = [{
     name: 'Giảm',
-    data: last10.map(item => item.value.toFixed(2)),
+    data: last10.map(item => item.value),
   }]
 
   const options = {
@@ -53,11 +53,14 @@ const Top10Decr = () => {
     },
     xaxis: {
       categories: last10.map(item => item.ticker),
-      // labels: {
-      //     style: {
-      //         colors: '#fff',
-      //     }
-      // }
+      labels: {
+          // style: {
+          //     colors: '#fff',
+          // }
+          formatter: function (y) {
+            return y.toFixed(1);
+          },
+      }
     },
     yaxis: {
       opposite: true,

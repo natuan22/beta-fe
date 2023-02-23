@@ -23,6 +23,8 @@ import {
   fetchDataDiemAnhHuong5PhienGiam,
   fetchDataDiemAnhHuong5PhienTang,
   fetchDataTreeMap,
+  fetchDataAreaChart1,
+  fetchDataAreaChart2,
 } from "./thunk";
 import LineChart from "./components/LineChart";
 import chartStyle from "./utils/Chart.module.css";
@@ -34,6 +36,7 @@ import Top10Decr from "./components/Top10Decr";
 import TreeMapChart from "./components/TreemapChart";
 import TreeMapChart2 from "./components/TreeMapChart2";
 import RateDetail from "./components/RateDetail";
+import AreaChart from "./components/AreaChart";
 
 
 const Home = () => {
@@ -60,6 +63,10 @@ const Home = () => {
     dispatch(fetchDataTreeMap("HSX"))
   }, [dispatch]);
 
+  useEffect(()=> {
+    dispatch(fetchDataAreaChart1)
+    dispatch(fetchDataAreaChart2)
+  }, [dispatch])
   return (
     <div className="mx-auto">
       <div className="flex">
@@ -299,8 +306,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <TableDetail />
-        <GoodsDetail />
+          <AreaChart />
       </div>
     </div>
   );
