@@ -71,7 +71,7 @@ export const fetchDataTableDetail = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/chiso/trongnuoc",
+      url: "https://thangh13.github.io/thang13.github.io/thitruong.json?utm_source=zalo&utm_medium=zalo&utm_campaign=zalo",
       method: "GET",
     });
     dispatch({
@@ -243,4 +243,33 @@ export const fetchDataTreeMap = (index) => async (dispatch) => {
 
 
 
-
+export const fetchDataAreaChart1 = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.9.250:5000/thanhkhoanvni/hientai",
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_AREACHART1",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+export const fetchDataAreaChart2 = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.9.250:5000/thanhkhoanvni/1ngaytruoc",
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_AREACHART2",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}

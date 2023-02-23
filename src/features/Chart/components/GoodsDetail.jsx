@@ -63,6 +63,8 @@ const GoodsDetail = () => {
             </table>
           </div>
         </div>
+
+ 
       </div>
     </section>
   );

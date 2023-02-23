@@ -15,6 +15,8 @@ const initialState = {
   dataRateDetail: {},
   dataGeneral: {},
   dataTreemap: [],
+  dataChart1:{},
+  dataChart2:{},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -61,6 +63,12 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_TREEMAP) {
 
       draft.dataTreemap = payload
+    }
+    if(type === actionType.UPDATE_DATA_AREACHART1) {
+      draft.dataChart1 = payload
+    }
+    if(type === actionType.UPDATE_DATA_AREACHART2) {
+      draft.dataChart2 = payload
     }
   });
 };

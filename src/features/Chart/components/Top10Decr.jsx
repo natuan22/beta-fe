@@ -55,12 +55,21 @@ const Top10Decr = () => {
     xaxis: {
       categories: last10.map(item => item.ticker),
       labels: {
+
         formatter: function (y) {
           return y.toFixed(2);
         },
         //     style: {
         //         colors: '#fff',
         //     }
+
+          // style: {
+          //     colors: '#fff',
+          // }
+          formatter: function (y) {
+            return y.toFixed(1);
+          },
+
       }
     },
     yaxis: {

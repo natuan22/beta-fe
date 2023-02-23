@@ -35,6 +35,7 @@ const TableDetail = () => {
                     <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm font-semibold">
                       Thay đổi (%)
                     </th>
+ 
                   </tr>
                 </thead>
 
