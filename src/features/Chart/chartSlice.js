@@ -17,6 +17,7 @@ const initialState = {
   dataTreemap: [],
   dataChart1:{},
   dataChart2:{},
+  dataStackingArea: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -69,6 +70,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if(type === actionType.UPDATE_DATA_AREACHART2) {
       draft.dataChart2 = payload
+    }
+    if(type === actionType.UPDATE_DATA_STACKINGAREA) {
+      draft.dataStackingArea = payload
     }
   });
 };

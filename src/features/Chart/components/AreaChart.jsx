@@ -30,7 +30,7 @@ const AreaChart = () => {
         return formattedTime;
       })
     : [];
-
+      console.log(data1)
   useEffect(() => {
     const chartCanvas = chartRef.current;
     if (chartCanvas) {

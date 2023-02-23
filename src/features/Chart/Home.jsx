@@ -33,23 +33,22 @@ import {
   fetchDataTreeMap,
   fetchDataAreaChart1,
   fetchDataAreaChart2,
+  fetchDataWidthMarket,
 } from "./thunk";
 
-
-
 import AreaChart from "./components/AreaChart";
-
+import StackingAreas from "./components/StackingAreas";
 
 const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchDataNews)
-    dispatch(fetchDataRateDetail)
-    dispatch(fetchDataTop10Sell("HSX"))
-    dispatch(fetchDataTop10Buy("HSX"))
-    dispatch(fetchDataDiemAnhHuong5PhienGiam("hose"))
-    dispatch(fetchDataDiemAnhHuong5PhienTang("hose"))
+    dispatch(fetchDataNews);
+    dispatch(fetchDataRateDetail);
+    dispatch(fetchDataTop10Sell("HSX"));
+    dispatch(fetchDataTop10Buy("HSX"));
+    dispatch(fetchDataDiemAnhHuong5PhienGiam("hose"));
+    dispatch(fetchDataDiemAnhHuong5PhienTang("hose"));
   }, [dispatch]);
 
   useEffect(() => {
@@ -57,14 +56,18 @@ const Home = () => {
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataBarChartRight);
     dispatch(fetchDataBarChartLeft("VNINDEX"));
-    dispatch(fetchDataGoodsDetail)
-    dispatch(fetchDataGeneralIndustry)
-    dispatch(fetchDataTreeMap("HSX"))
+    dispatch(fetchDataGoodsDetail);
+    dispatch(fetchDataGeneralIndustry);
+    dispatch(fetchDataTreeMap("HSX"));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchDataAreaChart1);
+    dispatch(fetchDataAreaChart2);
   }, [dispatch]);
 
   useEffect(()=> {
-    dispatch(fetchDataAreaChart1)
-    dispatch(fetchDataAreaChart2)
+   dispatch(fetchDataWidthMarket('VNINDEX')) 
   }, [dispatch])
   return (
     <>
@@ -78,7 +81,13 @@ const Home = () => {
             <Carousel />
             <div className="flex">
               <div style={{ width: "60%" }}>
-                <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr", gap: "2px", }}>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "2fr 2fr",
+                    gap: "2px",
+                  }}
+                >
                   <div className="ml-2 mr-2 mt-3">
                     <TableDetail />
                   </div>
@@ -92,10 +101,14 @@ const Home = () => {
                       <span className="font-semibold">
                         Nhóm cổ phiếu dẫn dắt thị trường
                       </span>
-                      <select className={`${chartStyle.selectStyle} border-none`}
+                      <select
+                        className={`${chartStyle.selectStyle} border-none`}
                         onChange={(event) => {
-                          dispatch(dispatch(fetchDataBarChartLeft(event.target.value)));
-                        }}>
+                          dispatch(
+                            dispatch(fetchDataBarChartLeft(event.target.value))
+                          );
+                        }}
+                      >
                         <option value="VNINDEX">VNINDEX</option>
                         <option value="HNX">HNX</option>
                         <option value="VN30">VN30</option>
@@ -126,9 +139,14 @@ const Home = () => {
 
                 <div className="ml-2 mr-2 mt-3">
                   <div>
-                    <select style={{ marginLeft: '363px', marginBottom: '10px' }} onChange={(event) => {
-                      dispatch(dispatch(fetchDataTreeMap(event.target.value)));
-                    }}>
+                    <select
+                      style={{ marginLeft: "363px", marginBottom: "10px" }}
+                      onChange={(event) => {
+                        dispatch(
+                          dispatch(fetchDataTreeMap(event.target.value))
+                        );
+                      }}
+                    >
                       <option value="HSX" selected="selected">
                         HSX
                       </option>
@@ -147,7 +165,6 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-
               </div>
 
               <div style={{ width: "40%" }}>
@@ -160,9 +177,16 @@ const Home = () => {
                     <span className="font-semibold">
                       Top 10 cổ phiếu giảm mạnh nhất sàn
                     </span>
-                    <select className={`${chartStyle.selectStyle} border-none`} onChange={(event) => {
-                      dispatch(dispatch(fetchDataDiemAnhHuong5PhienGiam(event.target.value)));
-                    }}>
+                    <select
+                      className={`${chartStyle.selectStyle} border-none`}
+                      onChange={(event) => {
+                        dispatch(
+                          dispatch(
+                            fetchDataDiemAnhHuong5PhienGiam(event.target.value)
+                          )
+                        );
+                      }}
+                    >
                       <option value="hose" selected="selected">
                         HSX
                       </option>
@@ -177,9 +201,16 @@ const Home = () => {
                     <span className="font-semibold">
                       Top 10 cổ phiếu tăng mạnh nhất sàn
                     </span>
-                    <select className={`${chartStyle.selectStyle} border-none`} onChange={(event) => {
-                      dispatch(dispatch(fetchDataDiemAnhHuong5PhienTang((event.target.value))))
-                    }}>
+                    <select
+                      className={`${chartStyle.selectStyle} border-none`}
+                      onChange={(event) => {
+                        dispatch(
+                          dispatch(
+                            fetchDataDiemAnhHuong5PhienTang(event.target.value)
+                          )
+                        );
+                      }}
+                    >
                       <option value="hose" selected="selected">
                         HSX
                       </option>
@@ -195,9 +226,12 @@ const Home = () => {
                     <span className="font-semibold">
                       Top 10 khối ngoại bán nhiều nhất sàn
                     </span>
-                    <select className={`${chartStyle.selectStyle} border-none`}
+                    <select
+                      className={`${chartStyle.selectStyle} border-none`}
                       onChange={(event) => {
-                        dispatch(dispatch(fetchDataTop10Sell(event.target.value)));
+                        dispatch(
+                          dispatch(fetchDataTop10Sell(event.target.value))
+                        );
                       }}
                     >
                       <option value="HSX" selected="selected">
@@ -213,9 +247,12 @@ const Home = () => {
                     <span className="font-semibold">
                       Top 10 khối ngoại mua nhiều nhất sàn
                     </span>
-                    <select className={`${chartStyle.selectStyle} border-none`}
+                    <select
+                      className={`${chartStyle.selectStyle} border-none`}
                       onChange={(event) => {
-                        dispatch(dispatch(fetchDataTop10Buy((event.target.value))))
+                        dispatch(
+                          dispatch(fetchDataTop10Buy(event.target.value))
+                        );
                       }}
                     >
                       <option value="HSX" selected="selected">
@@ -234,12 +271,24 @@ const Home = () => {
         </div>
       </div>
       <div>
-          <AreaChart />
+        <AreaChart />
+        <div>
+          <select
+            className={`${chartStyle.selectStyle} border-none`}
+            onChange={(event) => {
+              dispatch(dispatch(fetchDataWidthMarket(event.target.value)));
+            }}
+          >
+            <option value="VNINDEX" selected="selected">
+            VNINDEX
+            </option>
+            <option value="HNX">HNX</option>
+          </select>
+          <StackingAreas />
+        </div>
       </div>
     </>
-  
-   
- 
-)};
+  );
+};
 
 export default Home;

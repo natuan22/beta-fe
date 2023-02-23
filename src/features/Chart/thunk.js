@@ -273,3 +273,23 @@ export const fetchDataAreaChart2 = async (dispatch) => {
     console.log(err);
   }
 }
+
+
+export const fetchDataWidthMarket = (index) => async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "https://mkw-socket.vndirect.com.vn/mkwsocket/gainerslosers",
+      method: "GET",
+      params: {
+        index: index 
+      }
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_STACKINGAREA",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
