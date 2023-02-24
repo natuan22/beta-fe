@@ -39,7 +39,7 @@ const BarChartLeft = () => {
               color: "#19d216",
             },
             {
-              from: -45,
+              from: -100,
               to: 0,
               color: "#f10000",
             },
@@ -76,8 +76,8 @@ const BarChartLeft = () => {
         options={options}
         series={series}
         type="bar"
-        height={400}
-        width={400}
+        height={350}
+        width={420}
       />
     </div>
   );

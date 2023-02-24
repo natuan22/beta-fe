@@ -26,16 +26,16 @@ export default function TradingViewWidget() {
 
       return () => onLoadScriptRef.current = null;
 
-      function createWidget(  ) {
+      function createWidget() {
         if (document.getElementById('tradingview_29ec6') && 'TradingView' in window) {
           new window.TradingView.widget({
             width: 400,
-            height: 400,
+            height: 350,
             symbol: "NASDAQ:AAPL",
             chartType: "line",
             interval: "D",
             timezone: "Etc/UTC",
-            theme: "light",
+            theme: "dark",
             style: "1",
             locale: "vi_VN",
             toolbar_bg: "#f1f3f6",
@@ -52,7 +52,7 @@ export default function TradingViewWidget() {
 
   return (
     <div className='tradingview-widget-container'>
-      <div id='tradingview_29ec6'/>
+      <div id='tradingview_29ec6' />
     </div>
   );
 }

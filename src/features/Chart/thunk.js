@@ -241,8 +241,6 @@ export const fetchDataTreeMap = (index) => async (dispatch) => {
   }
 };
 
-
-
 export const fetchDataAreaChart1 = async (dispatch) => {
   try {
     const res = await axios({
@@ -258,6 +256,7 @@ export const fetchDataAreaChart1 = async (dispatch) => {
     console.log(err);
   }
 }
+
 export const fetchDataAreaChart2 = async (dispatch) => {
   try {
     const res = await axios({
