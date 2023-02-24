@@ -7,7 +7,7 @@ const AreaChart = () => {
   const chartRef = useRef();
   const data1 = useSelector((state) => state.chart.dataChart1);
   const data2 = useSelector((state) => state.chart.dataChart2);
-  
+
   const dataForRender1 = Array.isArray(data1)
     ? data1.map((item) => item.value.toFixed(3))
     : [];
@@ -16,19 +16,19 @@ const AreaChart = () => {
     : [];
   const timeLine = Array.isArray(data2)
     ? data2.map((item) => {
-        let date = new Date(item.time - 200000000 + 1997000);
-        // Hours part from the timestamp
-        let hours = date.getHours();
-        // Minutes part from the timestamp
-        let minutes = "0" + date.getMinutes();
-        // Seconds part from the timestamp
-        let seconds = "0" + date.getSeconds();
+      let date = new Date(item.time - 200000000 + 1997000);
+      // Hours part from the timestamp
+      let hours = date.getHours();
+      // Minutes part from the timestamp
+      let minutes = "0" + date.getMinutes();
+      // Seconds part from the timestamp
+      let seconds = "0" + date.getSeconds();
 
-        // Will display time in 10:30:23 format
-        let formattedTime =
-          hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
-        return formattedTime;
-      })
+      // Will display time in 10:30:23 format
+      let formattedTime =
+        hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
+      return formattedTime;
+    })
     : [];
       console.log(data1)
   useEffect(() => {
@@ -72,7 +72,7 @@ const AreaChart = () => {
               title: {
                 display: true,
                 text: "GTDT (tỷ đồng)",
-               
+
               },
             },
           },

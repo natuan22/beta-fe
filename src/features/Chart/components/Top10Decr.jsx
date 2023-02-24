@@ -36,9 +36,8 @@ const Top10Decr = () => {
         dataLabels: {
           position: 'top'
         },
-        borderRadius: 4,
         horizontal: true,
-        barHeight: '60%',
+        barHeight: '50%',
         borderRadius: 0
       }
     },
@@ -62,13 +61,9 @@ const Top10Decr = () => {
         //         colors: '#fff',
         //     }
 
-          // style: {
-          //     colors: '#fff',
-          // }
-          formatter: function (y) {
-            return y.toFixed(1);
-          },
-
+        // style: {
+        //     colors: '#fff',
+        // }
       }
     },
     yaxis: {
@@ -84,7 +79,7 @@ const Top10Decr = () => {
   return (
     <>
       <div className="chart">
-        <ReactApexChart options={options} series={series} type="bar" height={450} />
+        <ReactApexChart options={options} series={series} type="bar" height={630} />
       </div>
     </>
   )

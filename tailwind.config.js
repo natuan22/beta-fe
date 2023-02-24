@@ -3,12 +3,8 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        100: '800px'
+        100: '800px',
       },
-      translate: {
-        '180%': '180%',
-        '11%': '11%'
-      }
     },
   },
   plugins: [],

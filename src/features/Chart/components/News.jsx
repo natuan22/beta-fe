@@ -20,21 +20,21 @@ const News = () => {
     return (
         <section className="bg-blueGray-50" >
             <div className="w-full">
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
-                    <div className="block w-full h-80 overflow-y-scroll">
-                        <table className="items-center bg-transparent w-full border-collapse">
-                            <thead className="sticky top-0 bg-slate-300">
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
+                    <div className="block w-full h-96 overflow-y-scroll bg-[#000000]">
+                        <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
+                            <thead className="sticky top-0 bg-gradient-to-b from-cyan-800 to-black">
                                 <tr>
-                                    <th className="px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                                         Mã chứng khoán
                                     </th>
-                                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                                         Loại sự kiện
                                     </th>
-                                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                                         Ngày
                                     </th>
-                                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                                         Nội dung sự kiện
                                     </th>
                                 </tr>
@@ -44,17 +44,17 @@ const News = () => {
                                 {!loading ? (Array.isArray(data) &&
                                     news.map((item, index) => {
                                         return (
-                                            <tr key={index}>
-                                                <th className="text-center border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                                            <tr key={index} className='hover:bg-gray-900'>
+                                                <th className="text-center align-middle text-xs whitespace-nowrap px-3 p-3.5 text-white">
                                                     {item.ticker}
                                                 </th>
-                                                <td className="text-center border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 ">
+                                                <td className="text-center align-middle text-xs whitespace-nowrap px-10 p-3.5 text-white">
                                                     {item.LoaiSuKien}
                                                 </td>
-                                                <td className="text-center border-t-0 px-6 align-center border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                                                <td className="text-center align-center text-xs whitespace-nowrap px-10 p-3.5 text-white">
                                                     {formatDate(new Date(Date.parse(item.NgayDKCC)))}
                                                 </td>
-                                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm p-4">
+                                                <td className="text-left align-middle text-xs px-3 p-4 text-white">
                                                     {item.NoiDungSuKien}
                                                 </td>
                                             </tr>

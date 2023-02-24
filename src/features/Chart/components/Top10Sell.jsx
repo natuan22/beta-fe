@@ -38,9 +38,8 @@ const Top10Sell = () => {
                 dataLabels: {
                     position: 'top'
                 },
-                borderRadius: 4,
                 horizontal: true,
-                barHeight: '60%',
+                barHeight: '50%',
                 borderRadius: 0
             }
         },
@@ -78,7 +77,7 @@ const Top10Sell = () => {
     return (
         <>
             <div className="chart">
-                <ReactApexChart options={options} series={series} type="bar" height={450} />
+                <ReactApexChart options={options} series={series} type="bar" height={630} />
             </div>
         </>
     )

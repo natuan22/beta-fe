@@ -18,18 +18,18 @@ const RateDetail = () => {
   return (
     <section className="bg-blueGray-50">
       <div className="w-full">
-        <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
-          <div className="block w-full" style={{ height: '25.5rem' }}>
-            <table className="items-center bg-transparent w-full border-collapse">
-              <thead className="bg-slate-300">
+        <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
+          <div className="block w-full min-h-[380px] bg-[#000000]">
+            <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
+              <thead className="bg-gradient-to-b from-cyan-800 to-black">
                 <tr>
-                  <th className="px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                  <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                     Tỷ giá
                   </th>
-                  <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                  <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                     Giá trị
                   </th>
-                  <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                  <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                     Thay đổi
                   </th>
                 </tr>
@@ -47,14 +47,14 @@ const RateDetail = () => {
                       color = 'text-green-500'
 
                     return (
-                      <tr key={index}>
-                        <th className="text-center border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-blueGray-700 ">
+                      <tr key={index} className='hover:bg-gray-900'>
+                        <th className="text-center align-middle text-sm whitespace-nowrap px-3 py-3.5 text-white">
                           {item.name}
                         </th>
-                        <td className={`${color} text-center border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 font-semibold`}>
+                        <td className={`text-center align-middle text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
                           <CurrencyFormat value={item.price.toFixed(2)} displayType={'text'} thousandSeparator={true} />
                         </td>
-                        <td className={`${color} text-center border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 font-semibold`}>
+                        <td className={`text-center align-middle text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
                           {item['1D']}
                         </td>
                       </tr>
