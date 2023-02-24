@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useSelector } from "react-redux";
-
 const BarChartLeft = () => {
   const dataBarChartLeft = useSelector((state) => state.chart.dataBarChartLeft);
   const [data, setData] = useState(dataBarChartLeft?.data ?? []);
@@ -23,6 +22,19 @@ const BarChartLeft = () => {
   ];
 
   const options = {
+    grid: {
+      show: true,      // you can either change hear to disable all grids
+      xaxis: {
+        lines: {
+          show: false  //or just here to disable only x axis grids
+         }
+       },  
+      yaxis: {
+        lines: { 
+          show: true  //or just here to disable only y axis
+         }
+       },   
+    },
     chart: {
       type: "bar",
       toolbar: {
@@ -46,12 +58,15 @@ const BarChartLeft = () => {
           ],
         },
         columnWidth: "70%",
+        barStart: "0",
       },
     },
     dataLabels: {
       enabled: false,
     },
     yaxis: {
+      min: -2,
+      max: 2,
       labels: {
         formatter: function (y) {
           return y.toFixed(2);
@@ -60,13 +75,13 @@ const BarChartLeft = () => {
     },
     xaxis: {
       categories: dataStockRender.map(item => item.symbol),
-      labels: {
-        rotate: 0,
-        style: {
-          fontWeight: "bold",
-          fontSize: "7px"
-        },
-      },
+    labels: {
+      rotate: 90,
+      style: {
+        fontWeight: "bold",
+        fontSize: "7px"
+      },  
+    },
     },
   };
 

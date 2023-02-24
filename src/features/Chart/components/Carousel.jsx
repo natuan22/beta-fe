@@ -1,9 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import {
-  DownCircleOutlined,
-  UpCircleOutlined,
-} from "@ant-design/icons/lib/icons";
+import { BsFillArrowDownCircleFill, BsFillArrowUpCircleFill } from "react-icons/bs";
 import { Card } from "antd";
 import Marquee from "react-fast-marquee";
 
@@ -22,11 +19,11 @@ const Carousel = () => {
                 </span>
                 <p>
                   {item.percent_d < 0 ? (
-                    <DownCircleOutlined
+                    <BsFillArrowDownCircleFill
                       style={{ fontSize: "13px", color: "red" }}
                     />
                   ) : (
-                    <UpCircleOutlined
+                    <BsFillArrowUpCircleFill
                       style={{ fontSize: "13px", color: "lightgreen" }}
                     />
                   )}

@@ -13,7 +13,7 @@ const StackingAreas = () => {
       return;
     }
     
-    const timeFormat = ['09:15','09:30','09:45','10:00','10:15','10:30','10:45','11:00','11:15','11:30','13:00','13:15','13:30','13:45','14:00','14:15','14:30','14:45'];
+    const timeFormat = ['09:00','09:15','09:30','09:45','10:00','10:15','10:30','10:45','11:00','11:15','11:30','13:00','13:15','13:30','13:45','14:00','14:15','14:30','14:45'];
 
     const filteredData = data.data.filter(item => timeFormat.includes(moment(item.time, 'HH:mm:ss').format('HH:mm')));
     console.log(filteredData)
@@ -26,9 +26,8 @@ const StackingAreas = () => {
     return [moment(item.time, 'HH:mm:ss').format('HH:mm'), item.advance, item.decline, (415 - (item.advance+item.decline))]
   })
   const dataRenderUpdated = dataStructure.concat(dataArr)
- 
- 
-
+  console.log(dataRender)
+  
   const options_stacked = {
     axisColor: "white",
     colors: ["green", "#BAA806", "red"],

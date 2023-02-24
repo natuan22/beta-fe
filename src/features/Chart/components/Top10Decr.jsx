@@ -55,7 +55,6 @@ const Top10Decr = () => {
     xaxis: {
       categories: last10.map(item => item.ticker),
       labels: {
-
         formatter: function (y) {
           return y.toFixed(2);
         },
