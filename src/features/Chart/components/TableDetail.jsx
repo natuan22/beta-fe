@@ -16,26 +16,25 @@ const TableDetail = () => {
 
   return (
     <>
-      <section className="bg-blueGray-50">
+      <section>
         <div className="w-full">
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded ">
-            <div className="block w-full" style={{ height: '400px' }}>
-              <table className="items-center bg-transparent w-full border-collapse">
-                <thead className="bg-slate-300">
-                  <tr>
-                    <th className="px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+          <div className="relative flex flex-col min-w-0 break-words bg-white w-full rounded ">
+            <div className="block w-full min-h-[344px] bg-[#000000]">
+              <table className="items-center w-full border-collapse bg-[#000000]">
+                <thead>
+                  <tr className='bg-gradient-to-b from-cyan-800 to-black'>
+                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-amber-500">
                       Chỉ số
                     </th>
-                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-amber-500">
                       Điểm
                     </th>
-                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm font-semibold">
+                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-amber-500">
                       Thay đổi (điểm)
                     </th>
-                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm font-semibold">
+                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-amber-500">
                       Thay đổi (%)
                     </th>
- 
                   </tr>
                 </thead>
 
@@ -50,18 +49,18 @@ const TableDetail = () => {
                       else
                         color = 'text-green-500'
                       return (
-                        <tr key={index}>
-                          <th className="text-left border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap text-left text-blueGray-700" style={{ padding: '18px' }}>
+                        <tr key={index} className='hover:bg-gray-900'>
+                          <th className="text-left px-5 align-middle text-sm whitespace-nowrap p-3.5 text-white">
                             {item.ticker}
                           </th>
-                          <td className={`text-center font-semibold border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap ${color}`} style={{ padding: '18px' }}>
+                          <td className={`text-center px-5 align-middle text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                             {item.close_price}
                           </td>
-                          <td className={`text-center font-semibold border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap ${color}`} style={{ padding: '18px' }}>
+                          <td className={`text-center px-5 align-middle text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                             {/* {(item.close_price * item.percent_d / 100).toFixed(2)} */}
                             ko bít
                           </td>
-                          <td className={`text-center font-semibold border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap ${color}`} style={{ padding: '18px' }}>
+                          <td className={`text-center px-5 align-middle text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                             {item.percent_d}%
                           </td>
                         </tr>

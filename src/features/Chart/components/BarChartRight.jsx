@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 import ReactApexChart from "react-apexcharts";
 
 const BarChartRight = () => {
-  const dataBarChartRight = useSelector(
-    (state) => state.chart.dataBarChartRight
-  );
+  const dataBarChartRight = useSelector((state) => state.chart.dataBarChartRight);
   const [data, setData] = useState(dataBarChartRight.data);
   useEffect(() => {
     setData(dataBarChartRight.data);
@@ -28,7 +26,7 @@ const BarChartRight = () => {
               color: "#19d216",
             },
             {
-              from: -45,
+              from: -100,
               to: 0,
               color: "#f10000",
             },
@@ -43,7 +41,7 @@ const BarChartRight = () => {
     yaxis: {
       labels: {
         formatter: function (y) {
-          return (y / 10).toFixed(1);
+          return y.toFixed(2);  
         },
       },
     },
@@ -71,8 +69,8 @@ const BarChartRight = () => {
       options={options}
       series={series}
       type="bar"
-      height={400}
-      width={400}
+      height={380}
+      width={360}
     />
     // </div>
   );

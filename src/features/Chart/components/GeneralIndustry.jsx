@@ -17,16 +17,16 @@ const GeneralIndustry = () => {
     let fetchData = async () => {
       fetch('http://192.168.9.250:5000/tongnganh')
         .then(j => j.json())
-        .then(data1 => {
-          setData(data1);
+        .then(data => {
+          setData(data);
           setLoading(false);
         });
     }
 
     const interval = setInterval(() => {
-      console.log('reload')
+      console.log('reload GeneralIndustry')
       fetchData();
-    }, 10000);
+    }, 5000);
 
     fetchData();
 
@@ -37,24 +37,24 @@ const GeneralIndustry = () => {
     <>
       <section className="bg-blueGray-50">
         <div className="w-full">
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
-            <div className="block w-full" style={{ height: '878px' }}>
-              <table className="items-center bg-transparent w-full border-collapse">
-                <thead className="bg-slate-300">
+          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
+            <div className="block w-full min-h-[747px] bg-[#000000]">
+              <table className="items-center w-full border-collapse bg-[#000000]">
+                <thead className="bg-gradient-to-b from-cyan-800 to-black">
                   <tr>
-                    <th className="px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                       Phân ngành
                     </th>
-                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                       %D
                     </th>
-                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                       %W
                     </th>
-                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                       %M
                     </th>
-                    <th className="text-center px-3 bg-blueGray-50 text-blueGray-500 align-middle py-3 text-sm whitespace-nowrap font-semibold">
+                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
                       Độ rộng ngành
                     </th>
                   </tr>
@@ -68,35 +68,35 @@ const GeneralIndustry = () => {
                       let color3 = getColor(item.PerChange1Y)
 
                       return (
-                        <tr key={index}>
-                          <th className={`${color} text-left border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs p-3`}>
+                        <tr key={index} className='hover:bg-gray-900'>
+                          <th className={`${color} text-left px-2 align-middle text-xs p-2`}>
                             {item.vietnameseName}
                           </th>
-                          <td className={`${color} border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-1 font-semibold`}>
-                            <span className='text-left px-1'>
+                          <td className={`${color} px-2 align-middle text-xs whitespace-nowrap p-2 font-semibold`}>
+                            <span className='text-left px-1.5'>
                               {getIcon(item.PerChange1D)}
                             </span>
-                            <span className='text-right'>
+                            <span className='text-right px-px'>
                               {item.PerChange1D.toFixed(2)}%
                             </span>
                           </td>
-                          <td className={`${color2} border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-1 font-semibold`}>
-                            <span className='text-left px-1'>
+                          <td className={`${color2} px-2 align-middle text-xs whitespace-nowrap p-2 font-semibold`}>
+                            <span className='text-left px-1.5'>
                               {getIcon(item.PerChange1M)}
                             </span>
-                            <span className='text-right'>
+                            <span className='text-right px-px'>
                               {item.PerChange1M.toFixed(2)}%
                             </span>
                           </td>
-                          <td className={`${color3} border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-1 font-semibold`}>
-                            <span className='text-left px-1'>
+                          <td className={`${color3} px-2 align-middle text-xs whitespace-nowrap p-2 font-semibold`}>
+                            <span className='text-left px-1.5'>
                               {getIcon(item.PerChange1Y)}
                             </span>
-                            <span className='text-right'>
+                            <span className='text-right px-px'>
                               {item.PerChange1Y.toFixed(2)}%
                             </span>
                           </td>
-                          <td className="border-t-0 px-2 align-middle border-l-0 whitespace-nowrap border-r-0 text-xs p-1">
+                          <td className="px-2 align-middle whitespace-nowrap text-xs p-2">
                             thanh độ rộng ngành
                           </td>
                         </tr>

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const TreeMapChart = () => {
   const dataTreemap = useSelector((state) => state.chart.dataTreemap);
   const [data = dataTreemap.recordset || [], setData] = useState();
-  
+
   const arrGlobal = [
     [
       "Location",
@@ -26,13 +26,13 @@ const TreeMapChart = () => {
   const arrTicker = data.map((item) => {
     return [
       item.ticker,
-      item.lv2 ,
-      item.total_value_buy ,
-      item.total_value_sell ,
+      item.lv2,
+      item.total_value_buy,
+      item.total_value_sell,
     ];
   });
 
-const dataTreeMapRender = arrGlobal.concat(arrTicker)
+  const dataTreeMapRender = arrGlobal.concat(arrTicker)
 
   const options = {
     highlightOnMouseOver: true,
@@ -49,13 +49,13 @@ const dataTreeMapRender = arrGlobal.concat(arrTicker)
     height: 500,
     useWeightedAverageForAggregation: true,
     textStyle: {
-        color: '#fff',
-        fontSize: 14,
-        fontWeight: 'semibold',
+      color: '#fff',
+      fontSize: 14,
+      fontWeight: 'semibold',
     },
-    titleTextStyle:{
-        color: '#fff',
-        fontSize: 13,
+    titleTextStyle: {
+      color: '#fff',
+      fontSize: 13,
     },
     generateTooltip: (row) => {
       const size = row[2];
@@ -70,22 +70,22 @@ const dataTreeMapRender = arrGlobal.concat(arrTicker)
             `;
     },
     headerTemplate: (props) => {
-        const { row, column, value } = props;
-        const label = row.getFormattedValue(column);
-        return `
+      const { row, column, value } = props;
+      const label = row.getFormattedValue(column);
+      return `
           <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px; background-color: #333;">
             <span style="color: black; font-size: 14px; margin-right: 8px;">${label}122</span>
             <span style="color: black; font-size: 14px;">${value}</span>
           </div>
         `;
-      },
-    
+    },
+
   };
 
   return (
     <Chart
       width={"100%"}
-      height={"400px"}
+      height={"500px"}
       chartType="TreeMap"
       loader={<div>Loading Chart</div>}
       data={dataTreeMapRender}
