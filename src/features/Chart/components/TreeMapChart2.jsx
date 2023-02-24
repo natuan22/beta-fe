@@ -25,7 +25,7 @@ const TreeMapChart = () => {
   });
   const arrTicker = data.map((item) => {
     return [
-      item.ticker,
+      `${item.ticker}: ${item.total_value_sell}`,
       item.lv2,
       item.total_value_buy,
       item.total_value_sell,

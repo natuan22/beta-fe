@@ -28,7 +28,7 @@ const BarChartRight = () => {
             {
               from: -100,
               to: 0,
-              color: "#f10000",
+              color: "#f32626",
             },
           ],
         },

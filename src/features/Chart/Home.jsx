@@ -88,7 +88,7 @@ const Home = () => {
                     </div>
 
                     <div className="mx-1 my-1 px-2 py-2 bg-[#151924]">
-                      <div className="text-center">
+<div className="text-center">
                         <span className="font-semibold uppercase text-amber-500">
                           Nhóm cổ phiếu dẫn dắt thị trường
                         </span>
@@ -154,7 +154,7 @@ const Home = () => {
                         <option value="hnx">HNX</option>
                         <option value="upcom">UPCOM</option>
                       </select>
-                      <span className="font-semibold uppercase text-amber-500">qua 05 phiên gần nhất</span>
+<span className="font-semibold uppercase text-amber-500">qua 05 phiên gần nhất</span>
                       <Top10Decr />
                     </div>
 
@@ -220,7 +220,7 @@ const Home = () => {
                       >
                         <option value="HSX" selected="selected">
                           HSX
-                        </option>
+</option>
                         <option value="HNX">HNX</option>
                         <option value="UPCOM">UPCOM</option>
                       </select>

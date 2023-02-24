@@ -18,7 +18,7 @@ const BarChartLeft = () => {
   const series = [
     {
       name: "Volume trade",
-      data: dataStockRender.map((item) => item.point.toFixed(2)),
+      data: dataStockRender.map((item) => item.point),
     },
   ];
 
