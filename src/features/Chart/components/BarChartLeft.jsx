@@ -71,6 +71,9 @@ const BarChartLeft = () => {
         formatter: function (y) {
           return y.toFixed(2);
         },
+        style:{
+          colors:'#fff'
+        }
       },
     },
     xaxis: {
@@ -79,7 +82,8 @@ const BarChartLeft = () => {
       rotate: 90,
       style: {
         fontWeight: "bold",
-        fontSize: "7px"
+        fontSize: "7px",
+        colors:"#fff"
       },  
     },
     },

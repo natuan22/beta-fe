@@ -16,6 +16,19 @@ const BarChartRight = () => {
         show: false,
       },
     },
+    grid: {
+      show: true,      // you can either change hear to disable all grids
+      xaxis: {
+        lines: {
+          show: false  //or just here to disable only x axis grids
+         }
+       },  
+      yaxis: {
+        lines: { 
+          show: true  //or just here to disable only y axis
+         }
+       },   
+    },
     plotOptions: {
       bar: {
         colors: {
@@ -43,6 +56,9 @@ const BarChartRight = () => {
         formatter: function (y) {
           return y.toFixed(2);  
         },
+        style:{
+          colors:"#fff"
+        }
       },
     },
     xaxis: {
@@ -51,6 +67,7 @@ const BarChartRight = () => {
         rotate: -90,
         style: {
           fontWeight: "bold",
+          colors: "#fff"
         },
       },
     },

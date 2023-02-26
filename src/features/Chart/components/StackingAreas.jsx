@@ -29,7 +29,7 @@ const StackingAreas = () => {
   console.log(dataRender)
   
   const options_stacked = {
-    axisColor: "white",
+    axisColor: "#f59e0b",
     colors: ["green", "#BAA806", "red"],
     backgroundColor: "transparent",
     isStacked: "percent",
@@ -38,12 +38,12 @@ const StackingAreas = () => {
       position: "top",
       maxLines: 3,
       textStyle: {
-        color: "black",
+        color: "#f59e0b",
       },
     },
-    vAxis: { minValue: 0, textStyle: { color: "#000" } },
+    vAxis: { minValue: 0, textStyle: { color: "#f59e0b" } },
     hAxis: {
-      textStyle: { color: "#000" },
+      textStyle: { color: "#f59e0b" },
     },
     selectionMode: "multiple",
     aggregationTarget: "category",
@@ -72,7 +72,7 @@ const StackingAreas = () => {
       <Chart
         chartType="AreaChart"
         width="100%"
-        height="400px"
+        height={400}
         data={dataRenderUpdated}
         options={options_stacked}
       />
