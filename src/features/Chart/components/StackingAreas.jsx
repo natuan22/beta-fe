@@ -6,27 +6,16 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 const StackingAreas = () => {
   const data = useSelector((state) => state.chart.dataStackingArea);
-  const [dataRender, setDataRender] = useState([]);
-
-  useEffect(() => {
-    if (!data || !data.data || !data.data.length) {
-      return;
-    }
+  if (!data || !data.data ||!data.data.length) return null
     
-    const timeFormat = ['09:00','09:15','09:30','09:45','10:00','10:15','10:30','10:45','11:00','11:15','11:30','13:00','13:15','13:30','13:45','14:00','14:15','14:30','14:45'];
-
-    const filteredData = data.data.filter(item => timeFormat.includes(moment(item.time, 'HH:mm:ss').format('HH:mm')));
-    console.log(filteredData)
-    setDataRender(filteredData);
-  }, [data]);
-
-    
-  const dataStructure =[ ['Time', 'Tăng', 'Giảm', 'Không đổi']]
-  const dataArr = dataRender.map(item => {
-    return [moment(item.time, 'HH:mm:ss').format('HH:mm'), item.advance, item.decline, (415 - (item.advance+item.decline))]
+  const dataStackChart = data.data?.map(item => {
+    return [moment(item.time, 'HH:mm:ss').format('HH:mm'), item.advance, item.decline, item.noChange]
   })
-  const dataRenderUpdated = dataStructure.concat(dataArr)
-  console.log(dataRender)
+console.log(dataStackChart)
+  
+  const dataStructure =[ ['Time', 'Tăng', 'Giảm', 'Không đổi']]
+
+  const dataRenderUpdated = dataStructure.concat(dataStackChart)
   
   const options_stacked = {
     axisColor: "#f59e0b",
@@ -43,7 +32,7 @@ const StackingAreas = () => {
     },
     vAxis: { minValue: 0, textStyle: { color: "#f59e0b" } },
     hAxis: {
-      textStyle: { color: "#f59e0b" },
+      textStyle: { color: "#f59e0b", fontSize: 11 },
     },
     selectionMode: "multiple",
     aggregationTarget: "category",

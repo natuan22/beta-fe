@@ -330,7 +330,8 @@ const Home = () => {
                       <option value="HNX">HNX</option>
                     </select>
                     <StackingAreas />
-                    <StackingChartTest />
+                   
+                    {/* <StackingChartTest /> */}
                   </div>
                 </div>
                 <div className="w-[40%]">
