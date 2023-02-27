@@ -38,8 +38,7 @@ import {
   fetchDataWidthMarket,
 } from "./thunk";
 import StackingAreas from "./components/StackingAreas";
-import StackingChartTest from "./components/StackingChartTest";
-
+import Footer from "../../components/Footer";
 const Home = () => {
   const dispatch = useDispatch();
 
