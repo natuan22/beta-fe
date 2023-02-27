@@ -87,69 +87,7 @@ const Home = () => {
                     <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
                       <LineChart />
                     </div>
-
-                    <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
-                      <div className="text-center bg-[#020203]">
-                        <span className="font-semibold uppercase text-amber-500">
-                          Nhóm cổ phiếu dẫn dắt thị trường
-                        </span>
-                        <select className={`${chartStyle.selectStyle} border-none bg-[#020203] text-amber-500`}
-                          onChange={(event) => {
-                            dispatch(dispatch(fetchDataBarChartLeft(event.target.value)));
-                          }}>
-                          <option value="VNINDEX">VNINDEX</option>
-                          <option value="HNX">HNX</option>
-                          <option value="VN30">VN30</option>
-                        </select>
-                        <BarChartLeft />
-                      </div>
-                    </div>
-
-                    <div className="text-center mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
-                      <div className="bg-[#020203]">
-                        <span className="font-semibold uppercase text-amber-500">
-                          Top nước ngoài mua bán ròng
-                        </span>
-                        <BarChartRight />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="xl:w-[40%] xl:translate-x-0 lg:w-[80%] lg:translate-x-[14%]">
-                  <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924] xl:h-[664px] lg:h-[450px] md:h-[465px] sm:h-[430px]">
-                    <GeneralIndustry />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div className="xl:flex lg:block">
-                <div className="xl:w-[60%]">
-                  <div className="grid gap-0.5 xl:grid-cols-[2fr_2fr] lg:grid-cols-[2fr_2fr] md:grid-cols-none">
-                    <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[380px]">
-                      <GoodsDetail />
-                    </div>
-
-                    <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[380px]">
-                      <RateDetail />
-                    </div>
-                  </div>
-
-                  <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[385px]">
-                    <News />
-                  </div>
-                </div>
-
-                <div className="xl:w-[40%] xl:translate-x-0 lg:w-[80%] lg:translate-x-[14%]">
-                  <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924]">
-                    <div className="grid grid-cols-2 bg-[#020203]">
-                      <div className="text-center mx-[5px]">
-                        <span className="font-semibold uppercase text-amber-500">
-                          Top 10 cổ phiếu giảm mạnh nhất sàn
-                        </span>
-                        <select className={`${chartStyle.selectStyle} border-none bg-[#020203] text-amber-500`} onChange={(event) => {
+<select className={`${chartStyle.selectStyle} border-none bg-[#020203] text-amber-500`} onChange={(event) => {
                           dispatch(dispatch(fetchDataDiemAnhHuong5PhienGiam(event.target.value)));
                         }}>
                           <option value="hose" selected="selected">
@@ -212,7 +150,68 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="xl:w-[40%] xl:translate-x-0 lg:w-[80%] lg:translate-x-[14%]">
+<div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
+                      <div className="text-center bg-[#020203]">
+                        <span className="font-semibold uppercase text-amber-500">
+                          Nhóm cổ phiếu dẫn dắt thị trường
+                        </span>
+                        <select className={`${chartStyle.selectStyle} border-none bg-[#020203] text-amber-500`}
+                          onChange={(event) => {
+                            dispatch(dispatch(fetchDataBarChartLeft(event.target.value)));
+                          }}>
+                          <option value="VNINDEX">VNINDEX</option>
+                          <option value="HNX">HNX</option>
+                          <option value="VN30">VN30</option>
+                        </select>
+                        <BarChartLeft />
+                      </div>
+                    </div>
+
+                    <div className="text-center mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
+                      <div className="bg-[#020203]">
+                        <span className="font-semibold uppercase text-amber-500">
+                          Top nước ngoài mua bán ròng
+                        </span>
+                        <BarChartRight />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="xl:w-[40%] xl:translate-x-0 lg:w-[80%] lg:translate-x-[14%]">
+                  <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924] xl:h-[664px] lg:h-[450px] md:h-[465px] sm:h-[430px]">
+                    <GeneralIndustry />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="xl:flex lg:block">
+                <div className="xl:w-[60%]">
+                  <div className="grid gap-0.5 xl:grid-cols-[2fr_2fr] lg:grid-cols-[2fr_2fr] md:grid-cols-none">
+                    <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[380px]">
+                      <GoodsDetail />
+                    </div>
+
+                    <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[380px]">
+                      <RateDetail />
+                    </div>
+                  </div>
+
+                  <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[385px]">
+                    <News />
+                  </div>
+                </div>
+
+                <div className="xl:w-[40%] xl:translate-x-0 lg:w-[80%] lg:translate-x-[14%]">
                   <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924]">
+                    <div className="grid grid-cols-2 bg-[#020203]">
+                      <div className="text-center mx-[5px]">
+                        <span className="font-semibold uppercase text-amber-500">
+                          Top 10 cổ phiếu giảm mạnh nhất sàn
+                        </span>
+<div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924]">
                     <div className="grid grid-cols-2 bg-[#020203]">
                       <div className="text-center mx-[5px]">
                         <span className="font-semibold uppercase text-amber-500">
@@ -270,7 +269,7 @@ const Home = () => {
 
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
-                        <TreemapChart />
+<TreemapChart />
                       </div>
 
                       <div>
