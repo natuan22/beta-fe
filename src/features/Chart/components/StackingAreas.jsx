@@ -6,23 +6,23 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 const StackingAreas = () => {
   const data = useSelector((state) => state.chart.dataStackingArea);
-  if (!data || !data.data ||!data.data.length) return null
-    
+  if (!data || !data.data || !data.data.length) return null
+
   const dataStackChart = data.data?.map(item => {
     return [moment(item.time, 'HH:mm:ss').format('HH:mm'), item.advance, item.decline, item.noChange]
   })
-console.log(dataStackChart)
-  
-  const dataStructure =[ ['Time', 'Tăng', 'Giảm', 'Không đổi']]
+  console.log(dataStackChart)
+
+  const dataStructure = [['Time', 'Tăng', 'Giảm', 'Không đổi']]
 
   const dataRenderUpdated = dataStructure.concat(dataStackChart)
-  
+
   const options_stacked = {
     axisColor: "#f59e0b",
-    colors: ["green", "#BAA806", "red"],
+    colors: ["#5FB80E", "#DF8900", "#A50000"],
     backgroundColor: "transparent",
     isStacked: "percent",
-    height: 300,
+    height: 400,
     legend: {
       position: "top",
       maxLines: 3,
