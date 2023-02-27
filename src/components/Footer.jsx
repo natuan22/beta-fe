@@ -19,10 +19,10 @@ const Footer = () => {
                                             <EnvironmentOutlined /> 55 Nam Kỳ Khởi Nghĩa, Quận 1, TP.HCM
                                         </li>
                                         <li>
-                                            <PhoneOutlined /> Điện thoại: (028) 3914.2929
+                                            <PhoneOutlined /> <a href="tel:02839142929" className="no-underline text-[#19D216]">Điện thoại: (028) 3914.2929</a>
                                         </li>
                                         <li>
-                                            <MailOutlined /> support@bsi.com.vn
+                                            <MailOutlined /> <a href="mailto:support@bsi.com.vn" className="no-underline text-[#19D216]">support@bsi.com.vn</a>
                                         </li>
                                         <li>
                                             <a href="https://www.bsi.com.vn" className="no-underline text-[#19D216] mb-2 inline-block text-base leading-loose">
@@ -56,22 +56,22 @@ const Footer = () => {
                                     <h4 className="text-[#38B6FF] mb-6 lg:text-lg mb:text-base sm:text-sm font-semibold">Truy cập nhanh</h4>
                                     <ul className="list-none">
                                         <li>
-                                            <a href="javascript:void(0)" className="no-underline text-white mb-2 inline-block xl:text-base lg:text-base mb:text-base sm:text-sm leading-loose">
+                                            <a href="/" className="no-underline text-white mb-2 inline-block xl:text-base lg:text-base mb:text-base sm:text-sm leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> Trang chủ
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" className="no-underline text-white mb-2 inline-block xl:text-base lg:text-base mb:text-base sm:text-sm leading-loose">
+                                            <a href="/thi-truong" className="no-underline text-white mb-2 inline-block xl:text-base lg:text-base mb:text-base sm:text-sm leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> Thị trường
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" className="no-underline text-white mb-2 inline-block xl:text-base lg:text-base mb:text-base sm:text-sm leading-loose">
+                                            <a href="/vi-mo" className="no-underline text-white mb-2 inline-block xl:text-base lg:text-base mb:text-base sm:text-sm leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> Vĩ mô
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" className="no-underline text-white mb-2 inline-block xl:text-base lg:text-base mb:text-base sm:text-sm leading-loose">
+                                            <a href="/quoc-te" className="no-underline text-white mb-2 inline-block xl:text-base lg:text-base mb:text-base sm:text-sm leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> Quốc tế
                                             </a>
                                         </li>
