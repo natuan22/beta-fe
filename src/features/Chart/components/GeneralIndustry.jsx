@@ -22,7 +22,14 @@ const GeneralIndustry = () => {
           setLoading(false);
         });
     }
-
+    // let fetchData2 = async () => {
+    //   fetch('http://192.168.15.181:3001/api/v1/stock/market-breadth')
+    //     .then(j => j.json())
+    //     .then(data => {
+    //       setData(data);
+    //       setLoading(false);
+    //     });
+    // }
     const interval = setInterval(() => {
       console.log('reload GeneralIndustry')
       fetchData();
@@ -66,7 +73,6 @@ const GeneralIndustry = () => {
                       let color = getColor(item.PerChange1D)
                       let color2 = getColor(item.PerChange1M)
                       let color3 = getColor(item.PerChange1Y)
-
                       return (
                         <tr key={index} className='hover:bg-gray-900'>
                           <th className={`${color} text-left align-middle xl:text-xs lg:text-sm px-2 py-2.5`}>
@@ -96,8 +102,14 @@ const GeneralIndustry = () => {
                               {item.PerChange1Y.toFixed(2)}%
                             </span>
                           </td>
-                          <td className="align-middle whitespace-nowrap xl:text-xs lg:text-sm px-2 py-2">
-                            thanh độ rộng ngành
+                          <td className="align-middle whitespace-nowrap xl:text-xs lg:text-sm px-2 py-2  ">
+                            <div className='flex'>
+                            <div style={{width:'20%', height:'10px'}} className="bg-purple-500"></div>
+                            <div style={{width:'20%', height:'10px'}} className="bg-green-500"></div>
+                            <div style={{width:'20%', height:'10px'}} className="bg-yellow-400"></div>
+                            <div style={{width:'20%', height:'10px'}} className="bg-red-500"></div>
+                            <div style={{width:'20%', height:'10px'}} className="bg-blue-400"></div>
+                            </div>
                           </td>
                         </tr>
                       )

@@ -1,6 +1,4 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useCallback } from "react";
 import Chart from "react-google-charts";
 import { useSelector } from "react-redux";
 import moment from "moment";
@@ -12,11 +10,25 @@ const StackingAreas = () => {
     return [moment(item.time, 'HH:mm:ss').format('HH:mm'), item.advance, item.decline, item.noChange]
   })
 console.log(dataStackChart)
+
+const start = moment("09:15", "HH:mm");
+const end = moment("14:45", "HH:mm");
+const ticks = [];
+
+// Add ticks every 15 minutes from start to end time
+for (let time = start.clone(); time <= end; time.add(15, "minutes")) {
+  ticks.push({
+    v: time.format("HH:mm"),
+    f: time.format("HH:mm"),
+  });
+}
+
+ 
   
   const dataStructure =[ ['Time', 'Tăng', 'Giảm', 'Không đổi']]
 
   const dataRenderUpdated = dataStructure.concat(dataStackChart)
-  
+
   const options_stacked = {
     axisColor: "#f59e0b",
     colors: ["green", "#BAA806", "red"],
@@ -32,7 +44,10 @@ console.log(dataStackChart)
     },
     vAxis: { minValue: 0, textStyle: { color: "#f59e0b" } },
     hAxis: {
+      ticks: ticks, 
+      format: "HH:mm",
       textStyle: { color: "#f59e0b", fontSize: 11 },
+      
     },
     selectionMode: "multiple",
     aggregationTarget: "category",
@@ -69,4 +84,4 @@ console.log(dataStackChart)
   );
 };
 
-export default StackingAreas;
+export default StackingAreas
