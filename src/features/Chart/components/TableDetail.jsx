@@ -19,7 +19,7 @@ const TableDetail = () => {
       <section>
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full rounded ">
-            <div className="block w-full min-h-[344px] bg-[#000000]">
+            <div className="block w-full min-h-[350px] bg-[#000000]">
               <table className="items-center w-full border-collapse bg-[#000000]">
                 <thead>
                   <tr className='bg-gradient-to-b from-cyan-800 to-black'>

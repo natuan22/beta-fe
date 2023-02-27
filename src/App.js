@@ -5,6 +5,7 @@ import Header from './components/Header';
 
 
 import { createBrowserHistory } from 'history';
+import Footer from './components/Footer';
 let history = createBrowserHistory()
 // history.push("/signin")
 function App() {

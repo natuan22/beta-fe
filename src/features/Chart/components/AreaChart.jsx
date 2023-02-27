@@ -30,7 +30,7 @@ const AreaChart = () => {
       return formattedTime;
     })
     : [];
-      console.log(data1)
+
   useEffect(() => {
     const chartCanvas = chartRef.current;
     if (chartCanvas) {
@@ -42,9 +42,9 @@ const AreaChart = () => {
             {
               label: "GTGD hôm nay",
               data: dataForRender1,
-              borderColor: "lightgreen",
+              borderColor: "green",
               fill: true,
-              backgroundColor: "rgba(27, 231, 54, 0.3)",
+              backgroundColor: "rgba(27, 231, 54, 0.5)",
               borderWidth: 0,
             },
             {
@@ -52,7 +52,7 @@ const AreaChart = () => {
               data: dataForRender2,
               borderColor: "red",
               fill: true,
-              backgroundColor: "rgba(227, 74, 103,0.4)",
+              backgroundColor: "rgba(227, 74, 103, 0.5)",
               borderWidth: 0,
             },
           ],
