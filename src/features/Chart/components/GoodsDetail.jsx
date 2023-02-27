@@ -19,11 +19,11 @@ const GoodsDetail = () => {
   return (
     <section className="bg-blueGray-50">
       <div className="w-full">
-        <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
+        <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 ">
           <div className="block w-full overflow-y-scroll h-[380px] bg-[#000000]">
             <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
               <thead className="sticky top-0 bg-gradient-to-b from-cyan-800 to-black">
-                <tr>
+                <tr className="bg-gradient-to-b from-cyan-800 to-black">
                   <th className="align-middle px-3 py-3 text-sm font-semibold text-center text-amber-500">
                     Hàng hóa
                   </th>

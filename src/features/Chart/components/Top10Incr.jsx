@@ -21,8 +21,21 @@ const Top10Incr = () => {
   }]
 
   const options = {
+    grid: {
+      show: false,      // you can either change hear to disable all grids
+      xaxis: {
+        lines: {
+          show: false  //or just here to disable only x axis grids
+        }
+      },
+      yaxis: {
+        lines: {
+          show: true  //or just here to disable only y axis
+        }
+      },
+    },
     chart: {
-      // background: '#020203',
+      background: '#020203',
       toolbar: {
         show: false,
       },
@@ -56,19 +69,23 @@ const Top10Incr = () => {
     xaxis: {
       categories: top10.map(item => item.ticker),
       labels: {
+        show: true,
         formatter: function (y) {
           return y.toFixed(2);
         },
-        //     style: {
-        //         colors: '#fff',
-        //     }
+        style: {
+          colors: '#fff',
+        }
+      },
+      axisTicks: {
+        show: false,
       }
     },
     yaxis: {
       labels: {
-        //     style: {
-        //         colors: '#fff',
-        //     }
+        style: {
+          colors: '#fff',
+        }
       }
     }
   };
@@ -76,7 +93,7 @@ const Top10Incr = () => {
   return (
     <>
       <div className="chart">
-        <ReactApexChart options={options} series={series} type="bar" height={630} />
+        <ReactApexChart options={options} series={series} type="bar" height={705} />
       </div>
     </>
   )

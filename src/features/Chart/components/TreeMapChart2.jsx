@@ -46,7 +46,7 @@ const TreeMapChart = () => {
     maxColor: "red",
     headerHeight: 30,
     showScale: false,
-    height: 500,
+    height: 680,
     useWeightedAverageForAggregation: true,
     textStyle: {
       color: '#fff',

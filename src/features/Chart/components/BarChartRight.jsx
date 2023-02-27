@@ -10,7 +10,21 @@ const BarChartRight = () => {
   }, [dataBarChartRight]);
 
   const options = {
+    grid: {
+      show: true,      // you can either change hear to disable all grids
+      xaxis: {
+        lines: {
+          show: false  //or just here to disable only x axis grids
+        }
+      },
+      yaxis: {
+        lines: {
+          show: true  //or just here to disable only y axis
+        }
+      },
+    },
     chart: {
+      background: '#020203',
       type: "bar",
       toolbar: {
         show: false,
@@ -41,8 +55,11 @@ const BarChartRight = () => {
     yaxis: {
       labels: {
         formatter: function (y) {
-          return y.toFixed(2);  
+          return y.toFixed(2);
         },
+        style: {
+          colors: '#fff',
+        }
       },
     },
     xaxis: {
@@ -50,9 +67,14 @@ const BarChartRight = () => {
       labels: {
         rotate: -90,
         style: {
+          fontSize: '10px',
           fontWeight: "bold",
+          colors: '#fff',
         },
       },
+      axisTicks: {
+        show: false,
+      }
     },
   };
 
@@ -64,15 +86,12 @@ const BarChartRight = () => {
   ];
 
   return (
-    // <div className="chart" style={{ transform: 'translateY(4%)' }}>
     <ReactApexChart
       options={options}
       series={series}
       type="bar"
-      height={380}
-      width={360}
+      height={258}
     />
-    // </div>
   );
 };
 

@@ -28,8 +28,8 @@ const TreeMapChart = () => {
 
       `${item.ticker}: ${item.total_value_buy}`,
       item.lv2,
-      item.total_value_buy ,
-      item.total_value_sell ,
+      item.total_value_buy,
+      item.total_value_sell,
 
     ];
   });
@@ -48,7 +48,7 @@ const TreeMapChart = () => {
     maxColor: "#green",
     headerHeight: 30,
     showScale: false,
-    height: 500,
+    height: 680,
     useWeightedAverageForAggregation: true,
     textStyle: {
       color: '#fff',

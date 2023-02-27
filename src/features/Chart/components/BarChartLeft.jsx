@@ -27,15 +27,16 @@ const BarChartLeft = () => {
       xaxis: {
         lines: {
           show: false  //or just here to disable only x axis grids
-         }
-       },  
+        }
+      },
       yaxis: {
-        lines: { 
+        lines: {
           show: true  //or just here to disable only y axis
-         }
-       },   
+        }
+      },
     },
     chart: {
+      background: '#020203',
       type: "bar",
       toolbar: {
         show: false,
@@ -71,30 +72,33 @@ const BarChartLeft = () => {
         formatter: function (y) {
           return y.toFixed(2);
         },
+        style: {
+          colors: '#fff',
+        }
       },
     },
     xaxis: {
       categories: dataStockRender.map(item => item.symbol),
-    labels: {
-      rotate: 90,
-      style: {
-        fontWeight: "bold",
-        fontSize: "7px"
-      },  
-    },
+      labels: {
+        rotate: 90,
+        style: {
+          fontWeight: "bold",
+          fontSize: "6px",
+          colors: '#fff',
+        },
+      },
+      axisTicks: {
+        show: false,
+      }
     },
   };
 
   return (
-    <div className="chart">
-      <ReactApexChart
-        options={options}
-        series={series}
-        type="bar"
-        height={350}
-        width={420}
-      />
-    </div>
+    <ReactApexChart
+      options={options}
+      series={series}
+      type="bar"
+    />
   );
 };
 

@@ -21,8 +21,21 @@ const Top10Sell = () => {
     }]
 
     const options = {
+        grid: {
+            show: false,      // you can either change hear to disable all grids
+            xaxis: {
+                lines: {
+                    show: false  //or just here to disable only x axis grids
+                }
+            },
+            yaxis: {
+                lines: {
+                    show: true  //or just here to disable only y axis
+                }
+            },
+        },
         chart: {
-            // background: '#020203',
+            background: '#020203',
             toolbar: {
                 show: false,
             },
@@ -56,20 +69,24 @@ const Top10Sell = () => {
         xaxis: {
             categories: last10.map(item => item.ticker),
             labels: {
+                show: true,
                 formatter: function (y) {
                     return y.toFixed(2);
                 },
-                // style: {
-                //     colors: '#fff',
-                // }
+                style: {
+                    colors: '#fff',
+                }
+            },
+            axisTicks: {
+                show: false,
             }
         },
         yaxis: {
             opposite: true,
             labels: {
-                // style: {
-                //     colors: '#fff',
-                // }
+                style: {
+                    colors: '#fff',
+                }
             }
         }
     };

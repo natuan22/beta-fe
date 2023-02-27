@@ -6,8 +6,6 @@ import { Transition } from "@headlessui/react";
 
 const { Search } = Input;
 
-
-
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -36,7 +34,7 @@ const Header = () => {
                     >
                       Trang chủ
                     </NavLink>
-                    <div className="xl:flex items-center flex lg:translate-y-[11%] lg:translate-x-[180%] md:translate-y-[11%] md:translate-x-[90%]">
+                    <div className="xl:flex items-center flex lg:translate-y-[11%] lg:translate-x-[180%] md:translate-y-[11%] md:translate-x-[90%] sm:translate-y-[11%] sm:translate-x-[40%]">
                       <div className="flex">
                         <BellOutlined
                           className="ml-2"
@@ -49,10 +47,7 @@ const Header = () => {
                       </div>
                       <Search
                         placeholder="Tìm mã chứng khoán"
-                        className=""
-                        style={{
-                          width: 200,
-                        }}
+                        className="lg:w-[200px] md:w-[200px] sm:w-[200px]"
                       />
                     </div>
                   </div>
