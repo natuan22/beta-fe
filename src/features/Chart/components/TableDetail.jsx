@@ -18,8 +18,8 @@ const TableDetail = () => {
     <>
       <section>
         <div className="w-full">
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full rounded ">
-            <div className="block w-full min-h-[350px] bg-[#000000]">
+          <div className="relative flex flex-col min-w-0 break-words bg-white w-full rounded">
+            <div className="block w-full xs:min-h-[352px] xxs:min-h-[332px] sm:min-h-[312px] md:min-h-[336px] lg:min-h-[350px] xl:min-h-[350px] bg-[#000000]">
               <table className="items-center w-full border-collapse bg-[#000000]">
                 <thead>
                   <tr className='bg-gradient-to-b from-cyan-800 to-black'>
@@ -50,17 +50,17 @@ const TableDetail = () => {
                         color = 'text-green-500'
                       return (
                         <tr key={index} className='hover:bg-gray-900'>
-                          <th className="text-left px-5 align-middle text-sm whitespace-nowrap p-3.5 text-white">
+                          <th className="text-left px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 text-white">
                             {item.ticker}
                           </th>
-                          <td className={`text-center px-5 align-middle text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                          <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                             {item.close_price}
                           </td>
-                          <td className={`text-center px-5 align-middle text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                          <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                             {/* {(item.close_price * item.percent_d / 100).toFixed(2)} */}
                             ko bít
                           </td>
-                          <td className={`text-center px-5 align-middle text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                          <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                             {item.percent_d}%
                           </td>
                         </tr>

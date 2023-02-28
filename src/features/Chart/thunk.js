@@ -71,7 +71,7 @@ export const fetchDataTableDetail = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "https://thangh13.github.io/thang13.github.io/thitruong.json?utm_source=zalo&utm_medium=zalo&utm_campaign=zalo",
+      url: "http://192.168.9.250:5000/chiso/trongnuoc",
       method: "GET",
     });
     dispatch({
@@ -281,7 +281,7 @@ export const fetchDataWidthMarket = (index) => async (dispatch) => {
       url: "https://mkw-socket.vndirect.com.vn/mkwsocket/gainerslosers",
       method: "GET",
       params: {
-        index: index 
+        index: index
       }
     });
     dispatch({

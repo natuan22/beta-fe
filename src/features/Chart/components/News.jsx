@@ -48,10 +48,10 @@ const News = () => {
                                                 <th className="text-center align-middle text-xs whitespace-nowrap px-3 p-3.5 text-white">
                                                     {item.ticker}
                                                 </th>
-                                                <td className="text-center align-middle text-xs whitespace-nowrap xl:px-10 lg::px-10 sm:px-6 p-3.5 text-white">
+                                                <td className="text-center align-middle text-xs whitespace-nowrap sm:px-6 lg::px-10 xl:px-10 p-3.5 text-white">
                                                     {item.LoaiSuKien}
                                                 </td>
-                                                <td className="text-center align-center text-xs whitespace-nowrap xl:px-10 lg::px-10 sm:px-6 p-3.5 text-white">
+                                                <td className="text-center align-center text-xs whitespace-nowrap sm:px-6 lg::px-10 xl:px-10 p-3.5 text-white">
                                                     {formatDate(new Date(Date.parse(item.NgayDKCC)))}
                                                 </td>
                                                 <td className="text-left align-middle text-xs px-3 p-4 text-white">

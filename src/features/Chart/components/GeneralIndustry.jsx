@@ -45,7 +45,7 @@ const GeneralIndustry = () => {
       <section className="bg-blueGray-50">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
-            <div className="block w-full overflow-y-scroll xl:h-[663px] lg:h-[450px] md:h-[465px] sm:h-[430px] bg-[#000000]">
+            <div className="block w-full overflow-y-scroll xs:h-[430px] xxs:h-[430px] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[663px] bg-[#000000]">
               <table className="items-center w-full border-collapse bg-[#000000]">
                 <thead className="sticky top-0 bg-gradient-to-b from-cyan-800 to-black">
                   <tr>
@@ -75,10 +75,10 @@ const GeneralIndustry = () => {
                       let color3 = getColor(item.PerChange1Y)
                       return (
                         <tr key={index} className='hover:bg-gray-900'>
-                          <th className={`${color} text-left align-middle xl:text-xs lg:text-sm px-2 py-2.5`}>
+                          <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
                             {item.vietnameseName}
                           </th>
-                          <td className={`${color} align-middle xl:text-xs lg:text-sm whitespace-nowrap px-2 py-2.5 font-semibold`}>
+                          <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2.5 font-semibold`}>
                             <span className='text-left px-1.5'>
                               {getIcon(item.PerChange1D)}
                             </span>
@@ -86,7 +86,7 @@ const GeneralIndustry = () => {
                               {item.PerChange1D.toFixed(2)}%
                             </span>
                           </td>
-                          <td className={`${color2} align-middle xl:text-xs lg:text-sm whitespace-nowrap px-2 py-2 font-semibold`}>
+                          <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                             <span className='text-left px-1.5'>
                               {getIcon(item.PerChange1M)}
                             </span>
@@ -94,7 +94,7 @@ const GeneralIndustry = () => {
                               {item.PerChange1M.toFixed(2)}%
                             </span>
                           </td>
-                          <td className={`${color3} align-middle xl:text-xs lg:text-sm whitespace-nowrap px-2 py-2 font-semibold`}>
+                          <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                             <span className='text-left px-1.5'>
                               {getIcon(item.PerChange1Y)}
                             </span>
@@ -102,13 +102,13 @@ const GeneralIndustry = () => {
                               {item.PerChange1Y.toFixed(2)}%
                             </span>
                           </td>
-                          <td className="align-middle whitespace-nowrap xl:text-xs lg:text-sm px-2 py-2  ">
+                          <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-2 py-2  ">
                             <div className='flex'>
-                            <div style={{width:'20%', height:'10px'}} className="bg-purple-500"></div>
-                            <div style={{width:'20%', height:'10px'}} className="bg-green-500"></div>
-                            <div style={{width:'20%', height:'10px'}} className="bg-yellow-400"></div>
-                            <div style={{width:'20%', height:'10px'}} className="bg-red-500"></div>
-                            <div style={{width:'20%', height:'10px'}} className="bg-blue-400"></div>
+                              <div style={{ width: '20%', height: '10px' }} className="bg-purple-500"></div>
+                              <div style={{ width: '20%', height: '10px' }} className="bg-green-500"></div>
+                              <div style={{ width: '20%', height: '10px' }} className="bg-yellow-400"></div>
+                              <div style={{ width: '20%', height: '10px' }} className="bg-red-500"></div>
+                              <div style={{ width: '20%', height: '10px' }} className="bg-blue-400"></div>
                             </div>
                           </td>
                         </tr>

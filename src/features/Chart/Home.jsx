@@ -80,14 +80,14 @@ const Home = () => {
             <Carousel />
 
             <div>
-              <div className="xl:flex lg:block">
+              <div className="lg:block xl:flex ">
                 <div className="xl:w-[60%]">
-                  <div className="grid xl:grid-cols-[2fr_2fr] lg:grid-cols-[2fr_2fr] md:grid-cols-none">
+                  <div className="grid xs:grid-cols-none sm:grid-cols-none md:grid-cols-none lg:grid-cols-[2fr_2fr] xl:grid-cols-[2fr_2fr]">
                     <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
                       <TableDetail />
                     </div>
 
-                    <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
+                    <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] xs:min-h-[352px] xxs:min-h-[332px] sm:min-h-[312px] md:min-h-[336px] lg:min-h-[350px]">
                       <LineChart />
                     </div>
                     <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
@@ -118,8 +118,8 @@ const Home = () => {
                   </div>
                 </div>
 
-                <div className="xl:w-[40%] xl:translate-x-0 lg:w-[80%] lg:translate-x-[14%]">
-                  <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924] xl:h-[664px] lg:h-[450px] md:h-[465px] sm:h-[430px]">
+                <div className="lg:w-[80%] xl:w-[40%] lg:translate-x-[14%] xl:translate-x-0 ">
+                  <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[664px]">
                     <GeneralIndustry />
                   </div>
                 </div>
@@ -129,7 +129,7 @@ const Home = () => {
             <div>
               <div className="xl:flex lg:block">
                 <div className="xl:w-[60%]">
-                  <div className="grid gap-0.5 xl:grid-cols-[2fr_2fr] lg:grid-cols-[2fr_2fr] md:grid-cols-none">
+                  <div className="grid gap-0.5 md:grid-cols-none lg:grid-cols-[2fr_2fr] xl:grid-cols-[2fr_2fr]">
                     <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[380px]">
                       <GoodsDetail />
                     </div>
@@ -144,7 +144,7 @@ const Home = () => {
                   </div>
                 </div>
 
-                <div className="xl:w-[40%] xl:translate-x-0 lg:w-[80%] lg:translate-x-[14%]">
+                <div className="lg:w-[80%] xl:w-[40%] lg:translate-x-[14%] xl:translate-x-0">
                   <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924]">
                     <div className="grid grid-cols-2 bg-[#020203]">
                       <div className="text-center mx-1">
@@ -187,8 +187,8 @@ const Home = () => {
             </div>
 
             <div>
-              <div className="xl:flex lg:block">
-                <div className="xl:w-[60%] xl:block md:hidden sm:hidden">
+              <div className="lg:block xl:flex">
+                <div className="xl:w-[60%] xs:hidden sm:hidden md:hidden xl:block ">
                   <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[710px]">
                     <div>
                       <select className="ml-[363px] mb-[10px]" onChange={(event) => {
@@ -213,7 +213,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="xl:w-[40%] xl:translate-x-0 lg:w-[80%] lg:translate-x-[14%]">
+                <div className="lg:w-[80%] xl:w-[40%] lg:translate-x-[14%] xl:translate-x-0">
                   <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924]">
                     <div className="grid grid-cols-2 bg-[#020203]">
                       <div className="text-center mx-1">
@@ -259,7 +259,7 @@ const Home = () => {
                 <div className="xl:w-[60%] xl:hidden">
                   <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[710px]">
                     <div>
-                      <select className="ml-[363px] mb-[10px]" onChange={(event) => {
+                      <select className="xs:ml-[125px] sm:ml-[255px] md:ml-[315px] lg:ml-[435px] mb-[10px]" onChange={(event) => {
                         dispatch(dispatch(fetchDataTreeMap(event.target.value)));
                       }}>
                         <option value="HSX" selected="selected">
@@ -285,7 +285,7 @@ const Home = () => {
             </div>
 
             <div>
-              <div className="xl:flex lg:block mx-2 my-1 px-1.5 py-1.5 bg-[#151924]">
+              <div className="lg:block xl:flex mx-2 my-1 px-1.5 py-1.5 bg-[#151924]">
                 <div className="xl:w-[65%]">
                   <div>
                     <AreaChart />
@@ -293,7 +293,7 @@ const Home = () => {
                 </div>
                 <div className="xl:w-[35%]">
                   <div className="">
-                    <TableBienDong />
+                    {/* <TableBienDong /> */}
                   </div>
                 </div>
               </div>
@@ -307,7 +307,7 @@ const Home = () => {
                 </div>
                 <div className="xl:w-[35%]">
                   <div className="">
-                    <TableBienDong />
+                    {/* <TableBienDong /> */}
                   </div>
                 </div>
               </div>
