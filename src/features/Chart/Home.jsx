@@ -312,6 +312,11 @@ const Home = () => {
                 </div>
               </div>
             </div>
+            <div>
+              <div>
+                
+              </div>
+            </div>
             <Footer />
           </div>
         </div>

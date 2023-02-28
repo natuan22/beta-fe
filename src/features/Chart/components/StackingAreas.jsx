@@ -4,40 +4,26 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 const StackingAreas = () => {
   const data = useSelector((state) => state.chart.dataStackingArea);
-  if (!data || !data.data || !data.data.length) return null
+  if (!data || !data.data || !data.data.length) return null;
 
-  const dataStackChart = data.data?.map(item => {
-    return [moment(item.time, 'HH:mm:ss').format('HH:mm'), item.advance, item.decline, item.noChange]
-  })
-<<<<<<< HEAD
-console.log(dataStackChart)
-
-const start = moment("09:15", "HH:mm");
-const end = moment("14:45", "HH:mm");
-const ticks = [];
-
-// Add ticks every 15 minutes from start to end time
-for (let time = start.clone(); time <= end; time.add(15, "minutes")) {
-  ticks.push({
-    v: time.format("HH:mm"),
-    f: time.format("HH:mm"),
+  const dataStackChart = data.data?.map((item) => {
+    return [
+      moment(item.time, "HH:mm:ss").format("HH:mm"),
+      item.advance,
+      item.noChange,
+      item.decline,
+    ];
   });
-}
+  console.log(dataStackChart);
 
- 
-  
-  const dataStructure =[ ['Time', 'Tăng', 'Giảm', 'Không đổi']]
-=======
-  console.log(dataStackChart)
+  const dataStructure = [["Time", "Tăng", "Không đổi", "Giảm"]];
 
-  const dataStructure = [['Time', 'Tăng', 'Giảm', 'Không đổi']]
->>>>>>> 296f2150f58c68c5fbf1d0a2e9e8ad5d7b24e60b
-
-  const dataRenderUpdated = dataStructure.concat(dataStackChart)
+  const dataRenderUpdated = dataStructure.concat(dataStackChart);
 
   const options_stacked = {
+    areaOpacity:0.8,
     axisColor: "#f59e0b",
-    colors: ["#5FB80E", "#DF8900", "#A50000"],
+    colors: ["#19d216", "#ffd51e", "#FF3906"],
     backgroundColor: "transparent",
     isStacked: "percent",
     height: 400,
@@ -50,10 +36,9 @@ for (let time = start.clone(); time <= end; time.add(15, "minutes")) {
     },
     vAxis: { minValue: 0, textStyle: { color: "#f59e0b" } },
     hAxis: {
-      ticks: ticks, 
+      
       format: "HH:mm",
       textStyle: { color: "#f59e0b", fontSize: 11 },
-      
     },
     selectionMode: "multiple",
     aggregationTarget: "category",
@@ -90,4 +75,4 @@ for (let time = start.clone(); time <= end; time.add(15, "minutes")) {
   );
 };
 
-export default StackingAreas
+export default StackingAreas;
