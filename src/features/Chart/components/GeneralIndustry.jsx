@@ -9,37 +9,13 @@ const GeneralIndustry = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // if (dataGeneral) {
-    //   setLoading(false);
-    //   setData(dataGeneral)
-    // }
-
-    let fetchData = async () => {
-      fetch('http://192.168.9.250:5000/tongnganh')
-        .then(j => j.json())
-        .then(data => {
-          setData(data);
-          setLoading(false);
-        });
+    if (dataGeneral) {
+      setLoading(false);
+      setData(dataGeneral.data)
     }
-    // let fetchData2 = async () => {
-    //   fetch('http://192.168.15.181:3001/api/v1/stock/market-breadth')
-    //     .then(j => j.json())
-    //     .then(data => {
-    //       setData(data);
-    //       setLoading(false);
-    //     });
-    // }
-    const interval = setInterval(() => {
-      console.log('reload GeneralIndustry')
-      fetchData();
-    }, 5000);
+  }, [dataGeneral])
 
-    fetchData();
-
-    return () => clearInterval(interval);
-  }, [])
-
+  console.log(data)
   return (
     <>
       <section className="bg-blueGray-50">
@@ -70,45 +46,48 @@ const GeneralIndustry = () => {
                 <tbody>
                   {!loading ? (Array.isArray(data) &&
                     data.map((item, index) => {
-                      let color = getColor(item.PerChange1D)
-                      let color2 = getColor(item.PerChange1M)
-                      let color3 = getColor(item.PerChange1Y)
+                      let color = getColor(item.day_change_percent)
+                      let color2 = getColor(item.week_change_percent)
+                      let color3 = getColor(item.month_change_percent)
+                      if(item.industry === '#N/A'){
+                        return null
+                      }
                       return (
                         <tr key={index} className='hover:bg-gray-900'>
                           <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
-                            {item.vietnameseName}
+                            {item.industry}
                           </th>
                           <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2.5 font-semibold`}>
                             <span className='text-left px-1.5'>
-                              {getIcon(item.PerChange1D)}
+                              {getIcon(item.day_change_percent)}
                             </span>
                             <span className='text-right px-px'>
-                              {item.PerChange1D.toFixed(2)}%
+                              {item.day_change_percent.toFixed(2)}%
                             </span>
                           </td>
                           <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                             <span className='text-left px-1.5'>
-                              {getIcon(item.PerChange1M)}
+                              {getIcon(item.week_change_percent)}
                             </span>
                             <span className='text-right px-px'>
-                              {item.PerChange1M.toFixed(2)}%
+                              {item.week_change_percent.toFixed(2)}%
                             </span>
                           </td>
                           <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                             <span className='text-left px-1.5'>
-                              {getIcon(item.PerChange1Y)}
+                              {getIcon(item.month_change_percent)}
                             </span>
                             <span className='text-right px-px'>
-                              {item.PerChange1Y.toFixed(2)}%
+                              {item.month_change_percent.toFixed(2)}%
                             </span>
                           </td>
                           <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-2 py-2  ">
                             <div className='flex'>
-                              <div style={{ width: '20%', height: '10px' }} className="bg-purple-500"></div>
-                              <div style={{ width: '20%', height: '10px' }} className="bg-green-500"></div>
-                              <div style={{ width: '20%', height: '10px' }} className="bg-yellow-400"></div>
-                              <div style={{ width: '20%', height: '10px' }} className="bg-red-500"></div>
-                              <div style={{ width: '20%', height: '10px' }} className="bg-blue-400"></div>
+                              <div  className='bg-purple-500 h-2.5' style={{width:`${item.high}%`}}></div>
+                              <div  className='h-2.5 bg-green-500' style={{width:`${item.increase}%`}}></div>
+                              <div className='bg-yellow-400 h-2.5' style={{width: `${item.equal}%`}}></div>
+                              <div  className='bg-red-500 ' style={{width:`${item.decrease}%` }}></div>
+                              <div  className='bg-blue-400 h-2.5' style={{width:`${item.low}%`}}></div>
                             </div>
                           </td>
                         </tr>

@@ -11,7 +11,7 @@ const Banner = () => {
   return (
     <div
       className="bg-slate-400"
-      style={{ height: "100%", position: "relative" }}
+      style={{ height: "0px", position: "relative" }}
     >
       <div>
         <div className="text-center">
