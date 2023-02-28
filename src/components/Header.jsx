@@ -20,7 +20,7 @@ const Header = () => {
                     <img
                       className="w-[87px] h-[33px]"
                       src="https://trading.bsi.com.vn/static/media/075_login_logo.4ad0d1515acb4e3474cf.png"
-                      alt="Workflow"
+                      alt="Beta logo"
                     /></a>
                 </div>
                 <div className="xl:hidden w-max">

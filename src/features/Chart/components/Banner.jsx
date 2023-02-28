@@ -18,7 +18,7 @@ const Banner = () => {
           <button
             onClick={toggleSidebar}
             className={`fixed top-[50%] left-[-20px]
-             text-white bg-slate-500 z-10
+             text-white bg-slate-500 z-40
              ${showSidebar ? "translate-x-[340%] ease-in-out duration-300" : ""}
              font-semibold rounded-lg text-base px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800`}
             type="button"
