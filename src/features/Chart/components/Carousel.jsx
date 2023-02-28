@@ -9,7 +9,7 @@ const Carousel = () => {
 
   return (
     <div className="bg-gray-800 p-2">
-      <Marquee speed={70} pauseOnHover="true" gradientColor="[0,0,0]">
+      <Marquee speed={70} pauseOnHover="true"  gradientColor="[0,0,0]">
         <div className="flex">
           {dataCarousel.data?.map((item, index) => {
             return (
