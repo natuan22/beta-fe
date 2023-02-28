@@ -16,11 +16,12 @@ const Header = () => {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <img
-                    className="h-8 w-8"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                    alt="Workflow"
-                  />
+                  <a href="http://www.bsi.com.vn">
+                    <img
+                      className="w-[87px] h-[33px]"
+                      src="https://trading.bsi.com.vn/static/media/075_login_logo.4ad0d1515acb4e3474cf.png"
+                      alt="Workflow"
+                    /></a>
                 </div>
                 <div className="xl:hidden w-max">
                   <div className="ml-4 flex items-baseline space-x-0">
@@ -28,13 +29,13 @@ const Header = () => {
                       to="/"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trang chủ
                     </NavLink>
-                    <div className="xl:flex items-center flex xs:translate-y-[11%] xs:translate-x-[-8%] xxs:translate-y-[11%] xxs:translate-x-[10%] sm:translate-y-[11%] sm:translate-x-[40%] md:translate-y-[11%] md:translate-x-[90%] lg:translate-y-[11%] lg:translate-x-[180%]">
+                    <div className="xl:flex items-center flex xs:translate-y-[11%] xs:translate-x-[-8%] xxs:translate-y-[11%] xxs:translate-x-[-5%] sm:translate-y-[11%] sm:translate-x-[20%] md:translate-y-[11%] md:translate-x-[70%] lg:translate-y-[11%] lg:translate-x-[160%]">
                       <div className="flex">
                         <BellOutlined
                           className="ml-2"
@@ -47,7 +48,7 @@ const Header = () => {
                       </div>
                       <Search
                         placeholder="Tìm mã chứng khoán"
-                        className="xs:w-[100px] xxs:w-[100px] sm:w-[200px] md:w-[200px] lg:w-[200px]"
+                        className="xs:w-[50px] xxs:w-[100px] sm:w-[200px] md:w-[200px] lg:w-[200px]"
                       />
                     </div>
                   </div>
@@ -59,8 +60,8 @@ const Header = () => {
                       to="/"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trang chủ
@@ -70,8 +71,8 @@ const Header = () => {
                       to="/thi-truong"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Thị trường
@@ -81,8 +82,8 @@ const Header = () => {
                       to="/nganh"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Ngành
@@ -92,8 +93,8 @@ const Header = () => {
                       to="/vi-mo"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Vĩ mô
@@ -103,8 +104,8 @@ const Header = () => {
                       to="/cong-cu-dau-tu"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Công cụ đầu tư
@@ -114,8 +115,8 @@ const Header = () => {
                       to="/trung-tam-tin-tuc"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trung tâm tin tức
@@ -146,8 +147,8 @@ const Header = () => {
                     to="/signin"
                     className={({ isActive }) =>
                       isActive
-                        ? "ml-1 no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                        : "ml-1 no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                        ? "ml-1 no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "ml-1 no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Sign in
@@ -156,8 +157,8 @@ const Header = () => {
                     to="/signup"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                        : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                        ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Sign up
@@ -222,13 +223,13 @@ const Header = () => {
           >
             {(ref) => (
               <div className="xl:hidden" id="mobile-menu">
-                <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-2">
                   <NavLink
                     to="/thi-truong"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Thị trường
@@ -238,8 +239,8 @@ const Header = () => {
                     to="/nganh"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Ngành
@@ -249,8 +250,8 @@ const Header = () => {
                     to="/vi-mo"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Vĩ mô
@@ -260,8 +261,8 @@ const Header = () => {
                     to="/cong-cu-dau-tu"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Công cụ đầu tư
@@ -271,8 +272,8 @@ const Header = () => {
                     to="/trung-tam-tin-tuc"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                        : "no-underline text-gray-300 block hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline text-gray-300 block hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Trung tâm tin tức
@@ -281,8 +282,8 @@ const Header = () => {
                     to="/signin"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Sign in
@@ -291,8 +292,8 @@ const Header = () => {
                     to="/signup"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Sign up
