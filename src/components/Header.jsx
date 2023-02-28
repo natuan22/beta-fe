@@ -17,9 +17,10 @@ const Header = () => {
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <img
-                    className="h-8 w-8"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    className="w-20"
+                    src="https://trading.bsi.com.vn/static/media/075_login_logo.4ad0d1515acb4e3474cf.png"
                     alt="Workflow"
+
                   />
                 </div>
                 <div className="xl:hidden w-max">
