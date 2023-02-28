@@ -6,19 +6,26 @@ const StackingAreas = () => {
   const data = useSelector((state) => state.chart.dataStackingArea);
   if (!data || !data.data || !data.data.length) return null;
 
-  const dataStackChart = data.data?.map((item) => {
-    return [
-      moment(item.time, "HH:mm:ss").format("HH:mm"),
-      item.advance,
-      item.noChange,
-      item.decline,
-    ];
-  });
-  console.log(dataStackChart);
+  const dataStackChart = data.data?.map(item => {
+    return [moment(item.time, 'HH:mm:ss').format('HH:mm'), item.advance, item.noChange, item.decline]
+  })
 
-  const dataStructure = [["Time", "Tăng", "Không đổi", "Giảm"]];
+  console.log(dataStackChart)
 
-  const dataRenderUpdated = dataStructure.concat(dataStackChart);
+  const start = moment("09:15", "HH:mm");
+  const end = moment("14:45", "HH:mm");
+  const ticks = [];
+
+  // Add ticks every 15 minutes from start to end time
+  for (let time = start.clone(); time <= end; time.add(15, "minutes")) {
+    ticks.push({
+      v: time.format("HH:mm"),
+      f: time.format("HH:mm"),
+    });
+  }
+  const dataStructure = [['Time', 'Tăng', 'Không đổi', 'Giảm']]
+  const dataRenderUpdated = dataStructure.concat(dataStackChart)
+
 
   const options_stacked = {
     areaOpacity:0.8,
@@ -36,9 +43,12 @@ const StackingAreas = () => {
     },
     vAxis: { minValue: 0, textStyle: { color: "#f59e0b" } },
     hAxis: {
-      
+
+      ticks: ticks,
       format: "HH:mm",
       textStyle: { color: "#f59e0b", fontSize: 11 },
+
+
     },
     selectionMode: "multiple",
     aggregationTarget: "category",

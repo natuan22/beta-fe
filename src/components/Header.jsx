@@ -34,7 +34,7 @@ const Header = () => {
                     >
                       Trang chủ
                     </NavLink>
-                    <div className="xl:flex items-center flex lg:translate-y-[11%] lg:translate-x-[180%] md:translate-y-[11%] md:translate-x-[90%] sm:translate-y-[11%] sm:translate-x-[40%]">
+                    <div className="xl:flex items-center flex xs:translate-y-[11%] xs:translate-x-[-8%] xxs:translate-y-[11%] xxs:translate-x-[10%] sm:translate-y-[11%] sm:translate-x-[40%] md:translate-y-[11%] md:translate-x-[90%] lg:translate-y-[11%] lg:translate-x-[180%]">
                       <div className="flex">
                         <BellOutlined
                           className="ml-2"
@@ -47,7 +47,7 @@ const Header = () => {
                       </div>
                       <Search
                         placeholder="Tìm mã chứng khoán"
-                        className="lg:w-[200px] md:w-[200px] sm:w-[200px]"
+                        className="xs:w-[100px] xxs:w-[100px] sm:w-[200px] md:w-[200px] lg:w-[200px]"
                       />
                     </div>
                   </div>
@@ -122,7 +122,7 @@ const Header = () => {
                     </NavLink>
                   </div>
                 </div>
-                <div className="hidden xl:flex items-center flex ml-3 xl:ml-28 lg:ml-72">
+                <div className="hidden xl:flex items-center flex ml-3 lg:ml-72 xl:ml-28 ">
                   <div className="flex">
                     <BellOutlined
                       className="ml-2"
