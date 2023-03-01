@@ -49,9 +49,11 @@ const GeneralIndustry = () => {
                       let color = getColor(item.day_change_percent)
                       let color2 = getColor(item.week_change_percent)
                       let color3 = getColor(item.month_change_percent)
+
                       if(item.industry === '#N/A'){
                         return null
                       }
+
                       return (
                         <tr key={index} className='hover:bg-gray-900'>
                           <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
