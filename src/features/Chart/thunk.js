@@ -210,7 +210,7 @@ export const fetchDataGeneralIndustry = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/tongnganh",
+      url: "http://192.168.15.181:3001/api/v1/stock/market-breadth",
       method: "GET",
     });
     dispatch({

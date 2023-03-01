@@ -15,11 +15,12 @@ const GeneralIndustry = () => {
     // }
 
     let fetchData = async () => {
-      fetch('http://192.168.9.250:5000/tongnganh')
+      fetch('http://192.168.15.181:3001/api/v1/stock/market-breadth')
         .then(j => j.json())
         .then(data => {
-          setData(data);
+          setData(data.data);
           setLoading(false);
+          console.log(data)
         });
     }
     // let fetchData2 = async () => {
@@ -70,36 +71,36 @@ const GeneralIndustry = () => {
                 <tbody>
                   {!loading ? (Array.isArray(data) &&
                     data.map((item, index) => {
-                      let color = getColor(item.PerChange1D)
-                      let color2 = getColor(item.PerChange1M)
-                      let color3 = getColor(item.PerChange1Y)
+                      let color = getColor(item.day_change_percent)
+                      let color2 = getColor(item.week_change_percent)
+                      let color3 = getColor(item.month_change_percent)
                       return (
                         <tr key={index} className='hover:bg-gray-900'>
                           <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
-                            {item.vietnameseName}
+                            {item.industry}
                           </th>
                           <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2.5 font-semibold`}>
                             <span className='text-left px-1.5'>
-                              {getIcon(item.PerChange1D)}
+                              {getIcon(item.day_change_percent)}
                             </span>
                             <span className='text-right px-px'>
-                              {item.PerChange1D.toFixed(2)}%
+                              {item.day_change_percent.toFixed(2)}%
                             </span>
                           </td>
                           <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                             <span className='text-left px-1.5'>
-                              {getIcon(item.PerChange1M)}
+                              {getIcon(item.week_change_percent)}
                             </span>
                             <span className='text-right px-px'>
-                              {item.PerChange1M.toFixed(2)}%
+                              {item.week_change_percent.toFixed(2)}%
                             </span>
                           </td>
                           <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                             <span className='text-left px-1.5'>
-                              {getIcon(item.PerChange1Y)}
+                              {getIcon(item.month_change_percent)}
                             </span>
                             <span className='text-right px-px'>
-                              {item.PerChange1Y.toFixed(2)}%
+                              {item.month_change_percent.toFixed(2)}%
                             </span>
                           </td>
                           <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-2 py-2  ">

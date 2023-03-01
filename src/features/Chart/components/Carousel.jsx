@@ -9,12 +9,12 @@ const Carousel = () => {
 
   return (
     <div className="bg-gray-800 p-2">
-      <Marquee speed={70} pauseOnHover="true"  gradientColor="[0,0,0]">
+      <Marquee speed={70} pauseOnHover="true" gradientColor="[0,0,0]">
         <div className="flex">
           {dataCarousel.data?.map((item, index) => {
             return (
-              <div key={index} className="flex flex-col items-center ml-4 bg-gradient-to-b  from-[#144e74] to-[#112533]" style={{border:"1px solid transparent", padding:"5px"}}>
-                <span className="ml-4 text-sm font-semibold text-white">
+              <div key={index} className="flex flex-col items-center ml-4 bg-gradient-to-b  from-[#144e74] to-[#112533]" style={{ border: "1px solid transparent", padding: "5px" }}>
+                <span className="mx-2 text-sm font-semibold text-white">
                   {item.ticker}: {item.diemso}
                 </span>
                 <p>
