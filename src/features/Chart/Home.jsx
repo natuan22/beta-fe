@@ -38,6 +38,7 @@ import {
   fetchDataAreaChart1,
   fetchDataAreaChart2,
   fetchDataWidthMarket,
+  fetchDataTableBienDong,
 } from "./thunk";
 
 const Home = () => {
@@ -66,6 +67,7 @@ const Home = () => {
     dispatch(fetchDataAreaChart1)
     dispatch(fetchDataAreaChart2)
     dispatch(fetchDataWidthMarket('HNX'))
+    dispatch(fetchDataTableBienDong)
   }, [dispatch])
 
   return (
@@ -287,13 +289,13 @@ const Home = () => {
             <div>
               <div className="lg:block xl:flex mx-2 my-1 px-1.5 py-1.5 bg-[#151924]">
                 <div className="xl:w-[65%]">
-                  <div>
+                  <div className="mx-2 my-1 px-1.5 py-1.5">
                     <AreaChart />
                   </div>
                 </div>
                 <div className="xl:w-[35%]">
-                  <div className="">
-                    {/* <TableBienDong /> */}
+                  <div className="px-1.5 py-1.5">
+                    <TableBienDong />
                   </div>
                 </div>
               </div>

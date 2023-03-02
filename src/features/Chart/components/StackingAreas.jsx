@@ -10,8 +10,6 @@ const StackingAreas = () => {
     return [moment(item.time, 'HH:mm:ss').format('HH:mm'), item.advance, item.noChange, item.decline]
   })
 
-  console.log(dataStackChart)
-
   const start = moment("09:15", "HH:mm");
   const end = moment("14:45", "HH:mm");
   const ticks = [];
@@ -28,7 +26,7 @@ const StackingAreas = () => {
 
 
   const options_stacked = {
-    areaOpacity:0.8,
+    areaOpacity: 0.8,
     axisColor: "#f59e0b",
     colors: ["#19d216", "#ffd51e", "#FF3906"],
     backgroundColor: "transparent",
