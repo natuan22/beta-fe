@@ -203,7 +203,6 @@ export const fetchDataRateDetail = async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
-
 }
 
 export const fetchDataGeneralIndustry = async (dispatch) => {
@@ -273,7 +272,6 @@ export const fetchDataAreaChart2 = async (dispatch) => {
   }
 }
 
-
 export const fetchDataWidthMarket = (index) => async (dispatch) => {
   try {
     const res = await axios({
@@ -293,18 +291,15 @@ export const fetchDataWidthMarket = (index) => async (dispatch) => {
   }
 }
 
-export const fetchDataNetVolumeChart = index => async (dispatch) => {
+export const fetchDataTableBienDong = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.181:3001/api/v1/stock/net-transaction-value",
+      url: "http://192.168.15.181:3001/api/v1/stock/market-volatility",
       method: "GET",
-      params: {
-        exchange: index 
-      }
     });
     dispatch({
-      type: "beta/UPDATE_DATA_MIXEDCHART",
+      type: "beta/UPDATE_DATA_TABLE_BIEN_DONG",
       payload: res.data,
     });
   } catch (err) {

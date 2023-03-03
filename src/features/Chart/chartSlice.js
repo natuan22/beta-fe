@@ -15,10 +15,10 @@ const initialState = {
   dataRateDetail: {},
   dataGeneral: {},
   dataTreemap: [],
-  dataChart1:{},
-  dataChart2:{},
+  dataChart1: {},
+  dataChart2: {},
   dataStackingArea: {},
-  dataMixedChart : {},
+  dataTableBienDong: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -66,17 +66,17 @@ const reducer = (state = initialState, { type, payload }) => {
 
       draft.dataTreemap = payload
     }
-    if(type === actionType.UPDATE_DATA_AREACHART1) {
+    if (type === actionType.UPDATE_DATA_AREACHART1) {
       draft.dataChart1 = payload
     }
-    if(type === actionType.UPDATE_DATA_AREACHART2) {
+    if (type === actionType.UPDATE_DATA_AREACHART2) {
       draft.dataChart2 = payload
     }
-    if(type === actionType.UPDATE_DATA_STACKINGAREA) {
+    if (type === actionType.UPDATE_DATA_STACKINGAREA) {
       draft.dataStackingArea = payload
     }
-    if(type === actionType.UPDATE_DATA_NET_VOLUME){
-      draft.dataMixedChart = payload
+    if (type === actionType.UPDATE_DATA_TABLE_BIEN_DONG) {
+      draft.dataTableBienDong = payload
     }
   });
 };

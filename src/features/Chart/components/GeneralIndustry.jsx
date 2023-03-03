@@ -15,7 +15,6 @@ const GeneralIndustry = () => {
     }
   }, [dataGeneral])
 
-  console.log(data)
   return (
     <>
       <section className="bg-blueGray-50">
@@ -50,7 +49,7 @@ const GeneralIndustry = () => {
                       let color2 = getColor(item.week_change_percent)
                       let color3 = getColor(item.month_change_percent)
 
-                      if(item.industry === '#N/A'){
+                      if (item.industry === '#N/A') {
                         return null
                       }
 
@@ -85,11 +84,11 @@ const GeneralIndustry = () => {
                           </td>
                           <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-2 py-2  ">
                             <div className='flex'>
-                              <div  className='bg-purple-500 h-2.5' style={{width:`${item.high}%`}}></div>
-                              <div  className='h-2.5 bg-green-500' style={{width:`${item.increase}%`}}></div>
-                              <div className='bg-yellow-400 h-2.5' style={{width: `${item.equal}%`}}></div>
-                              <div  className='bg-red-500 ' style={{width:`${item.decrease}%` }}></div>
-                              <div  className='bg-blue-400 h-2.5' style={{width:`${item.low}%`}}></div>
+                              <div className='bg-purple-500 h-2.5' style={{ width: `${item.high}%` }}></div>
+                              <div className='h-2.5 bg-green-500' style={{ width: `${item.increase}%` }}></div>
+                              <div className='bg-yellow-400 h-2.5' style={{ width: `${item.equal}%` }}></div>
+                              <div className='bg-red-500 ' style={{ width: `${item.decrease}%` }}></div>
+                              <div className='bg-blue-400 h-2.5' style={{ width: `${item.low}%` }}></div>
                             </div>
                           </td>
                         </tr>
