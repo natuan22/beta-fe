@@ -38,7 +38,9 @@ import {
   fetchDataAreaChart1,
   fetchDataAreaChart2,
   fetchDataWidthMarket,
+  fetchDataNetVolumeChart,
 } from "./thunk";
+import NetVolumeTrade from "./components/NetVolumeTrade";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -66,6 +68,7 @@ const Home = () => {
     dispatch(fetchDataAreaChart1)
     dispatch(fetchDataAreaChart2)
     dispatch(fetchDataWidthMarket('HNX'))
+    dispatch(fetchDataNetVolumeChart("vnindex"))
   }, [dispatch])
 
   return (
@@ -314,7 +317,7 @@ const Home = () => {
             </div>
             <div>
               <div>
-
+                      <NetVolumeTrade />
               </div>
             </div>
             <Footer />
