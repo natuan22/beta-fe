@@ -16,7 +16,7 @@ function App() {
       <Routes>
         {routes.map(({ path, component: Component }, children) => {
           return (
-            <Route path={path} element={< Component />} >
+            <Route key={path} path={path} element={< Component />} >
               {/* {children?.map( ({path, component: Component}) => {
           return (
             <Route path={path} element={< Component />}  />

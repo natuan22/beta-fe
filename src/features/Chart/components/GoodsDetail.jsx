@@ -59,7 +59,7 @@ const GoodsDetail = () => {
                         </td>
                       </tr>
                     )
-                  })) : (<td colSpan={3}><Loading /></td>)}
+                  })) : (<tr><td colSpan={3}><Loading /></td></tr>)}
               </tbody>
             </table>
           </div>

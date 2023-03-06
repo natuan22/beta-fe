@@ -59,7 +59,7 @@ const News = () => {
                                                 </td>
                                             </tr>
                                         )
-                                    })) : (<td colSpan={4}><Loading /></td>)}
+                                    })) : (<tr><td colSpan={4}><Loading /></td></tr>)}
                             </tbody>
                         </table>
                     </div>

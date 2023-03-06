@@ -157,9 +157,7 @@ const Home = () => {
                         <select className={`${chartStyle.selectStyle} border-none bg-[#020203] text-amber-500`} onChange={(event) => {
                           dispatch(dispatch(fetchDataDiemAnhHuong5PhienGiam(event.target.value)));
                         }}>
-                          <option value="hose" selected="selected">
-                            HSX
-                          </option>
+                          <option value="hose">HSX</option>
                           <option value="hnx">HNX</option>
                           <option value="upcom">UPCOM</option>
                         </select>
@@ -174,9 +172,7 @@ const Home = () => {
                         <select className={`${chartStyle.selectStyle} border-none bg-[#020203] text-amber-500`} onChange={(event) => {
                           dispatch(dispatch(fetchDataDiemAnhHuong5PhienTang((event.target.value))))
                         }}>
-                          <option value="hose" selected="selected">
-                            HSX
-                          </option>
+                          <option value="hose">HSX</option>
                           <option value="hnx">HNX</option>
                           <option value="upcom">UPCOM</option>
                         </select>
@@ -197,9 +193,7 @@ const Home = () => {
                       <select className="ml-[363px] mb-[10px]" onChange={(event) => {
                         dispatch(dispatch(fetchDataTreeMap(event.target.value)));
                       }}>
-                        <option value="HSX" selected="selected">
-                          HSX
-                        </option>
+                        <option value="HSX">HSX</option>
                         <option value="HNX">HNX</option>
                         <option value="UPCOM">UPCOM</option>
                       </select>
@@ -228,9 +222,7 @@ const Home = () => {
                             dispatch(dispatch(fetchDataTop10Sell(event.target.value)));
                           }}
                         >
-                          <option value="HSX" selected="selected">
-                            HSX
-                          </option>
+                          <option value="HSX">HSX</option>
                           <option value="HNX">HNX</option>
                           <option value="UPCOM">UPCOM</option>
                         </select>
@@ -247,9 +239,7 @@ const Home = () => {
                             dispatch(dispatch(fetchDataTop10Buy((event.target.value))))
                           }}
                         >
-                          <option value="HSX" selected="selected">
-                            HSX
-                          </option>
+                          <option value="HSX">HSX</option>
                           <option value="HNX">HNX</option>
                           <option value="UPCOM">UPCOM</option>
                         </select>
@@ -265,9 +255,7 @@ const Home = () => {
                       <select className="xs:ml-[125px] sm:ml-[255px] md:ml-[315px] lg:ml-[435px] mb-[10px]" onChange={(event) => {
                         dispatch(dispatch(fetchDataTreeMap(event.target.value)));
                       }}>
-                        <option value="HSX" selected="selected">
-                          HSX
-                        </option>
+                        <option value="HSX">HSX</option>
                         <option value="HNX">HNX</option>
                         <option value="UPCOM">UPCOM</option>
                       </select>
@@ -317,7 +305,7 @@ const Home = () => {
             </div>
             <div>
               <div>
-                      <NetVolumeTrade />
+                <NetVolumeTrade />
               </div>
             </div>
             <Footer />

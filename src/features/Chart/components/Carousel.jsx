@@ -57,7 +57,7 @@ const Carousel = () => {
             }}
           >
             <div className="flex items-center">
-              <img src="./image/betaBlog.webp" alt="img blog news" class width={175} height={95}
+              <img src="./image/betaBlog.webp" alt="img blog news" width={175} height={95}
               />
               <div className="ml-2">
                 <span className="text-xs font-semibold text-white items-center justify-center w-12">
