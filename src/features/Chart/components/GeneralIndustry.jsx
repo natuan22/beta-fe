@@ -93,7 +93,7 @@ const GeneralIndustry = () => {
                           </td>
                         </tr>
                       )
-                    })) : (<td colSpan={5}><Loading /></td>)}
+                    })) : (<tr><td colSpan={5}><Loading /></td></tr>)}
                 </tbody>
               </table>
             </div>

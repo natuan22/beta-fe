@@ -4,9 +4,10 @@ import ReactApexChart from "react-apexcharts";
 
 const BarChartRight = () => {
   const dataBarChartRight = useSelector((state) => state.chart.dataBarChartRight);
-  const [data, setData] = useState(dataBarChartRight.data);
+  const [data, setData] = useState(dataBarChartRight?.data ?? []);
+
   useEffect(() => {
-    setData(dataBarChartRight.data);
+    setData(dataBarChartRight?.data ?? []);
   }, [dataBarChartRight]);
 
   const options = {
