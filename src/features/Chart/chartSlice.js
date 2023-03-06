@@ -19,6 +19,7 @@ const initialState = {
   dataChart2: {},
   dataStackingArea: {},
   dataTableBienDong: {},
+  dataNetVolume : {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -76,7 +77,11 @@ const reducer = (state = initialState, { type, payload }) => {
       draft.dataStackingArea = payload
     }
     if (type === actionType.UPDATE_DATA_TABLE_BIEN_DONG) {
-      draft.dataTableBienDong = payload
+     
+     draft.dataTableBienDong = payload
+    }
+    if(type === actionType.UPDATE_DATA_NET_VOLUME){
+      draft.dataNetVolume = payload
     }
   });
 };

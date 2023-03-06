@@ -306,3 +306,22 @@ export const fetchDataTableBienDong = async (dispatch) => {
     console.log(err);
   }
 }
+
+export const fetchDataNetVolume = (index) => async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.15.181:3001/api/v1/stock/net-transaction-value",
+      method: "GET",
+      params: {
+        exchange: index
+      }
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_NET_VOLUME",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import Chart from "react-google-charts";
 import { useSelector } from "react-redux";
 import moment from "moment";
