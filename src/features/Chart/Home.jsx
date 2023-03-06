@@ -40,17 +40,39 @@ import {
   fetchDataAreaChart1,
   fetchDataAreaChart2,
   fetchDataWidthMarket,
-
   fetchDataTableMarketVolatility,
   fetchDataTableMarketLiquidity,
-
- 
   fetchDataNetVolume,
-
 } from "./thunk";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const button = [
+    {
+      id: 1,
+      label: 'Tăng mạnh nhất',
+      value: '0',
+      color: 'text-green-500',
+      hover: 'bg-green-800'
+    }, {
+      id: 2,
+      label: 'Giảm mạnh nhất',
+      value: '1',
+      color: 'text-red-500',
+      hover: 'bg-red-800'
+    }, {
+      id: 3,
+      label: 'Đóng góp cao nhất',
+      value: '2',
+      color: 'text-green-500',
+      hover: 'bg-green-800'
+    }, {
+      id: 4,
+      label: 'Đóng góp thấp nhất',
+      value: '3',
+      color: 'text-red-500',
+      hover: 'bg-red-800'
+    }]
 
   useEffect(() => {
     dispatch(fetchDataNews)
@@ -79,7 +101,7 @@ const Home = () => {
     dispatch(fetchDataTableMarketVolatility)
     dispatch(fetchDataTableMarketLiquidity('0'))
 
-    
+
     dispatch(fetchDataNetVolume("vnindex"))
 
   }, [dispatch])
@@ -300,25 +322,13 @@ const Home = () => {
                     <TableMarketVolatility />
                   </div>
                   <div className="px-1.5 py-1.5">
-                    <div>
-                      <button onClick={event => {
-                        dispatch(dispatch(fetchDataTableMarketLiquidity('0')));
-                      }} type="button" className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2">Tăng mạnh nhất</button>
-
-                      <button onClick={event => {
-                        dispatch(dispatch(fetchDataTableMarketLiquidity('1')));
-                      }} type="button" className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2">Giảm mạnh nhất</button>
-
-                      <div>
-                        <button onClick={event => {
-                          dispatch(dispatch(fetchDataTableMarketLiquidity('2')));
-                        }} type="button" className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2">Đóng góp cao nhất</button>
-
-                        <button onClick={event => {
-                          dispatch(dispatch(fetchDataTableMarketLiquidity('3')));
-                        }} type="button" className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center mr-2 mb-2">Đóng góp thấp nhất</button>
-                      </div>
-                    </div>
+                    {button.map(item => {
+                      return (
+                        <button key={item.id} onClick={() => { dispatch(dispatch(fetchDataTableMarketLiquidity(item.value))) }}
+                          type="button" className={`cursor-pointer ${item.color} border-none bg-[#151924] font-medium rounded-lg text-xs px-2.5 py-2.5 text-center mr-1 mb-2 hover:${item.hover} hover:text-white`}>{item.label}
+                        </button>
+                      )
+                    })}
                     <TableMarketLiquidity />
                   </div>
                 </div>
@@ -352,3 +362,4 @@ const Home = () => {
 };
 
 export default Home;
+
