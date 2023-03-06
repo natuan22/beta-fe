@@ -10,7 +10,7 @@ import moment from "moment";
 const NetVolumeTrade = () => {
   const dataNetVolume = useSelector((state) => state.chart.dataNetVolume);
   if (!dataNetVolume.data || !dataNetVolume.data.length) return <Loading />;
-  console.log(dataNetVolume);
+
   const dataExchange = dataNetVolume.data?.map((item) => item.exchange_price);
   const dataForeign = dataNetVolume.data?.map(
     (item) => +item.net_foreign.toFixed(2)
@@ -33,7 +33,7 @@ const NetVolumeTrade = () => {
     },
     title: {
       text: "Giá trị giao dịch ròng",
-      style:{
+      style: {
         color: '#fff'
       }
     },
@@ -43,7 +43,7 @@ const NetVolumeTrade = () => {
         style: {
           color: '#fff' // màu cho các nhãn trục x
         }
-      }  ,
+      },
       title: {
         style: {
           color: '#fff' // màu cho tiêu đề trục x
@@ -78,10 +78,10 @@ const NetVolumeTrade = () => {
         },
         opposite: true,
       },
-      
+
     ],
     legend: {
-      align: 'center' ,
+      align: 'center',
       itemStyle: {
         color: '#fff'
       }

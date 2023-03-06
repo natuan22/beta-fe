@@ -11,7 +11,7 @@ const PercentageAreaChart = () => {
   const dataStackingChart = useSelector(
     (state) => state.chart.dataStackingArea
   );
-  console.log(dataStackingChart.data);
+
   if (!dataStackingChart.data || !dataStackingChart.data.length)
     return <Loading />;
 
@@ -47,7 +47,7 @@ const PercentageAreaChart = () => {
               });
             }
           });
-    
+
           chart.legend.update({
             labelFormatter: function () {
               const { name, color } = this;
@@ -65,7 +65,7 @@ const PercentageAreaChart = () => {
           });
         },
       },
-      
+
     },
     title: {
       text: "Độ rộng thị trường",
@@ -81,7 +81,7 @@ const PercentageAreaChart = () => {
       },
       labels: {
         style: {
-          color:'#fff'
+          color: '#fff'
         }
       }
     },
@@ -104,14 +104,14 @@ const PercentageAreaChart = () => {
     legend: {
       itemStyle: {
         color: "#fff",
-      },  
+      },
     },
     tooltip: {
       pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
       split: false,
       shared: true,
       outside: true,
-      positioner: function() {
+      positioner: function () {
         return {
           x: this.chart.Left,
           y: 390

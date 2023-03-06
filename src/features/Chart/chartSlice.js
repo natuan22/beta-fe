@@ -20,8 +20,7 @@ const initialState = {
   dataStackingArea: {},
   dataTableMarketVolatility: {},
   dataTableMarketLiquidity: {},
-  dataNetVolume : {}
-
+  dataNetVolume: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -84,11 +83,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === actionType.UPDATE_DATA_TABLE_MARKET_LIQUIDITY) {
       draft.dataTableMarketLiquidity = payload
-
     }
-    if(type === actionType.UPDATE_DATA_NET_VOLUME){
+    if (type === actionType.UPDATE_DATA_NET_VOLUME) {
       draft.dataNetVolume = payload
-
     }
   });
 };
