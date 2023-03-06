@@ -19,5 +19,5 @@ export const routes = [
 
   // authen
   { path: "/signin", component: Signin },
-  { path: "/singup", component: Signup },
+  { path: "/signup", component: Signup },
 ];

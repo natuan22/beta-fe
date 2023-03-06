@@ -18,8 +18,13 @@ const initialState = {
   dataChart1: {},
   dataChart2: {},
   dataStackingArea: {},
+
   dataTableMarketVolatility: {},
   dataTableMarketLiquidity: {},
+
+ 
+  dataNetVolume : {}
+
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -76,11 +81,17 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_STACKINGAREA) {
       draft.dataStackingArea = payload
     }
+
     if (type === actionType.UPDATE_DATA_TABLE_MARKET_VOLATILITY) {
       draft.dataTableMarketVolatility = payload
     }
     if (type === actionType.UPDATE_DATA_TABLE_MARKET_LIQUIDITY) {
       draft.dataTableMarketLiquidity = payload
+
+
+    if(type === actionType.UPDATE_DATA_NET_VOLUME){
+      draft.dataNetVolume = payload
+
     }
   });
 };

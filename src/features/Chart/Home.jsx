@@ -40,8 +40,13 @@ import {
   fetchDataAreaChart1,
   fetchDataAreaChart2,
   fetchDataWidthMarket,
+
   fetchDataTableMarketVolatility,
   fetchDataTableMarketLiquidity,
+
+ 
+  fetchDataNetVolume,
+
 } from "./thunk";
 
 const Home = () => {
@@ -70,8 +75,13 @@ const Home = () => {
     dispatch(fetchDataAreaChart1)
     dispatch(fetchDataAreaChart2)
     dispatch(fetchDataWidthMarket('HNX'))
+
     dispatch(fetchDataTableMarketVolatility)
     dispatch(fetchDataTableMarketLiquidity('0'))
+
+    
+    dispatch(fetchDataNetVolume("vnindex"))
+
   }, [dispatch])
 
   return (
