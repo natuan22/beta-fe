@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-const TableBienDong = () => {
-    const dataBienDong = useSelector(state => state.chart.dataTableBienDong);
+const TableMarketVolatility = () => {
+    const dataMarketVolatility = useSelector(state => state.chart.dataTableMarketVolatility);
     const [data, setData] = useState([])
 
     useEffect(() => {
-        if (dataBienDong) {
-            setData(dataBienDong.data)
+        if (dataMarketVolatility) {
+            setData(dataMarketVolatility.data)
         }
-    }, [dataBienDong])
+    }, [dataMarketVolatility])
 
     return (
         <>
@@ -97,7 +97,7 @@ const TableBienDong = () => {
     )
 }
 
-export default TableBienDong;
+export default TableMarketVolatility;
 
 function getColor(item) {
     let color = ''
