@@ -1,9 +1,11 @@
+
 import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import moment from "moment";
+
 
 const NetVolumeTrade = () => {
   const dataNetVolume = useSelector((state) => state.chart.dataNetVolume);

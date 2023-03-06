@@ -291,7 +291,7 @@ export const fetchDataWidthMarket = (index) => async (dispatch) => {
   }
 }
 
-export const fetchDataTableBienDong = async (dispatch) => {
+export const fetchDataTableMarketVolatility = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
@@ -299,7 +299,26 @@ export const fetchDataTableBienDong = async (dispatch) => {
       method: "GET",
     });
     dispatch({
-      type: "beta/UPDATE_DATA_TABLE_BIEN_DONG",
+      type: "beta/UPDATE_DATA_TABLE_MARKET_VOLATILITY",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const fetchDataTableMarketLiquidity = (index) => async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.15.181:3001/api/v1/stock/market-liquidity",
+      method: "GET",
+      params: {
+        order: index
+      }
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_TABLE_MARKET_LIQUIDITY",
       payload: res.data,
     });
   } catch (err) {
