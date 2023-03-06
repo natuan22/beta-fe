@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import Loading from "../utils/Loading";
 
 const TableBienDong = () => {
     const dataBienDong = useSelector(state => state.chart.dataTableBienDong);
     const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (dataBienDong) {
-            setLoading(false);
             setData(dataBienDong.data)
         }
     }, [dataBienDong])
@@ -29,7 +26,7 @@ const TableBienDong = () => {
                                         </th>
                                         {data?.map(item => {
                                             return (
-                                                <th className="text-center align-middle px-1 py-3 uppercase text-xs font-semibold text-amber-500">
+                                                <th key={item.ticker} className="text-center align-middle px-1 py-3 uppercase text-xs font-semibold text-amber-500">
                                                     {item.ticker}
                                                 </th>
                                             )
@@ -45,7 +42,7 @@ const TableBienDong = () => {
                                         {data?.map(item => {
                                             let color = getColor(item.day_change_percent)
                                             return (
-                                                <td className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                     {item.day_change_percent.toFixed(2)}%
                                                 </td>
                                             )
@@ -58,7 +55,7 @@ const TableBienDong = () => {
                                         {data?.map(item => {
                                             let color = getColor(item.week_change_percent)
                                             return (
-                                                <td className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                     {item.week_change_percent.toFixed(2)}%
                                                 </td>
                                             )
@@ -71,7 +68,7 @@ const TableBienDong = () => {
                                         {data?.map(item => {
                                             let color = getColor(item.month_change_percent)
                                             return (
-                                                <td className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                     {item.month_change_percent.toFixed(2)}%
                                                 </td>
                                             )
@@ -84,7 +81,7 @@ const TableBienDong = () => {
                                         {data?.map(item => {
                                             let color = getColor(item.year_change_percent)
                                             return (
-                                                <td className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                     {item.year_change_percent.toFixed(2)}%
                                                 </td>
                                             )

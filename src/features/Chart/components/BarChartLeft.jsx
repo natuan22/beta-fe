@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 const BarChartLeft = () => {
   const dataBarChartLeft = useSelector((state) => state.chart.dataBarChartLeft);
   const [data, setData] = useState(dataBarChartLeft?.data ?? []);
-  useEffect(() => {
 
+  useEffect(() => {
     setData(dataBarChartLeft?.data ?? []);
   }, [dataBarChartLeft]);
 

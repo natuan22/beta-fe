@@ -34,16 +34,16 @@ const Footer = () => {
                                 <div className="mb-10 w-full">
                                     <h4 className="text-[#38B6FF] text-lg font-semibold xs:text-xl uppercase xs:translate-x-[30px] sm:translate-x-[40px] mb:translate-x-[60px] lg:translate-x-[60px] xl:translate-x-[70px]">Kết nối với chúng tôi</h4>
                                     <div className="mb-6 mt-3 flex items-center xs:translate-x-[35px] sm:translate-x-[45px] mb:translate-x-[60px] lg:translate-x-[65px] xl:translate-x-[75px]">
-                                        <a href="javascript:void(0)" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
+                                        <a href="https://www.facebook.com/bsi.com.vn" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
                                             <FacebookOutlined style={{ fontSize: '40px' }} />
                                         </a>
-                                        <a href="javascript:void(0)" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
+                                        <a href="https://www.youtube.com/channel/UCEDt7r9WgLDjUeM_PRdQB7g" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
                                             <YoutubeOutlined style={{ fontSize: '40px' }} />
                                         </a>
-                                        <a href="javascript:void(0)" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
+                                        <a href="https://www.bsi.com.vn" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
                                             <GlobalOutlined style={{ fontSize: '40px' }} />
                                         </a>
-                                        <a href="javascript:void(0)" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
+                                        <a href="/" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
                                             <FaTiktok style={{ fontSize: '40px' }} />
                                         </a>
                                     </div>
@@ -83,22 +83,22 @@ const Footer = () => {
                                     <h4 className="text-[#38B6FF] mb-6 sm:text-sm mb:text-base lg:text-lg font-semibold">Danh mục sản phẩm</h4>
                                     <ul className="list-none">
                                         <li>
-                                            <a href="javascript:void(0)" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="B-Signal" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> B-Signal
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="E-Market" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> E-Market
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="T-Info" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> T-Info
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="A-Report" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> A-Report
                                             </a>
                                         </li>

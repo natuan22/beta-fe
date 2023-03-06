@@ -166,6 +166,7 @@ const GeneralIndustry = () => {
                             </div>
                           </td>
                         </tr>
+<<<<<<< HEAD
                       );
                     })
                   ) : (
@@ -173,6 +174,10 @@ const GeneralIndustry = () => {
                       <Loading />
                     </td>
                   )}
+=======
+                      )
+                    })) : (<tr><td colSpan={5}><Loading /></td></tr>)}
+>>>>>>> 182ed6e9d3e68b42cf87e7589f3882a9995d2721
                 </tbody>
               </table>
             </div>
