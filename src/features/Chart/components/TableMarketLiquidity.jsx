@@ -51,7 +51,7 @@ const TableMarketLiquidity = () => {
                                                         {item.industry}
                                                     </td>
                                                     <td className={`text-white text-center align-middle text-sm whitespace-nowrap px-2 py-2 font-semibold `}>
-                                                        {item.value}
+                                                        {item.value.toFixed(2)}
                                                     </td>
                                                     <td className={`text-white text-center align-middle text-sm whitespace-nowrap px-2 py-2 font-semibold `}>
                                                         {item.value_change_percent.toFixed(2)}%
