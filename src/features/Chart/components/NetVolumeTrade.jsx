@@ -89,21 +89,21 @@ const NetVolumeTrade = () => {
     series: [
       {
         type: "column",
-        name: "Foreign",
+        name: "Khối Ngoại",
         data: dataForeign.reverse(),
         yAxis: 0,
         color: "#ff0000"
       },
       {
         type: "column",
-        name: "Proprietary",
+        name: "Cá Nhân",
         data: dataProprietary.reverse(),
         yAxis: 0,
         color: '#ffd300'
       },
       {
         type: "column",
-        name: "Retail",
+        name: "Tự Doanh",
         data: dataRetail.reverse(),
         yAxis: 0,
         color: '#0056FF'

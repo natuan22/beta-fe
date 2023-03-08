@@ -13,13 +13,13 @@ const News = () => {
                 <div className="blog-news flex" style={{ height: "150px" }}>
                     {dataNews.data?.map((item, index) => {
                         return (
-                            <Card bordered={false} style={{ width: 470, height: 90, backgroundColor: "#1F2937", }}>
+                            <Card key={index} bordered={false} style={{ width: 470, height: 90, backgroundColor: "#1F2937", }}>
                                 <div className="flex items-center">
-                                    <a href={item.Href}>
+                                    <a href={item.Href} target='_blank'>
                                         <img src={item.Img} alt="img blog news" width={175} height={95} />
                                     </a>
                                     <div className="ml-2">
-                                        <a href={item.Href}>
+                                        <a href={item.Href} target='_blank'>
                                             <span className="text-xs font-semibold text-white items-center justify-center w-12">
                                                 {item.Title}
                                             </span>

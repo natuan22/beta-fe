@@ -9,6 +9,8 @@ const StackingAreas = () => {
   const dataStackingChart = useSelector(
     (state) => state.chart.dataStackingArea
   );
+
+
   const [hoveredValue, setHoveredValue] = useState(null);
   if (!dataStackingChart.data || !dataStackingChart.data.length)
     return <Loading />;
@@ -97,6 +99,7 @@ const StackingAreas = () => {
         tooltip: {
           valueSuffix: " ",
         },
+       
       },
       series: {
         tooltip: {
@@ -137,6 +140,9 @@ const StackingAreas = () => {
         color: "#ff0000",
         lineColor: "#ff0000",
         lineWidth: 2,
+        marker: {
+          enabled: false
+      }
       },
       {
         name: "Không đổi",
@@ -144,6 +150,9 @@ const StackingAreas = () => {
         color: "#ffd51e",
         lineColor: "#ffd51e",
         lineWidth: 2,
+        marker: {
+          enabled: false
+      }
       },
       {
         name: "Tăng",
@@ -151,6 +160,9 @@ const StackingAreas = () => {
         color: "#19d216",
         lineColor: "#19d216",
         lineWidth: 2,
+        marker: {
+          enabled: false
+      }
       },
     ],
   };
