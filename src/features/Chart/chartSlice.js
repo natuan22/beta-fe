@@ -4,7 +4,7 @@ const initialState = {
   dataCarousel: {},
   dataBarChartRight: {},
   dataBarChartLeft: {},
-  dataNews: {},
+  dataEvents: {},
   dataTop10Sell: {},
   dataTop10Buy: {},
   dataTableDetail: {},
@@ -14,13 +14,15 @@ const initialState = {
   dataGoodsDetail: {},
   dataRateDetail: {},
   dataGeneral: {},
-  dataTreemap: [],
+  dataTreemapSell: [],
+  dataTreemapBuy: [],
   dataChart1: {},
   dataChart2: {},
   dataStackingArea: {},
   dataTableMarketVolatility: {},
   dataTableMarketLiquidity: {},
-  dataNetVolume: {}
+  dataNetVolume: {},
+  dataNews: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -31,8 +33,8 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_BARCHART_RIGHT) {
       draft.dataBarChartRight = payload;
     }
-    if (type === actionType.UPDATE_DATA_NEWS) {
-      draft.dataNews = payload;
+    if (type === actionType.UPDATE_DATA_EVENTS) {
+      draft.dataEvents = payload;
     }
     if (type === actionType.UPDATE_DATA_TOP10_SELL) {
       draft.dataTop10Sell = payload;
@@ -64,9 +66,11 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_GENERAL) {
       draft.dataGeneral = payload;
     }
-    if (type === actionType.UPDATE_DATA_TREEMAP) {
-
-      draft.dataTreemap = payload
+    if (type === actionType.UPDATE_DATA_TREEMAP_SELL) {
+      draft.dataTreemapSell = payload
+    }
+    if (type === actionType.UPDATE_DATA_TREEMAP_BUY) {
+      draft.dataTreemapBuy = payload
     }
     if (type === actionType.UPDATE_DATA_AREACHART1) {
       draft.dataChart1 = payload
@@ -77,7 +81,6 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_STACKINGAREA) {
       draft.dataStackingArea = payload
     }
-
     if (type === actionType.UPDATE_DATA_TABLE_MARKET_VOLATILITY) {
       draft.dataTableMarketVolatility = payload
     }
@@ -86,6 +89,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === actionType.UPDATE_DATA_NET_VOLUME) {
       draft.dataNetVolume = payload
+    }
+    if (type === actionType.UPDATE_DATA_NEWS) {
+      draft.dataNews = payload
     }
   });
 };

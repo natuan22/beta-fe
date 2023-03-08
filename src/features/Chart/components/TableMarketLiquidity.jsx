@@ -58,7 +58,7 @@ const TableMarketLiquidity = () => {
                                                     </td>
                                                 </tr>
                                             )
-                                        })) : (<tr><td colSpan={3}><Loading /></td></tr>)}
+                                        })) : (<tr><td colSpan={4}><Loading /></td></tr>)}
                                 </tbody>
                             </table>
                         </div>

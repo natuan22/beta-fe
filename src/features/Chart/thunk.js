@@ -51,7 +51,7 @@ export const fetchDataBarChartLeft = (index) => async (dispatch) => {
   }
 };
 
-export const fetchDataNews = async (dispatch) => {
+export const fetchDataEvents = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
@@ -59,7 +59,7 @@ export const fetchDataNews = async (dispatch) => {
       method: "GET",
     });
     dispatch({
-      type: "beta/UPDATE_DATA_NEWS",
+      type: "beta/UPDATE_DATA_EVENTS",
       payload: res.data,
     });
   } catch (err) {
@@ -171,23 +171,6 @@ export const fetchDataGoodsDetail = async (dispatch) => {
   }
 }
 
-export const fetchDataKhoaNgoaiMuaRong = async (dispatch) => {
-  try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `http://192.168.15.174:3000/foreign.dat?exchange=HSX`,
-      method: "GET",
-    });
-    dispatch({
-      type: "beta/UPDATE_DATA_KHOA_NGOAI_MUA_RONG",
-      payload: res.data,
-
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 export const fetchDataRateDetail = async (dispatch) => {
   try {
     const res = await axios({
@@ -209,7 +192,7 @@ export const fetchDataGeneralIndustry = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.181:3001/api/v1/stock/market-breadth",
+      url: "http://192.168.9.250:3001/api/v1/stock/market-breadth",
       method: "GET",
     });
     dispatch({
@@ -221,18 +204,37 @@ export const fetchDataGeneralIndustry = async (dispatch) => {
   }
 }
 
-export const fetchDataTreeMap = (index) => async (dispatch) => {
+export const fetchDataTreeMapSell = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.174:3000/foreign.dat",
+      url: "http://192.168.15.174:3000/foreignsell.dat",
       method: "GET",
       params: {
         exchange: index || undefined
       }
     });
     dispatch({
-      type: "beta/UPDATE_DATA_TREEMAP",
+      type: "beta/UPDATE_DATA_TREEMAP_SELL",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const fetchDataTreeMapBuy = (index) => async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.15.174:3000/foreignbuy.dat",
+      method: "GET",
+      params: {
+        exchange: index || undefined
+      }
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_TREEMAP_BUY",
       payload: res.data,
     });
   } catch (err) {
@@ -295,7 +297,7 @@ export const fetchDataTableMarketVolatility = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.181:3001/api/v1/stock/market-volatility",
+      url: "http://192.168.9.250:3001/api/v1/stock/market-volatility",
       method: "GET",
     });
     dispatch({
@@ -311,7 +313,7 @@ export const fetchDataTableMarketLiquidity = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.181:3001/api/v1/stock/market-liquidity",
+      url: "http://192.168.9.250:3001/api/v1/stock/market-liquidity",
       method: "GET",
       params: {
         order: index
@@ -330,7 +332,7 @@ export const fetchDataNetVolume = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.181:3001/api/v1/stock/net-transaction-value",
+      url: "http://192.168.9.250:3001/api/v1/stock/net-transaction-value",
       method: "GET",
       params: {
         exchange: index
@@ -338,6 +340,22 @@ export const fetchDataNetVolume = (index) => async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_NET_VOLUME",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const fetchDataNews = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: "http://192.168.9.250:3001/api/v1/stock/get-news",
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_NEWS",
       payload: res.data,
     });
   } catch (err) {
