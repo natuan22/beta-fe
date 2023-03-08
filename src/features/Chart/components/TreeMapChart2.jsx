@@ -3,23 +3,22 @@ import { Chart } from "react-google-charts";
 import { useSelector } from "react-redux";
 
 const TreeMapChart = () => {
-  const dataTreemap = useSelector((state) => state.chart.dataTreemap);
-  const [data = dataTreemap.recordset || [], setData] = useState();
+  const dataTreemapSell = useSelector((state) => state.chart.dataTreemapSell);
+  const [data = dataTreemapSell.recordset || []] = useState();
 
   const arrGlobal = [
     [
       "Location",
       "Parent",
       "Market trade volume (size)",
-      "Market increase/decrease (color)",
     ],
-    ["Khối ngoại bán ròng", null, 0, 0],
+    ["Khối ngoại bán ròng", null, 0],
   ];
   // tạo 1 trường AddedLv2Value => chạy vòng lặp xét item.lv2 có trong addedValue chưa nếu chưa thì thực hiện arrGlobal.push([item.lv2, "Global", 0, 0]); và ngược lại
   const addedLv2Values = new Set();
   data.forEach((item) => {
     if (!addedLv2Values.has(item.lv2)) {
-      arrGlobal.push([item.lv2, "Khối ngoại bán ròng", 0, 0]);
+      arrGlobal.push([item.lv2, "Khối ngoại bán ròng", 0]);
       addedLv2Values.add(item.lv2);
     }
   });
@@ -27,7 +26,6 @@ const TreeMapChart = () => {
     return [
       `${item.ticker}: ${item.total_value_sell}`,
       item.lv2,
-      item.total_value_buy,
       item.total_value_sell,
     ];
   });
@@ -40,7 +38,7 @@ const TreeMapChart = () => {
     maxPostDepth: 2,
     minHighlightColor: "red",
     midHighlightColor: "red",
-    maxHighlightColor: "red",
+    maxHighlightColor: "#red",
     minColor: "red",
     midColor: "pink",
     maxColor: "red",

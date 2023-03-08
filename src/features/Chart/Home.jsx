@@ -5,7 +5,7 @@ import BarChartLeft from "./components/BarChartLeft";
 import BarChartRight from "./components/BarChartRight";
 import Carousel from "./components/Carousel";
 import GeneralIndustry from "./components/GeneralIndustry";
-import News from "./components/News";
+import Events from "./components/Events";
 import Top10Sell from "./components/Top10Sell";
 import Top10Buy from "./components/Top10Buy";
 import TreemapChart from "./components/TreemapChart";
@@ -28,7 +28,7 @@ import {
   fetchDataTableDetail,
   fetchDataBarChartRight,
   fetchDataBarChartLeft,
-  fetchDataNews,
+  fetchDataEvents,
   fetchDataTop10Sell,
   fetchDataTop10Buy,
   fetchDataGoodsDetail,
@@ -36,46 +36,45 @@ import {
   fetchDataGeneralIndustry,
   fetchDataDiemAnhHuong5PhienGiam,
   fetchDataDiemAnhHuong5PhienTang,
-  fetchDataTreeMap,
+  fetchDataTreeMapSell,
+  fetchDataTreeMapBuy,
   fetchDataAreaChart1,
   fetchDataAreaChart2,
   fetchDataWidthMarket,
   fetchDataTableMarketVolatility,
   fetchDataTableMarketLiquidity,
   fetchDataNetVolume,
+  fetchDataNews,
 } from "./thunk";
+import News from "./components/News";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const button = [
+  const buttons = [
     {
-      id: 1,
       label: 'Tăng mạnh nhất',
       value: '0',
       color: 'text-green-500',
-      hover: 'bg-green-800'
+      hover: 'bg-green-500'
     }, {
-      id: 2,
       label: 'Giảm mạnh nhất',
       value: '1',
       color: 'text-red-500',
-      hover: 'bg-red-800'
+      hover: 'bg-red-500'
     }, {
-      id: 3,
       label: 'Đóng góp cao nhất',
       value: '2',
       color: 'text-green-500',
-      hover: 'bg-green-800'
+      hover: 'bg-green-500'
     }, {
-      id: 4,
       label: 'Đóng góp thấp nhất',
       value: '3',
       color: 'text-red-500',
-      hover: 'bg-red-800'
+      hover: 'bg-red-500'
     }]
 
   useEffect(() => {
-    dispatch(fetchDataNews)
+    dispatch(fetchDataEvents)
     dispatch(fetchDataRateDetail)
     dispatch(fetchDataTop10Sell("HSX"))
     dispatch(fetchDataTop10Buy("HSX"))
@@ -85,25 +84,23 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchDataCarousel);
+    dispatch(fetchDataNews)
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataBarChartRight);
     dispatch(fetchDataBarChartLeft("VNINDEX"));
     dispatch(fetchDataGoodsDetail)
     dispatch(fetchDataGeneralIndustry)
-    dispatch(fetchDataTreeMap("HSX"))
+    dispatch(fetchDataTreeMapSell("HSX"))
+    dispatch(fetchDataTreeMapBuy("HSX"))
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchDataAreaChart1)
     dispatch(fetchDataAreaChart2)
     dispatch(fetchDataWidthMarket('HNX'))
-
     dispatch(fetchDataTableMarketVolatility)
     dispatch(fetchDataTableMarketLiquidity('0'))
-
-
     dispatch(fetchDataNetVolume("vnindex"))
-
   }, [dispatch])
 
   return (
@@ -116,6 +113,7 @@ const Home = () => {
 
           <div className='w-[95%]'>
             <Carousel />
+            <News />
 
             <div>
               <div className="lg:block xl:flex ">
@@ -178,7 +176,7 @@ const Home = () => {
                   </div>
 
                   <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[385px]">
-                    <News />
+                    <Events />
                   </div>
                 </div>
 
@@ -224,22 +222,26 @@ const Home = () => {
               <div className="lg:block xl:flex">
                 <div className="xl:w-[60%] xs:hidden sm:hidden md:hidden xl:block ">
                   <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[710px]">
-                    <div>
-                      <select className="ml-[363px] mb-[10px]" onChange={(event) => {
-                        dispatch(dispatch(fetchDataTreeMap(event.target.value)));
-                      }}>
-                        <option value="HSX">HSX</option>
-                        <option value="HNX">HNX</option>
-                        <option value="UPCOM">UPCOM</option>
-                      </select>
-                    </div>
-
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
+                        <select className="ml-[170px] mb-[10px]" onChange={(event) => {
+                          dispatch(dispatch(fetchDataTreeMapBuy(event.target.value)));
+                        }}>
+                          <option value="HSX">HSX</option>
+                          <option value="HNX">HNX</option>
+                          <option value="UPCOM">UPCOM</option>
+                        </select>
                         <TreemapChart />
                       </div>
 
                       <div>
+                        <select className="ml-[170px] mb-[10px]" onChange={(event) => {
+                          dispatch(dispatch(fetchDataTreeMapSell(event.target.value)));
+                        }}>
+                          <option value="HSX">HSX</option>
+                          <option value="HNX">HNX</option>
+                          <option value="UPCOM">UPCOM</option>
+                        </select>
                         <TreeMapChart2 />
                       </div>
                     </div>
@@ -286,22 +288,26 @@ const Home = () => {
                 </div>
                 <div className="xl:w-[60%] xl:hidden">
                   <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[710px]">
-                    <div>
-                      <select className="xs:ml-[125px] sm:ml-[255px] md:ml-[315px] lg:ml-[435px] mb-[10px]" onChange={(event) => {
-                        dispatch(dispatch(fetchDataTreeMap(event.target.value)));
-                      }}>
-                        <option value="HSX">HSX</option>
-                        <option value="HNX">HNX</option>
-                        <option value="UPCOM">UPCOM</option>
-                      </select>
-                    </div>
-
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
+                        <select className="xs:ml-[55px] sm:ml-[65px] md:ml-[150px] lg:ml-[205px] mb-[10px]" onChange={(event) => {
+                          dispatch(dispatch(fetchDataTreeMapBuy(event.target.value)));
+                        }}>
+                          <option value="HSX">HSX</option>
+                          <option value="HNX">HNX</option>
+                          <option value="UPCOM">UPCOM</option>
+                        </select>
                         <TreemapChart />
                       </div>
 
                       <div>
+                        <select className="xs:ml-[55px] sm:ml-[65px] md:ml-[150px] lg:ml-[205px] mb-[10px]" onChange={(event) => {
+                          dispatch(dispatch(fetchDataTreeMapSell(event.target.value)));
+                        }}>
+                          <option value="HSX">HSX</option>
+                          <option value="HNX">HNX</option>
+                          <option value="UPCOM">UPCOM</option>
+                        </select>
                         <TreeMapChart2 />
                       </div>
                     </div>
@@ -322,9 +328,9 @@ const Home = () => {
                     <TableMarketVolatility />
                   </div>
                   <div className="px-1.5 py-1.5">
-                    {button.map(item => {
+                    {buttons.map(item => {
                       return (
-                        <button key={item.id} onClick={() => { dispatch(dispatch(fetchDataTableMarketLiquidity(item.value))) }}
+                        <button key={item.value} onClick={() => { dispatch(dispatch(fetchDataTableMarketLiquidity(item.value))) }}
                           type="button" className={`cursor-pointer ${item.color} border-none bg-[#151924] font-medium rounded-lg text-xs px-2.5 py-2.5 text-center mr-1 mb-2 hover:${item.hover} hover:text-white`}>{item.label}
                         </button>
                       )
