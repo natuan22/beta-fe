@@ -351,7 +351,7 @@ export const fetchDataNews = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:3001/api/v1/stock/get-news",
+      url: "http://192.168.15.181:3001/api/v1/stock/get-news",
       method: "GET",
     });
     dispatch({
