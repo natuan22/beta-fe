@@ -8,9 +8,9 @@ const TableDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (dataTable[0]) {
+    if (dataTable.data) {
       setLoading(false);
-      setData(dataTable)
+      setData(dataTable.data)
     }
   }, [dataTable]);
 
@@ -57,11 +57,10 @@ const TableDetail = () => {
                             {item.close_price}
                           </td>
                           <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {/* {(item.close_price * item.percent_d / 100).toFixed(2)} */}
-                            ko bít
+                            {item.change_price.toFixed(2)}
                           </td>
                           <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {item.percent_d}%
+                            {item.percent_d.toFixed(2)}%
                           </td>
                         </tr>
                       )

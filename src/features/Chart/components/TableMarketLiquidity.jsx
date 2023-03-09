@@ -9,7 +9,7 @@ const TableMarketLiquidity = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (dataMarketLiquidity) {
+        if (dataMarketLiquidity.data) {
             setLoading(false)
             setData(dataMarketLiquidity.data)
         }
@@ -42,18 +42,19 @@ const TableMarketLiquidity = () => {
                                 <tbody>
                                     {!loading ? (Array.isArray(data) &&
                                         data?.map((item) => {
+                                            let color = getColor(item.value_change_percent);
                                             return (
                                                 <tr key={item.ticker} className='hover:bg-gray-900'>
-                                                    <th className="text-center align-middle text-sm whitespace-nowrap px-2 py-2 text-white">
+                                                    <th className={`text-center align-middle text-sm whitespace-nowrap px-2 py-2 ${color}`}>
                                                         {item.ticker}
                                                     </th>
-                                                    <td className={`text-white text-center align-middle text-xs px-2 py-2 font-semibold `}>
+                                                    <td className={`text-center align-middle text-xs px-2 py-2 font-semibold ${color}`}>
                                                         {item.industry}
                                                     </td>
-                                                    <td className={`text-white text-center align-middle text-sm whitespace-nowrap px-2 py-2 font-semibold `}>
+                                                    <td className={`text-center align-middle text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
                                                         {item.value.toFixed(2)}
                                                     </td>
-                                                    <td className={`text-white text-center align-middle text-sm whitespace-nowrap px-2 py-2 font-semibold `}>
+                                                    <td className={`text-center align-middle text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
                                                         {item.value_change_percent.toFixed(2)}%
                                                     </td>
                                                 </tr>
@@ -70,3 +71,12 @@ const TableMarketLiquidity = () => {
 }
 
 export default TableMarketLiquidity;
+
+function getColor(item) {
+    let color = "";
+    if (item === 0) color = "text-yellow-500";
+    else if (item < "0") color = "text-red-500";
+    else color = "text-green-500";
+
+    return color;
+}

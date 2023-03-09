@@ -24,6 +24,7 @@ const StackingAreas = () => {
   const dataDecline = dataStackingChart.data?.map((item) => item.decline);
   const dataNoChange = dataStackingChart.data?.map((item) => item.noChange);
   const options = {
+    credits: false,
     chart: {
       type: "area",
       zoomType: "x",
@@ -99,7 +100,7 @@ const StackingAreas = () => {
         tooltip: {
           valueSuffix: " ",
         },
-       
+
       },
       series: {
         tooltip: {
@@ -142,7 +143,7 @@ const StackingAreas = () => {
         lineWidth: 2,
         marker: {
           enabled: false
-      }
+        }
       },
       {
         name: "Không đổi",
@@ -152,7 +153,7 @@ const StackingAreas = () => {
         lineWidth: 2,
         marker: {
           enabled: false
-      }
+        }
       },
       {
         name: "Tăng",
@@ -162,7 +163,7 @@ const StackingAreas = () => {
         lineWidth: 2,
         marker: {
           enabled: false
-      }
+        }
       },
     ],
   };

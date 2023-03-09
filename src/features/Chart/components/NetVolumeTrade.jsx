@@ -30,7 +30,9 @@ const NetVolumeTrade = () => {
       backgroundColor: "transparent", // màu nền của biểu đồ
       height: 500, // chiều cao của biểu đồ
       width: 1400, // chiều rộng của biểu đồ
+
     },
+    credits: false,
     title: {
       text: "Giá trị giao dịch ròng",
       style: {

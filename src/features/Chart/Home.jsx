@@ -349,7 +349,7 @@ const Home = () => {
                 </div>
                 <div className="xl:w-[35%]">
                   <div className="">
-                    {/* <TableMarketVolatility /> */}
+
                   </div>
                 </div>
               </div>
