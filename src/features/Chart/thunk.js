@@ -20,12 +20,12 @@ export const fetchDataBarChartRight = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/khoingoai/toprong",
+      url: "http://192.168.15.181:3001/api/v1/stock/top-net-foreign",
       method: "GET",
     });
     dispatch({
       type: "beta/UPDATE_DATA_BARCHART_RIGHT",
-      payload: res,
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);
@@ -71,7 +71,7 @@ export const fetchDataTableDetail = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/chiso/trongnuoc",
+      url: "http://192.168.15.181:3001/api/v1/stock/domestic-index",
       method: "GET",
     });
     dispatch({
@@ -192,7 +192,7 @@ export const fetchDataGeneralIndustry = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:3001/api/v1/stock/market-breadth",
+      url: "http://192.168.15.181:3001/api/v1/stock/market-breadth",
       method: "GET",
     });
     dispatch({
@@ -297,7 +297,7 @@ export const fetchDataTableMarketVolatility = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:3001/api/v1/stock/market-volatility",
+      url: "http://192.168.15.181:3001/api/v1/stock/market-volatility",
       method: "GET",
     });
     dispatch({
@@ -313,7 +313,7 @@ export const fetchDataTableMarketLiquidity = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:3001/api/v1/stock/market-liquidity",
+      url: "http://192.168.15.181:3001/api/v1/stock/market-liquidity",
       method: "GET",
       params: {
         order: index
@@ -332,7 +332,7 @@ export const fetchDataNetVolume = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:3001/api/v1/stock/net-transaction-value",
+      url: "http://192.168.15.181:3001/api/v1/stock/net-transaction-value",
       method: "GET",
       params: {
         exchange: index
@@ -351,7 +351,7 @@ export const fetchDataNews = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:3001/api/v1/stock/get-news",
+      url: "http://192.168.15.181:3001/api/v1/stock/get-news",
       method: "GET",
     });
     dispatch({

@@ -11,6 +11,7 @@ const GeneralIndustry = () => {
   const dataGeneral = useSelector((state) => state.chart.dataGeneral);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
   // const [isHovering, setIsHovering] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   const handleMouseOver = (index) => {
@@ -21,8 +22,9 @@ const GeneralIndustry = () => {
     // setIsHovering(false);
     setHoveredIndex(-1);
   };
+
   useEffect(() => {
-    if (dataGeneral) {
+    if (dataGeneral.data) {
       setLoading(false);
       setData(dataGeneral.data);
     }
@@ -55,8 +57,7 @@ const GeneralIndustry = () => {
                 </thead>
 
                 <tbody>
-                  {!loading ? (
-                    Array.isArray(data) &&
+                  {!loading ? (Array.isArray(data) &&
                     data.map((item, index) => {
                       let color = getColor(item.day_change_percent);
                       let color2 = getColor(item.week_change_percent);

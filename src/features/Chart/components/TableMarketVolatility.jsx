@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import Loading from "../utils/Loading";
 
 const TableMarketVolatility = () => {
     const dataMarketVolatility = useSelector(state => state.chart.dataTableMarketVolatility);
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (dataMarketVolatility) {
+        if (dataMarketVolatility.data) {
+            setLoading(false);
             setData(dataMarketVolatility.data)
         }
     }, [dataMarketVolatility])
@@ -24,13 +27,13 @@ const TableMarketVolatility = () => {
                                         <th className="text-center align-middle px-[5px] py-3 uppercase text-sm font-semibold text-amber-500">
                                             Khung biến động
                                         </th>
-                                        {data?.map(item => {
+                                        {!loading ? (Array.isArray(data) && data?.map(item => {
                                             return (
                                                 <th key={item.ticker} className="text-center align-middle px-1 py-3 uppercase text-xs font-semibold text-amber-500">
                                                     {item.ticker}
                                                 </th>
                                             )
-                                        })}
+                                        })) : (<tr><td colSpan={5}><Loading /></td></tr>)}
                                     </tr>
                                 </thead>
 
