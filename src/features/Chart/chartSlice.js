@@ -5,11 +5,9 @@ const initialState = {
   dataBarChartRight: {},
   dataBarChartLeft: {},
   dataEvents: {},
-  dataTop10Sell: {},
-  dataTop10Buy: {},
+  dataTopNetForeignChange: {},
   dataTableDetail: {},
-  dataDiemAnhHuong5PhienTang: {},
-  dataDiemAnhHuong5PhienGiam: {},
+  dataROC5Phien: {},
   dataKhoaNgoaiMuaRong: {},
   dataGoodsDetail: {},
   dataRateDetail: {},
@@ -36,11 +34,8 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_EVENTS) {
       draft.dataEvents = payload;
     }
-    if (type === actionType.UPDATE_DATA_TOP10_SELL) {
-      draft.dataTop10Sell = payload;
-    }
-    if (type === actionType.UPDATE_DATA_TOP10_BUY) {
-      draft.dataTop10Buy = payload;
+    if (type === actionType.UPDATE_DATA_TOP_NET_FOREIGN_CHANGE) {
+      draft.dataTopNetForeignChange = payload;
     }
     if (type === actionType.UPDATE_DATA_BARCHART_LEFT) {
       draft.dataBarChartLeft = payload;
@@ -48,11 +43,8 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_TABLEDETAIL) {
       draft.dataTableDetail = payload;
     }
-    if (type === actionType.UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_TANG) {
-      draft.dataDiemAnhHuong5PhienTang = payload;
-    }
-    if (type === actionType.UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_GIAM) {
-      draft.dataDiemAnhHuong5PhienGiam = payload;
+    if (type === actionType.UPDATE_DATA_ROC_5PHIEN) {
+      draft.dataROC5Phien = payload;
     }
     if (type === actionType.UPDATE_DATA_KHOA_NGOAI_MUA_RONG) {
       draft.dataKhoaNgoaiMuaRong = payload;

@@ -83,76 +83,43 @@ export const fetchDataTableDetail = async (dispatch) => {
   }
 };
 
-export const fetchDataTop10Sell = (index) => async (dispatch) => {
+export const fetchDataTopNetForeignChange = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/khoingoai5phien",
+      url: "http://192.168.15.181:3001/api/v1/stock/top-net-foreign-change",
       method: "GET",
       params: {
-        'EXCHANGE': index
+        'exchange': index
       }
     });
     dispatch({
-      type: "beta/UPDATE_DATA_TOP10_SELL",
-      payload: res,
+      type: "beta/UPDATE_DATA_TOP_NET_FOREIGN_CHANGE",
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);
   }
 };
 
-export const fetchDataTop10Buy = (index) => async (dispatch) => {
+export const fetchDataROC5Phien = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/khoingoai5phien",
+      url: `http://192.168.15.181:3001/api/v1/stock/top-roc`,
       method: "GET",
       params: {
-        'EXCHANGE': index
+        'exchange': index
       }
     });
     dispatch({
-      type: "beta/UPDATE_DATA_TOP10_BUY",
-      payload: res,
+      type: "beta/UPDATE_DATA_ROC_5PHIEN",
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);
   }
 };
-
-export const fetchDataDiemAnhHuong5PhienTang = (index) => async (dispatch) => {
-  try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `http://192.168.9.250:5000/diemanhhuong5phien/${index}`,
-      method: "GET",
-    });
-    dispatch({
-      type: "beta/UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_TANG",
-      payload: res,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const fetchDataDiemAnhHuong5PhienGiam = (index) => async (dispatch) => {
-  try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `http://192.168.9.250:5000/diemanhhuong5phien/${index}`,
-      method: "GET",
-    });
-    dispatch({
-      type: "beta/UPDATE_DATA_DIEM_ANH_HUONG_5PHIEN_GIAM",
-      payload: res,
-
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
 
 export const fetchDataGoodsDetail = async (dispatch) => {
   try {
@@ -208,10 +175,11 @@ export const fetchDataTreeMapSell = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.174:3000/foreignsell.dat",
+      url: "http://192.168.15.181:3001/api/v1/stock/net-foreign",
       method: "GET",
       params: {
-        exchange: index || undefined
+        exchange: index || undefined,
+        transaction: 1
       }
     });
     dispatch({
@@ -227,10 +195,11 @@ export const fetchDataTreeMapBuy = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.174:3000/foreignbuy.dat",
+      url: "http://192.168.15.181:3001/api/v1/stock/net-foreign",
       method: "GET",
       params: {
-        exchange: index || undefined
+        exchange: index || undefined,
+        transaction: 0
       }
     });
     dispatch({

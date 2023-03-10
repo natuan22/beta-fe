@@ -2,13 +2,17 @@
 import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import moment from "moment";
+import { fetchDataNetVolume } from "../thunk";
+import { useState } from "react";
 
 
 const NetVolumeTrade = () => {
+  const dispatch = useDispatch();
   const dataNetVolume = useSelector((state) => state.chart.dataNetVolume);
+  const [title, setTitle] = useState('VNINDEX')
   if (!dataNetVolume.data || !dataNetVolume.data.length) return <Loading />;
 
   const dataExchange = dataNetVolume.data?.map((item) => item.exchange_price);
@@ -31,6 +35,9 @@ const NetVolumeTrade = () => {
       height: 500, // chiều cao của biểu đồ
       width: 1400, // chiều rộng của biểu đồ
 
+    },
+    accessibility: {
+      enabled: false
     },
     credits: false,
     title: {
@@ -112,7 +119,7 @@ const NetVolumeTrade = () => {
       },
       {
         type: "spline",
-        name: "VNINDEX",
+        name: title,
         data: dataExchange.reverse(),
         yAxis: 1,
         color: '#ff8700'
@@ -122,8 +129,17 @@ const NetVolumeTrade = () => {
 
   return (
     <div>
+      <select className="ml-[650px] mb-[10px]" onChange={(event) => {
+        dispatch(fetchDataNetVolume(event.target.value));
+        setTitle(event.target.value)
+      }}>
+        <option value="VNINDEX">VNINDEX</option>
+        <option value="UPINDEX">UPINDEX</option>
+        <option value="HNX30">HNX30</option>
+        <option value="VN30">VN30</option>
+      </select>
       <HighchartsReact highcharts={Highcharts} options={options} />
-    </div>
+    </div >
   );
 };
 

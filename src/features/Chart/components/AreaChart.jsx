@@ -53,7 +53,7 @@ const AreaChart = () => {
           ],
         },
         options: {
-          responsive: true,
+          maintainAspectRatio: false,
           scales: {
             x: {
               display: true,
@@ -88,7 +88,7 @@ const AreaChart = () => {
   return (
     <div>
       {data1.length && data2.length ? (
-        <canvas className="h-[700px]" ref={chartRef}></canvas>
+        <canvas className="h-[730px]" ref={chartRef}></canvas>
       ) : (
         <Loading />
       )}
