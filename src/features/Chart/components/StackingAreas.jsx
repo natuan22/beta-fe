@@ -32,11 +32,14 @@ const StackingAreas = () => {
       type: "area",
       zoomType: "x",
       backgroundColor: "transparent",
+      style: {
+        fontFamily: 'Roboto'
+      }
     },
     title: {
-      text: "Độ rộng thị trường",
+      text: "ĐỘ RỘNG THỊ TRƯỜNG",
       style: {
-        color: "#fff",
+        color: "#F1950C",
       },
     },
     xAxis: {
@@ -53,7 +56,7 @@ const StackingAreas = () => {
     },
     yAxis: {
       title: {
-        text: "Percent",
+        text: "",
         style: {
           color: "#fff",
         },

@@ -56,24 +56,39 @@ const AreaChart = () => {
           maintainAspectRatio: false,
           scales: {
             x: {
+              ticks: {
+                color: 'white'
+              },
               display: true,
               title: {
+                color: '#F1950C',
                 display: true,
                 text: "Thời gian giao dịch ",
               },
             },
             y: {
+              ticks: {
+                color: 'white'
+              },
               display: true,
               title: {
+                color: '#F1950C',
                 display: true,
                 text: "GTDT (tỷ đồng)",
               },
             },
           },
           plugins: {
+            legend: {
+              display: false,
+              labels: {
+                color: "white"
+              }
+            },
             title: {
+              color: '#F1950C',
               display: true,
-              text: "Thanh Khoản Thị Trường",
+              text: "THANH KHOẢN THỊ TRƯỜNG",
             },
           },
         },
@@ -88,11 +103,9 @@ const AreaChart = () => {
   return (
     <div>
       {data1.length && data2.length ? (
-        <div className="relative">
+        <div>
           <canvas className="h-[730px]" ref={chartRef}></canvas>
-           
         </div>
-        
       ) : (
         <Loading />
       )}

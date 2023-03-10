@@ -24,12 +24,12 @@ const Signin = () => {
                 đến NĐT
               </span>
               <div className="flex items-center mt-2">
-              <button className="bg-transparent border-none mr-2">
-                <a href="bsi.com.vn" className="text-yellow-300">Xem chi tiết</a>
-              </button>
-              <FaAngleDoubleRight className="text-yellow-300" />
+                <button className="bg-transparent border-none mr-2">
+                  <a href="bsi.com.vn" className="text-yellow-300">Xem chi tiết</a>
+                </button>
+                <FaAngleDoubleRight className="text-yellow-300" />
               </div>
-             
+
             </div>
             <img
               src="http://192.168.15.181:3001/resources/images/img6.png"
@@ -57,7 +57,7 @@ const Signin = () => {
                 <label
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-white dark:text-white"
-                  
+
                 >
                   Tài khoản
                 </label>
@@ -111,7 +111,7 @@ const Signin = () => {
                 Đăng nhập
               </button>
             </form>
-            <a className="text-white mt-2" href="bsi.com.vn">Qên mật khẩu ?</a>
+            <a className="text-white mt-2" href="bsi.com.vn">Quên mật khẩu ?</a>
             <div className="w-[50%] flex justify-around mt-5">
               <img
                 src="http://192.168.15.181:3001/resources/images/fb-logo.png"
