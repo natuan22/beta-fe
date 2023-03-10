@@ -305,7 +305,7 @@ const Home = () => {
                     {buttons.map(item => {
                       return (
                         <button key={item.value} onClick={() => { dispatch(dispatch(fetchDataTableMarketLiquidity(item.value))) }}
-                          type="button" className={`cursor-pointer ${item.color} border-none bg-[#151924] font-medium rounded-lg text-xs px-2.5 py-2.5 text-center mr-1 mb-2 hover:${item.hover} hover:text-white`}>{item.label}
+                          type="button" className={`hover:${item.hover} hover:text-white ${item.color} cursor-pointer  border-none bg-[#151924] font-medium rounded-lg text-xs px-2.5 py-2.5 text-center mr-1 mb-2`}>{item.label}
                         </button>
                       )
                     })}
