@@ -97,6 +97,11 @@ const Signin = () => {
                 Đăng nhập
               </button>
             </form>
+            <div>
+              <FaFacebookSquare />
+              <FaGooglePlusSquare />
+              
+            </div>
           </div>
         </div>
       </div>

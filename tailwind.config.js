@@ -13,7 +13,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         "signinBackground": "url('http://192.168.15.181:3001/resources/images/login-background.png')",
-        "signinLogo": "url('http://192.168.15.181:3001/resources/images/logo1.png')"
+        "signinLogo": "url('')"
       },
       colors: {
         'signinColor' : "rgba(116,99,224,0.25)",
