@@ -88,7 +88,11 @@ const AreaChart = () => {
   return (
     <div>
       {data1.length && data2.length ? (
-        <canvas className="h-[730px]" ref={chartRef}></canvas>
+        <div className="relative">
+          <canvas className="h-[730px]" ref={chartRef}></canvas>
+           
+        </div>
+        
       ) : (
         <Loading />
       )}
