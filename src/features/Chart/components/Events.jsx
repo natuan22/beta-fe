@@ -3,19 +3,16 @@ import { useSelector } from 'react-redux';
 import Loading from '../utils/Loading';
 
 const Events = () => {
-    const dataEvents = useSelector((state) => state.chart.dataEvents.recordset);
+    const dataEvents = useSelector((state) => state.chart.dataEvents);
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (dataEvents) {
+        if (dataEvents.data) {
             setLoading(false);
-            setData(dataEvents)
+            setData(dataEvents.data)
         }
     }, [dataEvents])
-
-    const sortedData = data && data ? [...data].sort((a, b) => new Date(b.NgayDKCC) - new Date(a.NgayDKCC)) : []
-    const events = sortedData.slice(0, 30)
 
     return (
         <section className="bg-blueGray-50" >
@@ -42,7 +39,7 @@ const Events = () => {
 
                             <tbody>
                                 {!loading ? (Array.isArray(data) &&
-                                    events.map((item, index) => {
+                                    data.map((item, index) => {
                                         return (
                                             <tr key={index} className='hover:bg-gray-900'>
                                                 <th className="text-center align-middle text-xs whitespace-nowrap px-3 p-3.5 text-white">

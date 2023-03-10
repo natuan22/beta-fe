@@ -1,7 +1,7 @@
 import produce from "immer";
 import * as actionType from "./constant";
 const initialState = {
-  dataCarousel: {},
+  dataInternationalIndex: {},
   dataBarChartRight: {},
   dataBarChartLeft: {},
   dataEvents: {},
@@ -25,8 +25,8 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
   return produce(state, (draft) => {
-    if (type === actionType.UPDATE_DATA_CAROUSEL) {
-      draft.dataCarousel = payload;
+    if (type === actionType.UPDATE_DATA_INTERNATIONAL_INDEX) {
+      draft.dataInternationalIndex = payload;
     }
     if (type === actionType.UPDATE_DATA_BARCHART_RIGHT) {
       draft.dataBarChartRight = payload;
