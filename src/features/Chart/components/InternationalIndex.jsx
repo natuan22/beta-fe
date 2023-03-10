@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 import { BsFillArrowDownCircleFill, BsFillArrowUpCircleFill } from "react-icons/bs";
 import Marquee from "react-fast-marquee";
 
-const Carousel = () => {
-  const dataCarousel = useSelector((state) => state.chart.dataCarousel);
+const InternationalIndex = () => {
+  const dataInternationalIndex = useSelector((state) => state.chart.dataInternationalIndex);
 
   return (
     <div className="bg-gray-800">
       <Marquee speed={70} pauseOnHover="true" gradientColor="[0,0,0]">
         <div className="flex">
-          {dataCarousel.data?.map((item, index) => {
+          {dataInternationalIndex.data?.map((item, index) => {
             return (
               <div key={index} className="flex flex-col items-center ml-4 bg-gradient-to-b  from-[#144e74] to-[#112533]" style={{ border: "1px solid transparent", padding: "5px" }}>
                 <span className="mx-2 text-sm font-semibold text-white">
@@ -45,5 +45,5 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default InternationalIndex;
 

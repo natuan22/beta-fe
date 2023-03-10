@@ -32,9 +32,6 @@ const NetVolumeTrade = () => {
   const options = {
     chart: {
       backgroundColor: "transparent", // màu nền của biểu đồ
-      height: 500, // chiều cao của biểu đồ
-      width: 1400, // chiều rộng của biểu đồ
-
     },
     accessibility: {
       enabled: false
@@ -129,7 +126,7 @@ const NetVolumeTrade = () => {
 
   return (
     <div>
-      <select className="ml-[650px] mb-[10px]" onChange={(event) => {
+      <select className="xs:ml-[145px] xxs:ml-[170px] sm:ml-[270px] md:ml-[330px] lg:ml-[450px] xl:ml-[650px] mb-[10px]" onChange={(event) => {
         dispatch(fetchDataNetVolume(event.target.value));
         setTitle(event.target.value)
       }}>

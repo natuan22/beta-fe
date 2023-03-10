@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import Banner from "./components/Banner";
 import BarChartLeft from "./components/BarChartLeft";
 import BarChartRight from "./components/BarChartRight";
-import Carousel from "./components/Carousel";
+import InternationalIndex from "./components/InternationalIndex";
 import GeneralIndustry from "./components/GeneralIndustry";
 import Events from "./components/Events";
 import Top10Sell from "./components/Top10Sell";
@@ -24,7 +24,7 @@ import StackingAreas from "./components/StackingAreas";
 import NetVolumeTrade from "./components/NetVolumeTrade";
 import TableMarketLiquidity from "./components/TableMarketLiquidity";
 import {
-  fetchDataCarousel,
+  fetchDataInternationalIndex,
   fetchDataTableDetail,
   fetchDataBarChartRight,
   fetchDataBarChartLeft,
@@ -83,7 +83,7 @@ const Home = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchDataCarousel);
+    dispatch(fetchDataInternationalIndex);
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataBarChartRight);
     dispatch(fetchDataBarChartLeft("VNINDEX"));
@@ -108,7 +108,7 @@ const Home = () => {
           </div>
 
           <div className='w-[95%]'>
-            <Carousel />
+            <InternationalIndex />
             <News />
 
             <div>
