@@ -62,7 +62,7 @@ const NetVolumeTrade = () => {
     yAxis: [
       {
         title: {
-          text: "Tỷ VNĐ",
+          text: "T VNĐ",
           style: {
             color: "#fff",
           },
@@ -75,6 +75,7 @@ const NetVolumeTrade = () => {
       },
       {
         title: {
+          text: "",
           style: {
             color: "#fff",
           },
