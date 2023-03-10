@@ -1,15 +1,15 @@
 import axios from "axios";
 
-export const fetchDataCarousel = async (dispatch) => {
+export const fetchDataInternationalIndex = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/chiso/quocte",
+      url: "http://192.168.15.181:3001/api/v1/stock/international-index",
       method: "GET",
     });
     dispatch({
-      type: "beta/UPDATE_DATA_CAROUSEL",
-      payload: res,
+      type: "beta/UPDATE_DATA_INTERNATIONAL_INDEX",
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);
@@ -55,7 +55,7 @@ export const fetchDataEvents = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.174:3000/lichsukien.dat",
+      url: "http://192.168.15.181:3001/api/v1/stock/get-events",
       method: "GET",
     });
     dispatch({
