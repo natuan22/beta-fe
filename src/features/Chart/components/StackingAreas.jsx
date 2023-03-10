@@ -24,6 +24,9 @@ const StackingAreas = () => {
   const dataDecline = dataStackingChart.data?.map((item) => item.decline);
   const dataNoChange = dataStackingChart.data?.map((item) => item.noChange);
   const options = {
+    accessibility: {
+      enabled: false
+    },
     credits: false,
     chart: {
       type: "area",
@@ -125,7 +128,6 @@ const StackingAreas = () => {
                 }
               });
               setHoveredValue(hoveredValues);
-              console.log(hoveredValues)
             },
             mouseOut: function () {
               setHoveredValue(null);

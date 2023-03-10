@@ -3,21 +3,19 @@ import { useSelector } from 'react-redux';
 import ReactApexChart from 'react-apexcharts';
 
 const Top10Incr = () => {
-  const dataDiemAnhHuong5PhienTang = useSelector(state => state.chart.dataDiemAnhHuong5PhienTang);
-  const [data, setData] = useState(dataDiemAnhHuong5PhienTang)
+  const dataROC5PhienTang = useSelector(state => state.chart.dataROC5Phien);
+  const [data, setData] = useState([])
 
   useEffect(() => {
-    setData(dataDiemAnhHuong5PhienTang)
-  }, [dataDiemAnhHuong5PhienTang])
+    if (dataROC5PhienTang.data)
+      setData(dataROC5PhienTang.data)
+  }, [dataROC5PhienTang])
 
-  const sortedData = data && data.data ? [...data.data].sort((a, b) => a.value - b.value) : []
-  const top10 = sortedData.slice(-10).sort(function () {
-    return -1;
-  })
+  const incr10 = data.slice(0, 10)
 
   const series = [{
     name: 'Tăng',
-    data: top10.map(item => item.value),
+    data: incr10.map(item => item.ROC_5.toFixed(2)),
   }]
 
   const options = {
@@ -67,7 +65,7 @@ const Top10Incr = () => {
       },
     },
     xaxis: {
-      categories: top10.map(item => item.ticker),
+      categories: incr10.map(item => item.ticker),
       labels: {
         show: true,
         formatter: function (y) {

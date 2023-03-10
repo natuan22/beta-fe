@@ -5,19 +5,21 @@ import { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 const Top10Sell = () => {
-    const dataTop10Sell = useSelector(state => state.chart.dataTop10Sell);
-    const [data, setData] = useState(dataTop10Sell)
+    const dataTopNetForeignChange = useSelector(state => state.chart.dataTopNetForeignChange);
+    const [data, setData] = useState([])
 
     useEffect(() => {
-        setData(dataTop10Sell)
-    }, [dataTop10Sell])
+        if (dataTopNetForeignChange.data)
+            setData(dataTopNetForeignChange.data)
+    }, [dataTopNetForeignChange])
 
-    const sortedData = data && data.data ? [...data.data].sort((a, b) => a.value - b.value) : []
-    const last10 = sortedData.slice(0, 10)
+    const netSell = data.slice(-10).sort(function () {
+        return -1;
+    })
 
     const series = [{
         name: 'Bán',
-        data: last10.map(item => item.value),
+        data: netSell.map(item => item.net_value.toFixed(2)),
     }]
 
     const options = {
@@ -67,7 +69,7 @@ const Top10Sell = () => {
             },
         },
         xaxis: {
-            categories: last10.map(item => item.ticker),
+            categories: netSell.map(item => item.ticker),
             labels: {
                 show: true,
                 formatter: function (y) {
