@@ -1,4 +1,5 @@
 import React from "react";
+import { FaFacebookSquare, FaGooglePlusSquare } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const Signin = () => {
@@ -86,13 +87,13 @@ const Signin = () => {
                   htmlFor="remember"
                   className="ml-2 text-sm font-medium text-white dark:text-gray-300"
                 >
-                 Ghi nhớ đăng nhập
+                  Ghi nhớ đăng nhập
                 </label>
               </div>
               <button
                 type="submit"
                 className="border-none  text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                style={{backgroundImage: 'linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)'}}
+                style={{ backgroundImage: 'linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)' }}
               >
                 Đăng nhập
               </button>
@@ -100,7 +101,7 @@ const Signin = () => {
             <div>
               <FaFacebookSquare />
               <FaGooglePlusSquare />
-              
+
             </div>
           </div>
         </div>
