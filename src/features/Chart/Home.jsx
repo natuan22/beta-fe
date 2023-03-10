@@ -95,7 +95,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchDataAreaChart1)
     dispatch(fetchDataAreaChart2)
-    dispatch(fetchDataWidthMarket('HNX'))
+    dispatch(fetchDataWidthMarket('VNINDEX'))
     dispatch(fetchDataNetVolume("vnindex"))
   }, [dispatch])
 

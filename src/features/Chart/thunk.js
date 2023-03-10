@@ -175,10 +175,11 @@ export const fetchDataTreeMapSell = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.174:3000/foreignsell.dat",
+      url: "http://192.168.15.181:3001/api/v1/stock/net-foreign",
       method: "GET",
       params: {
-        exchange: index || undefined
+        exchange: index || undefined,
+        transaction: 1
       }
     });
     dispatch({
@@ -194,10 +195,11 @@ export const fetchDataTreeMapBuy = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.15.174:3000/foreignbuy.dat",
+      url: "http://192.168.15.181:3001/api/v1/stock/net-foreign",
       method: "GET",
       params: {
-        exchange: index || undefined
+        exchange: index || undefined,
+        transaction: 0
       }
     });
     dispatch({

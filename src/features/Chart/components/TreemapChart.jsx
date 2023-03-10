@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Chart } from "react-google-charts";
 import { useSelector } from "react-redux";
+import Loading from "../utils/Loading";
 
 const TreeMapChart = () => {
   const dataTreemapBuy = useSelector((state) => state.chart.dataTreemapBuy);
-  const [data = dataTreemapBuy.recordset || []] = useState();
+  const [data = dataTreemapBuy.data || []] = useState();
 
   const arrGlobal = [
     [
@@ -17,15 +18,15 @@ const TreeMapChart = () => {
   // tạo 1 trường AddedLv2Value => chạy vòng lặp xét item.lv2 có trong addedValue chưa nếu chưa thì thực hiện arrGlobal.push([item.lv2, "Global", 0, 0]); và ngược lại
   const addedLv2Values = new Set();
   data.forEach((item) => {
-    if (!addedLv2Values.has(item.lv2)) {
-      arrGlobal.push([item.lv2, "Khối ngoại mua ròng", 0]);
-      addedLv2Values.add(item.lv2);
+    if (!addedLv2Values.has(item.LV2)) {
+      arrGlobal.push([item.LV2, "Khối ngoại mua ròng", 0]);
+      addedLv2Values.add(item.LV2);
     }
   });
   const arrTicker = data.map((item) => {
     return [
       `${item.ticker}: ${item.total_value_buy}`,
-      item.lv2,
+      item.LV2,
       item.total_value_buy,
     ];
   });
@@ -85,7 +86,7 @@ const TreeMapChart = () => {
       width={"100%"}
       height={"500px"}
       chartType="TreeMap"
-      loader={<div>Loading Chart</div>}
+      loader={<div><Loading /></div>}
       data={dataTreeMapRender}
       options={options}
       rootProps={{ "data-testid": "1" }}
