@@ -48,6 +48,7 @@ const Signin = () => {
           <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
           <NavLink className="text-white no-underline">Pháp lý</NavLink>
         </nav>
+{/* phone */}
         <div className="signIn xs:flex lg:hidden flex-col items-center relative mt-8 xs:w-[250px] w-[60%] h-[600px] sm:w-[70%] md:left-[96px] sm:left-[76px] xxs:left-[46px] xs:left-[26px]"
           style={{
             backgroundImage:
@@ -63,16 +64,18 @@ const Signin = () => {
           <form className="flex flex-col justify-center items-center w-[60%]">
             <div className="relative z-0 w-full mb-6 group">
               <input
-                type="email"
+                type="tel"
                 id="floating_email"
                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
+                onChange={handleChange}
+                value={loginInfo.phone}
               />
               <label
                 htmlFor="floating_email"
                 className="text-white peer-focus:font-medium absolute text-sm  dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Tài khoản
+                Số ĐT
               </label>
             </div>
             <div className="relative z-0 w-full mb-6 group">
@@ -81,6 +84,8 @@ const Signin = () => {
                 id="floating_email"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
+                onChange={handleChange}
+                value={loginInfo.password}
               />
               <label
                 htmlFor="floating_email"
@@ -94,18 +99,18 @@ const Signin = () => {
                 <input
                   id="remember"
                   type="checkbox"
-                  defaultValue
+                  
                   className=" w-5 h-5 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                  required
                 />
               </div>
               <label
                 htmlFor="remember"
-                className="ml-2 text-sm font-medium text-white dark:text-gray-300"
+                className="ml-2  text-sm font-medium text-white dark:text-gray-300"
               >
                 Ghi nhớ đăng nhập
               </label>
             </div>
+            <p className="my-2 text-start text-amber-500 absolute">{loginMessage}</p>
             <button
               type="submit"
               className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -113,6 +118,7 @@ const Signin = () => {
                 backgroundImage:
                   " linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)",
               }}
+              onClick={handleSubmit}
             >
               Đăng nhập
             </button>
@@ -172,7 +178,7 @@ const Signin = () => {
             </NavLink>
           </div>
         </div>
-
+{/* tablet , desktop */}
         <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] mt-8 flex">
           <div className="relative w-[60%] z-10">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
@@ -246,14 +252,12 @@ const Signin = () => {
                   Mật khẩu
                 </label>
               </div>
-              <div className="flex items-start mb-6">
-                <div className="flex items-center h-5">
+              <div className="flex items-start mb-6 mt-3">
+                <div className="flex items-center h-5 ">
                   <input
                     id="remember"
                     type="checkbox"
-                    defaultValue
                     className=" w-5 h-5 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                    required
                   />
                 </div>
                 <label
@@ -263,7 +267,7 @@ const Signin = () => {
                   Ghi nhớ đăng nhập
                 </label>
               </div>
-              <p className="my-2 text-start text-amber-500">{loginMessage}</p>
+              <p className="my-2 text-start text-amber-500 absolute">{loginMessage}</p>
               <button
                 type="submit"
                 className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -277,7 +281,7 @@ const Signin = () => {
               </button>
             </form>
             <a className="text-white mb-6" href="bsi.com.vn"><i>Quên mật khẩu ?</i></a>
-            <div className="w-[50%] flex justify-around">
+            <div className="w-[50%] flex justify-around ">
               <img
                 src="http://192.168.15.181:3001/resources/images/google-logo.png"
                 alt="logo"

@@ -13,7 +13,8 @@ const BarChartLeft = () => {
   const top10 = sortedData.slice(0, 10);
   const bottom10 = sortedData.slice(-10);
   const dataStockRender = top10.concat(bottom10)
-
+  const top1 = sortedData.slice(0,1)
+  console.log(top1)
   const series = [
     {
       name: "Volume trade",
