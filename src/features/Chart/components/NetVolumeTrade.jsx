@@ -32,15 +32,18 @@ const NetVolumeTrade = () => {
   const options = {
     chart: {
       backgroundColor: "transparent", // màu nền của biểu đồ
+      style: {
+        fontFamily: 'Roboto'
+      }
     },
     accessibility: {
       enabled: false
     },
     credits: false,
     title: {
-      text: "Giá trị giao dịch ròng",
+      text: "GIÁ TRỊ GIAO DỊCH RÒNG",
       style: {
-        color: '#fff'
+        color: '#F1950C'
       }
     },
     xAxis: {
@@ -59,7 +62,7 @@ const NetVolumeTrade = () => {
     yAxis: [
       {
         title: {
-          text: "Tỉ VNĐ",
+          text: "T VNĐ",
           style: {
             color: "#fff",
           },
@@ -72,7 +75,7 @@ const NetVolumeTrade = () => {
       },
       {
         title: {
-          text: "Điểm",
+          text: "",
           style: {
             color: "#fff",
           },

@@ -25,13 +25,12 @@ const Signin = () => {
                 <br /> động cung cấp thông tin định kỳ đến NĐT
               </span>
               <div className="flex items-center mt-2">
-                <button className="bg-transparent border-none mr-2">
-                  <a href="bsi.com.vn" className="text-yellow-300">
-                    Xem chi tiết
-                  </a>
-                </button>
-                <FaAngleDoubleRight className="text-yellow-300" />
+              <button className="bg-transparent border-none mr-2">
+                <a href="bsi.com.vn" className="text-yellow-300">Xem chi tiết</a>
+              </button>
+              <FaAngleDoubleRight className="text-yellow-300" />
               </div>
+             
             </div>
             <img
               src="http://192.168.15.181:3001/resources/images/img6.png"
@@ -63,8 +62,9 @@ const Signin = () => {
                   placeholder=" "
                 />
                 <label
-                  htmlFor="floating_email"
-                  className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-white dark:text-white"
+                  
                 >
                   Tài khoản
                 </label>
@@ -111,10 +111,8 @@ const Signin = () => {
                 Đăng nhập
               </button>
             </form>
-            <a className="text-white mt-2" href="bsi.com.vn">
-              Quên mật khẩu ?
-            </a>
-            <div className="w-[50%] flex justify-around mt-5 absolute bottom-[20%]">
+            <a className="text-white mt-2" href="bsi.com.vn">Qên mật khẩu ?</a>
+            <div className="w-[50%] flex justify-around mt-5">
               <img
                 src="http://192.168.15.181:3001/resources/images/fb-logo.png"
                 className="w-6 h-6"
