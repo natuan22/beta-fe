@@ -3,10 +3,12 @@ import { NavLink } from "react-router-dom";
 import { Input } from "antd";
 import { BellOutlined, MessageOutlined } from "@ant-design/icons";
 import { Transition } from "@headlessui/react";
-
+import { useSelector } from "react-redux";
+import { FaUserCircle } from "react-icons/fa";
 const { Search } = Input;
 
 const Header = () => {
+  const isLogin = useSelector((state) => state.authen.userData);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -21,7 +23,8 @@ const Header = () => {
                       className="w-[87px] h-[33px]"
                       src="https://trading.bsi.com.vn/static/media/075_login_logo.4ad0d1515acb4e3474cf.png"
                       alt="Beta logo"
-                    /></a>
+                    />
+                  </a>
                 </div>
                 <div className="xl:hidden w-max">
                   <div className="ml-4 flex items-baseline space-x-0">
@@ -143,26 +146,38 @@ const Header = () => {
                   />
                 </div>
                 <div className="hidden xl:block">
-                  <NavLink
-                    to="/signin"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "ml-1 no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "ml-1 no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                    }
-                  >
-                    Sign in
-                  </NavLink>
-                  <NavLink
-                    to="/signup"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                    }
-                  >
-                    Sign up
-                  </NavLink>
+                  {isLogin?.data ? (
+                    <div className="relative">
+                      <span className="text-white ml-2 text-sm flex items-center font-medium">
+                        <FaUserCircle className="text-white mr-2 text-xl" />
+                        {isLogin?.data?.name}
+                      </span>
+                      <div className="absolute w-2 h-2 rounded-full bg-green-400 bottom-0 left-[18%]"></div>
+                    </div>
+                  ) : (
+                    <div>
+                      <NavLink
+                        to="/signin"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "ml-1 no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "ml-1 no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        }
+                      >
+                        Sign in
+                      </NavLink>
+                      <NavLink
+                        to="/signup"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        }
+                      >
+                        Sign up
+                      </NavLink>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="-mr-2 flex xl:hidden">
