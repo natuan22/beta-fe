@@ -1,9 +1,41 @@
 import clsx from "clsx";
-import React from "react";
+import { useFormik } from "formik";
+import React, { useEffect, useState } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {  NavLink, useNavigate } from "react-router-dom";
+import { userLoginAction } from "./thunk";
 import "./utils/authen.css";
 const Signin = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const [loginInfo, setLoginInfo] = useState({ phone: "", password: "" });
+  const handleChange = (e) => {
+    setLoginInfo({
+      ...loginInfo,[e.target.name] : e.target.value,
+    })
+  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await dispatch(userLoginAction(loginInfo)); // gửi thông tin đăng nhập
+    console.log(loginInfo)
+    setLoginInfo({ phone: "", password: "" }); // clear form
+
+  };
+  const isLogin = useSelector(state => state.authen.userData)
+  const loginMessage = useSelector(state => state.authen.loginMessage)
+  useEffect(() => {
+    !isLogin?.data ? navigate("/signin") : navigate("/");
+  }, [isLogin, navigate]);
+  const {} = useFormik({
+    initialValues: {
+      phone: '',
+      password: '', 
+    },
+    onSubmit: (values) => {
+      console.log(values)
+    }
+  })
   return (
     <div className="bg-signinBackground bg-auto bg-no-repeat h-[764px]">
       <div className="container mx-auto h-auto p-[30px] w-[80%] relative">
@@ -180,17 +212,21 @@ const Signin = () => {
             />
             <form className="flex flex-col justify-center items-center w-[60%]">
               <div className="relative z-0 w-full mb-6 group">
-                <input
-                  type="email"
+              <input
+                  type="tel"
+
                   id="floating_email"
                   className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
+                  name="phone"
+                  onChange={handleChange}
+                  value={loginInfo.phone}
                 />
                 <label
                   htmlFor="floating_email"
                   className="text-white peer-focus:font-medium absolute text-sm  dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
-                  Tài khoản
+                  Số ĐT
                 </label>
               </div>
               <div className="relative z-0 w-full mb-6 group">
@@ -199,6 +235,9 @@ const Signin = () => {
                   id="floating_email"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
+                  name="password"
+                  onChange={handleChange}
+                  value={loginInfo.password}
                 />
                 <label
                   htmlFor="floating_email"
@@ -224,6 +263,7 @@ const Signin = () => {
                   Ghi nhớ đăng nhập
                 </label>
               </div>
+              <p className="my-2 text-start text-amber-500">{loginMessage}</p>
               <button
                 type="submit"
                 className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -231,6 +271,7 @@ const Signin = () => {
                   backgroundImage:
                     " linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)",
                 }}
+                onClick={handleSubmit}
               >
                 Đăng nhập
               </button>
