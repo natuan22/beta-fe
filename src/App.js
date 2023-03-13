@@ -17,17 +17,11 @@ function App() {
         {routes.map(({ path, component: Component }, children) => {
           return (
             <Route key={path} path={path} element={< Component />} >
-              {/* {children?.map( ({path, component: Component}) => {
-          return (
-            <Route path={path} element={< Component />}  />
-          )
-        })} */}
+             
             </Route>
           )
         })}
-        {/* component: Component (gọi là Alias) */}
-        {/* <Route path='/demoquery' element={<DemoQuery />} /> */}
-        {/* <Route path='/demoquery:title' element={<DemoQuery />} /> */}
+        
       </Routes>
     </BrowserRouter>
     // </HistoryRouter>

@@ -1,7 +1,8 @@
+import clsx from "clsx";
 import React from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-
+import "./utils/authen.css";
 const Signin = () => {
   return (
     <div className="bg-signinBackground bg-auto bg-no-repeat bg-center ">
@@ -16,31 +17,32 @@ const Signin = () => {
           <NavLink className="text-white no-underline">Pháp lý</NavLink>
         </nav>
         <div className="bg-signinColor w-[1190px] h-[600px]  mt-8 flex">
-          <div className="relative w-[60%] ">
+          <div className="relative w-[60%] z-10">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>
               <span className="text-white translate-x-[10%] translate-y-[15%]">
-                Báo cáo phân tích tùy biến tự<br /> động cung cấp thông tin định kỳ
-                đến NĐT
+                Báo cáo phân tích tùy biến tự
+                <br /> động cung cấp thông tin định kỳ đến NĐT
               </span>
               <div className="flex items-center mt-2">
-              <button className="bg-transparent border-none mr-2">
-                <a href="bsi.com.vn" className="text-yellow-300">Xem chi tiết</a>
-              </button>
-              <FaAngleDoubleRight className="text-yellow-300" />
+                <button className="bg-transparent border-none mr-2">
+                  <a href="bsi.com.vn" className="text-yellow-300">
+                    Xem chi tiết
+                  </a>
+                </button>
+                <FaAngleDoubleRight className="text-yellow-300" />
               </div>
-             
             </div>
             <img
               src="http://192.168.15.181:3001/resources/images/img6.png"
-              width="90%"
+              width="100%"
               height="80%"
               alt="imgSignin"
-              className="translate-x-[13%] translate-y-[20%]"
+              className=" translate-y-[20%]"
             />
           </div>
           <div
-            className="w-[40%] flex flex-col items-center"
+            className="w-[40%] flex flex-col items-center relative signIn"
             style={{
               backgroundImage:
                 " linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)  ",
@@ -53,35 +55,33 @@ const Signin = () => {
               height="160px"
             />
             <form className="flex flex-col justify-center items-center">
-              <div className="mb-6">
+              <div className="relative z-0 w-full mb-6 group">
+                <input
+                  type="email"
+                  id="floating_email"
+                  className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
                 <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-white dark:text-white"
-                  
+                  htmlFor="floating_email"
+                  className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Tài khoản
                 </label>
-                <input
-                  type="text"
-                  id="email"
-                  className="w-full bg-signinColor text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Email/Số điện thoại"
-                  required
-                />
               </div>
-              <div className="mb-6">
+              <div className="relative z-0 w-full mb-6 group">
+                <input
+                  type="password"
+                  id="floating_email"
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
                 <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-white dark:text-white"
+                  htmlFor="floating_email"
+                  className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Mật khẩu
                 </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="w-full bg-signinColor text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required
-                />
               </div>
               <div className="flex items-start mb-6">
                 <div className="flex items-center h-5">
@@ -102,17 +102,19 @@ const Signin = () => {
               </div>
               <button
                 type="submit"
-                className="border-none  text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="border-none   text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 style={{
                   backgroundImage:
-                    "linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)",
+                    " linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)",
                 }}
               >
                 Đăng nhập
               </button>
             </form>
-            <a className="text-white mt-2" href="bsi.com.vn">Qên mật khẩu ?</a>
-            <div className="w-[50%] flex justify-around mt-5">
+            <a className="text-white mt-2" href="bsi.com.vn">
+              Quên mật khẩu ?
+            </a>
+            <div className="w-[50%] flex justify-around mt-5 absolute bottom-[20%]">
               <img
                 src="http://192.168.15.181:3001/resources/images/fb-logo.png"
                 className="w-6 h-6"
@@ -136,8 +138,33 @@ const Signin = () => {
                 className="w-6 h-6"
               />
             </div>
-            <div className="w-[80%]">
-
+            <div className="absolute bottom-[10%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
+              <NavLink
+                to="/signin"
+                className={(params) => {
+                  const classes =
+                    " w-[60%] text-white rounded-full text-xs no-underline text-center leading-6";
+                  if (params.isActive) {
+                    return clsx("bg-[#1d6096]", classes);
+                  }
+                  return clsx("bg-transparent", classes);
+                }}
+              >
+                Đăng nhập
+              </NavLink>
+              <NavLink
+                to="/signup"
+                className={(params) => {
+                  const classes =
+                    " w-[60%] text-white rounded-full text-xs no-underline text-center leading-6";
+                  if (params.isActive) {
+                    return clsx("bg-[#1d6096]", classes);
+                  }
+                  return clsx("bg-transparent", classes);
+                }}
+              >
+                Đăng ký
+              </NavLink>
             </div>
           </div>
         </div>
