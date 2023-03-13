@@ -125,7 +125,7 @@ export const fetchDataGoodsDetail = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/hanghoa",
+      url: "http://192.168.15.181:3001/api/v1/stock/merchandise-price?type=0",
       method: "GET",
     });
     dispatch({
@@ -142,13 +142,13 @@ export const fetchDataRateDetail = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/ngoaite",
+      url: "http://192.168.15.181:3001/api/v1/stock/merchandise-price?type=1",
       method: "GET",
     });
     dispatch({
       type: "beta/UPDATE_DATA_RATEDETAIL",
 
-      payload: res,
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);

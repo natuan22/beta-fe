@@ -10,9 +10,9 @@ const GoodsDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (dataGoods[0]) {
+    if (dataGoods.data) {
       setLoading(false);
-      setData(dataGoods);
+      setData(dataGoods.data);
     }
   }, [dataGoods]);
 
@@ -49,7 +49,7 @@ const GoodsDetail = () => {
                     return (
                       <tr key={index} className='hover:bg-gray-900'>
                         <th className="text-left align-middle text-sm whitespace-nowrap px-3 py-3.5 text-white">
-                          {item.name}
+                          {item.name} ({item.unit})
                         </th>
                         <td className={`text-right align-middle text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
                           <CurrencyFormat value={item.price.toFixed(2)} displayType={'text'} thousandSeparator={true} />
