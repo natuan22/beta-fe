@@ -10,10 +10,10 @@ const News = () => {
     return (
         <div className="bg-gray-800">
             <Marquee speed={5} pauseOnHover="true" gradientColor="[0,0,0]">
-                <div className="blog-news flex" style={{ height: "150px" }}>
+                <div className="blog-news flex " style={{ height: "150px" }}>
                     {dataNews.data?.map((item, index) => {
                         return (
-                            <Card key={index} bordered={false} className='w-[450px] h-[90px] bg-[#1F2937]'>
+                            <Card key={index} bordered={false} className='w-[480px] h-[90px] bg-[#1F2937]'>
                                 <div className="flex items-center">
 
                                     <a href={item.Href} target="_blank" rel="noopener noreferrer">
