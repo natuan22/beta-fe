@@ -291,7 +291,7 @@ const Home = () => {
             </div>
 
             <div>
-              <div className="lg:block xl:flex mx-2 my-1 px-1.5 py-1.5 bg-[#151924]">
+              <div className="lg:block xl:flex mr-2 ml-1 my-1 px-1.5 py-1.5 bg-[#151924]">
                 <div className="xl:w-[65%]">
                   <div className="mx-2 my-1 px-1.5 py-1.5">
                     <AreaChart />
@@ -315,7 +315,7 @@ const Home = () => {
               </div>
             </div>
             <div>
-              <div className="xl:flex lg:block mx-2 my-1 px-1.5 py-1.5 bg-[#151924]">
+              <div className="xl:flex lg:block mr-2 ml-1 my-2 px-1.5 py-1.5 bg-[#151924]">
                 <div className="xl:w-[65%]">
                   <div>
                     <StackingAreas />
@@ -328,7 +328,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="mr-2 ml-1 my-2 px-1.5 py-1.5 bg-[#151924]">
               <div>
                 <NetVolumeTrade />
               </div>

@@ -31,7 +31,7 @@ const NetVolumeTrade = () => {
   // console.log(dataForeign, dataProprietary, dataRetail, dataExchange);
   const options = {
     chart: {
-      backgroundColor: "transparent", // màu nền của biểu đồ
+      backgroundColor: "black", // màu nền của biểu đồ
       style: {
         fontFamily: 'Roboto'
       }
@@ -128,7 +128,7 @@ const NetVolumeTrade = () => {
   };
 
   return (
-    <div>
+    <div className="bg-black pt-2">
       <select className="xs:ml-[145px] xxs:ml-[170px] sm:ml-[270px] md:ml-[330px] lg:ml-[450px] xl:ml-[650px] mb-[10px]" onChange={(event) => {
         dispatch(fetchDataNetVolume(event.target.value));
         setTitle(event.target.value)
