@@ -9,6 +9,7 @@ module.exports = {
       lg: "1024px",
       xl: "1280px",
       "2xl": "1536px",
+      "3xl": "1920px",
     },
     extend: {
       backgroundImage: {
@@ -20,7 +21,7 @@ module.exports = {
         'inputBackground1': "rgba(59, 24, 130, 0.75)",
         'inputBackground2': ' rgba(158, 24, 99, 0.75)',
         'backgroundBtn': 'rgba(0,0,0,0.4)'
-        
+
       },
       height: {
         100: "800px",
