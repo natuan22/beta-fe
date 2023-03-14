@@ -7,7 +7,7 @@ const InternationalIndex = () => {
   const dataInternationalIndex = useSelector((state) => state.chart.dataInternationalIndex);
 
   return (
-    <div className="bg-gray-800">
+    <div className="bg-black pt-3">
       <Marquee speed={70} pauseOnHover="true" gradientColor="[0,0,0]">
         <div className="flex">
           {dataInternationalIndex.data?.map((item, index) => {

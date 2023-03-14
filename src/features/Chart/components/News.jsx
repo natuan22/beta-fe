@@ -8,12 +8,12 @@ const News = () => {
     const dataNews = useSelector((state) => state.chart.dataNews);
 
     return (
-        <div className="bg-gray-800">
+        <div className="bg-black">
             <Marquee speed={5} pauseOnHover="true" gradientColor="[0,0,0]">
-                <div className="blog-news flex " style={{ height: "150px" }}>
+                <div className="blog-news flex h-[120px]">
                     {dataNews.data?.map((item, index) => {
                         return (
-                            <Card key={index} bordered={false} className='w-[500px] h-[90px] bg-[#1F2937]'>
+                            <Card bodyStyle={{ paddingTop: "15px", paddingBottom: '5px', paddingLeft: '5px', paddingRight: '5px' }} key={index} bordered={false} className='w-[500px] h-[90px] bg-black'>
                                 <div className="flex items-center">
 
                                     <a href={item.Href} target="_blank" rel="noopener noreferrer">

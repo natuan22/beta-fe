@@ -101,13 +101,13 @@ const Home = () => {
 
   return (
     <>
-      <div className="mx-auto bg-slate-800">
+      <div className="mx-auto bg-black">
         <div className="flex">
           <div className="w-[5%]">
             <Banner />
           </div>
 
-          <div className='w-[95%]'>
+          <div className='w-[95%] bg-black'>
             <InternationalIndex />
             <News />
 
