@@ -34,7 +34,7 @@ const GeneralIndustry = () => {
       <section className="bg-blueGray-50">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
-            <div className="block w-full overflow-y-scroll xs:h-[430px] xxs:h-[430px] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[663px] bg-[#000000]">
+            <div className="block w-full overflow-y-scroll xs:h-[438px] xxs:h-[430px] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[663px] 3xl:h-[735px] bg-[#000000]">
               <table className="items-center w-full border-collapse bg-[#000000]">
                 <thead className="sticky top-0 bg-gradient-to-b from-cyan-800 to-black z-30">
                   <tr>
