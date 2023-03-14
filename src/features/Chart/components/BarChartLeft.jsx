@@ -13,7 +13,7 @@ const BarChartLeft = () => {
   const top10 = sortedData.slice(0, 10);
   const bottom10 = sortedData.slice(-10);
   const dataStockRender = top10.concat(bottom10)
-  const top1 = sortedData.slice(0,1)
+  const top1 = sortedData.slice(0, 1)
   console.log(top1)
   const series = [
     {
@@ -95,11 +95,13 @@ const BarChartLeft = () => {
   };
 
   return (
-    <ReactApexChart
-      options={options}
-      series={series}
-      type="bar"
-    />
+    <div className="3xl:h-[342px] xl:h-[272px]">
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="bar"
+      />
+    </div >
   );
 };
 

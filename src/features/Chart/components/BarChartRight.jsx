@@ -66,7 +66,7 @@ const BarChartRight = () => {
     xaxis: {
       categories: data?.map((item) => item.ticker),
       labels: {
-        rotate: -90,
+
         style: {
           fontSize: '10px',
           fontWeight: "bold",
@@ -87,12 +87,13 @@ const BarChartRight = () => {
   ];
 
   return (
-    <ReactApexChart
-      options={options}
-      series={series}
-      type="bar"
-      height={258}
-    />
+    <div className="3xl:h-[342px] xl:h-[272px]">
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="bar"
+      />
+    </div>
   );
 };
 

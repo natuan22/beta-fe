@@ -151,7 +151,7 @@ const Home = () => {
                 </div>
 
                 <div className="lg:w-[80%] xl:w-[40%] lg:translate-x-[14%] xl:translate-x-0 ">
-                  <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[664px]">
+                  <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924] xs:h-[438px] xxs:h-[430px] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[664px] 3xl:h-[734px]">
                     <GeneralIndustry />
                   </div>
                 </div>
