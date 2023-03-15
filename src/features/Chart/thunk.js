@@ -160,7 +160,7 @@ export const fetchDataGeneralIndustry = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/market-breadth`,
+      url: `${apiUrl}/api/v1/stock/industry`,
       method: "GET",
     });
     dispatch({
