@@ -46,7 +46,7 @@ const News = () => {
                                         <a href={item.Href} target="_blank" rel="noopener noreferrer">
                                             <img src={item.Img} alt={item.Title} width={175} height={95} />
                                         </a>
-                                        <div className="ml-2">
+                                        <div className="mx-3">
                                             <a href={item.Href} target="_blank" rel="noopener noreferrer">
 
 
@@ -69,6 +69,5 @@ const News = () => {
         </>
     )
 }
-
 
 export default News;

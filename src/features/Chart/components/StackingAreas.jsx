@@ -6,10 +6,7 @@ import Loading from "../utils/Loading";
 import moment from "moment";
 
 const StackingAreas = () => {
-  const dataStackingChart = useSelector(
-    (state) => state.chart.dataStackingArea
-  );
-
+  const dataStackingChart = useSelector((state) => state.chart.dataStackingArea);
 
   const [hoveredValue, setHoveredValue] = useState(null);
   if (!dataStackingChart.data || !dataStackingChart.data.length)
@@ -31,13 +28,13 @@ const StackingAreas = () => {
     chart: {
       type: "area",
       zoomType: "x",
-      backgroundColor: "transparent",
+      backgroundColor: "black",
       style: {
         fontFamily: 'Roboto'
       }
     },
     title: {
-      text: "ĐỘ RỘNG THỊ TRƯỜNG",
+      text: "",
       style: {
         color: "#F1950C",
       },

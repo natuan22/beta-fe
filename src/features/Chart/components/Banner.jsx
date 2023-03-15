@@ -9,10 +9,7 @@ const Banner = () => {
   };
 
   return (
-    <div
-      className="bg-[#151924]"
-      style={{ height: "0px", position: "relative" }}
-    >
+    <div className="bg-[#151924]" style={{ height: "0px", position: "relative" }} >
       <div>
         <div className="text-center">
           <button
@@ -32,7 +29,7 @@ const Banner = () => {
         <div
           id="drawer-navigation"
           className={`fixed top-0 left-0 z-40 w-auto h-screen p-4 overflow-y-auto transition-transform ${showSidebar ? "" : "translate-x-[-100%]  ease-in-out duration-300"
-            } bg-white dark:bg-gray-800 flex flex-col items-center justify-center`}
+            } bg-white dark:bg-[#151924] flex flex-col items-center justify-center`}
           tabIndex={-1}
           aria-labelledby="drawer-navigation-label"
         >
