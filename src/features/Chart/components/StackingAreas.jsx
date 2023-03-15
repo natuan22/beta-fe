@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import moment from "moment";
+import socket from "../utils/socket";
 
 const StackingAreas = () => {
   const dataStackingChart = useSelector(
     (state) => state.chart.dataStackingArea
   );
+    const [data, setData] = useState()
+
+  useEffect(()=> {
+    socket.on("listen-do-rong-thi-truong", (data) => {
+      console.log(data);
+    });
+  },[data])
 
 
   const [hoveredValue, setHoveredValue] = useState(null);
@@ -25,7 +33,7 @@ const StackingAreas = () => {
   const dataNoChange = dataStackingChart.data?.map((item) => item.noChange);
   const options = {
     accessibility: {
-      enabled: false
+      enabled: false,
     },
     credits: false,
     chart: {
@@ -33,8 +41,8 @@ const StackingAreas = () => {
       zoomType: "x",
       backgroundColor: "transparent",
       style: {
-        fontFamily: 'Roboto'
-      }
+        fontFamily: "Roboto",
+      },
     },
     title: {
       text: "ĐỘ RỘNG THỊ TRƯỜNG",
@@ -76,7 +84,9 @@ const StackingAreas = () => {
       },
       enabled: true,
       labelFormatter: function () {
-        const hoveredPoint = hoveredValue?.find((point) => point.name === this.name);
+        const hoveredPoint = hoveredValue?.find(
+          (point) => point.name === this.name
+        );
         const valueString = hoveredPoint ? `: ${hoveredPoint.value}` : "";
         return `${this.name}${valueString}`;
       },
@@ -106,7 +116,6 @@ const StackingAreas = () => {
         tooltip: {
           valueSuffix: " ",
         },
-
       },
       series: {
         tooltip: {
@@ -147,8 +156,8 @@ const StackingAreas = () => {
         lineColor: "#ff0000",
         lineWidth: 2,
         marker: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       {
         name: "Không đổi",
@@ -157,8 +166,8 @@ const StackingAreas = () => {
         lineColor: "#ffd51e",
         lineWidth: 2,
         marker: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       {
         name: "Tăng",
@@ -167,8 +176,8 @@ const StackingAreas = () => {
         lineColor: "#19d216",
         lineWidth: 2,
         marker: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
     ],
   };

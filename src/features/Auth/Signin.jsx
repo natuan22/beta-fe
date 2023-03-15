@@ -1,41 +1,33 @@
 import clsx from "clsx";
-import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import {  NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { userLoginAction } from "./thunk";
 import "./utils/authen.css";
 const Signin = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState({ phone: "", password: "" });
   const handleChange = (e) => {
     setLoginInfo({
-      ...loginInfo,[e.target.name] : e.target.value,
-    })
-  }
+      ...loginInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(userLoginAction(loginInfo)); // gửi thông tin đăng nhập
-    console.log(loginInfo)
+    console.log(loginInfo);
     setLoginInfo({ phone: "", password: "" }); // clear form
-
   };
-  const isLogin = useSelector(state => state.authen.userData)
-  const loginMessage = useSelector(state => state.authen.loginMessage)
+
+  const isLogin = useSelector((state) => state.authen.userData);
+  const loginMessage = useSelector((state) => state.authen.loginMessage);
   useEffect(() => {
     !isLogin?.data ? navigate("/signin") : navigate("/");
   }, [isLogin, navigate]);
-  const {} = useFormik({
-    initialValues: {
-      phone: '',
-      password: '', 
-    },
-    onSubmit: (values) => {
-      console.log(values)
-    }
-  })
+ 
   return (
     <div className="bg-signinBackground bg-auto bg-no-repeat h-[764px]">
       <div className="container mx-auto h-auto p-[30px] w-[80%] relative">
@@ -48,8 +40,9 @@ const Signin = () => {
           <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
           <NavLink className="text-white no-underline">Pháp lý</NavLink>
         </nav>
-{/* phone */}
-        <div className="signIn xs:flex lg:hidden flex-col items-center relative mt-8 xs:w-[250px] w-[60%] h-[600px] sm:w-[70%] md:left-[96px] sm:left-[76px] xxs:left-[46px] xs:left-[26px]"
+        {/* phone */}
+        <div
+          className="signIn xs:flex lg:hidden flex-col items-center relative mt-8 xs:w-[250px] w-[60%] h-[600px] sm:w-[70%] md:left-[96px] sm:left-[76px] xxs:left-[46px] xs:left-[26px]"
           style={{
             backgroundImage:
               " linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)  ",
@@ -99,7 +92,6 @@ const Signin = () => {
                 <input
                   id="remember"
                   type="checkbox"
-                  
                   className=" w-5 h-5 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                 />
               </div>
@@ -110,7 +102,9 @@ const Signin = () => {
                 Ghi nhớ đăng nhập
               </label>
             </div>
-            <p className="my-2 text-start text-amber-500 absolute">{loginMessage}</p>
+            <p className="my-2 text-start text-amber-500 absolute">
+              {loginMessage}
+            </p>
             <button
               type="submit"
               className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -123,7 +117,9 @@ const Signin = () => {
               Đăng nhập
             </button>
           </form>
-          <a className="text-white mb-6" href="bsi.com.vn"><i>Quên mật khẩu ?</i></a>
+          <a className="text-white mb-6" href="bsi.com.vn">
+            <i>Quên mật khẩu ?</i>
+          </a>
           <div className="w-[50%] flex justify-around">
             <img
               src="http://192.168.15.181:3001/resources/images/google-logo.png"
@@ -178,7 +174,7 @@ const Signin = () => {
             </NavLink>
           </div>
         </div>
-{/* tablet , desktop */}
+        {/* tablet , desktop */}
         <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] mt-8 flex">
           <div className="relative w-[60%] z-10">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
@@ -189,11 +185,12 @@ const Signin = () => {
               </span>
               <div className="flex items-center mt-2">
                 <button className="bg-transparent border-none mr-2">
-                  <a href="bsi.com.vn" className="text-yellow-300">Xem chi tiết</a>
+                  <a href="bsi.com.vn" className="text-yellow-300">
+                    Xem chi tiết
+                  </a>
                 </button>
                 <FaAngleDoubleRight className="text-yellow-300" />
               </div>
-
             </div>
             <img
               src="http://192.168.15.181:3001/resources/images/img6.png"
@@ -218,9 +215,8 @@ const Signin = () => {
             />
             <form className="flex flex-col justify-center items-center w-[60%]">
               <div className="relative z-0 w-full mb-6 group">
-              <input
+                <input
                   type="tel"
-
                   id="floating_email"
                   className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
@@ -267,7 +263,14 @@ const Signin = () => {
                   Ghi nhớ đăng nhập
                 </label>
               </div>
-              <p className="my-2 text-start text-amber-500 absolute">{loginMessage}</p>
+              {!isLogin?.data ? (
+                <p className="my-2 text-start text-amber-500 absolute">
+                  {loginMessage}
+                </p>
+              ) : (
+                ""
+              )}
+
               <button
                 type="submit"
                 className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -280,7 +283,9 @@ const Signin = () => {
                 Đăng nhập
               </button>
             </form>
-            <a className="text-white mb-6" href="bsi.com.vn"><i>Quên mật khẩu ?</i></a>
+            <a className="text-white mb-6" href="bsi.com.vn">
+              <i>Quên mật khẩu ?</i>
+            </a>
             <div className="w-[50%] flex justify-around ">
               <img
                 src="http://192.168.15.181:3001/resources/images/google-logo.png"
@@ -337,7 +342,7 @@ const Signin = () => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

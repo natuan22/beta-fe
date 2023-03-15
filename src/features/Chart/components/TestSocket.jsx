@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { io } from 'socket.io-client'
+const socketUrl = process.env.REACT_APP_SOCKET_URL;
+
 const TestSocket = () => {
-  const hostSocket ='http://192.168.15.181:3001/socket'
-  const socket = io(hostSocket, {transports: ['websocket']});
+  
+  const socket = io(socketUrl, {transports: ['websocket']});
 
 
  useEffect(()=> {
