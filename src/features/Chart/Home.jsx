@@ -293,6 +293,9 @@ const Home = () => {
             <div>
               <div className="lg:block xl:flex mr-2 ml-1 my-1 px-1.5 py-1.5 bg-[#151924]">
                 <div className="xl:w-[65%]">
+                  <div className="text-center text-[#F1950C]">
+                    <h3 className="p-2 uppercase">Thanh khoản thị trường</h3>
+                  </div>
                   <div className="mx-2 my-1 px-1.5 py-1.5">
                     <AreaChart />
                   </div>
@@ -318,6 +321,9 @@ const Home = () => {
               <div className="xl:flex lg:block mr-2 ml-1 my-2 px-1.5 py-1.5 bg-[#151924]">
                 <div className="xl:w-[65%]">
                   <div>
+                    <div className="text-center text-[#F1950C]">
+                      <h3 className="p-2 uppercase">Độ rộng thị trường</h3>
+                    </div>
                     <StackingAreas />
                   </div>
                 </div>
