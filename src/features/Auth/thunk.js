@@ -26,9 +26,9 @@ export const userLoginAction = (data) => async (dispatch) => {
   }
 };
 
-export const userRegister = (FormData) => async (dispatch   ) => {
+export const userRegister = (FormData) => async (dispatch) => {
   try {
-     const res = await axios({
+    const res = await axios({
       url: `${apiUrl}/api/v1/auth/register`,
       header: {
         withCredentials: true,
@@ -41,7 +41,7 @@ export const userRegister = (FormData) => async (dispatch   ) => {
       type: authenTypes.USER_REGISTER,
       payload: FormData,
     });
-    
+
   } catch (err) {
     console.log(err);
   }

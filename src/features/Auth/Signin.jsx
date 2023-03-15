@@ -173,7 +173,7 @@ const Signin = () => {
         </div>
 
         {/* tablet , desktop */}
-        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] 2xl:w-[1240px] 2xl:h-[90vh] 3xl:w-[1540px] 3xl:h-[100vh] mt-8 flex">
+        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] 2xl:w-[1240px] 2xl:h-[750px] 3xl:w-[1540px] 3xl:h-[800px] mt-8 flex">
           <div className="relative w-[60%] z-10">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>
