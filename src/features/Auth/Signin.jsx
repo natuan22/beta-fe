@@ -27,7 +27,7 @@ const Signin = () => {
   useEffect(() => {
     !isLogin?.data ? navigate("/signin") : navigate("/");
   }, [isLogin, navigate]);
- 
+
   return (
     <div className="bg-signinBackground bg-auto bg-no-repeat bg-cover">
       <div className="container mx-auto h-auto p-[30px] w-[80%] relative">
@@ -38,6 +38,7 @@ const Signin = () => {
           <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
           <NavLink className="text-white no-underline">Pháp lý</NavLink>
         </nav>
+
         {/* phone */}
         <div
           className="signIn xs:flex lg:hidden flex-col items-center relative mt-8 xs:w-[250px] w-[60%] h-[600px] sm:w-[70%] md:left-[96px] sm:left-[76px] xxs:left-[46px] xs:left-[26px]"
@@ -66,7 +67,7 @@ const Signin = () => {
                 htmlFor="floating_email"
                 className="text-white peer-focus:font-medium absolute text-sm  dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Số ĐT
+                Số điện thoại
               </label>
             </div>
             <div className="relative z-0 w-full mb-6 group">
@@ -146,7 +147,7 @@ const Signin = () => {
               to="/signin"
               className={(params) => {
                 const classes =
-                  " w-[60%] text-white rounded-full text-xs no-underline text-center leading-6";
+                  "w-[60%] text-white rounded-full text-xs no-underline text-center leading-6";
                 if (params.isActive) {
                   return clsx("bg-[#1d6096]", classes);
                 }
@@ -172,7 +173,7 @@ const Signin = () => {
         </div>
 
         {/* tablet , desktop */}
-        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] 2xl:w-[1240px] 2xl:h-[100vh] 3xl:w-[1540px] 3xl:h-[100vh] mt-8 flex">
+        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] 2xl:w-[1240px] 2xl:h-[90vh] 3xl:w-[1540px] 3xl:h-[100vh] mt-8 flex">
           <div className="relative w-[60%] z-10">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>
@@ -225,7 +226,7 @@ const Signin = () => {
                   htmlFor="floating_email"
                   className="text-white peer-focus:font-medium absolute text-sm  dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
-                  Số ĐT
+                  Số điện thoại
                 </label>
               </div>
               <div className="relative z-0 w-full mb-6 group">
