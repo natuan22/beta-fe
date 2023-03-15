@@ -88,7 +88,7 @@ const AreaChart = () => {
             title: {
               color: '#F1950C',
               display: true,
-              text: "THANH KHOẢN THỊ TRƯỜNG",
+              text: "",
             },
           },
         },

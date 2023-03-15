@@ -39,13 +39,13 @@ const StackingAreas = () => {
     chart: {
       type: "area",
       zoomType: "x",
-      backgroundColor: "transparent",
+      backgroundColor: "black",
       style: {
         fontFamily: "Roboto",
       },
     },
     title: {
-      text: "ĐỘ RỘNG THỊ TRƯỜNG",
+      text: "",
       style: {
         color: "#F1950C",
       },

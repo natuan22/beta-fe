@@ -47,7 +47,7 @@ const Signup = () => {
   );
   useEffect(() => {}, [touched]);
   return (
-    <div className="bg-signinBackground bg-auto bg-no-repeat h-[764px]">
+    <div className="bg-signinBackground bg-auto bg-no-repeat bg-cover">
       <div className="container mx-auto h-auto p-[30px] w-[80%] relative">
         <nav className="flex justify-around xs:text-[10px] sm:text-base md:text-base lg:text-base xl:text-base">
           <NavLink className="text-white no-underline">Trang chủ</NavLink>
@@ -58,9 +58,16 @@ const Signup = () => {
           <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
           <NavLink className="text-white no-underline">Pháp lý</NavLink>
         </nav>
+<<<<<<< HEAD
          {/* phone */}
          // <div
           className="signUp xs:flex lg:hidden flex-col items-center relative mt-8  xs:w-[250px] w-[60%] h-[600px] sm:w-[70%] md:left-[96px] sm:left-[76px] xxs:left-[46px] xs:left-[26px]"
+=======
+
+        {/* phone */}
+        <div
+          className="signUp xs:flex lg:hidden flex-col items-center relative mt-8 xs:w-[250px] w-[60%] h-[600px] sm:w-[70%] md:left-[96px] sm:left-[76px] xxs:left-[46px] xs:left-[26px]"
+>>>>>>> ed39bc6abf81a4bb3847456b0cb5cf6ef11ba7f8
           style={{
             backgroundImage:
               " linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)  ",
@@ -214,8 +221,14 @@ const Signup = () => {
             </NavLink>
           </div>
         </div>
+<<<<<<< HEAD
         {/* desktop, tablet */}
         <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] mt-8 flex">
+=======
+
+        {/* tablet , desktop */}
+        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] 2xl:w-[1240px] 2xl:h-[100vh] 3xl:w-[1540px] 3xl:h-[100vh] mt-8 flex">
+>>>>>>> ed39bc6abf81a4bb3847456b0cb5cf6ef11ba7f8
           <div className="relative w-[60%] z-10 ">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>
@@ -379,7 +392,7 @@ const Signup = () => {
                 Đăng ký
               </button>
             </form>
-            <div className="w-[50%] flex justify-around mt-5 absolute bottom-[20%]">
+            <div className="w-[50%] flex justify-around">
               <img
                 src="http://192.168.15.181:3001/resources/images/google-logo.png"
                 className="w-8 h-8 mx-7"

@@ -29,13 +29,11 @@ const Signin = () => {
   }, [isLogin, navigate]);
  
   return (
-    <div className="bg-signinBackground bg-auto bg-no-repeat h-[764px]">
+    <div className="bg-signinBackground bg-auto bg-no-repeat bg-cover">
       <div className="container mx-auto h-auto p-[30px] w-[80%] relative">
         <nav className="flex justify-around xs:text-[10px] sm:text-base md:text-base lg:text-base xl:text-base">
           <NavLink className="text-white no-underline">Trang chủ</NavLink>
-          <NavLink className="text-white no-underline">
-            Giới thiệu dịch vụ
-          </NavLink>
+          <NavLink className="text-white no-underline">Giới thiệu dịch vụ</NavLink>
           <NavLink className="text-white no-underline">Liên hệ</NavLink>
           <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
           <NavLink className="text-white no-underline">Pháp lý</NavLink>
@@ -92,12 +90,12 @@ const Signin = () => {
                 <input
                   id="remember"
                   type="checkbox"
-                  className=" w-5 h-5 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                  className="xs:w-3 xs:h-3 md:w-5 md:h-5 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                 />
               </div>
               <label
                 htmlFor="remember"
-                className="ml-2  text-sm font-medium text-white dark:text-gray-300"
+                className="ml-2 xs:text-xs md:text-sm font-medium text-white dark:text-gray-300"
               >
                 Ghi nhớ đăng nhập
               </label>
@@ -107,7 +105,7 @@ const Signin = () => {
             </p>
             <button
               type="submit"
-              className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg xs:text-xs md:text-sm w-full sm:w-auto xs:px-6 md:px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               style={{
                 backgroundImage:
                   " linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)",
@@ -117,9 +115,7 @@ const Signin = () => {
               Đăng nhập
             </button>
           </form>
-          <a className="text-white mb-6" href="bsi.com.vn">
-            <i>Quên mật khẩu ?</i>
-          </a>
+          <a className="text-white xs:mb-14 md:mb-6 " href="bsi.com.vn"><i>Quên mật khẩu ?</i></a>
           <div className="w-[50%] flex justify-around">
             <img
               src="http://192.168.15.181:3001/resources/images/google-logo.png"
@@ -174,8 +170,9 @@ const Signin = () => {
             </NavLink>
           </div>
         </div>
+
         {/* tablet , desktop */}
-        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] mt-8 flex">
+        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] 2xl:w-[1240px] 2xl:h-[100vh] 3xl:w-[1540px] 3xl:h-[100vh] mt-8 flex">
           <div className="relative w-[60%] z-10">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>

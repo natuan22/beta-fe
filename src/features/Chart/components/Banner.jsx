@@ -9,10 +9,7 @@ const Banner = () => {
   };
 
   return (
-    <div
-      className="bg-slate-400"
-      style={{ height: "0px", position: "relative" }}
-    >
+    <div className="bg-[#151924]" style={{ height: "0px", position: "relative" }} >
       <div>
         <div className="text-center">
           <button
@@ -32,7 +29,7 @@ const Banner = () => {
         <div
           id="drawer-navigation"
           className={`fixed top-0 left-0 z-40 w-auto h-screen p-4 overflow-y-auto transition-transform ${showSidebar ? "" : "translate-x-[-100%]  ease-in-out duration-300"
-            } bg-white dark:bg-gray-800 flex flex-col items-center justify-center`}
+            } bg-white dark:bg-[#151924] flex flex-col items-center justify-center`}
           tabIndex={-1}
           aria-labelledby="drawer-navigation-label"
         >
@@ -47,7 +44,7 @@ const Banner = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                 href="bsi.com.vn"
+                  href="bsi.com.vn"
                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
@@ -102,7 +99,7 @@ const Banner = () => {
                 <ul id="dropdown-example" className="hidden py-2 space-y-2">
                   <li>
                     <a
-                     href="bsi.com.vn"
+                      href="bsi.com.vn"
                       className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                     >
                       Products
@@ -110,7 +107,7 @@ const Banner = () => {
                   </li>
                   <li>
                     <a
-                     href="bsi.com.vn"
+                      href="bsi.com.vn"
                       className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                     >
                       Billing
@@ -118,7 +115,7 @@ const Banner = () => {
                   </li>
                   <li>
                     <a
-                     href="bsi.com.vn"
+                      href="bsi.com.vn"
                       className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                     >
                       Invoice
@@ -128,7 +125,7 @@ const Banner = () => {
               </li>
               <li>
                 <a
-                 href="bsi.com.vn"
+                  href="bsi.com.vn"
                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
@@ -148,7 +145,7 @@ const Banner = () => {
               </li>
               <li>
                 <a
-                 href="bsi.com.vn"
+                  href="bsi.com.vn"
                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
@@ -169,7 +166,7 @@ const Banner = () => {
               </li>
               <li>
                 <a
-                 href="bsi.com.vn"
+                  href="bsi.com.vn"
                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
@@ -190,7 +187,7 @@ const Banner = () => {
               </li>
               <li>
                 <a
-                 href="bsi.com.vn"
+                  href="bsi.com.vn"
                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
@@ -213,7 +210,7 @@ const Banner = () => {
               </li>
               <li>
                 <a
-                 href="bsi.com.vn"
+                  href="bsi.com.vn"
                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
@@ -234,7 +231,7 @@ const Banner = () => {
               </li>
               <li>
                 <a
-                 href="bsi.com.vn"
+                  href="bsi.com.vn"
                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg

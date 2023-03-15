@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 import Loading from '../utils/Loading';
 
 const RateDetail = () => {
-  const dataRateDetail = useSelector(state => state.chart.dataRateDetail.data)
+  const dataRateDetail = useSelector(state => state.chart.dataRateDetail)
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (dataRateDetail) {
+    if (dataRateDetail.data) {
       setLoading(false)
-      setData(dataRateDetail)
+      setData(dataRateDetail.data)
     }
   }, [dataRateDetail])
 
@@ -39,9 +39,9 @@ const RateDetail = () => {
                 {!loading ? (Array.isArray(data) &&
                   data?.map((item, index) => {
                     let color = ''
-                    if (item['1D'] === '0.00%')
+                    if (item.Day === '0.00%')
                       color = 'text-yellow-500'
-                    else if (item['1D'] < '0')
+                    else if (item.Day < '0')
                       color = 'text-red-500'
                     else
                       color = 'text-green-500'
@@ -55,7 +55,7 @@ const RateDetail = () => {
                           <CurrencyFormat value={item.price.toFixed(2)} displayType={'text'} thousandSeparator={true} />
                         </td>
                         <td className={`text-center align-middle text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
-                          {item['1D']}
+                          {item.Day}
                         </td>
                       </tr>
                     )

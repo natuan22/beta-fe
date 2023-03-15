@@ -5,7 +5,7 @@ import { FaTiktok } from "react-icons/fa";
 const Footer = () => {
     return (
         <>
-            <footer className="relative z-10 bg-gradient-to-r from-[#113362] to-[#385E69] pt-10 pb-10 px-10 mx-2 my-4">
+            <footer className="relative z-10 bg-gradient-to-r from-[#113362] to-[#385E69] pt-10 pb-10 px-10 mr-2 ml-1 my-4">
                 <div className="container mx-auto">
                     <div className="grid xs:grid-cols-none sm:grid-cols-none md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
                         <div className="w-full">
