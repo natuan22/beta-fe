@@ -45,7 +45,7 @@ const Signup = () => {
       validateOnBlur: false,
     }
   );
-  useEffect(() => {}, [touched]);
+  useEffect(() => { }, [touched]);
   return (
     <div className="bg-signinBackground bg-auto bg-no-repeat bg-cover">
       <div className="container mx-auto h-auto p-[30px] w-[80%] relative">
@@ -58,9 +58,9 @@ const Signup = () => {
           <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
           <NavLink className="text-white no-underline">Pháp lý</NavLink>
         </nav>
-         {/* phone */}
-          <div
-          className="signUp xs:flex lg:hidden flex-col items-center relative mt-8  xs:w-[250px] w-[60%] h-[600px] sm:w-[70%] md:left-[96px] sm:left-[76px] xxs:left-[46px] xs:left-[26px]"
+        {/* phone */}
+        <div
+          className="signUp xs:flex lg:hidden flex-col items-center relative mt-8 xs:w-[250px] w-[60%] h-[600px] sm:w-[70%] md:left-[96px] sm:left-[76px] xxs:left-[46px] xs:left-[26px]"
           style={{
             backgroundImage:
               " linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)  ",
@@ -72,29 +72,41 @@ const Signup = () => {
             width="180px"
             height="160px"
           />
-          <form className="flex flex-col items-center h-auto translate-y-[-10%] w-[60%]">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col items-center translate-y-[-10%] w-[60%]"
+          >
             <div className="relative z-0 w-full mb-6 group">
               <input
+                name="phone"
                 type="tel"
                 id="floating_email"
                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                name="phone"
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
               <label
-                htmlFor="floating_email"
+                htmlFor="phone"
                 className="text-white peer-focus:font-medium absolute text-sm  dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Số ĐT
+                Số điện thoại
               </label>
+              {errors.phone && touched.phone && (
+                <p className="text-xs absolute text-yellow-300">
+                  {errors.phone}
+                </p>
+              )}
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
-                type="password"
                 name="password"
+                type="password"
                 id="floating_password"
                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
               <label
                 htmlFor="password"
@@ -102,14 +114,21 @@ const Signup = () => {
               >
                 Mật khẩu
               </label>
+              {errors.password && touched.password && (
+                <p className="absolute text-xs text-yellow-300">
+                  {errors.password}
+                </p>
+              )}
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
-                type="password"
                 name="confirm_password"
+                type="password"
                 id="floating_repeat_password"
                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
               <label
                 htmlFor="confirm_password"
@@ -117,30 +136,22 @@ const Signup = () => {
               >
                 Xác nhận mật khẩu
               </label>
+              {errors.confirm_password && touched.confirm_password && (
+                <p className="absolute text-xs text-yellow-300">
+                  {errors.confirm_password}
+                </p>
+              )}
             </div>
-            <div className="grid xs:grid-cols-2 xs:gap-6">
+            <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-6 group">
                 <input
-                  type="text"
-                  name="first_name"
-                  id="floating_first_name"
-                  className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                />
-                <label
-                  htmlFor="first_name"
-                  className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Tên
-                </label>
-              </div>
-              <div className="relative z-0 w-full mb-6 group">
-                <input
-                  type="text"
                   name="last_name"
+                  type="text"
                   id="floating_last_name"
                   className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
                 <label
                   htmlFor="last_name"
@@ -148,6 +159,33 @@ const Signup = () => {
                 >
                   Họ
                 </label>
+                {errors.last_name && touched.last_name && (
+                  <p className="absolute text-xs w-full text-yellow-300">
+                    {errors.last_name}
+                  </p>
+                )}
+              </div>
+              <div className="relative z-0 w-full mb-6 group">
+                <input
+                  name="first_name"
+                  type="text"
+                  id="floating_first_name"
+                  className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <label
+                  htmlFor="first_name"
+                  className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Tên
+                </label>
+                {errors.first_name && touched.first_name && (
+                  <p className="absolute text-xs w-full text-yellow-300">
+                    {errors.first_name}
+                  </p>
+                )}
               </div>
             </div>
             <button
@@ -160,7 +198,7 @@ const Signup = () => {
               Đăng ký
             </button>
           </form>
-          <div className="w-[50%] flex justify-around mt-5 absolute sm:bottom-[20%] xs:bottom-[15%]">
+          <div className="w-[50%] flex justify-around mt-5 absolute sm:bottom-[20%] xs:bottom-[11%]">
             <img
               src="http://192.168.15.181:3001/resources/images/google-logo.png"
               className="w-8 h-8 sm:mx-7 xs:mx-2"
@@ -182,7 +220,7 @@ const Signup = () => {
             <img
               src="http://192.168.15.181:3001/resources/images/beta-logo.png"
               alt="betaIcon"
-              className="w-8 h-8 mx-7 xs:mx-2"
+              className="w-8 h-8 sm:mx-7 xs:mx-2"
             />
           </div>
           <div className="absolute sm:bottom-[10%] xs:bottom-[5%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
@@ -214,8 +252,9 @@ const Signup = () => {
             </NavLink>
           </div>
         </div>
+
         {/* desktop, tablet */}
-        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] mt-8 flex">
+        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] 2xl:w-[1240px] 2xl:h-[90vh] 3xl:w-[1540px] 3xl:h-[100vh] mt-8 flex">
           <div className="relative w-[60%] z-10 ">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>
@@ -271,10 +310,10 @@ const Signup = () => {
                   htmlFor="phone"
                   className="text-white peer-focus:font-medium absolute text-sm  dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
-                  Số ĐT
+                  Số điện thoại
                 </label>
                 {errors.phone && touched.phone && (
-                  <p className="text-sm absolute text-yellow-300 left-[20%]">
+                  <p className="text-xs absolute text-yellow-300">
                     {errors.phone}
                   </p>
                 )}
@@ -296,7 +335,7 @@ const Signup = () => {
                   Mật khẩu
                 </label>
                 {errors.password && touched.password && (
-                  <p className="absolute text-sm text-yellow-300 left-[20%]">
+                  <p className="absolute text-xs text-yellow-300">
                     {errors.password}
                   </p>
                 )}
@@ -318,12 +357,12 @@ const Signup = () => {
                   Xác nhận mật khẩu
                 </label>
                 {errors.confirm_password && touched.confirm_password && (
-                  <p className="absolute text-sm text-yellow-300 left-[20%]">
+                  <p className="absolute text-xs text-yellow-300">
                     {errors.confirm_password}
                   </p>
                 )}
               </div>
-              <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="grid md:grid-cols-2 md:gap-2">
                 <div className="relative z-0 w-full mb-6 group">
                   <input
                     name="last_name"
@@ -341,7 +380,7 @@ const Signup = () => {
                     Họ
                   </label>
                   {errors.last_name && touched.last_name && (
-                    <p className="absolute text-sm w-full text-yellow-300 left-[5%]">
+                    <p className="absolute text-xs w-full text-yellow-300">
                       {errors.last_name}
                     </p>
                   )}
@@ -363,7 +402,7 @@ const Signup = () => {
                     Tên
                   </label>
                   {errors.first_name && touched.first_name && (
-                    <p className="absolute text-sm w-full text-yellow-300 left-[5%]">
+                    <p className="absolute text-xs w-full text-yellow-300">
                       {errors.first_name}
                     </p>
                   )}
