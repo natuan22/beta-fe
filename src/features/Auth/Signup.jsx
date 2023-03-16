@@ -46,9 +46,9 @@ const Signup = () => {
   );
   useEffect(() => { }, [touched]);
   return (
-    <div className="bg-signinBackground  bg-no-repeat bg-cover">
+    <div className="bg-signinBackground  bg-no-repeat bg-cover h-screen">
       <div className="container mx-auto h-auto p-[30px] w-[80%] relative">
-        <nav className="flex justify-around xs:text-[10px] sm:text-base md:text-base lg:text-base xl:text-base">
+        <nav className="flex justify-around xs:text-[10px] sm:text-base md:text-base lg:text-base xl:text-base ">
           <NavLink className="text-white no-underline">Trang chủ</NavLink>
           <NavLink className="text-white no-underline">
             Giới thiệu dịch vụ
@@ -253,7 +253,7 @@ const Signup = () => {
         </div>
 
         {/* desktop, tablet */}
-        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] 2xl:w-[1240px] 2xl:h-[750px] 3xl:w-[1540px] 3xl:h-[800px] mt-8 flex">
+        <div className="mt-8 flex bg-signinColor xs:hidden lg:flex lg:w-[825px] xl:w-[1150px] 2xl:w-[1230px] 3xl:w-[1537px] lg:h-[80vh] xl:h-[80vh] 2xl:h-[80vh] 3xl:h-[80vh]">
           <div className="relative w-[60%] z-10 ">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>
