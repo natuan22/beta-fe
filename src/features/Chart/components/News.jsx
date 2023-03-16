@@ -40,22 +40,21 @@ const News = () => {
                     <div className="blog-news flex h-[120px]">
                         {dataNews.data?.map((item, index) => {
                             return (
-                                <Card bodyStyle={{ paddingTop: "15px", paddingBottom: '5px', paddingLeft: '5px', paddingRight: '5px' }} key={index} bordered={false} className='w-[500px] h-[90px] bg-black'>
+                                <Card bodyStyle={{ paddingTop: "15px", paddingBottom: '5px', paddingLeft: '0px', paddingRight: '10px' }} key={index} bordered={false} className='w-[350px] h-[90px] bg-black'>
                                     <div className="flex items-center">
-
                                         <a href={item.Href} target="_blank" rel="noopener noreferrer">
-                                            <img src={item.Img} alt={item.Title} width={175} height={95} />
+                                            <img src={item.Img} alt={item.Title} width={120} height={95} />
                                         </a>
-                                        <div className="mx-3">
+                                        <div className="ml-1">
                                             <a href={item.Href} target="_blank" rel="noopener noreferrer">
-
-
-                                                <span className="text-xs font-semibold text-white items-center justify-center w-12">
+                                                <p className="line-clamp-2 text-[0.75rem] font-semibold text-white items-center justify-center">
                                                     {item.Title}
-                                                </span>
+                                                </p>
                                             </a>
-                                            <br />
-                                            <span className="text-xs text-white items-center justify-center w-12">
+                                            <p className="line-clamp-2 text-[0.7rem] text-white items-center justify-center">
+                                                {item.Title}
+                                            </p>
+                                            <span className="text-[0.65rem] text-white items-center justify-center">
                                                 <Moment format="DD/MM/YYYY - HH:mm ">{item.Date}</Moment>
                                             </span>
                                         </div>
