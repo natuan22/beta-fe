@@ -85,6 +85,7 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_NEWS) {
       draft.dataNews = payload
     }
+  
   });
 };
 

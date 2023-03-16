@@ -248,7 +248,7 @@ export const fetchDataWidthMarket = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "https://mkw-socket.vndirect.com.vn/mkwsocket/gainerslosers",
+      url: `${apiUrl}/api/v1/stock/market-breadth`,
       method: "GET",
       params: {
         index: index
@@ -258,6 +258,8 @@ export const fetchDataWidthMarket = (index) => async (dispatch) => {
       type: "beta/UPDATE_DATA_STACKINGAREA",
       payload: res.data,
     });
+
+   
   } catch (err) {
     console.log(err);
   }

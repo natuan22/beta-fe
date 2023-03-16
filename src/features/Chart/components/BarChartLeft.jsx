@@ -65,8 +65,8 @@ const BarChartLeft = () => {
       enabled: false,
     },
     yaxis: {
-      min: -2 ,
-      max: 2 ,
+      min: -3 ,
+      max: 3 ,
       labels: {
         formatter: function (y) {
           return y.toFixed(2);

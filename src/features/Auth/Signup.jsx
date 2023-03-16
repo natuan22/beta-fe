@@ -4,12 +4,11 @@ import React, { useEffect } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { object, string, ref } from "yup";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./utils/authen.css";
 import { userRegister } from "./thunk";
 
 const Signup = () => {
-  const resStt = useSelector((state) => state.authen.registerStatus);
   const dispatch = useDispatch();
   const userSchema = object({
     phone: string().required("Vui lòng nhập số điện thoại"),
@@ -47,7 +46,7 @@ const Signup = () => {
   );
   useEffect(() => { }, [touched]);
   return (
-    <div className="bg-signinBackground bg-auto bg-no-repeat bg-cover">
+    <div className="bg-signinBackground  bg-no-repeat bg-cover">
       <div className="container mx-auto h-auto p-[30px] w-[80%] relative">
         <nav className="flex justify-around xs:text-[10px] sm:text-base md:text-base lg:text-base xl:text-base">
           <NavLink className="text-white no-underline">Trang chủ</NavLink>
