@@ -44,5 +44,6 @@ export const userRegister = (FormData) => async (dispatch   ) => {
     
   } catch (err) {
     console.log(err);
+    alert('Tài khoản đã tồn tại')
   }
 };
