@@ -38,7 +38,7 @@ const InternationalIndex = () => {
         <div className="flex">
           {dataInternationalIndex.data?.map((item, index) => {
             return (
-              <div key={index} className="flex flex-col items-center ml-4 bg-gradient-to-b  from-[#144e74] to-[#112533]" style={{ border: "1px solid transparent", padding: "5px" }}>
+              <div key={index} className="flex flex-col items-center ml-4 bg-gradient-to-b from-[#155078] to-black" style={{ border: "1px solid transparent", padding: "5px" }}>
                 <span className="mx-2 text-sm font-semibold text-white">
                   {item.ticker}: {item.diemso}
                 </span>
@@ -52,15 +52,9 @@ const InternationalIndex = () => {
                       style={{ fontSize: "13px", color: "lightgreen" }}
                     />
                   )}
-                  {item.percent_d < 0 ? (
-                    <span className="ml-3 text-xs text-red-500">
-                      {item.percent_d}%
-                    </span>
-                  ) : (
-                    <span className="ml-3 text-xs text-green-500">
-                      {item.percent_d}%
-                    </span>
-                  )}
+                  <span className="ml-1.5 text-xs text-white">
+                    {(item.diemso - (item.diemso / (1 + item.percent_d / 100))).toFixed(2)} ({item.percent_d}%)
+                  </span>
                 </p>
               </div>
             );
