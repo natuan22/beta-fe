@@ -29,8 +29,8 @@ const Signin = () => {
   }, [isLogin, navigate]);
 
   return (
-    <div className="bg-signinBackground bg-auto bg-no-repeat bg-cover bg-fixed">
-      <div className="container mx-auto h-auto p-[30px] w-[80%] relative">
+    <div className="bg-signinBackground bg-auto bg-no-repeat bg-cover h-screen">
+      <div className="container mx-auto h-auto p-[30px] w-[80%] relative" >
         <nav className="flex justify-around xs:text-[10px] sm:text-base md:text-base lg:text-base xl:text-base">
           <NavLink className="text-white no-underline">Trang chủ</NavLink>
           <NavLink className="text-white no-underline">Giới thiệu dịch vụ</NavLink>
@@ -38,6 +38,7 @@ const Signin = () => {
           <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
           <NavLink className="text-white no-underline">Pháp lý</NavLink>
         </nav>
+
         {/* phone */}
         <div
           className="signIn xs:flex lg:hidden flex-col items-center relative mt-8 xs:w-[250px] w-[60%] h-[600px] sm:w-[70%] md:left-[96px] sm:left-[76px] xxs:left-[46px] xs:left-[26px]"
@@ -172,7 +173,7 @@ const Signin = () => {
         </div>
 
         {/* tablet , desktop */}
-        <div className="bg-signinColor xs:hidden lg:flex lg:w-[825px] lg:h-[600px] xl:w-[1190px] xl:h-[600px] 2xl:w-[1240px] 3xl:w-[1540px] mt-8 flex">
+        <div className="mt-8 flex bg-signinColor xs:hidden lg:flex lg:w-[825px] xl:w-[1150px] 2xl:w-[1230px] 3xl:w-[1537px] lg:h-[80vh] xl:h-[80vh] 2xl:h-[80vh] 3xl:h-[80vh]">
           <div className="relative w-[60%] z-10">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>
@@ -339,7 +340,7 @@ const Signin = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
