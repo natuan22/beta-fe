@@ -108,9 +108,10 @@ const Home = () => {
           </div>
 
           <div className='w-[95%] bg-black'>
-            <InternationalIndex />
-            <News />
-
+            <div className="px-1.5">
+              <InternationalIndex />
+              <News />
+            </div>
             <div>
               <div className="lg:block xl:flex ">
                 <div className="xl:w-[60%]">
@@ -308,7 +309,7 @@ const Home = () => {
                     {buttons.map(item => {
                       return (
                         <button key={item.value} onClick={() => { dispatch(dispatch(fetchDataTableMarketLiquidity(item.value))) }}
-                          type="button" className={`hover:${item.hover} hover:text-white ${item.color} cursor-pointer  border-none bg-[#151924] font-medium rounded-lg text-xs px-2.5 py-2.5 text-center mr-1 mb-2`}>{item.label}
+                          type="button" className={`hover:${item.hover} hover:text-white ${item.color} cursor-pointer border-none bg-[#151924] font-medium rounded-lg text-xs px-2.5 py-2.5 text-center mr-1 mb-2`}>{item.label}
                         </button>
                       )
                     })}

@@ -104,7 +104,7 @@ const AreaChart = () => {
     <div>
       {data1.length && data2.length ? (
         <div>
-          <canvas className="h-[730px]" ref={chartRef}></canvas>
+          <canvas className="xs:h-[400px] xxs:h-[400px] sm:h-[400px] md:h-[400px] lg:h-[400px] xl:h-[815px] 2xl:h-[672px] 3xl:h-[592px] bg-black" ref={chartRef}></canvas>
         </div>
       ) : (
         <Loading />
