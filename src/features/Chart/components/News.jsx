@@ -37,10 +37,10 @@ const News = () => {
         <>
             <div className="bg-black">
                 <Marquee speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
-                    <div className="blog-news flex h-[120px]">
+                    <div className="blog-news flex h-[130px]">
                         {dataNews.data?.map((item, index) => {
                             return (
-                                <Card bodyStyle={{ paddingTop: "15px", paddingBottom: '5px', paddingLeft: '0px', paddingRight: '10px' }} key={index} bordered={false} className='w-[350px] h-[90px] bg-black'>
+                                <Card bodyStyle={{ paddingTop: "15px", paddingBottom: '10px', paddingLeft: '0px', paddingRight: '10px' }} key={index} bordered={false} className='w-[350px] h-[90px] bg-black'>
                                     <div className="flex items-center">
                                         <a href={item.Href} target="_blank" rel="noopener noreferrer">
                                             <img src={item.Img} alt={item.Title} width={120} height={95} />
