@@ -51,9 +51,11 @@ const News = () => {
                                                     {item.Title}
                                                 </p>
                                             </a>
-                                            <p className="line-clamp-2 text-[0.7rem] text-white items-center justify-center">
-                                                {item.Title}
-                                            </p>
+                                            <a href={item.Href} target="_blank" rel="noopener noreferrer">
+                                                <p className="line-clamp-2 text-[0.7rem] text-white items-center justify-center">
+                                                    {item.Title}
+                                                </p>
+                                            </a>
                                             <span className="text-[0.65rem] text-white items-center justify-center">
                                                 <Moment format="DD/MM/YYYY - HH:mm ">{item.Date}</Moment>
                                             </span>
@@ -64,7 +66,7 @@ const News = () => {
                         })}
                     </div>
                 </Marquee>
-            </div>
+            </div >
         </>
     )
 }
