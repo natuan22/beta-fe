@@ -22,14 +22,14 @@ const TableMarketVolatility = () => {
                     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
                         <div className="block w-full bg-[#000000] xl:overflow-x-hidden xxs:overflow-x-scroll xs:overflow-x-scroll">
                             <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
-                                <thead className="bg-gradient-to-b from-cyan-800 to-black">
+                                <thead className="bg-gradient-to-b from-[#217EBE] to-black">
                                     <tr>
-                                        <th className="text-center align-middle px-[5px] py-3 uppercase text-sm font-semibold text-amber-500">
+                                        <th className="text-center align-middle px-[5px] py-3 uppercase text-sm font-semibold text-white">
                                             Khung biến động
                                         </th>
                                         {!loading ? (Array.isArray(data) && data?.map(item => {
                                             return (
-                                                <th key={item.ticker} className="text-center align-middle px-1 py-3 uppercase text-xs font-semibold text-amber-500">
+                                                <th key={item.ticker} className="text-center align-middle px-1 py-3 uppercase text-xs font-semibold text-white">
                                                     {item.ticker}
                                                 </th>
                                             )

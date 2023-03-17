@@ -9,6 +9,7 @@ import "./utils/authen.css";
 import { userRegister } from "./thunk";
 
 const Signup = () => {
+  const apiUrl = process.env.REACT_APP_BASE_URL;
   const dispatch = useDispatch();
   const userSchema = object({
     phone: string().required("Vui lòng nhập số điện thoại"),
@@ -66,7 +67,7 @@ const Signup = () => {
           }}
         >
           <img
-            src="http://192.168.15.181:3001/resources/images/logo1.png"
+            src={`${apiUrl}/resources/images/logo1.png`}
             alt="logoImg"
             width="180px"
             height="160px"
@@ -199,25 +200,25 @@ const Signup = () => {
           </form>
           <div className="w-[50%] flex justify-around mt-5 absolute sm:bottom-[20%] xs:bottom-[11%]">
             <img
-              src="http://192.168.15.181:3001/resources/images/google-logo.png"
+              src={`${apiUrl}/resources/images/google-logo.png`}
               className="w-8 h-8 sm:mx-7 xs:mx-2"
               alt="logo"
             />
             <img
-              src="http://192.168.15.181:3001/resources/images/fb-logo.png"
+              src={`${apiUrl}/resources/images/fb-logo.png`}
               className="w-8 h-8 sm:mx-7 xs:mx-2"
               alt="logo"
             />
             <span className="bg-white h-[28px] sm:mx-7 xs:mx-2 rounded-t-md">
               <img
-                src="http://192.168.15.181:3001/resources/images/zalo-logo.png"
+                src={`${apiUrl}/resources/images/zalo-logo.png`}
                 alt="zaloIcon"
                 className="w-8 h-8"
               />
             </span>
 
             <img
-              src="http://192.168.15.181:3001/resources/images/beta-logo.png"
+              src={`${apiUrl}/resources/images/beta-logo.png`}
               alt="betaIcon"
               className="w-8 h-8 sm:mx-7 xs:mx-2"
             />
@@ -271,7 +272,7 @@ const Signup = () => {
               </div>
             </div>
             <img
-              src="http://192.168.15.181:3001/resources/images/img6.png"
+              src={`${apiUrl}/resources/images/img6.png`}
               width="100%"
               height="80%"
               alt="imgSignin"
@@ -286,7 +287,7 @@ const Signup = () => {
             }}
           >
             <img
-              src="http://192.168.15.181:3001/resources/images/logo1.png"
+              src={`${apiUrl}/resources/images/logo1.png`}
               alt="logoImg"
               width="180px"
               height="160px"
@@ -419,25 +420,25 @@ const Signup = () => {
             </form>
             <div className="w-[50%] flex justify-around">
               <img
-                src="http://192.168.15.181:3001/resources/images/google-logo.png"
+                src={`${apiUrl}/resources/images/google-logo.png`}
                 className="w-8 h-8 mx-7"
                 alt="logo"
               />
               <img
-                src="http://192.168.15.181:3001/resources/images/fb-logo.png"
+                src={`${apiUrl}/resources/images/fb-logo.png`}
                 className="w-8 h-8 mx-7"
                 alt="logo"
               />
               <span className="bg-white h-[28px] mx-7 rounded-t-md">
                 <img
-                  src="http://192.168.15.181:3001/resources/images/zalo-logo.png"
+                  src={`${apiUrl}/resources/images/zalo-logo.png`}
                   alt="zaloIcon"
                   className="w-8 h-8"
                 />
               </span>
 
               <img
-                src="http://192.168.15.181:3001/resources/images/beta-logo.png"
+                src={`${apiUrl}/resources/images/beta-logo.png`}
                 alt="betaIcon"
                 className="w-8 h-8 mx-7"
               />
