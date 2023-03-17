@@ -128,7 +128,7 @@ const Home = () => {
                         <span className="font-semibold uppercase text-amber-500">
                           Nhóm cổ phiếu dẫn dắt thị trường
                         </span>
-                        <select className={`${chartStyle.selectStyle} border-none bg-[#020203] text-amber-500`}
+                        <select className={`${chartStyle.selectStyle } ${chartStyle.select}  border-none bg-[#020203] text-amber-500`}
                           onChange={(event) => {
                             dispatch(dispatch(fetchDataBarChartLeft(event.target.value)));
                           }}>
