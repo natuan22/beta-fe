@@ -125,10 +125,10 @@ const Home = () => {
                     </div>
                     <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
                       <div className="text-center bg-[#020203]">
-                        <span className="font-semibold uppercase text-amber-500">
+                        <span className="font-semibold uppercase text-white">
                           Nhóm cổ phiếu dẫn dắt thị trường
                         </span>
-                        <select className={`${chartStyle.selectStyle } ${chartStyle.select}  border-none bg-[#020203] text-amber-500`}
+                        <select className={`${chartStyle.selectStyle} text-base border-none bg-[#020203] text-[#0097B2]`}
                           onChange={(event) => {
                             dispatch(dispatch(fetchDataBarChartLeft(event.target.value)));
                           }}>
@@ -142,7 +142,7 @@ const Home = () => {
 
                     <div className="text-center mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
                       <div className="bg-[#020203]">
-                        <span className="font-semibold uppercase text-amber-500">
+                        <span className="font-semibold uppercase text-white">
                           Top nước ngoài mua bán ròng
                         </span>
                         <BarChartRight />
@@ -180,17 +180,17 @@ const Home = () => {
                 <div className="lg:w-[80%] xl:w-[40%] lg:translate-x-[14%] xl:translate-x-0">
                   <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924]">
                     <div className="bg-[#020203] text-center px-20 pt-[19px]">
-                      <span className="font-semibold text-base uppercase text-amber-500">
+                      <span className="font-semibold text-base uppercase text-white">
                         Top 10 cổ phiếu tăng/giảm mạnh nhất sàn
                       </span>
-                      <select className={`${chartStyle.selectStyle} border-none bg-[#020203] text-amber-500`} onChange={(event) => {
+                      <select className={`${chartStyle.selectStyle} text-base border-none bg-[#020203] text-[#0097B2]`} onChange={(event) => {
                         dispatch(dispatch(fetchDataROC5Phien((event.target.value))))
                       }}>
                         <option value="hose">HSX</option>
                         <option value="hnx">HNX</option>
                         <option value="upcom">UPCOM</option>
                       </select>
-                      <span className="font-semibold uppercase text-amber-500">qua 05 phiên gần nhất</span>
+                      <span className="font-semibold uppercase text-white">qua 05 phiên gần nhất</span>
                     </div>
                     <div className="grid grid-cols-2 bg-[#020203]">
                       <div className="text-center mx-1">
@@ -209,27 +209,42 @@ const Home = () => {
             <div>
               <div className="lg:block xl:flex">
                 <div className="xl:w-[60%] xs:hidden sm:hidden md:hidden xl:block ">
-                  <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[710px]">
+                  <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[742px]">
+                    <div className="grid grid-cols-2 gap-0.5">
+                      <div className="text-center py-2">
+                        <span className="text-white uppercase text-lg">Khối ngoại mua ròng sàn
+                          <select className={`${chartStyle.selectStyle} text-base bg-[#151924] border-none text-[#0097B2]`}
+                            onChange={(event) => {
+                              dispatch(dispatch(fetchDataTreeMapBuy(event.target.value)));
+                            }}>
+                            <option value="HSX">HSX</option>
+                            <option value="HNX">HNX</option>
+                            <option value="UPCOM">UPCOM</option>
+                          </select>
+                        </span>
+                      </div>
+                      <div className="text-center py-2">
+                        <span className="text-white uppercase text-lg">Khối ngoại bán ròng sàn
+                          <select className={`${chartStyle.selectStyle} text-base bg-[#151924] border-none text-[#0097B2]`}
+                            onChange={(event) => {
+                              dispatch(dispatch(fetchDataTreeMapSell(event.target.value)));
+                            }}>
+                            <option value="HSX">HSX</option>
+                            <option value="HNX">HNX</option>
+                            <option value="UPCOM">UPCOM</option>
+                          </select>
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex justify-center pb-[10px]">
+                      <hr className="xl:w-[690px] 2xl:w-[835px] 3xl:w-[1045px] xl:translate-x-[-5px] 2xl:translate-x-[-5px] 3xl:translate-x-[-5px] bg-gradient-to-r from-cyan-500 to-blue-500 opacity-100 h-[5px] " />
+                    </div>
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
-                        <select className="ml-[170px] mb-[10px]" onChange={(event) => {
-                          dispatch(dispatch(fetchDataTreeMapBuy(event.target.value)));
-                        }}>
-                          <option value="HSX">HSX</option>
-                          <option value="HNX">HNX</option>
-                          <option value="UPCOM">UPCOM</option>
-                        </select>
                         <TreemapChart />
                       </div>
 
                       <div>
-                        <select className="ml-[170px] mb-[10px]" onChange={(event) => {
-                          dispatch(dispatch(fetchDataTreeMapSell(event.target.value)));
-                        }}>
-                          <option value="HSX">HSX</option>
-                          <option value="HNX">HNX</option>
-                          <option value="UPCOM">UPCOM</option>
-                        </select>
                         <TreeMapChart2 />
                       </div>
                     </div>
@@ -238,17 +253,17 @@ const Home = () => {
                 <div className="lg:w-[80%] xl:w-[40%] lg:translate-x-[14%] xl:translate-x-0">
                   <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924]">
                     <div className="bg-[#020203] text-center px-20 pt-[19px]">
-                      <span className="font-semibold text-base uppercase text-amber-500">
+                      <span className="font-semibold text-base uppercase text-white">
                         Top 10 khối ngoại mua/bán nhiều nhất sàn
                       </span>
-                      <select className={`${chartStyle.selectStyle} border-none bg-[#020203] text-amber-500`} onChange={(event) => {
+                      <select className={`${chartStyle.selectStyle} text-base border-none bg-[#020203] text-[#0097B2]`} onChange={(event) => {
                         dispatch(dispatch(fetchDataTopNetForeignChange((event.target.value))))
                       }}>
                         <option value="HSX">HSX</option>
                         <option value="HNX">HNX</option>
                         <option value="UPCOM">UPCOM</option>
                       </select>
-                      <span className="font-semibold uppercase text-amber-500">qua 05 phiên gần nhất</span>
+                      <span className="font-semibold uppercase text-white">qua 05 phiên gần nhất</span>
                     </div>
                     <div className="grid grid-cols-2 bg-[#020203]">
                       <div className="text-center mx-1">
@@ -262,27 +277,42 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="xl:w-[60%] xl:hidden">
-                  <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] h-[710px]">
+                  <div className="mx-1 my-1 px-1.5 py-1.5 bg-[#151924] xs:h-[800px] xxs:h-[770px] sm:h-[770px] md:h-[740px]">
+                    <div className="grid grid-cols-2 gap-0.5">
+                      <div className="text-center py-2">
+                        <span className="text-white uppercase text-lg">Khối ngoại mua ròng sàn
+                          <select className={`${chartStyle.selectStyle} text-base bg-[#151924] border-none text-[#0097B2]`}
+                            onChange={(event) => {
+                              dispatch(dispatch(fetchDataTreeMapBuy(event.target.value)));
+                            }}>
+                            <option value="HSX">HSX</option>
+                            <option value="HNX">HNX</option>
+                            <option value="UPCOM">UPCOM</option>
+                          </select>
+                        </span>
+                      </div>
+                      <div className="text-center py-2">
+                        <span className="text-white uppercase text-lg">Khối ngoại bán ròng sàn
+                          <select className={`${chartStyle.selectStyle} text-base bg-[#151924] border-none text-[#0097B2]`}
+                            onChange={(event) => {
+                              dispatch(dispatch(fetchDataTreeMapSell(event.target.value)));
+                            }}>
+                            <option value="HSX">HSX</option>
+                            <option value="HNX">HNX</option>
+                            <option value="UPCOM">UPCOM</option>
+                          </select>
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex justify-center pb-[10px]">
+                      <hr className="xs:w-[315px] xxs:w-[363px] sm:w-[566px] md:w-[690px] lg:w-[933px] xs:translate-x-[-5px] xxs:translate-x-[-5px] sm:translate-x-[-5px] md:translate-x-[-5px] lg:translate-x-[-5px] bg-gradient-to-r from-cyan-500 to-blue-500 opacity-100 h-[5px] " />
+                    </div>
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
-                        <select className="xs:ml-[55px] sm:ml-[65px] md:ml-[150px] lg:ml-[205px] mb-[10px]" onChange={(event) => {
-                          dispatch(dispatch(fetchDataTreeMapBuy(event.target.value)));
-                        }}>
-                          <option value="HSX">HSX</option>
-                          <option value="HNX">HNX</option>
-                          <option value="UPCOM">UPCOM</option>
-                        </select>
                         <TreemapChart />
                       </div>
 
                       <div>
-                        <select className="xs:ml-[55px] sm:ml-[65px] md:ml-[150px] lg:ml-[205px] mb-[10px]" onChange={(event) => {
-                          dispatch(dispatch(fetchDataTreeMapSell(event.target.value)));
-                        }}>
-                          <option value="HSX">HSX</option>
-                          <option value="HNX">HNX</option>
-                          <option value="UPCOM">UPCOM</option>
-                        </select>
                         <TreeMapChart2 />
                       </div>
                     </div>
@@ -294,7 +324,7 @@ const Home = () => {
             <div>
               <div className="lg:block xl:flex mr-2 ml-1 my-1 px-1.5 py-1.5 bg-[#151924]">
                 <div className="xl:w-[65%]">
-                  <div className="text-center text-[#F1950C]">
+                  <div className="text-center text-white">
                     <h3 className="p-2 uppercase">Thanh khoản thị trường</h3>
                   </div>
                   <div className="mx-2 my-1 px-1.5 py-1.5">
@@ -322,7 +352,7 @@ const Home = () => {
               <div className="xl:flex lg:block mr-2 ml-1 my-2 px-1.5 py-1.5 bg-[#151924]">
                 <div className="xl:w-[65%]">
                   <div>
-                    <div className="text-center text-[#F1950C]">
+                    <div className="text-center text-white">
                       <h3 className="p-2 uppercase">Độ rộng thị trường</h3>
                     </div>
                     <StackingAreas />

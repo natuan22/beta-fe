@@ -24,6 +24,7 @@ const AreaChart = () => {
       setDataSocket((preData) => [...preData, ...newData]);
     });
   }, []);
+  
   const timeLine = Array.isArray(data2)
     ? data2.map((item) => {
         let date = new Date(item.time - 200000000 + 1997000);

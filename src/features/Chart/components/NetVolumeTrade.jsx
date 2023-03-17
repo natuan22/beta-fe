@@ -43,7 +43,7 @@ const NetVolumeTrade = () => {
     title: {
       text: "GIÁ TRỊ GIAO DỊCH RÒNG",
       style: {
-        color: '#F1950C'
+        color: 'white'
       }
     },
     xAxis: {

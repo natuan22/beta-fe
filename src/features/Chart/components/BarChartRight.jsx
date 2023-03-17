@@ -37,11 +37,11 @@ const BarChartRight = () => {
           ranges: [
             {
               from: 0,
-              to: 100,
+              to: Infinity,
               color: "#19d216",
             },
             {
-              from: -100,
+              from: -Infinity,
               to: 0,
               color: "#f32626",
             },

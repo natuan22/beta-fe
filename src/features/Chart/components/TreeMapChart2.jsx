@@ -43,7 +43,7 @@ const TreeMapChart = () => {
     minColor: "red",
     midColor: "pink",
     maxColor: "red",
-    headerHeight: 30,
+    headerHeight: 0,
     showScale: false,
     height: 680,
     useWeightedAverageForAggregation: true,
@@ -82,15 +82,17 @@ const TreeMapChart = () => {
   };
 
   return (
-    <Chart
-      width={"100%"}
-      height={"400px"}
-      chartType="TreeMap"
-      loader={<div><Loading /></div>}
-      data={dataTreeMapRender}
-      options={options}
-      rootProps={{ "data-testid": "1" }}
-    />
+    <>
+      <Chart
+        width={"100%"}
+        height={"400px"}
+        chartType="TreeMap"
+        loader={<div><Loading /></div>}
+        data={dataTreeMapRender}
+        options={options}
+        rootProps={{ "data-testid": "1" }}
+      />
+    </>
   );
 };
 

@@ -20,18 +20,18 @@ const Events = () => {
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
                     <div className="block w-full h-96 overflow-y-scroll bg-[#000000]">
                         <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
-                            <thead className="sticky top-0 bg-gradient-to-b from-cyan-800 to-black">
+                            <thead className="sticky top-0 bg-gradient-to-b from-[#217EBE] to-black">
                                 <tr>
-                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
+                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                         Mã chứng khoán
                                     </th>
-                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
+                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                         Loại sự kiện
                                     </th>
-                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
+                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                         Ngày
                                     </th>
-                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
+                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                         Nội dung sự kiện
                                     </th>
                                 </tr>

@@ -22,18 +22,18 @@ const TableMarketLiquidity = () => {
                     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
                         <div className="block w-full bg-[#000000] h-80 overflow-y-scroll">
                             <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
-                                <thead className="sticky top-0 bg-gradient-to-b from-cyan-800 to-black">
+                                <thead className="sticky top-0 bg-gradient-to-b from-[#217EBE] to-black">
                                     <tr>
-                                        <th className="text-center align-middle px-4 py-3 uppercase text-sm font-semibold text-amber-500">
+                                        <th className="text-center align-middle px-4 py-3 uppercase text-sm font-semibold text-white">
                                             Mã CK
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 uppercase text-sm font-semibold text-amber-500">
+                                        <th className="text-center align-middle px-4 py-3 uppercase text-sm font-semibold text-white">
                                             Ngành
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 uppercase text-sm font-semibold text-amber-500">
+                                        <th className="text-center align-middle px-4 py-3 uppercase text-sm font-semibold text-white">
                                             Giá trị (tỷ đồng)
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 uppercase whitespace-nowrap text-sm font-semibold text-amber-500">
+                                        <th className="text-center align-middle px-4 py-3 uppercase whitespace-nowrap text-sm font-semibold text-white">
                                             Thay đổi
                                         </th>
                                     </tr>
