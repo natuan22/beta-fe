@@ -36,21 +36,21 @@ const GeneralIndustry = () => {
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
             <div className="block w-full overflow-y-scroll xs:h-[438px] xxs:h-[430px] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[663px] 3xl:h-[735px] bg-[#000000]">
               <table className="items-center w-full border-collapse bg-[#000000]">
-                <thead className="sticky top-0 bg-gradient-to-b from-cyan-800 to-black z-30">
+                <thead className="sticky top-0 bg-gradient-to-b from-[#217EBE] to-black z-30">
                   <tr>
-                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
+                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       Phân ngành
                     </th>
-                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
+                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       %D
                     </th>
-                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
+                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       %W
                     </th>
-                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
+                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       %M
                     </th>
-                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-amber-500">
+                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       Độ rộng ngành
                     </th>
                   </tr>

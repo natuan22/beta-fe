@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { userLoginAction } from "./thunk";
 import "./utils/authen.css";
 const Signin = () => {
+  const apiUrl = process.env.REACT_APP_BASE_URL;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState({ phone: "", password: "" });
@@ -48,7 +49,7 @@ const Signin = () => {
           }}
         >
           <img
-            src="http://192.168.15.181:3001/resources/images/logo1.png"
+            src={`${apiUrl}/resources/images/logo1.png`}
             alt="logoImg"
             width="180px"
             height="160px"
@@ -119,25 +120,25 @@ const Signin = () => {
           <a className="text-white xs:mb-14 md:mb-6 " href="bsi.com.vn"><i>Quên mật khẩu ?</i></a>
           <div className="w-[50%] flex justify-around">
             <img
-              src="http://192.168.15.181:3001/resources/images/google-logo.png"
+              src={`${apiUrl}/resources/images/google-logo.png`}
               alt="logo"
               className="w-8 h-8 sm:mx-7 xs:mx-2"
             />
             <img
-              src="http://192.168.15.181:3001/resources/images/fb-logo.png"
+              src={`${apiUrl}/resources/images/fb-logo.png`}
               alt="logo"
               className="w-8 h-8 sm:mx-7 xs:mx-2"
             />
             <span className="bg-white h-[28px] sm:mx-7 xs:mx-2 rounded-t-md">
               <img
-                src="http://192.168.15.181:3001/resources/images/zalo-logo.png"
+                src={`${apiUrl}/resources/images/zalo-logo.png`}
                 alt="zaloIcon"
                 className="w-8 h-8"
               />
             </span>
 
             <img
-              src="http://192.168.15.181:3001/resources/images/beta-logo.png"
+              src={`${apiUrl}/resources/images/beta-logo.png`}
               alt="betaIcon"
               className="w-8 h-8 sm:mx-7 xs:mx-2"
             />
@@ -191,7 +192,7 @@ const Signin = () => {
               </div>
             </div>
             <img
-              src="http://192.168.15.181:3001/resources/images/img6.png"
+              src={`${apiUrl}/resources/images/img6.png`}
               width="100%"
               height="80%"
               alt="imgSignin"
@@ -206,7 +207,7 @@ const Signin = () => {
             }}
           >
             <img
-              src="http://192.168.15.181:3001/resources/images/logo1.png"
+              src={`${apiUrl}/resources/images/logo1.png`}
               alt="logoImg"
               width="180px"
               height="160px"
@@ -286,25 +287,25 @@ const Signin = () => {
             </a>
             <div className="w-[50%] flex justify-around ">
               <img
-                src="http://192.168.15.181:3001/resources/images/google-logo.png"
+                src={`${apiUrl}/resources/images/google-logo.png`}
                 alt="logo"
                 className="w-8 h-8 mx-7"
               />
               <img
-                src="http://192.168.15.181:3001/resources/images/fb-logo.png"
+                src={`${apiUrl}/resources/images/fb-logo.png`}
                 alt="logo"
                 className="w-8 h-8 mx-7"
               />
               <span className="bg-white h-[28px] mx-7 rounded-t-md">
                 <img
-                  src="http://192.168.15.181:3001/resources/images/zalo-logo.png"
+                  src={`${apiUrl}/resources/images/zalo-logo.png`}
                   alt="zaloIcon"
                   className="w-8 h-8"
                 />
               </span>
 
               <img
-                src="http://192.168.15.181:3001/resources/images/beta-logo.png"
+                src={`${apiUrl}/resources/images/beta-logo.png`}
                 alt="betaIcon"
                 className="w-8 h-8 mx-7"
               />

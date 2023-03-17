@@ -22,17 +22,17 @@ const TableDetail = () => {
             <div className="block w-full xs:min-h-[352px] xxs:min-h-[332px] sm:min-h-[312px] md:min-h-[336px] lg:min-h-[350px] xl:min-h-[350px] bg-[#000000]">
               <table className="items-center w-full border-collapse bg-[#000000]">
                 <thead>
-                  <tr className='bg-gradient-to-b from-cyan-800 to-black'>
-                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-amber-500">
+                  <tr className='bg-gradient-to-b from-[#217EBE] to-black'>
+                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
                       Chỉ số
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-amber-500">
+                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
                       Điểm
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-amber-500">
+                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
                       Thay đổi (điểm)
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-amber-500">
+                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
                       Thay đổi (%)
                     </th>
                   </tr>

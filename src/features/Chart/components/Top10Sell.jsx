@@ -96,7 +96,7 @@ const Top10Sell = () => {
     return (
         <>
             <div className="chart">
-                <ReactApexChart options={options} series={series} type="bar" height={630} />
+                <ReactApexChart options={options} series={series} type="bar" height={663} />
             </div>
         </>
     )

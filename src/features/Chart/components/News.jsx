@@ -13,19 +13,19 @@ const News = () => {
             if (window.innerWidth >= '1920')
                 setSpeed(4)
             else if (window.innerWidth >= '1536')
-                setSpeed(4)
+                setSpeed(3.5)
             else if (window.innerWidth >= '1280')
                 setSpeed(3)
             else if (window.innerWidth >= '1024')
-                setSpeed(3)
+                setSpeed(2.5)
             else if (window.innerWidth >= '768')
                 setSpeed(2)
             else if (window.innerWidth >= '640')
-                setSpeed(2)
+                setSpeed(1.5)
             else if (window.innerWidth >= '425')
                 setSpeed(1)
             else if (window.innerWidth >= '375')
-                setSpeed(1)
+                setSpeed(0.5)
         }
         handleResize()
 
@@ -40,7 +40,7 @@ const News = () => {
                     <div className="blog-news flex h-[130px]">
                         {dataNews.data?.map((item, index) => {
                             return (
-                                <Card bodyStyle={{ paddingTop: "15px", paddingBottom: '10px', paddingLeft: '0px', paddingRight: '10px' }} key={index} bordered={false} className='w-[350px] h-[90px] bg-black'>
+                                <Card bodyStyle={{ paddingTop: "15px", paddingBottom: '10px', paddingLeft: '0px', paddingRight: '10px' }} key={index} bordered={false} className='w-[355px] h-[90px] bg-black'>
                                     <div className="flex items-center">
                                         <a href={item.Href} target="_blank" rel="noopener noreferrer">
                                             <img src={item.Img} alt={item.Title} width={120} height={95} />
@@ -53,7 +53,7 @@ const News = () => {
                                             </a>
                                             <a href={item.Href} target="_blank" rel="noopener noreferrer">
                                                 <p className="line-clamp-2 text-[0.7rem] text-white items-center justify-center">
-                                                    {item.Title}
+                                                    {item.SubTitle}
                                                 </p>
                                             </a>
                                             <span className="text-[0.65rem] text-white items-center justify-center">
