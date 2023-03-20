@@ -66,9 +66,9 @@ const BarChartRight = () => {
     xaxis: {
       categories: data?.map((item) => item.ticker),
       labels: {
-
+        rotate: -50,
         style: {
-          fontSize: '10px',
+          fontSize: '13px',
           fontWeight: "bold",
           colors: '#fff',
         },

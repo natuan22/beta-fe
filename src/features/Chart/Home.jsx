@@ -23,6 +23,7 @@ import Footer from "../../components/Footer";
 import StackingAreas from "./components/StackingAreas";
 import NetVolumeTrade from "./components/NetVolumeTrade";
 import TableMarketLiquidity from "./components/TableMarketLiquidity";
+import News from "./components/News";
 import {
   fetchDataInternationalIndex,
   fetchDataTableDetail,
@@ -44,7 +45,6 @@ import {
   fetchDataNetVolume,
   fetchDataNews,
 } from "./thunk";
-import News from "./components/News";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -101,7 +101,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="mx-auto bg-black">
+      <div className="mx-auto bg-black ">
         <div className="flex">
           <div className="w-[5%]">
             <Banner />
@@ -136,6 +136,7 @@ const Home = () => {
                           <option value="HNX">HNX</option>
                           <option value="VN30">VN30</option>
                         </select>
+
                         <BarChartLeft />
                       </div>
                     </div>
@@ -371,6 +372,7 @@ const Home = () => {
               </div>
             </div>
             <Footer />
+
           </div>
         </div>
       </div>

@@ -6,11 +6,15 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
+import socket from "../utils/socket";
 
 const GeneralIndustry = () => {
   const dataGeneral = useSelector((state) => state.chart.dataGeneral);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const oldData = dataGeneral.data?.map(item => {
+    return item
+  })
 
   // const [isHovering, setIsHovering] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(-1);
@@ -24,17 +28,18 @@ const GeneralIndustry = () => {
   };
 
   useEffect(() => {
-    if (dataGeneral.data) {
+    if (dataGeneral?.data) {
       setLoading(false);
       setData(dataGeneral.data);
     }
-  }, [dataGeneral]);
+  }, [dataGeneral?.data]);
+
   return (
     <>
       <section className="bg-blueGray-50">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
-            <div className="block w-full overflow-y-scroll xs:h-[438px] xxs:h-[430px] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[663px] 3xl:h-[735px] bg-[#000000]">
+            <div className="block w-full scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll xs:h-[438px] xxs:h-[430px] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[663px] 3xl:h-[735px] bg-[#000000]">
               <table className="items-center w-full border-collapse bg-[#000000]">
                 <thead className="sticky top-0 bg-gradient-to-b from-[#217EBE] to-black z-30">
                   <tr>
@@ -62,6 +67,7 @@ const GeneralIndustry = () => {
                       let color = getColor(item.day_change_percent);
                       let color2 = getColor(item.week_change_percent);
                       let color3 = getColor(item.month_change_percent);
+
                       if (item.industry === "#N/A") {
                         return null;
                       }
@@ -70,22 +76,13 @@ const GeneralIndustry = () => {
                       let numOfIncrease = item.increase;
                       let numOfDecrease = item.decrease;
                       let numOfEqual = item.equal;
-                      let total =
-                        numOfHigh +
-                        numOfLow +
-                        numOfIncrease +
-                        numOfDecrease +
-                        numOfEqual;
+                      let total = numOfHigh + numOfLow + numOfIncrease + numOfDecrease + numOfEqual;
                       return (
                         <tr key={index} className="hover:bg-gray-900">
-                          <th
-                            className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}
-                          >
+                          <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
                             {item.industry}
                           </th>
-                          <td
-                            className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2.5 font-semibold`}
-                          >
+                          <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2.5 font-semibold`}>
                             <span className="text-left px-1.5">
                               {getIcon(item.day_change_percent)}
                             </span>
@@ -93,9 +90,7 @@ const GeneralIndustry = () => {
                               {item.day_change_percent.toFixed(2)}%
                             </span>
                           </td>
-                          <td
-                            className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}
-                          >
+                          <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                             <span className="text-left px-1.5">
                               {getIcon(item.week_change_percent)}
                             </span>
@@ -103,9 +98,7 @@ const GeneralIndustry = () => {
                               {item.week_change_percent.toFixed(2)}%
                             </span>
                           </td>
-                          <td
-                            className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}
-                          >
+                          <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                             <span className="text-left px-1.5">
                               {getIcon(item.month_change_percent)}
                             </span>
@@ -113,6 +106,7 @@ const GeneralIndustry = () => {
                               {item.month_change_percent.toFixed(2)}%
                             </span>
                           </td>
+
                           <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-2 py-2  ">
                             <div
                               className="flex relative"
