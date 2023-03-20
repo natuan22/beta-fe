@@ -12,31 +12,30 @@ const StackingAreas = () => {
   );
   const [data, setData] = useState([]);
   useEffect(() => {
-      // Lấy dữ liệu ban đầu từ API
-  if (dataStackingChart?.data) {
-    setData(dataStackingChart.data);
-  }
+    // Lấy dữ liệu ban đầu từ API
+    if (dataStackingChart?.data) {
+      setData(dataStackingChart.data);
+    }
     // Lắng nghe sự kiện từ socket
     socket.on("listen-do-rong-thi-truong", (newData) => {
-        setData((prevData) => [...prevData, ...newData]);
+      setData((prevData) => [...prevData, ...newData]);
     });
 
     // Hủy bỏ việc lắng nghe sự kiện khi component bị unmount
-  
-  }, [ dataStackingChart?.data]);
- 
+  }, [dataStackingChart?.data]);
+
   const [hoveredValue, setHoveredValue] = useState(null);
   if (!dataStackingChart.data || !dataStackingChart.data.length) {
     return <Loading />;
   }
 
-  const timeLine =data?.map((item) =>
+  const timeLine = data?.map((item) =>
     moment(item.time, "HH:mm:ss").format("HH:mm")
   );
 
-  const dataAdvance =data?.map((item) => item.advance);
-  const dataDecline =data?.map((item) => item.decline);
-  const dataNoChange =data?.map((item) => item.noChange);
+  const dataAdvance = data?.map((item) => item.advance);
+  const dataDecline = data?.map((item) => item.decline);
+  const dataNoChange = data?.map((item) => item.noChange);
   const options = {
     accessibility: {
       enabled: false,

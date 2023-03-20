@@ -216,12 +216,12 @@ export const fetchDataAreaChart1 = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/thanhkhoanvni/hientai",
+      url: `${apiUrl}/api/v1/stock/liquidity-today`,
       method: "GET",
     });
     dispatch({
       type: "beta/UPDATE_DATA_AREACHART1",
-      payload: res.data,
+      payload: res.data.data,
     });
   } catch (err) {
     console.log(err);
@@ -232,12 +232,12 @@ export const fetchDataAreaChart2 = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "http://192.168.9.250:5000/thanhkhoanvni/1ngaytruoc",
+      url: `${apiUrl}/api/v1/stock/liquidity-yesterday`,
       method: "GET",
     });
     dispatch({
       type: "beta/UPDATE_DATA_AREACHART2",
-      payload: res.data,
+      payload: res.data.data,
     });
   } catch (err) {
     console.log(err);

@@ -21,7 +21,7 @@ export const userLoginAction = (data) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: authenTypes.LOGIN_FAIL,
-      payload: false,
+      payload: 'Sai tài khoản hoặc mật khẩu',
     });
   }
 };

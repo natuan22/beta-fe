@@ -6,6 +6,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
+import socket from "../utils/socket";
 
 const GeneralIndustry = () => {
   const dataGeneral = useSelector((state) => state.chart.dataGeneral);
@@ -29,6 +30,12 @@ const GeneralIndustry = () => {
       setData(dataGeneral.data);
     }
   }, [dataGeneral]);
+
+  useEffect(() => {
+    socket.on("listen-phan-nganh", (newData) => {
+      
+    });
+  },[]);
   return (
     <>
       <section className="bg-blueGray-50">
@@ -57,7 +64,8 @@ const GeneralIndustry = () => {
                 </thead>
 
                 <tbody>
-                  {!loading ? (Array.isArray(data) &&
+                  {!loading ? (
+                    Array.isArray(data) &&
                     data.map((item, index) => {
                       let color = getColor(item.day_change_percent);
                       let color2 = getColor(item.week_change_percent);
@@ -167,8 +175,15 @@ const GeneralIndustry = () => {
                             </div>
                           </td>
                         </tr>
-                      )
-                    })) : (<tr><td colSpan={5}><Loading /></td></tr>)}
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td colSpan={5}>
+                        <Loading />
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>

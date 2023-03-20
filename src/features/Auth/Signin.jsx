@@ -263,7 +263,7 @@ const Signin = () => {
                 </label>
               </div>
               {!isLogin?.data ? (
-                <p className="my-2 text-start text-amber-500 absolute">
+                <p className="my-2 text-start text-amber-500 absolute z-30">
                   {loginMessage}
                 </p>
               ) : (
