@@ -47,11 +47,11 @@ const BarChartLeft = () => {
           ranges: [
             {
               from: 0,
-              to: 100,
+              to: Infinity,
               color: "#19d216",
             },
             {
-              from: -100,
+              from: -Infinity,
               to: 0,
               color: "#f10000",
             },
@@ -65,8 +65,8 @@ const BarChartLeft = () => {
       enabled: false,
     },
     yaxis: {
-      min: -3 ,
-      max: 3 ,
+      min: -3,
+      max: 3,
       labels: {
         formatter: function (y) {
           return y.toFixed(2);
@@ -79,10 +79,10 @@ const BarChartLeft = () => {
     xaxis: {
       categories: dataStockRender.map(item => item.symbol),
       labels: {
-        rotate: 90,
+        rotate: -50,
         style: {
           fontWeight: "bold",
-          fontSize: "6px",
+          fontSize: "13px",
           colors: '#fff',
         },
       },

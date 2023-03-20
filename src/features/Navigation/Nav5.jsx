@@ -1,8 +1,9 @@
 import React from 'react'
+import Error404 from './Error404'
 
 const Nav5 = () => {
   return (
-    <div>Nav5</div>
+    <Error404 />
   )
 }
 
