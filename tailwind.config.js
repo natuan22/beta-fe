@@ -1,3 +1,4 @@
+const apiUrl = process.env.REACT_APP_BASE_URL;
 module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
@@ -13,7 +14,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        "signinBackground": "url('http://192.168.15.181:3001/resources/images/login-background.png')",
+        "signinBackground": `url('${apiUrl}/resources/images/login-background.png')`,
         "signinLogo": "url('')"
       },
       colors: {
@@ -30,6 +31,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
+    require('tailwind-scrollbar'),
   ],
   corePlugins: {
     preflight: false,

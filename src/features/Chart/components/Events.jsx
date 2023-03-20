@@ -18,7 +18,7 @@ const Events = () => {
         <section className="bg-blueGray-50" >
             <div className="w-full">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
-                    <div className="block w-full h-96 overflow-y-scroll bg-[#000000]">
+                    <div className="block w-full h-96 scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll bg-[#000000]">
                         <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
                             <thead className="sticky top-0 bg-gradient-to-b from-[#217EBE] to-black">
                                 <tr>

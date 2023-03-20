@@ -7,10 +7,9 @@ import moment from "moment";
 import socket from "../utils/socket";
 
 const StackingAreas = () => {
-  const dataStackingChart = useSelector(
-    (state) => state.chart.dataStackingArea
-  );
+  const dataStackingChart = useSelector((state) => state.chart.dataStackingArea);
   const [data, setData] = useState([]);
+
   useEffect(() => {
     // Lấy dữ liệu ban đầu từ API
     if (dataStackingChart?.data) {

@@ -20,7 +20,7 @@ const TableMarketVolatility = () => {
             <section className="bg-blueGray-50">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
-                        <div className="block w-full bg-[#000000] xl:overflow-x-hidden xxs:overflow-x-scroll xs:overflow-x-scroll">
+                        <div className="block w-full bg-[#000000] scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] xl:overflow-x-hidden xxs:overflow-x-scroll xs:overflow-x-scroll">
                             <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
                                 <thead className="bg-gradient-to-b from-[#217EBE] to-black">
                                     <tr>
