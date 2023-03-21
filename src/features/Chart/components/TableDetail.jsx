@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
+import socket from "../utils/socket";
 
 const TableDetail = () => {
   const dataTable = useSelector((state) => state.chart.dataTableDetail);
@@ -13,6 +14,12 @@ const TableDetail = () => {
       setData(dataTable.data)
     }
   }, [dataTable]);
+
+  useEffect(() => {
+    socket.on("listen-chi-so-trong-nuoc", (newData) => {
+      setData(newData)
+    });
+  }, [])
 
   return (
     <>
@@ -54,7 +61,7 @@ const TableDetail = () => {
                             {item.ticker}
                           </th>
                           <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {item.close_price}
+                            {item.price}
                           </td>
                           <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                             {item.change_price.toFixed(2)}
