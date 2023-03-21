@@ -9,9 +9,9 @@ function AreaChart() {
   const dataPreviousDay = useSelector((state) => state.chart.dataChart2);
   const [dataSocket, setDataSocket] = useState([]);
   useEffect(() => {
-   if(dataToday){
-    setDataSocket(dataToday)
-   }
+    if (dataToday) {
+      setDataSocket(dataToday)
+    }
     socket.on("listen-thanh-khoan-phien-hien-tai", (newData) => {
       setDataSocket((prevData) => [...prevData, ...newData]);
     });
@@ -31,7 +31,7 @@ function AreaChart() {
     credits: false,
     chart: {
       type: "area",
-      backgroundColor: "transparent",
+      backgroundColor: "black",
     },
     title: {
       text: "",
@@ -63,7 +63,7 @@ function AreaChart() {
         },
       },
     },
-    
+
     legend: {
       itemStyle: {
         color: "#fff",
@@ -87,8 +87,8 @@ function AreaChart() {
       {
         name: "Hôm nay",
         data:
-        dataSocket &&
-        dataSocket.length &&
+          dataSocket &&
+          dataSocket.length &&
           dataSocket.map((item) => [item.time, item.value]),
         color: "#2AF371",
         opacity: "0.7",
@@ -104,7 +104,8 @@ function AreaChart() {
   return (
     <div>
       {dataPreviousDay?.length && dataToday?.length ? (
-        <HighchartsReact highcharts={Highcharts} options={options}  />
+        // containerProps={{ style: { height: '590px', width: '100%' } }}
+        <HighchartsReact highcharts={Highcharts} options={options} />
       ) : (
         <Loading />
       )}
