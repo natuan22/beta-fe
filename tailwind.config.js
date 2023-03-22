@@ -15,14 +15,14 @@ module.exports = {
     extend: {
       backgroundImage: {
         "signinBackground": `url('${apiUrl}/resources/images/login-background.png')`,
-        "signinLogo": "url('')"
+        
       },
       colors: {
         'signinColor': "rgba(116,99,224,0.25)",
         'inputBackground1': "rgba(59, 24, 130, 0.75)",
         'inputBackground2': ' rgba(158, 24, 99, 0.75)',
         'backgroundBtn': 'rgba(0,0,0,0.4)'
-
+        
       },
       height: {
         100: "800px",

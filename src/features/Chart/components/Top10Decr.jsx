@@ -5,7 +5,6 @@ import ReactApexChart from 'react-apexcharts';
 const Top10Decr = () => {
   const dataROC5PhienGiam = useSelector(state => state.chart.dataROC5Phien);
   const [data, setData] = useState([])
-
   useEffect(() => {
     if (dataROC5PhienGiam.data)
       setData(dataROC5PhienGiam.data)
@@ -17,7 +16,7 @@ const Top10Decr = () => {
 
   const series = [{
     name: 'Giảm',
-    data: decr10.map(item => item.ROC_5.toFixed(2)),
+    data: decr10.map(item => item['%5D'].toFixed(2)),
   }]
 
   const options = {

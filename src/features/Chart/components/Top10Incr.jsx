@@ -15,7 +15,7 @@ const Top10Incr = () => {
 
   const series = [{
     name: 'Tăng',
-    data: incr10.map(item => item.ROC_5.toFixed(2)),
+    data: incr10.map(item => item['%5D'].toFixed(2)),
   }]
 
   const options = {

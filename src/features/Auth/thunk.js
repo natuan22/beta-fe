@@ -4,13 +4,10 @@ const apiUrl = process.env.REACT_APP_BASE_URL;
 
 export const userLoginAction = (data) => async (dispatch) => {
   try {
-    const res = await axios({
-      url: `${apiUrl}/api/v1/auth/login`,
-      header: {
-        withCredentials: true,
-      },
-      method: "POST",
-      data,
+    const res = await axios.post(`${apiUrl}/api/v1/auth/login`, {
+      ...data
+    }, {
+      withCredentials: true
     });
     dispatch({
       type: authenTypes.USER_LOGIN,
