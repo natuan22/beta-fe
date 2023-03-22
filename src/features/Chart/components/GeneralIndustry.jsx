@@ -1,8 +1,4 @@
-import {
-  CaretDownOutlined,
-  CaretRightOutlined,
-  CaretUpOutlined,
-} from "@ant-design/icons";
+import { CaretDownOutlined, CaretRightOutlined, CaretUpOutlined, } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
@@ -12,7 +8,6 @@ const GeneralIndustry = () => {
   const dataGeneral = useSelector((state) => state.chart.dataGeneral);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
- 
 
   // const [isHovering, setIsHovering] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(-1);
@@ -33,10 +28,29 @@ const GeneralIndustry = () => {
   }, [dataGeneral]);
 
   useEffect(() => {
-    socket.on("listen-phan-nganh", (newData) => {
-      
-    });
-  },[]);
+    if (dataGeneral?.data) {
+      const oldData = dataGeneral?.data
+
+      socket.on("listen-phan-nganh", (newData) => {
+        const newDataWithChanges = oldData.map(oldItem => {
+          const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
+          if (matchingItem) {
+            return {
+              ...oldItem,
+              day_change_percent: matchingItem.day_change_percent,
+              month_change_percent: matchingItem.month_change_percent,
+              week_change_percent: matchingItem.week_change_percent
+            }
+          } else {
+            return oldItem
+          }
+        })
+
+        setData(newDataWithChanges)
+      });
+    }
+  }, [dataGeneral]);
+
   return (
     <>
       <section className="bg-blueGray-50">
@@ -119,7 +133,7 @@ const GeneralIndustry = () => {
                             >
                               {hoveredIndex === index && (
                                 <div className="bg-white text-black text-xs font-medium p-1 rounded-md absolute top-0 translate-x-[-60%] translate-y-[-110%] z-40 ease-in-out duration-500">
-                                  <span>Trần:{item.high}</span>
+                                  <span>Trần: {item.high}</span>
                                   <span className="ml-2">
                                     Tăng: {item.increase}
                                   </span>

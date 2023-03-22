@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Loading from "../utils/Loading";
+import socket from "../utils/socket";
 
 const TableMarketVolatility = () => {
     const dataMarketVolatility = useSelector(state => state.chart.dataTableMarketVolatility);
@@ -9,10 +10,16 @@ const TableMarketVolatility = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (dataMarketVolatility.data) {
+        if (dataMarketVolatility?.data) {
             setLoading(false);
             setData(dataMarketVolatility.data)
         }
+    }, [dataMarketVolatility])
+
+    useEffect(() => {
+        socket.on("listen-bien-dong-thi-truong", (newData) => {
+            setData(newData)
+        })
     }, [dataMarketVolatility])
 
     return (
