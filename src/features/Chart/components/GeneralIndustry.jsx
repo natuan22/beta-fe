@@ -96,7 +96,7 @@ const GeneralIndustry = () => {
                       let numOfEqual = item.equal;
                       let total = numOfHigh + numOfLow + numOfIncrease + numOfDecrease + numOfEqual;
                       return (
-                        <tr key={index} className="hover:bg-gray-900">
+                        <tr key={index} className="hover:bg-gray-800">
                           <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
                             {item.industry}
                           </th>

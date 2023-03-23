@@ -56,7 +56,7 @@ const TableDetail = () => {
                       else
                         color = 'text-green-500'
                       return (
-                        <tr key={index} className='hover:bg-gray-900'>
+                        <tr key={index} className='hover:bg-gray-800'>
                           <th className="text-left px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 text-white">
                             {item.ticker}
                           </th>

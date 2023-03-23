@@ -203,7 +203,7 @@ const TopROC = () => {
                         <span className="font-semibold text-base uppercase text-white">
                             Top 10 cổ phiếu tăng/giảm mạnh nhất sàn
                         </span>
-                        <select className={`${chartStyle.selectStyle} text-base border-none bg-[#020203] text-[#0097B2]`}
+                        <select className={`${chartStyle.selectStyle} bg-[#020203] hover:bg-gray-900 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                                 disconnectSocket(socketOld)
                                 setQuery(event.target.value)

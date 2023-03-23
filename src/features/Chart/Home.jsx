@@ -135,7 +135,7 @@ const Home = () => {
                           </span>
 
                           <select
-                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg- ml-3 rounded-lg p-1 text-base  text-white`}
+                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(
@@ -205,7 +205,7 @@ const Home = () => {
                         <span className="text-white uppercase text-lg">
                           Khối ngoại mua ròng sàn
                           <select
-                            className={`${chartStyle.selectStyle} text-base bg-[#151924] border-none text-[#0097B2]`}
+                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(
@@ -224,7 +224,7 @@ const Home = () => {
                         <span className="text-white uppercase text-lg">
                           Khối ngoại bán ròng sàn
                           <select
-                            className={`${chartStyle.selectStyle} text-base bg-[#151924] border-none text-[#0097B2]`}
+                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(
@@ -261,7 +261,7 @@ const Home = () => {
                         Top 10 khối ngoại mua/bán nhiều nhất sàn
                       </span>
                       <select
-                        className={`${chartStyle.selectStyle} text-base border-none bg-[#020203] text-[#0097B2]`}
+                        className={`${chartStyle.selectStyle} bg-[#020203] hover:bg-gray-900 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
                         onChange={(event) => {
                           dispatch(
                             dispatch(
@@ -296,7 +296,7 @@ const Home = () => {
                         <span className="text-white uppercase text-lg">
                           Khối ngoại mua ròng sàn
                           <select
-                            className={`${chartStyle.selectStyle} text-base bg-[#151924] border-none text-[#0097B2]`}
+                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(
@@ -315,7 +315,7 @@ const Home = () => {
                         <span className="text-white uppercase text-lg">
                           Khối ngoại bán ròng sàn
                           <select
-                            className={`${chartStyle.selectStyle} text-base bg-[#151924] border-none text-[#0097B2]`}
+                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(

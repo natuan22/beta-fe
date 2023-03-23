@@ -41,7 +41,7 @@ const Events = () => {
                                 {!loading ? (Array.isArray(data) &&
                                     data.map((item, index) => {
                                         return (
-                                            <tr key={index} className='hover:bg-gray-900'>
+                                            <tr key={index} className='hover:bg-gray-800'>
                                                 <th className="text-center align-middle text-xs whitespace-nowrap px-3 p-3.5 text-white">
                                                     {item.ticker}
                                                 </th>

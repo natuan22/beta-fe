@@ -41,7 +41,7 @@ const NetVolumeTrade = () => {
     },
     credits: false,
     title: {
-      text: "GIÁ TRỊ GIAO DỊCH RÒNG",
+      text: "",
       style: {
         color: 'white'
       }
@@ -129,15 +129,21 @@ const NetVolumeTrade = () => {
 
   return (
     <div className="bg-black pt-2">
-      <select className="xs:ml-[145px] xxs:ml-[170px] sm:ml-[270px] md:ml-[330px] lg:ml-[450px] xl:ml-[650px] mb-[10px]" onChange={(event) => {
-        dispatch(fetchDataNetVolume(event.target.value));
-        setTitle(event.target.value)
-      }}>
-        <option value="VNINDEX">VNINDEX</option>
-        <option value="UPINDEX">UPINDEX</option>
-        <option value="HNX30">HNX30</option>
-        <option value="VN30">VN30</option>
-      </select>
+      <div className="bg-[#020203] text-center px-20 py-[10px]">
+        <span className="font-semibold text-base uppercase text-white">
+          Giá trị giao dịch ròng
+        </span>
+        <select className={`bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          onChange={(event) => {
+            dispatch(fetchDataNetVolume(event.target.value));
+            setTitle(event.target.value)
+          }}>
+          <option value="VNINDEX">VNINDEX</option>
+          <option value="UPINDEX">UPINDEX</option>
+          <option value="HNX30">HNX30</option>
+          <option value="VN30">VN30</option>
+        </select>
+      </div>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div >
   );
