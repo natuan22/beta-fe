@@ -104,12 +104,7 @@ function AreaChart() {
   return (
     <div>
       {dataPreviousDay?.length && dataToday?.length ? (
-<<<<<<< HEAD
         <HighchartsReact highcharts={Highcharts} options={options}  containerProps={{ style: { height: '590px', width: '100%' } }}/>
-=======
-        // containerProps={{ style: { height: '590px', width: '100%' } }}
-        <HighchartsReact highcharts={Highcharts} options={options} />
->>>>>>> ded1de84c88c91c6b32b8197e21697d528a63c70
       ) : (
         <Loading />
       )}
