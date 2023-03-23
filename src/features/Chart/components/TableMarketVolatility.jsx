@@ -45,7 +45,7 @@ const TableMarketVolatility = () => {
                                 </thead>
 
                                 <tbody>
-                                    <tr className='hover:bg-gray-900'>
+                                    <tr className='hover:bg-gray-800'>
                                         <th className=" sticky top-0text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
                                             Phiên trước
                                         </th>
@@ -58,7 +58,7 @@ const TableMarketVolatility = () => {
                                             )
                                         })}
                                     </tr>
-                                    <tr className='hover:bg-gray-900'>
+                                    <tr className='hover:bg-gray-800'>
                                         <th className="text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
                                             Trung bình tuần
                                         </th>
@@ -71,7 +71,7 @@ const TableMarketVolatility = () => {
                                             )
                                         })}
                                     </tr>
-                                    <tr className='hover:bg-gray-900'>
+                                    <tr className='hover:bg-gray-800'>
                                         <th className="text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
                                             Trung bình tháng
                                         </th>
@@ -84,7 +84,7 @@ const TableMarketVolatility = () => {
                                             )
                                         })}
                                     </tr>
-                                    <tr className='hover:bg-gray-900'>
+                                    <tr className='hover:bg-gray-800'>
                                         <th className="text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
                                             Trung bình năm
                                         </th>
