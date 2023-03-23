@@ -13,8 +13,7 @@ import LineChart from "./components/LineChart";
 import chartStyle from "./utils/Chart.module.css";
 import TableDetail from "./components/TableDetail";
 import GoodsDetail from "./components/GoodsDetail";
-import Top10Incr from "./components/Top10Incr";
-import Top10Decr from "./components/Top10Decr";
+import TopROC from "./components/TopROC";
 import TreeMapChart2 from "./components/TreeMapChart2";
 import RateDetail from "./components/RateDetail";
 import AreaChart from "./components/AreaChart";
@@ -45,6 +44,7 @@ import {
   fetchDataNetVolume,
   fetchDataNews,
 } from "./thunk";
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -135,7 +135,7 @@ const Home = () => {
                           </span>
 
                           <select
-                           className={`${chartStyle.selectStyle} bg-[#151924] hover:bg- ml-3 rounded-lg p-1 text-base  text-white`}
+                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg- ml-3 rounded-lg p-1 text-base  text-white`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(
@@ -191,37 +191,7 @@ const Home = () => {
                 </div>
 
                 <div className="lg:w-[80%] xl:w-[40%] lg:translate-x-[14%] xl:translate-x-0">
-                  <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924]">
-                    <div className="bg-[#020203] text-center px-20 pt-[19px]">
-                      <span className="font-semibold text-base uppercase text-white">
-                        Top 10 cổ phiếu tăng/giảm mạnh nhất sàn
-                      </span>
-                      <select
-                        className={`${chartStyle.selectStyle} text-base border-none bg-[#020203] text-[#0097B2]`}
-                        onChange={(event) => {
-                          dispatch(
-                            dispatch(fetchDataROC5Phien(event.target.value))
-                          );
-                        }}
-                      >
-                        <option value="hose">HSX</option>
-                        <option value="hnx">HNX</option>
-                        <option value="upcom">UPCOM</option>
-                      </select>
-                      <span className="font-semibold uppercase text-white">
-                        qua 05 phiên gần nhất
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-2 bg-[#020203]">
-                      <div className="text-center mx-1">
-                        <Top10Decr />
-                      </div>
-
-                      <div className="text-center mx-1">
-                        <Top10Incr />
-                      </div>
-                    </div>
-                  </div>
+                  <TopROC />
                 </div>
               </div>
             </div>
