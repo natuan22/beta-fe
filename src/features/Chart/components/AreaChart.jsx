@@ -12,9 +12,11 @@ function AreaChart() {
     if (dataToday) {
       setDataSocket(dataToday)
     }
-    socket.on("listen-thanh-khoan-phien-hien-tai", (newData) => {
-      setDataSocket((prevData) => [...prevData, ...newData]);
-    });
+    if (dataToday) {
+      socket.on("listen-thanh-khoan-phien-hien-tai", (newData) => {
+        setDataSocket((prevData) => [...prevData, ...newData]);
+      });
+    }
   }, [dataToday]);
 
   if (!dataPreviousDay.length && !dataToday.length)
