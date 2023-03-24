@@ -361,28 +361,28 @@ const Home = () => {
                           handleClick('increase')
                           dispatch(dispatch(fetchDataTableMarketLiquidity("0")))
                         }}
-                        className="px-2 py-1.5 bg-transparent text-white border-none cursor-pointer" >Tăng mạnh nhất</button>
+                        className='3xl:text-[14.5px] 2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] sm:text-[13px] xxs:text-[13.5px] xs:text-[12px]'>Tăng mạnh nhất</button>
                       <button
                         style={activeButton === 'decrease' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                         onClick={() => {
                           handleClick('decrease')
                           dispatch(dispatch(fetchDataTableMarketLiquidity("1")))
                         }}
-                        className="px-2 py-1.5 bg-transparent text-white border-none cursor-pointer">Giảm mạnh nhất</button>
+                        className='3xl:text-[14.5px] 2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] sm:text-[13px] xxs:text-[13.5px] xs:text-[12px]'>Giảm mạnh nhất</button>
                       <button
                         style={activeButton === 'highest' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                         onClick={() => {
                           handleClick('highest')
                           dispatch(dispatch(fetchDataTableMarketLiquidity("2")))
                         }}
-                        className="px-2 py-1.5 bg-transparent text-white border-none cursor-pointer">Đóng góp cao nhất</button>
+                        className='3xl:text-[14.5px] 2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] sm:text-[13px] xxs:text-[13.5px] xs:text-[12px]'>Đóng góp cao nhất</button>
                       <button
                         style={activeButton === 'lowest' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                         onClick={() => {
                           handleClick('lowest')
                           dispatch(dispatch(fetchDataTableMarketLiquidity("3")))
                         }}
-                        className="px-2 py-1.5 bg-transparent text-white border-none cursor-pointer">Đóng góp thấp nhất</button>
+                        className='3xl:text-[14.5px] 2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] sm:text-[13px] xxs:text-[13.5px] xs:text-[12px]'>Đóng góp thấp nhất</button>
                     </div>
 
                     <TableMarketLiquidity />
