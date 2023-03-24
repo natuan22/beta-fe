@@ -5,7 +5,6 @@ const Banner = () => {
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
-    console.log(showSidebar);
   };
 
   return (
