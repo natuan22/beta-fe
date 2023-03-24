@@ -1,97 +1,86 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import ReactApexChart from "react-apexcharts";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 
 const BarChartRight = () => {
   const dataBarChartRight = useSelector((state) => state.chart.dataBarChartRight);
   const [data, setData] = useState(dataBarChartRight?.data ?? []);
-
   useEffect(() => {
     setData(dataBarChartRight?.data ?? []);
   }, [dataBarChartRight]);
 
   const options = {
-    grid: {
-      show: true,      // you can either change hear to disable all grids
-      xaxis: {
-        lines: {
-          show: false  //or just here to disable only x axis grids
-        }
-      },
-      yaxis: {
-        lines: {
-          show: true  //or just here to disable only y axis
-        }
-      },
-    },
-    chart: {
-      background: '#020203',
-      type: "bar",
-      toolbar: {
-        show: false,
-      },
-    },
-    plotOptions: {
-      bar: {
-        colors: {
-          ranges: [
-            {
-              from: 0,
-              to: Infinity,
-              color: "#19d216",
-            },
-            {
-              from: -Infinity,
-              to: 0,
-              color: "#f32626",
-            },
-          ],
-        },
-        columnWidth: "70%",
-      },
-    },
-    dataLabels: {
+    accessibility: {
       enabled: false,
     },
-    yaxis: {
-      labels: {
-        formatter: function (y) {
-          return y.toFixed(2);
-        },
-        style: {
-          colors: '#fff',
-        }
-      },
+    credits: false,
+    chart: {
+      type: "column",
+      backgroundColor: "transparent",
     },
-    xaxis: {
+    title: {
+      text: "",
+    },
+    xAxis: {
       categories: data?.map((item) => item.ticker),
       labels: {
-        rotate: -50,
-        style: {
-          fontSize: '13px',
-          fontWeight: "bold",
-          colors: '#fff',
-        },
+        step: 1,
+        rotation: -45,
+        align:'center',
+        style:{
+          color:"#fff",
+          fontSize: 10
+        }
       },
-      axisTicks: {
-        show: false,
+      crosshair: true 
+    },
+    yAxis: {
+      title: {
+        text: "",
+      },
+      labels:{
+        style:{
+          color:'#fff'
+        }
+      },
+      min: Math.min(
+        ...data?.map((item) => item.net_value_foreign),
+        0
+      ),
+      max: Math.max(
+        ...data?.map((item) => item.net_value_foreign),
+        0
+      ),
+    },
+    legend: {
+      enabled: false 
+    },
+    plotOptions: {
+      column: {
+        colorByPoint: true, // enable per-point coloring
+        threshold: 0 // set the threshold at zero
       }
     },
+    series: [
+      {
+        data: data?.map(item => {
+          return {
+            name: item.ticker,
+            y: item.net_value_foreign,
+            color: item.net_value_foreign > 0 ? "#15b313" : "#ff0000"
+          };
+        })
+      },
+    ],
   };
 
-  const series = [
-    {
-      name: "Volume trade",
-      data: data?.map((item) => item.net_value_foreign),
-    },
-  ];
-
   return (
-    <div className="3xl:h-[342px] xl:h-[272px]">
-      <ReactApexChart
+    <div id="chart-container">
+      <HighchartsReact
+        highcharts={Highcharts}
         options={options}
-        series={series}
-        type="bar"
+        containerProps={{ style: { height: '100%', width: '100%' } }}
       />
     </div>
   );

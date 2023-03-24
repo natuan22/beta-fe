@@ -6,7 +6,7 @@ import Loading from "../utils/Loading";
 const TreeMapChart = () => {
   const dataTreemapBuy = useSelector((state) => state.chart.dataTreemapBuy);
   const [data = dataTreemapBuy.data || []] = useState();
-
+  console.log(data)
   const arrGlobal = [
     [
       "Location",

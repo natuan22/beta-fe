@@ -11,7 +11,7 @@ export const routes = [
   { path: "/", component: Home },
 
   // navigation tab
-  { path: "/thi-truong", component: Nav1 },
+  { path: "/thi-truong", component: Nav1, children: [] },
   { path: "/nganh", component: Nav2 },
   { path: "/vi-mo", component: Nav3 },
   { path: "/cong-cu-dau-tu", component: Nav4 },
@@ -21,3 +21,4 @@ export const routes = [
   { path: "/signin", component: Signin },
   { path: "/signup", component: Signup },
 ];
+
