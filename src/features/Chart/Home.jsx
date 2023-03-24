@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Banner from "./components/Banner";
 import BarChartLeft from "./components/BarChartLeft";
@@ -48,32 +48,23 @@ import {
 
 const Home = () => {
   const dispatch = useDispatch();
-  const buttons = [
-    {
-      label: "Tăng mạnh nhất",
-      value: "0",
-      color: "text-green-500",
-      hover: "bg-green-500",
-    },
-    {
-      label: "Giảm mạnh nhất",
-      value: "1",
-      color: "text-red-500",
-      hover: "bg-red-500",
-    },
-    {
-      label: "Đóng góp cao nhất",
-      value: "2",
-      color: "text-green-500",
-      hover: "bg-green-500",
-    },
-    {
-      label: "Đóng góp thấp nhất",
-      value: "3",
-      color: "text-red-500",
-      hover: "bg-red-500",
-    },
-  ];
+  const [activeButton, setActiveButton] = useState('increase');
+
+  const handleClick = (button) => {
+    setActiveButton(button);
+  }
+  const buttonStyle = {
+    backgroundColor: 'transparent',
+    color: '#fff',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '0.375rem 0.5rem'
+  }
+
+  const activeButtonStyle = {
+    backgroundColor: '#275F88',
+    color: '#fff',
+  }
 
   useEffect(() => {
     dispatch(fetchDataEvents);
@@ -363,24 +354,37 @@ const Home = () => {
                     <TableMarketVolatility />
                   </div>
                   <div className="px-1.5 py-1.5">
-                    {buttons.map((item) => {
-                      return (
-                        <button
-                          key={item.value}
-                          onClick={() => {
-                            dispatch(
-                              dispatch(
-                                fetchDataTableMarketLiquidity(item.value)
-                              )
-                            );
-                          }}
-                          type="button"
-                          className={`hover:${item.hover} hover:text-white ${item.color} cursor-pointer border-none bg-[#151924] font-medium rounded-lg text-xs px-2.5 py-2.5 text-center mr-1 mb-2`}
-                        >
-                          {item.label}
-                        </button>
-                      );
-                    })}
+                    <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-3">
+                      <button
+                        style={activeButton === 'increase' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
+                        onClick={() => {
+                          handleClick('increase')
+                          dispatch(dispatch(fetchDataTableMarketLiquidity("0")))
+                        }}
+                        className="px-2 py-1.5 bg-transparent text-white border-none cursor-pointer" >Tăng mạnh nhất</button>
+                      <button
+                        style={activeButton === 'decrease' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
+                        onClick={() => {
+                          handleClick('decrease')
+                          dispatch(dispatch(fetchDataTableMarketLiquidity("1")))
+                        }}
+                        className="px-2 py-1.5 bg-transparent text-white border-none cursor-pointer">Giảm mạnh nhất</button>
+                      <button
+                        style={activeButton === 'highest' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
+                        onClick={() => {
+                          handleClick('highest')
+                          dispatch(dispatch(fetchDataTableMarketLiquidity("2")))
+                        }}
+                        className="px-2 py-1.5 bg-transparent text-white border-none cursor-pointer">Đóng góp cao nhất</button>
+                      <button
+                        style={activeButton === 'lowest' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
+                        onClick={() => {
+                          handleClick('lowest')
+                          dispatch(dispatch(fetchDataTableMarketLiquidity("3")))
+                        }}
+                        className="px-2 py-1.5 bg-transparent text-white border-none cursor-pointer">Đóng góp thấp nhất</button>
+                    </div>
+
                     <TableMarketLiquidity />
                   </div>
                 </div>
@@ -409,7 +413,7 @@ const Home = () => {
             <Footer />
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };
