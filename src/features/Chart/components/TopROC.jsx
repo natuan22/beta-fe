@@ -1,9 +1,11 @@
 import React, { useEffect,  useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import ReactApexChart from 'react-apexcharts';
+import Highcharts from "highcharts";
+import HighchartsReact from 'highcharts-react-official';
 import { fetchDataROC5Phien } from '../thunk';
 import chartStyle from "../utils/Chart.module.css";
 import socket from '../utils/socket';
+
 
 const TopROC = () => {
     const dispatch = useDispatch();
@@ -41,158 +43,118 @@ const TopROC = () => {
         return -1;
     })
 
-    const series = [{
-        name: 'Tăng',
-        data: incr10.map(item => item["%5D"].toFixed(2)),
-    }]
-
-    const options = {
-        grid: {
-            show: false,      // you can either change hear to disable all grids
-            xaxis: {
-                lines: {
-                    show: false  //or just here to disable only x axis grids
-                }
-            },
-            yaxis: {
-                lines: {
-                    show: true  //or just here to disable only y axis
-                }
-            },
+    const optionsDecr = {
+        accessibility: {
+            enabled: false,
         },
+        credits: false,
         chart: {
-            background: '#020203',
-            toolbar: {
-                show: false,
-            },
-            type: 'bar',
-            fontFamily: 'Segoe UI',
+            type: "bar",
+            backgroundColor: "black",
         },
         title: {
-            text: '',
-            align: 'center',
+            text: null
         },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    position: 'top'
-                },
-                horizontal: true,
-                barHeight: '50%',
-                borderRadius: 0
-            }
+        legend: {
+            enabled: false
         },
-        fill: {
-            colors: '#19d216'
-        },
-        dataLabels: {
-            enabled: false,
-            offsetX: 30,
-            style: {
-                colors: ['#212529']
-            },
-        },
-        xaxis: {
-            categories: incr10.map(item => item.ticker),
-            labels: {
-                show: true,
-                formatter: function (y) {
-                    return y.toFixed(2);
-                },
-                style: {
-                    colors: '#fff',
-                }
-            },
-            axisTicks: {
-                show: false,
-            }
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    colors: '#fff',
-                }
-            }
-        }
-    };
-
-
-
-    const series2 = [{
-        name: 'Giảm',
-        data: decr10.map(item => item["%5D"].toFixed(2)),
-    }]
-
-    const options2 = {
-        grid: {
-            show: false,      // you can either change hear to disable all grids
-            xaxis: {
-                lines: {
-                    show: false  //or just here to disable only x axis grids
-                }
-            },
-            yaxis: {
-                lines: {
-                    show: true  //or just here to disable only y axis
-                }
-            },
-        },
-        chart: {
-            background: '#020203',
-            toolbar: {
-                show: false,
-            },
-            type: 'bar',
-            fontFamily: 'Segoe UI',
-        },
-        title: {
-            text: '',
-            align: 'center',
-        },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    position: 'top'
-                },
-                horizontal: true,
-                barHeight: '50%',
-                borderRadius: 0
-            }
-        },
-        fill: {
-            colors: '#fe0001'
-        },
-        dataLabels: {
-            enabled: false,
-            offsetX: 30,
-            style: {
-                colors: ['#212529']
-            },
-        },
-        xaxis: {
+        series: [{
+            name: 'Giảm',
+            data: decr10.map(item => +item['%5D'].toFixed(2)),
+            color: 'red'
+        }],
+        xAxis: [{
             categories: decr10.map(item => item.ticker),
-            labels: {
-                show: true,
-                formatter: function (y) {
-                    return y.toFixed(2);
-                },
+            reversed: true,
+            opposite: true,
+            title: {
+                text: null,
                 style: {
-                    colors: '#fff',
-                }
+                    color: "#fff",
+                },
             },
-            axisTicks: {
-                show: false,
+            labels: {
+                style: {
+                    color: "#fff",
+                },
+            },
+        }],
+        yAxis: {
+            gridLineWidth: 0,
+            title: {
+                text: null
+            },
+            labels: {
+                style: {
+                    color: "#fff",
+                },
+            },
+        },
+        plotOptions: {
+            bar: {
+                borderWidth: 0
+            },
+            series: {
+                borderRadius: 5,
             }
         },
-        yaxis: {
-            opposite: true,
+    }
+
+    const optionsIncr = {
+        accessibility: {
+            enabled: false,
+        },
+        credits: false,
+        chart: {
+            type: "bar",
+            backgroundColor: "black",
+        },
+        title: {
+            text: null
+        },
+        legend: {
+            enabled: false
+        },
+        series: [{
+            name: 'Tăng',
+            data: incr10.map(item => +item['%5D'].toFixed(2)),
+            color: '#50D950',
+        }],
+        xAxis: [{
+            categories: incr10.map(item => item.ticker),
+            reversed: true,
+            title: {
+                text: null,
+                style: {
+                    color: "#fff",
+                },
+            },
             labels: {
                 style: {
-                    colors: '#fff',
-                }
+                    color: "#fff",
+                },
+            },
+        }],
+        yAxis: {
+            gridLineWidth: 0,
+            title: {
+                text: null
+            },
+            labels: {
+                style: {
+                    color: "#fff",
+                },
+            },
+        },
+        plotOptions: {
+            bar: {
+                borderWidth: 0
+            },
+            series: {
+                borderRadius: 5
             }
-        }
-    };
+        },
+    }
 
     return (
         <>
@@ -203,7 +165,7 @@ const TopROC = () => {
                         <span className="font-semibold text-base uppercase text-white">
                             Top 10 cổ phiếu tăng/giảm mạnh nhất sàn
                         </span>
-                        <select className={`${chartStyle.selectStyle} text-base border-none bg-[#020203] text-[#0097B2]`}
+                        <select className={`${chartStyle.selectStyle} bg-[#020203] hover:bg-gray-900 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                                 disconnectSocket(socketOld)
                                 setQuery(event.target.value)
@@ -218,11 +180,11 @@ const TopROC = () => {
 
                     <div className="grid grid-cols-2 bg-[#020203]">
                         <div className="text-center mx-1">
-                            <ReactApexChart options={options2} series={series2} type="bar" height={705} />
+                            <HighchartsReact highcharts={Highcharts} options={optionsDecr} containerProps={{ style: { height: '717px', width: '100%' } }} />
                         </div>
 
                         <div className="text-center mx-1">
-                            <ReactApexChart options={options} series={series} type="bar" height={705} />
+                            <HighchartsReact highcharts={Highcharts} options={optionsIncr} containerProps={{ style: { height: '717px', width: '100%' } }} />
                         </div>
                     </div>
 

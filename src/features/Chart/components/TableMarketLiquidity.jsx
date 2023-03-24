@@ -44,7 +44,7 @@ const TableMarketLiquidity = () => {
                                         data?.map((item) => {
                                             let color = getColor(item.value_change_percent);
                                             return (
-                                                <tr key={item.ticker} className='hover:bg-gray-900'>
+                                                <tr key={item.ticker} className='hover:bg-gray-800'>
                                                     <th className={`text-center align-middle text-sm whitespace-nowrap px-2 py-2 ${color}`}>
                                                         {item.ticker}
                                                     </th>

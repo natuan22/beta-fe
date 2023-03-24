@@ -2,7 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import ReactApexChart from 'react-apexcharts';
+import Highcharts from "highcharts";
+import HighchartsReact from 'highcharts-react-official';
 
 const Top10Sell = () => {
     const dataTopNetForeignChange = useSelector(state => state.chart.dataTopNetForeignChange);
@@ -17,86 +18,67 @@ const Top10Sell = () => {
         return -1;
     })
 
-    const series = [{
-        name: 'Bán',
-        data: netSell.map(item => item.net_value.toFixed(2)),
-    }]
-
-    const options = {
-        grid: {
-            show: false,      // you can either change hear to disable all grids
-            xaxis: {
-                lines: {
-                    show: false  //or just here to disable only x axis grids
-                }
-            },
-            yaxis: {
-                lines: {
-                    show: true  //or just here to disable only y axis
-                }
-            },
+    const optionsSell = {
+        accessibility: {
+            enabled: false,
         },
+        credits: false,
         chart: {
-            background: '#020203',
-            toolbar: {
-                show: false,
-            },
-            type: 'bar',
-            fontFamily: 'Segoe UI',
+            type: "bar",
+            backgroundColor: "black",
         },
         title: {
-            text: '',
-            align: 'center',
+            text: null
+        },
+        legend: {
+            enabled: false
+        },
+        series: [{
+            name: 'Giảm',
+            data: netSell.map(item => +item.net_value.toFixed(2)),
+            color: 'red'
+        }],
+        xAxis: [{
+            categories: netSell.map(item => item.ticker),
+            reversed: true,
+            opposite: true,
+            title: {
+                text: null,
+                style: {
+                    color: "#fff",
+                },
+            },
+            labels: {
+                style: {
+                    color: "#fff",
+                },
+            },
+        }],
+        yAxis: {
+            gridLineWidth: 0,
+            title: {
+                text: null
+            },
+            labels: {
+                style: {
+                    color: "#fff",
+                },
+            },
         },
         plotOptions: {
             bar: {
-                dataLabels: {
-                    position: 'top'
-                },
-                horizontal: true,
-                barHeight: '50%',
-                borderRadius: 0
-            }
-        },
-        fill: {
-            colors: '#fe0001'
-        },
-        dataLabels: {
-            enabled: false,
-            offsetX: 43,
-            style: {
-                colors: ['#212529']
+                borderWidth: 0
             },
-        },
-        xaxis: {
-            categories: netSell.map(item => item.ticker),
-            labels: {
-                show: true,
-                formatter: function (y) {
-                    return y.toFixed(2);
-                },
-                style: {
-                    colors: '#fff',
-                }
-            },
-            axisTicks: {
-                show: false,
+            series: {
+                borderRadius: 5
             }
         },
-        yaxis: {
-            opposite: true,
-            labels: {
-                style: {
-                    colors: '#fff',
-                }
-            }
-        }
-    };
+    }
 
     return (
         <>
             <div className="chart">
-                <ReactApexChart options={options} series={series} type="bar" height={663} />
+                <HighchartsReact highcharts={Highcharts} options={optionsSell} containerProps={{ style: { height: '673px', width: '100%' } }} />
             </div>
         </>
     )

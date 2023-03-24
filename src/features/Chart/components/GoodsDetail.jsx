@@ -47,7 +47,7 @@ const GoodsDetail = () => {
                     else
                       color = 'text-green-500'
                     return (
-                      <tr key={index} className='hover:bg-gray-900'>
+                      <tr key={index} className='hover:bg-gray-800'>
                         <th className="text-left align-middle md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 text-white">
                           {item.name} ({item.unit})
                         </th>
