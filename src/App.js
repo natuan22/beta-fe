@@ -17,14 +17,15 @@ function App() {
     ({ path, component: Component, children }) => {
       return (
         <Route path={path} element={<Component />} key={path}>
-          {children.map((Item) => {
-            return <Route key={path} path={Item.path} element={<Item.component />} />;
+          {children?.map((Item) => {
+            return <Route key={Item.path} path={Item.path} element={<Item.component />} />
           })}
         </Route>
       );
     }
   );
-
+ 
+ 
   return (
     // <HistoryRouter history={history}>
     <BrowserRouter>
@@ -34,6 +35,7 @@ function App() {
           return <Route key={path} path={path} element={<Component />}></Route>;
         })}
         {mapMarketRoute}
+
       </Routes>
     </BrowserRouter>
     // </HistoryRouter>
