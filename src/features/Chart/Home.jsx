@@ -54,6 +54,7 @@ const Home = () => {
   const handleClick = (button) => {
     setActiveButton(button);
   }
+
   const buttonStyle = {
     backgroundColor: 'transparent',
     color: '#fff',
@@ -97,14 +98,14 @@ const Home = () => {
 
   return (
     <>
-      <div className="mx-auto bg-black ">
+      <div className="mx-auto bg-black">
         <div className="flex">
           <div className="w-[5%]">
             <Banner />
           </div>
 
           <div className="w-[95%] bg-black">
-            <div className="px-1.5 sticky top-0 z-10">
+            <div className="px-1.5 sticky top-0 z-20">
               <InternationalIndex />
               <News />
             </div>
@@ -147,9 +148,12 @@ const Home = () => {
 
                     <div className="text-center mx-1 my-1 px-1.5 py-1.5 bg-[#151924]">
                       <div className="bg-[#020203]">
-                        <span className="font-semibold uppercase text-white">
-                          Top nước ngoài mua bán ròng
-                        </span>
+                        <div className="h-[29px]">
+                          <span className="font-semibold uppercase text-white">
+                            Top nước ngoài mua bán ròng
+                          </span>
+                        </div>
+
                         <BarChartRight />
                       </div>
                     </div>
@@ -157,7 +161,7 @@ const Home = () => {
                 </div>
 
                 <div className="lg:w-[80%] xl:w-[40%] lg:translate-x-[14%] xl:translate-x-0 ">
-                  <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924] xs:h-[438px] xxs:h-[430px] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[664px] 3xl:h-[734px]">
+                  <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924] xs:h-[438px] xxs:h-[430px] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[763px] 2xl:h-[749px] 3xl:h-[785px]">
                     <GeneralIndustry />
                   </div>
                 </div>
