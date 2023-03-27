@@ -2,9 +2,17 @@ import Signin from "../features/Auth/Signin";
 import Signup from "../features/Auth/Signup";
 import Home from "../features/Chart/Home";
 import CashFlow from "../features/Market/Component/CashFlow";
+import CryptocurrencyMarket from "../features/Market/Component/CryptocurrencyMarket";
+import Efficiency from "../features/Market/Component/Efficiency";
+import Evaluation from "../features/Market/Component/Evaluation";
+import ForeignIndex from "../features/Market/Component/ForeignIndex";
+import GoodsMarket from "../features/Market/Component/GoodsMarket";
+import IdentifyCash from "../features/Market/Component/IdentifyCash";
 import IndexMarket from "../features/Market/Component/IndexMarket";
 import MarketForeign from "../features/Market/Component/MarketForeign";
+import NonIdentifyCash from "../features/Market/Component/NonIdentifyCash";
 import TechAndValuation from "../features/Market/Component/TechAndValuation";
+import Technical from "../features/Market/Component/Technical";
 import Market from "../features/Market/Market";
 import Nav1 from "../features/Navigation/Nav1";
 import Nav2 from "../features/Navigation/Nav2";
@@ -26,22 +34,40 @@ export const routes = [
   { path: "/signin", component: Signin },
   { path: "/signup", component: Signup },
   // market
-  { path: "/thi-truong", component: Market },
-  
+  // { path: "/thi-truong", component: Market },
 ];
 
 export const marketRoute = [
   // market
   {
-    path: "/thi-truong", component: Market,
+    path: "/thi-truong",
+    component: Market,
     children: [
-      {path: "/thi-truong", component: IndexMarket },
+      { path: "/thi-truong", component: IndexMarket },
       { path: "/thi-truong/chi-so-thi-truong", component: IndexMarket },
-      { path: "/thi-truong/dong-tien-thi-truong", component: CashFlow },
-      // {path: "/thi-truong/dong-tien-thi-truong/dong-tien-dinh-danh",},
-      // {path: "/thi-truong/dong-tien-thi-truong/dong-tien-phi-dinh-danh"},
+      { path: "/thi-truong/dong-tien-thi-truong", component: CashFlow, children: [
+        {
+          path: "/thi-truong/dong-tien-thi-truong/dong-tien-dinh-danh",
+          component: IdentifyCash,
+        },
+        {
+          path: "/thi-truong/dong-tien-thi-truong/dong-tien-phi-dinh-danh",
+          component: NonIdentifyCash,
+        },
+      ] },
       { path: "/thi-truong/ky-thuat-va-dinh-gia", component: TechAndValuation },
       { path: "/thi-truong/thi-truong-quoc-te", component: MarketForeign },
+      {
+        path: "/thi-truong/dong-tien-thi-truong/dong-tien-dinh-danh",
+        component: IdentifyCash,
+      },
+      
+      {
+        path: "/thi-truong/dong-tien-thi-truong/dong-tien-phi-dinh-danh",
+        component: NonIdentifyCash,
+      },
     ],
   },
 ];
+
+
