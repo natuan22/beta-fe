@@ -4,6 +4,10 @@ import HighchartsReact from 'highcharts-react-official';
 
 const DrawChartRealTime = () => {
   const [chartOptions, setChartOptions] = useState({
+    accessibility: {
+      enabled: false,
+    },
+    credits: false,
     chart: {
       type: 'area'
     },
