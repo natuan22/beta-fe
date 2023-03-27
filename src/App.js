@@ -1,27 +1,39 @@
-import { BrowserRouter, Routes, Route, unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
-import { routes } from './app/routes';
-import Header from './components/Header';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  unstable_HistoryRouter as HistoryRouter,
+} from "react-router-dom";
+import { marketRoute, routes } from "./app/routes";
+import Header from "./components/Header";
 // import DemoQuery from './demo/DemoQuery';
 
-
-import { createBrowserHistory } from 'history';
-import Footer from './components/Footer';
-let history = createBrowserHistory()
+import { createBrowserHistory } from "history";
+import Footer from "./components/Footer";
+let history = createBrowserHistory();
 // history.push("/signin")
 function App() {
+  const mapMarketRoute = marketRoute.map(
+    ({ path, component: Component, children }) => {
+      return (
+        <Route path={path} element={<Component />} key={path}>
+          {children.map((Item) => {
+            return <Route path={Item.path} element={<Item.component />} />;
+          })}
+        </Route>
+      );
+    }
+  );
+
   return (
     // <HistoryRouter history={history}>
     <BrowserRouter>
       <Header />
       <Routes>
-        {routes.map(({ path, component: Component }, children) => {
-          return (
-            <Route key={path} path={path} element={< Component />} >
-             
-            </Route>
-          )
+        {routes.map(({ path, component: Component }) => {
+          return <Route key={path} path={path} element={<Component />}></Route>;
         })}
-        
+        {mapMarketRoute}
       </Routes>
     </BrowserRouter>
     // </HistoryRouter>

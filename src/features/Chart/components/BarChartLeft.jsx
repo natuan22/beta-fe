@@ -73,7 +73,7 @@ const BarChartLeft = () => {
         data: dataStockRender?.map(item => {
           return {
             name: item.symbol,
-            y: item.point,
+            y: +item.point.toFixed(3),
             color: item.point > 0 ? "#15b313" : "#ff0000"
           };
         })

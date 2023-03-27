@@ -44,6 +44,7 @@ import {
   fetchDataNetVolume,
   fetchDataNews,
 } from "./thunk";
+import DrawChartRealTime from "./components/DrawChartRealTime";
 
 
 const Home = () => {
@@ -103,7 +104,7 @@ const Home = () => {
           </div>
 
           <div className="w-[95%] bg-black">
-            <div className="px-1.5">
+            <div className="px-1.5 sticky top-0 z-10">
               <InternationalIndex />
               <News />
             </div>
@@ -411,6 +412,7 @@ const Home = () => {
               </div>
             </div>
             <Footer />
+            <DrawChartRealTime />
           </div>
         </div>
       </div >
