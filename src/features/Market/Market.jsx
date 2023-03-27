@@ -11,7 +11,7 @@ const Market = () => {
         <InternationalIndex />
         <News />
       </div>
-      <div className="p-2">
+      <div className="px-2">
         <div>
           <MarketTab />
         </div>

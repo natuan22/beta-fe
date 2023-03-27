@@ -27,21 +27,21 @@ const BarChartRight = () => {
       labels: {
         step: 1,
         rotation: -45,
-        align:'center',
-        style:{
-          color:"#fff",
+        align: 'center',
+        style: {
+          color: "#fff",
           fontSize: 10
         }
       },
-      crosshair: true 
+      crosshair: true
     },
     yAxis: {
       title: {
         text: "",
       },
-      labels:{
-        style:{
-          color:'#fff'
+      labels: {
+        style: {
+          color: '#fff'
         }
       },
       min: Math.min(
@@ -54,12 +54,16 @@ const BarChartRight = () => {
       ),
     },
     legend: {
-      enabled: false 
+      enabled: false
     },
     plotOptions: {
       column: {
         colorByPoint: true, // enable per-point coloring
-        threshold: 0 // set the threshold at zero
+        threshold: 0, // set the threshold at zero
+        borderWidth: 0
+      },
+      series: {
+        borderRadius: 2
       }
     },
     series: [
@@ -77,11 +81,9 @@ const BarChartRight = () => {
 
   return (
     <div id="chart-container">
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-        containerProps={{ style: { height: '100%', width: '100%' } }}
-      />
+      <div className="xl:h-[350px] 2xl:h-[350px] 3xl:h-[386px]">
+        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+      </div>
     </div>
   );
 };
