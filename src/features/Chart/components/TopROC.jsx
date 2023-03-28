@@ -1,4 +1,4 @@
-import React, { useEffect,  useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
@@ -61,7 +61,7 @@ const TopROC = () => {
         series: [{
             name: 'Giảm',
             data: decr10.map(item => +item['%5D'].toFixed(2)),
-            color: 'red'
+            color: '#ff0000'
         }],
         xAxis: [{
             categories: decr10.map(item => item.ticker),
@@ -118,7 +118,7 @@ const TopROC = () => {
         series: [{
             name: 'Tăng',
             data: incr10.map(item => +item['%5D'].toFixed(2)),
-            color: '#50D950',
+            color: '#15b313',
         }],
         xAxis: [{
             categories: incr10.map(item => item.ticker),

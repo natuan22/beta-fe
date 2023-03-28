@@ -34,7 +34,7 @@ const Top10Buy = () => {
         series: [{
             name: 'Tăng',
             data: netBuy.map(item => +item.net_value.toFixed(2)),
-            color: '#50D950',
+            color: '#15b313',
         }],
         xAxis: [{
             categories: netBuy.map(item => item.ticker),

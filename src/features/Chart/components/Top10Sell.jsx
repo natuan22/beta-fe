@@ -36,7 +36,7 @@ const Top10Sell = () => {
         series: [{
             name: 'Giảm',
             data: netSell.map(item => +item.net_value.toFixed(2)),
-            color: 'red'
+            color: '#ff0000'
         }],
         xAxis: [{
             categories: netSell.map(item => item.ticker),
