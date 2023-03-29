@@ -216,7 +216,7 @@ export const fetchDataAreaChart1 = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/liquidity-today`,
+      url: `${apiUrl}/api/v1/chart/liquidity-today`,
       method: "GET",
     });
     dispatch({
@@ -232,7 +232,7 @@ export const fetchDataAreaChart2 = async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/liquidity-yesterday`,
+      url: `${apiUrl}/api/v1/chart/liquidity-yesterday`,
       method: "GET",
     });
     dispatch({
@@ -248,7 +248,7 @@ export const fetchDataWidthMarket = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/market-breadth`,
+      url: `${apiUrl}/api/v1/chart/market-breadth`,
       method: "GET",
       params: {
         index: index

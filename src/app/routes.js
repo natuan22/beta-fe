@@ -33,41 +33,45 @@ export const routes = [
   // authen
   { path: "/signin", component: Signin },
   { path: "/signup", component: Signup },
-  // market
-  // { path: "/thi-truong", component: Market },
 ];
 
 export const marketRoute = [
   // market
   {
-    path: "/thi-truong",
+    path: "thi-truong",
     component: Market,
     children: [
-      { path: "/thi-truong", component: IndexMarket },
-      { path: "/thi-truong/chi-so-thi-truong", component: IndexMarket },
-      { path: "/thi-truong/dong-tien-thi-truong", component: CashFlow, children: [
-        {
-          path: "/thi-truong/dong-tien-thi-truong/dong-tien-dinh-danh",
-          component: IdentifyCash,
-        },
-        {
-          path: "/thi-truong/dong-tien-thi-truong/dong-tien-phi-dinh-danh",
-          component: NonIdentifyCash,
-        },
+      { path: "", component: IndexMarket },
+      { path: "chi-so-thi-truong", component: IndexMarket },
+      {
+        path: "dong-tien-thi-truong",
+        component: CashFlow,
+        children1: [
+          { path: "dong-tien-dinh-danh", component: IdentifyCash },
+          { path: "dong-tien-phi-dinh-danh", component: NonIdentifyCash },
+        ],
+      },
+      { path: "ky-thuat-va-dinh-gia", component: TechAndValuation, children1:[
+        { path: "hieu-suat", component: Efficiency },
+        { path: "dinh-gia", component: Evaluation },
+        { path: "ky-thuat", component: Technical },
       ] },
-      { path: "/thi-truong/ky-thuat-va-dinh-gia", component: TechAndValuation },
-      { path: "/thi-truong/thi-truong-quoc-te", component: MarketForeign },
-      {
-        path: "/thi-truong/dong-tien-thi-truong/dong-tien-dinh-danh",
-        component: IdentifyCash,
-      },
-      
-      {
-        path: "/thi-truong/dong-tien-thi-truong/dong-tien-phi-dinh-danh",
-        component: NonIdentifyCash,
-      },
+      { path: "thi-truong-quoc-te", component: MarketForeign, children1: [
+        { path: "chi-so-the-gioi", component: ForeignIndex },
+        { path: "thi-truong-hang-hoa", component: GoodsMarket },
+        { path: "thi-truong-tien-so", component: CryptocurrencyMarket },
+      ] },
     ],
   },
 ];
 
-
+// export const cashFlowRoutes = [
+//   {
+//     path: "dong-tien-thi-truong",
+//     component: CashFlow,
+//     children: [
+//       { path: "dong-tien-dinh-danh", component: IdentifyCash },
+//       { path: "dong-tien-phi-dinh-danh", component: NonIdentifyCash },
+//     ],
+//   },
+// ];

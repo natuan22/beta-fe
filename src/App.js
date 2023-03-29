@@ -9,23 +9,34 @@ import Header from "./components/Header";
 // import DemoQuery from './demo/DemoQuery';
 
 import { createBrowserHistory } from "history";
-import Footer from "./components/Footer";
+import CashFlow from "./features/Market/Component/CashFlow";
+import Market from "./features/Market/Market";
+import IdentifyCash from "./features/Market/Component/IdentifyCash";
 let history = createBrowserHistory();
 // history.push("/signin")
 function App() {
-  const mapMarketRoute = marketRoute.map(
-    ({ path, component: Component, children }) => {
-      return (
-        <Route path={path} element={<Component />} key={path}>
-          {children?.map((Item) => {
-            return <Route key={Item.path} path={Item.path} element={<Item.component />} />
-          })}
-        </Route>
-      );
-    }
-  );
- 
- 
+  const mapMarketRoute = marketRoute.map(({ path, component: Component, children }) => {
+    return (
+      <Route path={path} element={<Component />} key={path}>
+        {children?.map(({ path, component: ChildComponent, children1: GrandChildren }) => {
+          return (
+            <Route path={path} element={<ChildComponent />} key={path}>
+              {GrandChildren?.map(({ path, component: GrandChildComponent }) => {
+                return (
+                  <Route
+                    key={path}
+                    path={path}
+                    element={<GrandChildComponent />}
+                  />
+                );
+              })}
+            </Route>
+          );
+        })}
+      </Route>
+    );
+  });
+  
   return (
     // <HistoryRouter history={history}>
     <BrowserRouter>
@@ -34,8 +45,7 @@ function App() {
         {routes.map(({ path, component: Component }) => {
           return <Route key={path} path={path} element={<Component />}></Route>;
         })}
-        {mapMarketRoute}
-
+      {mapMarketRoute}
       </Routes>
     </BrowserRouter>
     // </HistoryRouter>
