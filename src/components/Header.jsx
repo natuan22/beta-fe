@@ -142,7 +142,7 @@ const Header = () => {
                     </NavLink>
                   </div>
                 </div>
-                <div className="hidden xl:flex items-center ml-3 lg:ml-72 xl:ml-[80px]">
+                <div className="hidden xl:flex items-center ml-3 lg:ml-72 xl:ml-[68px]">
                   <div className="flex">
                     <label class="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" value="" class="sr-only peer" />
@@ -181,8 +181,8 @@ const Header = () => {
                         to="/signin"
                         className={({ isActive }) =>
                           isActive
-                            ? "ml-1 no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                            : "ml-1 no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            ? "ml-2 no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "ml-2 no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                         }
                       >
                         Sign in
@@ -191,8 +191,8 @@ const Header = () => {
                         to="/signup"
                         className={({ isActive }) =>
                           isActive
-                            ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                            : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            ? "ml-2 no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "ml-2 no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                         }
                       >
                         Sign up
