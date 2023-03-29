@@ -5,12 +5,12 @@ import { Outlet } from "react-router-dom";
 import MarketTab from "./utils/MarketTab";
 
 const Market = () => {
-  return (
+  return (<>
+    <div>
+      <InternationalIndex />
+      <News />
+    </div>
     <div className="container mx-auto">
-      <div>
-        <InternationalIndex />
-        <News />
-      </div>
       <div className="px-2">
         <div>
           <MarketTab />
@@ -20,6 +20,7 @@ const Market = () => {
         </div>
       </div>
     </div>
+  </>
   );
 };
 

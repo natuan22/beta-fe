@@ -11,19 +11,13 @@ const InternationalIndex = () => {
     function handleResize() {
       if (window.innerWidth >= '1920')
         setSpeed(60)
-      else if (window.innerWidth >= '1536')
-        setSpeed(50)
-      else if (window.innerWidth >= '1280')
+      else if (window.innerWidth >= '1440')
         setSpeed(40)
       else if (window.innerWidth >= '1024')
         setSpeed(30)
       else if (window.innerWidth >= '768')
         setSpeed(20)
-      else if (window.innerWidth >= '640')
-        setSpeed(15)
       else if (window.innerWidth >= '425')
-        setSpeed(10)
-      else if (window.innerWidth >= '375')
         setSpeed(10)
     }
     handleResize()
@@ -33,12 +27,12 @@ const InternationalIndex = () => {
   }, []);
 
   return (
-    <div className="bg-black pt-2">
+    <div className="bg-black pt-1">
       <Marquee speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
         <div className="flex">
           {dataInternationalIndex.data?.map((item, index) => {
             return (
-              <div key={index} className="flex flex-col items-center ml-4 bg-gradient-to-b from-[#217EBE] to-black" style={{  padding: "5px" }}>
+              <div key={index} className="flex flex-col items-center ml-4 bg-gradient-to-b from-[#217EBE] to-black" style={{ padding: "5px" }}>
                 <span className="mx-2 text-sm font-semibold text-white">
                   {item.ticker}: {item.diemso}
                 </span>

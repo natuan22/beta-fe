@@ -9,6 +9,15 @@ module.exports = {
       xl: "1440px",
       "2xl": "1920px",
     },
+    container: {
+      screens: {
+        xs: "425px",
+        md: "768px",
+        lg: "768px",
+        xl: "1024px",
+        "2xl": "1440px",
+      },
+    },
     extend: {
       backgroundImage: {
         "signinBackground": `url('${apiUrl}/resources/images/login-background.png')`,
