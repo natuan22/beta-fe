@@ -50,7 +50,7 @@ const TopROC = () => {
         credits: false,
         chart: {
             type: "bar",
-            backgroundColor: "black",
+            backgroundColor: "transparent",
         },
         title: {
             text: null
@@ -107,7 +107,7 @@ const TopROC = () => {
         credits: false,
         chart: {
             type: "bar",
-            backgroundColor: "black",
+            backgroundColor: "transparent",
         },
         title: {
             text: null
@@ -158,14 +158,14 @@ const TopROC = () => {
 
     return (
         <>
-            <div className="chart">
-                <div className="mx-2 mt-1 px-1.5 py-1.5 bg-[#151924]">
+            <div className="chart ">
+                <div className="mx-2 mt-2 px-1.5 py-1.5 bg-[#151924]">
 
-                    <div className="bg-[#020203] text-center px-20 pt-[19px]">
+                    <div className="bg-[#151924] text-center px-20 pt-[19px]">
                         <span className="font-semibold text-base uppercase text-white">
                             Top 10 cổ phiếu tăng/giảm mạnh nhất sàn
                         </span>
-                        <select className={`${chartStyle.selectStyle} bg-[#020203] hover:bg-gray-900 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                        <select className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                                 disconnectSocket(socketOld)
                                 setQuery(event.target.value)
@@ -178,13 +178,13 @@ const TopROC = () => {
                         <span className="font-semibold uppercase text-white">qua 05 phiên gần nhất</span>
                     </div>
 
-                    <div className="grid grid-cols-2 bg-[#020203]">
+                    <div className="grid grid-cols-2 bg-[#151924]">
                         <div className="text-center mx-1">
-                            <HighchartsReact highcharts={Highcharts} options={optionsDecr} containerProps={{ style: { height: '717px', width: '100%' } }} />
+                            <HighchartsReact highcharts={Highcharts} options={optionsDecr} containerProps={{ style: { height: '721px', width: '100%' } }} />
                         </div>
 
                         <div className="text-center mx-1">
-                            <HighchartsReact highcharts={Highcharts} options={optionsIncr} containerProps={{ style: { height: '717px', width: '100%' } }} />
+                            <HighchartsReact highcharts={Highcharts} options={optionsIncr} containerProps={{ style: { height: '721px', width: '100%' } }} />
                         </div>
                     </div>
 

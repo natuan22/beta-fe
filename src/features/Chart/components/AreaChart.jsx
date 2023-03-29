@@ -33,7 +33,7 @@ function AreaChart() {
     credits: false,
     chart: {
       type: "area",
-      backgroundColor: "black",
+      backgroundColor: "transparent",
     },
     title: {
       text: "",

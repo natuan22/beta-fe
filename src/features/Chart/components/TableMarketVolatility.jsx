@@ -26,10 +26,10 @@ const TableMarketVolatility = () => {
         <>
             <section className="bg-blueGray-50">
                 <div className="w-full">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
-                        <div className="block w-full bg-[#000000] scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] xl:overflow-x-hidden xxs:overflow-x-scroll xs:overflow-x-scroll">
-                            <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
-                                <thead className="bg-gradient-to-b from-[#217EBE] to-black">
+                    <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
+                        <div className="block w-full bg-transparent scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] xl:overflow-x-hidden xxs:overflow-x-scroll xs:overflow-x-scroll">
+                            <table className="items-center bg-transparent w-full border-collapse">
+                                <thead className="bg-[#1E5D8B]">
                                     <tr>
                                         <th className="text-center align-middle px-[5px] py-3 uppercase text-sm font-semibold text-white">
                                             Khung biến động

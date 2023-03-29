@@ -12,20 +12,14 @@ const News = () => {
         function handleResize() {
             if (window.innerWidth >= '1920')
                 setSpeed(4)
-            else if (window.innerWidth >= '1536')
-                setSpeed(3.5)
-            else if (window.innerWidth >= '1280')
+            else if (window.innerWidth >= '1440')
                 setSpeed(3)
             else if (window.innerWidth >= '1024')
                 setSpeed(2.5)
             else if (window.innerWidth >= '768')
                 setSpeed(2)
-            else if (window.innerWidth >= '640')
-                setSpeed(1.5)
             else if (window.innerWidth >= '425')
                 setSpeed(1)
-            else if (window.innerWidth >= '375')
-                setSpeed(0.5)
         }
         handleResize()
 

@@ -19,11 +19,11 @@ const GoodsDetail = () => {
   return (
     <section className="bg-blueGray-50">
       <div className="w-full">
-        <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 ">
-          <div className="block w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] h-[380px] bg-[#000000]">
-            <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
-              <thead className="sticky top-0 bg-gradient-to-b from-[#217EBE] to-black">
-                <tr className="bg-gradient-to-b from-[#217EBE] to-black">
+        <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 ">
+          <div className="block w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] h-[380px] bg-transparent">
+            <table className="items-center w-full border-collapse bg-transparent">
+              <thead className="sticky top-0 bg-[#1E5D8B]">
+                <tr className="bg-[#1E5D8B]">
                   <th className="align-middle px-3 py-3 text-sm font-semibold text-center text-white">
                     Hàng hóa
                   </th>
