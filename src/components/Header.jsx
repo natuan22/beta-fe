@@ -126,7 +126,7 @@ const Header = () => {
                     </NavLink>
                   </div>
                 </div>
-                <div className="hidden xl:flex items-center flex ml-3 lg:ml-72 xl:ml-28 ">
+                <div className="hidden xl:flex items-center ml-3 lg:ml-72 xl:ml-28 ">
                   <div className="flex">
                     <BellOutlined
                       className="ml-2"

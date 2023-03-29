@@ -9,9 +9,6 @@ import Header from "./components/Header";
 // import DemoQuery from './demo/DemoQuery';
 
 import { createBrowserHistory } from "history";
-import CashFlow from "./features/Market/Component/CashFlow";
-import Market from "./features/Market/Market";
-import IdentifyCash from "./features/Market/Component/IdentifyCash";
 let history = createBrowserHistory();
 // history.push("/signin")
 function App() {
