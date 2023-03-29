@@ -8,7 +8,6 @@ import ThanhKhoan from '../componets/ThanhKhoan';
 import GeneralIndustry from '../componets/GeneralIndustry';
 import News from '../componets/News';
 import Events from '../componets/Events';
-import Banner from '../../Chart/components/Banner';
 
 const IndexMarket = () => {
   const [activeButton, setActiveButton] = useState('1day');
@@ -32,7 +31,6 @@ const IndexMarket = () => {
   }
   return (
     <>
-      <Banner />
       <div className='container mx-auto'>
         <div className=''>
           <div className='flex justify-center'>
