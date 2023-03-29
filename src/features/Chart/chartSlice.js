@@ -20,7 +20,8 @@ const initialState = {
   dataTableMarketVolatility: {},
   dataTableMarketLiquidity: {},
   dataNetVolume: {},
-  dataNews: {}
+  dataNews: {},
+  dataMarketEvaluation: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -85,7 +86,10 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_NEWS) {
       draft.dataNews = payload
     }
-  
+    if (type === actionType.UPDATE_DATA_MARKET_EVALUATION) {
+      draft.dataMarketEvaluation = payload
+    }
+
   });
 };
 

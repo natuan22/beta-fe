@@ -30,9 +30,9 @@ const Signin = () => {
   }, [isLogin, navigate]);
 
   return (
-    <div className="bg-signinBackground  bg-no-repeat bg-cover h-screen">
-      <div className="container mx-auto h-auto p-[30px] w-[80%] relative" >
-        <nav className="flex justify-around xs:text-[10px] sm:text-base md:text-base lg:text-base xl:text-base">
+    <div className="bg-signinBackground bg-no-repeat bg-cover h-auto">
+      <div className="container mx-auto h-auto py-[100px] w-[80%] relative" >
+        <nav className="flex justify-around xs:text-[10px] md:text-base lg:text-base xl:text-base">
           <NavLink className="text-white no-underline">Trang chủ</NavLink>
           <NavLink className="text-white no-underline">Giới thiệu dịch vụ</NavLink>
           <NavLink className="text-white no-underline">Liên hệ</NavLink>
@@ -42,10 +42,10 @@ const Signin = () => {
 
         {/* phone */}
         <div
-          className="signIn xs:flex lg:hidden flex-col items-center relative mt-8 xs:w-[250px] w-[60%] h-[600px] sm:w-[70%] md:left-[96px] sm:left-[76px] xxs:left-[46px] xs:left-[26px]"
+          className="signIn xs:flex lg:hidden flex-col items-center relative mt-8 h-[600px]"
           style={{
             backgroundImage:
-              " linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)  ",
+              "linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)",
           }}
         >
           <img
@@ -67,7 +67,7 @@ const Signin = () => {
               />
               <label
                 htmlFor="floating_email"
-                className="text-white peer-focus:font-medium absolute text-sm  dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                className="text-white peer-focus:font-medium absolute text-sm dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Số điện thoại
               </label>
@@ -109,7 +109,7 @@ const Signin = () => {
             </p>
             <button
               type="submit"
-              className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg xs:text-xs md:text-sm w-full sm:w-auto xs:px-6 md:px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg xs:text-xs md:text-sm w-full xs:px-6 md:px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               style={{
                 backgroundImage:
                   " linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)",
@@ -124,14 +124,14 @@ const Signin = () => {
             <img
               src={`${apiUrl}/resources/images/google-logo.png`}
               alt="logo"
-              className="w-8 h-8 sm:mx-7 xs:mx-2"
+              className="w-8 h-8 xs:mx-2"
             />
             <img
               src={`${apiUrl}/resources/images/fb-logo.png`}
               alt="logo"
-              className="w-8 h-8 sm:mx-7 xs:mx-2"
+              className="w-8 h-8 xs:mx-2"
             />
-            <span className="bg-white h-[28px] sm:mx-7 xs:mx-2 rounded-t-md">
+            <span className="bg-white h-[28px] xs:mx-2 rounded-t-md">
               <img
                 src={`${apiUrl}/resources/images/zalo-logo.png`}
                 alt="zaloIcon"
@@ -142,10 +142,10 @@ const Signin = () => {
             <img
               src={`${apiUrl}/resources/images/beta-logo.png`}
               alt="betaIcon"
-              className="w-8 h-8 sm:mx-7 xs:mx-2"
+              className="w-8 h-8 xs:mx-2"
             />
           </div>
-          <div className="absolute sm:bottom-[10%] xs:bottom-[5%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
+          <div className="absolute xs:bottom-[5%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
             <NavLink
               to="/signin"
               className={(params) => {
@@ -176,7 +176,7 @@ const Signin = () => {
         </div>
 
         {/* tablet , desktop */}
-        <div className="mt-8 flex bg-signinColor xs:hidden lg:flex lg:w-[825px] xl:w-[1150px] 2xl:w-[1230px] 3xl:w-[1537px] lg:h-[80vh] xl:h-[80vh] 2xl:h-[80vh] 3xl:h-[80vh]">
+        <div className="mt-8 flex bg-signinColor xs:hidden lg:flex">
           <div className="relative w-[60%] z-10">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>
@@ -202,7 +202,7 @@ const Signin = () => {
             />
           </div>
           <div
-            className="w-[40%] flex flex-col items-center relative signIn md:translate-x-[75%] lg:translate-x-0"
+            className="w-[40%] pb-20 flex flex-col items-center relative signIn md:translate-x-[75%] lg:translate-x-0"
             style={{
               backgroundImage:
                 " linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)  ",
@@ -312,7 +312,7 @@ const Signin = () => {
                 className="w-8 h-8 mx-7"
               />
             </div>
-            <div className="absolute bottom-[10%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
+            <div className="absolute bottom-[4%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
               <NavLink
                 to="/signin"
                 className={(params) => {

@@ -11,8 +11,8 @@ const Market = () => {
       <News />
     </div>
     <div className="container mx-auto">
-      <div className="px-2">
-        <div>
+      <div>
+        <div className="px-11">
           <MarketTab />
         </div>
         <div>
