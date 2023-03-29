@@ -334,3 +334,19 @@ export const fetchDataNews = async (dispatch) => {
     console.log(err);
   }
 }
+
+export const fetchDataMarketEvaluation = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: `${apiUrl}/api/v1/stock/market-evaluation`,
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_MARKET_EVALUATION",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}

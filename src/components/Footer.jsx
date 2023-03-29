@@ -7,7 +7,7 @@ const Footer = () => {
         <>
             <footer className="relative z-10 bg-gradient-to-r from-[#113362] to-[#385E69] pt-10 pb-10 px-10 mr-2 ml-1 my-4">
                 <div className="container mx-auto">
-                    <div className="grid xs:grid-cols-none sm:grid-cols-none md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+                    <div className="grid xs:grid-cols-none md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
                         <div className="w-full">
                             <div className="mb-10 w-full">
                                 <h4 className="text-[#38B6FF] mb-6 uppercase xs:text-xl md:text-sm lg:text-xl">
@@ -32,8 +32,8 @@ const Footer = () => {
                                     </ul>
                                 </div>
                                 <div className="mb-10 w-full">
-                                    <h4 className="text-[#38B6FF] text-lg font-semibold xs:text-xl uppercase xs:translate-x-[30px] sm:translate-x-[40px] mb:translate-x-[60px] lg:translate-x-[60px] xl:translate-x-[70px]">Kết nối với chúng tôi</h4>
-                                    <div className="mb-6 mt-3 flex items-center xs:translate-x-[35px] sm:translate-x-[45px] mb:translate-x-[60px] lg:translate-x-[65px] xl:translate-x-[75px]">
+                                    <h4 className="text-[#38B6FF] text-lg font-semibold xs:text-xl uppercase xs:translate-x-[30px] mb:translate-x-[60px] lg:translate-x-[60px] xl:translate-x-[70px]">Kết nối với chúng tôi</h4>
+                                    <div className="mb-6 mt-3 flex items-center xs:translate-x-[35px] mb:translate-x-[60px] lg:translate-x-[65px] xl:translate-x-[75px]">
                                         <a href="https://www.facebook.com/bsi.com.vn" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
                                             <FacebookOutlined style={{ fontSize: '40px' }} />
                                         </a>
@@ -53,25 +53,25 @@ const Footer = () => {
                         <div className="grid grid-cols-2">
                             <div className="w-full px-3">
                                 <div className="mb-6 w-full">
-                                    <h4 className="text-[#38B6FF] xs:mb-[46px] xxs:mb-6 sm:mb-6 md:mb-6 lg:mb-6 xl:mb-6 sm:text-sm mb:text-base lg:text-lg font-semibold">Truy cập nhanh</h4>
+                                    <h4 className="text-[#38B6FF] mb-6 xs:mb-[23px] md:mb-[45px] lg:mb-6 xl:mb-6 mb:text-base lg:text-lg font-semibold">Truy cập nhanh</h4>
                                     <ul className="list-none">
                                         <li>
-                                            <a href="/" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="/" className="no-underline text-white mb-2 inline-block mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> Trang chủ
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/thi-truong" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="/thi-truong" className="no-underline text-white mb-2 inline-block mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> Thị trường
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/vi-mo" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="/vi-mo" className="no-underline text-white mb-2 inline-block mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> Vĩ mô
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/quoc-te" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="/quoc-te" className="no-underline text-white mb-2 inline-block mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> Quốc tế
                                             </a>
                                         </li>
@@ -80,25 +80,25 @@ const Footer = () => {
                             </div>
                             <div className="w-full px-3">
                                 <div className="mb-6 w-full">
-                                    <h4 className="text-[#38B6FF] mb-6 sm:text-sm mb:text-base lg:text-lg font-semibold">Danh mục sản phẩm</h4>
+                                    <h4 className="text-[#38B6FF] mb-6 mb:text-base lg:text-lg font-semibold">Danh mục sản phẩm</h4>
                                     <ul className="list-none">
                                         <li>
-                                            <a href="B-Signal" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="B-Signal" className="no-underline text-white mb-2 inline-block mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> B-Signal
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="E-Market" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="E-Market" className="no-underline text-white mb-2 inline-block mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> E-Market
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="T-Info" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="T-Info" className="no-underline text-white mb-2 inline-block mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> T-Info
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="A-Report" className="no-underline text-white mb-2 inline-block sm:text-sm mb:text-base lg:text-base xl:text-base leading-loose">
+                                            <a href="A-Report" className="no-underline text-white mb-2 inline-block mb:text-base lg:text-base xl:text-base leading-loose">
                                                 <DoubleRightOutlined style={{ color: '#D42428' }} /> A-Report
                                             </a>
                                         </li>

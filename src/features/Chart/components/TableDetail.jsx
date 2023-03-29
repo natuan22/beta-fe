@@ -26,7 +26,7 @@ const TableDetail = () => {
       <section>
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block w-full xs:h-[352px] xxs:h-[332px] sm:h-[312px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px] 3xl:h-[326px] bg-transparent">
+            <div className="block w-full xs:h-[352px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px] bg-transparent">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead>
                   <tr className='bg-[#1E5D8B]'>

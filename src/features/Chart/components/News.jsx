@@ -11,15 +11,15 @@ const News = () => {
     useEffect(() => {
         function handleResize() {
             if (window.innerWidth >= '1920')
-                setSpeed(4)
-            else if (window.innerWidth >= '1440')
                 setSpeed(3)
-            else if (window.innerWidth >= '1024')
+            else if (window.innerWidth >= '1440')
                 setSpeed(2.5)
-            else if (window.innerWidth >= '768')
+            else if (window.innerWidth >= '1024')
                 setSpeed(2)
-            else if (window.innerWidth >= '425')
+            else if (window.innerWidth >= '768')
                 setSpeed(1)
+            else if (window.innerWidth >= '425')
+                setSpeed(0.5)
         }
         handleResize()
 

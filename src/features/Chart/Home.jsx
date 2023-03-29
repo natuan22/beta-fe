@@ -43,7 +43,9 @@ import {
   fetchDataTableMarketLiquidity,
   fetchDataNetVolume,
   fetchDataNews,
+  fetchDataMarketEvaluation,
 } from "./thunk";
+import TableMarketEvaluation from "./components/TableMarketEvaluation";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -75,6 +77,7 @@ const Home = () => {
     dispatch(fetchDataTableMarketVolatility);
     dispatch(fetchDataTableMarketLiquidity("0"));
     dispatch(fetchDataGoodsDetail);
+    dispatch(fetchDataMarketEvaluation);
   }, [dispatch]);
 
   useEffect(() => {
@@ -158,7 +161,7 @@ const Home = () => {
                 </div>
 
                 <div className=" xl:w-[40%] xl:translate-x-0 ">
-                  <div className="mx-2 mt-2 px-1.5 py-1.5 bg-[#151924] xs:h-[438px] md:h-[465px] lg:h-[450px] xl:h-[744px] 2xl:h-[751px]">
+                  <div className="mx-2 mt-2 px-1.5 py-1.5 bg-[#151924] xs:h-[438px] md:h-[465px] lg:h-[450px] xl:h-[752px] 2xl:h-[751px]">
                     <GeneralIndustry />
                   </div>
                 </div>
@@ -403,7 +406,11 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="xl:w-[35%]">
-                  <div className=""></div>
+                  <div className="">
+                    <div className="px-1.5 py-1.5">
+                      <TableMarketEvaluation />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
