@@ -23,7 +23,7 @@ const Top10Buy = () => {
         credits: false,
         chart: {
             type: "bar",
-            backgroundColor: "black",
+            backgroundColor: "transparent",
         },
         title: {
             text: null
@@ -75,7 +75,7 @@ const Top10Buy = () => {
     return (
         <>
             <div className="chart">
-                <HighchartsReact highcharts={Highcharts} options={optionsBuy} containerProps={{ style: { height: '673px', width: '100%' } }} />
+                <HighchartsReact highcharts={Highcharts} options={optionsBuy} containerProps={{ style: { height: '670px', width: '100%' } }} />
             </div>
         </>
     )

@@ -13,8 +13,8 @@ const Header = () => {
   return (
     <>
       <div className="z-50 relative">
-        <nav className="bg-[#151924] ">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="bg-black">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -32,14 +32,18 @@ const Header = () => {
                       to="/"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
+                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trang chủ
                     </NavLink>
-                    <div className="xl:flex items-center flex xs:translate-y-[11%] xs:translate-x-[-8%] xxs:translate-y-[11%] xxs:translate-x-[-5%] sm:translate-y-[11%] sm:translate-x-[20%] md:translate-y-[11%] md:translate-x-[70%] lg:translate-y-[11%] lg:translate-x-[160%]">
-                      <div className="flex">
+                    <div className="xl:flex items-center flex xs:translate-y-0 xs:translate-x-2 md:translate-y-[11%] md:translate-x-[55%] lg:translate-y-[11%] lg:translate-x-[124%]">
+                      <div className="flex md:flex xs:hidden">
+                        <label class="relative inline-flex items-center cursor-pointer">
+                          <input type="checkbox" value="" class="sr-only peer" />
+                          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                        </label>
                         <BellOutlined
                           className="ml-2"
                           style={{ fontSize: "20px", color: "#fff" }}
@@ -49,9 +53,10 @@ const Header = () => {
                           style={{ fontSize: "20px", color: "#fff" }}
                         />
                       </div>
+
                       <Search
                         placeholder="Tìm mã chứng khoán"
-                        className="xs:w-[50px] xxs:w-[100px] sm:w-[200px] md:w-[200px] lg:w-[200px]"
+                        className="xs:w-[150px] md:w-[200px] lg:w-[200px]"
                       />
                     </div>
                   </div>
@@ -63,8 +68,8 @@ const Header = () => {
                       to="/"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trang chủ
@@ -74,8 +79,8 @@ const Header = () => {
                       to="/thi-truong"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Thị trường
@@ -85,19 +90,30 @@ const Header = () => {
                       to="/nganh"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Ngành
                     </NavLink>
 
                     <NavLink
+                      to="/co-phieu"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                      }
+                    >
+                      Cổ phiếu
+                    </NavLink>
+
+                    <NavLink
                       to="/vi-mo"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Vĩ mô
@@ -107,8 +123,8 @@ const Header = () => {
                       to="/cong-cu-dau-tu"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Công cụ đầu tư
@@ -118,16 +134,20 @@ const Header = () => {
                       to="/trung-tam-tin-tuc"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trung tâm tin tức
                     </NavLink>
                   </div>
                 </div>
-                <div className="hidden xl:flex items-center ml-3 lg:ml-72 xl:ml-28 ">
+                <div className="hidden xl:flex items-center ml-3 lg:ml-72 xl:ml-[68px]">
                   <div className="flex">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" value="" class="sr-only peer" />
+                      <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                    </label>
                     <BellOutlined
                       className="ml-2"
                       style={{ fontSize: "20px", color: "#fff" }}
@@ -137,6 +157,7 @@ const Header = () => {
                       style={{ fontSize: "20px", color: "#fff" }}
                     />
                   </div>
+
                   <Search
                     placeholder="Tìm mã chứng khoán"
                     className=""
@@ -160,8 +181,8 @@ const Header = () => {
                         to="/signin"
                         className={({ isActive }) =>
                           isActive
-                            ? "ml-1 no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                            : "ml-1 no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            ? "ml-2 no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "ml-2 no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                         }
                       >
                         Sign in
@@ -170,8 +191,8 @@ const Header = () => {
                         to="/signup"
                         className={({ isActive }) =>
                           isActive
-                            ? "no-underline text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                            : "no-underline text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            ? "ml-2 no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "ml-2 no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                         }
                       >
                         Sign up
@@ -243,8 +264,8 @@ const Header = () => {
                     to="/thi-truong"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Thị trường
@@ -254,19 +275,30 @@ const Header = () => {
                     to="/nganh"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Ngành
                   </NavLink>
 
                   <NavLink
+                    to="/co-phieu"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                    }
+                  >
+                    Cổ phiếu
+                  </NavLink>
+
+                  <NavLink
                     to="/vi-mo"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Vĩ mô
@@ -276,8 +308,8 @@ const Header = () => {
                     to="/cong-cu-dau-tu"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Công cụ đầu tư
@@ -287,8 +319,8 @@ const Header = () => {
                     to="/trung-tam-tin-tuc"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline text-gray-300 block hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline text-gray-300 block hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Trung tâm tin tức
@@ -297,8 +329,8 @@ const Header = () => {
                     to="/signin"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Sign in
@@ -307,12 +339,26 @@ const Header = () => {
                     to="/signup"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Sign up
                   </NavLink>
+                  <div className="flex md:hidden xs:flex">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" value="" class="sr-only peer" />
+                      <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                    </label>
+                    <BellOutlined
+                      className="ml-2"
+                      style={{ fontSize: "20px", color: "#fff" }}
+                    />
+                    <MessageOutlined
+                      className="ml-2 mr-2"
+                      style={{ fontSize: "20px", color: "#fff" }}
+                    />
+                  </div>
                 </div>
               </div>
             )}

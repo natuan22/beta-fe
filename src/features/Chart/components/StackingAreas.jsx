@@ -43,7 +43,7 @@ const StackingAreas = () => {
     chart: {
       type: "area",
       zoomType: "x",
-      backgroundColor: "black",
+      backgroundColor: "transparent",
       style: {
         fontFamily: "Roboto",
       },

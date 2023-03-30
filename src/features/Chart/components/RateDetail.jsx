@@ -18,10 +18,10 @@ const RateDetail = () => {
   return (
     <section className="bg-blueGray-50">
       <div className="w-full">
-        <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded ">
-          <div className="block w-full min-h-[380px] bg-[#000000]">
-            <table className="items-center bg-transparent w-full border-collapse bg-[#000000]">
-              <thead className="bg-gradient-to-b from-[#217EBE] to-black">
+        <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
+          <div className="block w-full min-h-[380px] bg-transparent">
+            <table className="items-center  w-full border-collapse bg-transparent">
+              <thead className="bg-[#1E5D8B]">
                 <tr>
                   <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                     Tỷ giá

@@ -2,25 +2,18 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Loading from "../utils/Loading";
-import socket from "../utils/socket";
 
-const TableMarketVolatility = () => {
-    const dataMarketVolatility = useSelector(state => state.chart.dataTableMarketVolatility);
+const TableMarketEvaluation = () => {
+    const dataMarketEvaluation = useSelector(state => state.chart.dataMarketEvaluation);
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (dataMarketVolatility?.data) {
+        if (dataMarketEvaluation?.data) {
             setLoading(false);
-            setData(dataMarketVolatility.data)
+            setData(dataMarketEvaluation.data)
         }
-    }, [dataMarketVolatility])
-
-    useEffect(() => {
-        socket.on("listen-bien-dong-thi-truong", (newData) => {
-            setData(newData)
-        })
-    }, [dataMarketVolatility])
+    }, [dataMarketEvaluation])
 
     return (
         <>
@@ -36,8 +29,8 @@ const TableMarketVolatility = () => {
                                         </th>
                                         {!loading ? (Array.isArray(data) && data?.map(item => {
                                             return (
-                                                <th key={item.ticker} className="text-center align-middle px-1 py-3 uppercase text-xs font-semibold text-white">
-                                                    {item.ticker}
+                                                <th key={item.Ticker} className="text-center align-middle px-1 py-3 uppercase text-xs font-semibold text-white">
+                                                    {item.Ticker}
                                                 </th>
                                             )
                                         })) : (<th colSpan={5}><Loading /></th>)}
@@ -47,52 +40,57 @@ const TableMarketVolatility = () => {
                                 <tbody>
                                     <tr className='hover:bg-gray-800'>
                                         <th className=" sticky top-0text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
-                                            Phiên trước
+                                            Ngày
                                         </th>
                                         {data?.map(item => {
-                                            let color = getColor(item.day_change_percent)
+                                            let color = getColor(item.sigd)
+                                            let text = getText(item.sigd)
                                             return (
-                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.day_change_percent.toFixed(2)}%
+                                                <td key={item.Ticker} className={`${color} text-center align-middle text-xs whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                    {text}
                                                 </td>
                                             )
                                         })}
                                     </tr>
                                     <tr className='hover:bg-gray-800'>
                                         <th className="text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
-                                            Trung bình tuần
+                                            Tuần
                                         </th>
                                         {data?.map(item => {
-                                            let color = getColor(item.week_change_percent)
+                                            let color = getColor(item.sigw)
+                                            let text = getText(item.sigw)
                                             return (
-                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.week_change_percent.toFixed(2)}%
+                                                <td key={item.Ticker} className={`${color} text-center align-middle text-xs whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                    {text}
                                                 </td>
                                             )
                                         })}
                                     </tr>
                                     <tr className='hover:bg-gray-800'>
                                         <th className="text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
-                                            Trung bình tháng
+                                            Tháng
                                         </th>
                                         {data?.map(item => {
-                                            let color = getColor(item.month_change_percent)
+                                            let color = getColor(item.sigm)
+                                            let text = getText(item.sigm)
                                             return (
-                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.month_change_percent.toFixed(2)}%
+                                                <td key={item.Ticker} className={`${color} text-center align-middle text-xs whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                    {text}
                                                 </td>
                                             )
                                         })}
                                     </tr>
                                     <tr className='hover:bg-gray-800'>
                                         <th className="text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
-                                            Trung bình năm
+                                            Năm
                                         </th>
                                         {data?.map(item => {
-                                            let color = getColor(item.year_change_percent)
+                                            let color = getColor(item.sigy)
+                                            let text = getText(item.sigy)
+
                                             return (
-                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.year_change_percent.toFixed(2)}%
+                                                <td key={item.Ticker} className={`${color} text-center align-middle text-xs whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                    {text}
                                                 </td>
                                             )
                                         })}
@@ -107,16 +105,28 @@ const TableMarketVolatility = () => {
     )
 }
 
-export default TableMarketVolatility;
+export default TableMarketEvaluation;
 
 function getColor(item) {
     let color = ''
     if (item === 0)
         color = 'text-yellow-500'
-    else if (item < '0')
+    else if (item < 0)
         color = 'text-red-500'
     else
         color = 'text-green-500'
 
     return color
+}
+
+function getText(item) {
+    let text = ''
+    if (item === 0)
+        text = 'Trung tính'
+    else if (item < 0)
+        text = 'Tiêu cực'
+    else
+        text = 'Tích cực'
+
+    return text
 }

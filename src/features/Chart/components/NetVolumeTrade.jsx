@@ -31,7 +31,7 @@ const NetVolumeTrade = () => {
   // console.log(dataForeign, dataProprietary, dataRetail, dataExchange);
   const options = {
     chart: {
-      backgroundColor: "black", // màu nền của biểu đồ
+      backgroundColor: "transparent", // màu nền của biểu đồ
       style: {
         fontFamily: 'Roboto'
       }
@@ -128,8 +128,8 @@ const NetVolumeTrade = () => {
   };
 
   return (
-    <div className="bg-black pt-2">
-      <div className="bg-[#020203] text-center px-20 py-[10px]">
+    <div className="bg-transparent pt-2">
+      <div className="bg-transparent text-center px-20 py-[10px]">
         <span className="font-semibold text-base uppercase text-white">
           Giá trị giao dịch ròng
         </span>

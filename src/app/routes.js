@@ -17,6 +17,7 @@ import Nav1 from "../features/Navigation/Nav1";
 import Nav2 from "../features/Navigation/Nav2";
 import Nav3 from "../features/Navigation/Nav3";
 import Nav4 from "../features/Navigation/Nav4";
+import Nav5 from "../features/Navigation/Nav5";
 import IndexMarket from "../features/Market/tabs/IndexMarket";
 
 export const routes = [
@@ -24,9 +25,10 @@ export const routes = [
 
   // navigation tab
   { path: "/nganh", component: Nav1 },
-  { path: "/vi-mo", component: Nav2 },
-  { path: "/cong-cu-dau-tu", component: Nav3 },
-  { path: "/trung-tam-tin-tuc", component: Nav4 },
+  { path: "/co-phieu", component: Nav2 },
+  { path: "/vi-mo", component: Nav3 },
+  { path: "/cong-cu-dau-tu", component: Nav4 },
+  { path: "/trung-tam-tin-tuc", component: Nav5 },
 
   // authen
   { path: "/signin", component: Signin },
@@ -49,16 +51,20 @@ export const marketRoute = [
           { path: "dong-tien-phi-dinh-danh", component: NonIdentifyCash },
         ],
       },
-      { path: "ky-thuat-va-dinh-gia", component: TechAndValuation, children1:[
-        { path: "hieu-suat", component: Efficiency },
-        { path: "dinh-gia", component: Evaluation },
-        { path: "ky-thuat", component: Technical },
-      ] },
-      { path: "thi-truong-quoc-te", component: MarketForeign, children1: [
-        { path: "chi-so-the-gioi", component: ForeignIndex },
-        { path: "thi-truong-hang-hoa", component: GoodsMarket },
-        { path: "thi-truong-tien-so", component: CryptocurrencyMarket },
-      ] },
+      {
+        path: "ky-thuat-va-dinh-gia", component: TechAndValuation, children1: [
+          { path: "hieu-suat", component: Efficiency },
+          { path: "dinh-gia", component: Evaluation },
+          { path: "ky-thuat", component: Technical },
+        ]
+      },
+      {
+        path: "thi-truong-quoc-te", component: MarketForeign, children1: [
+          { path: "chi-so-the-gioi", component: ForeignIndex },
+          { path: "thi-truong-hang-hoa", component: GoodsMarket },
+          { path: "thi-truong-tien-so", component: CryptocurrencyMarket },
+        ]
+      },
     ],
   },
 ];

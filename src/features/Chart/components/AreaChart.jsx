@@ -33,7 +33,7 @@ function AreaChart() {
     credits: false,
     chart: {
       type: "area",
-      backgroundColor: "black",
+      backgroundColor: "transparent",
     },
     title: {
       text: "",
@@ -106,7 +106,7 @@ function AreaChart() {
   return (
     <>
       {dataPreviousDay?.length && dataToday?.length ? (
-        <div className="3xl:h-[587px] 2xl:h-[663px] xl:h-[763px] lg:h-[500px] md:h-[500px] sm:h-[500px] xxs:h-[500px] xs:h-[500px]">
+        <div className="2xl:h-[663px] xl:h-[763px] lg:h-[500px] md:h-[500px] xs:h-[500px]">
           <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
         </div>
       ) : (

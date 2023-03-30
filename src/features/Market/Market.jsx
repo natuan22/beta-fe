@@ -3,16 +3,18 @@ import News from "../Chart/components/News";
 import InternationalIndex from "../Chart/components/InternationalIndex";
 import { Outlet } from "react-router-dom";
 import MarketTab from "./utils/MarketTab";
+import Banner from "../Chart/components/Banner";
 
 const Market = () => {
-  return (
+  return (<>
+    <div>
+      <InternationalIndex />
+      <News />
+    </div>
+    <Banner />
     <div className="container mx-auto">
       <div>
-        <InternationalIndex />
-        <News />
-      </div>
-      <div className="px-2">
-        <div>
+        <div className="px-11">
           <MarketTab />
         </div>
         <div>
@@ -20,6 +22,7 @@ const Market = () => {
         </div>
       </div>
     </div>
+  </>
   );
 };
 

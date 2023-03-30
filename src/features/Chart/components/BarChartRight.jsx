@@ -81,7 +81,7 @@ const BarChartRight = () => {
 
   return (
     <div id="chart-container">
-      <div className="xl:h-[350px] 2xl:h-[350px] 3xl:h-[326px]">
+      <div className="xl:h-[350px] 2xl:h-[350px]">
         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
       </div>
     </div>

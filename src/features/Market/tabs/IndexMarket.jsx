@@ -31,8 +31,7 @@ const IndexMarket = () => {
   }
   return (
     <>
-      <div className='flex'>
-        <div className='w-[10%]'></div>
+      <div className='container mx-auto'>
         <div className=''>
           <div className='flex justify-center'>
             <div className='mx-1 my-1 px-[8px] py-[8px] bg-[#151924] w-[500px]'>
@@ -262,7 +261,6 @@ const IndexMarket = () => {
             </div>
           </div>
         </div>
-        <div className='w-[10%]'></div>
       </div>
     </>
   )
