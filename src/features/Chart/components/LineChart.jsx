@@ -1,59 +1,77 @@
-// TradingViewWidget.jsx
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from "react";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import { useSelector } from "react-redux";
+import Loading from "../utils/Loading";
+import moment from "moment";
 
-let tvScriptLoadingPromise;
+const LineChart = () => {
+  const dataLineChart = useSelector((state) => state.chart.dataLineChart);
+  console.log(dataLineChart);
 
-export default function TradingViewWidget() {
-  const onLoadScriptRef = useRef();
-
-  useEffect(
-    () => {
-      onLoadScriptRef.current = createWidget;
-
-      if (!tvScriptLoadingPromise) {
-        tvScriptLoadingPromise = new Promise((resolve) => {
-          const script = document.createElement('script');
-          script.id = 'tradingview-widget-loading-script';
-          script.src = 'https://s3.tradingview.com/tv.js';
-          script.type = 'text/javascript';
-          script.onload = resolve;
-
-          document.head.appendChild(script);
-        });
-      }
-
-      tvScriptLoadingPromise.then(() => onLoadScriptRef.current && onLoadScriptRef.current());
-
-      return () => onLoadScriptRef.current = null;
-
-      function createWidget() {
-        if (document.getElementById('tradingview_29ec6') && 'TradingView' in window) {
-          new window.TradingView.widget({
-
-            width: '100%',
-            height: '100%',
-            symbol: "NASDAQ:AAPL",
-            chartType: "line",
-            interval: "D",
-            timezone: "Etc/UTC",
-            theme: "dark",
-            style: "1",
-            locale: "vi_VN",
-            toolbar_bg: "#f1f3f6",
-            enable_publishing: false,
-            withdateranges: true,
-            allow_symbol_change: true,
-            container_id: "tradingview_29ec6"
-          });
-        }
-      }
+  // Thiết lập các tùy chọn của biểu đồ
+  const options = {
+    accessibility: {
+      enabled: false,
     },
-    []
-  );
+    credits: false,
+    chart: {
+      type: "line",
+      backgroundColor: "transparent",
+    },
+    title: {
+      text: "",
+    },
+    series: [
+      {
+        name: "Điểm",
+        data:
+          dataLineChart &&
+          dataLineChart?.length &&
+          dataLineChart?.map((item) => item.indexValue),
+      },
+    ],
+    yAxis: {
+      title: {
+        text: "",
+        style: {
+          color: "#fff",
+        },
+      },
+      labels: {
+        style: {
+          color: "#fff",
+        },
+      },
+    },
+    xAxis: {
+      title: {
+        text: "Thời gian",
+        style: {
+          color: "#fff",
+        },
+      },
+      labels: {
+        style: {
+          color: "#fff",
+        },
+      },
+      categories: dataLineChart && dataLineChart?.length && dataLineChart?.map(item => moment(item.tradingDate).format('hh:mm')),
+    },
+    legend: {
+      enabled: false // Tắt chú thích
+    }
+  };
 
   return (
-    <div className='tradingview-widget-container'>
-      <div id='tradingview_29ec6' />
+    <div id="chart-container" >
+      {dataLineChart?.length ? (
+        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+      ) : (
+        <Loading />
+      )}
     </div>
   );
-}
+};
+
+export default LineChart;

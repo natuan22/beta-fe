@@ -8,10 +8,12 @@ import ThanhKhoan from '../componets/ThanhKhoan';
 import GeneralIndustry from '../componets/GeneralIndustry';
 import News from '../componets/News';
 import Events from '../componets/Events';
+import { useDispatch } from 'react-redux';
+import { fetchDataLineChart } from '../../Chart/thunk';
 
 const IndexMarket = () => {
   const [activeButton, setActiveButton] = useState('1day');
-
+  const dispatch = useDispatch()
   const handleClick = (button) => {
     setActiveButton(button);
   }
@@ -41,10 +43,12 @@ const IndexMarket = () => {
                     <span className='text-white text-[1.6rem] pl-[10px]'>VNINDEX</span>
                     <span className='text-white text-[1rem] pl-[30px]'>1032.78</span>
                     <span className='text-white text-[1rem] pl-[30px]'>-7.36/ -0.69%</span>
-                    <select className={`bg-[#1B496D] ml-6 p-1 text-[1rem] text-white border-0`}>
-                      <option value="1">Trong ngày</option>
-                      <option value="2">5 ngày</option>
-                      <option value="3">1 tuần</option>
+                    <select onChange={(event)=> {
+                      dispatch(fetchDataLineChart(`${event.target.value}`))
+                    }} className={`bg-[#1B496D] ml-6 p-1 text-[1rem] text-white border-0`} >
+                      <option value="0">Trong ngày</option>
+                      <option value="1">5 ngày</option>
+                      <option value="2">1 tuần</option>
                     </select>
                   </div>
                   <div className='h-[459px]'>

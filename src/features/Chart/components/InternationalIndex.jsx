@@ -28,7 +28,8 @@ const InternationalIndex = () => {
 
   return (
     <div className="bg-black pt-1">
-      <Marquee speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
+      <Marquee
+       speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
         <div className="flex">
           {dataInternationalIndex.data?.map((item, index) => {
             return (

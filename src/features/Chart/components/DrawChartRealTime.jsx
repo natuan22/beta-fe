@@ -1,93 +1,87 @@
-import React, { useState, useEffect } from 'react';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
+import React, { useEffect } from "react";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import { useSelector } from "react-redux";
+import Loading from "../utils/Loading";
+import moment from "moment";
 
 const DrawChartRealTime = () => {
-  const [chartOptions, setChartOptions] = useState({
+  const dataLineChart = useSelector((state) => state.chart.dataLineChart);
+  console.log(dataLineChart);
+
+  // Thiết lập các tùy chọn của biểu đồ
+  const options = {
     accessibility: {
       enabled: false,
     },
     credits: false,
     chart: {
-      type: 'area'
+      events: {
+        load: function () {
+
+            // set up the updating of the chart each second
+            var series = this.series[0];
+            setInterval(function () {
+                var x = (new Date()).getTime(), // current time
+                    y = Math.round(Math.random() * 100);
+                series.addPoint([x, y], true, true);
+            }, 1000);
+        }
+    },
+      type: "line",
+      backgroundColor: "transparent",
     },
     title: {
-      text: '100% Stacked Chart'
+      text: "",
+    },
+    series: [
+      {
+        name: "Điểm",
+        data:
+          dataLineChart &&
+          dataLineChart?.length &&
+          dataLineChart?.map((item) => item.indexValue),
+      },
+    ],
+    yAxis: {
+      title: {
+        text: "",
+        style: {
+          color: "#fff",
+        },
+      },
+      labels: {
+        style: {
+          color: "#fff",
+        },
+      },
     },
     xAxis: {
-      categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-    },
-    yAxis: {
-      min: 0,
       title: {
-        text: 'Total fruit consumption'
-      },
-      stackLabels: {
-        enabled: true,
+        text: "Thời gian",
         style: {
-          fontWeight: 'bold',
-          color: ( // theme
-            Highcharts.defaultOptions.title.style &&
-            Highcharts.defaultOptions.title.style.color
-          ) || 'gray'
-        }
-      }
+          color: "#fff",
+        },
+      },
+      labels: {
+        style: {
+          color: "#fff",
+        },
+      },
+      categories: dataLineChart && dataLineChart?.length && dataLineChart?.map(item => moment(item.tradingDate).format('hh:mm')),
     },
     legend: {
-      align: 'right',
-      x: -30,
-      verticalAlign: 'top',
-      y: 25,
-      floating: true,
-      backgroundColor:
-        Highcharts.defaultOptions.legend.backgroundColor || 'white',
-      borderColor: '#CCC',
-      borderWidth: 1,
-      shadow: false
-    },
-    tooltip: {
-      headerFormat: '<b>{point.x}</b><br/>',
-      pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-    },
-    plotOptions: {
-      column: {
-        stacking: 'percent'
-      }
-    },
-    series: [{
-      name: 'John',
-      data: [5, 3, 4, 7, 2]
-    }, {
-      name: 'Jane',
-      data: [2, 2, 3, 2, 1]
-    }, {
-      name: 'Joe',
-      data: [3, 4, 4, 2, 5]
-    }]
-  });
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setChartOptions((prevOptions) => {
-        const newOptions = { ...prevOptions };
-        newOptions.series = newOptions.series.map((series) => {
-          const newData = [...series.data];
-          newData.shift();
-          newData.push(Math.floor(Math.random() * 10));
-          return { ...series, data: newData };
-        });
-        return newOptions;
-      });
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+      enabled: false // Tắt chú thích
+    }
+  };
 
   return (
-    <div>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={chartOptions}
-      />
+    <div id="chart-container" >
+      {dataLineChart?.length ? (
+        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };
