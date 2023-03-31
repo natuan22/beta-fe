@@ -19,21 +19,21 @@ const TableMarketLiquidity = () => {
         <>
             <section className="bg-blueGray-50">
                 <div className="w-full">
-                    <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
+                    <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded ">
                         <div className="block w-full bg-transparent scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] h-80 overflow-y-scroll">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B]">
                                     <tr>
-                                        <th className="text-center align-middle px-4 py-3 uppercase text-sm font-semibold text-white">
+                                        <th className="text-center align-middle px-4 py-3 uppercase text-xs font-semibold text-white">
                                             Mã CK
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 uppercase text-sm font-semibold text-white">
+                                        <th className="text-center align-middle px-4 py-3 uppercase text-xs font-semibold text-white">
                                             Ngành
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 uppercase text-sm font-semibold text-white">
+                                        <th className="text-center align-middle px-4 py-3 uppercase text-xs font-semibold text-white">
                                             Giá trị (tỷ đồng)
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 uppercase whitespace-nowrap text-sm font-semibold text-white">
+                                        <th className="text-center align-middle px-4 py-3 uppercase whitespace-nowrap text-xs font-semibold text-white">
                                             Thay đổi
                                         </th>
                                     </tr>
@@ -59,7 +59,7 @@ const TableMarketLiquidity = () => {
                                                     </td>
                                                 </tr>
                                             )
-                                        })) : (<tr><td colSpan={4}><Loading /></td></tr>)}
+                                        })) : (<tr><td colSpan={4}><div className="mt-16"><Loading /></div></td></tr>)}
                                 </tbody>
                             </table>
                         </div>

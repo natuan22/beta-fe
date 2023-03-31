@@ -52,7 +52,7 @@ const TableThanhKhoan = () => {
                                 </thead>
 
                                 <tbody>
-                                    <tr><td colSpan={6}><Loading /></td></tr>
+                                    <tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>
                                 </tbody>
                             </table>
                         </div>

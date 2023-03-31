@@ -32,7 +32,7 @@ const News = () => {
                             </thead>
 
                             <tbody>
-                                <tr><td colSpan={2}><Loading /></td></tr>
+                                <tr><td colSpan={2}><div className="mt-16"><Loading /></div></td></tr>
                             </tbody>
                         </table>
                     </div>
