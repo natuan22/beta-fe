@@ -7,7 +7,6 @@ import moment from "moment";
 
 const LineChart = () => {
   const dataLineChart = useSelector((state) => state.chart.dataLineChart);
-  console.log(dataLineChart);
 
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
@@ -46,7 +45,7 @@ const LineChart = () => {
     },
     xAxis: {
       title: {
-        text: "Thời gian",
+        text: null,
         style: {
           color: "#fff",
         },
@@ -64,11 +63,11 @@ const LineChart = () => {
   };
 
   return (
-    <div id="chart-container" >
+    <div id="chart-container" className="h-[350px]">
       {dataLineChart?.length ? (
         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
       ) : (
-        <Loading />
+        <div className="mt-24"><Loading /></div>
       )}
     </div>
   );

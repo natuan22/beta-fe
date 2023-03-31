@@ -369,7 +369,7 @@ const Home = () => {
                           handleClick('increase')
                           dispatch(dispatch(fetchDataTableMarketLiquidity("0")))
                         }}
-                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px]'>Tăng mạnh nhất</button>
+                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px] rounded-tl-lg rounded-bl-lg'>Tăng mạnh nhất</button>
                       <button
                         style={activeButton === 'decrease' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                         onClick={() => {
@@ -390,7 +390,7 @@ const Home = () => {
                           handleClick('lowest')
                           dispatch(dispatch(fetchDataTableMarketLiquidity("3")))
                         }}
-                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px]'>Đóng góp thấp nhất</button>
+                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px] rounded-tr-lg rounded-br-lg'>Đóng góp thấp nhất</button>
                     </div>
 
                     <TableMarketLiquidity />

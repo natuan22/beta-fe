@@ -59,7 +59,7 @@ const RateDetail = () => {
                         </td>
                       </tr>
                     )
-                  })) : (<tr><td colSpan={3}><Loading /></td></tr>)}
+                  })) : (<tr><td colSpan={3}><div className="mt-16"><Loading /></div></td></tr>)}
               </tbody>
             </table>
           </div>

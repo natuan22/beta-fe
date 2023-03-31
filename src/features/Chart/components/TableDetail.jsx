@@ -71,7 +71,7 @@ const TableDetail = () => {
                           </td>
                         </tr>
                       )
-                    })) : (<tr><td colSpan={4}><Loading /></td></tr>)}
+                    })) : (<tr><td colSpan={4}><div className="mt-16"><Loading /></div></td></tr>)}
                 </tbody>
               </table>
             </div>
