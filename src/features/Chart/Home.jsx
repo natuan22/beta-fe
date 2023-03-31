@@ -44,8 +44,10 @@ import {
   fetchDataNetVolume,
   fetchDataNews,
   fetchDataMarketEvaluation,
+  fetchDataLineChart,
 } from "./thunk";
 import TableMarketEvaluation from "./components/TableMarketEvaluation";
+import DrawChartRealTime from "./components/DrawChartRealTime";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -95,6 +97,7 @@ const Home = () => {
     dispatch(fetchDataAreaChart2);
     dispatch(fetchDataWidthMarket("VNINDEX"));
     dispatch(fetchDataNetVolume("vnindex"));
+    dispatch(fetchDataLineChart('0'))
   }, [dispatch]);
 
   return (
@@ -419,6 +422,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
+            <DrawChartRealTime />
             <Footer />
           </div>
         </div>

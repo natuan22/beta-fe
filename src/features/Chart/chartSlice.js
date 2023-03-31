@@ -22,6 +22,7 @@ const initialState = {
   dataNetVolume: {},
   dataNews: {},
   dataMarketEvaluation: {},
+  dataLineChart:{},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -89,7 +90,9 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_MARKET_EVALUATION) {
       draft.dataMarketEvaluation = payload
     }
-
+    if(type === actionType.UPDATE_DATA_LINE_CHART) {
+      draft.dataLineChart = payload
+    }
   });
 };
 
