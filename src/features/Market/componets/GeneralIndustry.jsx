@@ -1,10 +1,13 @@
 import { CaretDownOutlined, CaretRightOutlined, CaretUpOutlined, } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDataGeneralIndustry } from "../../Chart/thunk";
 import Loading from "../../Chart/utils/Loading";
-import socket from "../../Chart/utils/socket";
+import '../../Market/utils/tabStyle.css'
 
 const GeneralIndustry = () => {
+    const dispatch = useDispatch()
+    const [activeButton, setActiveButton] = useState('all');
     const dataGeneral = useSelector((state) => state.chart.dataGeneral);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -27,36 +30,62 @@ const GeneralIndustry = () => {
         }
     }, [dataGeneral]);
 
-    useEffect(() => {
-        if (dataGeneral?.data) {
-            const oldData = dataGeneral?.data
-
-            socket.on("listen-phan-nganh", (newData) => {
-                const newDataWithChanges = oldData.map(oldItem => {
-                    const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
-                    if (matchingItem) {
-                        return {
-                            ...oldItem,
-                            day_change_percent: matchingItem.day_change_percent,
-                            month_change_percent: matchingItem.month_change_percent,
-                            week_change_percent: matchingItem.week_change_percent
-                        }
-                    } else {
-                        return oldItem
-                    }
-                })
-
-                setData(newDataWithChanges)
-            });
-        }
-    }, [dataGeneral]);
+    const handleClick = (button) => {
+        setActiveButton(button);
+    }
 
     return (
         <>
-            <section className="bg-blueGray-50">
+            <div className="pt-3 mb-3 text-white">
+                <span>
+                    <button
+                        onClick={() => {
+                            handleClick('all')
+                            dispatch(fetchDataGeneralIndustry('all'))
+                        }}
+                        className={activeButton === 'all'
+                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>Toàn thị trường
+                    </button>
+                </span>
+                <span className="pl-10">
+                    <button
+                        onClick={() => {
+                            handleClick('HSX')
+                            dispatch(dispatch(fetchDataGeneralIndustry('HSX')))
+                        }}
+                        className={activeButton === 'HSX'
+                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>HSX
+                    </button>
+                </span>
+                <span className="pl-10">
+                    <button
+                        onClick={() => {
+                            handleClick('HNX')
+                            dispatch(dispatch(fetchDataGeneralIndustry('HNX')))
+                        }}
+                        className={activeButton === 'HNX'
+                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>HNX
+                    </button>
+                </span>
+                <span className="pl-10">
+                    <button
+                        onClick={() => {
+                            handleClick('UPCOM')
+                            dispatch(dispatch(fetchDataGeneralIndustry('UPCOM')))
+                        }}
+                        className={activeButton === 'UPCOM'
+                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>UPCOM
+                    </button>
+                </span>
+            </div>
+            <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
-                    <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full  rounded ">
-                        <div className="block w-full scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll xs:h-[438px] xxs:h-[430px] sm:h-[430px] md:h-[465px] lg:h-[450px] xl:h-[744px] 2xl:h-[745px] 3xl:h-[701px] bg-transparent">
+                    <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
+                        <div className="block w-full scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll bg-transparent">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                     <tr>
@@ -81,7 +110,124 @@ const GeneralIndustry = () => {
                                     </tr>
                                 </thead>
 
-                                <tbody><tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>
+                                <tbody>
+                                    {!loading ? (
+                                        Array.isArray(data) &&
+                                        data.map((item, index) => {
+                                            let color = getColor(item.day_change_percent);
+                                            let color2 = getColor(item.week_change_percent);
+                                            let color3 = getColor(item.month_change_percent);
+
+                                            if (item.industry === "#N/A") {
+                                                return null;
+                                            }
+                                            let numOfHigh = item.high;
+                                            let numOfLow = item.low;
+                                            let numOfIncrease = item.increase;
+                                            let numOfDecrease = item.decrease;
+                                            let numOfEqual = item.equal;
+                                            let total = numOfHigh + numOfLow + numOfIncrease + numOfDecrease + numOfEqual;
+                                            return (
+                                                <tr key={index} className="hover:bg-gray-800">
+                                                    <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
+                                                        {item.industry}
+                                                    </th>
+                                                    <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2.5 font-semibold`}>
+                                                        <span className="text-left px-1.5">
+                                                            {getIcon(item.day_change_percent)}
+                                                        </span>
+                                                        <span className="text-right px-px">
+                                                            {item.day_change_percent.toFixed(2)}%
+                                                        </span>
+                                                    </td>
+                                                    <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                                                        <span className="text-left px-1.5">
+                                                            {getIcon(item.week_change_percent)}
+                                                        </span>
+                                                        <span className="text-right px-px">
+                                                            {item.week_change_percent.toFixed(2)}%
+                                                        </span>
+                                                    </td>
+                                                    <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                                                        <span className="text-left px-1.5">
+                                                            {getIcon(item.month_change_percent)}
+                                                        </span>
+                                                        <span className="text-right px-px">
+                                                            {item.month_change_percent.toFixed(2)}%
+                                                        </span>
+                                                    </td>
+                                                    <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                                                        <span className="text-left px-1.5">
+
+                                                        </span>
+                                                        <span className="text-right px-px">
+
+                                                        </span>
+                                                    </td>
+
+                                                    <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-2 py-2  ">
+                                                        <div
+                                                            className="flex relative"
+                                                            onMouseOver={() => handleMouseOver(index)}
+                                                            onMouseOut={handleMouseOut}
+                                                        >
+                                                            {hoveredIndex === index && (
+                                                                <div className="bg-white text-black text-xs font-medium p-1 rounded-md absolute top-0 translate-x-[-60%] translate-y-[-110%] z-40 ease-in-out duration-500">
+                                                                    <span>Trần: {item.high}</span>
+                                                                    <span className="ml-2">
+                                                                        Tăng: {item.increase}
+                                                                    </span>
+                                                                    <span className="ml-2">
+                                                                        Không đổi: {item.equal}
+                                                                    </span>
+                                                                    <span className="ml-2">
+                                                                        Giảm: {item.decrease}
+                                                                    </span>
+                                                                    <span className="ml-2">Sàn: {item.low}</span>
+                                                                </div>
+                                                            )}
+                                                            <div
+                                                                className="bg-purple-500 h-2.5"
+                                                                style={{
+                                                                    width: `${(item.high / total) * 100}%`,
+                                                                }}
+                                                            ></div>
+                                                            <div
+                                                                className="h-2.5 bg-green-500"
+                                                                style={{
+                                                                    width: `${(item.increase / total) * 100}%`,
+                                                                }}
+                                                            ></div>
+                                                            <div
+                                                                className="bg-yellow-400 h-2.5"
+                                                                style={{
+                                                                    width: `${(item.equal / total) * 100}%`,
+                                                                }}
+                                                            ></div>
+                                                            <div
+                                                                className="bg-red-500 "
+                                                                style={{
+                                                                    width: `${(item.decrease / total) * 100}%`,
+                                                                }}
+                                                            ></div>
+                                                            <div
+                                                                className="bg-blue-400 h-2.5"
+                                                                style={{
+                                                                    width: `${(item.low / total) * 100}%`,
+                                                                }}
+                                                            ></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={5}>
+                                                <div className="mt-16"><Loading /></div>
+                                            </td>
+                                        </tr>
+                                    )}
                                 </tbody>
                             </table>
                         </div>

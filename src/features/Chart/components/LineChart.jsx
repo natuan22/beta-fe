@@ -55,7 +55,7 @@ const LineChart = () => {
           color: "#fff",
         },
       },
-      categories: dataLineChart && dataLineChart?.length && dataLineChart?.map(item => moment(item.tradingDate).format('hh:mm')),
+      categories: dataLineChart && dataLineChart?.length && dataLineChart?.map(item => moment(item.tradingDate).format('HH:mm')),
     },
     legend: {
       enabled: false // Tắt chú thích
