@@ -86,7 +86,7 @@ const Home = () => {
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataBarChartRight);
     dispatch(fetchDataBarChartLeft("VNINDEX"));
-    dispatch(fetchDataGeneralIndustry);
+    dispatch(fetchDataGeneralIndustry('all'));
     dispatch(fetchDataTreeMapSell("HSX"));
     dispatch(fetchDataTreeMapBuy("HSX"));
   }, [dispatch]);
