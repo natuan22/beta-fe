@@ -87,7 +87,7 @@ const TreeMapChart = () => {
         width={"100%"}
         height={"400px"}
         chartType="TreeMap"
-        loader={<div><Loading /></div>}
+        loader={<div className="mt-16"><Loading /></div>}
         data={dataTreeMapRender}
         options={options}
         rootProps={{ "data-testid": "1" }}
