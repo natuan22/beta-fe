@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import BarChart from '../componets/BarChart';
-import DoRongThiTruong from '../componets/DoRongThiTruong';
-import TableDomesticIndex from '../componets/TableDomesticIndex';
-import TableThanhKhoan from '../componets/TableThanhKhoan';
-import ThanhKhoan from '../componets/ThanhKhoan';
-import GeneralIndustry from '../componets/GeneralIndustry';
-import News from '../componets/News';
-import Events from '../componets/Events';
+import BarChart from '../components/BarChart';
+import DoRongThiTruong from '../components/DoRongThiTruong';
+import TableDomesticIndex from '../components/TableDomesticIndex';
+import TableThanhKhoan from '../components/TableThanhKhoan';
+import ThanhKhoan from '../components/ThanhKhoan';
+import GeneralIndustry from '../components/GeneralIndustry';
+import News from '../components/News';
+import Events from '../components/Events';
 import { useDispatch } from 'react-redux';
 import { fetchDataLineChart } from '../../Chart/thunk';
 import LineChart from '../../Chart/components/LineChart';
