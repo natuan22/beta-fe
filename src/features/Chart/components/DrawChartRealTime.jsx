@@ -1,89 +1,9 @@
-import React, { useEffect } from "react";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
-import { useSelector } from "react-redux";
-import Loading from "../utils/Loading";
-import moment from "moment";
+import React from 'react'
 
 const DrawChartRealTime = () => {
-  const dataLineChart = useSelector((state) => state.chart.dataLineChart);
-  console.log(dataLineChart);
-
-  // Thiết lập các tùy chọn của biểu đồ
-  const options = {
-    accessibility: {
-      enabled: false,
-    },
-    credits: false,
-    chart: {
-      events: {
-        load: function () {
-
-            // set up the updating of the chart each second
-            var series = this.series[0];
-            setInterval(function () {
-                var x = (new Date()).getTime(), // current time
-                    y = Math.round(Math.random() * 100);
-                series.addPoint([x, y], true, true);
-            }, 1000);
-        }
-    },
-      type: "line",
-      backgroundColor: "transparent",
-    },
-    title: {
-      text: "",
-    },
-    series: [
-      {
-        name: "Điểm",
-        data:
-          dataLineChart &&
-          dataLineChart?.length &&
-          dataLineChart?.map((item) => item.indexValue),
-      },
-    ],
-    yAxis: {
-      title: {
-        text: "",
-        style: {
-          color: "#fff",
-        },
-      },
-      labels: {
-        style: {
-          color: "#fff",
-        },
-      },
-    },
-    xAxis: {
-      title: {
-        text: "Thời gian",
-        style: {
-          color: "#fff",
-        },
-      },
-      labels: {
-        style: {
-          color: "#fff",
-        },
-      },
-      categories: dataLineChart && dataLineChart?.length && dataLineChart?.map(item => moment(item.tradingDate).format('hh:mm')),
-    },
-    legend: {
-      enabled: false // Tắt chú thích
-    }
-  };
-
   return (
-    <div id="chart-container" >
-      {dataLineChart?.length ? (
-        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-      ) : (
-        <Loading />
-      )}
-    </div>
-  );
-};
+    <div>DrawChartRealTime</div>
+  )
+}
 
-export default DrawChartRealTime;
+export default DrawChartRealTime

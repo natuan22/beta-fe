@@ -47,7 +47,6 @@ import {
   fetchDataLineChart,
 } from "./thunk";
 import TableMarketEvaluation from "./components/TableMarketEvaluation";
-import DrawChartRealTime from "./components/DrawChartRealTime";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -87,7 +86,7 @@ const Home = () => {
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataBarChartRight);
     dispatch(fetchDataBarChartLeft("VNINDEX"));
-    dispatch(fetchDataGeneralIndustry);
+    dispatch(fetchDataGeneralIndustry('all'));
     dispatch(fetchDataTreeMapSell("HSX"));
     dispatch(fetchDataTreeMapBuy("HSX"));
   }, [dispatch]);
@@ -422,7 +421,6 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-            <DrawChartRealTime />
             <Footer />
           </div>
         </div>

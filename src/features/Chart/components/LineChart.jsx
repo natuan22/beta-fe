@@ -7,7 +7,6 @@ import moment from "moment";
 
 const LineChart = () => {
   const dataLineChart = useSelector((state) => state.chart.dataLineChart);
-  console.log(dataLineChart);
 
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
