@@ -45,7 +45,7 @@ const LineChart = () => {
     },
     xAxis: {
       title: {
-        text: "Thời gian",
+        text: null,
         style: {
           color: "#fff",
         },
@@ -55,7 +55,7 @@ const LineChart = () => {
           color: "#fff",
         },
       },
-      categories: dataLineChart && dataLineChart?.length && dataLineChart?.map(item => moment(item.tradingDate).format('hh:mm')),
+      categories: dataLineChart && dataLineChart?.length && dataLineChart?.map(item => moment(item.tradingDate).format('HH:mm')),
     },
     legend: {
       enabled: false // Tắt chú thích
@@ -63,11 +63,11 @@ const LineChart = () => {
   };
 
   return (
-    <div id="chart-container" >
+    <div id="chart-container" className="h-[350px]">
       {dataLineChart?.length ? (
         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
       ) : (
-        <Loading />
+        <div className="mt-24"><Loading /></div>
       )}
     </div>
   );

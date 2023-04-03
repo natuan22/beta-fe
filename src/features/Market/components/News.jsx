@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Loading from '../../Chart/utils/Loading';
 
-const Events = () => {
+const News = () => {
     const dataEvents = useSelector((state) => state.chart.dataEvents);
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
@@ -23,22 +23,16 @@ const Events = () => {
                             <thead className="sticky top-0 bg-[#1E5D8B]">
                                 <tr>
                                     <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
-                                        Mã chứng khoán
-                                    </th>
-                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
-                                        Loại sự kiện
-                                    </th>
-                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                         Ngày
                                     </th>
                                     <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
-                                        Nội dung sự kiện
+                                        Nội dung chính
                                     </th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <tr><td colSpan={4}><Loading /></td></tr>
+                                <tr><td colSpan={2}><div className="mt-16"><Loading /></div></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -48,7 +42,7 @@ const Events = () => {
     )
 }
 
-export default Events
+export default News
 
 function padTo2Digits(num) {
     return num.toString().padStart(2, '0');

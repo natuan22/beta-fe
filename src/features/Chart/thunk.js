@@ -156,12 +156,15 @@ export const fetchDataRateDetail = async (dispatch) => {
   }
 }
 
-export const fetchDataGeneralIndustry = async (dispatch) => {
+export const fetchDataGeneralIndustry = (index) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
       url: `${apiUrl}/api/v1/stock/industry`,
       method: "GET",
+      params: {
+        exchange: index || undefined,
+      }
     });
     dispatch({
       type: "beta/UPDATE_DATA_GENERAL",
@@ -351,20 +354,20 @@ export const fetchDataMarketEvaluation = async (dispatch) => {
   }
 }
 
-export const fetchDataLineChart =(type) => async (dispatch) => {
- try {
-  const res = await axios({
-    url: `${apiUrl}/api/v1/chart/vnindex`,
-    method:"GET",
-    params:{
-      type
-    }
-  }) 
-  dispatch({
-    type:"beta/UPDATE_DATA_LINE_CHART",
-    payload: res.data.data
-  })
- }catch(err){
-  console.log(err)
- }
+export const fetchDataLineChart = (type) => async (dispatch) => {
+  try {
+    const res = await axios({
+      url: `${apiUrl}/api/v1/chart/vnindex`,
+      method: "GET",
+      params: {
+        type
+      }
+    })
+    dispatch({
+      type: "beta/UPDATE_DATA_LINE_CHART",
+      payload: res.data.data
+    })
+  } catch (err) {
+    console.log(err)
+  }
 }

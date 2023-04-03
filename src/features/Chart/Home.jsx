@@ -23,6 +23,7 @@ import StackingAreas from "./components/StackingAreas";
 import NetVolumeTrade from "./components/NetVolumeTrade";
 import TableMarketLiquidity from "./components/TableMarketLiquidity";
 import News from "./components/News";
+
 import {
   fetchDataInternationalIndex,
   fetchDataTableDetail,
@@ -238,7 +239,7 @@ const Home = () => {
                       </div>
                     </div>
                     <div className="flex justify-center pb-[10px]">
-                      <hr className="xl:w-[690px] 2xl:w-[835px] xl:translate-x-[-5px] 2xl:translate-x-[-5px] bg-gradient-to-r from-cyan-500 to-blue-500 opacity-100 h-[5px] " />
+                      <hr className="xl:w-[818px] 2xl:w-[818px] xl:translate-x-[-5px] 2xl:translate-x-[-5px] bg-gradient-to-r from-cyan-500 to-blue-500 opacity-100 h-[5px] " />
                     </div>
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
@@ -330,7 +331,7 @@ const Home = () => {
                       </div>
                     </div>
                     <div className="flex justify-center pb-[10px]">
-                      <hr className="xs:w-[315px] md:w-[690px] lg:w-[933px] xs:translate-x-[-5px] md:translate-x-[-5px] lg:translate-x-[-5px] bg-gradient-to-r from-cyan-500 to-blue-500 opacity-100 h-[5px] " />
+                      <hr className="xs:w-[380px] md:w-[567px] lg:w-[774px] xs:translate-x-[-5px] md:translate-x-[-5px] lg:translate-x-[-5px] bg-gradient-to-r from-cyan-500 to-blue-500 opacity-100 h-[5px] " />
                     </div>
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
@@ -368,7 +369,7 @@ const Home = () => {
                           handleClick('increase')
                           dispatch(dispatch(fetchDataTableMarketLiquidity("0")))
                         }}
-                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px]'>Tăng mạnh nhất</button>
+                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px] rounded-tl-lg rounded-bl-lg'>Tăng mạnh nhất</button>
                       <button
                         style={activeButton === 'decrease' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                         onClick={() => {
@@ -389,7 +390,7 @@ const Home = () => {
                           handleClick('lowest')
                           dispatch(dispatch(fetchDataTableMarketLiquidity("3")))
                         }}
-                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px]'>Đóng góp thấp nhất</button>
+                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px] rounded-tr-lg rounded-br-lg'>Đóng góp thấp nhất</button>
                     </div>
 
                     <TableMarketLiquidity />

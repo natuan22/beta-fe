@@ -184,7 +184,7 @@ const GeneralIndustry = () => {
                   ) : (
                     <tr>
                       <td colSpan={5}>
-                        <Loading />
+                        <div className="mt-16"><Loading /></div>
                       </td>
                     </tr>
                   )}
