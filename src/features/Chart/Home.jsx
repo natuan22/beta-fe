@@ -23,7 +23,7 @@ import StackingAreas from "./components/StackingAreas";
 import NetVolumeTrade from "./components/NetVolumeTrade";
 import TableMarketLiquidity from "./components/TableMarketLiquidity";
 import News from "./components/News";
-import TableMarketEvaluation from "./components/TableMarketEvaluation";
+
 import {
   fetchDataInternationalIndex,
   fetchDataTableDetail,
@@ -47,6 +47,7 @@ import {
   fetchDataMarketEvaluation,
   fetchDataLineChart,
 } from "./thunk";
+import TableMarketEvaluation from "./components/TableMarketEvaluation";
 
 const Home = () => {
   const dispatch = useDispatch();

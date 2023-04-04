@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Card } from "antd";
 import Marquee from "react-fast-marquee";
@@ -6,8 +6,8 @@ import Moment from "react-moment";
 
 
 const News = () => {
-    const dataNews = useSelector((state) => state.chart.dataNews);
-    const [speed, setSpeed] = useState();
+  const dataNews = useSelector((state) => state.chart.dataNews);
+  const speedRef = useRef(10);
 
     useEffect(() => {
         const handleResize = () => {
@@ -59,11 +59,11 @@ const News = () => {
                                 </Card>
                             )
                         })}
-                    </div>
-                </Marquee>
-            </div >
-        </>
-    )
-}
+          </div>
+        </Marquee>
+      </div>
+    </>
+  );
+};
 
 export default News;
