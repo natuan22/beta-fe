@@ -11,8 +11,7 @@ const BarChart = () => {
         setData(dataBarChartLeft?.data ?? []);
     }, [dataBarChartLeft]);
 
-    const sortedData =
-        data && data.data ? [...data.data].sort((a, b) => b.point - a.point) : [];
+    const sortedData = data && data.data ? [...data.data].sort((a, b) => b.point - a.point) : [];
     const top10 = sortedData.slice(0, 10);
     const bottom10 = sortedData.slice(-10);
     const dataStockRender = top10.concat(bottom10);

@@ -51,24 +51,6 @@ import TableMarketEvaluation from "./components/TableMarketEvaluation";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [activeButton, setActiveButton] = useState('increase');
-
-  const handleClick = (button) => {
-    setActiveButton(button);
-  }
-
-  const buttonStyle = {
-    backgroundColor: 'transparent',
-    color: '#fff',
-    border: 'none',
-    cursor: 'pointer',
-    padding: '0.375rem 0.5rem'
-  }
-
-  const activeButtonStyle = {
-    backgroundColor: '#275F88',
-    color: '#fff',
-  }
 
   useEffect(() => {
     dispatch(fetchDataEvents);
@@ -362,37 +344,6 @@ const Home = () => {
                     <TableMarketVolatility />
                   </div>
                   <div className="px-1.5 py-1.5">
-                    <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-3">
-                      <button
-                        style={activeButton === 'increase' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                        onClick={() => {
-                          handleClick('increase')
-                          dispatch(dispatch(fetchDataTableMarketLiquidity("0")))
-                        }}
-                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px] rounded-tl-lg rounded-bl-lg'>Tăng mạnh nhất</button>
-                      <button
-                        style={activeButton === 'decrease' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                        onClick={() => {
-                          handleClick('decrease')
-                          dispatch(dispatch(fetchDataTableMarketLiquidity("1")))
-                        }}
-                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px]'>Giảm mạnh nhất</button>
-                      <button
-                        style={activeButton === 'highest' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                        onClick={() => {
-                          handleClick('highest')
-                          dispatch(dispatch(fetchDataTableMarketLiquidity("2")))
-                        }}
-                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px]'>Đóng góp cao nhất</button>
-                      <button
-                        style={activeButton === 'lowest' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                        onClick={() => {
-                          handleClick('lowest')
-                          dispatch(dispatch(fetchDataTableMarketLiquidity("3")))
-                        }}
-                        className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px] rounded-tr-lg rounded-br-lg'>Đóng góp thấp nhất</button>
-                    </div>
-
                     <TableMarketLiquidity />
                   </div>
                 </div>
