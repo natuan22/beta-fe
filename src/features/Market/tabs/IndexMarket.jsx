@@ -129,7 +129,7 @@ const IndexMarket = () => {
               <div className='text-center my-1'>
                 <span className='text-white text-[1rem]'>Thanh khoản trong phiên</span>
               </div>
-              {/* <ThanhKhoan /> */}
+              <ThanhKhoan />
             </div>
           </div>
         </div>
@@ -179,7 +179,6 @@ const IndexMarket = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='text-white text-[1.2rem] font-bold'>Biến động ngành</span>
             </div>
-
             <GeneralIndustry />
             <hr />
             <div className='text-center py-2'>
@@ -197,22 +196,12 @@ const IndexMarket = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='text-white text-[1.2rem] font-bold'>Tin tức thị trường</span>
             </div>
-            <div className="pt-3 mb-3 text-white">
-              <button className='border-none bg-transparent text-white text-[1.1rem]'>Doanh nghiệp</button>
-              <button className='border-none bg-transparent text-white text-[1.1rem] pl-10'>Vĩ mô</button>
-            </div>
             <News />
           </div>
 
           <div className='mx-[15px] my-1 px-[8px] py-[8px] bg-[#151924] w-[500px] h-[700px]'>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='text-white text-[1.2rem] font-bold'>Lịch sự kiện</span>
-            </div>
-            <div className="pt-3 mb-3 text-white">
-              <button className='border-none bg-transparent text-white text-[1.1rem]'>Toàn thị trường</button>
-              <button className='border-none bg-transparent text-white text-[1.1rem] pl-10'>HOSE</button>
-              <button className='border-none bg-transparent text-white text-[1.1rem] pl-10'>HNX</button>
-              <button className='border-none bg-transparent text-white text-[1.1rem] pl-10'>UPCOM</button>
             </div>
             <Events />
           </div>
