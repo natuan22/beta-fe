@@ -3,11 +3,12 @@ import { useSelector } from "react-redux";
 import { Card } from "antd";
 import Marquee from "react-fast-marquee";
 import Moment from "react-moment";
+import { useState } from "react";
 
 
 const News = () => {
-  const dataNews = useSelector((state) => state.chart.dataNews);
-  const speedRef = useRef(10);
+    const dataNews = useSelector((state) => state.chart.dataNews);
+    const [speed, setSpeed] = useState();
 
     useEffect(() => {
         const handleResize = () => {
@@ -59,11 +60,11 @@ const News = () => {
                                 </Card>
                             )
                         })}
-          </div>
-        </Marquee>
-      </div>
-    </>
-  );
+                    </div>
+                </Marquee>
+            </div>
+        </>
+    );
 };
 
 export default News;
