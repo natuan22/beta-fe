@@ -4,21 +4,22 @@ import { Card } from "antd";
 import Marquee from "react-fast-marquee";
 import Moment from "react-moment";
 
+
 const News = () => {
     const dataNews = useSelector((state) => state.chart.dataNews);
     const [speed, setSpeed] = useState();
 
     useEffect(() => {
-        function handleResize() {
-            if (window.innerWidth >= '1920')
+        const handleResize = () => {
+            if (window.innerWidth >= 1920)
                 setSpeed(3)
-            else if (window.innerWidth >= '1440')
+            else if (window.innerWidth >= 1440)
                 setSpeed(2.5)
-            else if (window.innerWidth >= '1024')
+            else if (window.innerWidth >= 1024)
                 setSpeed(2)
-            else if (window.innerWidth >= '768')
+            else if (window.innerWidth >= 768)
                 setSpeed(1)
-            else if (window.innerWidth >= '425')
+            else if (window.innerWidth >= 425)
                 setSpeed(0.5)
         }
         handleResize()
@@ -30,7 +31,7 @@ const News = () => {
     return (
         <>
             <div className="bg-black">
-                <Marquee speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
+                <Marquee speed={speed} pauseOnHover={true} gradientColor="[0,0,0]">
                     <div className="blog-news flex h-[130px]">
                         {dataNews.data?.map((item, index) => {
                             return (

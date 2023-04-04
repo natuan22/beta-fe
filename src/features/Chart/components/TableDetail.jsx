@@ -48,13 +48,8 @@ const TableDetail = () => {
                 <tbody>
                   {!loading ? (Array.isArray(data) &&
                     data.map((item, index) => {
-                      let color = ''
-                      if (item.percent_d === '0.00%')
-                        color = 'text-yellow-500'
-                      else if (item.percent_d < '0')
-                        color = 'text-red-500'
-                      else
-                        color = 'text-green-500'
+                      let color = getColor(item.percent_d)
+                      
                       return (
                         <tr key={index} className='hover:bg-gray-800'>
                           <th className="text-left px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 text-white">
@@ -83,3 +78,12 @@ const TableDetail = () => {
 }
 
 export default TableDetail;
+
+function getColor(item) {
+  let color = "";
+  if (item === 0) color = "text-yellow-500";
+  else if (item < "0") color = "text-red-500";
+  else color = "text-green-500";
+
+  return color;
+}

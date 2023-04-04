@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import MarketTab from "./utils/MarketTab";
 import Banner from "../Chart/components/Banner";
 import { useDispatch } from "react-redux";
-import { fetchDataGeneralIndustry, fetchDataInternationalIndex, fetchDataLineChart, fetchDataNews } from "../Chart/thunk";
+import { fetchDataGeneralIndustry, fetchDataInternationalIndex, fetchDataLineChart, fetchDataNews, fetchDataTableDetail } from "../Chart/thunk";
 
 const Market = () => {
   const dispatch = useDispatch()
@@ -15,7 +15,7 @@ const Market = () => {
     dispatch(fetchDataInternationalIndex);
     dispatch(fetchDataLineChart('0'))
     dispatch(fetchDataGeneralIndustry('all'))
-
+    dispatch(fetchDataTableDetail)
   }, [dispatch]);
 
   return (<>
