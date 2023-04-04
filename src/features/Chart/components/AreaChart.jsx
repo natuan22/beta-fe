@@ -9,6 +9,7 @@ function AreaChart() {
   const dataPreviousDay = useSelector((state) => state.chart.dataChart2);
   const [dataSocket, setDataSocket] = useState([]);
   useEffect(() => {
+    if(!dataToday && !dataToday.length) return
     if (dataToday) {
       setDataSocket(dataToday)
     }

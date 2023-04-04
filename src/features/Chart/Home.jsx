@@ -48,6 +48,7 @@ import {
   fetchDataLineChart,
 } from "./thunk";
 import TableMarketEvaluation from "./components/TableMarketEvaluation";
+import DrawChartRealTime from "./components/DrawChartRealTime";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -422,6 +423,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
+            <DrawChartRealTime />
             <Footer />
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Card } from "antd";
 import Marquee from "react-fast-marquee";
@@ -6,33 +6,33 @@ import Moment from "react-moment";
 
 const News = () => {
   const dataNews = useSelector((state) => state.chart.dataNews);
-  const speedRef = useRef(10);
+  const [speed, setSpeed] = useState(5);
 
   useEffect(() => {
-    function handleResize (){
-        if (window.innerWidth >= 1920) {
-            speedRef.current = 10;
-          } else if (window.innerWidth >= 1440) {
-            speedRef.current = 9;
-          } else if (window.innerWidth >= 1024) {
-            speedRef.current = 8;
-          } else if (window.innerWidth >= 768) {
-            speedRef.current = 7;
-          } else if (window.innerWidth >= 425) {
-            speedRef.current = 6;
-          }
-    }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    function handleResize() {
+        let newSpeed =0 ;
+        if (window.innerWidth >= '1920') {
+          newSpeed = 5;
+        } else if (window.innerWidth >= '1440') {
+          newSpeed = 4.5;
+        } else if (window.innerWidth >= '1024') {
+          newSpeed = 3.5;
+        } else if (window.innerWidth >= '768') {
+          newSpeed = 3;
+        } else if (window.innerWidth >= '425') {
+          newSpeed = 10;
+        }
+        return setSpeed(newSpeed)
+      }
+      
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
-console.log(speedRef.current)
 
-   
   return (
     <>
       <div className="bg-black">
-        <Marquee speed={speedRef.current} pauseOnHover="true" gradientColor="[0,0,0]" >
+        <Marquee speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
           <div className="blog-news flex h-[130px]">
             {dataNews.data?.map((item, index) => {
               return (
