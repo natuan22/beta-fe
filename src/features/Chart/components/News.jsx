@@ -6,25 +6,18 @@ import Moment from "react-moment";
 
 const News = () => {
   const dataNews = useSelector((state) => state.chart.dataNews);
-  const [speed, setSpeed] = useState(5);
+  const [speed, setSpeed] = useState();
 
   useEffect(() => {
-    function handleResize() {
-        let newSpeed =0 ;
-        if (window.innerWidth >= '1920') {
-          newSpeed = 5;
-        } else if (window.innerWidth >= '1440') {
-          newSpeed = 4.5;
-        } else if (window.innerWidth >= '1024') {
-          newSpeed = 3.5;
-        } else if (window.innerWidth >= '768') {
-          newSpeed = 3;
-        } else if (window.innerWidth >= '425') {
-          newSpeed = 10;
-        }
-        return setSpeed(newSpeed)
-      }
-      
+    const handleResize = () => {
+      if (window.innerWidth >= 1920) setSpeed(3);
+      else if (window.innerWidth >= 1440) setSpeed(2.5);
+      else if (window.innerWidth >= 1024) setSpeed(2);
+      else if (window.innerWidth >= 768) setSpeed(1);
+      else if (window.innerWidth >= 425) setSpeed(0.5);
+    };
+    handleResize();
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -32,7 +25,7 @@ const News = () => {
   return (
     <>
       <div className="bg-black">
-        <Marquee speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
+        <Marquee speed={speed} pauseOnHover={true} gradientColor="[0,0,0]">
           <div className="blog-news flex h-[130px]">
             {dataNews.data?.map((item, index) => {
               return (

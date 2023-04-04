@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../../Chart/utils/Loading";
-import socket from "../../Chart/utils/socket";
 
 const TableDomesticIndex = () => {
     const dataTable = useSelector((state) => state.chart.dataTableDetail);
@@ -14,12 +13,6 @@ const TableDomesticIndex = () => {
             setData(dataTable.data)
         }
     }, [dataTable]);
-
-    useEffect(() => {
-        socket.on("listen-chi-so-trong-nuoc", (newData) => {
-            setData(newData)
-        });
-    }, [])
 
     return (
         <>
@@ -52,7 +45,33 @@ const TableDomesticIndex = () => {
                                 </thead>
 
                                 <tbody>
-                                    <tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>
+                                    {!loading ? (Array.isArray(data) &&
+                                        data.map((item, index) => {
+                                            let color = getColor(item.percent_d)
+                                            let color2 = getColor(item.net_value_foreign)
+                                            return (
+                                                <tr key={index} className='hover:bg-gray-800'>
+                                                    <th className="text-left px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 text-white">
+                                                        {item.ticker}
+                                                    </th>
+                                                    <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        {item.price}
+                                                    </td>
+                                                    <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        {item.percent_d.toFixed(2)}%
+                                                    </td>
+                                                    <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        {item.volume}
+                                                    </td>
+                                                    <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        {item.value}
+                                                    </td>
+                                                    <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color2}`}>
+                                                        {item.net_value_foreign}
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })) : (<tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>)}
                                 </tbody>
                             </table>
                         </div>
@@ -64,3 +83,12 @@ const TableDomesticIndex = () => {
 }
 
 export default TableDomesticIndex;
+
+function getColor(item) {
+    let color = "";
+    if (item === 0) color = "text-yellow-500";
+    else if (item < 0) color = "text-red-500";
+    else color = "text-green-500";
+
+    return color;
+}

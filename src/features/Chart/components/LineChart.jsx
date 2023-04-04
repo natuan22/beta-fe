@@ -6,7 +6,7 @@ import Loading from "../utils/Loading";
 import moment from "moment";
 
 const LineChart = () => {
-  const dataLineChart = useSelector((state) => state.chart.dataLineChart);
+  const dataLineChart = useSelector((state) => state.chart.dataLineChart.vnindexData);
 
   // Thiết lập các tùy chọn của biểu đồ
   const options = {

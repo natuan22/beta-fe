@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import BarChart from '../components/BarChart';
 import DoRongThiTruong from '../components/DoRongThiTruong';
 import TableDomesticIndex from '../components/TableDomesticIndex';
@@ -8,12 +8,10 @@ import GeneralIndustry from '../components/GeneralIndustry';
 import News from '../components/News';
 import Events from '../components/Events';
 import { useDispatch } from 'react-redux';
-import { fetchDataLineChart } from '../../Chart/thunk';
-import LineChart from '../../Chart/components/LineChart';
+import ChartInfo from '../components/ChartInfo';
 
 const IndexMarket = () => {
   const [activeButton, setActiveButton] = useState('1day');
-  const dispatch = useDispatch()
 
   const handleClick = (button) => {
     setActiveButton(button);
@@ -32,43 +30,14 @@ const IndexMarket = () => {
     backgroundColor: '#275F88',
     color: '#fff',
   }
+
   return (
     <>
       <div className=''>
         <div className='flex justify-center'>
           <div className='mx-1 my-1 px-[8px] py-[8px] bg-[#151924] w-[500px]'>
             <div>
-              <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='text-white text-[1.6rem] pl-[10px]'>VNINDEX</span>
-                  <span className='text-white text-[1rem] pl-[30px]'>1032.78</span>
-                  <span className='text-white text-[1rem] pl-[30px]'>-7.36/ -0.69%</span>
-                  <select onChange={(event) => {
-                    dispatch(fetchDataLineChart(`${event.target.value}`))
-                  }} className={`bg-[#1B496D] ml-6 p-1 text-[1rem] text-white border-0`} >
-                    <option value="0">Trong ngày</option>
-                    <option value="1">5 ngày</option>
-                    <option value="2">1 tuần</option>
-                  </select>
-                </div>
-                <div >
-                  <LineChart />
-                </div>
-              </div>
-              <hr />
-              <div className='flex justify-around text-white text-xs mt-1'>
-                <span>Tham chiếu: </span>
-                <span>Mở cửa: </span>
-                <span>Thấp nhất: </span>
-                <span>Cao nhất: </span>
-              </div>
-              <div className='flex justify-around text-white text-xs'>
-                <span>Sàn: </span>
-                <span>Giảm: </span>
-                <span>Tham chiếu: </span>
-                <span>Tăng: </span>
-                <span>Trần: </span>
-              </div>
+              <ChartInfo />
             </div>
             <div className='mt-1.5'>
               <TableDomesticIndex />
@@ -160,7 +129,7 @@ const IndexMarket = () => {
               <div className='text-center my-1'>
                 <span className='text-white text-[1rem]'>Thanh khoản trong phiên</span>
               </div>
-              <ThanhKhoan />
+              {/* <ThanhKhoan /> */}
             </div>
           </div>
         </div>
@@ -210,7 +179,7 @@ const IndexMarket = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='text-white text-[1.2rem] font-bold'>Biến động ngành</span>
             </div>
-            
+
             <GeneralIndustry />
             <hr />
             <div className='text-center py-2'>
