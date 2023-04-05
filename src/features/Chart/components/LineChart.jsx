@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import moment from "moment";
 
-const LineChart = () => {
-  const dataLineChart = useSelector((state) => state.chart.dataLineChart.vnindexData);
-
+const LineChart = (props) => {
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
     accessibility: {
@@ -25,9 +22,9 @@ const LineChart = () => {
       {
         name: "Điểm",
         data:
-          dataLineChart &&
-          dataLineChart?.length &&
-          dataLineChart?.map((item) => item.indexValue),
+          props.data &&
+          props.data?.length &&
+          props.data?.map((item) => item.indexValue),
       },
     ],
     yAxis: {
@@ -55,7 +52,7 @@ const LineChart = () => {
           color: "#fff",
         },
       },
-      categories: dataLineChart && dataLineChart?.length && dataLineChart?.map(item => moment(item.tradingDate).format('HH:mm')),
+      categories: props.data && props.data?.length && props.data?.map(item => moment(item.tradingDate).format('HH:mm')),
     },
     legend: {
       enabled: false // Tắt chú thích
@@ -64,7 +61,7 @@ const LineChart = () => {
 
   return (
     <div id="chart-container" className="h-[350px]">
-      {dataLineChart?.length ? (
+      {props.data?.length ? (
         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
       ) : (
         <div className="mt-24"><Loading /></div>

@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import MarketTab from "./utils/MarketTab";
 import Banner from "../Chart/components/Banner";
 import { useDispatch } from "react-redux";
-import { fetchDataAreaChart1, fetchDataAreaChart2, fetchDataGeneralIndustry, fetchDataInternationalIndex, fetchDataLineChart, fetchDataMacroNews, fetchDataNews, fetchDataTableDetail } from "../Chart/thunk";
+import { fetchDataAreaChart1, fetchDataAreaChart2, fetchDataEvents, fetchDataGeneralIndustry, fetchDataInternationalIndex, fetchDataLineChart, fetchDataMacroNews, fetchDataNews, fetchDataTableDetail } from "../Chart/thunk";
 
 const Market = () => {
   const dispatch = useDispatch()
@@ -18,6 +18,7 @@ const Market = () => {
     dispatch(fetchDataTableDetail)
     dispatch(fetchDataNews)
     dispatch(fetchDataMacroNews)
+    dispatch(fetchDataEvents)
 
     dispatch(fetchDataAreaChart1);
     dispatch(fetchDataAreaChart2);

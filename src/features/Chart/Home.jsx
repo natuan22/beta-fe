@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Banner from "./components/Banner";
 import BarChartLeft from "./components/BarChartLeft";
 import BarChartRight from "./components/BarChartRight";
@@ -23,7 +23,8 @@ import StackingAreas from "./components/StackingAreas";
 import NetVolumeTrade from "./components/NetVolumeTrade";
 import TableMarketLiquidity from "./components/TableMarketLiquidity";
 import News from "./components/News";
-
+import TableMarketEvaluation from "./components/TableMarketEvaluation";
+import DrawChartRealTime from "./components/DrawChartRealTime";
 import {
   fetchDataInternationalIndex,
   fetchDataTableDetail,
@@ -47,11 +48,24 @@ import {
   fetchDataMarketEvaluation,
   fetchDataLineChart,
 } from "./thunk";
-import TableMarketEvaluation from "./components/TableMarketEvaluation";
-import TestChart from "./components/TestChart";
+import socket from "./utils/socket";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const dataLineChart = useSelector((state) => state.chart.dataLineChart.vnindexData);
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    if (dataLineChart) {
+      setData(dataLineChart)
+    }
+
+    if (dataLineChart) {
+      socket.on("listen-chi-so-vnindex", (newData) => {
+        setData((prevData) => [...prevData, ...newData]);
+      });
+    }
+  }, [dataLineChart])
 
   useEffect(() => {
     dispatch(fetchDataEvents);
@@ -104,7 +118,7 @@ const Home = () => {
                     </div>
 
                     <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924] xs:h-[352px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px]">
-                      <LineChart />
+                      <LineChart data={data} />
                     </div>
                     <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924]">
                       <div className="text-center bg-[#151924]">
