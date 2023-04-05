@@ -366,7 +366,7 @@ const Home = () => {
             </div>
             <div>
               <div className="xl:flex lg:block mx-2 my-2 px-1.5 py-1.5 bg-[#151924]">
-                <div className="xl:w-[65%]">
+                <div className="xl:w-[70%]">
                   <div>
                     <div className="text-center text-white">
                       <h3 className="p-2 uppercase">Độ rộng thị trường</h3>
@@ -374,7 +374,7 @@ const Home = () => {
                     <StackingAreas />
                   </div>
                 </div>
-                <div className="xl:w-[35%]">
+                <div className="xl:w-[30%]">
                   <div className="">
                     <div className="px-1.5 py-1.5">
                       <TableMarketEvaluation />
@@ -388,7 +388,6 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-            <DrawChartRealTime />
             <Footer />
           </div>
         </div>
