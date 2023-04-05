@@ -24,7 +24,6 @@ import NetVolumeTrade from "./components/NetVolumeTrade";
 import TableMarketLiquidity from "./components/TableMarketLiquidity";
 import News from "./components/News";
 import TableMarketEvaluation from "./components/TableMarketEvaluation";
-import DrawChartRealTime from "./components/DrawChartRealTime";
 import {
   fetchDataInternationalIndex,
   fetchDataTableDetail,
