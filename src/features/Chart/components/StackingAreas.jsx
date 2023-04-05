@@ -29,9 +29,9 @@ const StackingAreas = () => {
     dataStackingChart.data?.map((item) => {
       return [item.time, item.noChange];
     });
-  const [dataIncr, setDataIncr] = useState([]);
-  const [dataDecr, setDataDecr] = useState([]);
-  const [dataNoCh, setDataNoCh] = useState([]);
+  const [dataIncr, setDataIncr] = useState(dataAdvance);
+  const [dataDecr, setDataDecr] = useState(dataDecline);
+  const [dataNoCh, setDataNoCh] = useState(dataNoChange);
   useEffect(() => {
     // Lấy dữ liệu ban đầu từ API
 
@@ -226,7 +226,7 @@ const StackingAreas = () => {
   return (
     <div>
       {dataStackingChart.data?.length ? (
-        <div className="w-[1200px]">
+        <div>
           <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
         </div>
       ) : (
