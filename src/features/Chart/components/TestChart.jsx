@@ -6,55 +6,42 @@ import Loading from "../utils/Loading";
 import moment from "moment";
 import socket from "../utils/socket";
 
-const StackingAreas = () => {
+const TestChart = () => {
   const dataStackingChart = useSelector(
     (state) => state.chart.dataStackingArea
   );
-  console.log(dataStackingChart);
-  const dataAdvance =
-    dataStackingChart &&
-    dataStackingChart?.data &&
-    dataStackingChart.data?.map((item) => {
-      return [item.time, item.advance];
-    });
-  const dataDecline =
-    dataStackingChart &&
-    dataStackingChart?.data &&
-    dataStackingChart.data?.map((item) => {
-      return [item.time, item.decline];
-    });
-  const dataNoChange =
-    dataStackingChart &&
-    dataStackingChart?.data &&
-    dataStackingChart.data?.map((item) => {
-      return [item.time, item.noChange];
-    });
+  console.log(dataStackingChart)
+  const dataAdvance = dataStackingChart&&dataStackingChart?.data&&dataStackingChart.data?.map(item => {
+    return [item.time, item.advance]
+  })
+  const dataDecline = dataStackingChart&&dataStackingChart?.data&&dataStackingChart.data?.map(item => {
+    return [item.time, item.decline]
+  })
+  const dataNoChange = dataStackingChart&&dataStackingChart?.data&&dataStackingChart.data?.map(item => {
+    return [item.time, item.noChange]
+  })
   const [dataIncr, setDataIncr] = useState([]);
   const [dataDecr, setDataDecr] = useState([]);
   const [dataNoCh, setDataNoCh] = useState([]);
   useEffect(() => {
     // Lấy dữ liệu ban đầu từ API
-
-    if (dataStackingChart && dataStackingChart.data?.length) {
-      setDataIncr(dataAdvance);
-      setDataDecr(dataDecline);
-      setDataNoCh(dataNoChange);
+    if(dataStackingChart && dataStackingChart.data?.length){
+      setDataIncr(dataAdvance)
+      setDataDecr(dataDecline)
+      setDataNoCh(dataNoChange)
     }
-  }, []);
-  useEffect(() => {
     // Lắng nghe sự kiện từ socket
     socket.on("listen-do-rong-thi-truong", (newData) => {
-      let mapNewDataIncr = newData?.map((item) => [item.time, item.advance]);
-      let mapNewDataDecr = newData?.map((item) => [item.time, item.decline]);
-      let mapNewDataNoCh = newData?.map((item) => [item.time, item.noChange]);
-      setDataIncr((preData) => [...preData, ...mapNewDataIncr]);
-      setDataDecr((preData) => [...preData, ...mapNewDataDecr]);
-      setDataNoCh((preData) => [...preData, ...mapNewDataNoCh]);
+      let mapNewDataIncr = newData?.map(item => [item.time, item.advance])
+      let mapNewDataDecr = newData?.map(item => [item.time, item.decline])
+      let mapNewDataNoCh = newData?.map(item => [item.time, item.noChange])
+      setDataIncr((preData)=> [...preData,...mapNewDataIncr])
+      setDataDecr((preData)=> [...preData,...mapNewDataDecr])
+      setDataNoCh((preData)=> [...preData,...mapNewDataNoCh])
     });
-  }, []);
-
-  console.log(dataIncr);
-
+  }, [ ]);
+    
+  console.log( dataIncr)
   const [hoveredValue, setHoveredValue] = useState(null);
   if (!dataStackingChart.data || !dataStackingChart.data.length) {
     return <Loading />;
@@ -79,30 +66,29 @@ const StackingAreas = () => {
       },
     },
     xAxis: {
-      type: "datetime",
-      tickInterval: 20 * 60 * 1000,
-      min: 1680686100000,
-      max: 1680706800000,
-      labels: {
-        formatter: function () {
-          return moment.utc(this.value).format("HH:mm");
+      type: 'datetime',
+      tickInterval: 15 * 60 * 1000, 
+      min:1680686100000, 
+      max: 1680706800000, 
+        labels: {
+          formatter: function() {
+            return moment.utc(this.value).format('HH:mm'); 
+          },
+          style: {
+            color: "#fff",
+          },
         },
-        style: {
-          color: "#fff",
-        },
-        rotation:-45
-      },
       crosshair: {
         color: "red",
         width: 2,
       },
       title: {
-        text: "", // Tiêu đề trục x
+        text: '', // Tiêu đề trục x
         style: {
-          fontWeight: "bold",
-        },
-      },
-    },
+          fontWeight: 'bold',
+        }
+      }
+    },    
     yAxis: {
       title: {
         text: "",
@@ -192,7 +178,7 @@ const StackingAreas = () => {
     series: [
       {
         name: "Giảm",
-        data: dataDecr,
+        data:dataDecr ,
         color: "#ff0000",
         lineColor: "#ff0000",
         lineWidth: 2,
@@ -202,7 +188,7 @@ const StackingAreas = () => {
       },
       {
         name: "Không đổi",
-        data: dataNoCh,
+        data:dataNoCh,
         color: "#ffd51e",
         lineColor: "#ffd51e",
         lineWidth: 2,
@@ -212,7 +198,7 @@ const StackingAreas = () => {
       },
       {
         name: "Tăng",
-        data: dataIncr,
+        data:dataIncr,
         color: "#19d216",
         lineColor: "#19d216",
         lineWidth: 2,
@@ -225,15 +211,9 @@ const StackingAreas = () => {
 
   return (
     <div>
-      {dataStackingChart.data?.length ? (
-        <div className="w-[1200px]">
-          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-        </div>
-      ) : (
-        <Loading />
-      )}
+      <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
 };
 
-export default StackingAreas;
+export default TestChart;

@@ -1,40 +1,34 @@
-import React, { useEffect, useState } from "react";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
-import { useSelector } from "react-redux";
-import Loading from "../utils/Loading";
+import { Series } from "highcharts";
+import { HighchartsReact } from "highcharts-react-official";
 import moment from "moment";
-import socket from "../utils/socket";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 
 const DrawChartRealTime = () => {
-  const dataStackingChart = useSelector((state) => state.chart.dataStackingArea);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    // Lấy dữ liệu ban đầu từ API
-    if (dataStackingChart?.data) {
-      setData(dataStackingChart.data);
-    }
-    // Lắng nghe sự kiện từ socket
-    socket.on("listen-do-rong-thi-truong", (newData) => {
-      setData((prevData) => [...prevData, ...newData]);
-    });
-
-    // Hủy bỏ việc lắng nghe sự kiện khi component bị unmount
-  }, [dataStackingChart?.data]);
-
+  var Highcharts = require("highcharts");
   const [hoveredValue, setHoveredValue] = useState(null);
-  if (!dataStackingChart.data || !dataStackingChart.data.length) {
-    return <Loading />;
-  }
+  const [data, setData] = useState([
+    [Date.UTC(2020, 0, 1, 9, 15), 0.5],
+    [Date.UTC(2020, 0, 1, 9, 16), 0.6],
+  ]);
+ 
+  useEffect(() => {
+    let minute = 17,
+      hour = 9,
+      value = 0.5;
+    setInterval(() => {
+      const newData = [Date.UTC(2020, 0, 1, hour, minute), value];
+      minute = minute + 1 == 60 ? 0 : minute + 1;
+      hour = minute + 1 == 1 ? hour + 1 : hour;
+      value += 0.01;
+      setData((prev) => [...prev, newData]);
+      console.log(moment.utc([1677982552000]).valueOf());
+    }, 60000);
+  }, []);
 
-  const timeLine = data?.map((item) =>
-    moment(item.time, "HH:mm:ss").format("HH:mm")
-  );
+  const data1 = data;
+  const data2 = data;
+  const data3 = data;
 
-  const dataAdvance = data?.map((item) => item.advance);
-  const dataDecline = data?.map((item) => item.decline);
-  const dataNoChange = data?.map((item) => item.noChange);
   const options = {
     accessibility: {
       enabled: false,
@@ -43,7 +37,7 @@ const DrawChartRealTime = () => {
     chart: {
       type: "area",
       zoomType: "x",
-      backgroundColor: "transparent",
+      //backgroundColor: "black",
       style: {
         fontFamily: "Roboto",
       },
@@ -51,40 +45,50 @@ const DrawChartRealTime = () => {
     title: {
       text: "",
       style: {
-        color: "#F1950C",
+        // color: "#F1950C",
       },
     },
     xAxis: {
-      categories: timeLine,
-      tickmarkPlacement: "on",
-      title: {
-        enabled: true,
-      },
+      type: 'datetime',
+      tickInterval: 15 * 60 * 1000, // Khoảng cách giữa các giá trị trên trục x là 15 phút
+      min: Date.UTC(2023, 3, 5, 9, 15), // Giá trị nhỏ nhất trên trục x
+      max: Date.UTC(2023, 3, 5, 15, 0), // Giá trị lớn nhất trên trục x
       labels: {
-        style: {
-          color: "#fff",
-        },
+        formatter: function() {
+          return moment.utc(this.value).format('HH:mm'); // Định dạng hiển thị cho nhãn trục x
+        }
       },
+      crosshair: {
+        color: "red",
+        width: 2,
+      },
+      title: {
+        text: 'Thời gian', // Tiêu đề trục x
+        style: {
+          fontWeight: 'bold',
+        }
+      }
     },
+    
     yAxis: {
       title: {
-        text: "",
+        text: "Tỉ lệ %",
         style: {
-          color: "#fff",
+          // color: "#fff",
         },
       },
       labels: {
         style: {
-          color: "#fff",
+          //color: "#fff",
         },
         formatter: function () {
-          return this.value + "%";
+          return this.value;
         },
       },
     },
     legend: {
       itemStyle: {
-        color: "#fff",
+        //color: "#fff",
       },
       enabled: true,
       labelFormatter: function () {
@@ -98,24 +102,18 @@ const DrawChartRealTime = () => {
     tooltip: {
       shared: true,
       useHTML: true,
-      valueSuffix: " ",
-      pointFormatter: function () {
-        return (
-          '<span style="color:' +
-          this.series.color +
-          '">' +
-          this.series.name +
-          ": <b>" +
-          this.y +
-          "</b></span>  <b>" +
-          "</b><br/>"
-        );
-      },
+      pointFormat:
+        '<span style="backgroundColor:{series.color}">{series.name}</span><b>{point.percentage:.1f}%</b> ({point.y:,.1f} billion Gt)<br/>',
+      xDateFormat: "%H:%M",
+      split: true,
+      borderRadius: 10,
+      borderWidth: 2,
+      color: "white",
     },
     plotOptions: {
       area: {
         stacking: "percent",
-        lineColor: "#ffffff",
+        //lineColor: "#ffffff",
         lineWidth: 1,
         tooltip: {
           valueSuffix: " ",
@@ -154,43 +152,29 @@ const DrawChartRealTime = () => {
     },
     series: [
       {
-        name: "Giảm",
-        data: dataDecline,
-        color: "#ff0000",
-        lineColor: "#ff0000",
-        lineWidth: 2,
-        marker: {
-          enabled: false,
-        },
+        name: "Tăng giá",
+        data: data1,
+        color: "#5ab55c",
+        // [
+        //   2.5, 2.6, 2.7, 2.9, 3.1, 3.4, 3.5, 3.5, 3.4, 3.4, 3.4, 3.5, 3.9, 4.5,
+        //   5.2, 5.9, 6.5, 7, 7.5, 7.9, 8.6, 9.5, 9.8, 10, 10, 9.8, 9.7, 9.9,
+        //   10.3, 10.5, 10.7, 10.9,
+        // ],
       },
       {
-        name: "Không đổi",
-        data: dataNoChange,
-        color: "#ffd51e",
-        lineColor: "#ffd51e",
-        lineWidth: 2,
-        marker: {
-          enabled: false,
-        },
+        name: "Đứng giá",
+        data: data2,
+        color: "#fcda50",
       },
       {
-        name: "Tăng",
-        data: dataAdvance,
-        color: "#19d216",
-        lineColor: "#19d216",
-        lineWidth: 2,
-        marker: {
-          enabled: false,
-        },
+        name: "Giảm giá",
+        data: data3,
+        color: "#bc3a36",
       },
     ],
   };
 
-  return (
-    <div>
-      <HighchartsReact highcharts={Highcharts} options={options} />
-    </div>
-  );
+  return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
 
 export default DrawChartRealTime;
