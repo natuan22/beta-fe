@@ -41,7 +41,7 @@ const GeneralIndustry = () => {
                     <button
                         onClick={() => {
                             handleClick('all')
-                            dispatch(fetchDataGeneralIndustry('all'))
+                            dispatch(dispatch(fetchDataGeneralIndustry('all')))
                         }}
                         className={activeButton === 'all'
                             ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'

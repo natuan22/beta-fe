@@ -2,19 +2,42 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import LineChart from '../../Chart/components/LineChart'
 import { fetchDataLineChart } from '../../Chart/thunk'
+import socket from '../../Chart/utils/socket'
 
 const ChartInfo = () => {
     const dispatch = useDispatch()
     const dataLineChart = useSelector((state) => state.chart.dataLineChart) || {}
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
+    const [dataInfo, setDataInfo] = useState([])
+    const [dataChart, setDataChart] = useState([])
+    const [query, setQuery] = useState(0)
 
     useEffect(() => {
         if (dataLineChart) {
             setData(dataLineChart)
+            setDataInfo(dataLineChart.vnindexData)
+            setDataChart(dataLineChart.vnindexData)
         }
     }, [dataLineChart])
 
-    const vnindexData = data && data.vnindexData && data.vnindexData[data.vnindexData.length - 1]
+    useEffect(() => {
+        if (query === 0)
+            conSocket()
+        else
+            socket.on("listen-chi-so-vnindex", (newData) => {
+                setDataInfo((prevData) => [...prevData, ...newData]);
+            });
+    }, [query])
+
+    const conSocket = () => {
+        socket.on("listen-chi-so-vnindex", (newData) => {
+            console.log(newData)
+            setDataInfo((prevData) => [...prevData, ...newData]);
+            setDataChart((prevData) => [...prevData, ...newData]);
+        });
+    }
+
+    const vnindexData = dataInfo && dataInfo[dataInfo.length - 1]
     const colorChange = vnindexData && getColor(vnindexData.percentIndexChange)
     const openColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.openIndex)
     const lowestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.lowestIndex)
@@ -29,9 +52,11 @@ const ChartInfo = () => {
                         <span className={`${colorChange} text-[1rem] pl-[30px]`}>{vnindexData && vnindexData.indexValue}</span>
                         <span className={`${colorChange} text-[1rem] pl-[30px]`}>{vnindexData && vnindexData.indexChange}/ {vnindexData && (vnindexData.percentIndexChange * 100).toFixed(2)}%</span>
                     </div>
-                    <select onChange={(event) => {
-                        dispatch(fetchDataLineChart(`${event.target.value}`))
-                    }} className={`bg-[#1B496D] ml-3 p-1 text-[1rem] text-white border-0`} >
+                    <select className={`bg-[#1B496D] ml-3 p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            dispatch(dispatch(fetchDataLineChart(`${event.target.value}`)))
+                            setQuery(event.target.value)
+                        }}>
                         <option value={0}>Trong ngày</option>
                         <option value={1}>5 phiên</option>
                         <option value={2}>1 tháng</option>
@@ -39,7 +64,7 @@ const ChartInfo = () => {
                     </select>
                 </div>
                 <div >
-                    <LineChart />
+                    <LineChart data={dataChart} />
                 </div>
             </div>
             <hr />
