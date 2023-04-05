@@ -3,9 +3,14 @@ import { useSelector } from 'react-redux';
 import Loading from '../../Chart/utils/Loading';
 
 const Events = () => {
+    const [activeButton, setActiveButton] = useState('all');
     const dataEvents = useSelector((state) => state.chart.dataEvents);
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
+
+    const handleClick = (button) => {
+        setActiveButton(button);
+    }
 
     useEffect(() => {
         if (dataEvents.data) {
@@ -15,36 +20,80 @@ const Events = () => {
     }, [dataEvents])
 
     return (
-        <section className="bg-blueGray-50" >
-            <div className="w-full">
-                <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
-                    <div className="block w-full h-96 scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll bg-transparent">
-                        <table className="items-center bg-transparent w-full border-collapse">
-                            <thead className="sticky top-0 bg-[#1E5D8B]">
-                                <tr>
-                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
-                                        Mã chứng khoán
-                                    </th>
-                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
-                                        Loại sự kiện
-                                    </th>
-                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
-                                        Ngày
-                                    </th>
-                                    <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
-                                        Nội dung sự kiện
-                                    </th>
-                                </tr>
-                            </thead>
+        <>
+            <div className="pt-3 mb-3 text-white">
+                <span>
+                    <button
+                        onClick={() => {
+                            handleClick('all')
+                        }}
+                        className={activeButton === 'all'
+                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>Toàn thị trường
+                    </button>
+                </span>
+                <span className="pl-10">
+                    <button
+                        onClick={() => {
+                            handleClick('HSX')
+                        }}
+                        className={activeButton === 'HSX'
+                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>HSX
+                    </button>
+                </span>
+                <span className="pl-10">
+                    <button
+                        onClick={() => {
+                            handleClick('HNX')
+                        }}
+                        className={activeButton === 'HNX'
+                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>HNX
+                    </button>
+                </span>
+                <span className="pl-10">
+                    <button
+                        onClick={() => {
+                            handleClick('UPCOM')
+                        }}
+                        className={activeButton === 'UPCOM'
+                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>UPCOM
+                    </button>
+                </span>
+            </div>
+            <section className="bg-blueGray-50 pt-1.5">
+                <div className="w-full">
+                    <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
+                        <div className="block w-full h-96 scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll bg-transparent">
+                            <table className="items-center bg-transparent w-full border-collapse">
+                                <thead className="sticky top-0 bg-[#1E5D8B]">
+                                    <tr>
+                                        <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                            Mã chứng khoán
+                                        </th>
+                                        <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                            Loại sự kiện
+                                        </th>
+                                        <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                            Ngày
+                                        </th>
+                                        <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                            Nội dung sự kiện
+                                        </th>
+                                    </tr>
+                                </thead>
 
-                            <tbody>
-                                <tr><td colSpan={4}><div className="mt-16"><Loading /></div></td></tr>
-                            </tbody>
-                        </table>
+                                <tbody>
+                                    <tr><td colSpan={4}><div className="mt-16"><Loading /></div></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section >
+            </section >
+        </>
     )
 }
 

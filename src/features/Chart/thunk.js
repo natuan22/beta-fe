@@ -371,3 +371,19 @@ export const fetchDataLineChart = (type) => async (dispatch) => {
     console.log(err)
   }
 }
+
+export const fetchDataMacroNews = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: `${apiUrl}/api/v1/stock/get-macro-news`,
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_MACRO_NEWS",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
