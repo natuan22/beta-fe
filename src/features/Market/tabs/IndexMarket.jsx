@@ -7,7 +7,6 @@ import ThanhKhoan from '../components/ThanhKhoan';
 import GeneralIndustry from '../components/GeneralIndustry';
 import News from '../components/News';
 import Events from '../components/Events';
-import { useDispatch } from 'react-redux';
 import ChartInfo from '../components/ChartInfo';
 
 const IndexMarket = () => {
@@ -184,7 +183,7 @@ const IndexMarket = () => {
             <div className='text-center py-2'>
               <span className='text-white'>Lực mua - bán hiện tại</span>
             </div>
-            <div className='flex'>
+            <div className='flex'>  
               <div className='w-3/5 bg-green-500 h-7'></div>
               <div className='w-[40%] bg-red-500 h-7'></div>
             </div>
