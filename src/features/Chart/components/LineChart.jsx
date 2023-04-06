@@ -2,7 +2,7 @@ import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Loading from "../utils/Loading";
-import moment from "moment";
+import moment from "moment-timezone";
 
 const LineChart = (props) => {
   // Thiết lập các tùy chọn của biểu đồ
@@ -52,7 +52,7 @@ const LineChart = (props) => {
           color: "#fff",
         },
       },
-      categories: props.data && props.data?.length && props.data?.map(item => moment(item.tradingDate).utcOffset(420).format(props.fmtDay)),
+      categories: props.data && props.data?.length && props.data?.map(item => moment(item.tradingDate).utc().format(props.fmtDay)),
     },
     legend: {
       enabled: false // Tắt chú thích
