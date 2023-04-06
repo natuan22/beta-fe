@@ -48,6 +48,7 @@ import {
   fetchDataLineChart,
 } from "./thunk";
 import socket from "./utils/socket";
+import TestChart from "./components/TestChart";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -387,6 +388,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
+            <TestChart />
             <Footer />
           </div>
         </div>

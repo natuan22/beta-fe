@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import moment from "moment";
 import socket from "../utils/socket";
+import { timeStackingChart15h00, timeStackingChart9h15 } from "../../../helper/dateTime.helper";
 
 const StackingAreas = () => {
   const dataStackingChart = useSelector(
@@ -53,7 +54,7 @@ const StackingAreas = () => {
     });
   }, []);
 
-  console.log(dataIncr);
+  // console.log(dataIncr);
 
   const [hoveredValue, setHoveredValue] = useState(null);
   if (!dataStackingChart.data || !dataStackingChart.data.length) {
@@ -81,8 +82,8 @@ const StackingAreas = () => {
     xAxis: {
       type: "datetime",
       tickInterval: 20 * 60 * 1000,
-      min: 1680686100000,
-      max: 1680706800000,
+      min:  timeStackingChart9h15,
+      max: timeStackingChart15h00,
       labels: {
         formatter: function () {
           return moment.utc(this.value).format("HH:mm");
