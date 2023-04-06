@@ -52,7 +52,7 @@ const LineChart = (props) => {
           color: "#fff",
         },
       },
-      categories: props.data && props.data?.length && props.data?.map(item => moment(item.tradingDate).utc().format(props.fmtDay)),
+      categories: props.data && props.data?.length && props.data?.map(item => moment.utc(item.tradingDate).format(props.fmtDay)),
     },
     legend: {
       enabled: false // Tắt chú thích
