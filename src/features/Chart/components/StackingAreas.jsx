@@ -53,7 +53,6 @@ const StackingAreas = () => {
     });
   }, []);
 
-
   const [hoveredValue, setHoveredValue] = useState(null);
   if (!dataStackingChart.data || !dataStackingChart.data.length) {
     return <Loading />;
@@ -89,7 +88,7 @@ const StackingAreas = () => {
         style: {
           color: "#fff",
         },
-        rotation:-45
+        rotation: -45
       },
       crosshair: {
         color: "red",
