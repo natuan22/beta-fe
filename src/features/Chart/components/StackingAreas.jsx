@@ -11,7 +11,6 @@ const StackingAreas = () => {
   const dataStackingChart = useSelector(
     (state) => state.chart.dataStackingArea
   );
-  console.log(dataStackingChart);
   const dataAdvance =
     dataStackingChart &&
     dataStackingChart?.data &&
@@ -54,7 +53,6 @@ const StackingAreas = () => {
     });
   }, []);
 
-  // console.log(dataIncr);
 
   const [hoveredValue, setHoveredValue] = useState(null);
   if (!dataStackingChart.data || !dataStackingChart.data.length) {
