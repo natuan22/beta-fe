@@ -13,7 +13,7 @@ const Market = () => {
   useEffect(() => {
     dispatch(fetchDataNews);
     dispatch(fetchDataInternationalIndex);
-    dispatch(fetchDataLineChart(0))
+    dispatch(fetchDataLineChart('0'))
     dispatch(fetchDataGeneralIndustry('all'))
     dispatch(fetchDataTableDetail)
     dispatch(fetchDataNews)

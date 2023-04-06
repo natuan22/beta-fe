@@ -221,13 +221,7 @@ const GeneralIndustry = () => {
                                                 </tr>
                                             );
                                         })
-                                    ) : (
-                                        <tr>
-                                            <td colSpan={5}>
-                                                <div className="mt-16"><Loading /></div>
-                                            </td>
-                                        </tr>
-                                    )}
+                                    ) : (<tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>)} 
                                 </tbody>
                             </table>
                         </div>
