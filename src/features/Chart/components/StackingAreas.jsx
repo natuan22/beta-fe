@@ -34,13 +34,13 @@ const StackingAreas = () => {
   const [dataNoCh, setDataNoCh] = useState(dataNoChange);
   useEffect(() => {
     // Lấy dữ liệu ban đầu từ API
-
+  
     if (dataStackingChart && dataStackingChart.data?.length) {
       setDataIncr(dataAdvance);
       setDataDecr(dataDecline);
       setDataNoCh(dataNoChange);
     }
-  }, []);
+  }, [dataStackingChart]);
   useEffect(() => {
     // Lắng nghe sự kiện từ socket
     socket.on("listen-do-rong-thi-truong", (newData) => {
@@ -159,6 +159,9 @@ const StackingAreas = () => {
         },
       },
       series: {
+        marker: {
+          radius: 2, // Giá trị bán kính marker, ở đây là 3px
+        },
         tooltip: {
           headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",
           pointFormat:
