@@ -68,8 +68,8 @@ const TestChart = () => {
     xAxis: {
       type: 'datetime',
       tickInterval: 15 * 60 * 1000, 
-      min:1680686100000, 
-      max: 1680706800000, 
+      min:Date.UTC(2020 , 0 , 1, 9 ,15), 
+      max: Date.UTC( 2020 , 0, 1 ,15 , 0 ), 
         labels: {
           formatter: function() {
             return moment.utc(this.value).format('HH:mm'); 
@@ -178,7 +178,7 @@ const TestChart = () => {
     series: [
       {
         name: "Giảm",
-        data:dataDecr ,
+        data:[[Date.UTC(2020 , 0 , 1, 9 ,15),0.5],[Date.UTC(2020 , 0 , 1, 9 ,16),0.5]] ,
         color: "#ff0000",
         lineColor: "#ff0000",
         lineWidth: 2,
@@ -188,7 +188,7 @@ const TestChart = () => {
       },
       {
         name: "Không đổi",
-        data:dataNoCh,
+        data:[[Date.UTC(2020 , 0 , 1, 9 ,15),0.5],[Date.UTC(2020 , 0 , 1, 9 ,16),0.5]],
         color: "#ffd51e",
         lineColor: "#ffd51e",
         lineWidth: 2,
@@ -198,7 +198,7 @@ const TestChart = () => {
       },
       {
         name: "Tăng",
-        data:dataIncr,
+        data:[[Date.UTC(2020 , 0 , 1, 9 ,15),0.5],[Date.UTC(2020 , 0 , 1, 9 ,16),0.5]],
         color: "#19d216",
         lineColor: "#19d216",
         lineWidth: 2,

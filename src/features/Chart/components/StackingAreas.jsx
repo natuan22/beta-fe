@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import moment from "moment";
 import socket from "../utils/socket";
+import { timeStackingChart15h00, timeStackingChart9h15 } from "../../../helper/dateTime.helper";
 
 const StackingAreas = () => {
   const dataStackingChart = useSelector(
@@ -34,13 +35,13 @@ const StackingAreas = () => {
   const [dataNoCh, setDataNoCh] = useState(dataNoChange);
   useEffect(() => {
     // Lấy dữ liệu ban đầu từ API
-
+  
     if (dataStackingChart && dataStackingChart.data?.length) {
       setDataIncr(dataAdvance);
       setDataDecr(dataDecline);
       setDataNoCh(dataNoChange);
     }
-  }, []);
+  }, [dataStackingChart]);
   useEffect(() => {
     // Lắng nghe sự kiện từ socket
     socket.on("listen-do-rong-thi-truong", (newData) => {
@@ -79,8 +80,8 @@ const StackingAreas = () => {
     xAxis: {
       type: "datetime",
       tickInterval: 20 * 60 * 1000,
-      min: 1680686100000,
-      max: 1680706800000,
+      min:  timeStackingChart9h15,
+      max: timeStackingChart15h00,
       labels: {
         formatter: function () {
           return moment.utc(this.value).format("HH:mm");
@@ -157,6 +158,9 @@ const StackingAreas = () => {
         },
       },
       series: {
+        marker: {
+          radius: 2, // Giá trị bán kính marker, ở đây là 3px
+        },
         tooltip: {
           headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",
           pointFormat:
