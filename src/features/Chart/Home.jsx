@@ -24,6 +24,7 @@ import NetVolumeTrade from "./components/NetVolumeTrade";
 import TableMarketLiquidity from "./components/TableMarketLiquidity";
 import News from "./components/News";
 import TableMarketEvaluation from "./components/TableMarketEvaluation";
+import socket from "./utils/socket";
 import {
   fetchDataInternationalIndex,
   fetchDataTableDetail,
@@ -47,7 +48,6 @@ import {
   fetchDataMarketEvaluation,
   fetchDataLineChart,
 } from "./thunk";
-import socket from "./utils/socket";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -117,7 +117,7 @@ const Home = () => {
                     </div>
 
                     <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924] xs:h-[352px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px]">
-                      <LineChart data={data} />
+                      <LineChart data={data} fmtDay={'HH:mm'} />
                     </div>
                     <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924]">
                       <div className="text-center bg-[#151924]">
@@ -365,7 +365,7 @@ const Home = () => {
             </div>
             <div>
               <div className="xl:flex lg:block mx-2 my-2 px-1.5 py-1.5 bg-[#151924]">
-                <div className="xl:w-[70%]">
+                <div className="xl:w-[65%]">
                   <div>
                     <div className="text-center text-white">
                       <h3 className="p-2 uppercase">Độ rộng thị trường</h3>
@@ -373,7 +373,7 @@ const Home = () => {
                     <StackingAreas />
                   </div>
                 </div>
-                <div className="xl:w-[30%]">
+                <div className="xl:w-[35%]">
                   <div className="">
                     <div className="px-1.5 py-1.5">
                       <TableMarketEvaluation />

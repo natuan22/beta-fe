@@ -10,7 +10,8 @@ const ChartInfo = () => {
     const [data, setData] = useState([])
     const [dataInfo, setDataInfo] = useState([])
     const [dataChart, setDataChart] = useState([])
-    const [query, setQuery] = useState(0)
+    const [query, setQuery] = useState('0')
+    const [fmtDay, setFmtDay] = useState('HH:mm')
 
     useEffect(() => {
         if (dataLineChart) {
@@ -21,19 +22,32 @@ const ChartInfo = () => {
     }, [dataLineChart])
 
     useEffect(() => {
-        if (query === 0)
+        if (query === '0') {
             conSocket()
-        else
-            socket.on("listen-chi-so-vnindex", (newData) => {
-                setDataInfo((prevData) => [...prevData, ...newData]);
-            });
+            setFmtDay('HH:mm')
+        } else {
+            disconnectSocket()
+            conSocket2()
+            setFmtDay('DD/MM')
+        }
     }, [query])
+
+    const disconnectSocket = () => {
+        if (socket.active) {
+            socket.off("listen-chi-so-vnindex")
+        }
+    }
 
     const conSocket = () => {
         socket.on("listen-chi-so-vnindex", (newData) => {
-            console.log(newData)
             setDataInfo((prevData) => [...prevData, ...newData]);
             setDataChart((prevData) => [...prevData, ...newData]);
+        });
+    }
+
+    const conSocket2 = () => {
+        socket.on("listen-chi-so-vnindex", (newData) => {
+            setDataInfo((prevData) => [...prevData, ...newData]);
         });
     }
 
@@ -54,17 +68,17 @@ const ChartInfo = () => {
                     </div>
                     <select className={`bg-[#1B496D] ml-3 p-1 text-[1rem] text-white border-0`}
                         onChange={(event) => {
-                            dispatch(dispatch(fetchDataLineChart(`${event.target.value}`)))
                             setQuery(event.target.value)
+                            dispatch(dispatch(fetchDataLineChart(`${event.target.value}`)))
                         }}>
-                        <option value={0}>Trong ngày</option>
-                        <option value={1}>5 phiên</option>
-                        <option value={2}>1 tháng</option>
-                        <option value={3}>YtD</option>
+                        <option value='0'>Trong ngày</option>
+                        <option value='1'>5 phiên</option>
+                        <option value='2'>1 tháng</option>
+                        <option value='3'>YtD</option>
                     </select>
                 </div>
                 <div >
-                    <LineChart data={dataChart} />
+                    <LineChart data={dataChart} fmtDay={fmtDay} />
                 </div>
             </div>
             <hr />
