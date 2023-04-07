@@ -77,7 +77,7 @@ const MarketMap = () => {
         maxColor: "#green",
         headerHeight: 0,
         showScale: false,
-        height: 680,
+        height: 380,
         useWeightedAverageForAggregation: true,
         textStyle: {
             color: '#fff',
