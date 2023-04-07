@@ -31,7 +31,7 @@ const ChartInfo = () => {
             setFmtDay('DD/MM')
         }
     }, [query])
-
+    console.log(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()))
     const disconnectSocket = () => {
         if (socket.active) {
             socket.off("listen-chi-so-vnindex")

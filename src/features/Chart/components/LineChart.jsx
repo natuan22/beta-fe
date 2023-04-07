@@ -2,9 +2,13 @@ import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Loading from "../utils/Loading";
-import moment from "moment-timezone";
+import { timeLineChart15h00, timeLineChart9h00 } from "../../../helper/dateTime.helper";
 
 const LineChart = (props) => {
+  const data = props.data.map((item) => [
+    item.tradingDate,
+    item.indexValue,
+  ]); 
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
     accessibility: {
@@ -21,10 +25,8 @@ const LineChart = (props) => {
     series: [
       {
         name: "Điểm",
-        data:
-          props.data &&
-          props.data?.length &&
-          props.data?.map((item) => item.indexValue),
+        data,
+        lineWidth: 1.5
       },
     ],
     yAxis: {
@@ -39,8 +41,15 @@ const LineChart = (props) => {
           color: "#fff",
         },
       },
+      gridLineWidth:0.5,
+
     },
     xAxis: {
+      type: "datetime",
+      tickInterval: 30 * 60 * 1000,
+      min: timeLineChart9h00,
+      max: timeLineChart15h00,
+
       title: {
         text: null,
         style: {
@@ -48,23 +57,29 @@ const LineChart = (props) => {
         },
       },
       labels: {
+        // rotation: -45,
         style: {
           color: "#fff",
         },
       },
-      categories: props.data && props.data?.length && props.data?.map(item => moment.utc(item.tradingDate).format(props.fmtDay)),
     },
     legend: {
-      enabled: false // Tắt chú thích
-    }
+      enabled: false, // Tắt chú thích
+    },
   };
 
   return (
-    <div id="chart-container" className="h-[350px]">
+    <div id="chart-container" className="h-[350px] ">
       {props.data?.length ? (
-        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={options}
+          containerProps={{ style: { height: "100%", width: "100%" } }}
+        />
       ) : (
-        <div className="mt-24"><Loading /></div>
+        <div className="mt-24">
+          <Loading />
+        </div>
       )}
     </div>
   );

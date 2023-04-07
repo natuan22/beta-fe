@@ -48,6 +48,7 @@ import {
   fetchDataMarketEvaluation,
   fetchDataLineChart,
 } from "./thunk";
+import TestChart from "./components/TestChart";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -387,6 +388,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
+            <TestChart data={data} />
             <Footer />
           </div>
         </div>
