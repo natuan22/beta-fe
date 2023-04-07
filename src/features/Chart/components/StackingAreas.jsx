@@ -34,7 +34,7 @@ const StackingAreas = () => {
   const [dataNoCh, setDataNoCh] = useState(dataNoChange);
   useEffect(() => {
     // Lấy dữ liệu ban đầu từ API
-  
+
     if (dataStackingChart && dataStackingChart.data?.length) {
       setDataIncr(dataAdvance);
       setDataDecr(dataDecline);
@@ -79,7 +79,7 @@ const StackingAreas = () => {
     xAxis: {
       type: "datetime",
       tickInterval: 20 * 60 * 1000,
-      min:  timeStackingChart9h15,
+      min: timeStackingChart9h15,
       max: timeStackingChart15h00,
       labels: {
         // formatter: function () {
@@ -231,7 +231,7 @@ const StackingAreas = () => {
           <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
         </div>
       ) : (
-        <Loading />
+        <div className="mt-12"><Loading /></div>
       )}
     </div>
   );

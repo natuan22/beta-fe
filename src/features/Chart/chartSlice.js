@@ -23,7 +23,8 @@ const initialState = {
   dataNews: {},
   dataMarketEvaluation: {},
   dataLineChart: {},
-  dataMacroNews: {}
+  dataMacroNews: {},
+  dataMarketMap: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -96,6 +97,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === actionType.UPDATE_DATA_MACRO_NEWS) {
       draft.dataMacroNews = payload
+    }
+    if (type === actionType.UPDATE_DATA_MARKET_MAP) {
+      draft.dataMarketMap = payload
     }
   });
 };

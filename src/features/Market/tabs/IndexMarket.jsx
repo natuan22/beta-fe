@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BarChart from '../components/BarChart';
 import DoRongThiTruong from '../components/DoRongThiTruong';
 import TableDomesticIndex from '../components/TableDomesticIndex';
@@ -8,10 +8,27 @@ import GeneralIndustry from '../components/GeneralIndustry';
 import News from '../components/News';
 import Events from '../components/Events';
 import ChartInfo from '../components/ChartInfo';
+import MarketMap from '../components/MarketMap';
+import { fetchDataAreaChart1, fetchDataAreaChart2, fetchDataEvents, fetchDataGeneralIndustry, fetchDataLineChart, fetchDataMacroNews, fetchDataMarketMap, fetchDataNews, fetchDataTableDetail } from '../../Chart/thunk';
+import { useDispatch } from 'react-redux';
 
 const IndexMarket = () => {
+  const dispatch = useDispatch()
   const [activeButton, setActiveButton] = useState('1day');
 
+  useEffect(() => {
+    dispatch(fetchDataNews);
+    dispatch(fetchDataLineChart('0'))
+    dispatch(fetchDataGeneralIndustry('all'))
+    dispatch(fetchDataTableDetail)
+    dispatch(fetchDataMarketMap('all', '0'))
+    dispatch(fetchDataMacroNews)
+    dispatch(fetchDataEvents)
+
+    dispatch(fetchDataAreaChart1);
+    dispatch(fetchDataAreaChart2);
+  }, [dispatch])
+  
   const handleClick = (button) => {
     setActiveButton(button);
   }
@@ -138,40 +155,7 @@ const IndexMarket = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='text-white text-[1.2rem] font-bold'>Bản đồ thị trường</span>
             </div>
-            <div className='grid grid-cols-2 pt-3'>
-              <div className=" mb-3 text-white">
-                <button className='border-none bg-transparent text-white text-[1.1rem]'>Toàn thị trường</button>
-                <button className='border-none bg-transparent text-white text-[1.1rem] pl-10'>HOSE</button>
-                <button className='border-none bg-transparent text-white text-[1.1rem] pl-10'>HNX</button>
-                <button className='border-none bg-transparent text-white text-[1.1rem] pl-10'>UPCOM</button>
-              </div>
-              <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2">
-                <button
-                  style={activeButton === '1day' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                  onClick={() => {
-                    handleClick('1day')
-                  }}
-                  className=''>Vốn hoá</button>
-                <button
-                  style={activeButton === '5days' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                  onClick={() => {
-                    handleClick('5days')
-                  }}
-                  className=''>Giá trị GD</button>
-                <button
-                  style={activeButton === '1week' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                  onClick={() => {
-                    handleClick('1week')
-                  }}
-                  className=''>Khối lượng GD</button>
-                <button
-                  style={activeButton === 'YtD' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                  onClick={() => {
-                    handleClick('YtD')
-                  }}
-                  className=''>Giá trị NN GD</button>
-              </div>
-            </div>
+            <MarketMap />
           </div>
 
           <div className='w-[40%] mx-2 px-[8px] py-[8px] bg-[#151924]'>
@@ -183,7 +167,7 @@ const IndexMarket = () => {
             <div className='text-center py-2'>
               <span className='text-white'>Lực mua - bán hiện tại</span>
             </div>
-            <div className='flex'>  
+            <div className='flex'>
               <div className='w-3/5 bg-green-500 h-7'></div>
               <div className='w-[40%] bg-red-500 h-7'></div>
             </div>

@@ -55,7 +55,7 @@ const GeneralIndustry = () => {
     <>
       <section className="bg-blueGray-50">
         <div className="w-full">
-          <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full  rounded ">
+          <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded ">
             <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] overflow-y-scroll xs:h-[438px] md:h-[465px] lg:h-[450px] xl:h-[744px] 2xl:h-[745px] bg-transparent">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
