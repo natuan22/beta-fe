@@ -382,7 +382,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="mr-2 mx-2 px-1.5 py-1.5 bg-[#151924]">
+            <div className="mr-2 mx-2 px-1.5 py-1.5 bg-[#151924] h-[457px]">
               <div>
                 <NetVolumeTrade />
               </div>
