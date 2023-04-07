@@ -1,7 +1,7 @@
 import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import moment from "moment-timezone";
+import moment from "moment";
 import Loading from "../../Chart/utils/Loading";
 
 const LineChartMarket = (props) => {
