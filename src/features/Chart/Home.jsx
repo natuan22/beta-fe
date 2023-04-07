@@ -388,7 +388,6 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-            <TestChart data={data} />
             <Footer />
           </div>
         </div>
