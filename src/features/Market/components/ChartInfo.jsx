@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import LineChart from '../../Chart/components/LineChart'
 import { fetchDataLineChart } from '../../Chart/thunk'
 import socket from '../../Chart/utils/socket'
+import LineChartMarket from './LineChartMarket'
 
 const ChartInfo = () => {
     const dispatch = useDispatch()
@@ -31,7 +32,7 @@ const ChartInfo = () => {
             setFmtDay('DD/MM')
         }
     }, [query])
-    console.log(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()))
+
     const disconnectSocket = () => {
         if (socket.active) {
             socket.off("listen-chi-so-vnindex")
@@ -78,7 +79,7 @@ const ChartInfo = () => {
                     </select>
                 </div>
                 <div >
-                    <LineChart data={dataChart} fmtDay={fmtDay} />
+                    <LineChartMarket data={dataChart} fmtDay={fmtDay} />
                 </div>
             </div>
             <hr />
