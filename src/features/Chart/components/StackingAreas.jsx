@@ -82,9 +82,9 @@ const StackingAreas = () => {
       min:  timeStackingChart9h15,
       max: timeStackingChart15h00,
       labels: {
-        formatter: function () {
-          return moment.utc(this.value).format("HH:mm");
-        },
+        // formatter: function () {
+        //   return moment.utc(this.value).format("HH:mm");
+        // },
         style: {
           color: "#fff",
         },
