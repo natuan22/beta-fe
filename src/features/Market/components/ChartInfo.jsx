@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import LineChart from '../../Chart/components/LineChart'
 import { fetchDataLineChart } from '../../Chart/thunk'
 import socket from '../../Chart/utils/socket'
 import LineChartMarket from './LineChartMarket'

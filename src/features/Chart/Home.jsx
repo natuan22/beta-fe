@@ -48,7 +48,6 @@ import {
   fetchDataMarketEvaluation,
   fetchDataLineChart,
 } from "./thunk";
-import TestChart from "./components/TestChart";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -383,7 +382,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="mr-2 mx-2 px-1.5 py-1.5 bg-[#151924] h-[457px]">
+            <div className="mr-2 mx-2 px-1.5 py-1.5 bg-[#151924]">
               <div>
                 <NetVolumeTrade />
               </div>
