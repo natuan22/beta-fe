@@ -52,7 +52,7 @@ const LineChartMarket = (props) => {
                     color: "#fff",
                 },
             },
-            categories: props.data && props.data?.length && props.data?.map(item => moment.utc(item.tradingDate).format(props.fmtDay)),
+            categories: props.data && props.data?.length && props.data?.map(item => moment(item.tradingDate).utcOffset(-420).format(props.fmtDay)),
         },
         legend: {
             enabled: false // Tắt chú thích
