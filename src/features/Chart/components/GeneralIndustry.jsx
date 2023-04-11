@@ -23,13 +23,13 @@ const GeneralIndustry = () => {
   useEffect(() => {
     if (dataGeneral?.data) {
       setLoading(false);
-      setData(dataGeneral.data);
+      setData(dataGeneral.data.data);
     }
   }, [dataGeneral]);
 
   useEffect(() => {
     if (dataGeneral?.data) {
-      const oldData = dataGeneral?.data
+      const oldData = dataGeneral?.data.data
 
       socket.on("listen-phan-nganh", (newData) => {
         const newDataWithChanges = oldData.map(oldItem => {
