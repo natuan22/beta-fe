@@ -6,13 +6,21 @@ import Loading from "../../Chart/utils/Loading";
 import '../../Market/utils/tabStyle.css'
 
 const GeneralIndustry = () => {
+    const apiUrl = process.env.REACT_APP_BASE_URL;
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all');
     const dataGeneral = useSelector((state) => state.chart.dataGeneral);
     const [data, setData] = useState([]);
+    const [buySellData, setBuySellData] = useState([])
     const [loading, setLoading] = useState(true);
 
-    // const [isHovering, setIsHovering] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
+    const handleMouseOver2 = () => {
+        setIsHovering(true);
+    };
+    const handleMouseOut2 = () => {
+        setIsHovering(false);
+    };
     const [hoveredIndex, setHoveredIndex] = useState(-1);
     const handleMouseOver = (index) => {
         // setIsHovering(true);
@@ -26,7 +34,8 @@ const GeneralIndustry = () => {
     useEffect(() => {
         if (dataGeneral?.data) {
             setLoading(false);
-            setData(dataGeneral.data);
+            setData(dataGeneral.data.data);
+            setBuySellData(dataGeneral.data.buySellData)
         }
     }, [dataGeneral]);
 
@@ -228,6 +237,32 @@ const GeneralIndustry = () => {
                     </div>
                 </div>
             </section>
+            <hr />
+            <div className='text-center py-2'>
+                <span className='text-white'>Lực mua
+                    {isHovering === true && (
+                        <span className="text-green-500"> {((buySellData.buyPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100).toFixed(2)}%</span>
+                    )} - bán
+                    {isHovering === true && (
+                        <span className="text-red-500"> {((buySellData.sellPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100).toFixed(2)}%</span>
+                    )} hiện tại</span>
+            </div>
+            <div className='flex relative'
+                onMouseOver={handleMouseOver2}
+                onMouseOut={handleMouseOut2}>
+                <div className='bg-green-500 h-9 text-right'
+                    style={{
+                        width: `${(buySellData.buyPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100}%`,
+                    }}>
+                    <img className="w-[15.5%] pr-[5px]" src={`${apiUrl}/resources/icons/bull.png`} alt='bull' />
+                </div>
+                <div className='bg-red-500 h-9'
+                    style={{
+                        width: `${(buySellData.sellPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100}%`,
+                    }}>
+                    <img className="w-[13%] pl-[5px] pt-[1px]" src={`${apiUrl}/resources/icons/bear.png`} alt='bear' />
+                </div>
+            </div>
         </>
     );
 };

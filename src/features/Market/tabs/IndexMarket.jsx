@@ -41,8 +41,8 @@ const IndexMarket = () => {
 
   return (
     <>
-      <div className='container mx-auto xl:w-full lg:w-[90%] md:w-[90%]'>
-        <div className='lg:flex md:block justify-center'>
+      <div className='container mx-auto md:w-[90%] lg:w-[90%] xl:w-full'>
+        <div className='md:block lg:flex justify-center'>
           <div className='mx-1 my-1 px-[8px] py-[8px] bg-[#151924]'>
             <div>
               <ChartInfo />
@@ -51,7 +51,7 @@ const IndexMarket = () => {
               <TableDomesticIndex />
             </div>
           </div>
-          <div className='xl:block lg:hidden mx-[10px] my-1 px-[8px] py-[8px] bg-[#151924] '>
+          <div className='lg:hidden xl:block mx-[10px] my-1 px-[8px] py-[8px] bg-[#151924] '>
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
                 <span className='text-white text-[0.9rem] pl-[2px]'>Top đóng góp điểm số theo: </span>
@@ -72,7 +72,7 @@ const IndexMarket = () => {
               </div>
             </div>
 
-            <div className='w-[416px]'>
+            <div className='md:w-full xl:w-[416px]'>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
                 <span className='text-white text-[0.9rem] ml-[92px]'>Diễn biến độ rộng thị trường </span>
                 <select className={`bg-[#1B496D] ml-[15px] p-1 text-[0.9rem] text-white border-0`}>
@@ -100,16 +100,16 @@ const IndexMarket = () => {
             </div>
           </div>
         </div>
-        <div className='xl:hidden lg:flex md:hidden mt-1.5 px-[8px] py-[8px] bg-[#151924] '>
+        <div className='xs:hidden md:hidden lg:flex xl:hidden mt-1.5 px-[8px] py-[8px] bg-[#151924] '>
           <div className='w-[50%]'>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
-              <span className='text-white text-[0.9rem] pl-[2px]'>Top đóng góp điểm số trong phiên theo: </span>
+              <span className='text-white text-[0.9rem]'>Top đóng góp điểm số theo: </span>
               <select className={`bg-[#151924] text-[0.9rem] text-[#0097B2] border-0`}>
                 <option value="1">Cổ phiếu</option>
                 <option value="2">...</option>
                 <option value="3">...</option>
               </select>
-              <select className={`bg-[#1B496D] ml-3 p-1 text-[0.9rem] text-white border-0`}>
+              <select className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0`}>
                 <option value="1">Phiên gần nhất</option>
                 <option value="2">5 phiên</option>
                 <option value="3">1 tháng</option>
@@ -123,8 +123,8 @@ const IndexMarket = () => {
 
           <div className='w-[50%]'>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
-              <span className='text-white text-[0.9rem] ml-28'>Diễn biến độ rộng thị trường </span>
-              <select className={`bg-[#1B496D] ml-[57px] p-1 text-[0.9rem] text-white border-0`}>
+              <span className='text-white text-[0.9rem]'>Diễn biến độ rộng thị trường </span>
+              <select className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0`}>
                 <option value="1">Phiên gần nhất</option>
                 <option value="2">01 tháng</option>
                 <option value="3">01 quý</option>
@@ -149,33 +149,25 @@ const IndexMarket = () => {
               <span className='text-white text-[1.2rem] font-bold'>Biến động ngành</span>
             </div>
             <GeneralIndustry />
-            <hr />
-            <div className='text-center py-2'>
-              <span className='text-white'>Lực mua - bán hiện tại</span>
-            </div>
-            <div className='flex'>
-              <div className='w-3/5 bg-green-500 h-7'></div>
-              <div className='w-[40%] bg-red-500 h-7'></div>
-            </div>
           </div>
         </div>
 
         <div className='mt-[20px] md:block lg:flex justify-center'>
-          <div className='mx-1 my-1 px-[8px] py-[8px] bg-[#151924] md:w-full lg:w-[50%] 2xl:w-[500px] h-[700px]'>
+          <div className='mx-1 my-1 px-[8px] py-[8px] bg-[#151924] md:w-full lg:w-[50%] xl:w-[500px] 2xl:w-[500px] h-[700px]'>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='text-white text-[1.2rem] font-bold'>Tin tức thị trường</span>
             </div>
             <News />
           </div>
 
-          <div className='mx-1 my-1 px-[8px] py-[8px] bg-[#151924] md:w-full lg:w-[50%] 2xl:w-[500px] h-[700px]'>
+          <div className='mx-1 my-1 px-[8px] py-[8px] bg-[#151924] md:w-full lg:w-[50%] xl:w-[500px] 2xl:w-[500px] h-[700px]'>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='text-white text-[1.2rem] font-bold'>Lịch sự kiện</span>
             </div>
             <Events />
           </div>
 
-          <div className='lg:hidden xl:block mx-[5px] my-1 px-[8px] py-[8px] bg-[#151924] 2xl:w-[500px] md:w-full h-[700px]'>
+          <div className='lg:hidden xl:block mx-[5px] my-1 px-[8px] py-[8px] bg-[#151924] md:w-full xl:w-[500px] 2xl:w-[500px] h-[700px]'>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='text-white text-[1.2rem] font-bold'>Báo cáo phân tích</span>
             </div>
@@ -186,7 +178,7 @@ const IndexMarket = () => {
             </div>
           </div>
         </div>
-        <div className='lg:block xl:hidden mx-[5px] my-1 px-[8px] py-[8px] bg-[#151924] h-[700px]'>
+        <div className='xs:hidden md:hidden lg:block xl:hidden mx-[5px] my-1 px-[8px] py-[8px] bg-[#151924] h-[700px]'>
           <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
             <span className='text-white text-[1.2rem] font-bold'>Báo cáo phân tích</span>
           </div>

@@ -34,16 +34,16 @@ const Footer = () => {
                                 <div className="mb-10 w-full">
                                     <h4 className="text-[#38B6FF] text-lg font-semibold xs:text-xl uppercase xs:translate-x-[30px] mb:translate-x-[60px] lg:translate-x-[60px] xl:translate-x-[70px]">Kết nối với chúng tôi</h4>
                                     <div className="mb-6 mt-3 flex items-center xs:translate-x-[35px] mb:translate-x-[60px] lg:translate-x-[65px] xl:translate-x-[75px]">
-                                        <a href="https://www.facebook.com/bsi.com.vn" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
+                                        <a href="https://www.facebook.com/congtychungkhoanbeta" target="_blank" rel="noopener noreferrer" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
                                             <FacebookOutlined style={{ fontSize: '40px' }} />
                                         </a>
-                                        <a href="https://www.youtube.com/channel/UCEDt7r9WgLDjUeM_PRdQB7g" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
+                                        <a href="https://www.youtube.com/channel/UCEDt7r9WgLDjUeM_PRdQB7g" target="_blank" rel="noopener noreferrer" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
                                             <YoutubeOutlined style={{ fontSize: '40px' }} />
                                         </a>
-                                        <a href="https://www.bsi.com.vn" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
+                                        <a href="https://www.bsi.com.vn" target="_blank" rel="noopener noreferrer" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
                                             <GlobalOutlined style={{ fontSize: '40px' }} />
                                         </a>
-                                        <a href="/" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
+                                        <a href="/" target="_blank" rel="noopener noreferrer" className="text-white mx-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5]">
                                             <FaTiktok style={{ fontSize: '40px' }} />
                                         </a>
                                     </div>
