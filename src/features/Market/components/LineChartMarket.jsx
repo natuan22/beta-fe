@@ -53,6 +53,8 @@ const LineChartMarket = (props) => {
                 },
             },
             categories: props.data && props.data?.length && props.data?.map(item => moment.utc(item.tradingDate).format(props.fmtDay)),
+            // moment.utc(item.tradingDate).format(props.fmtDay)
+            // moment(item.tradingDate).utcOffset(-420).format(props.fmtDay)
         },
         legend: {
             enabled: false // Tắt chú thích

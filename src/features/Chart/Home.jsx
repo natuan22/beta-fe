@@ -103,7 +103,7 @@ const Home = () => {
         <News />
       </div>
 
-      <div className="container mx-auto bg-black xl:w-full lg:w-[80%] md:w-[80%]">
+      <div className="container mx-auto bg-black xl:w-full lg:w-[90%] md:w-[90%]">
         <div>
           <Banner />
 
@@ -327,7 +327,7 @@ const Home = () => {
                       </div>
                     </div>
                     <div className="flex justify-center pb-[10px]">
-                      <hr className="xs:w-[380px] md:w-[567px] lg:w-[774px] xs:translate-x-[-5px] md:translate-x-[-5px] lg:translate-x-[-5px] bg-gradient-to-r from-cyan-500 to-blue-500 opacity-100 h-[5px] " />
+                      <hr className="xs:w-[380px] md:w-[645px] lg:w-[874px] xs:translate-x-[-5px] md:translate-x-[-5px] lg:translate-x-[-5px] bg-gradient-to-r from-cyan-500 to-blue-500 opacity-100 h-[5px] " />
                     </div>
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
@@ -364,7 +364,7 @@ const Home = () => {
               </div>
             </div>
             <div>
-              <div className="xl:flex lg:block mx-2 my-2 px-1.5 py-1.5 bg-[#151924]">
+              <div className="xl:flex lg:block mx-2 my-3 px-1.5 py-1.5 bg-[#151924]">
                 <div className="xl:w-[65%]">
                   <div>
                     <div className="text-center text-white">

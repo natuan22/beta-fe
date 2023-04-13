@@ -29,6 +29,7 @@ const Header = () => {
                 <div className="xl:hidden w-max">
                   <div className="ml-4 flex items-baseline space-x-0">
                     <NavLink
+                      onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
                       to="/"
                       className={({ isActive }) =>
                         isActive
@@ -261,6 +262,7 @@ const Header = () => {
               <div className="xl:hidden" id="mobile-menu">
                 <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-2">
                   <NavLink
+                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
                     to="/thi-truong"
                     className={({ isActive }) =>
                       isActive
@@ -272,6 +274,7 @@ const Header = () => {
                   </NavLink>
 
                   <NavLink
+                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
                     to="/nganh"
                     className={({ isActive }) =>
                       isActive
@@ -283,6 +286,7 @@ const Header = () => {
                   </NavLink>
 
                   <NavLink
+                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
                     to="/co-phieu"
                     className={({ isActive }) =>
                       isActive
@@ -294,6 +298,7 @@ const Header = () => {
                   </NavLink>
 
                   <NavLink
+                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
                     to="/vi-mo"
                     className={({ isActive }) =>
                       isActive
@@ -305,6 +310,7 @@ const Header = () => {
                   </NavLink>
 
                   <NavLink
+                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
                     to="/cong-cu-dau-tu"
                     className={({ isActive }) =>
                       isActive
@@ -316,6 +322,7 @@ const Header = () => {
                   </NavLink>
 
                   <NavLink
+                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
                     to="/trung-tam-tin-tuc"
                     className={({ isActive }) =>
                       isActive
@@ -326,6 +333,7 @@ const Header = () => {
                     Trung tâm tin tức
                   </NavLink>
                   <NavLink
+                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
                     to="/signin"
                     className={({ isActive }) =>
                       isActive
@@ -336,6 +344,7 @@ const Header = () => {
                     Sign in
                   </NavLink>
                   <NavLink
+                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
                     to="/signup"
                     className={({ isActive }) =>
                       isActive

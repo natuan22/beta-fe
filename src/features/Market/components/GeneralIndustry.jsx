@@ -6,13 +6,21 @@ import Loading from "../../Chart/utils/Loading";
 import '../../Market/utils/tabStyle.css'
 
 const GeneralIndustry = () => {
+    const apiUrl = process.env.REACT_APP_BASE_URL;
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all');
     const dataGeneral = useSelector((state) => state.chart.dataGeneral);
     const [data, setData] = useState([]);
+    const [buySellData, setBuySellData] = useState([])
     const [loading, setLoading] = useState(true);
 
-    // const [isHovering, setIsHovering] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
+    const handleMouseOver2 = () => {
+        setIsHovering(true);
+    };
+    const handleMouseOut2 = () => {
+        setIsHovering(false);
+    };
     const [hoveredIndex, setHoveredIndex] = useState(-1);
     const handleMouseOver = (index) => {
         // setIsHovering(true);
@@ -26,7 +34,8 @@ const GeneralIndustry = () => {
     useEffect(() => {
         if (dataGeneral?.data) {
             setLoading(false);
-            setData(dataGeneral.data);
+            setData(dataGeneral.data.data);
+            setBuySellData(dataGeneral.data.buySellData)
         }
     }, [dataGeneral]);
 
@@ -85,7 +94,7 @@ const GeneralIndustry = () => {
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-                        <div className="block w-full scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll bg-transparent">
+                        <div className="block w-full scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll bg-transparent h-[313px]">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                     <tr>
@@ -221,13 +230,39 @@ const GeneralIndustry = () => {
                                                 </tr>
                                             );
                                         })
-                                    ) : (<tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>)} 
+                                    ) : (<tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>)}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </section>
+            <hr />
+            <div className='text-center py-2'>
+                <span className='text-white'>Lực mua
+                    {isHovering === true && (
+                        <span className="text-green-500"> {((buySellData.buyPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100).toFixed(2)}%</span>
+                    )} - bán
+                    {isHovering === true && (
+                        <span className="text-red-500"> {((buySellData.sellPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100).toFixed(2)}%</span>
+                    )} hiện tại</span>
+            </div>
+            <div className='flex relative'
+                onMouseOver={handleMouseOver2}
+                onMouseOut={handleMouseOut2}>
+                <div className='bg-green-500 h-9 text-right'
+                    style={{
+                        width: `${(buySellData.buyPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100}%`,
+                    }}>
+                    <img className="w-[15.5%] pr-[5px]" src={`${apiUrl}/resources/icons/bull.png`} alt='bull' />
+                </div>
+                <div className='bg-red-500 h-9'
+                    style={{
+                        width: `${(buySellData.sellPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100}%`,
+                    }}>
+                    <img className="w-[13%] pl-[5px] pt-[1px]" src={`${apiUrl}/resources/icons/bear.png`} alt='bear' />
+                </div>
+            </div>
         </>
     );
 };
