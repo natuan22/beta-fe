@@ -19,7 +19,7 @@ const ChartInfo = () => {
             setDataInfo(dataLineChart.vnindexData)
             setDataChart(dataLineChart.vnindexData)
         }
-    }, [dataLineChart])
+    }, [])
 
     useEffect(() => {
         if (query === '0') {

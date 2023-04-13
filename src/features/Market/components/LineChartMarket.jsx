@@ -65,7 +65,9 @@ const LineChartMarket = (props) => {
                 <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
             ) : (
                 <div className="mt-24"><Loading /></div>
-            )}
+            )}    
+                {/* <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /> */}
+
         </div>
     );
 };

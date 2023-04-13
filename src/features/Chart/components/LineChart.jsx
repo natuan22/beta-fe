@@ -9,6 +9,7 @@ const LineChart = (props) => {
     item.tradingDate,
     item.indexValue,
   ]); 
+  console.log(data)
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
     accessibility: {
