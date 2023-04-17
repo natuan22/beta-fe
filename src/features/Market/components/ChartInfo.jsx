@@ -6,7 +6,7 @@ import LineChartMarket from './LineChartMarket'
 
 const ChartInfo = () => {
     const dispatch = useDispatch()
-    const dataLineChart = useSelector((state) => state.chart.dataLineChart) || {}
+    const dataLineChart = useSelector((state) => state.chart.dataLineChart)
     const [data, setData] = useState([])
     const [dataInfo, setDataInfo] = useState([])
     const [dataChart, setDataChart] = useState([])
@@ -89,11 +89,11 @@ const ChartInfo = () => {
                 <span>Cao nhất: <span className={`${highestColor}`}>{vnindexData && vnindexData.highestIndex}</span></span>
             </div>
             <div className='flex justify-around text-xs'>
-                <span className='text-[#5CE1E6]'>Sàn: <span className='text-white'>{data && data.industryFull && data.industryFull.low}</span></span>
-                <span className='text-red-500'>Giảm: <span className='text-white'>{data && data.industryFull && data.industryFull.decrease}</span></span>
-                <span className='text-yellow-500'>Tham chiếu: <span className='text-white'>{data && data.industryFull && data.industryFull.equal}</span></span>
-                <span className='text-green-500'>Tăng: <span className='text-white'>{data && data.industryFull && data.industryFull.increase}</span></span>
-                <span className='text-[#CB6CE6]'>Trần: <span className='text-white'>{data && data.industryFull && data.industryFull.high}</span></span>
+                <span className='text-[#5CE1E6]'>Sàn: <span className='text-white'>{data.industryFull && data.industryFull.low}</span></span>
+                <span className='text-red-500'>Giảm: <span className='text-white'>{data.industryFull && data.industryFull.decrease}</span></span>
+                <span className='text-yellow-500'>Tham chiếu: <span className='text-white'>{data.industryFull && data.industryFull.equal}</span></span>
+                <span className='text-green-500'>Tăng: <span className='text-white'>{data.industryFull && data.industryFull.increase}</span></span>
+                <span className='text-[#CB6CE6]'>Trần: <span className='text-white'>{data.industryFull && data.industryFull.high}</span></span>
             </div>
         </>
     )
