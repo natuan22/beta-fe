@@ -1,0 +1,3 @@
+export const marketType={
+    FETCH_DATA_TABLE_THANH_KHOAN: 'beta/FETCH_DATA_TABLE_THANH_KHOAN'
+}
