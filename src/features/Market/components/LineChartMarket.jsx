@@ -52,7 +52,7 @@ const LineChartMarket = (props) => {
                     color: "#fff",
                 },
             },
-            categories: props.data && props.data?.length && props.data?.map(item => moment(item.tradingDate).utcOffset(-420).format(props.fmtDay)),
+            categories: props.data && props.data?.length && props.data?.map(item => moment(item.tradingDate).utc().format(props.fmtDay)),
         },
         legend: {
             enabled: false // Tắt chú thích
@@ -65,8 +65,8 @@ const LineChartMarket = (props) => {
                 <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
             ) : (
                 <div className="mt-24"><Loading /></div>
-            )}    
-                {/* <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /> */}
+            )}
+            {/* <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /> */}
 
         </div>
     );
