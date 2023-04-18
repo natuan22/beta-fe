@@ -22,7 +22,7 @@ const Nav5 = () => {
   return (
     <div className="text-white">
       <ReactFacebookLogin
-        appId="941421577056547"
+        appId="6042058729222539"
         fields="name,email,picture"
         callback={responseFacebook}
       />

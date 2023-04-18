@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../Chart/utils/Loading";
 import socket from "../../Chart/utils/socket";
+import { fecthDataTableThanhKhoan } from "../thunk";
 
-const TableThanhKhoan = () => {
+const   TableThanhKhoan = () => {
+    const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('1day');
     const dataTable = useSelector((state) => state.chart.dataTableDetail);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const [queryApi, setQueryApi] = useState({
+        exchange:'HNX',
+        type:0,
+        order:0
+    })
+    useEffect(()=> {
+        dispatch(fecthDataTableThanhKhoan(queryApi.exchange,queryApi.type, queryApi.order))
+    },[dispatch])
+    console.log(queryApi.exchange)
     const handleClick = (button) => {
         setActiveButton(button);
     }
@@ -41,40 +51,63 @@ const TableThanhKhoan = () => {
                     style={activeButton === '1day' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                     onClick={() => {
                         handleClick('1day')
+                        setQueryApi({
+                            ...queryApi,
+                            order: 0
+                        })
                     }}
                     className='uppercase'>1 ngày</button>
                 <button
                     style={activeButton === '5days' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                     onClick={() => {
                         handleClick('5days')
+                        setQueryApi({
+                            ...queryApi,
+                            order: 1
+                        })
                     }}
                     className='uppercase'>5 ngày</button>
                 <button
                     style={activeButton === '1week' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                     onClick={() => {
                         handleClick('1week')
+                        setQueryApi({
+                            ...queryApi,
+                            order: 2
+                        })
                     }}
                     className='uppercase'>1 tuần</button>
                 <button
                     style={activeButton === 'YtD' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                     onClick={() => {
                         handleClick('YtD')
+                        setQueryApi({
+                            ...queryApi,
+                            order: 3
+                        })
                     }}
                     className=''>YtD</button>
             </div>
             <div>
                 <span className='text-white text-[0.9rem] pl-[2px]'>Top đóng góp thanh khoản theo: </span>
-                <select className={`bg-[#151924] text-[0.9rem] text-[#0097B2] border-0`}>
-                    <option value="1">Cổ phiếu</option>
-                    <option value="2">...</option>
-                    <option value="3">...</option>
+                <select onChange={(e)=> {
+                    setQueryApi({
+                        ...queryApi,
+                        type: e.target.value
+                    })
+                    console.log(queryApi)
+                }} className={`bg-[#151924] text-[0.9rem] text-[#0097B2] border-0`}>
+                    <option value="0">Cổ phiếu</option>
+                    <option value="1">Ngành Lv1</option>
+                    <option value="2">Ngành Lv2</option>
+                    <option value="3">Ngành Lv3</option>
                 </select>
                 <span className='text-white text-[0.9rem] pl-[15px]'>Sàn </span>
                 <select className={`bg-[#151924] text-[0.9rem] text-[#0097B2] border-0`}>
-                    <option value="1">HOSE</option>
-                    <option value="2">HNX</option>
-                    <option value="3">UPCOM</option>
-                    <option value="4">VN30</option>
+                    <option value="HOSE">HOSE</option>
+                    <option value="HNX">HNX</option>
+                    <option value="UPCOM">UPCOM</option>
+                    <option value="VN30">VN30</option>
                 </select>
             </div>
             <section>
