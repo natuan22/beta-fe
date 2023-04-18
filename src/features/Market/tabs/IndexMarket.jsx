@@ -26,7 +26,7 @@ import { useDispatch } from 'react-redux';
 const IndexMarket = () => {
   const dispatch = useDispatch()
 
-  useEffect(() => {
+  useEffect(() => {git com
     dispatch(fetchDataNews);
     dispatch(fetchDataLineChart('0'))
     dispatch(fetchDataGeneralIndustry('all'))
@@ -56,9 +56,10 @@ const IndexMarket = () => {
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
                 <span className='text-white text-[0.9rem] pl-[2px]'>Top đóng góp điểm số theo: </span>
                 <select className={`bg-[#151924] text-[0.9rem] text-[#0097B2] border-0`}>
-                  <option value="1">Cổ phiếu</option>
-                  <option value="2">...</option>
-                  <option value="3">...</option>
+                  <option value="0">Cổ phiếu</option>
+                  <option value="1">Ngành LV1</option>
+                  <option value="2">Ngành LV2</option>
+                  <option value="3">Ngành LV3</option>
                 </select>
                 <select className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0`}>
                   <option value="1">Phiên gần nhất</option>
