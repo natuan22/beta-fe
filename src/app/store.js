@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import chartReducer from '../features/Chart/chartSlice'
 import authenReducer from '../features/Auth/authenSlice'
+import marketReducer from '../features/Market/marketSlice'
 const reducer = combineReducers({
   chart : chartReducer,
-  authen : authenReducer
+  authen : authenReducer,
+  market: marketReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
