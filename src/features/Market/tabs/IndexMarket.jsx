@@ -26,7 +26,7 @@ import { useDispatch } from 'react-redux';
 const IndexMarket = () => {
   const dispatch = useDispatch()
 
-  useEffect(() => {git com
+  useEffect(() => {
     dispatch(fetchDataNews);
     dispatch(fetchDataLineChart('0'))
     dispatch(fetchDataGeneralIndustry('all'))
