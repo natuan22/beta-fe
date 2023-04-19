@@ -60,14 +60,12 @@ const LineChartMarket = (props) => {
     };
 
     return (
-        <div id="chart-container" className="h-[350px]">
+        <div id="chart-container" className="h-[405px]">
             {props.data?.length ? (
                 <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
             ) : (
                 <div className="mt-24"><Loading /></div>
             )}
-            {/* <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /> */}
-
         </div>
     );
 };

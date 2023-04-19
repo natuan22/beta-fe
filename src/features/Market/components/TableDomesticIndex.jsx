@@ -19,26 +19,26 @@ const TableDomesticIndex = () => {
             <section>
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-                        <div className="block w-full xs:min-h-[352px] xxs:min-h-[332px] sm:min-h-[312px] md:min-h-[336px] lg:min-h-[350px] xl:min-h-[350px] bg-transparent">
+                        <div className="block w-full bg-transparent xs:min-h-[300px] md:min-h-[300px] lg:min-h-[300px] xl:min-h-[300px] 2xl:min-h-[300px]">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead>
                                     <tr className='bg-[#1E5D8B]'>
-                                        <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
+                                        <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
                                             Chỉ số
                                         </th>
-                                        <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
+                                        <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
                                             Điểm số
                                         </th>
-                                        <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
+                                        <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
                                             % Thay đổi
                                         </th>
-                                        <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
+                                        <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
                                             Khối lượng
                                         </th>
-                                        <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
+                                        <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
                                             Giá trị
                                         </th>
-                                        <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
+                                        <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
                                             GTNN ròng
                                         </th>
                                     </tr>
@@ -51,22 +51,22 @@ const TableDomesticIndex = () => {
                                             let color2 = getColor(item.net_value_foreign)
                                             return (
                                                 <tr key={index} className='hover:bg-gray-800'>
-                                                    <th className="text-left px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 text-white">
+                                                    <th className="text-left px-3 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 text-white">
                                                         {item.ticker}
                                                     </th>
-                                                    <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                    <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                         {item.price}
                                                     </td>
-                                                    <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                    <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                         {item.percent_d.toFixed(2)}%
                                                     </td>
-                                                    <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                    <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                         {item.volume}
                                                     </td>
-                                                    <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                    <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                         {item.value}
                                                     </td>
-                                                    <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color2}`}>
+                                                    <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color2}`}>
                                                         {item.net_value_foreign}
                                                     </td>
                                                 </tr>

@@ -25,7 +25,7 @@ const DoRongThiTruong = () => {
 
     const [hoveredValue, setHoveredValue] = useState(null);
     if (!dataStackingChart.data || !dataStackingChart.data.length) {
-        return <div className="mt-12"><Loading /></div>;
+        return <div className="h-[200px]"><div className="mt-12"><Loading /></div></div>;
     }
 
     const timeLine = data?.map((item) =>
@@ -187,7 +187,7 @@ const DoRongThiTruong = () => {
     };
 
     return (
-        <div className="h-[360px]">
+        <div className="xl:h-[375px] 2xl:h-[375px]">
             <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
         </div>
     );

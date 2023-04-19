@@ -15,22 +15,24 @@ const NetVolumeTrade = () => {
   const [title, setTitle] = useState('VNINDEX')
   if (!dataNetVolume.data || !dataNetVolume.data.length)
     return <>
-      <div className="bg-transparent text-center px-20 py-[10px]">
-        <span className="font-semibold text-base uppercase text-white">
-          Giá trị giao dịch ròng
-        </span>
-        <select className={`bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
-          onChange={(event) => {
-            dispatch(fetchDataNetVolume(event.target.value));
-            setTitle(event.target.value)
-          }}>
-          <option value="VNINDEX">VNINDEX</option>
-          <option value="UPINDEX">UPINDEX</option>
-          <option value="HNX30">HNX30</option>
-          <option value="VN30">VN30</option>
-        </select>
+      <div className="h-[300px]">
+        <div className="bg-transparent text-center px-20 py-[10px]">
+          <span className="font-semibold text-base uppercase text-white">
+            Giá trị giao dịch ròng
+          </span>
+          <select className={`bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+            onChange={(event) => {
+              dispatch(fetchDataNetVolume(event.target.value));
+              setTitle(event.target.value)
+            }}>
+            <option value="VNINDEX">VNINDEX</option>
+            <option value="UPINDEX">UPINDEX</option>
+            <option value="HNX30">HNX30</option>
+            <option value="VN30">VN30</option>
+          </select>
+        </div>
+        <div className="mt-6"><Loading /></div>
       </div>
-      <div className="mt-12"><Loading /></div>
     </>
 
   const dataExchange = dataNetVolume.data?.map((item) => item.exchange_price);

@@ -7,6 +7,7 @@ import Banner from "../Chart/components/Banner";
 import { useDispatch } from "react-redux";
 import { fetchDataInternationalIndex, fetchDataNews } from "../Chart/thunk";
 import LayOut from "../../HOCs/Layout";
+import Footer from "../../components/Footer";
 
 const Market = () => {
   const dispatch = useDispatch()
@@ -16,23 +17,25 @@ const Market = () => {
     dispatch(fetchDataInternationalIndex);
   }, [dispatch]);
 
-  return (<LayOut>
-    <div>
-      <InternationalIndex />
-      <News />
-    </div>
-    <Banner />
-    <div className="container mx-auto">
+  return (
+    <LayOut>
       <div>
-        <div className="px-11">
-          <MarketTab />
-        </div>
-        <div>
-          <Outlet />
-        </div>
+        <InternationalIndex />
+        <News />
       </div>
-    </div>
-  </LayOut>
+      <Banner />
+      <div className="container mx-auto">
+        <div>
+          <div className="px-11">
+            <MarketTab />
+          </div>
+          <div>
+            <Outlet />
+          </div>
+        </div>
+        <Footer />
+      </div>
+    </LayOut>
   );
 };
 

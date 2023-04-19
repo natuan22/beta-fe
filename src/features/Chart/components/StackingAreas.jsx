@@ -55,7 +55,7 @@ const StackingAreas = () => {
 
   const [hoveredValue, setHoveredValue] = useState(null);
   if (!dataStackingChart.data || !dataStackingChart.data.length) {
-    return <Loading />;
+    return <div className="mt-6"><Loading /></div>
   }
   const options = {
     accessibility: {
@@ -225,15 +225,11 @@ const StackingAreas = () => {
   };
 
   return (
-    <div>
-      {dataStackingChart.data?.length ? (
-        <div>
-          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-        </div>
-      ) : (
-        <div className="mt-12"><Loading /></div>
-      )}
-    </div>
+    <>
+      <div>
+        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+      </div>
+    </>
   );
 };
 

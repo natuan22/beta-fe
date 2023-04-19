@@ -7,7 +7,6 @@ import { Spin } from "antd";
 
 const TableThanhKhoan = () => {
   const { tableThanhKhoanData } = useSelector((state) => state.market);
-  console.log(tableThanhKhoanData);
   const dispatch = useDispatch();
   const [activeButton, setActiveButton] = useState("1day");
   const dataTable = useSelector((state) => state.chart.dataTableDetail);
@@ -18,14 +17,6 @@ const TableThanhKhoan = () => {
     type: 0,
     order: 0,
   });
-  const [hoveredIndex, setHoveredIndex] = useState(-1);
-    const handleMouseOver = (index) => {
-        setHoveredIndex(index);
-    };
-    const handleMouseOut = () => {
-        setHoveredIndex(-1);
-    };
-
   useEffect(() => {
     dispatch(
       fecthDataTableThanhKhoan(queryApi.exchange, queryApi.type, queryApi.order)
@@ -63,7 +54,6 @@ const TableThanhKhoan = () => {
       setData(dataTable.data);
     }
   }, [dataTable]);
-  console.log(queryApi);
   return (
     <>
       <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2">
@@ -125,56 +115,56 @@ const TableThanhKhoan = () => {
         </button>
       </div>
       <div>
-        <span className="text-white text-[0.9rem] pl-[2px]">
-          Top đóng góp thanh khoản theo:{" "}
-        </span>
-        <select
-          onChange={(e) => {
-            handleQueryApiType(e.target.value);
-          }}
-          className={`bg-[#151924] text-[0.9rem] text-[#0097B2] border-0`}
-        >
-          <option value="0">Cổ phiếu</option>
-          <option value="1">Ngành Lv1</option>
-          <option value="2">Ngành Lv2</option>
-          <option value="3">Ngành Lv3</option>
-        </select>
-        <span className="text-white text-[0.9rem] pl-[15px]">Sàn </span>
-        <select
-          onChange={(e) => {
-            handleQueryApiExchange(e.target.value);
-          }}
-          className={`bg-[#151924] text-[0.9rem] text-[#0097B2] border-0`}
-        >
-          <option value="ALL">Toàn thị trường</option>
-          <option value="HSX">HSX</option>
-          <option value="HNX">HNX</option>
-          <option value="UPCOM">UPCOM</option>
-        </select>
+        <span className="text-white text-[0.9rem] pl-[2px]">Top đóng góp thanh khoản theo: </span>
+        <div className="md:inline lg:block xl:inline 2xl:inline text-center">
+          <select
+            onChange={(e) => {
+              handleQueryApiType(e.target.value);
+            }}
+            className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
+          >
+            <option value="0">Cổ phiếu</option>
+            <option value="1">Ngành Lv1</option>
+            <option value="2">Ngành Lv2</option>
+            <option value="3">Ngành Lv3</option>
+          </select>
+          <span className="text-white text-[0.9rem] ml-4">Sàn</span>
+          <select
+            onChange={(e) => {
+              handleQueryApiExchange(e.target.value);
+            }}
+            className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
+          >
+            <option value="ALL">Toàn thị trường</option>
+            <option value="HSX">HSX</option>
+            <option value="HNX">HNX</option>
+            <option value="UPCOM">UPCOM</option>
+          </select>
+        </div>
       </div>
-      <section>
+      <section className="mt-1">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924]  h-24 overflow-auto  sm:min-h-[312px] md:min-h-[336px] lg:min-h-[350px] xl:min-h-[350px] bg-transparent">
-              <table className="items-center w-full border-collapse bg-transparent  scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] ">
+            <div className="block w-full overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] xs:h-[340px] md:h-[340px] lg:h-[360px] xl:h-[379px] 2xl:min-h-[379px] bg-transparent">
+              <table className="items-center w-full border-collapse bg-transparent">
                 <thead className="sticky top-0">
                   <tr className="bg-[#1E5D8B]">
-                    <th className="text-center align-middle px-3 py-2 text-[0.7rem] font-semibold text-white">
+                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       Cổ phiếu
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-[0.7rem] font-semibold text-white">
+                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       Tỷ lệ đóng góp (%)
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-[0.7rem] font-semibold text-white">
+                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       GT giao dịch (tỷ)
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-[0.7rem] font-semibold text-white">
+                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       KL Giao dịch (tr CP)
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-[0.7rem] font-semibold text-white">
+                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       Chênh lệch cung-cầu (KL)
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-[0.7rem] font-semibold text-white">
+                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       Chênh lệch cung-cầu (GT)
                     </th>
                   </tr>
@@ -183,19 +173,26 @@ const TableThanhKhoan = () => {
                 <tbody>
                   {tableThanhKhoanData?.length ? (
                     tableThanhKhoanData?.map((item, index) => {
+                      let color = getColor(item.supplyDemandVolumeGap)
+                      let color2 = getColor(item.supplyDemandValueGap)
+
                       return (
-                        <tr className="text-white text-center hover:bg-gray-800 duration-500" key={index}>
-                          <td className="text-left " >{item.symbol}</td>
-                          <td className="text-center px-5 align-middle  whitespace-nowrap p-3.5 font-semibold">{item.contribute.toFixed(2)}%</td>
-                          <td className="text-center px-5 align-middle  whitespace-nowrap p-3.5 font-semibold">{(item.totalValueMil/1000).toFixed(1)}</td>
-                          <td className="text-center px-5 align-middle  whitespace-nowrap p-3.5 font-semibold">{(item.totalVolume/100000).toFixed(2)}</td>
-                          {item.supplyDemandVolumeGap >= 0?<td className="text-center px-5 align-middle  whitespace-nowrap p-3.5 font-semibold">{(item.supplyDemandVolumeGap/1000000).toFixed(2)}</td> :<td className="text-center text-red-500 px-5 align-middle  whitespace-nowrap p-3.5 font-semibold">{(item.supplyDemandVolumeGap/1000000).toFixed(2)}</td>} 
-                         {item.supplyDemandValueGap >= 0?<td className="text-center text-green-500 px-5 align-middle  whitespace-nowrap p-3.5 font-semibold">{(item.supplyDemandValueGap/1000).toFixed(2)}</td> :<td className="text-center text-red-500 px-5 align-middle  whitespace-nowrap p-3.5 font-semibold">{(item.supplyDemandValueGap/1000).toFixed(2)}</td>} 
+                        <tr className="text-white text-center text-[13px] hover:bg-gray-800 duration-500" key={index}>
+                          <th className="text-left px-1.5 align-middle p-3.5" >{item.symbol}</th>
+                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{item.contribute.toFixed(2)}%</td>
+                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.totalValueMil / 1000).toFixed(1)}</td>
+                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.totalVolume / 100000).toFixed(2)}</td>
+                          <td className={`${color} text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold`}>
+                            {(item.supplyDemandVolumeGap / 1000000).toFixed(2)}
+                          </td>
+                          <td className={`${color2} text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold`}>
+                            {(item.supplyDemandValueGap / 1000).toFixed(2)}
+                          </td>
                         </tr>
                       );
                     })
                   ) : (
-                    <div className="text-center "><Spin /></div>
+                    <tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>
                   )}
                 </tbody>
               </table>
@@ -208,3 +205,12 @@ const TableThanhKhoan = () => {
 };
 
 export default TableThanhKhoan;
+
+function getColor(item) {
+  let color = "";
+  if (item === 0) color = "text-yellow-500";
+  else if (item < 0) color = "text-red-500";
+  else color = "text-green-500";
+
+  return color;
+}
