@@ -9,7 +9,7 @@ function AreaChart() {
   const dataPreviousDay = useSelector((state) => state.chart.dataChart2);
   const [dataSocket, setDataSocket] = useState([]);
   useEffect(() => {
-    if(!dataToday && !dataToday.length) return
+    if (!dataToday && !dataToday.length) return
     if (dataToday) {
       setDataSocket(dataToday)
     }
@@ -22,9 +22,7 @@ function AreaChart() {
 
   if (!dataPreviousDay.length && !dataToday.length)
     return (
-      <div>
-        <Loading />
-      </div>
+      <div className="mt-6"><Loading /></div>
     );
   // Thiết lập cấu hình cho biểu đồ
   const options = {
@@ -106,13 +104,9 @@ function AreaChart() {
 
   return (
     <>
-      {dataPreviousDay?.length && dataToday?.length ? (
-        <div className="2xl:h-[638px] xl:h-[763px] lg:h-[500px] md:h-[500px] xs:h-[500px]">
-          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-        </div>
-      ) : (
-        <Loading />
-      )}
+      <div className="2xl:h-[638px] xl:h-[763px] lg:h-[500px] md:h-[500px] xs:h-[500px]">
+        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+      </div>
     </>
   );
 }
