@@ -48,6 +48,7 @@ import {
   fetchDataMarketEvaluation,
   fetchDataLineChart,
 } from "./thunk";
+import LayOut from "../../HOCs/Layout";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -97,7 +98,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <LayOut>
       <div className="px-1.5 sticky top-0 z-20">
         <InternationalIndex />
         <News />
@@ -391,7 +392,7 @@ const Home = () => {
           </div>
         </div>
       </div >
-    </>
+    </LayOut>
   );
 };
 

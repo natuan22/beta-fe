@@ -37,7 +37,6 @@ function App() {
   return (
     // <HistoryRouter history={history}>
     <BrowserRouter>
-      <Header />
       <Routes>
         {routes.map(({ path, component: Component }) => {
           return <Route key={path} path={path} element={<Component />}></Route>;

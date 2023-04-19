@@ -6,6 +6,7 @@ import MarketTab from "./utils/MarketTab";
 import Banner from "../Chart/components/Banner";
 import { useDispatch } from "react-redux";
 import { fetchDataInternationalIndex, fetchDataNews } from "../Chart/thunk";
+import LayOut from "../../HOCs/Layout";
 
 const Market = () => {
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ const Market = () => {
     dispatch(fetchDataInternationalIndex);
   }, [dispatch]);
 
-  return (<>
+  return (<LayOut>
     <div>
       <InternationalIndex />
       <News />
@@ -31,7 +32,7 @@ const Market = () => {
         </div>
       </div>
     </div>
-  </>
+  </LayOut>
   );
 };
 

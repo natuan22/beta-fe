@@ -33,7 +33,7 @@ const Signin = () => {
     <div className="bg-signinBackground bg-no-repeat bg-cover h-auto">
       <div className="container mx-auto h-auto py-[100px] w-[80%] relative" >
         <nav className="flex justify-around xs:text-[10px] md:text-base lg:text-base xl:text-base">
-          <NavLink className="text-white no-underline">Trang chủ</NavLink>
+          <NavLink to='/' className="text-white no-underline">Trang chủ</NavLink>
           <NavLink className="text-white no-underline">Giới thiệu dịch vụ</NavLink>
           <NavLink className="text-white no-underline">Liên hệ</NavLink>
           <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
