@@ -254,13 +254,13 @@ const GeneralIndustry = () => {
                     style={{
                         width: `${(buySellData.buyPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100}%`,
                     }}>
-                    <img className="w-[15.5%] pr-[5px]" src={`${apiUrl}/resources/icons/bull.png`} alt='bull' />
+                    <img className="w-[15.5%] pr-[5px]" src={`${apiUrl}/resources/icons/buffalo.gif`} alt='bull' />
                 </div>
                 <div className='bg-red-500 h-9'
                     style={{
                         width: `${(buySellData.sellPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100}%`,
                     }}>
-                    <img className="w-[13%] pl-[5px] pt-[1px]" src={`${apiUrl}/resources/icons/bear.png`} alt='bear' />
+                    <img className="w-[13%] pl-[5px] pt-[1px]" src={`${apiUrl}/resources/icons/bear-karhu.gif`} alt='bear' />
                 </div>
             </div>
         </>
