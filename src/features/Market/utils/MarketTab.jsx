@@ -7,9 +7,9 @@ const MarketTab = () => {
       <NavLink
         className={(params) => {
           if (params.isActive) {
-            return "no-underline text-white text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
+            return "no-underline text-white xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
           } else {
-            return "no-underline text-white text-[1.2rem] font-bold w-[25%] text-center";
+            return "no-underline text-white xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center";
           }
         }}
         to="/thi-truong/chi-so-thi-truong"
@@ -19,9 +19,9 @@ const MarketTab = () => {
       <NavLink
         className={(params) => {
           if (params.isActive) {
-            return "no-underline text-white text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
+            return "no-underline text-white xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
           } else {
-            return "no-underline text-white text-[1.2rem] font-bold w-[25%] text-center";
+            return "no-underline text-white xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center";
           }
         }}
         to="/thi-truong/dong-tien-thi-truong"
@@ -31,9 +31,9 @@ const MarketTab = () => {
       <NavLink
         className={(params) => {
           if (params.isActive) {
-            return "no-underline text-white text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
+            return "no-underline text-white xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
           } else {
-            return "no-underline text-white text-[1.2rem] font-bold w-[25%] text-center";
+            return "no-underline text-white xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center";
           }
         }}
         to="/thi-truong/ky-thuat-va-dinh-gia"
@@ -43,9 +43,9 @@ const MarketTab = () => {
       <NavLink
         className={(params) => {
           if (params.isActive) {
-            return "no-underline text-white text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
+            return "no-underline text-white xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
           } else {
-            return "no-underline text-white text-[1.2rem] font-bold w-[25%] text-center";
+            return "no-underline text-white xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center";
           }
         }}
         to="/thi-truong/thi-truong-quoc-te"

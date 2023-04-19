@@ -23,7 +23,6 @@ const MarketMap = () => {
         color: '#fff',
         border: 'none',
         cursor: 'pointer',
-        fontSize: '0.9rem',
         padding: '0.375rem 0.5rem'
     }
     const activeButtonStyle = {
@@ -115,7 +114,7 @@ const MarketMap = () => {
 
     return (
         <>
-            <div className='grid grid-cols-2 pt-3'>
+            <div className='grid md:grid-cols-2 pt-3 xs:grid-cols-none'>
                 <div className=" mb-3 text-white">
                     <span>
                         <button
@@ -124,8 +123,8 @@ const MarketMap = () => {
                                 dispatch(dispatch(fetchDataMarketMap('all', activeButton2)))
                             }}
                             className={activeButton === 'all'
-                                ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
-                                : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>Toàn thị trường
+                                ? 'border-none bg-transparent relative text-white md:text-[0.9rem] text-[1.1rem] tabUnderline cursor-pointer'
+                                : 'border-none bg-transparent text-white md:text-[0.9rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                         </button>
                     </span>
                     <span className="pl-10">
@@ -135,8 +134,8 @@ const MarketMap = () => {
                                 dispatch(dispatch(fetchDataMarketMap('HSX', activeButton2)))
                             }}
                             className={activeButton === 'HSX'
-                                ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
-                                : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>HSX
+                                ? 'border-none bg-transparent relative text-white md:text-[0.9rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                                : 'border-none bg-transparent text-white md:text-[0.9rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                         </button>
                     </span>
                     <span className="pl-10">
@@ -146,8 +145,8 @@ const MarketMap = () => {
                                 dispatch(dispatch(fetchDataMarketMap('HNX', activeButton2)))
                             }}
                             className={activeButton === 'HNX'
-                                ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
-                                : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>HNX
+                                ? 'border-none bg-transparent relative text-white md:text-[0.9rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                                : 'border-none bg-transparent text-white md:text-[0.9rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                         </button>
                     </span>
                     <span className="pl-10">
@@ -157,46 +156,46 @@ const MarketMap = () => {
                                 dispatch(dispatch(fetchDataMarketMap('UPCOM', activeButton2)))
                             }}
                             className={activeButton === 'UPCOM'
-                                ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
-                                : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>UPCOM
+                                ? 'border-none bg-transparent relative text-white md:text-[0.9rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                                : 'border-none bg-transparent text-white md:text-[0.9rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                         </button>
                     </span>
                 </div>
-                <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2">
-                    <button
-                        style={activeButton2 === ENUM.vonhoa ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                        onClick={() => {
-                            handleClick2(ENUM.vonhoa)
-                            dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.vonhoa)))
-                        }}
-                        className='rounded-tl-xl rounded-bl-xl'>Vốn hoá</button>
-                    <button
-                        style={activeButton2 === ENUM.gtGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                        onClick={() => {
-                            handleClick2(ENUM.gtGD)
-                            dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.gtGD)))
-                        }}
-                        className=''>Giá trị GD</button>
-                    <button
-                        style={activeButton2 === ENUM.klGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                        onClick={() => {
-                            handleClick2(ENUM.klGD)
-                            dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.klGD)))
-                        }}
-                        className=''>Khối lượng GD</button>
-                    <button
-                        style={activeButton2 === ENUM.gtNNGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                        onClick={() => {
-                            handleClick2(ENUM.gtNNGD)
-                            dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.gtNNGD)))
-                        }}
-                        className='rounded-tr-xl rounded-br-xl'>Giá trị NN GD</button>
+                <div>
+                    <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2">
+                        <button
+                            style={activeButton2 === ENUM.vonhoa ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
+                            onClick={() => {
+                                handleClick2(ENUM.vonhoa)
+                                dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.vonhoa)))
+                            }}
+                            className='rounded-tl-xl rounded-bl-xl md:text-[0.8rem] lg:text-[0.9rem]'>Vốn hoá</button>
+                        <button
+                            style={activeButton2 === ENUM.gtGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
+                            onClick={() => {
+                                handleClick2(ENUM.gtGD)
+                                dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.gtGD)))
+                            }}
+                            className='md:text-[0.8rem] lg:text-[0.9rem]'>Giá trị GD</button>
+                        <button
+                            style={activeButton2 === ENUM.klGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
+                            onClick={() => {
+                                handleClick2(ENUM.klGD)
+                                dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.klGD)))
+                            }}
+                            className='md:text-[0.8rem] lg:text-[0.9rem]'>Khối lượng GD</button>
+                        <button
+                            style={activeButton2 === ENUM.gtNNGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
+                            onClick={() => {
+                                handleClick2(ENUM.gtNNGD)
+                                dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.gtNNGD)))
+                            }}
+                            className='rounded-tr-xl rounded-br-xl md:text-[0.8rem] lg:text-[0.9rem]'>Giá trị NN GD</button>
+                    </div>
                 </div>
             </div>
             <div className="pt-1.5">
                 <Chart
-                    width={"100%"}
-                    height={"100%"}
                     chartType="TreeMap"
                     loader={<div className="mt-16"><Loading /></div>}
                     data={dataTreeMapRender}

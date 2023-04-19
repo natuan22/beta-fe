@@ -107,7 +107,7 @@ function ThanhKhoan() {
     return (
         <>
             {dataPreviousDay?.length && dataToday?.length ? (
-                <div className="">
+                <div className="lg:h-[365px] xl:h-[345px] 2xl:h-[345px]">
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (

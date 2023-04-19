@@ -187,7 +187,7 @@ const DoRongThiTruong = () => {
     };
 
     return (
-        <div className="h-[360px]">
+        <div className="xl:h-[375px] 2xl:h-[375px]">
             <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
         </div>
     );

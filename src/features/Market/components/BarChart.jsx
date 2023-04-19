@@ -87,7 +87,7 @@ const BarChart = () => {
 
     return (
         <div id="chart-container">
-            <div className="h-[450px]">
+            <div className="h-[370px]">
                 <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
             </div>
         </div>
