@@ -66,7 +66,7 @@ const ChartInfo = () => {
                         <span className={`${colorChange} text-[1rem] pl-[30px]`}>{vnindexData && vnindexData.indexValue}</span>
                         <span className={`${colorChange} text-[1rem] pl-[30px]`}>{vnindexData && vnindexData.indexChange}/ {vnindexData && (vnindexData.percentIndexChange * 100).toFixed(2)}%</span>
                     </div>
-                    <select className={`bg-[#1B496D] ml-3 p-1 text-[1rem] text-white border-0`}
+                    <select className={`bg-[#1B496D] md:ml-[200px] lg:ml-3 xl:ml-3 2xl:ml-3 p-1 text-[1rem] text-white border-0`}
                         onChange={(event) => {
                             setQuery(event.target.value)
                             dispatch(dispatch(fetchDataLineChart(`${event.target.value}`)))
@@ -77,18 +77,18 @@ const ChartInfo = () => {
                         <option value='3'>YtD</option>
                     </select>
                 </div>
-                <div >
+                <div className='mt-2'>
                     <LineChartMarket data={dataChart} fmtDay={fmtDay} />
                 </div>
             </div>
             <hr />
-            <div className='flex justify-around text-white text-xs mt-1'>
+            <div className='flex justify-around text-white text-xs mt-2'>
                 <span>Tham chiếu: <span className='text-yellow-500'>{vnindexData && vnindexData.referenceIndex}</span></span>
                 <span>Mở cửa: <span className={`${openColor}`}>{vnindexData && vnindexData.openIndex}</span></span>
                 <span>Thấp nhất: <span className={`${lowestColor}`}>{vnindexData && vnindexData.lowestIndex}</span></span>
                 <span>Cao nhất: <span className={`${highestColor}`}>{vnindexData && vnindexData.highestIndex}</span></span>
             </div>
-            <div className='flex justify-around text-xs'>
+            <div className='flex justify-around text-xs mt-1'>
                 <span className='text-[#5CE1E6]'>Sàn: <span className='text-white'>{data.industryFull && data.industryFull.low}</span></span>
                 <span className='text-red-500'>Giảm: <span className='text-white'>{data.industryFull && data.industryFull.decrease}</span></span>
                 <span className='text-yellow-500'>Tham chiếu: <span className='text-white'>{data.industryFull && data.industryFull.equal}</span></span>
