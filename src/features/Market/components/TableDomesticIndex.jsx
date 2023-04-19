@@ -19,7 +19,7 @@ const TableDomesticIndex = () => {
             <section>
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-                        <div className="block w-full bg-transparent lg:min-h-[300px] xl:min-h-[300px] 2xl:min-h-[300px]">
+                        <div className="block w-full bg-transparent xs:min-h-[300px] md:min-h-[300px] lg:min-h-[300px] xl:min-h-[300px] 2xl:min-h-[300px]">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead>
                                     <tr className='bg-[#1E5D8B]'>

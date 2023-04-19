@@ -25,7 +25,7 @@ const DoRongThiTruong = () => {
 
     const [hoveredValue, setHoveredValue] = useState(null);
     if (!dataStackingChart.data || !dataStackingChart.data.length) {
-        return <div className="mt-12"><Loading /></div>;
+        return <div className="h-[200px]"><div className="mt-12"><Loading /></div></div>;
     }
 
     const timeLine = data?.map((item) =>

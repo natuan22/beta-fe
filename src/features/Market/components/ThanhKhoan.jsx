@@ -22,9 +22,7 @@ function ThanhKhoan() {
 
     if (!dataPreviousDay.length && !dataToday.length)
         return (
-            <div>
-                <Loading />
-            </div>
+            <div className="h-[200px]"><div className="mt-12"><Loading /></div></div>
         );
     // Thiết lập cấu hình cho biểu đồ
     const options = {
@@ -106,13 +104,9 @@ function ThanhKhoan() {
 
     return (
         <>
-            {dataPreviousDay?.length && dataToday?.length ? (
-                <div className="lg:h-[365px] xl:h-[345px] 2xl:h-[345px]">
-                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                </div>
-            ) : (
-                <Loading />
-            )}
+            <div className="lg:h-[365px] xl:h-[345px] 2xl:h-[345px]">
+                <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+            </div>
         </>
     );
 }
