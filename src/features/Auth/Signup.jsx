@@ -47,9 +47,9 @@ const Signup = () => {
   );
   useEffect(() => { }, [touched]);
   return (
-    <div className="bg-signinBackground  bg-no-repeat bg-cover">
-      <div className="container mx-auto h-auto py-[100px] w-[80%] relative">
-        <nav className="flex justify-around xs:text-[10px] md:text-base lg:text-base xl:text-base ">
+    <div className="bg-signinBackground bg-no-repeat bg-cover">
+      <div className="container mx-auto h-auto pt-[90px] pb-[136px] w-[80%] relative">
+        <nav className="flex justify-around mb-[70px] xs:text-[10px] md:text-base lg:text-base xl:text-base ">
           <NavLink className="text-white no-underline">Trang chủ</NavLink>
           <NavLink className="text-white no-underline">
             Giới thiệu dịch vụ
