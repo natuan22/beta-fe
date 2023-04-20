@@ -9,9 +9,17 @@ import Header from "./components/Header";
 // import DemoQuery from './demo/DemoQuery';
 
 import { createBrowserHistory } from "history";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { autoLoginWithToken } from "./features/Auth/thunk";
 let history = createBrowserHistory();
 // history.push("/signin")
 function App() {
+  const dispatch = useDispatch()
+  useEffect(()=> {
+    const token = localStorage.getItem('betaToken')
+    dispatch(autoLoginWithToken(token))
+  },[dispatch])
   const mapMarketRoute = marketRoute.map(({ path, component: Component, children }) => {
     return (
       <Route path={path} element={<Component />} key={path}>

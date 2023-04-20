@@ -52,20 +52,23 @@ export const marketRoute = [
         ],
       },
       {
-        path: "ky-thuat-va-dinh-gia", component: TechAndValuation, children1: [
+        path: "ky-thuat-va-dinh-gia",
+        component: TechAndValuation,
+        children1: [
           { path: "hieu-suat", component: Efficiency },
           { path: "dinh-gia", component: Evaluation },
           { path: "ky-thuat", component: Technical },
-        ]
+        ],
       },
       {
-        path: "thi-truong-quoc-te", component: MarketForeign, children1: [
+        path: "thi-truong-quoc-te",
+        component: MarketForeign,
+        children1: [
           { path: "chi-so-the-gioi", component: ForeignIndex },
           { path: "thi-truong-hang-hoa", component: GoodsMarket },
           { path: "thi-truong-tien-so", component: CryptocurrencyMarket },
-        ]
+        ],
       },
     ],
   },
 ];
-

@@ -25,7 +25,6 @@ const TableThanhKhoan = () => {
   const handleClick = (button) => {
     setActiveButton(button);
   };
-
   const buttonStyle = {
     backgroundColor: "transparent",
     color: "#fff",
@@ -192,7 +191,7 @@ const TableThanhKhoan = () => {
                       );
                     })
                   ) : (
-                    <tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>
+                    <tr><td colSpan={6}><div className="mt-16 text-center"><Spin /></div></td></tr>
                   )}
                 </tbody>
               </table>

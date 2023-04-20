@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { object, string, ref } from "yup";
 import { useDispatch } from "react-redux";
 import "./utils/authen.css";
-import { userRegister } from "./thunk";
+import { userRegisterAction } from "./thunk";
 
 const Signup = () => {
   const apiUrl = process.env.REACT_APP_BASE_URL;
@@ -39,7 +39,7 @@ const Signup = () => {
       },
       onSubmit: (values) => {
         console.log(values);
-        dispatch(userRegister(values));
+        dispatch(userRegisterAction(values));
       },
       validationSchema: userSchema,
       validateOnBlur: false,

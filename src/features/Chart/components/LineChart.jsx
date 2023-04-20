@@ -9,6 +9,7 @@ const LineChart = (props) => {
     item.tradingDate,
     item.indexValue,
   ]); 
+  console.log(data)
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
     accessibility: {
@@ -46,7 +47,7 @@ const LineChart = (props) => {
     },
     xAxis: {
       type: "datetime",
-      tickInterval: 30 * 60 * 1000,
+      tickInterval: 35 * 60 * 1000,
       min: timeLineChart9h00,
       max: timeLineChart15h00,
 

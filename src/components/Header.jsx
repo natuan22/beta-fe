@@ -91,9 +91,10 @@ const Header = () => {
                       to="/nganh"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
                           : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
+                      
                     >
                       Ngành
                     </NavLink>

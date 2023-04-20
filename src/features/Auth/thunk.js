@@ -1,20 +1,14 @@
-import axios from "axios";
 import * as authenTypes from "./utils/constant";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import { authenServices } from "./services/authenServices";
 
 export const userLoginAction = (data) => async (dispatch) => {
   try {
-    const res = await axios.post(`${apiUrl}/api/v1/auth/login`, {
-      ...data
-    }, {
-      withCredentials: true
-    });
+    const res = await authenServices.userLogin(data)
     dispatch({
       type: authenTypes.USER_LOGIN,
       payload: res.data,
     });
-    console.log(res);
-    localStorage.setItem("betaUserToken", res.data.data.access_token);
+    localStorage.setItem("betaToken", res.data.data.access_token);
   } catch (err) {
     dispatch({
       type: authenTypes.LOGIN_FAIL,
@@ -23,20 +17,12 @@ export const userLoginAction = (data) => async (dispatch) => {
   }
 };
 
-export const userRegister = (FormData) => async (dispatch) => {
+export const userRegisterAction = (formData) => async (dispatch) => {
   try {
-    const res = await axios({
-      url: `${apiUrl}/api/v1/auth/register`,
-      header: {
-        withCredentials: true,
-      },
-      method: "POST",
-      data: FormData,
-    });
-    console.log(res.data)
+    const res = await authenServices.userRegister(formData)
     dispatch({
       type: authenTypes.USER_REGISTER,
-      payload: FormData,
+      payload: formData,
     });
 
   } catch (err) {
@@ -44,3 +30,20 @@ export const userRegister = (FormData) => async (dispatch) => {
     alert('Tài khoản đã tồn tại')
   }
 };
+
+export const autoLoginWithToken = (token) => async (dispatch) => {
+  if(!token) return
+  try{
+    const res = await authenServices.autoLogin(token) 
+    dispatch({
+      type: authenTypes.USER_LOGIN,
+      payload: res.data
+    })
+  }catch(err){
+    localStorage.setItem('betaToken', "")
+    dispatch({
+      type: authenTypes.LOGIN_FAIL,
+      payload: "Sai thông tin đăng nhập"
+    })
+  }
+}
