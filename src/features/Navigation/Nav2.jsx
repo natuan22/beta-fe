@@ -1,9 +1,12 @@
 import React from 'react'
+import LayOut from '../../HOCs/Layout'
 import Error404 from './Error404'
 
 const Nav2 = () => {
   return (
-    <Error404 />
+    <LayOut>
+      <Error404 />
+    </LayOut>
   )
 }
 
