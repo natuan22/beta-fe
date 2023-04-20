@@ -123,7 +123,7 @@ const MarketMap = () => {
                                 dispatch(dispatch(fetchDataMarketMap('all', activeButton2)))
                             }}
                             className={activeButton === 'all'
-                                ? 'border-none bg-transparent relative text-white md:text-[0.9rem] text-[1.1rem] tabUnderline cursor-pointer'
+                                ? 'border-none bg-transparent relative text-white md:text-[0.9rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                                 : 'border-none bg-transparent text-white md:text-[0.9rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                         </button>
                     </span>
