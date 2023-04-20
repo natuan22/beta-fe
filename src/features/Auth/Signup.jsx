@@ -50,7 +50,7 @@ const Signup = () => {
     <div className="bg-signinBackground bg-no-repeat bg-cover">
       <div className="container mx-auto h-auto pt-[90px] pb-[136px] w-[80%] relative">
         <nav className="flex justify-around mb-[70px] xs:text-[10px] md:text-base lg:text-base xl:text-base ">
-          <NavLink className="text-white no-underline">Trang chủ</NavLink>
+          <NavLink to='/' className="text-white no-underline">Trang chủ</NavLink>
           <NavLink className="text-white no-underline">
             Giới thiệu dịch vụ
           </NavLink>
@@ -77,7 +77,7 @@ const Signup = () => {
             onSubmit={handleSubmit}
             className="flex flex-col items-center translate-y-[-10%] w-[60%]"
           >
-            <div className="relative z-0 w-full mb-6 group">
+            <div className="relative z-0 w-full mb-6 group mt-2">
               <input
                 name="phone"
                 type="tel"
@@ -99,7 +99,7 @@ const Signup = () => {
                 </p>
               )}
             </div>
-            <div className="relative z-0 w-full mb-6 group">
+            <div className="relative z-0 w-full mb-6 group mt-2">
               <input
                 name="password"
                 type="password"
@@ -121,7 +121,7 @@ const Signup = () => {
                 </p>
               )}
             </div>
-            <div className="relative z-0 w-full mb-6 group">
+            <div className="relative z-0 w-full mb-6 group mt-2">
               <input
                 name="confirm_password"
                 type="password"
@@ -144,7 +144,7 @@ const Signup = () => {
               )}
             </div>
             <div className="grid md:grid-cols-2 md:gap-6">
-              <div className="relative z-0 w-full mb-6 group">
+              <div className="relative z-0 w-full mb-6 group mt-2">
                 <input
                   name="last_name"
                   type="text"
@@ -166,7 +166,7 @@ const Signup = () => {
                   </p>
                 )}
               </div>
-              <div className="relative z-0 w-full mb-6 group">
+              <div className="relative z-0 w-full mb-6 group mt-2">
                 <input
                   name="first_name"
                   type="text"
@@ -297,7 +297,7 @@ const Signup = () => {
               onSubmit={handleSubmit}
               className="flex flex-col items-center h-auto translate-y-[-10%] w-[60%]"
             >
-              <div className="relative z-0 w-full mb-6 group">
+              <div className="relative z-0 w-full mb-6 group mt-5">
                 <input
                   name="phone"
                   type="tel"
@@ -319,7 +319,7 @@ const Signup = () => {
                   </p>
                 )}
               </div>
-              <div className="relative z-0 w-full mb-6 group">
+              <div className="relative z-0 w-full mb-6 group mt-5">
                 <input
                   name="password"
                   type="password"
@@ -341,7 +341,7 @@ const Signup = () => {
                   </p>
                 )}
               </div>
-              <div className="relative z-0 w-full mb-6 group">
+              <div className="relative z-0 w-full mb-6 group mt-5">
                 <input
                   name="confirm_password"
                   type="password"
@@ -364,7 +364,7 @@ const Signup = () => {
                 )}
               </div>
               <div className="grid md:grid-cols-2 md:gap-2">
-                <div className="relative z-0 w-full mb-6 group">
+                <div className="relative z-0 w-full mb-6 group mt-5">
                   <input
                     name="last_name"
                     type="text"
@@ -386,7 +386,7 @@ const Signup = () => {
                     </p>
                   )}
                 </div>
-                <div className="relative z-0 w-full mb-6 group">
+                <div className="relative z-0 w-full mb-6 group mt-5">
                   <input
                     name="first_name"
                     type="text"
