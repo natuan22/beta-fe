@@ -143,7 +143,7 @@ const TableThanhKhoan = () => {
       <section className="mt-1">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block w-full overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] xs:h-[340px] md:h-[340px] lg:h-[360px] xl:h-[379px] 2xl:min-h-[379px] bg-transparent">
+            <div className="block w-full overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] h-[379px] bg-transparent">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead className="sticky top-0">
                   <tr className="bg-[#1E5D8B]">
