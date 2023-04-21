@@ -126,6 +126,7 @@ const GeneralIndustry = () => {
                                             let color = getColor(item.day_change_percent);
                                             let color2 = getColor(item.week_change_percent);
                                             let color3 = getColor(item.month_change_percent);
+                                            let color4 = getColor(item.ytd);
 
                                             if (item.industry === "#N/A") {
                                                 return null;
@@ -165,12 +166,12 @@ const GeneralIndustry = () => {
                                                             {item.month_change_percent.toFixed(2)}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                                                    <td className={`${color4} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
-
+                                                            {getIcon(item.ytd)}
                                                         </span>
                                                         <span className="text-right px-px">
-
+                                                            {item.ytd.toFixed(2)}%
                                                         </span>
                                                     </td>
 
