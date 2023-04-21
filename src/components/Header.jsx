@@ -14,7 +14,7 @@ const Header = () => {
     <>
       <div className="z-50 relative">
         <nav className="bg-black">
-          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[85rem] mx-auto px-4 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -26,6 +26,7 @@ const Header = () => {
                     />
                   </a>
                 </div>
+                {/* phone */}
                 <div className="xl:hidden w-max">
                   <div className="ml-4 flex items-baseline space-x-0">
                     <NavLink
@@ -57,7 +58,7 @@ const Header = () => {
 
                       <Search
                         placeholder="Tìm mã chứng khoán"
-                        className="xs:w-[150px] md:w-[200px] lg:w-[200px]"
+                        className="xs:w-[100px] sm:w-[150px] md:w-[200px] lg:w-[200px]"
                       />
                     </div>
                   </div>
@@ -94,7 +95,7 @@ const Header = () => {
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
                           : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
-                      
+
                     >
                       Ngành
                     </NavLink>

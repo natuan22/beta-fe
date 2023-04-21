@@ -9,16 +9,12 @@ const InternationalIndex = () => {
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth >= '1920')
-        setSpeed(45)
-      else if (window.innerWidth >= '1440')
-        setSpeed(25)
-      else if (window.innerWidth >= '1024')
-        setSpeed(25)
-      else if (window.innerWidth >= '768')
-        setSpeed(15)
-      else if (window.innerWidth >= '425')
-        setSpeed(10)
+      if (window.innerWidth >= '1920') setSpeed(45)
+      else if (window.innerWidth >= '1440') setSpeed(25)
+      else if (window.innerWidth >= '1024') setSpeed(25)
+      else if (window.innerWidth >= '768') setSpeed(15)
+      else if (window.innerWidth >= '425') setSpeed(10)
+      else if (window.innerWidth >= '375') setSpeed(5)
     }
     handleResize()
 
@@ -29,7 +25,7 @@ const InternationalIndex = () => {
   return (
     <div className="bg-black pt-1">
       <Marquee
-       speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
+        speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
         <div className="flex">
           {dataInternationalIndex.data?.map((item, index) => {
             return (
