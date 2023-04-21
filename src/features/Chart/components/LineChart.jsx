@@ -8,8 +8,7 @@ const LineChart = (props) => {
   const data = props.data.map((item) => [
     item.tradingDate,
     item.indexValue,
-  ]); 
-  console.log(data)
+  ]);
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
     accessibility: {
@@ -42,7 +41,7 @@ const LineChart = (props) => {
           color: "#fff",
         },
       },
-      gridLineWidth:0.5,
+      gridLineWidth: 0.5,
 
     },
     xAxis: {

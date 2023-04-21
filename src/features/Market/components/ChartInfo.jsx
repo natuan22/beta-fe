@@ -77,7 +77,7 @@ const ChartInfo = () => {
                         <option value='3'>YtD</option>
                     </select>
                 </div>
-                <div className='mt-2'>
+                <div className='md:mt-2 lg:mt-[28px] xl:mt-2'>
                     <LineChartMarket data={dataChart} fmtDay={fmtDay} />
                 </div>
             </div>
