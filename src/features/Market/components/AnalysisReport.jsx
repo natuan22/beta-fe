@@ -16,8 +16,8 @@ function AnalysisReport() {
                             handleClick('coSo')
                         }}
                         className={activeButton === 'coSo'
-                            ? 'border-none bg-transparent relative text-white xs:text-[0.95rem] md:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white xs:text-[0.95rem] md:text-[1.1rem] cursor-pointer'}>Thị trường cơ sở
+                            ? 'border-none bg-transparent relative text-white xs:text-[0.8rem] sm:text-[0.95rem] md:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white xs:text-[0.8rem] sm:text-[0.95rem] md:text-[1.1rem] cursor-pointer'}>Thị trường cơ sở
                     </button>
                 </span>
                 <span className='pl-5'>
@@ -26,8 +26,8 @@ function AnalysisReport() {
                             handleClick('phaiSinh')
                         }}
                         className={activeButton === 'phaiSinh'
-                            ? 'border-none bg-transparent relative text-white xs:text-[0.95rem] md:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white xs:text-[0.95rem] md:text-[1.1rem] cursor-pointer'}>Thị trường phái sinh
+                            ? 'border-none bg-transparent relative text-white xs:text-[0.8rem] sm:text-[0.95rem] md:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white xs:text-[0.8rem] sm:text-[0.95rem] md:text-[1.1rem] cursor-pointer'}>Thị trường phái sinh
                     </button>
                 </span>
                 <span className='pl-5'>
@@ -36,8 +36,8 @@ function AnalysisReport() {
                             handleClick('doanhNghiep')
                         }}
                         className={activeButton === 'doanhNghiep'
-                            ? 'border-none bg-transparent relative text-white xs:text-[0.95rem] md:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white xs:text-[0.95rem] md:text-[1.1rem] cursor-pointer'}>Doanh nghiệp
+                            ? 'border-none bg-transparent relative text-white xs:text-[0.8rem] sm:text-[0.95rem] md:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white xs:text-[0.8rem] sm:text-[0.95rem] md:text-[1.1rem] cursor-pointer'}>Doanh nghiệp
                     </button>
                 </span>
             </div>

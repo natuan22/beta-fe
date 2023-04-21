@@ -56,20 +56,22 @@ const IndexMarket = () => {
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
                 <span className='text-white text-[0.9rem] pl-[2px]'>Top đóng góp điểm số theo: </span>
-                <select className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
-                  <option value="0">Cổ phiếu</option>
-                  <option value="1">Ngành LV1</option>
-                  <option value="2">Ngành LV2</option>
-                  <option value="3">Ngành LV3</option>
-                </select>
-                <select
-                  className={`bg-[#1B496D] ml-3 p-1 text-[0.9rem] text-white border-0`}
-                >
-                  <option value="1">Phiên gần nhất</option>
-                  <option value="2">5 phiên</option>
-                  <option value="3">1 tháng</option>
-                  <option value="4">YtD</option>
-                </select>
+                <div className="sm:block md:inline text-center">
+                  <select className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
+                    <option value="0">Cổ phiếu</option>
+                    <option value="1">Ngành LV1</option>
+                    <option value="2">Ngành LV2</option>
+                    <option value="3">Ngành LV3</option>
+                  </select>
+                  <select
+                    className={`bg-[#1B496D] ml-3 p-1 text-[0.9rem] text-white border-0`}
+                  >
+                    <option value="1">Phiên gần nhất</option>
+                    <option value="2">5 phiên</option>
+                    <option value="3">1 tháng</option>
+                    <option value="4">YtD</option>
+                  </select>
+                </div>
               </div>
               <div>
                 <BarChart />
@@ -78,7 +80,7 @@ const IndexMarket = () => {
 
             <div className="md:w-full xl:w-[416px]">
               <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
-                <span className="text-white text-[0.9rem] md:ml-[190px] lg:ml-[95px] xl:ml-[95px] 2xl:ml-[95px]">
+                <span className="text-white text-[0.9rem] xs:ml-[32px] sm:ml-[82px] md:ml-[190px] lg:ml-[95px] xl:ml-[95px] 2xl:ml-[95px]">
                   Diễn biến độ rộng thị trường
                 </span>
                 <select

@@ -53,7 +53,7 @@ const Footer = () => {
                         <div className="grid grid-cols-2">
                             <div className="w-full px-3">
                                 <div className="mb-6 w-full">
-                                    <h4 className="text-[#38B6FF] mb-6 xs:mb-[23px] md:mb-[45px] lg:mb-6 xl:mb-6 mb:text-base lg:text-lg font-semibold">Truy cập nhanh</h4>
+                                    <h4 className="text-[#38B6FF] mb-6 xs:mb-[43px] sm:mb-[24px] md:mb-[45px] lg:mb-6 xl:mb-6 mb:text-base lg:text-lg font-semibold">Truy cập nhanh</h4>
                                     <ul className="list-none">
                                         <li>
                                             <a href="/" className="no-underline text-white mb-2 inline-block mb:text-base lg:text-base xl:text-base leading-loose">
