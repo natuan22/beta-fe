@@ -12,7 +12,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <div className="z-50 relative">
+      <div className=" relative">
         <nav className="bg-black">
           <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
