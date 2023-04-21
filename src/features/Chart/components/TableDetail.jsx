@@ -26,7 +26,7 @@ const TableDetail = () => {
       <section>
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block w-full xs:h-[352px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px] bg-transparent">
+            <div className="block w-full xs:h-[342px] sm:h-[320px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px] bg-transparent">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead>
                   <tr className='bg-[#1E5D8B]'>
@@ -49,7 +49,7 @@ const TableDetail = () => {
                   {!loading ? (Array.isArray(data) &&
                     data.map((item, index) => {
                       let color = getColor(item.percent_d)
-                      
+
                       return (
                         <tr key={index} className='hover:bg-gray-800'>
                           <th className="text-left px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 text-white">

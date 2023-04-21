@@ -15,6 +15,7 @@ const News = () => {
       else if (window.innerWidth >= 1024) setSpeed(2);
       else if (window.innerWidth >= 768) setSpeed(1);
       else if (window.innerWidth >= 425) setSpeed(0.5);
+      else if (window.innerWidth >= 375) setSpeed(0.3);
     };
     handleResize();
 

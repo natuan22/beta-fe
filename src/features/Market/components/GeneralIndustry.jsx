@@ -53,41 +53,41 @@ const GeneralIndustry = () => {
                             dispatch(dispatch(fetchDataGeneralIndustry('all')))
                         }}
                         className={activeButton === 'all'
-                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>Toàn thị trường
+                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                     </button>
                 </span>
-                <span className="pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
                     <button
                         onClick={() => {
                             handleClick('HSX')
                             dispatch(dispatch(fetchDataGeneralIndustry('HSX')))
                         }}
                         className={activeButton === 'HSX'
-                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>HSX
+                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
-                <span className="pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
                     <button
                         onClick={() => {
                             handleClick('HNX')
                             dispatch(dispatch(fetchDataGeneralIndustry('HNX')))
                         }}
                         className={activeButton === 'HNX'
-                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>HNX
+                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
-                <span className="pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
                     <button
                         onClick={() => {
                             handleClick('UPCOM')
                             dispatch(dispatch(fetchDataGeneralIndustry('UPCOM')))
                         }}
                         className={activeButton === 'UPCOM'
-                            ? 'border-none bg-transparent relative text-white text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white text-[1.1rem] cursor-pointer'}>UPCOM
+                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                     </button>
                 </span>
             </div>
