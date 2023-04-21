@@ -19,7 +19,7 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(userLoginAction(loginInfo)); // gửi thông tin đăng nhập
-    console.log(loginInfo);
+    // console.log(loginInfo);
     setLoginInfo({ phone: "", password: "" }); // clear form
   };
 

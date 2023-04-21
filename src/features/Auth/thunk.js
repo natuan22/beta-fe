@@ -26,7 +26,7 @@ export const userRegisterAction = (formData) => async (dispatch) => {
     });
 
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     alert('Tài khoản đã tồn tại')
   }
 };
