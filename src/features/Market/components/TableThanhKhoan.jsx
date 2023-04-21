@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../Chart/utils/Loading";
 import socket from "../../Chart/utils/socket";
 import { fecthDataTableThanhKhoan } from "../thunk";
-import { Spin } from "antd";
 
 const TableThanhKhoan = () => {
   const { tableThanhKhoanData } = useSelector((state) => state.market);
@@ -191,7 +190,7 @@ const TableThanhKhoan = () => {
                       );
                     })
                   ) : (
-                    <tr><td colSpan={6}><div className="mt-16 text-center"><Spin /></div></td></tr>
+                    <tr><td colSpan={6}><div className="mt-16 text-center"><Loading /></div></td></tr>
                   )}
                 </tbody>
               </table>
