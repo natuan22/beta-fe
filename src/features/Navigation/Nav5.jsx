@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactFacebookLogin from "react-facebook-login";
 import axios from "axios";
 import LayOut from "../../HOCs/Layout";
+import Error404 from "./Error404";
 const Nav5 = () => {
 
   const [login, setLogin] = useState(false)
@@ -22,14 +23,15 @@ const Nav5 = () => {
   };
   return (
     <LayOut>
-      <div className="text-white">
+      <Error404 />
+      {/* <div className="text-white">
         <ReactFacebookLogin
           appId="6042058729222539"
           fields="name,email,picture"
           callback={responseFacebook}
         />
         {login ? <h1 className="text-white">Đã login</h1> : <h1 className="text-white">Chưa login</h1>}
-      </div>
+      </div> */}
     </LayOut>
   );
 };
