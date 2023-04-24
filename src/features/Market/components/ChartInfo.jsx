@@ -63,8 +63,8 @@ const ChartInfo = () => {
                 <div className='flex border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <div className='w-[345px]'>
                         <span className='text-white xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]'>{vnindexData && vnindexData.comGroupCode}</span>
-                        <span className={`${colorChange} xs:text-[0.6rem] sm:text-[0.8rem] md:text-[1rem] pl-[30px]`}>{vnindexData && vnindexData.indexValue}</span>
-                        <span className={`${colorChange} xs:text-[0.6rem] sm:text-[0.8rem] md:text-[1rem] pl-[30px]`}>{vnindexData && vnindexData.indexChange}/ {vnindexData && (vnindexData.percentIndexChange * 100).toFixed(2)}%</span>
+                        <span className={`${colorChange} xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>{vnindexData && vnindexData.indexValue}</span>
+                        <span className={`${colorChange} xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>{vnindexData && vnindexData.indexChange}/ {vnindexData && (vnindexData.percentIndexChange * 100).toFixed(2)}%</span>
                     </div>
                     <select className={`bg-[#1B496D] md:ml-[200px] lg:ml-3 xl:ml-3 2xl:ml-3 p-1 text-[1rem] text-white border-0`}
                         onChange={(event) => {
