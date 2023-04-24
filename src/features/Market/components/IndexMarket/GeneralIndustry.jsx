@@ -1,9 +1,9 @@
 import { CaretDownOutlined, CaretRightOutlined, CaretUpOutlined, } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataGeneralIndustry } from "../../Chart/thunk";
-import Loading from "../../Chart/utils/Loading";
-import '../../Market/utils/tabStyle.css'
+import { fetchDataGeneralIndustry } from "../../../Chart/thunk";
+import Loading from "../../../Chart/utils/Loading";
+import '../../../Market/utils/tabStyle.css'
 
 const GeneralIndustry = () => {
     const apiUrl = process.env.REACT_APP_BASE_URL;

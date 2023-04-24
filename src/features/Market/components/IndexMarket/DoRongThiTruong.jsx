@@ -3,8 +3,8 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
 import moment from "moment";
-import Loading from "../../Chart/utils/Loading";
-import socket from "../../Chart/utils/socket";
+import Loading from "../../../Chart/utils/Loading";
+import socket from "../../../Chart/utils/socket";
 
 const DoRongThiTruong = () => {
     const dataStackingChart = useSelector((state) => state.chart.dataStackingArea);
