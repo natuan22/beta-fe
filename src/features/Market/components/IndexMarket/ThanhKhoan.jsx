@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
-import socket from "../../Chart/utils/socket";
-import Loading from "../../Chart/utils/Loading";
+import socket from "../../../Chart/utils/socket";
+import Loading from "../../../Chart/utils/Loading";
 
 function ThanhKhoan() {
     const dataToday = useSelector((state) => state.chart.dataChart1);

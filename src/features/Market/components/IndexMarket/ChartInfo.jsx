@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchDataLineChart } from '../../Chart/thunk'
-import socket from '../../Chart/utils/socket'
+import { fetchDataLineChart } from '../../../Chart/thunk'
+import socket from '../../../Chart/utils/socket'
 import LineChartMarket from './LineChartMarket'
 
 const ChartInfo = () => {

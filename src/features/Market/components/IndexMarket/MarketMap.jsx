@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Chart } from "react-google-charts";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataMarketMap } from "../../Chart/thunk";
-import Loading from "../../Chart/utils/Loading";
+import { fetchDataMarketMap } from "../../../Chart/thunk";
+import Loading from "../../../Chart/utils/Loading";
 
 const ENUM = {
     vonhoa: '0',

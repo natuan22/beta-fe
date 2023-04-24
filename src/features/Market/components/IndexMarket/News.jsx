@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataNews } from '../../Chart/thunk';
-import Loading from '../../Chart/utils/Loading';
+import { fetchDataNews } from '../../../Chart/thunk';
+import Loading from '../../../Chart/utils/Loading';
 
 const News = () => {
     const dispatch = useDispatch()

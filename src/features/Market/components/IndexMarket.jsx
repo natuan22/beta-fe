@@ -1,14 +1,4 @@
-import React, { useEffect, useState } from "react";
-import BarChart from "../components/BarChart";
-import DoRongThiTruong from "../components/DoRongThiTruong";
-import TableDomesticIndex from "../components/TableDomesticIndex";
-import TableThanhKhoan from "../components/TableThanhKhoan";
-import ThanhKhoan from "../components/ThanhKhoan";
-import GeneralIndustry from "../components/GeneralIndustry";
-import News from "../components/News";
-import Events from "../components/Events";
-import ChartInfo from "../components/ChartInfo";
-import MarketMap from "../components/MarketMap";
+import React, { useEffect } from "react";
 import {
   fetchDataAreaChart1,
   fetchDataAreaChart2,
@@ -22,7 +12,17 @@ import {
   fetchDataWidthMarket,
 } from "../../Chart/thunk";
 import { useDispatch } from "react-redux";
-import AnalysisReport from "../components/AnalysisReport";
+import AnalysisReport from "./IndexMarket/AnalysisReport";
+import ChartInfo from "./IndexMarket/ChartInfo";
+import TableDomesticIndex from "./IndexMarket/TableDomesticIndex";
+import BarChart from "./IndexMarket/BarChart";
+import DoRongThiTruong from "./IndexMarket/DoRongThiTruong";
+import TableThanhKhoan from "./IndexMarket/TableThanhKhoan";
+import ThanhKhoan from "./IndexMarket/ThanhKhoan";
+import MarketMap from "./IndexMarket/MarketMap";
+import GeneralIndustry from "./IndexMarket/GeneralIndustry";
+import News from "./IndexMarket/News";
+import Events from "./IndexMarket/Events";
 
 const IndexMarket = () => {
   const dispatch = useDispatch();

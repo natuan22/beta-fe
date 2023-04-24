@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import Error404 from '../../Navigation/Error404'
-import CashFlowRatio from '../components/CashFlowRatio';
-import ExchangeableValue from '../components/ExchangeableValue';
-import IndustryCashFlow from '../components/IndustryCashFlow';
-import InvestorCashFlow from '../components/InvestorCashFlow';
-import LiquidityGrowth from '../components/LiquidityGrowth';
-import NetTransferValue from '../components/NetTransferValue';
-import TopCashFlow from '../components/TopCashFlow';
-import TransactionProgress from '../components/TransactionProgress';
-import TransactionValueRatio from '../components/TransactionValueRatio';
+import CashFlowRatio from '../components/CashFlow/CashFlowRatio'
+import ExchangeableValue from '../components/CashFlow/ExchangeableValue'
+import IndustryCashFlow from '../components/CashFlow/IndustryCashFlow'
+import InvestorCashFlow from '../components/CashFlow/InvestorCashFlow'
+import LiquidityGrowth from '../components/CashFlow/LiquidityGrowth'
+import NetTransferValue from '../components/CashFlow/NetTransferValue'
+import TopCashFlow from '../components/CashFlow/TopCashFlow'
+import TransactionProgress from '../components/CashFlow/TransactionProgress'
+import TransactionValueRatio from '../components/CashFlow/TransactionValueRatio'
 
 const IdentifyCash = () => {
   return (

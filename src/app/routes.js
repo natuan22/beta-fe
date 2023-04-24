@@ -18,7 +18,7 @@ import Nav2 from "../features/Navigation/Nav2";
 import Nav3 from "../features/Navigation/Nav3";
 import Nav4 from "../features/Navigation/Nav4";
 import Nav5 from "../features/Navigation/Nav5";
-import IndexMarket from "../features/Market/tabs/IndexMarket";
+import IndexMarket from "../features/Market/components/IndexMarket";
 
 export const routes = [
   { path: "/", component: Home },
