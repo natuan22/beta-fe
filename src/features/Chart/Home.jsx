@@ -47,25 +47,14 @@ import {
   fetchDataNews,
   fetchDataMarketEvaluation,
   fetchDataLineChart,
+  fetchDataLineChartHomePage,
 } from "./thunk";
 import LayOut from "../../HOCs/Layout";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const dataLineChart = useSelector((state) => state.chart.dataLineChart.vnindexData);
-  const [data, setData] = useState([])
 
-  useEffect(() => {
-    if (dataLineChart) {
-      setData(dataLineChart)
-    }
 
-    if (dataLineChart) {
-      socket.on("listen-chi-so-vnindex", (newData) => {
-        setData((prevData) => [...prevData, ...newData]);
-      });
-    }
-  }, [dataLineChart])
 
   useEffect(() => {
     dispatch(fetchDataEvents);
@@ -95,6 +84,7 @@ const Home = () => {
     dispatch(fetchDataWidthMarket("VNINDEX"));
     dispatch(fetchDataNetVolume("vnindex"));
     dispatch(fetchDataLineChart('0'))
+    dispatch(fetchDataLineChartHomePage())
   }, [dispatch]);
 
   return (
@@ -118,7 +108,7 @@ const Home = () => {
                     </div>
 
                     <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924] xs:h-[352px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px]">
-                      <LineChart data={data} fmtDay={'HH:mm'} />
+                      <LineChart  />
                     </div>
                     <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924]">
                       <div className="text-center bg-[#151924]">

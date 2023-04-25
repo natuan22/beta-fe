@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
-import socket from "../../../Chart/utils/socket";
 import { fecthDataTableThanhKhoan } from "../../thunk";
 
 const TableThanhKhoan = () => {

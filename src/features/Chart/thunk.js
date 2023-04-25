@@ -407,3 +407,18 @@ export const fetchDataMarketMap = (exchange, order) => async (dispatch) => {
     console.log(err);
   }
 }
+
+export const fetchDataLineChartHomePage = () =>async (dispatch) => {
+  try {
+    const res = await axios({
+      url:`${apiUrl}/api/v1/chart/vnindex-now`,
+      method:"GET",
+    })
+    dispatch({
+      type: 'beta/DATA_LINECHART_HOMEPAGE',
+      payload: res.data
+    })
+  }catch(err) {
+    console.log(err)
+  }
+}
