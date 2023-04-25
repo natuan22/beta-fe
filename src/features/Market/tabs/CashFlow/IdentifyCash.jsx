@@ -10,7 +10,6 @@ const IdentifyCash = () => {
         <div className='flex'>
           <div className="w-[60%]">
             <div className="grid grid-cols-[2fr_2fr]">
-
               <div className="mx-1 my-1 px-[8px] py-[8px] bg-[#151924] h-[300px]">
                 <LiquidityGrowth />
               </div>
