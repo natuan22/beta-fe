@@ -1,7 +1,7 @@
 import React from 'react'
-import Error404 from '../../Navigation/Error404'
+import Error404 from '../../../Navigation/Error404'
 
-const GoodsMarket = () => {
+const Evaluation = () => {
   return (
     <div className='container mx-auto'>
       <Error404 />
@@ -9,4 +9,4 @@ const GoodsMarket = () => {
   )
 }
 
-export default GoodsMarket
+export default Evaluation

@@ -12,17 +12,17 @@ import {
   fetchDataWidthMarket,
 } from "../../Chart/thunk";
 import { useDispatch } from "react-redux";
-import AnalysisReport from "./IndexMarket/AnalysisReport";
-import ChartInfo from "./IndexMarket/ChartInfo";
-import TableDomesticIndex from "./IndexMarket/TableDomesticIndex";
-import BarChart from "./IndexMarket/BarChart";
-import DoRongThiTruong from "./IndexMarket/DoRongThiTruong";
-import TableThanhKhoan from "./IndexMarket/TableThanhKhoan";
-import ThanhKhoan from "./IndexMarket/ThanhKhoan";
-import MarketMap from "./IndexMarket/MarketMap";
-import GeneralIndustry from "./IndexMarket/GeneralIndustry";
-import News from "./IndexMarket/News";
-import Events from "./IndexMarket/Events";
+import AnalysisReport from "../components/IndexMarket/AnalysisReport";
+import ChartInfo from "../components/IndexMarket/ChartInfo";
+import TableDomesticIndex from "../components/IndexMarket/TableDomesticIndex";
+import BarChart from "../components/IndexMarket/BarChart";
+import DoRongThiTruong from "../components/IndexMarket/DoRongThiTruong";
+import TableThanhKhoan from "../components/IndexMarket/TableThanhKhoan";
+import ThanhKhoan from "../components/IndexMarket/ThanhKhoan";
+import MarketMap from "../components/IndexMarket/MarketMap";
+import GeneralIndustry from "../components/IndexMarket/GeneralIndustry";
+import News from "../components/IndexMarket/News";
+import Events from "../components/IndexMarket/Events";
 
 const IndexMarket = () => {
   const dispatch = useDispatch();

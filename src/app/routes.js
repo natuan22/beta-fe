@@ -2,23 +2,23 @@ import Signin from "../features/Auth/Signin";
 import Signup from "../features/Auth/Signup";
 import Home from "../features/Chart/Home";
 import CashFlow from "../features/Market/tabs/CashFlow";
-import CryptocurrencyMarket from "../features/Market/tabs/CryptocurrencyMarket";
-import Efficiency from "../features/Market/tabs/Efficiency";
-import Evaluation from "../features/Market/tabs/Evaluation";
-import ForeignIndex from "../features/Market/tabs/ForeignIndex";
-import GoodsMarket from "../features/Market/tabs/GoodsMarket";
-import IdentifyCash from "../features/Market/tabs/IdentifyCash";
 import MarketForeign from "../features/Market/tabs/MarketForeign";
-import NonIdentifyCash from "../features/Market/tabs/NonIdentifyCash";
 import TechAndValuation from "../features/Market/tabs/TechAndValuation";
-import Technical from "../features/Market/tabs/Technical";
 import Market from "../features/Market/Market";
 import Nav1 from "../features/Navigation/Nav1";
 import Nav2 from "../features/Navigation/Nav2";
 import Nav3 from "../features/Navigation/Nav3";
 import Nav4 from "../features/Navigation/Nav4";
 import Nav5 from "../features/Navigation/Nav5";
-import IndexMarket from "../features/Market/components/IndexMarket";
+import IndexMarket from "../features/Market/tabs/IndexMarket";
+import NonIdentifyCash from "../features/Market/tabs/CashFlow/NonIdentifyCash";
+import IdentifyCash from "../features/Market/tabs/CashFlow/IdentifyCash";
+import Technical from "../features/Market/tabs/TechAndValuation/Technical";
+import Efficiency from "../features/Market/tabs/TechAndValuation/Efficiency";
+import Evaluation from "../features/Market/tabs/TechAndValuation/Evaluation";
+import ForeignIndex from "../features/Market/tabs/MarketForeign/ForeignIndex";
+import GoodsMarket from "../features/Market/tabs/MarketForeign/GoodsMarket";
+import CryptocurrencyMarket from "../features/Market/tabs/MarketForeign/CryptocurrencyMarket";
 
 export const routes = [
   { path: "/", component: Home },
