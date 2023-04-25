@@ -139,10 +139,10 @@ const GeneralIndustry = () => {
                                             let total = numOfHigh + numOfLow + numOfIncrease + numOfDecrease + numOfEqual;
                                             return (
                                                 <tr key={index} className="hover:bg-gray-800">
-                                                    <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
+                                                    <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-1 py-2.5`}>
                                                         {item.industry}
                                                     </th>
-                                                    <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2.5 font-semibold`}>
+                                                    <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.day_change_percent)}
                                                         </span>
@@ -150,7 +150,7 @@ const GeneralIndustry = () => {
                                                             {item.day_change_percent.toFixed(2)}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                                                    <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.week_change_percent)}
                                                         </span>
@@ -158,7 +158,7 @@ const GeneralIndustry = () => {
                                                             {item.week_change_percent.toFixed(2)}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                                                    <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.month_change_percent)}
                                                         </span>
@@ -166,7 +166,7 @@ const GeneralIndustry = () => {
                                                             {item.month_change_percent.toFixed(2)}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color4} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                                                    <td className={`${color4} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.ytd)}
                                                         </span>
@@ -175,7 +175,7 @@ const GeneralIndustry = () => {
                                                         </span>
                                                     </td>
 
-                                                    <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-2 py-2  ">
+                                                    <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-1 py-2  ">
                                                         <div
                                                             className="flex relative"
                                                             onMouseOver={() => handleMouseOver(index)}
