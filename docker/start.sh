@@ -11,6 +11,6 @@ sed -i -e "$CONFIG_ARGS" .env
 
 npm i -g serve
 
-serve -l -s 3000
+serve -s -l 3000 build
 
 exec "$@"
