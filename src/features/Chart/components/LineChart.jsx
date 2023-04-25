@@ -19,12 +19,10 @@ const LineChart = () => {
 
     if (dataLineChartHomePage?.data?.length) {
       socket.on("listen-chi-so-vnindex", (newData) => {
-        console.log(newData)
         setDataRealTime((prevData) => [...prevData, ...newData]);
       });
     }
   }, [dataLineChartHomePage.data])
-  console.log(dataRealTime)
   const data = dataRealTime?.map(item => {
     return [item.tradingDate, item.indexValue ]
   })
@@ -83,6 +81,13 @@ const LineChart = () => {
     legend: {
       enabled: false, // Tắt chú thích
     },
+    plotOptions:{
+      series:{
+        marker:{
+          radius: 2
+        }
+      }
+    }
   };
   return (
     <div id="chart-container" className="h-[350px] ">

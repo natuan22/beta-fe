@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Banner from "./components/Banner";
 import BarChartLeft from "./components/BarChartLeft";
 import BarChartRight from "./components/BarChartRight";
@@ -24,7 +24,6 @@ import NetVolumeTrade from "./components/NetVolumeTrade";
 import TableMarketLiquidity from "./components/TableMarketLiquidity";
 import News from "./components/News";
 import TableMarketEvaluation from "./components/TableMarketEvaluation";
-import socket from "./utils/socket";
 import {
   fetchDataInternationalIndex,
   fetchDataTableDetail,
@@ -50,6 +49,7 @@ import {
   fetchDataLineChartHomePage,
 } from "./thunk";
 import LayOut from "../../HOCs/Layout";
+// import TableTest from "./ElecticTable/TableTest";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -378,6 +378,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
+            {/* <TableTest /> */}
             <Footer />
           </div>
         </div>

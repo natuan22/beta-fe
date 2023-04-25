@@ -41,7 +41,7 @@ export const marketRoute = [
     path: "thi-truong",
     component: Market,
     children: [
-      { path: "", component: IndexMarket },
+      
       { path: "chi-so-thi-truong", component: IndexMarket },
       {
         path: "dong-tien-thi-truong",
