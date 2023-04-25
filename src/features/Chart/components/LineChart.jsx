@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import socket from "../utils/socket";
 
 const LineChart = () => {
-  const [dataRealTime , setDataRealTime] = useState([])
+  const [dataRealTime, setDataRealTime] = useState([])
   const { dataLineChartHomePage } = useSelector((state) => state.chart);
   useEffect(() => {
     if (dataLineChartHomePage?.data?.length) {
@@ -24,7 +24,7 @@ const LineChart = () => {
     }
   }, [dataLineChartHomePage.data])
   const data = dataRealTime?.map(item => {
-    return [item.tradingDate, item.indexValue ]
+    return [item.tradingDate, item.indexValue]
   })
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
@@ -98,7 +98,7 @@ const LineChart = () => {
           containerProps={{ style: { height: "100%", width: "100%" } }}
         />
       ) : (
-        <Loading />
+        <div className="mt-28"><Loading /></div>
       )}
     </div>
   );
