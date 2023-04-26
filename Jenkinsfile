@@ -3,7 +3,7 @@ pipeline {
     environment {
         registryUrl = "https://index.docker.io/v1/"
         credentialsId = "DOCKER_CE_HUB"
-        VERSION = sh(returnStdout: true, script: "cat package.json | jq -r '.version'").trim()
+        VERSION = sh(returnStdout: true, script: "cat package.json | jq -r '.version'").tri m()
     }
     stages {
         stage('Checkout') {
@@ -27,10 +27,13 @@ pipeline {
         }
 
         stage('Build and Push Docker Image') {
+            options {
+                timeout(time: 30, unit: 'MINUTES')
+            }
             steps {
                 script {
                     withDockerRegistry([credentialsId: credentialsId, url: registryUrl]) {
-                        def dockerImage = docker.build("ngthminhdev/stock-client-demo:${VERSION}", "./docker")
+                        def dockerImage = docker.build("ngthminhdev/b-info-frontend:${VERSION}", "./docker")
                         dockerImage.push()
                     }
                 }
