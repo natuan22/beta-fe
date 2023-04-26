@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Table } from 'antd';
 import { useSelector } from 'react-redux';
 
 
 const TableTest = () => {
+    const [oldData, setOldData] = useState()
+    const [newData, setNewData] = useState()
     const {dataTableDetail} = useSelector(state => state.chart )
     // console.log(dataTableDetail.data)
     const columns = [
@@ -14,9 +16,7 @@ const TableTest = () => {
         {
             title: 'Điểm',
             dataIndex: 'price',
-            render: (text, item) => {
-
-            },
+          
             sorter: {
                 compare: (a, b) => a.chinese - b.chinese,
                 multiple: 3,
