@@ -11,6 +11,12 @@ const MarketBreadth = () => {
     const [data, setData] = useState([]);
     const [activeButton, setActiveButton] = useState('HOSE')
     const handleClick = (button) => { setActiveButton(button) }
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color]);
 
     useEffect(() => {
         // Lấy dữ liệu ban đầu từ API
@@ -111,7 +117,7 @@ const MarketBreadth = () => {
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
         },
@@ -119,12 +125,12 @@ const MarketBreadth = () => {
             title: {
                 text: "",
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
                 formatter: function () {
                     return this.value + "%";
@@ -133,7 +139,7 @@ const MarketBreadth = () => {
         },
         legend: {
             itemStyle: {
-                color: "#fff",
+                color: colorText,
             },
             enabled: true,
             labelFormatter: function () {

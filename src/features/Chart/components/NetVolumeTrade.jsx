@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,12 @@ const NetVolumeTrade = () => {
   const dispatch = useDispatch();
   const dataNetVolume = useSelector((state) => state.chart.dataNetVolume);
   const [title, setTitle] = useState('VNINDEX')
+  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const color = useSelector((state) => state.color.colorText);
+
+  useEffect(() => {
+    setColorText(color);
+  }, [color]);
   if (!dataNetVolume.data || !dataNetVolume.data.length)
     return <>
       <div className="h-[300px]">
@@ -70,26 +76,26 @@ const NetVolumeTrade = () => {
       categories: timeLine.reverse(),
       labels: {
         style: {
-          color: '#fff' // màu cho các nhãn trục x
+          color: colorText // màu cho các nhãn trục x
         }
       },
       title: {
         style: {
-          color: '#fff' // màu cho tiêu đề trục x
+          color: colorText // màu cho tiêu đề trục x
         }
       }
     },
     yAxis: [
       {
         title: {
-          text: "T VNĐ",
+          text: "Tỷ VNĐ",
           style: {
-            color: "#fff",
+            color: colorText,
           },
         },
         labels: {
           style: {
-            color: '#fff' // màu cho các nhãn trục y
+            color: colorText // màu cho các nhãn trục y
           }
         }
       },
@@ -97,12 +103,12 @@ const NetVolumeTrade = () => {
         title: {
           text: "",
           style: {
-            color: "#fff",
+            color: colorText,
           },
         },
         labels: {
           style: {
-            color: '#fff' // màu cho các nhãn trục y
+            color: colorText // màu cho các nhãn trục y
           }
         },
         opposite: true,
@@ -112,7 +118,7 @@ const NetVolumeTrade = () => {
     legend: {
       align: 'center',
       itemStyle: {
-        color: '#fff'
+        color: colorText
       }
     },
     series: [

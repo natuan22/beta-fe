@@ -7,6 +7,12 @@ import socket from "../utils/socket";
 import { timeStackingChart15h00, timeStackingChart9h15 } from "../../../helper/dateTime.helper";
 
 const StackingAreas = () => {
+  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const color = useSelector((state) => state.color.colorText);
+
+  useEffect(() => {
+    setColorText(color);
+  }, [color]);
   const dataStackingChart = useSelector(
     (state) => state.chart.dataStackingArea
   );
@@ -85,7 +91,7 @@ const StackingAreas = () => {
         //   return moment.utc(this.value).format("HH:mm");
         // },
         style: {
-          color: "#fff",
+          color: colorText,
         },
         rotation: -45
       },
@@ -104,12 +110,12 @@ const StackingAreas = () => {
       title: {
         text: "",
         style: {
-          color: "#fff",
+          color: colorText,
         },
       },
       labels: {
         style: {
-          color: "#fff",
+          color: colorText,
         },
         formatter: function () {
           return this.value + "%";
@@ -118,7 +124,7 @@ const StackingAreas = () => {
     },
     legend: {
       itemStyle: {
-        color: "#fff",
+        color: colorText,
       },
       enabled: true,
       labelFormatter: function () {

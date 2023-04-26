@@ -354,12 +354,13 @@ export const fetchDataMarketEvaluation = async (dispatch) => {
   }
 }
 
-export const fetchDataLineChart = (type) => async (dispatch) => {
+export const fetchDataLineChart = (index, type) => async (dispatch) => {
   try {
     const res = await axios({
-      url: `${apiUrl}/api/v1/chart/vnindex`,
+      url: `${apiUrl}/api/v1/chart/line-chart`,
       method: "GET",
       params: {
+        index,
         type
       }
     })
@@ -408,17 +409,17 @@ export const fetchDataMarketMap = (exchange, order) => async (dispatch) => {
   }
 }
 
-export const fetchDataLineChartHomePage = () =>async (dispatch) => {
+export const fetchDataLineChartHomePage = () => async (dispatch) => {
   try {
     const res = await axios({
-      url:`${apiUrl}/api/v1/chart/vnindex-now`,
-      method:"GET",
+      url: `${apiUrl}/api/v1/chart/vnindex-now`,
+      method: "GET",
     })
     dispatch({
       type: 'beta/DATA_LINECHART_HOMEPAGE',
       payload: res.data
     })
-  }catch(err) {
+  } catch (err) {
     console.log(err)
   }
 }

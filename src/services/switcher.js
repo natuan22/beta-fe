@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { useDarkSide, useDarkTextChart } from "./useDarkMode";
 
 export default function Switcher() {
+    const dispatch = useDispatch()
     const [colorTheme, setTheme] = useDarkSide();
     const [darkSide, setDarkSide] = useState(
         colorTheme === "light" ? true : false
@@ -13,6 +15,7 @@ export default function Switcher() {
         setTheme(colorTheme);
         setDarkSide(checked);
         setColorText(colorText);
+        dispatch({ type: 'beta/GET_COLOR', payload: colorText })
     };
 
     return (

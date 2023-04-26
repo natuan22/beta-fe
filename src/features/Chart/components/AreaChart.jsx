@@ -8,6 +8,12 @@ function AreaChart() {
   const dataToday = useSelector((state) => state.chart.dataChart1);
   const dataPreviousDay = useSelector((state) => state.chart.dataChart2);
   const [dataSocket, setDataSocket] = useState([]);
+  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const color = useSelector((state) => state.color.colorText);
+
+  useEffect(() => {
+    setColorText(color);
+  }, [color]);
   useEffect(() => {
     if (!dataToday && !dataToday.length) return
     if (dataToday) {
@@ -42,12 +48,12 @@ function AreaChart() {
       title: {
         text: "Thời gian",
         style: {
-          color: "#fff",
+          color: colorText,
         },
       },
       labels: {
         style: {
-          color: "#fff",
+          color: colorText,
         },
       },
     },
@@ -55,22 +61,22 @@ function AreaChart() {
       title: {
         text: "Giá trị (tỷ VNĐ)",
         style: {
-          color: "#fff",
+          color: colorText,
         },
       },
       labels: {
         style: {
-          color: "#fff",
+          color: colorText,
         },
       },
     },
 
     legend: {
       itemStyle: {
-        color: "#fff",
+        color: colorText,
       },
     },
-    
+
     series: [
       {
         name: "Phiên trước",
