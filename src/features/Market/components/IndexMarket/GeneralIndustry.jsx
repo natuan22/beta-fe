@@ -45,7 +45,7 @@ const GeneralIndustry = () => {
 
     return (
         <>
-            <div className="pt-3 mb-3 text-white">
+            <div className="pt-3 mb-3 dark:text-white text-black">
                 <span>
                     <button
                         onClick={() => {
@@ -53,8 +53,8 @@ const GeneralIndustry = () => {
                             dispatch(dispatch(fetchDataGeneralIndustry('all')))
                         }}
                         className={activeButton === 'all'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -64,8 +64,8 @@ const GeneralIndustry = () => {
                             dispatch(dispatch(fetchDataGeneralIndustry('HSX')))
                         }}
                         className={activeButton === 'HSX'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -75,8 +75,8 @@ const GeneralIndustry = () => {
                             dispatch(dispatch(fetchDataGeneralIndustry('HNX')))
                         }}
                         className={activeButton === 'HNX'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -86,15 +86,15 @@ const GeneralIndustry = () => {
                             dispatch(dispatch(fetchDataGeneralIndustry('UPCOM')))
                         }}
                         className={activeButton === 'UPCOM'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                     </button>
                 </span>
             </div>
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-                        <div className="block w-full scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll bg-transparent h-[313px]">
+                        <div className="block w-full scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[313px]">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                     <tr>
@@ -138,11 +138,11 @@ const GeneralIndustry = () => {
                                             let numOfEqual = item.equal;
                                             let total = numOfHigh + numOfLow + numOfIncrease + numOfDecrease + numOfEqual;
                                             return (
-                                                <tr key={index} className="hover:bg-gray-800">
-                                                    <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
+                                                <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
+                                                    <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-1 py-2.5`}>
                                                         {item.industry}
                                                     </th>
-                                                    <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2.5 font-semibold`}>
+                                                    <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.day_change_percent)}
                                                         </span>
@@ -150,7 +150,7 @@ const GeneralIndustry = () => {
                                                             {item.day_change_percent.toFixed(2)}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                                                    <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.week_change_percent)}
                                                         </span>
@@ -158,7 +158,7 @@ const GeneralIndustry = () => {
                                                             {item.week_change_percent.toFixed(2)}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                                                    <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.month_change_percent)}
                                                         </span>
@@ -166,7 +166,7 @@ const GeneralIndustry = () => {
                                                             {item.month_change_percent.toFixed(2)}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color4} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                                                    <td className={`${color4} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.ytd)}
                                                         </span>
@@ -175,7 +175,7 @@ const GeneralIndustry = () => {
                                                         </span>
                                                     </td>
 
-                                                    <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-2 py-2  ">
+                                                    <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-1 py-2  ">
                                                         <div
                                                             className="flex relative"
                                                             onMouseOver={() => handleMouseOver(index)}
@@ -240,7 +240,7 @@ const GeneralIndustry = () => {
             </section>
             <hr />
             <div className='text-center py-2'>
-                <span className='text-white'>Lực mua
+                <span className='dark:text-white text-black'>Lực mua
                     {isHovering === true && (
                         <span className="text-green-500"> {((buySellData.buyPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100).toFixed(2)}%</span>
                     )} - bán

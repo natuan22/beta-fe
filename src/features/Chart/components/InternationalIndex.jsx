@@ -23,7 +23,7 @@ const InternationalIndex = () => {
   }, []);
 
   return (
-    <div className="bg-black pt-1">
+    <div className="dark:bg-black bg-white pt-1">
       <Marquee
         speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
         <div className="flex">

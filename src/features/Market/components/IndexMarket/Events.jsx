@@ -21,7 +21,7 @@ const Events = () => {
 
     return (
         <>
-            <div className="pt-3 mb-3 text-white">
+            <div className="pt-3 mb-3 dark:text-white text-black">
                 <span>
                     <button
                         onClick={() => {
@@ -29,8 +29,8 @@ const Events = () => {
                             setData(dataEvents.data)
                         }}
                         className={activeButton === 'all'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -40,8 +40,8 @@ const Events = () => {
                             setData(dataEvents.data.filter(item => item.san === 'HOSE'))
                         }}
                         className={activeButton === 'HSX'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -51,8 +51,8 @@ const Events = () => {
                             setData(dataEvents.data.filter(item => item.san === 'HNX'))
                         }}
                         className={activeButton === 'HNX'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -62,15 +62,15 @@ const Events = () => {
                             setData(dataEvents.data.filter(item => item.san === 'UPCoM'))
                         }}
                         className={activeButton === 'UPCOM'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                     </button>
                 </span>
             </div>
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
-                        <div className="block w-full h-[600px] scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll bg-transparent">
+                        <div className="block w-full h-[600px] scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-transparent overflow-y-scroll bg-transparent">
                             <table className="items-center bg-transparent w-full border-collapse">
                                 <thead className="sticky top-0 bg-[#1E5D8B]">
                                     <tr>
@@ -93,17 +93,17 @@ const Events = () => {
                                     {!loading ? (Array.isArray(data) &&
                                         data.map((item, index) => {
                                             return (
-                                                <tr key={index} className='hover:bg-gray-800'>
-                                                    <th className="text-center align-middle text-[0.8rem] whitespace-nowrap p-3.5 text-white">
+                                                <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                                                    <th className="text-center align-middle text-[0.8rem] whitespace-nowrap p-3.5 dark:text-white text-black">
                                                         {item.ticker}
                                                     </th>
-                                                    <td className="text-center align-middle text-[0.8rem] whitespace-nowrap p-3.5 text-white">
+                                                    <td className="text-center align-middle text-[0.8rem] whitespace-nowrap p-3.5 dark:text-white text-black">
                                                         {item.LoaiSuKien}
                                                     </td>
-                                                    <td className="text-center align-center text-[0.8rem] whitespace-nowrap p-3.5 text-white">
+                                                    <td className="text-center align-center text-[0.8rem] whitespace-nowrap p-3.5 dark:text-white text-black">
                                                         {formatDate(new Date(Date.parse(item.NgayDKCC)))}
                                                     </td>
-                                                    <td className="text-left align-middle text-[0.8rem] p-3.5 text-white">
+                                                    <td className="text-left align-middle text-[0.8rem] p-3.5 dark:text-white text-black">
                                                         {item.NoiDungSuKien}
                                                     </td>
                                                 </tr>

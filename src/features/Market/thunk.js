@@ -12,3 +12,15 @@ export const fecthDataTableThanhKhoan = (exchange, type, order) => async (dispat
         console.log(err)
     }
 }
+
+export const fetchChartTickerContribute = (exchange, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchChartTickerContribute(exchange, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_TICKER_CONTRIBUTE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
