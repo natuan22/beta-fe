@@ -3,13 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { fecthDataTableThanhKhoan } from "../../thunk";
 
-const TableThanhKhoan = () => {
-  const { tableThanhKhoanData } = useSelector((state) => state.market);
+const TableLiquidity = () => {
   const dispatch = useDispatch();
+  const { tableThanhKhoanData } = useSelector((state) => state.market);
   const [activeButton, setActiveButton] = useState("1day");
-  const dataTable = useSelector((state) => state.chart.dataTableDetail);
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [queryApi, setQueryApi] = useState({
     exchange: "ALL",
     type: 0,
@@ -45,12 +42,7 @@ const TableThanhKhoan = () => {
   const handleQueryApiExchange = (exchange) => {
     setQueryApi((prev) => ({ ...prev, exchange }));
   };
-  useEffect(() => {
-    if (dataTable.data) {
-      setLoading(false);
-      setData(dataTable.data);
-    }
-  }, [dataTable]);
+  
   return (
     <>
       <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2">
@@ -201,7 +193,7 @@ const TableThanhKhoan = () => {
   );
 };
 
-export default TableThanhKhoan;
+export default TableLiquidity;
 
 function getColor(item) {
   let color = "";

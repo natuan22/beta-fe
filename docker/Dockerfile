@@ -1,5 +1,5 @@
 #Base image
-FROM node:latest
+FROM node:16.18.0
 
 USER root
 COPY ["SERVICE.tgz", "/SERVICE.tgz"]
@@ -10,8 +10,8 @@ RUN ln -fns /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime && echo Asis/Ho_
 
 RUN tar -xzf SERVICE.tgz --directory /SERVICE && rm SERVICE.tgz
 
-ENV REACT_APP_BASE_URL=${REACT_APP_BASE_URL}
-ENV REACT_APP_SOCKET_URL=${REACT_APP_SOCKET_URL}
+ENV REACT_APP_BASE_URL=http://binfo.bsi.com.vn
+ENV REACT_APP_SOCKET_URL=http://192.168.13.20:3002/socket
 
 RUN chmod -R 775 /SERVICE
 

@@ -16,13 +16,14 @@ import AnalysisReport from "../components/IndexMarket/AnalysisReport";
 import ChartInfo from "../components/IndexMarket/ChartInfo";
 import TableDomesticIndex from "../components/IndexMarket/TableDomesticIndex";
 import BarChart from "../components/IndexMarket/BarChart";
-import DoRongThiTruong from "../components/IndexMarket/DoRongThiTruong";
-import TableThanhKhoan from "../components/IndexMarket/TableThanhKhoan";
+import TableThanhKhoan from "../components/IndexMarket/TableLiquidity";
 import ThanhKhoan from "../components/IndexMarket/ThanhKhoan";
 import MarketMap from "../components/IndexMarket/MarketMap";
 import GeneralIndustry from "../components/IndexMarket/GeneralIndustry";
 import News from "../components/IndexMarket/News";
 import Events from "../components/IndexMarket/Events";
+import MarketBreadth from "../components/IndexMarket/MarketBreadth";
+import TableLiquidity from "../components/IndexMarket/TableLiquidity";
 
 const IndexMarket = () => {
   const dispatch = useDispatch();
@@ -54,52 +55,18 @@ const IndexMarket = () => {
           </div>
           <div className="lg:hidden xl:block mx-1 my-1 px-[8px] py-[8px] bg-[#151924]">
             <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
-                <span className='text-white text-[0.9rem] pl-[2px]'>Top đóng góp điểm số theo: </span>
-                <div className="sm:block md:inline text-center">
-                  <select className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
-                    <option value="0">Cổ phiếu</option>
-                    <option value="1">Ngành LV1</option>
-                    <option value="2">Ngành LV2</option>
-                    <option value="3">Ngành LV3</option>
-                  </select>
-                  <select
-                    className={`bg-[#1B496D] ml-3 p-1 text-[0.9rem] text-white border-0`}
-                  >
-                    <option value="1">Phiên gần nhất</option>
-                    <option value="2">5 phiên</option>
-                    <option value="3">1 tháng</option>
-                    <option value="4">YtD</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <BarChart />
-              </div>
+              <BarChart />
             </div>
 
             <div className="md:w-full xl:w-[416px]">
-              <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
-                <span className="text-white text-[0.9rem] xs:ml-[32px] sm:ml-[82px] md:ml-[190px] lg:ml-[95px] xl:ml-[95px] 2xl:ml-[95px]">
-                  Diễn biến độ rộng thị trường
-                </span>
-                <select
-                  className={`bg-[#1B496D] ml-[17px] p-1 text-[0.9rem] text-white border-0`}
-                >
-                  <option value="1">Phiên gần nhất</option>
-                  <option value="2">01 tháng</option>
-                  <option value="3">01 quý</option>
-                  <option value="4">01 năm</option>
-                </select>
-              </div>
               <div>
-                <DoRongThiTruong />
+                <MarketBreadth />
               </div>
             </div>
           </div>
           <div className="mx-1 my-1 px-[8px] py-[8px] bg-[#151924]">
             <div className="pt-2">
-              <TableThanhKhoan />
+              <TableLiquidity />
             </div>
             <hr />
             <div>
@@ -113,48 +80,16 @@ const IndexMarket = () => {
           </div>
         </div>
 
-        <div className="xs:hidden md:hidden lg:flex xl:hidden my-1.5 mx-1 px-[8px] py-[8px] bg-[#151924] ">
-          <div className="w-[50%]">
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
-              <span className="text-white text-[0.9rem]">Top đóng góp điểm số theo: </span>
-              <select
-                className={`bg-[#151924] text-[0.9rem] text-[#0097B2] border-0 ml-[15px]`}
-              >
-                <option value="0">Cổ phiếu</option>
-                <option value="1">Ngành LV1</option>
-                <option value="2">Ngành LV2</option>
-                <option value="3">Ngành LV3</option>
-              </select>
-              <select
-                className={`bg-[#1B496D] ml-[15px] p-1 text-[0.9rem] text-white border-0`}
-              >
-                <option value="1">Phiên gần nhất</option>
-                <option value="2">5 phiên</option>
-                <option value="3">1 tháng</option>
-                <option value="4">YtD</option>
-              </select>
-            </div>
+        <div className="xs:hidden md:hidden lg:flex xl:hidden ">
+          <div className="w-[50%] my-1.5 mx-1 px-[8px] py-[8px] bg-[#151924]">
             <div>
               <BarChart />
             </div>
           </div>
 
-          <div className="w-[50%]">
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
-              <span className="text-white text-[0.9rem] ml-[120px]">
-                Diễn biến độ rộng thị trường
-              </span>
-              <select
-                className={`bg-[#1B496D] ml-[20px] p-1 text-[0.9rem] text-white border-0`}
-              >
-                <option value="1">Phiên gần nhất</option>
-                <option value="2">01 tháng</option>
-                <option value="3">01 quý</option>
-                <option value="4">01 năm</option>
-              </select>
-            </div>
+          <div className="w-[50%] my-1.5 mx-1 px-[8px] py-[8px] bg-[#151924]">
             <div>
-              <DoRongThiTruong />
+              <MarketBreadth />
             </div>
           </div>
         </div>
