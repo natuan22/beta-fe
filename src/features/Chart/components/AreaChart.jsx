@@ -70,6 +70,7 @@ function AreaChart() {
         color: "#fff",
       },
     },
+    
     series: [
       {
         name: "Phiên trước",

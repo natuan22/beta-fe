@@ -3,7 +3,6 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
-import moment from "moment";
 import socket from "../utils/socket";
 import { timeStackingChart15h00, timeStackingChart9h15 } from "../../../helper/dateTime.helper";
 

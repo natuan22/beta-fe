@@ -49,7 +49,7 @@ import {
   fetchDataLineChartHomePage,
 } from "./thunk";
 import LayOut from "../../HOCs/Layout";
-// import TableTest from "./ElecticTable/TableTest";
+import TableTest from "./ElecticTable/TableTest";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -378,7 +378,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-            {/* <TableTest /> */}
+            <TableTest />
             <Footer />
           </div>
         </div>
