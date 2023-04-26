@@ -151,10 +151,10 @@ const NetVolumeTrade = () => {
     <>
       <div className="bg-transparent pt-2">
         <div className="bg-transparent text-center px-20 py-[10px]">
-          <span className="font-semibold text-base uppercase text-white">
+          <span className="font-semibold text-base uppercase dark:text-white text-black">
             Giá trị giao dịch ròng
           </span>
-          <select className={`bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          <select className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
             onChange={(event) => {
               dispatch(fetchDataNetVolume(event.target.value));
               setTitle(event.target.value)

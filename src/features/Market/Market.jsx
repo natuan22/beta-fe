@@ -22,7 +22,7 @@ const Market = () => {
       setBannerDisplay(false);
     }
   }, [location]);
-  console.log(bannerDisplay)
+
   useEffect(() => {
     dispatch(fetchDataNews);
     dispatch(fetchDataInternationalIndex);
@@ -44,9 +44,9 @@ const Market = () => {
             <Outlet />
           </div>
         </div>
-        <div className="p-5" >
+        <div>
           {bannerDisplay ?
-            <div className="flex flex-col justify-center items-center">
+            <div className="pt-5 pb-2 flex flex-col justify-center items-center">
               <div>
                 <img className="w-[500px] h-[350px] mr-5" src={`${apiUrl}/resources/images/advertise.png`} alt="imgAdvertise" />
                 <img className="w-[500px] h-[350px]" src={`${apiUrl}/resources/images/advertise1.png`} alt="imgAdvertise" />

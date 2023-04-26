@@ -35,13 +35,13 @@ const BarChart = () => {
     if (!chartTickerContribute.length) {
         return <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
-                <span className='text-white text-[0.9rem] pl-[2px]'>Top đóng góp điểm số theo: </span>
+                <span className='dark:text-white text-black text-[0.9rem] pl-[2px]'>Top đóng góp điểm số theo: </span>
                 <div className="sm:block md:inline text-center">
                     <select
                         onChange={(e) => {
                             handleQueryApiType(e.target.value);
                         }}
-                        className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
+                        className={`bg-transparent text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
                         <option value="0">Cổ phiếu</option>
                         <option value="1">Ngành LV1</option>
                         <option value="2">Ngành LV2</option>
@@ -51,7 +51,7 @@ const BarChart = () => {
                         onChange={(e) => {
                             handleQueryApiOrder(e.target.value);
                         }}
-                        className={`bg-[#1B496D] ml-3 p-1 text-[0.9rem] text-white border-0`}
+                        className={`bg-[#1B496D] ml-2 p-1 text-[0.9rem] text-white border-0`}
                     >
                         <option value="0">Phiên gần nhất</option>
                         <option value="1">5 phiên</option>
@@ -60,7 +60,7 @@ const BarChart = () => {
                     </select>
                 </div>
             </div>
-            <div className="mt-1 mb-3 text-white">
+            <div className="mt-1 mb-3 dark:text-white text-black">
                 <span>
                     <button
                         onClick={() => {
@@ -68,8 +68,8 @@ const BarChart = () => {
                             handleQueryApiExchange('HOSE')
                         }}
                         className={activeButton === 'HOSE'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -79,8 +79,8 @@ const BarChart = () => {
                             handleQueryApiExchange('HNX')
                         }}
                         className={activeButton === 'HNX'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -90,8 +90,8 @@ const BarChart = () => {
                             handleQueryApiExchange('UPCOM')
                         }}
                         className={activeButton === 'UPCOM'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                     </button>
                 </span>
             </div>
@@ -103,12 +103,13 @@ const BarChart = () => {
         </>
     }
 
-    if (handleQueryType == '1' || handleQueryType == '2' || handleQueryType == '3') {
+    if (chartTickerContribute.length && (handleQueryType === '1' || handleQueryType === '2' || handleQueryType === '3')) {
         const incr5 = chartTickerContribute.slice(0, 5)
         const decr5 = chartTickerContribute.slice(-5).sort(function () {
             return -1;
         })
         const data = incr5.concat(decr5)
+
         var options = {
             accessibility: {
                 enabled: false,
@@ -240,14 +241,14 @@ const BarChart = () => {
     return (
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
-                <span className='text-white text-[0.9rem] pl-[2px]'>Top đóng góp điểm số theo: </span>
+                <span className='dark:text-white text-black text-[0.9rem] pl-[2px]'>Top đóng góp điểm số theo: </span>
                 <div className="sm:block md:inline text-center">
                     <select
                         onChange={(e) => {
                             handleQueryApiType(e.target.value);
                             setHandleQueryType(e.target.value)
                         }}
-                        className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
+                        className={`bg-transparent text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
                         <option value="0">Cổ phiếu</option>
                         <option value="1">Ngành LV1</option>
                         <option value="2">Ngành LV2</option>
@@ -257,7 +258,7 @@ const BarChart = () => {
                         onChange={(e) => {
                             handleQueryApiOrder(e.target.value);
                         }}
-                        className={`bg-[#1B496D] ml-3 p-1 text-[0.9rem] text-white border-0`}
+                        className={`bg-[#1B496D] ml-1 p-1 text-[0.9rem] text-white border-0`}
                     >
                         <option value="0">Phiên gần nhất</option>
                         <option value="1">5 phiên</option>
@@ -266,7 +267,7 @@ const BarChart = () => {
                     </select>
                 </div>
             </div>
-            <div className="mt-1 mb-3 text-white">
+            <div className="mt-1 mb-3 dark:text-white text-black">
                 <span>
                     <button
                         onClick={() => {
@@ -274,8 +275,8 @@ const BarChart = () => {
                             handleQueryApiExchange('HOSE')
                         }}
                         className={activeButton === 'HOSE'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -285,8 +286,8 @@ const BarChart = () => {
                             handleQueryApiExchange('HNX')
                         }}
                         className={activeButton === 'HNX'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -296,8 +297,8 @@ const BarChart = () => {
                             handleQueryApiExchange('UPCOM')
                         }}
                         className={activeButton === 'UPCOM'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                     </button>
                 </span>
             </div>

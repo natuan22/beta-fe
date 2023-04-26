@@ -115,7 +115,7 @@ const MarketMap = () => {
     return (
         <>
             <div className='grid md:grid-cols-2 pt-3 xs:grid-cols-none'>
-                <div className="mb-3 text-white">
+                <div className="mb-3 dark:text-white text-black">
                     <span>
                         <button
                             onClick={() => {
@@ -123,8 +123,8 @@ const MarketMap = () => {
                                 dispatch(dispatch(fetchDataMarketMap('all', activeButton2)))
                             }}
                             className={activeButton === 'all'
-                                ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                                : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
+                                ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                                : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                         </button>
                     </span>
                     <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -134,8 +134,8 @@ const MarketMap = () => {
                                 dispatch(dispatch(fetchDataMarketMap('HSX', activeButton2)))
                             }}
                             className={activeButton === 'HSX'
-                                ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                                : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
+                                ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                                : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                         </button>
                     </span>
                     <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -145,8 +145,8 @@ const MarketMap = () => {
                                 dispatch(dispatch(fetchDataMarketMap('HNX', activeButton2)))
                             }}
                             className={activeButton === 'HNX'
-                                ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                                : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
+                                ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                                : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                         </button>
                     </span>
                     <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -156,13 +156,13 @@ const MarketMap = () => {
                                 dispatch(dispatch(fetchDataMarketMap('UPCOM', activeButton2)))
                             }}
                             className={activeButton === 'UPCOM'
-                                ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                                : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
+                                ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                                : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                         </button>
                     </span>
                 </div>
                 <div>
-                    <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2">
+                    <div className="dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-2">
                         <button
                             style={activeButton2 === ENUM.vonhoa ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {

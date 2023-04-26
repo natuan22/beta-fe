@@ -29,7 +29,7 @@ const MarketBreadth = () => {
     if (!dataStackingChart.data || !dataStackingChart.data.length) {
         return <>
             <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
-                <span className="text-white text-[0.9rem]">
+                <span className="dark:text-white text-black text-[0.9rem]">
                     Diễn biến độ rộng thị trường
                 </span>
                 <select
@@ -41,15 +41,15 @@ const MarketBreadth = () => {
                     <option value="4">01 năm</option>
                 </select>
             </div>
-            <div className="mt-1 mb-3 text-white">
+            <div className="mt-1 mb-3 dark:text-white text-black">
                 <span>
                     <button
                         onClick={() => {
                             handleClick('HOSE')
                         }}
                         className={activeButton === 'HOSE'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -58,8 +58,8 @@ const MarketBreadth = () => {
                             handleClick('HNX')
                         }}
                         className={activeButton === 'HNX'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -68,8 +68,8 @@ const MarketBreadth = () => {
                             handleClick('UPCOM')
                         }}
                         className={activeButton === 'UPCOM'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                     </button>
                 </span>
             </div>
@@ -238,11 +238,11 @@ const MarketBreadth = () => {
     return (
         <>
             <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
-                <span className="text-white text-[0.9rem]">
+                <span className="dark:text-white text-black text-[0.9rem]">
                     Diễn biến độ rộng thị trường
                 </span>
                 <select
-                    className={`bg-[#1B496D] 2xl:ml-[114px] xl:ml-[114px] lg:ml-[135px] md:ml-[115px] sm:ml-[99px] xs:ml-[49px] p-1 text-[0.9rem] text-white border-0`}
+                    className={`bg-[#1B496D] 2xl:ml-[100px] xl:ml-[100px] lg:ml-[135px] md:ml-[115px] sm:ml-[99px] xs:ml-[49px] p-1 text-[0.9rem] text-white border-0`}
                 >
                     <option value="1">Phiên gần nhất</option>
                     <option value="2">01 tháng</option>
@@ -250,15 +250,15 @@ const MarketBreadth = () => {
                     <option value="4">01 năm</option>
                 </select>
             </div>
-            <div className="mt-1 mb-3 text-white">
+            <div className="mt-1 mb-3 dark:text-white text-black">
                 <span>
                     <button
                         onClick={() => {
                             handleClick('HOSE')
                         }}
                         className={activeButton === 'HOSE'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -267,8 +267,8 @@ const MarketBreadth = () => {
                             handleClick('HNX')
                         }}
                         className={activeButton === 'HNX'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -277,8 +277,8 @@ const MarketBreadth = () => {
                             handleClick('UPCOM')
                         }}
                         className={activeButton === 'UPCOM'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                     </button>
                 </span>
             </div>
