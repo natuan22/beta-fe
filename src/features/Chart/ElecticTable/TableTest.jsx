@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from 'antd';
 import { useSelector } from 'react-redux';
-
+import '../utils/flashAnimate.css'
+import socket from '../utils/socket';
 
 const TableTest = () => {
     const {dataTableDetail} = useSelector(state => state.chart )
-    // console.log(dataTableDetail.data)
+    console.log(dataTableDetail.data)
+    const [oldData, setOldData] = useState()
+    const [newData, setNewData] = useState()
+    useEffect(()=> {
+        socket.on("listen-chi-so-trong-nuoc", (newData) => {
+            console.log(newData)
+            setNewData(newData)
+          });
+    })
     const columns = [
         {
             title: 'Chỉ số',
@@ -15,7 +24,7 @@ const TableTest = () => {
             title: 'Điểm',
             dataIndex: 'price',
             render: (text, item) => {
-
+                return (item.price > 0 ? <p className='flashUp'>{item.price}</p>:<p className='flashDown'>{item.price}</p>)
             },
             sorter: {
                 compare: (a, b) => a.chinese - b.chinese,
@@ -42,7 +51,7 @@ const TableTest = () => {
     const data = dataTableDetail.data
     return (
         <div>
-            <Table  columns={columns} dataSource={data} pagination={false} bordered={true}  />;
+            <Table  columns={columns} dataSource={data} pagination={false}   />;
         </div>
     )
 }
