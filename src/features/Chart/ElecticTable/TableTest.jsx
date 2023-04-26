@@ -51,7 +51,7 @@ const TableTest = () => {
     const data = dataTableDetail.data
     return (
         <div>
-            <Table columns={columns} dataSource={data} pagination={false} bordered={true} />;
+            <Table columns={columns} dataSource={data} pagination={false} bordered={true} />
         </div>
     )
 }
