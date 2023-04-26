@@ -4,7 +4,7 @@ import { fetchDataLineChart } from '../../../Chart/thunk'
 import socket from '../../../Chart/utils/socket'
 import LineChartMarket from './LineChartMarket'
 
-const ChartInfo = () => {
+const ChartInfo = (props) => {
     const dispatch = useDispatch()
     const dataLineChart = useSelector((state) => state.chart.dataLineChart)
     const [data, setData] = useState([])
@@ -12,12 +12,12 @@ const ChartInfo = () => {
     const [dataChart, setDataChart] = useState([])
     const [query, setQuery] = useState('0')
     const [fmtDay, setFmtDay] = useState('HH:mm')
-
+    console.log(dataLineChart)
     useEffect(() => {
         if (dataLineChart) {
             setData(dataLineChart)
-            setDataInfo(dataLineChart.vnindexData)
-            setDataChart(dataLineChart.vnindexData)
+            setDataInfo(dataLineChart.lineChartData)
+            setDataChart(dataLineChart.lineChartData)
         }
     }, [dataLineChart])
 
@@ -69,7 +69,7 @@ const ChartInfo = () => {
                     <select className={`bg-[#1B496D] md:ml-[200px] lg:ml-3 xl:ml-3 2xl:ml-3 p-1 text-[1rem] text-white border-0`}
                         onChange={(event) => {
                             setQuery(event.target.value)
-                            dispatch(dispatch(fetchDataLineChart(`${event.target.value}`)))
+                            dispatch(dispatch(fetchDataLineChart(props.selectedTicker, `${event.target.value}`)))
                         }}>
                         <option value='0'>Trong ngày</option>
                         <option value='1'>5 phiên</option>

@@ -12,6 +12,14 @@ import socket from "../utils/socket";
 const LineChart = () => {
   const [dataRealTime, setDataRealTime] = useState([])
   const { dataLineChartHomePage } = useSelector((state) => state.chart);
+  
+  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const color = useSelector((state) => state.color.colorText);
+
+  useEffect(() => {
+    setColorText(color);
+  }, [color]);
+
   useEffect(() => {
     if (dataLineChartHomePage?.data?.length) {
       setDataRealTime(dataLineChartHomePage.data)
@@ -50,12 +58,12 @@ const LineChart = () => {
       title: {
         text: "",
         style: {
-          color: "#fff",
+          color: colorText,
         },
       },
       labels: {
         style: {
-          color: "#fff",
+          color: colorText,
         },
       },
       gridLineWidth: 0.5,
@@ -68,13 +76,13 @@ const LineChart = () => {
       title: {
         text: null,
         style: {
-          color: "#fff",
+          color: colorText,
         },
       },
       labels: {
         // rotation: -45,
         style: {
-          color: "#fff",
+          color: colorText,
         },
       },
     },

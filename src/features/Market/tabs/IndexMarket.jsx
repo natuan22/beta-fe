@@ -29,7 +29,7 @@ const IndexMarket = () => {
 
   useEffect(() => {
     dispatch(fetchDataNews);
-    dispatch(fetchDataLineChart("0"));
+    dispatch(fetchDataLineChart('VNINDEX', "0"));
     dispatch(fetchDataGeneralIndustry("all"));
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataMarketMap("all", "0"));
@@ -45,10 +45,10 @@ const IndexMarket = () => {
       <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-full">
         <div className="md:block lg:flex justify-center">
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div>
+            {/* <div>
               <ChartInfo />
-            </div>
-            <div className="mt-2">
+            </div> */}
+            <div className="">
               <TableDomesticIndex />
             </div>
           </div>

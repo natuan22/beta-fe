@@ -16,6 +16,12 @@ const BarChart = () => {
         type: 0,
         order: 0,
     });
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color]);
 
     useEffect(() => {
         dispatch(fetchChartTickerContribute(queryApi.exchange, queryApi.type, queryApi.order));
@@ -131,7 +137,7 @@ const BarChart = () => {
                     useHTML: true,
                     style: {
                         rotation: 0,
-                        color: "#fff",
+                        color: colorText,
                         fontSize: '10px',
                         whiteSpace: 'normal',
                     }
@@ -145,7 +151,7 @@ const BarChart = () => {
                 labels: {
                     enabled: false,
                     style: {
-                        color: '#fff'
+                        color: colorText
                     }
                 },
             },
@@ -194,7 +200,7 @@ const BarChart = () => {
                     rotation: -45,
                     align: 'center',
                     style: {
-                        color: "#fff",
+                        color: colorText,
                         fontSize: '11px'
                     }
                 },
@@ -207,7 +213,7 @@ const BarChart = () => {
                 labels: {
                     enabled: false,
                     style: {
-                        color: '#fff'
+                        color: colorText
                     }
                 },
             },

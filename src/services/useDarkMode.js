@@ -15,8 +15,9 @@ export function useDarkSide() {
 }
 
 export function useDarkTextChart() {
-  const [theme, setTheme] = useState(localStorage.getItem('color'));
-  const colorTheme = theme === "#000" ? "#FFF" : "#000";
+  const [theme, setTheme] = useState(localStorage.color);
+  const colorTheme = theme === "#FFF" ? "#000" : "#fff";
+
   useEffect(() => {
     localStorage.setItem('color', theme);
   }, [theme, colorTheme]);
