@@ -5,6 +5,8 @@ import { BellOutlined, MessageOutlined } from "@ant-design/icons";
 import { Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
+import './utils/button.css'
+import Switcher from "../services/switcher";
 const { Search } = Input;
 
 const Header = () => {
@@ -13,7 +15,7 @@ const Header = () => {
   return (
     <>
       <div className=" relative">
-        <nav className="bg-black">
+        <nav className="dark:bg-black bg-white shadow-md mb-1">
           <div className="max-w-[85rem] mx-auto px-4 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
@@ -35,24 +37,19 @@ const Header = () => {
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
-                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trang chủ
                     </NavLink>
                     <div className="xl:flex items-center flex xs:translate-y-0 xs:translate-x-2 md:translate-y-[11%] md:translate-x-[55%] lg:translate-y-[11%] lg:translate-x-[124%]">
                       <div className="flex md:flex xs:hidden">
-                        <label className="relative inline-flex items-center cursor-pointer">
-                          <input type="checkbox" value="" className="sr-only peer" />
-                          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                        </label>
+                        <Switcher />
                         <BellOutlined
-                          className="ml-2"
-                          style={{ fontSize: "20px", color: "#fff" }}
+                          className="ml-2 mt-1 text-[20px] dark:text-white text-black"
                         />
                         <MessageOutlined
-                          className="ml-2 mr-2"
-                          style={{ fontSize: "20px", color: "#fff" }}
+                          className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black"
                         />
                       </div>
 
@@ -71,7 +68,7 @@ const Header = () => {
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trang chủ
@@ -82,7 +79,7 @@ const Header = () => {
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Thị trường
@@ -93,7 +90,7 @@ const Header = () => {
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
-                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
 
                     >
@@ -105,7 +102,7 @@ const Header = () => {
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Cổ phiếu
@@ -116,7 +113,7 @@ const Header = () => {
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Vĩ mô
@@ -127,7 +124,7 @@ const Header = () => {
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Công cụ đầu tư
@@ -138,7 +135,7 @@ const Header = () => {
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trung tâm tin tức
@@ -147,17 +144,12 @@ const Header = () => {
                 </div>
                 <div className="hidden xl:flex items-center ml-3 lg:ml-72 xl:ml-16">
                   <div className="flex">
-                    <label className="relative inline-flex items-center cursor-pointer">
-                      <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                    </label>
+                    <Switcher />
                     <BellOutlined
-                      className="ml-2"
-                      style={{ fontSize: "20px", color: "#fff" }}
+                      className="ml-2 mt-1 text-[20px] dark:text-white text-black"
                     />
                     <MessageOutlined
-                      className="ml-2 mr-2"
-                      style={{ fontSize: "20px", color: "#fff" }}
+                      className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black"
                     />
                   </div>
 
@@ -185,7 +177,7 @@ const Header = () => {
                         className={({ isActive }) =>
                           isActive
                             ? "ml-2 no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                            : "ml-2 no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "ml-2 no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                         }
                       >
                         Sign in
@@ -195,7 +187,7 @@ const Header = () => {
                         className={({ isActive }) =>
                           isActive
                             ? "ml-2 no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                            : "ml-2 no-underline text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "ml-2 no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                         }
                       >
                         Sign up
@@ -269,7 +261,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Thị trường
@@ -281,7 +273,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Ngành
@@ -293,7 +285,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Cổ phiếu
@@ -305,7 +297,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Vĩ mô
@@ -317,7 +309,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Công cụ đầu tư
@@ -329,7 +321,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline text-gray-300 block hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline dark:text-gray-300 text-black block hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Trung tâm tin tức
@@ -340,7 +332,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Sign in
@@ -351,23 +343,18 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block text-gray-300 hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Sign up
                   </NavLink>
                   <div className="flex md:hidden xs:flex">
-                    <label className="relative inline-flex items-center cursor-pointer">
-                      <input type="checkbox" value="" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                    </label>
+                    <Switcher />
                     <BellOutlined
-                      className="ml-2"
-                      style={{ fontSize: "20px", color: "#fff" }}
+                      className="ml-2 mt-1 text-[20px] dark:text-white text-black"
                     />
                     <MessageOutlined
-                      className="ml-2 mr-2"
-                      style={{ fontSize: "20px", color: "#fff" }}
+                      className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black"
                     />
                   </div>
                 </div>

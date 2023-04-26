@@ -18,7 +18,7 @@ const Banner = () => {
             className={`fixed top-[50%] left-[-20px]
              text-white bg-[#151924] z-40
              ${showSidebar ? "translate-x-[390%] ease-in-out duration-300" : ""}
-             font-semibold rounded-lg text-base px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800`}
+             font-semibold rounded-lg text-base px-5 py-2.5 mr-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-blue-800`}
             type="button"
             data-drawer-target="drawer-navigation"
             data-drawer-show="drawer-navigation"
@@ -29,9 +29,8 @@ const Banner = () => {
         </div>
         <div
           id="drawer-navigation"
-          className={` bg-[#151924] fixed top-0 left-0 z-40 w-auto h-screen p-4 overflow-y-auto transition-transform ${
-            showSidebar ? "" : "translate-x-[-100%]  ease-in-out duration-300"
-          }   flex flex-col items-center justify-center`}
+          className={` bg-[#151924] fixed top-0 left-0 z-40 w-auto h-screen p-4 overflow-y-auto transition-transform ${showSidebar ? "" : "translate-x-[-100%]  ease-in-out duration-300"
+            }   flex flex-col items-center justify-center`}
           tabIndex={-1}
           aria-labelledby="drawer-navigation-label"
         >
@@ -43,16 +42,16 @@ const Banner = () => {
                 className="w-[175px] h-[175px]"
               />
               <div className="absolute bottom-[43%] right-0">
-              <p className="text-[#c9a808] font-bold">ETA</p>
-              <p className="text-[#2d567e] font-bold">Securities</p>
+                <p className="text-[#c9a808] font-bold">ETA</p>
+                <p className="text-[#2d567e] font-bold">Securities</p>
+              </div>
             </div>
-            </div>
-            
+
           </div>
           <div className="translate-y-[-75px]">
             <h5
               id="drawer-navigation-label"
-              className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
+              className="text-base font-semibold text-gray-500 uppercase"
             >
               Truy cập nhanh
             </h5>

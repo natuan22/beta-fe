@@ -1,5 +1,6 @@
 const apiUrl = process.env.REACT_APP_BASE_URL;
 module.exports = {
+  darkMode: 'class',
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
     screens: {

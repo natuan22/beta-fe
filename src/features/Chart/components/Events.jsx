@@ -18,7 +18,7 @@ const Events = () => {
         <section className="bg-blueGray-50" >
             <div className="w-full">
                 <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
-                    <div className="block w-full h-96 scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] overflow-y-scroll bg-transparent">
+                    <div className="block w-full h-96 scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent">
                         <table className="items-center bg-transparent w-full border-collapse">
                             <thead className="sticky top-0 bg-[#1E5D8B]">
                                 <tr>
@@ -41,17 +41,17 @@ const Events = () => {
                                 {!loading ? (Array.isArray(data) &&
                                     data.map((item, index) => {
                                         return (
-                                            <tr key={index} className='hover:bg-gray-800'>
-                                                <th className="text-center align-middle text-xs whitespace-nowrap px-3 p-3.5 text-white">
+                                            <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                                                <th className="text-center align-middle text-xs whitespace-nowrap px-3 p-3.5 dark:text-white text-black">
                                                     {item.ticker}
                                                 </th>
-                                                <td className="text-center align-middle text-xs whitespace-nowrap sm:px-6 lg::px-10 xl:px-10 p-3.5 text-white">
+                                                <td className="text-center align-middle text-xs whitespace-nowrap sm:px-6 lg::px-10 xl:px-10 p-3.5 dark:text-white text-black">
                                                     {item.LoaiSuKien}
                                                 </td>
-                                                <td className="text-center align-center text-xs whitespace-nowrap sm:px-6 lg::px-10 xl:px-10 p-3.5 text-white">
+                                                <td className="text-center align-center text-xs whitespace-nowrap sm:px-6 lg::px-10 xl:px-10 p-3.5 dark:text-white text-black">
                                                     {formatDate(new Date(Date.parse(item.NgayDKCC)))}
                                                 </td>
-                                                <td className="text-left align-middle text-xs px-3 p-4 text-white">
+                                                <td className="text-left align-middle text-xs px-3 p-4 dark:text-white text-black">
                                                     {item.NoiDungSuKien}
                                                 </td>
                                             </tr>

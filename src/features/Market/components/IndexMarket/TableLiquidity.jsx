@@ -3,13 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { fecthDataTableThanhKhoan } from "../../thunk";
 
-const TableThanhKhoan = () => {
-  const { tableThanhKhoanData } = useSelector((state) => state.market);
+const TableLiquidity = () => {
   const dispatch = useDispatch();
+  const { tableThanhKhoanData } = useSelector((state) => state.market);
   const [activeButton, setActiveButton] = useState("1day");
-  const dataTable = useSelector((state) => state.chart.dataTableDetail);
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [queryApi, setQueryApi] = useState({
     exchange: "ALL",
     type: 0,
@@ -45,15 +42,10 @@ const TableThanhKhoan = () => {
   const handleQueryApiExchange = (exchange) => {
     setQueryApi((prev) => ({ ...prev, exchange }));
   };
-  useEffect(() => {
-    if (dataTable.data) {
-      setLoading(false);
-      setData(dataTable.data);
-    }
-  }, [dataTable]);
+
   return (
     <>
-      <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2">
+      <div className="dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-2">
         <button
           style={
             activeButton === "1day"
@@ -112,25 +104,25 @@ const TableThanhKhoan = () => {
         </button>
       </div>
       <div>
-        <span className="text-white text-[0.9rem] pl-[2px]">Top đóng góp thanh khoản theo: </span>
+        <span className="dark:text-white text-black text-[0.9rem] pl-[2px]">Top đóng góp thanh khoản theo: </span>
         <div className="md:inline lg:block xl:inline 2xl:inline text-center">
           <select
             onChange={(e) => {
               handleQueryApiType(e.target.value);
             }}
-            className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
+            className={`bg-transparent text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
           >
             <option value="0">Cổ phiếu</option>
             <option value="1">Ngành Lv1</option>
             <option value="2">Ngành Lv2</option>
             <option value="3">Ngành Lv3</option>
           </select>
-          <span className="text-white text-[0.9rem] ml-4">Sàn</span>
+          <span className="dark:text-white text-black text-[0.9rem] ml-4">Sàn</span>
           <select
             onChange={(e) => {
               handleQueryApiExchange(e.target.value);
             }}
-            className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
+            className={`bg-transparent text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
           >
             <option value="ALL">Toàn thị trường</option>
             <option value="HSX">HSX</option>
@@ -142,7 +134,7 @@ const TableThanhKhoan = () => {
       <section className="mt-1">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block w-full overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] h-[379px] bg-transparent">
+            <div className="block w-full overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-transparent h-[379px] bg-transparent">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead className="sticky top-0">
                   <tr className="bg-[#1E5D8B]">
@@ -174,7 +166,7 @@ const TableThanhKhoan = () => {
                       let color2 = getColor(item.supplyDemandValueGap)
 
                       return (
-                        <tr className="text-white text-center text-[13px] hover:bg-gray-800 duration-500" key={index}>
+                        <tr className="dark:text-white text-black text-center text-[13px] dark:hover:bg-gray-800 hover:bg-gray-300 duration-500" key={index}>
                           <th className="text-left px-1.5 align-middle p-3.5" >{item.symbol}</th>
                           <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{item.contribute.toFixed(2)}%</td>
                           <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.totalValueMil / 1000).toFixed(1)}</td>
@@ -201,7 +193,7 @@ const TableThanhKhoan = () => {
   );
 };
 
-export default TableThanhKhoan;
+export default TableLiquidity;
 
 function getColor(item) {
   let color = "";
