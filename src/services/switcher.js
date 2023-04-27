@@ -16,6 +16,7 @@ export default function Switcher() {
         setDarkSide(checked);
         setColorText(colorText);
         dispatch({ type: 'beta/GET_COLOR', payload: colorText })
+        dispatch({ type: 'beta/GET_THEME', payload: colorTheme })
     };
 
     return (

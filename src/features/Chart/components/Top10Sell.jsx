@@ -50,12 +50,12 @@ const Top10Sell = () => {
             title: {
                 text: null,
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
         }],
@@ -66,7 +66,7 @@ const Top10Sell = () => {
             },
             labels: {
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
         },

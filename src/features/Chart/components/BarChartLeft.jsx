@@ -6,12 +6,12 @@ import { useSelector } from "react-redux";
 const BarChartLeft = () => {
   const dataBarChartLeft = useSelector((state) => state.chart.dataBarChartLeft);
   const [data, setData] = useState(dataBarChartLeft?.data ?? []);
-  
+
   const [colorText, setColorText] = useState(localStorage.getItem('color'));
   const color = useSelector((state) => state.color.colorText);
 
   useEffect(() => {
-    setColorText(color);
+      setColorText(color);
   }, [color]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const BarChartLeft = () => {
         rotation: -45,
         align: 'center',
         style: {
-          color: colorText,
+          color: localStorage.getItem('color'),
           fontSize: 10
         }
       },
@@ -54,7 +54,7 @@ const BarChartLeft = () => {
       },
       labels: {
         style: {
-          color: colorText
+          color: localStorage.getItem('color')
         }
       },
       min: Math.min(

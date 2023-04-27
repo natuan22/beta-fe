@@ -22,9 +22,6 @@ const TableDomesticIndex = () => {
 
     return (
         <>
-            <div>
-                <ChartInfo selectedTicker={selectedTicker} />
-            </div>
             <div className="mt-2">
                 <section>
                     <div className="w-full">

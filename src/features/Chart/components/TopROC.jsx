@@ -76,12 +76,12 @@ const TopROC = () => {
             title: {
                 text: null,
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
         }],
@@ -92,7 +92,7 @@ const TopROC = () => {
             },
             labels: {
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
         },
@@ -132,12 +132,12 @@ const TopROC = () => {
             title: {
                 text: null,
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
         }],
@@ -148,7 +148,7 @@ const TopROC = () => {
             },
             labels: {
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
         },

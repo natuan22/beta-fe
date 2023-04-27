@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 export function useDarkSide() {
-  const [theme, setTheme] = useState(localStorage.theme);
+  const defaultTheme = localStorage.getItem('theme') || 'dark';
+  const [theme, setTheme] = useState(defaultTheme);
   const colorTheme = theme === "dark" ? "light" : "dark";
 
   useEffect(() => {
@@ -15,8 +16,9 @@ export function useDarkSide() {
 }
 
 export function useDarkTextChart() {
-  const [theme, setTheme] = useState(localStorage.color);
-  const colorTheme = theme === "#FFF" ? "#000" : "#fff";
+  const defaultColor = localStorage.getItem('color') || '#fff';
+  const [theme, setTheme] = useState(defaultColor);
+  const colorTheme = theme === "#fff" ? "#000" : "#fff";
 
   useEffect(() => {
     localStorage.setItem('color', theme);

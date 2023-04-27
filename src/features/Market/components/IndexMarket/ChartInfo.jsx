@@ -12,7 +12,7 @@ const ChartInfo = (props) => {
     const [dataChart, setDataChart] = useState([])
     const [query, setQuery] = useState('0')
     const [fmtDay, setFmtDay] = useState('HH:mm')
-    console.log(dataLineChart)
+    
     useEffect(() => {
         if (dataLineChart) {
             setData(dataLineChart)

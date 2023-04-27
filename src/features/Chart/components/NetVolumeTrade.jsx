@@ -23,10 +23,10 @@ const NetVolumeTrade = () => {
     return <>
       <div className="h-[300px]">
         <div className="bg-transparent text-center px-20 py-[10px]">
-          <span className="font-semibold text-base uppercase text-white">
+          <span className="font-semibold text-base uppercase dark:text-white text-black">
             Giá trị giao dịch ròng
           </span>
-          <select className={`bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          <select className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
             onChange={(event) => {
               dispatch(fetchDataNetVolume(event.target.value));
               setTitle(event.target.value)
@@ -76,12 +76,12 @@ const NetVolumeTrade = () => {
       categories: timeLine.reverse(),
       labels: {
         style: {
-          color: colorText // màu cho các nhãn trục x
+          color: localStorage.getItem('color') // màu cho các nhãn trục x
         }
       },
       title: {
         style: {
-          color: colorText // màu cho tiêu đề trục x
+          color: localStorage.getItem('color') // màu cho tiêu đề trục x
         }
       }
     },
@@ -90,12 +90,12 @@ const NetVolumeTrade = () => {
         title: {
           text: "Tỷ VNĐ",
           style: {
-            color: colorText,
+            color: localStorage.getItem('color'),
           },
         },
         labels: {
           style: {
-            color: colorText // màu cho các nhãn trục y
+            color: localStorage.getItem('color') // màu cho các nhãn trục y
           }
         }
       },
@@ -103,12 +103,12 @@ const NetVolumeTrade = () => {
         title: {
           text: "",
           style: {
-            color: colorText,
+            color: localStorage.getItem('color'),
           },
         },
         labels: {
           style: {
-            color: colorText // màu cho các nhãn trục y
+            color: localStorage.getItem('color') // màu cho các nhãn trục y
           }
         },
         opposite: true,
@@ -118,7 +118,7 @@ const NetVolumeTrade = () => {
     legend: {
       align: 'center',
       itemStyle: {
-        color: colorText
+        color: localStorage.getItem('color')
       }
     },
     series: [

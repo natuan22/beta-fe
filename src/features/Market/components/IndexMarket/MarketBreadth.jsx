@@ -117,7 +117,7 @@ const MarketBreadth = () => {
             },
             labels: {
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
         },
@@ -125,12 +125,12 @@ const MarketBreadth = () => {
             title: {
                 text: "",
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
                 formatter: function () {
                     return this.value + "%";
@@ -139,7 +139,7 @@ const MarketBreadth = () => {
         },
         legend: {
             itemStyle: {
-                color: colorText,
+                color: localStorage.getItem('color'),
             },
             enabled: true,
             labelFormatter: function () {

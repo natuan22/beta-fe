@@ -423,3 +423,19 @@ export const fetchDataLineChartHomePage = () => async (dispatch) => {
     console.log(err)
   }
 }
+
+export const fetchDataCashFlowAllocation = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: `${apiUrl}/api/v1/chart/market-cash-flow`,
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_CASH_FLOW_ALLOCATION",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}

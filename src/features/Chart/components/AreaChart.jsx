@@ -48,12 +48,12 @@ function AreaChart() {
       title: {
         text: "Thời gian",
         style: {
-          color: colorText,
+          color: localStorage.getItem('color'),
         },
       },
       labels: {
         style: {
-          color: colorText,
+          color: localStorage.getItem('color'),
         },
       },
     },
@@ -61,19 +61,19 @@ function AreaChart() {
       title: {
         text: "Giá trị (tỷ VNĐ)",
         style: {
-          color: colorText,
+          color: localStorage.getItem('color'),
         },
       },
       labels: {
         style: {
-          color: colorText,
+          color: localStorage.getItem('color'),
         },
       },
     },
 
     legend: {
       itemStyle: {
-        color: colorText,
+        color: localStorage.getItem('color'),
       },
     },
 
