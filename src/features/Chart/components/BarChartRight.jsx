@@ -6,6 +6,13 @@ import HighchartsReact from "highcharts-react-official";
 const BarChartRight = () => {
   const dataBarChartRight = useSelector((state) => state.chart.dataBarChartRight);
   const [data, setData] = useState(dataBarChartRight?.data ?? []);
+  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const color = useSelector((state) => state.color.colorText);
+
+  useEffect(() => {
+    setColorText(color);
+  }, [color]);
+
   useEffect(() => {
     setData(dataBarChartRight?.data ?? []);
   }, [dataBarChartRight]);
@@ -29,7 +36,7 @@ const BarChartRight = () => {
         rotation: -45,
         align: 'center',
         style: {
-          color: "#fff",
+          color: colorText,
           fontSize: 10
         }
       },
@@ -41,7 +48,7 @@ const BarChartRight = () => {
       },
       labels: {
         style: {
-          color: '#fff'
+          color: colorText
         }
       },
       min: Math.min(

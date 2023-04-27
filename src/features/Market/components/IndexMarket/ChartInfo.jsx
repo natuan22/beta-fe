@@ -7,7 +7,7 @@ import moment from 'moment';
 import { fetchDataLineChartMarket } from '../../thunk';
 import Loading from '../../../Chart/utils/Loading';
 
-const ChartInfo = () => {
+const ChartInfo = (props) => {
     const dispatch = useDispatch()
     const { lineChartMarketData } = useSelector(state => state.market)
     const [dataChart, setDataChart] = useState()

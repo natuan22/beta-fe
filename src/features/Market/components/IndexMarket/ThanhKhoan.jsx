@@ -9,6 +9,12 @@ function ThanhKhoan() {
     const dataToday = useSelector((state) => state.chart.dataChart1);
     const dataPreviousDay = useSelector((state) => state.chart.dataChart2);
     const [dataSocket, setDataSocket] = useState([]);
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color]);
     useEffect(() => {
         if (dataToday) {
             setDataSocket(dataToday)
@@ -42,12 +48,12 @@ function ThanhKhoan() {
             title: {
                 text: null,
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
         },
@@ -55,19 +61,19 @@ function ThanhKhoan() {
             title: {
                 text: null,
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
         },
 
         legend: {
             itemStyle: {
-                color: "#fff",
+                color: colorText,
             },
         },
         series: [

@@ -13,6 +13,12 @@ const TopROC = () => {
     const [data, setData] = useState([])
     const [query, setQuery] = useState('hsx')
     const [socketOld, setSocketOld] = useState('')
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color]);
 
     useEffect(() => {
         if (dataROC.data) {
@@ -70,12 +76,12 @@ const TopROC = () => {
             title: {
                 text: null,
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
         }],
@@ -86,7 +92,7 @@ const TopROC = () => {
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
         },
@@ -126,12 +132,12 @@ const TopROC = () => {
             title: {
                 text: null,
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
         }],
@@ -142,7 +148,7 @@ const TopROC = () => {
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: colorText,
                 },
             },
         },
