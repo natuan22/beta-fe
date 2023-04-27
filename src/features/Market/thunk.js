@@ -24,3 +24,16 @@ export const fetchChartTickerContribute = (exchange, type, order) => async (disp
         console.log(err)
     }
 }
+
+export const fetchDataLineChartMarket = (index, type) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataLineChartMarket(index, type)
+        dispatch({
+            type: marketType.FETCH_DATA_LINE_CHART_MARKET,
+            payload: res.data.data
+        })
+        console.log(res.data.data)
+    }catch(err){
+        console.log(err)
+    }
+}

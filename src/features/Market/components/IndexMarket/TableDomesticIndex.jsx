@@ -1,25 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
+<<<<<<< HEAD
+import { fetchDataLineChartMarket } from "../../thunk";
+import socket from "../../../Chart/utils/socket";
+=======
 import ChartInfo from "./ChartInfo";
+>>>>>>> f1b6296cd9c6d5c4d5564383be239e8d0597202e
 
 const TableDomesticIndex = () => {
     const dataTable = useSelector((state) => state.chart.dataTableDetail);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
+    const dispatch = useDispatch()
+    
+=======
     const [selectedTicker, setSelectedTicker] = useState('');
 
+>>>>>>> f1b6296cd9c6d5c4d5564383be239e8d0597202e
     useEffect(() => {
         if (dataTable.data) {
             setLoading(false);
             setData(dataTable.data)
         }
     }, [dataTable]);
+<<<<<<< HEAD
+    
+=======
 
     const handleTickerClick = (ticker) => {
         setSelectedTicker(ticker)
     }
 
+>>>>>>> f1b6296cd9c6d5c4d5564383be239e8d0597202e
     return (
         <>
             <div className="mt-2">
@@ -51,6 +65,46 @@ const TableDomesticIndex = () => {
                                         </tr>
                                     </thead>
 
+<<<<<<< HEAD
+                                <tbody>
+                                    {!loading ? (Array.isArray(data) &&
+                                        data.map((item, index) => {
+                                            let color = getColor(item.percent_d)
+                                            let color2 = getColor(item.net_value_foreign)
+                                            return (
+                                                <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                                                    <th onClick={()=> {
+                                                       if(!localStorage.getItem('typeApi')){
+                                                           dispatch(fetchDataLineChartMarket(`${item.ticker}`, '0'))
+                                                       } else {
+                                                        dispatch(fetchDataLineChartMarket(`${item.ticker}`, localStorage.getItem('typeApi')))
+                                                       }
+                                                       console.log(localStorage.getItem('exchange'), `${item.ticker}`)
+                                                       localStorage.setItem('exchange',`${item.ticker}`)
+                                                    }} className="cursor-pointer text-left px-3 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
+                                                        {item.ticker}
+                                                    </th>
+                                                    <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        {item.price}
+                                                    </td>
+                                                    <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        {item.percent_d.toFixed(2)}%
+                                                    </td>
+                                                    <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        {item.volume}
+                                                    </td>
+                                                    <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        {item.value}
+                                                    </td>
+                                                    <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color2}`}>
+                                                        {item.net_value_foreign}
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })) : (<tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>)}
+                                </tbody>
+                            </table>
+=======
                                     <tbody>
                                         {!loading ? (Array.isArray(data) &&
                                             data.map((item, index) => {
@@ -82,6 +136,7 @@ const TableDomesticIndex = () => {
                                     </tbody>
                                 </table>
                             </div>
+>>>>>>> f1b6296cd9c6d5c4d5564383be239e8d0597202e
                         </div>
                     </div>
                 </section>
