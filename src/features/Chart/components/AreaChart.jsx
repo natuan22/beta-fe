@@ -8,6 +8,7 @@ function AreaChart() {
   const dataToday = useSelector((state) => state.chart.dataChart1);
   const dataPreviousDay = useSelector((state) => state.chart.dataChart2);
   const [dataSocket, setDataSocket] = useState([]);
+
   useEffect(() => {
     if (!dataToday && !dataToday.length) return
     if (dataToday) {
@@ -70,7 +71,6 @@ function AreaChart() {
         color: "#fff",
       },
     },
-    
     series: [
       {
         name: "Phiên trước",

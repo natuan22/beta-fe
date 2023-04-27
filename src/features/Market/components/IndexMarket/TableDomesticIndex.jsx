@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
+import { fetchDataLineChartMarket } from "../../thunk";
+import socket from "../../../Chart/utils/socket";
 
 const TableDomesticIndex = () => {
     const dataTable = useSelector((state) => state.chart.dataTableDetail);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const dispatch = useDispatch()
+    
     useEffect(() => {
         if (dataTable.data) {
             setLoading(false);
             setData(dataTable.data)
         }
     }, [dataTable]);
-
+    
     return (
         <>
             <section>
@@ -51,7 +54,15 @@ const TableDomesticIndex = () => {
                                             let color2 = getColor(item.net_value_foreign)
                                             return (
                                                 <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                                                    <th className="text-left px-3 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
+                                                    <th onClick={()=> {
+                                                       if(!localStorage.getItem('typeApi')){
+                                                           dispatch(fetchDataLineChartMarket(`${item.ticker}`, '0'))
+                                                       } else {
+                                                        dispatch(fetchDataLineChartMarket(`${item.ticker}`, localStorage.getItem('typeApi')))
+                                                       }
+                                                       console.log(localStorage.getItem('exchange'), `${item.ticker}`)
+                                                       localStorage.setItem('exchange',`${item.ticker}`)
+                                                    }} className="cursor-pointer text-left px-3 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
                                                         {item.ticker}
                                                     </th>
                                                     <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>

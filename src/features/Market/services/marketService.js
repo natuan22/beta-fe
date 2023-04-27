@@ -18,5 +18,13 @@ export const marketServices = {
                 order
             }
         })
+    },
+    fetchDataLineChartMarket: (index, type) => {
+        return https.get('api/v1/chart/line-chart',{
+            params:{
+                index,
+                type
+            }
+        })
     }
 }

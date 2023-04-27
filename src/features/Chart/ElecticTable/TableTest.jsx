@@ -11,8 +11,6 @@ const TableTest = () => {
 
     useEffect(() => {
         socket.on("listen-chi-so-trong-nuoc", (newData) => {
-            setNewData(newData)
-            console.log(newData)
         })
     },[])
     const columns = [

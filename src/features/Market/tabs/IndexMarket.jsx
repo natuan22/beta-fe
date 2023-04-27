@@ -4,7 +4,6 @@ import {
   fetchDataAreaChart2,
   fetchDataEvents,
   fetchDataGeneralIndustry,
-  fetchDataLineChart,
   fetchDataMacroNews,
   fetchDataMarketMap,
   fetchDataNews,
@@ -23,13 +22,13 @@ import News from "../components/IndexMarket/News";
 import Events from "../components/IndexMarket/Events";
 import MarketBreadth from "../components/IndexMarket/MarketBreadth";
 import TableLiquidity from "../components/IndexMarket/TableLiquidity";
+import { fetchDataLineChartMarket } from "../thunk";
 
 const IndexMarket = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchDataNews);
-    dispatch(fetchDataLineChart("0"));
     dispatch(fetchDataGeneralIndustry("all"));
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataMarketMap("all", "0"));
@@ -38,6 +37,7 @@ const IndexMarket = () => {
     dispatch(fetchDataWidthMarket("VNINDEX"));
     dispatch(fetchDataAreaChart1);
     dispatch(fetchDataAreaChart2);
+    dispatch(fetchDataLineChartMarket(localStorage.getItem('exchange'), localStorage.getItem('typeApi')))
   }, [dispatch]);
 
   return (

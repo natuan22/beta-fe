@@ -45,7 +45,6 @@ import {
   fetchDataNetVolume,
   fetchDataNews,
   fetchDataMarketEvaluation,
-  fetchDataLineChart,
   fetchDataLineChartHomePage,
 } from "./thunk";
 import LayOut from "../../HOCs/Layout";
@@ -83,7 +82,6 @@ const Home = () => {
     dispatch(fetchDataAreaChart2);
     dispatch(fetchDataWidthMarket("VNINDEX"));
     dispatch(fetchDataNetVolume("vnindex"));
-    dispatch(fetchDataLineChart('0'))
     dispatch(fetchDataLineChartHomePage())
   }, [dispatch]);
 

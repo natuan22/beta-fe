@@ -1,75 +1,99 @@
 import React, { useEffect, useState } from 'react'
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchDataLineChart } from '../../../Chart/thunk'
 import socket from '../../../Chart/utils/socket'
-import LineChartMarket from './LineChartMarket'
+import moment from 'moment';
+import { fetchDataLineChartMarket } from '../../thunk';
+import Loading from '../../../Chart/utils/Loading';
 
 const ChartInfo = () => {
     const dispatch = useDispatch()
-    const dataLineChart = useSelector((state) => state.chart.dataLineChart)
-    const [data, setData] = useState([])
-    const [dataInfo, setDataInfo] = useState([])
-    const [dataChart, setDataChart] = useState([])
-    const [query, setQuery] = useState('0')
-    const [fmtDay, setFmtDay] = useState('HH:mm')
-
+    const { lineChartMarketData } = useSelector(state => state.market)
+    const [dataChart, setDataChart] = useState()
     useEffect(() => {
-        if (dataLineChart) {
-            setData(dataLineChart)
-            setDataInfo(dataLineChart.vnindexData)
-            setDataChart(dataLineChart.vnindexData)
-        }
-    }, [dataLineChart])
-
+        if (lineChartMarketData?.lineChartData?.length > 0)
+            setDataChart(lineChartMarketData.lineChartData)
+    }, [lineChartMarketData.lineChartData])
     useEffect(() => {
-        if (query === '0') {
-            conSocket()
-            setFmtDay('HH:mm')
-        } else {
-            disconnectSocket()
-            conSocket2()
-            setFmtDay('DD/MM')
-        }
-    }, [query])
-
-    const disconnectSocket = () => {
-        if (socket.active) {
-            socket.off("listen-chi-so-vnindex")
-        }
-    }
-
-    const conSocket = () => {
-        socket.on("listen-chi-so-vnindex", (newData) => {
-            setDataInfo((prevData) => [...prevData, ...newData]);
-            setDataChart((prevData) => [...prevData, ...newData]);
+        socket.on(`listen-chi-so-${localStorage.getItem('exchange')}`, (newData) => {
+            console.log(newData)
+            setDataChart((preData) => [...preData, ...newData])
         });
-    }
+    }, [lineChartMarketData.lineChartData])
 
-    const conSocket2 = () => {
-        socket.on("listen-chi-so-vnindex", (newData) => {
-            setDataInfo((prevData) => [...prevData, ...newData]);
-        });
-    }
-
-    const vnindexData = dataInfo && dataInfo[dataInfo.length - 1]
-    const colorChange = vnindexData && getColor(vnindexData.percentIndexChange)
-    const openColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.openIndex)
-    const lowestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.lowestIndex)
-    const highestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.highestIndex)
-
+    
+    const options = {
+        accessibility: {
+            enabled: false,
+        },
+        credits: false,
+        chart: {
+            type: "line",
+            backgroundColor: "transparent",
+        },
+        title: {
+            text: "",
+        },
+        series: [
+            {
+                name: "Điểm",
+                data: dataChart?.map(item => item.indexValue)
+            },
+        ],
+        yAxis: {
+            title: {
+                text: "",
+                style: {
+                    color: "#fff",
+                },
+            },
+            labels: {
+                style: {
+                    color: "#fff",
+                },
+            },
+        },
+        xAxis: {
+            title: {
+                text: null,
+                style: {
+                    color: "#fff",
+                },
+            },
+            labels: {
+                style: {
+                    color: "#fff",
+                },
+            },
+            categories: dataChart?.map(item => moment(item.tradingDate).utc().format(localStorage.getItem('typeTime'))),
+        },
+        legend: {
+            enabled: false // Tắt chú thích
+        }
+    };
     return (
         <>
             <div>
                 <div className='flex border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <div className='w-[345px]'>
-                        <span className='dark:text-white text-black xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]'>{vnindexData && vnindexData.comGroupCode}</span>
-                        <span className={`${colorChange} xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>{vnindexData && vnindexData.indexValue}</span>
-                        <span className={`${colorChange} xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>{vnindexData && vnindexData.indexChange}/ {vnindexData && (vnindexData.percentIndexChange * 100).toFixed(2)}%</span>
+                        <span className='dark:text-white text-black xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]'>{localStorage.getItem('exchange')}</span>
+                        <span className={` text-white xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>{dataChart && dataChart[dataChart?.length -1].indexValue}</span>
+                        <span className={` xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>%</span>
                     </div>
                     <select className={`bg-[#1B496D] md:ml-[200px] lg:ml-3 xl:ml-3 2xl:ml-3 p-1 text-[1rem] text-white border-0`}
                         onChange={(event) => {
-                            setQuery(event.target.value)
-                            dispatch(dispatch(fetchDataLineChart(`${event.target.value}`)))
+                            localStorage.setItem('typeApi', event.target.value)
+                            if (event.target.value === '0') {
+                                localStorage.setItem('typeTime', 'HH:mm')
+                                socket.on(`listen-chi-so-${localStorage.getItem('exchange')}`, (newData) => {
+                                    console.log(newData)
+                                    setDataChart((preData) => [...preData, ...newData])
+                                });
+                            } else {
+                                localStorage.setItem('typeTime', "DD/MM")
+                            }
+                            dispatch(fetchDataLineChartMarket(localStorage.getItem('exchange'), event.target.value))
                         }}>
                         <option value='0'>Trong ngày</option>
                         <option value='1'>5 phiên</option>
@@ -78,22 +102,23 @@ const ChartInfo = () => {
                     </select>
                 </div>
                 <div className='md:mt-2 lg:mt-[28px] xl:mt-2'>
-                    <LineChartMarket data={dataChart} fmtDay={fmtDay} />
+                    {dataChart?.length > 0 ? <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /> : <div className='text-center'><Loading /></div>}
+
                 </div>
             </div>
             <hr />
             <div className='flex justify-around dark:text-white text-black text-xs mt-2'>
-                <span className='xs:text-[10px] sm:text-[12px]'>Tham chiếu: <span className='text-yellow-500'>{vnindexData && vnindexData.referenceIndex}</span></span>
-                <span className='xs:text-[10px] sm:text-[12px]'>Mở cửa: <span className={`${openColor}`}>{vnindexData && vnindexData.openIndex}</span></span>
-                <span className='xs:text-[10px] sm:text-[12px]'>Thấp nhất: <span className={`${lowestColor}`}>{vnindexData && vnindexData.lowestIndex}</span></span>
-                <span className='xs:text-[10px] sm:text-[12px]'>Cao nhất: <span className={`${highestColor}`}>{vnindexData && vnindexData.highestIndex}</span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Tham chiếu: <span className='text-yellow-500'></span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Mở cửa: <span ></span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Thấp nhất: <span ></span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Cao nhất: <span ></span></span>
             </div>
             <div className='flex justify-around text-xs mt-1'>
-                <span className='text-[#5CE1E6] xs:text-[11px] sm:text-[12px]'>Sàn: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.low}</span></span>
-                <span className='text-red-500 xs:text-[11px] sm:text-[12px]'>Giảm: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.decrease}</span></span>
-                <span className='text-yellow-500 xs:text-[11px] sm:text-[12px]'>Tham chiếu: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.equal}</span></span>
-                <span className='text-green-500 xs:text-[11px] sm:text-[12px]'>Tăng: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.increase}</span></span>
-                <span className='text-[#CB6CE6] xs:text-[11px] sm:text-[12px]'>Trần: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.high}</span></span>
+                <span className='text-[#5CE1E6] xs:text-[11px] sm:text-[12px]'>Sàn: <span className='dark:text-white text-black'></span></span>
+                <span className='text-red-500 xs:text-[11px] sm:text-[12px]'>Giảm: <span className='dark:text-white text-black'></span></span>
+                <span className='text-yellow-500 xs:text-[11px] sm:text-[12px]'>Tham chiếu: <span className='dark:text-white text-black'></span></span>
+                <span className='text-green-500 xs:text-[11px] sm:text-[12px]'>Tăng: <span className='dark:text-white text-black'></span></span>
+                <span className='text-[#CB6CE6] xs:text-[11px] sm:text-[12px]'>Trần: <span className='dark:text-white text-black'></span></span>
             </div>
         </>
     )

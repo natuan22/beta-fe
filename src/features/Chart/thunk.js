@@ -354,23 +354,7 @@ export const fetchDataMarketEvaluation = async (dispatch) => {
   }
 }
 
-export const fetchDataLineChart = (type) => async (dispatch) => {
-  try {
-    const res = await axios({
-      url: `${apiUrl}/api/v1/chart/vnindex`,
-      method: "GET",
-      params: {
-        type
-      }
-    })
-    dispatch({
-      type: "beta/UPDATE_DATA_LINE_CHART",
-      payload: res.data.data
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
+
 
 export const fetchDataMacroNews = async (dispatch) => {
   try {

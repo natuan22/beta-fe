@@ -18,7 +18,7 @@ const LineChart = () => {
     }
 
     if (dataLineChartHomePage?.data?.length) {
-      socket.on("listen-chi-so-vnindex", (newData) => {
+      socket.on("listen-chi-so-vn-index", (newData) => {
         setDataRealTime((prevData) => [...prevData, ...newData]);
       });
     }
@@ -38,6 +38,10 @@ const LineChart = () => {
     },
     title: {
       text: "",
+      // style:{
+      //   color:"#fff",
+      //   fontSize: '17px'
+      // }
     },
     series: [
       {
