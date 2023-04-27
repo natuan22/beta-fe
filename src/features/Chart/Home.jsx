@@ -46,9 +46,11 @@ import {
   fetchDataNews,
   fetchDataMarketEvaluation,
   fetchDataLineChartHomePage,
+  fetchDataCashFlowAllocation,
 } from "./thunk";
 import LayOut from "../../HOCs/Layout";
 import TableTest from "./ElecticTable/TableTest";
+import CashFlowAllocation from "./components/CashFlowAllocation";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -83,6 +85,7 @@ const Home = () => {
     dispatch(fetchDataWidthMarket("VNINDEX"));
     dispatch(fetchDataNetVolume("vnindex"));
     dispatch(fetchDataLineChartHomePage())
+    dispatch(fetchDataCashFlowAllocation)
   }, [dispatch]);
 
   return (
@@ -367,6 +370,12 @@ const Home = () => {
                     <div className="px-1.5 py-1.5">
                       <TableMarketEvaluation />
                     </div>
+                  </div>
+                  <div>
+                    <div className="text-center dark:text-white text-black">
+                      <h3 className="p-2 uppercase">Phân bổ dòng tiền (tỷ VNĐ)</h3>
+                    </div>
+                    <CashFlowAllocation />
                   </div>
                 </div>
               </div>

@@ -36,7 +36,7 @@ const BarChartRight = () => {
         rotation: -45,
         align: 'center',
         style: {
-          color: colorText,
+          color: localStorage.getItem('color'),
           fontSize: 10
         }
       },
@@ -48,7 +48,7 @@ const BarChartRight = () => {
       },
       labels: {
         style: {
-          color: colorText
+          color: localStorage.getItem('color')
         }
       },
       min: Math.min(

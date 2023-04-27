@@ -137,7 +137,7 @@ const BarChart = () => {
                     useHTML: true,
                     style: {
                         rotation: 0,
-                        color: colorText,
+                        color: localStorage.getItem('color'),
                         fontSize: '10px',
                         whiteSpace: 'normal',
                     }
@@ -151,7 +151,7 @@ const BarChart = () => {
                 labels: {
                     enabled: false,
                     style: {
-                        color: colorText
+                        color: localStorage.getItem('color')
                     }
                 },
             },
@@ -200,7 +200,7 @@ const BarChart = () => {
                     rotation: -45,
                     align: 'center',
                     style: {
-                        color: colorText,
+                        color: localStorage.getItem('color'),
                         fontSize: '11px'
                     }
                 },
@@ -213,7 +213,7 @@ const BarChart = () => {
                 labels: {
                     enabled: false,
                     style: {
-                        color: colorText
+                        color: localStorage.getItem('color')
                     }
                 },
             },

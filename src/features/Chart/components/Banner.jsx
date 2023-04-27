@@ -29,7 +29,7 @@ const Banner = () => {
         </div>
         <div
           id="drawer-navigation"
-          className={` bg-[#151924] fixed top-0 left-0 z-40 w-auto h-screen p-4 overflow-y-auto transition-transform ${showSidebar ? "" : "translate-x-[-100%]  ease-in-out duration-300"
+          className={` dark:bg-[#151924] bg-gray-100 fixed top-0 left-0 z-40 w-auto h-screen p-4 overflow-y-auto transition-transform ${showSidebar ? "" : "translate-x-[-100%]  ease-in-out duration-300"
             }   flex flex-col items-center justify-center`}
           tabIndex={-1}
           aria-labelledby="drawer-navigation-label"
@@ -67,7 +67,7 @@ const Banner = () => {
                       alt="sidebarLogo1"
                       className="w-[25px] h-[25px]"
                     />
-                    <span className="ml-3 text-white">Danh mục cá nhân</span>
+                    <span className="ml-3 dark:text-white text-black">Danh mục cá nhân</span>
                   </a>
                 </li>
                 <li>
@@ -80,7 +80,7 @@ const Banner = () => {
                       alt="sidebarLogo1"
                       className="w-[25px] h-[25px]"
                     />
-                    <span className="ml-3 text-white">
+                    <span className="ml-3 dark:text-white text-black">
                       Dòng tiền thị trường
                     </span>
                   </a>
@@ -95,7 +95,7 @@ const Banner = () => {
                       alt="sidebarLogo1"
                       className="w-[25px] h-[25px]"
                     />
-                    <span className="ml-3 text-white">Bộ lọc cổ phiếu</span>
+                    <span className="ml-3 dark:text-white text-black">Bộ lọc cổ phiếu</span>
                   </a>
                 </li>
                 <li>
@@ -108,7 +108,7 @@ const Banner = () => {
                       alt="sidebarLogo1"
                       className="w-[25px] h-[25px]"
                     />
-                    <span className="ml-3 text-white">Bảng giá cổ phiếu</span>
+                    <span className="ml-3 dark:text-white text-black">Bảng giá cổ phiếu</span>
                   </a>
                 </li>
                 <li>
@@ -121,7 +121,7 @@ const Banner = () => {
                       alt="sidebarLogo1"
                       className="w-[25px] h-[25px]"
                     />
-                    <span className="ml-3 text-white">Chiến lược đầu tư</span>
+                    <span className="ml-3 dark:text-white text-black">Chiến lược đầu tư</span>
                   </a>
                 </li>
                 <li>
@@ -134,7 +134,7 @@ const Banner = () => {
                       alt="sidebarLogo1"
                       className="w-[25px] h-[25px]"
                     />
-                    <span className="ml-3 text-white">Tài khoản giao dịch</span>
+                    <span className="ml-3 dark:text-white text-black">Tài khoản giao dịch</span>
                   </a>
                 </li>
                 <li>
@@ -147,7 +147,7 @@ const Banner = () => {
                       alt="sidebarLogo1"
                       className="w-[25px] h-[25px]"
                     />
-                    <span className="ml-3 text-white">Danh mục cá nhân</span>
+                    <span className="ml-3 dark:text-white text-black">Danh mục cá nhân</span>
                   </a>
                 </li>
                 <li>
@@ -160,7 +160,7 @@ const Banner = () => {
                       alt="sidebarLogo1"
                       className="w-[25px] h-[25px]"
                     />
-                    <span className="ml-3 text-white">Tư vấn trực tiếp</span>
+                    <span className="ml-3 dark:text-white text-black">Tư vấn trực tiếp</span>
                   </a>
                 </li>
                 <li>
@@ -173,7 +173,7 @@ const Banner = () => {
                       alt="sidebarLogo1"
                       className="w-[25px] h-[25px]"
                     />
-                    <span className="ml-3 text-white">Liên hệ</span>
+                    <span className="ml-3 dark:text-white text-black">Liên hệ</span>
                   </a>
                 </li>
               </ul>

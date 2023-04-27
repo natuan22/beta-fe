@@ -12,7 +12,7 @@ import socket from "../utils/socket";
 const LineChart = () => {
   const [dataRealTime, setDataRealTime] = useState([])
   const { dataLineChartHomePage } = useSelector((state) => state.chart);
-  
+
   const [colorText, setColorText] = useState(localStorage.getItem('color'));
   const color = useSelector((state) => state.color.colorText);
 
@@ -62,12 +62,12 @@ const LineChart = () => {
       title: {
         text: "",
         style: {
-          color: colorText,
+          color: localStorage.getItem('color'),
         },
       },
       labels: {
         style: {
-          color: colorText,
+          color: localStorage.getItem('color'),
         },
       },
       gridLineWidth: 0.5,
@@ -80,22 +80,22 @@ const LineChart = () => {
       title: {
         text: null,
         style: {
-          color: colorText,
+          color: localStorage.getItem('color'),
         },
       },
       labels: {
         // rotation: -45,
         style: {
-          color: colorText,
+          color: localStorage.getItem('color'),
         },
       },
     },
     legend: {
       enabled: false, // Tắt chú thích
     },
-    plotOptions:{
-      series:{
-        marker:{
+    plotOptions: {
+      series: {
+        marker: {
           radius: 2
         }
       }

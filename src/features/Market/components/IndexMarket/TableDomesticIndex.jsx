@@ -36,9 +36,6 @@ const TableDomesticIndex = () => {
 >>>>>>> f1b6296cd9c6d5c4d5564383be239e8d0597202e
     return (
         <>
-            <div>
-                <ChartInfo selectedTicker={selectedTicker} />
-            </div>
             <div className="mt-2">
                 <section>
                     <div className="w-full">

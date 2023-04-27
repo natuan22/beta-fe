@@ -354,29 +354,6 @@ export const fetchDataMarketEvaluation = async (dispatch) => {
   }
 }
 
-<<<<<<< HEAD
-
-=======
-export const fetchDataLineChart = (index, type) => async (dispatch) => {
-  try {
-    const res = await axios({
-      url: `${apiUrl}/api/v1/chart/line-chart`,
-      method: "GET",
-      params: {
-        index,
-        type
-      }
-    })
-    dispatch({
-      type: "beta/UPDATE_DATA_LINE_CHART",
-      payload: res.data.data
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
->>>>>>> f1b6296cd9c6d5c4d5564383be239e8d0597202e
-
 export const fetchDataMacroNews = async (dispatch) => {
   try {
     const res = await axios({
@@ -425,5 +402,21 @@ export const fetchDataLineChartHomePage = () => async (dispatch) => {
     })
   } catch (err) {
     console.log(err)
+  }
+}
+
+export const fetchDataCashFlowAllocation = async (dispatch) => {
+  try {
+    const res = await axios({
+      // url: domain + endpoint
+      url: `${apiUrl}/api/v1/chart/market-cash-flow`,
+      method: "GET",
+    });
+    dispatch({
+      type: "beta/UPDATE_DATA_CASH_FLOW_ALLOCATION",
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
   }
 }

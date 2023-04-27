@@ -48,12 +48,12 @@ function ThanhKhoan() {
             title: {
                 text: null,
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
         },
@@ -61,19 +61,19 @@ function ThanhKhoan() {
             title: {
                 text: null,
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: colorText,
+                    color: localStorage.getItem('color'),
                 },
             },
         },
 
         legend: {
             itemStyle: {
-                color: colorText,
+                color: localStorage.getItem('color'),
             },
         },
         series: [
