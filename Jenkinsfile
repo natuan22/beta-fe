@@ -43,7 +43,7 @@ pipeline {
         stage('Deploy Frontend') {
             steps {
                 script {
-                    sh 'export TAG=${VERSION} && cd /home/beta/services/b-infor-frontend && ./deploy.sh'
+                    sh 'echo Beta123 | export TAG=${VERSION} && cd /home/beta/services/b-infor-frontend && sudo -S ./deploy.sh'
                 }
             }
         }
