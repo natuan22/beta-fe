@@ -32,8 +32,7 @@ export const fetchDataLineChartMarket = (index, type) => async (dispatch) => {
             type: marketType.FETCH_DATA_LINE_CHART_MARKET,
             payload: res.data.data
         })
-        console.log(res.data.data)
-    }catch(err){
+    } catch (err) {
         console.log(err)
     }
 }

@@ -84,7 +84,7 @@ const Home = () => {
     dispatch(fetchDataAreaChart2);
     dispatch(fetchDataWidthMarket("VNINDEX"));
     dispatch(fetchDataNetVolume("vnindex"));
-    dispatch(fetchDataLineChartHomePage())
+    dispatch(fetchDataLineChartHomePage('VNINDEX'))
     dispatch(fetchDataCashFlowAllocation)
   }, [dispatch]);
 

@@ -288,7 +288,7 @@ const MarketBreadth = () => {
                     </button>
                 </span>
             </div>
-            <div className="xl:h-[375px] 2xl:h-[375px]">
+            <div className="xl:h-[338px] 2xl:h-[338px]">
                 <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
             </div>
         </>

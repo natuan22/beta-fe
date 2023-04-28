@@ -13,7 +13,6 @@ import {
 import { useDispatch } from "react-redux";
 import AnalysisReport from "../components/IndexMarket/AnalysisReport";
 import ChartInfo from "../components/IndexMarket/ChartInfo";
-import TableDomesticIndex from "../components/IndexMarket/TableDomesticIndex";
 import BarChart from "../components/IndexMarket/BarChart";
 import ThanhKhoan from "../components/IndexMarket/ThanhKhoan";
 import MarketMap from "../components/IndexMarket/MarketMap";
@@ -29,10 +28,6 @@ const IndexMarket = () => {
 
   useEffect(() => {
     dispatch(fetchDataNews);
-<<<<<<< HEAD
-=======
-    dispatch(fetchDataLineChart('VNINDEX', "0"));
->>>>>>> f1b6296cd9c6d5c4d5564383be239e8d0597202e
     dispatch(fetchDataGeneralIndustry("all"));
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataMarketMap("all", "0"));
@@ -41,7 +36,7 @@ const IndexMarket = () => {
     dispatch(fetchDataWidthMarket("VNINDEX"));
     dispatch(fetchDataAreaChart1);
     dispatch(fetchDataAreaChart2);
-    dispatch(fetchDataLineChartMarket(localStorage.getItem('exchange'), localStorage.getItem('typeApi')))
+    dispatch(fetchDataLineChartMarket("VNINDEX", '0'))
   }, [dispatch]);
 
   return (
@@ -51,9 +46,6 @@ const IndexMarket = () => {
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div>
               <ChartInfo />
-            </div>
-            <div className="mt-2">
-              <TableDomesticIndex />
             </div>
           </div>
           <div className="lg:hidden xl:block mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
