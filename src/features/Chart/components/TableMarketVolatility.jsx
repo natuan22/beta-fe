@@ -26,8 +26,8 @@ const TableMarketVolatility = () => {
         <>
             <section className="bg-blueGray-50">
                 <div className="w-full">
-                    <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
-                        <div className="block w-full bg-transparent scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] xl:overflow-x-hidden xs:overflow-x-scroll">
+                    <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded ">
+                        <div className="block w-full bg-transparent scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-transparent xl:overflow-x-hidden xs:overflow-x-scroll">
                             <table className="items-center bg-transparent w-full border-collapse">
                                 <thead className="bg-[#1E5D8B]">
                                     <tr>
@@ -45,8 +45,8 @@ const TableMarketVolatility = () => {
                                 </thead>
 
                                 <tbody>
-                                    <tr className='hover:bg-gray-800'>
-                                        <th className=" sticky top-0text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
+                                    <tr className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                                        <th className=" sticky top-0text-center align-middle uppercase text-sm px-1 py-3.5 dark:text-white text-black">
                                             Phiên trước
                                         </th>
                                         {data?.map(item => {
@@ -58,8 +58,8 @@ const TableMarketVolatility = () => {
                                             )
                                         })}
                                     </tr>
-                                    <tr className='hover:bg-gray-800'>
-                                        <th className="text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
+                                    <tr className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                                        <th className="text-center align-middle uppercase text-sm px-1 py-3.5 dark:text-white text-black">
                                             Trung bình tuần
                                         </th>
                                         {data?.map(item => {
@@ -71,8 +71,8 @@ const TableMarketVolatility = () => {
                                             )
                                         })}
                                     </tr>
-                                    <tr className='hover:bg-gray-800'>
-                                        <th className="text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
+                                    <tr className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                                        <th className="text-center align-middle uppercase text-sm px-1 py-3.5 dark:text-white text-black">
                                             Trung bình tháng
                                         </th>
                                         {data?.map(item => {
@@ -84,8 +84,8 @@ const TableMarketVolatility = () => {
                                             )
                                         })}
                                     </tr>
-                                    <tr className='hover:bg-gray-800'>
-                                        <th className="text-center align-middle uppercase text-sm px-1 py-3.5 text-white">
+                                    <tr className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                                        <th className="text-center align-middle uppercase text-sm px-1 py-3.5 dark:text-white text-black">
                                             Trung bình năm
                                         </th>
                                         {data?.map(item => {

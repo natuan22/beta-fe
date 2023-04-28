@@ -37,7 +37,7 @@ const TableMarketLiquidity = () => {
 
     return (
         <>
-            <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-3">
+            <div className="dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-3">
                 <button
                     style={activeButton === 'increase' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                     onClick={() => {
@@ -71,7 +71,7 @@ const TableMarketLiquidity = () => {
             <section className="bg-blueGray-50">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded ">
-                        <div className="block w-full bg-transparent scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] h-80 overflow-y-scroll">
+                        <div className="block w-full bg-transparent scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-transparent h-80 overflow-y-scroll">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B]">
                                     <tr>
@@ -95,7 +95,7 @@ const TableMarketLiquidity = () => {
                                         data?.map((item) => {
                                             let color = getColor(item.value_change_percent);
                                             return (
-                                                <tr key={item.ticker} className='hover:bg-gray-800'>
+                                                <tr key={item.ticker} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
                                                     <th className={`text-center align-middle text-sm whitespace-nowrap px-2 py-2 ${color}`}>
                                                         {item.ticker}
                                                     </th>

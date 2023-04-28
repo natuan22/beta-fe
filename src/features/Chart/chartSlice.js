@@ -22,10 +22,10 @@ const initialState = {
   dataNetVolume: {},
   dataNews: {},
   dataMarketEvaluation: {},
-  dataLineChart: {},
   dataMacroNews: {},
   dataMarketMap: {},
-  dataLineChartHomePage: {}
+  dataLineChartHomePage: {},
+  dataCashFlowAllocation: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -93,17 +93,18 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_MARKET_EVALUATION) {
       draft.dataMarketEvaluation = payload
     }
-    if (type === actionType.UPDATE_DATA_LINE_CHART) {
-      draft.dataLineChart = payload
-    }
+ 
     if (type === actionType.UPDATE_DATA_MACRO_NEWS) {
       draft.dataMacroNews = payload
     }
     if (type === actionType.UPDATE_DATA_MARKET_MAP) {
       draft.dataMarketMap = payload
     }
-    if(type === actionType.FETCH_DATA_LINECHART_HOMEPAGE){
+    if (type === actionType.FETCH_DATA_LINECHART_HOMEPAGE) {
       draft.dataLineChartHomePage = payload
+    }
+    if (type === actionType.UPDATE_DATA_CASH_FLOW_ALLOCATION) {
+      draft.dataCashFlowAllocation = payload
     }
   });
 };

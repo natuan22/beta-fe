@@ -47,8 +47,8 @@ const RateDetail = () => {
                       color = 'text-green-500'
 
                     return (
-                      <tr key={index} className='hover:bg-gray-800'>
-                        <th className="text-center align-middle text-sm whitespace-nowrap px-3 py-3.5 text-white">
+                      <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                        <th className="text-center align-middle text-sm whitespace-nowrap px-3 py-3.5 dark:text-white text-black">
                           {item.name}
                         </th>
                         <td className={`text-center align-middle text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>

@@ -1,20 +1,30 @@
 import { useEffect, useState } from "react";
 
-export const useDarkMode = () => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-  const toggleTheme = () => {
-    if (theme === 'light') {
-      localStorage.setItem('theme', 'dark');
-      setTheme('dark');
-    } else {
-      localStorage.setItem('theme', 'light');
-      setTheme('light');
-    }
-  };
-  useEffect(() => {
-    const localTheme = window.localStorage.getItem('theme');
-    localTheme && setTheme(localTheme);
-  }, []);
+export function useDarkSide() {
+  const defaultTheme = localStorage.getItem('theme') || 'dark';
+  const [theme, setTheme] = useState(defaultTheme);
+  const colorTheme = theme === "dark" ? "light" : "dark";
 
-  return [theme, toggleTheme];
-};
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove(colorTheme);
+    root.classList.add(theme);
+    localStorage.setItem('theme', theme);
+  }, [theme, colorTheme]);
+
+  return [colorTheme, setTheme]
+}
+
+export function useDarkTextChart() {
+  const defaultColor = localStorage.getItem('color') || '#fff';
+  const [theme, setTheme] = useState(defaultColor);
+  const colorTheme = theme === "#fff" ? "#000" : "#fff";
+
+  useEffect(() => {
+    localStorage.setItem('color', theme);
+  }, [theme, colorTheme]);
+
+  return [colorTheme, setTheme]
+}
+
+

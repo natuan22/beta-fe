@@ -9,6 +9,12 @@ function ThanhKhoan() {
     const dataToday = useSelector((state) => state.chart.dataChart1);
     const dataPreviousDay = useSelector((state) => state.chart.dataChart2);
     const [dataSocket, setDataSocket] = useState([]);
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color]);
     useEffect(() => {
         if (dataToday) {
             setDataSocket(dataToday)
@@ -42,12 +48,12 @@ function ThanhKhoan() {
             title: {
                 text: null,
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
         },
@@ -55,19 +61,19 @@ function ThanhKhoan() {
             title: {
                 text: null,
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
         },
 
         legend: {
             itemStyle: {
-                color: "#fff",
+                color: localStorage.getItem('color'),
             },
         },
         series: [
@@ -104,7 +110,7 @@ function ThanhKhoan() {
 
     return (
         <>
-            <div className="lg:h-[365px] xl:h-[345px] 2xl:h-[345px]">
+            <div className="lg:h-[365px] xl:h-[345px] 2xl:h-[344px]">
                 <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
             </div>
         </>

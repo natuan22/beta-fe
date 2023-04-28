@@ -20,7 +20,7 @@ const GoodsDetail = () => {
     <section className="bg-blueGray-50">
       <div className="w-full">
         <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 ">
-          <div className="block w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] h-[380px] bg-transparent">
+          <div className="block w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent h-[380px] bg-transparent">
             <table className="items-center w-full border-collapse bg-transparent">
               <thead className="sticky top-0 bg-[#1E5D8B]">
                 <tr className="bg-[#1E5D8B]">
@@ -47,8 +47,8 @@ const GoodsDetail = () => {
                     else
                       color = 'text-green-500'
                     return (
-                      <tr key={index} className='hover:bg-gray-800'>
-                        <th className="text-left align-middle md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 text-white">
+                      <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                        <th className="text-left align-middle md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 dark:text-white text-black">
                           {item.name} ({item.unit})
                         </th>
                         <td className={`text-right align-middle md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>

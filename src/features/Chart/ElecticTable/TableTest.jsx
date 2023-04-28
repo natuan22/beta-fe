@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from 'antd';
 import { useSelector } from 'react-redux';
-
+import socket from '../utils/socket';
+import '../utils/ElectricTable.css'
 
 const TableTest = () => {
+    const { dataTableDetail } = useSelector(state => state.chart)
     const [oldData, setOldData] = useState()
     const [newData, setNewData] = useState()
-    const {dataTableDetail} = useSelector(state => state.chart )
-    // console.log(dataTableDetail.data)
+
+    useEffect(() => {
+        socket.on("listen-chi-so-trong-nuoc", (newData) => {
+        })
+    },[])
     const columns = [
         {
             title: 'Chỉ số',
@@ -16,7 +21,9 @@ const TableTest = () => {
         {
             title: 'Điểm',
             dataIndex: 'price',
-          
+            render: (text, item) => {
+                return <p className=''>{item.price}</p>
+            },
             sorter: {
                 compare: (a, b) => a.chinese - b.chinese,
                 multiple: 3,
@@ -42,7 +49,7 @@ const TableTest = () => {
     const data = dataTableDetail.data
     return (
         <div>
-            <Table  columns={columns} dataSource={data} pagination={false} bordered={true}  />;
+            <Table columns={columns} dataSource={data} pagination={false} bordered={true} />
         </div>
     )
 }
