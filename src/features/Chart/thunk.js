@@ -390,11 +390,14 @@ export const fetchDataMarketMap = (exchange, order) => async (dispatch) => {
   }
 }
 
-export const fetchDataLineChartHomePage = () => async (dispatch) => {
+export const fetchDataLineChartHomePage = (index) => async (dispatch) => {
   try {
     const res = await axios({
-      url: `${apiUrl}/api/v1/chart/vnindex-now`,
+      url: `${apiUrl}/api/v1/chart/line-chart-now`,
       method: "GET",
+      params: {
+        index,
+      }
     })
     dispatch({
       type: 'beta/DATA_LINECHART_HOMEPAGE',

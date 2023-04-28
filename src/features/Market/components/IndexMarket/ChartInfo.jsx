@@ -7,22 +7,75 @@ import moment from 'moment';
 import { fetchDataLineChartMarket } from '../../thunk';
 import Loading from '../../../Chart/utils/Loading';
 
-const ChartInfo = (props) => {
+const ChartInfo = () => {
     const dispatch = useDispatch()
+
+    const dataTable = useSelector((state) => state.chart.dataTableDetail);
+    const [dataTableDomestic, setDataTableDomestic] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [exchange, setExchange] = useState('VNINDEX');
+    const [query, setQuery] = useState('0')
+
     const { lineChartMarketData } = useSelector(state => state.market)
+    const [data, setData] = useState([])
+    const [dataInfo, setDataInfo] = useState([])
     const [dataChart, setDataChart] = useState()
+
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
     useEffect(() => {
-        if (lineChartMarketData?.lineChartData?.length > 0)
+        setColorText(color);
+    }, [color]);
+
+    useEffect(() => {
+        if (dataTable.data) {
+            setLoading(false);
+            setDataTableDomestic(dataTable.data)
+        }
+    }, [dataTable]);
+
+    useEffect(() => {
+        if (lineChartMarketData?.lineChartData?.length > 0) {
+            setData(lineChartMarketData)
+            setDataInfo(lineChartMarketData.lineChartData)
             setDataChart(lineChartMarketData.lineChartData)
-    }, [lineChartMarketData.lineChartData])
-    useEffect(() => {
-        socket.on(`listen-chi-so-${localStorage.getItem('exchange')}`, (newData) => {
-            console.log(newData)
-            setDataChart((preData) => [...preData, ...newData])
-        });
+        }
     }, [lineChartMarketData.lineChartData])
 
-    
+    useEffect(() => {
+        if (query === '0') {
+            disconnectSocket(localStorage.getItem('exchange'))
+            conSocket(exchange)
+            localStorage.setItem('typeTime', 'HH:mm')
+            localStorage.setItem('exchange', exchange)
+        } else {
+            disconnectSocket(localStorage.getItem('exchange'))
+            conSocket2(exchange)
+            localStorage.setItem('exchange', exchange)
+            localStorage.setItem('typeTime', "DD/MM")
+        }
+    }, [query, exchange])
+
+    const disconnectSocket = (key) => {
+        if (socket.active) {
+            socket.off(`listen-chi-so-${key}`)
+        }
+    }
+
+    const conSocket = (key) => {
+        socket.on(`listen-chi-so-${key}`, (newData) => {
+            setDataInfo((prevData) => [...prevData, ...newData]);
+            setDataChart((prevData) => [...prevData, ...newData]);
+        });
+    }
+
+    const conSocket2 = (key) => {
+        socket.on(`listen-chi-so-${key}`, (newData) => {
+            setDataInfo((prevData) => [...prevData, ...newData]);
+        });
+    }
+
     const options = {
         accessibility: {
             enabled: false,
@@ -45,12 +98,12 @@ const ChartInfo = (props) => {
             title: {
                 text: "",
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
         },
@@ -58,12 +111,12 @@ const ChartInfo = (props) => {
             title: {
                 text: null,
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
             categories: dataChart?.map(item => moment(item.tradingDate).utc().format(localStorage.getItem('typeTime'))),
@@ -72,28 +125,27 @@ const ChartInfo = (props) => {
             enabled: false // Tắt chú thích
         }
     };
+
+    const vnindexData = dataInfo && dataInfo[dataInfo.length - 1]
+    const colorChange = vnindexData && getColor(vnindexData.percentIndexChange)
+    const openColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.openIndex)
+    const lowestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.lowestIndex)
+    const highestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.highestIndex)
+
     return (
         <>
             <div>
                 <div className='flex border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <div className='w-[345px]'>
-                        <span className='dark:text-white text-black xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]'>{localStorage.getItem('exchange')}</span>
-                        <span className={` text-white xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>{dataChart && dataChart[dataChart?.length -1].indexValue}</span>
-                        <span className={` xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>%</span>
+                        <span className='dark:text-white text-black xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]'>{vnindexData && vnindexData.comGroupCode}</span>
+                        <span className={`${colorChange} text-white xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>{vnindexData && vnindexData.indexValue}</span>
+                        <span className={`${colorChange} xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>{vnindexData && vnindexData.indexChange}/ {vnindexData && (vnindexData.percentIndexChange * 100).toFixed(2)}%</span>
                     </div>
                     <select className={`bg-[#1B496D] md:ml-[200px] lg:ml-3 xl:ml-3 2xl:ml-3 p-1 text-[1rem] text-white border-0`}
                         onChange={(event) => {
                             localStorage.setItem('typeApi', event.target.value)
-                            if (event.target.value === '0') {
-                                localStorage.setItem('typeTime', 'HH:mm')
-                                socket.on(`listen-chi-so-${localStorage.getItem('exchange')}`, (newData) => {
-                                    console.log(newData)
-                                    setDataChart((preData) => [...preData, ...newData])
-                                });
-                            } else {
-                                localStorage.setItem('typeTime', "DD/MM")
-                            }
-                            dispatch(fetchDataLineChartMarket(localStorage.getItem('exchange'), event.target.value))
+                            setQuery(event.target.value)
+                            dispatch(fetchDataLineChartMarket(exchange, event.target.value))
                         }}>
                         <option value='0'>Trong ngày</option>
                         <option value='1'>5 phiên</option>
@@ -101,24 +153,96 @@ const ChartInfo = (props) => {
                         <option value='3'>YtD</option>
                     </select>
                 </div>
-                <div className='md:mt-2 lg:mt-[28px] xl:mt-2'>
-                    {dataChart?.length > 0 ? <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /> : <div className='text-center'><Loading /></div>}
+                <div className='md:mt-2 lg:mt-[28px] xl:mt-2 '>
+                    {dataChart?.length > 0 ? <div className='h-[405px]'><HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /></div> : <div className='text-center mt-12 h-[405px]'><Loading /></div>}
 
                 </div>
             </div>
             <hr />
             <div className='flex justify-around dark:text-white text-black text-xs mt-2'>
-                <span className='xs:text-[10px] sm:text-[12px]'>Tham chiếu: <span className='text-yellow-500'></span></span>
-                <span className='xs:text-[10px] sm:text-[12px]'>Mở cửa: <span ></span></span>
-                <span className='xs:text-[10px] sm:text-[12px]'>Thấp nhất: <span ></span></span>
-                <span className='xs:text-[10px] sm:text-[12px]'>Cao nhất: <span ></span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Tham chiếu: <span className='text-yellow-500'>{vnindexData && vnindexData.referenceIndex}</span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Mở cửa: <span className={`${openColor}`}>{vnindexData && vnindexData.openIndex}</span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Thấp nhất: <span className={`${lowestColor}`}>{vnindexData && vnindexData.lowestIndex}</span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Cao nhất: <span className={`${highestColor}`}>{vnindexData && vnindexData.highestIndex}</span></span>
             </div>
             <div className='flex justify-around text-xs mt-1'>
-                <span className='text-[#5CE1E6] xs:text-[11px] sm:text-[12px]'>Sàn: <span className='dark:text-white text-black'></span></span>
-                <span className='text-red-500 xs:text-[11px] sm:text-[12px]'>Giảm: <span className='dark:text-white text-black'></span></span>
-                <span className='text-yellow-500 xs:text-[11px] sm:text-[12px]'>Tham chiếu: <span className='dark:text-white text-black'></span></span>
-                <span className='text-green-500 xs:text-[11px] sm:text-[12px]'>Tăng: <span className='dark:text-white text-black'></span></span>
-                <span className='text-[#CB6CE6] xs:text-[11px] sm:text-[12px]'>Trần: <span className='dark:text-white text-black'></span></span>
+                <span className='text-[#5CE1E6] xs:text-[11px] sm:text-[12px]'>Sàn: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.low}</span></span>
+                <span className='text-red-500 xs:text-[11px] sm:text-[12px]'>Giảm: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.decrease}</span></span>
+                <span className='text-yellow-500 xs:text-[11px] sm:text-[12px]'>Tham chiếu: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.equal}</span></span>
+                <span className='text-green-500 xs:text-[11px] sm:text-[12px]'>Tăng: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.increase}</span></span>
+                <span className='text-[#CB6CE6] xs:text-[11px] sm:text-[12px]'>Trần: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.high}</span></span>
+            </div>
+
+            <div className="mt-2">
+                <section>
+                    <div className="w-full">
+                        <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
+                            <div className="block w-full bg-transparent xs:min-h-[300px] md:min-h-[300px] lg:min-h-[300px] xl:min-h-[300px] 2xl:min-h-[300px]">
+                                <table className="items-center w-full border-collapse bg-transparent">
+                                    <thead>
+                                        <tr className='bg-[#1E5D8B]'>
+                                            <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
+                                                Chỉ số
+                                            </th>
+                                            <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
+                                                Điểm số
+                                            </th>
+                                            <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
+                                                % Thay đổi
+                                            </th>
+                                            <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
+                                                Khối lượng
+                                            </th>
+                                            <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
+                                                Giá trị
+                                            </th>
+                                            <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
+                                                GTNN ròng
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {!loading ? (Array.isArray(dataTableDomestic) &&
+                                            dataTableDomestic.map((item, index) => {
+                                                let color = getColor(item.percent_d)
+                                                let color2 = getColor(item.net_value_foreign)
+                                                return (
+                                                    <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                                                        <th onClick={() => {
+                                                            if (!localStorage.getItem('typeApi')) {
+                                                                dispatch(fetchDataLineChartMarket(`${item.ticker}`, '0'))
+                                                            } else {
+                                                                dispatch(fetchDataLineChartMarket(`${item.ticker}`, localStorage.getItem('typeApi')))
+                                                            }
+                                                            setExchange(item.ticker)
+                                                        }} className="cursor-pointer text-left px-3 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
+                                                            {item.ticker}
+                                                        </th>
+                                                        <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                            {item.price}
+                                                        </td>
+                                                        <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                            {item.percent_d.toFixed(2)}%
+                                                        </td>
+                                                        <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                            {item.volume}
+                                                        </td>
+                                                        <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                            {item.value}
+                                                        </td>
+                                                        <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color2}`}>
+                                                            {item.net_value_foreign}
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })) : (<tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>)}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </>
     )
