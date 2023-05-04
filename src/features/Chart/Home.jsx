@@ -341,7 +341,7 @@ const Home = () => {
                   <div className="text-center dark:text-white text-black">
                     <h3 className="p-2 uppercase">Thanh khoản thị trường</h3>
                   </div>
-                  <div className="mx-2 my-2 px-1.5 py-1.5">
+                  <div >
                     <AreaChart />
                   </div>
                 </div>
