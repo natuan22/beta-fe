@@ -8,7 +8,12 @@ import HighchartsReact from 'highcharts-react-official';
 const Top10Sell = () => {
     const dataTopNetForeignChange = useSelector(state => state.chart.dataTopNetForeignChange);
     const [data, setData] = useState([])
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
 
+    useEffect(() => {
+        setColorText(color);
+    }, [color]);
     useEffect(() => {
         if (dataTopNetForeignChange.data)
             setData(dataTopNetForeignChange.data)
@@ -45,12 +50,12 @@ const Top10Sell = () => {
             title: {
                 text: null,
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
         }],
@@ -61,7 +66,7 @@ const Top10Sell = () => {
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
         },

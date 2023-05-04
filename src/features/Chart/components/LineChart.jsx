@@ -12,13 +12,21 @@ import socket from "../utils/socket";
 const LineChart = () => {
   const [dataRealTime, setDataRealTime] = useState([])
   const { dataLineChartHomePage } = useSelector((state) => state.chart);
+
+  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const color = useSelector((state) => state.color.colorText);
+
+  useEffect(() => {
+    setColorText(color);
+  }, [color]);
+
   useEffect(() => {
     if (dataLineChartHomePage?.data?.length) {
       setDataRealTime(dataLineChartHomePage.data)
     }
 
     if (dataLineChartHomePage?.data?.length) {
-      socket.on("listen-chi-so-vnindex", (newData) => {
+      socket.on("listen-chi-so-vn-index", (newData) => {
         setDataRealTime((prevData) => [...prevData, ...newData]);
       });
     }
@@ -38,6 +46,10 @@ const LineChart = () => {
     },
     title: {
       text: "",
+      // style:{
+      //   color:"#fff",
+      //   fontSize: '17px'
+      // }
     },
     series: [
       {
@@ -50,12 +62,12 @@ const LineChart = () => {
       title: {
         text: "",
         style: {
-          color: "#fff",
+          color: localStorage.getItem('color'),
         },
       },
       labels: {
         style: {
-          color: "#fff",
+          color: localStorage.getItem('color'),
         },
       },
       gridLineWidth: 0.5,
@@ -68,22 +80,22 @@ const LineChart = () => {
       title: {
         text: null,
         style: {
-          color: "#fff",
+          color: localStorage.getItem('color'),
         },
       },
       labels: {
         // rotation: -45,
         style: {
-          color: "#fff",
+          color: localStorage.getItem('color'),
         },
       },
     },
     legend: {
       enabled: false, // Tắt chú thích
     },
-    plotOptions:{
-      series:{
-        marker:{
+    plotOptions: {
+      series: {
+        marker: {
           radius: 2
         }
       }

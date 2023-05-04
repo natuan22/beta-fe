@@ -56,7 +56,7 @@ const GeneralIndustry = () => {
       <section className="bg-blueGray-50">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded ">
-            <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-[#151924] overflow-y-scroll xs:h-[438px] md:h-[465px] lg:h-[450px] xl:h-[744px] 2xl:h-[745px] bg-transparent">
+            <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll xs:h-[438px] md:h-[465px] lg:h-[450px] xl:h-[744px] 2xl:h-[745px] bg-transparent">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                   <tr>
@@ -96,7 +96,7 @@ const GeneralIndustry = () => {
                       let numOfEqual = item.equal;
                       let total = numOfHigh + numOfLow + numOfIncrease + numOfDecrease + numOfEqual;
                       return (
-                        <tr key={index} className="hover:bg-gray-800">
+                        <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
                           <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
                             {item.industry}
                           </th>

@@ -13,6 +13,12 @@ const TopROC = () => {
     const [data, setData] = useState([])
     const [query, setQuery] = useState('hsx')
     const [socketOld, setSocketOld] = useState('')
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color]);
 
     useEffect(() => {
         if (dataROC.data) {
@@ -70,12 +76,12 @@ const TopROC = () => {
             title: {
                 text: null,
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
         }],
@@ -86,7 +92,7 @@ const TopROC = () => {
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
         },
@@ -126,12 +132,12 @@ const TopROC = () => {
             title: {
                 text: null,
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
         }],
@@ -142,7 +148,7 @@ const TopROC = () => {
             },
             labels: {
                 style: {
-                    color: "#fff",
+                    color: localStorage.getItem('color'),
                 },
             },
         },
@@ -159,13 +165,13 @@ const TopROC = () => {
     return (
         <>
             <div className="chart ">
-                <div className="mx-2 mt-2 px-1.5 py-1.5 bg-[#151924]">
+                <div className="mx-2 mt-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
 
-                    <div className="bg-[#151924] text-center px-20 pt-[19px]">
-                        <span className="font-semibold text-base uppercase text-white">
+                    <div className="dark:bg-[#151924] bg-gray-100 text-center px-20 pt-[19px]">
+                        <span className="font-semibold text-base uppercase dark:text-white text-black">
                             Top 10 cổ phiếu tăng/giảm mạnh nhất sàn
                         </span>
-                        <select className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                        <select className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                                 disconnectSocket(socketOld)
                                 setQuery(event.target.value)
@@ -175,10 +181,10 @@ const TopROC = () => {
                             <option value="hnx">HNX</option>
                             <option value="upcom">UPCOM</option>
                         </select>
-                        <span className="font-semibold uppercase text-white">qua 05 phiên gần nhất</span>
+                        <span className="font-semibold uppercase dark:text-white text-black">qua 05 phiên gần nhất</span>
                     </div>
 
-                    <div className="grid grid-cols-2 bg-[#151924]">
+                    <div className="grid grid-cols-2 dark:bg-[#151924] bg-gray-100">
                         <div className="text-center mx-1">
                             <HighchartsReact highcharts={Highcharts} options={optionsDecr} containerProps={{ style: { height: '721px', width: '100%' } }} />
                         </div>

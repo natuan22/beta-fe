@@ -25,7 +25,7 @@ const News = () => {
 
   return (
     <>
-      <div className="bg-black">
+      <div className="dark:bg-black bg-white">
         <Marquee speed={speed} pauseOnHover={true} gradientColor="[0,0,0]">
           <div className="blog-news flex h-[130px]">
             {dataNews.data?.map((item, index) => {
@@ -39,7 +39,7 @@ const News = () => {
                   }}
                   key={index}
                   bordered={false}
-                  className="w-[355px] h-[90px] bg-black"
+                  className="w-[355px] h-[90px] dark:bg-black bg-white"
                 >
                   <div className="flex items-center">
                     <a
@@ -60,7 +60,7 @@ const News = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <p className="line-clamp-2 text-[0.75rem] font-semibold text-white items-center justify-center">
+                        <p className="line-clamp-2 text-[0.75rem] font-semibold dark:text-white text-black items-center justify-center">
                           {item.Title}
                         </p>
                       </a>
@@ -69,11 +69,11 @@ const News = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <p className="line-clamp-2 text-[0.7rem] text-white items-center justify-center">
+                        <p className="line-clamp-2 text-[0.7rem] dark:text-white text-black items-center justify-center">
                           {item.SubTitle}
                         </p>
                       </a>
-                      <span className="text-[0.65rem] text-white items-center justify-center">
+                      <span className="text-[0.65rem] dark:text-white text-black items-center justify-center">
                         <Moment format="DD/MM/YYYY - HH:mm ">
                           {item.Date}
                         </Moment>

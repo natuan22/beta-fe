@@ -7,6 +7,13 @@ const BarChartLeft = () => {
   const dataBarChartLeft = useSelector((state) => state.chart.dataBarChartLeft);
   const [data, setData] = useState(dataBarChartLeft?.data ?? []);
 
+  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const color = useSelector((state) => state.color.colorText);
+
+  useEffect(() => {
+      setColorText(color);
+  }, [color]);
+
   useEffect(() => {
     setData(dataBarChartLeft?.data ?? []);
   }, [dataBarChartLeft]);
@@ -35,7 +42,7 @@ const BarChartLeft = () => {
         rotation: -45,
         align: 'center',
         style: {
-          color: "#fff",
+          color: localStorage.getItem('color'),
           fontSize: 10
         }
       },
@@ -47,7 +54,7 @@ const BarChartLeft = () => {
       },
       labels: {
         style: {
-          color: '#fff'
+          color: localStorage.getItem('color')
         }
       },
       min: Math.min(

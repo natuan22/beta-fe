@@ -45,11 +45,14 @@ import {
   fetchDataNetVolume,
   fetchDataNews,
   fetchDataMarketEvaluation,
-  fetchDataLineChart,
   fetchDataLineChartHomePage,
+  fetchDataCashFlowAllocation,
 } from "./thunk";
 import LayOut from "../../HOCs/Layout";
 import TableTest from "./ElecticTable/TableTest";
+
+import CashFlowAllocation from "./components/CashFlowAllocation";
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -83,8 +86,8 @@ const Home = () => {
     dispatch(fetchDataAreaChart2);
     dispatch(fetchDataWidthMarket("VNINDEX"));
     dispatch(fetchDataNetVolume("vnindex"));
-    dispatch(fetchDataLineChart('0'))
-    dispatch(fetchDataLineChartHomePage())
+    dispatch(fetchDataLineChartHomePage('VNINDEX'))
+    dispatch(fetchDataCashFlowAllocation)
   }, [dispatch]);
 
   return (
@@ -98,27 +101,27 @@ const Home = () => {
         <div>
           <Banner />
 
-          <div className="bg-black">
+          <div className="dark:bg-black bg-white">
             <div>
               <div className="lg:block xl:flex ">
                 <div className="xl:w-[60%]">
                   <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-[2fr_2fr] xl:grid-cols-[2fr_2fr]">
-                    <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924]">
+                    <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                       <TableDetail />
                     </div>
 
-                    <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924] xs:h-[352px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px]">
-                      <LineChart  />
+                    <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] shadow-md bg-gray-100 xs:h-[352px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px]">
+                      <LineChart />
                     </div>
-                    <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924]">
-                      <div className="text-center bg-[#151924]">
+                    <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
+                      <div className="text-center dark:bg-[#151924] bg-gray-100">
                         <div>
-                          <span className="font-semibold uppercase text-sm text-white">
+                          <span className="font-semibold uppercase text-sm dark:text-white text-black">
                             Nhóm cổ phiếu dẫn dắt thị trường
                           </span>
 
                           <select
-                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                            className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(
@@ -136,10 +139,10 @@ const Home = () => {
                       </div>
                     </div>
 
-                    <div className="text-center mx-2 my-2 px-1.5 py-1.5 bg-[#151924]">
-                      <div className="bg-[#151924]">
+                    <div className="text-center mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
+                      <div className="dark:bg-[#151924] bg-gray-100">
                         <div className="h-[29px]">
-                          <span className="font-semibold uppercase text-white">
+                          <span className="font-semibold uppercase dark:text-white text-black">
                             Top nước ngoài mua bán ròng
                           </span>
                         </div>
@@ -151,7 +154,7 @@ const Home = () => {
                 </div>
 
                 <div className=" xl:w-[40%] xl:translate-x-0 ">
-                  <div className="mx-2 mt-2 px-1.5 py-1.5 bg-[#151924] xs:h-[438px] md:h-[465px] lg:h-[450px] xl:h-[752px] 2xl:h-[751px]">
+                  <div className="mx-2 mt-2 px-1.5 py-1.5 shadow-md dark:bg-[#151924] bg-gray-100 xs:h-[438px] md:h-[465px] lg:h-[450px] xl:h-[752px] 2xl:h-[751px]">
                     <GeneralIndustry />
                   </div>
                 </div>
@@ -162,16 +165,16 @@ const Home = () => {
               <div className="xl:flex lg:block">
                 <div className="xl:w-[60%]">
                   <div className="grid gap-0.5 md:grid-cols-none lg:grid-cols-[2fr_2fr] xl:grid-cols-[2fr_2fr]">
-                    <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924] h-[380px]">
+                    <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[380px] shadow-md">
                       <GoodsDetail />
                     </div>
 
-                    <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924] h-[380px]">
+                    <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[380px] shadow-md">
                       <RateDetail />
                     </div>
                   </div>
 
-                  <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924] h-[385px]">
+                  <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[385px] shadow-md">
                     <Events />
                   </div>
                 </div>
@@ -184,13 +187,13 @@ const Home = () => {
             <div>
               <div className="lg:block xl:flex">
                 <div className="xl:w-[60%] xs:hidden md:hidden xl:block">
-                  <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924] h-[742px]">
+                  <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[742px]">
                     <div className="grid grid-cols-2 gap-0.5">
                       <div className="text-center py-2">
-                        <span className="text-white uppercase text-lg">
+                        <span className="dark:text-white text-black uppercase text-lg">
                           Khối ngoại mua ròng sàn
                           <select
-                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                            className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(
@@ -206,10 +209,10 @@ const Home = () => {
                         </span>
                       </div>
                       <div className="text-center py-2">
-                        <span className="text-white uppercase text-lg">
+                        <span className="dark:text-white text-black uppercase text-lg">
                           Khối ngoại bán ròng sàn
                           <select
-                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                            className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(
@@ -241,13 +244,13 @@ const Home = () => {
                 </div>
 
                 <div className="xl:w-[40%] xl:translate-x-0">
-                  <div className="mx-2 mt-2 px-1.5 py-1.5 bg-[#151924]">
-                    <div className="bg-[#151924] text-center px-20 pt-[19px]">
-                      <span className="font-semibold text-base uppercase text-white">
+                  <div className="mx-2 mt-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
+                    <div className="dark:bg-[#151924] bg-gray-100 text-center px-20 pt-[19px]">
+                      <span className="font-semibold text-base uppercase dark:text-white text-black">
                         Top 10 khối ngoại mua/bán nhiều nhất sàn
                       </span>
                       <select
-                        className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                        className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
                         onChange={(event) => {
                           dispatch(
                             dispatch(
@@ -260,11 +263,11 @@ const Home = () => {
                         <option value="HNX">HNX</option>
                         <option value="UPCOM">UPCOM</option>
                       </select>
-                      <span className="font-semibold uppercase text-white">
+                      <span className="font-semibold uppercase dark:text-white text-black">
                         qua 05 phiên gần nhất
                       </span>
                     </div>
-                    <div className="grid grid-cols-2 bg-[#151924]">
+                    <div className="grid grid-cols-2 dark:bg-[#151924] bg-gray-100">
                       <div className="text-center mx-2">
                         <Top10Sell />
                       </div>
@@ -276,13 +279,13 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="xl:w-[60%] xl:hidden">
-                  <div className="mx-2 my-2 px-1.5 py-1.5 bg-[#151924] xs:h-[800px] lg:h-[745px] md:h-[770px]">
+                  <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md xs:h-[800px] lg:h-[745px] md:h-[770px]">
                     <div className="grid grid-cols-2 gap-0.5">
                       <div className="text-center py-2">
-                        <span className="text-white uppercase text-lg">
+                        <span className="dark:text-white text-black uppercase text-lg">
                           Khối ngoại mua ròng sàn
                           <select
-                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                            className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(
@@ -298,10 +301,10 @@ const Home = () => {
                         </span>
                       </div>
                       <div className="text-center py-2">
-                        <span className="text-white uppercase text-lg">
+                        <span className="dark:text-white text-black uppercase text-lg">
                           Khối ngoại bán ròng sàn
                           <select
-                            className={`${chartStyle.selectStyle} bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                            className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
                             onChange={(event) => {
                               dispatch(
                                 dispatch(
@@ -335,9 +338,9 @@ const Home = () => {
             </div>
 
             <div>
-              <div className="lg:block xl:flex mx-2 my-2 px-1.5 py-1.5 bg-[#151924]">
+              <div className="lg:block xl:flex mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                 <div className="xl:w-[65%]">
-                  <div className="text-center text-white">
+                  <div className="text-center dark:text-white text-black">
                     <h3 className="p-2 uppercase">Thanh khoản thị trường</h3>
                   </div>
                   <div className="mx-2 my-2 px-1.5 py-1.5">
@@ -355,10 +358,10 @@ const Home = () => {
               </div>
             </div>
             <div>
-              <div className="xl:flex lg:block mx-2 my-3 px-1.5 py-1.5 bg-[#151924]">
+              <div className="xl:flex lg:block mx-2 my-3 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                 <div className="xl:w-[65%]">
                   <div>
-                    <div className="text-center text-white">
+                    <div className="text-center dark:text-white text-black">
                       <h3 className="p-2 uppercase">Độ rộng thị trường</h3>
                     </div>
                     <StackingAreas />
@@ -370,10 +373,16 @@ const Home = () => {
                       <TableMarketEvaluation />
                     </div>
                   </div>
+                  <div>
+                    <div className="text-center dark:text-white text-black">
+                      <h3 className="p-2 uppercase">Phân bổ dòng tiền (tỷ VNĐ)</h3>
+                    </div>
+                    <CashFlowAllocation />
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="mr-2 mx-2 px-1.5 py-1.5 bg-[#151924]">
+            <div className="mr-2 mx-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
               <div>
                 <NetVolumeTrade />
               </div>

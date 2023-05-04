@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 SERVICE="SERVICE"
 DEST="docker"

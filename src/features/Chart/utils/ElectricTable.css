@@ -1,0 +1,30 @@
+
+
+.flashUp {
+    animation-name:flashUp  ;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+}
+.flashDown {
+    animation-name:flashDown  ;
+    animation-duration: 0.3s;
+    animation-timing-function:linear ;
+}
+
+@keyframes flashUp {
+    from {
+        background-color: lightgreen;
+    }
+    to {
+        background-color: 'transparent';
+    }
+}
+
+@keyframes flashDown {
+    from {
+        background-color: red;
+    }
+    to {
+        background-color: 'transparent';
+    }
+}

@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'antd';
 import { useSelector } from 'react-redux';
-import '../utils/flashAnimate.css'
 import socket from '../utils/socket';
+import '../utils/ElectricTable.css'
 
 const TableTest = () => {
-    const {dataTableDetail} = useSelector(state => state.chart )
-    console.log(dataTableDetail.data)
+    const { dataTableDetail } = useSelector(state => state.chart)
     const [oldData, setOldData] = useState()
     const [newData, setNewData] = useState()
-    useEffect(()=> {
+
+    useEffect(() => {
         socket.on("listen-chi-so-trong-nuoc", (newData) => {
-            console.log(newData)
-            setNewData(newData)
-          });
-    })
-    const columns = [
+        })
+    },[])
+ [
         {
             title: 'Chỉ số',
             dataIndex: 'ticker',
@@ -24,7 +22,9 @@ const TableTest = () => {
             title: 'Điểm',
             dataIndex: 'price',
             render: (text, item) => {
-                return (item.price > 0 ? <p className='flashUp'>{item.price}</p>:<p className='flashDown'>{item.price}</p>)
+
+                return <p className=''>{item.price}</p>
+
             },
             sorter: {
                 compare: (a, b) => a.chinese - b.chinese,
@@ -51,7 +51,9 @@ const TableTest = () => {
     const data = dataTableDetail.data
     return (
         <div>
-            <Table  columns={columns} dataSource={data} pagination={false}   />;
+
+            <Table columns={columns} dataSource={data} pagination={false} bordered={true} />
+
         </div>
     )
 }

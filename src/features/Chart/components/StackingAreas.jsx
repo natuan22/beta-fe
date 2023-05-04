@@ -3,11 +3,16 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
-import moment from "moment";
 import socket from "../utils/socket";
 import { timeStackingChart15h00, timeStackingChart9h15 } from "../../../helper/dateTime.helper";
 
 const StackingAreas = () => {
+  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const color = useSelector((state) => state.color.colorText);
+
+  useEffect(() => {
+    setColorText(color);
+  }, [color]);
   const dataStackingChart = useSelector(
     (state) => state.chart.dataStackingArea
   );
@@ -86,7 +91,7 @@ const StackingAreas = () => {
         //   return moment.utc(this.value).format("HH:mm");
         // },
         style: {
-          color: "#fff",
+          color: localStorage.getItem('color'),
         },
         rotation: -45
       },
@@ -105,12 +110,12 @@ const StackingAreas = () => {
       title: {
         text: "",
         style: {
-          color: "#fff",
+          color: localStorage.getItem('color'),
         },
       },
       labels: {
         style: {
-          color: "#fff",
+          color: localStorage.getItem('color'),
         },
         formatter: function () {
           return this.value + "%";
@@ -119,7 +124,7 @@ const StackingAreas = () => {
     },
     legend: {
       itemStyle: {
-        color: "#fff",
+        color: localStorage.getItem('color'),
       },
       enabled: true,
       labelFormatter: function () {
@@ -226,7 +231,7 @@ const StackingAreas = () => {
 
   return (
     <>
-      <div>
+      <div className="2xl:h-[560px] xl:h-[560px]">
         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
       </div>
     </>

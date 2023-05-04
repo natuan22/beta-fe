@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,14 +13,20 @@ const NetVolumeTrade = () => {
   const dispatch = useDispatch();
   const dataNetVolume = useSelector((state) => state.chart.dataNetVolume);
   const [title, setTitle] = useState('VNINDEX')
+  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const color = useSelector((state) => state.color.colorText);
+
+  useEffect(() => {
+    setColorText(color);
+  }, [color]);
   if (!dataNetVolume.data || !dataNetVolume.data.length)
     return <>
       <div className="h-[300px]">
         <div className="bg-transparent text-center px-20 py-[10px]">
-          <span className="font-semibold text-base uppercase text-white">
+          <span className="font-semibold text-base uppercase dark:text-white text-black">
             Giá trị giao dịch ròng
           </span>
-          <select className={`bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          <select className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
             onChange={(event) => {
               dispatch(fetchDataNetVolume(event.target.value));
               setTitle(event.target.value)
@@ -70,26 +76,26 @@ const NetVolumeTrade = () => {
       categories: timeLine.reverse(),
       labels: {
         style: {
-          color: '#fff' // màu cho các nhãn trục x
+          color: localStorage.getItem('color') // màu cho các nhãn trục x
         }
       },
       title: {
         style: {
-          color: '#fff' // màu cho tiêu đề trục x
+          color: localStorage.getItem('color') // màu cho tiêu đề trục x
         }
       }
     },
     yAxis: [
       {
         title: {
-          text: "T VNĐ",
+          text: "Tỷ VNĐ",
           style: {
-            color: "#fff",
+            color: localStorage.getItem('color'),
           },
         },
         labels: {
           style: {
-            color: '#fff' // màu cho các nhãn trục y
+            color: localStorage.getItem('color') // màu cho các nhãn trục y
           }
         }
       },
@@ -97,12 +103,12 @@ const NetVolumeTrade = () => {
         title: {
           text: "",
           style: {
-            color: "#fff",
+            color: localStorage.getItem('color'),
           },
         },
         labels: {
           style: {
-            color: '#fff' // màu cho các nhãn trục y
+            color: localStorage.getItem('color') // màu cho các nhãn trục y
           }
         },
         opposite: true,
@@ -112,7 +118,7 @@ const NetVolumeTrade = () => {
     legend: {
       align: 'center',
       itemStyle: {
-        color: '#fff'
+        color: localStorage.getItem('color')
       }
     },
     series: [
@@ -151,10 +157,10 @@ const NetVolumeTrade = () => {
     <>
       <div className="bg-transparent pt-2">
         <div className="bg-transparent text-center px-20 py-[10px]">
-          <span className="font-semibold text-base uppercase text-white">
+          <span className="font-semibold text-base uppercase dark:text-white text-black">
             Giá trị giao dịch ròng
           </span>
-          <select className={`bg-[#151924] hover:bg-gray-900 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          <select className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
             onChange={(event) => {
               dispatch(fetchDataNetVolume(event.target.value));
               setTitle(event.target.value)

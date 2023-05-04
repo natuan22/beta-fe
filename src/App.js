@@ -17,6 +17,11 @@ let history = createBrowserHistory();
 function App() {
   const dispatch = useDispatch()
   useEffect(()=> {
+    // data local để giữ trạng thái user để call api ở chỉ số thị trường
+    localStorage.setItem('typeTime', 'HH:mm')
+    localStorage.setItem('exchange', 'VNINDEX')
+    localStorage.setItem('typeApi', '0')
+
     const token = localStorage.getItem('betaToken')
     dispatch(autoLoginWithToken(token))
   },[dispatch])
