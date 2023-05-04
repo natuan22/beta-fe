@@ -12,8 +12,9 @@ const TableTest = () => {
     useEffect(() => {
         socket.on("listen-chi-so-trong-nuoc", (newData) => {
         })
-    },[])
- [
+    }, [])
+    const columns = [
+
         {
             title: 'Chỉ số',
             dataIndex: 'ticker',
@@ -51,9 +52,12 @@ const TableTest = () => {
     const data = dataTableDetail.data
     return (
         <div>
-
-            <Table columns={columns} dataSource={data} pagination={false} bordered={true} />
-
+            <Table
+                rowClassName={(record, index) => index % 2 === 0 ? 'table-row-light' : 'table-row-dark'}
+                columns={columns} 
+                dataSource={data} 
+                pagination={false} 
+                bordered={true} />
         </div>
     )
 }
