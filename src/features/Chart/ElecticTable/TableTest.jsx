@@ -13,7 +13,7 @@ const TableTest = () => {
         socket.on("listen-chi-so-trong-nuoc", (newData) => {
         })
     },[])
-    const columns = [
+ [
         {
             title: 'Chỉ số',
             dataIndex: 'ticker',
@@ -22,7 +22,9 @@ const TableTest = () => {
             title: 'Điểm',
             dataIndex: 'price',
             render: (text, item) => {
+
                 return <p className=''>{item.price}</p>
+
             },
             sorter: {
                 compare: (a, b) => a.chinese - b.chinese,
@@ -49,7 +51,9 @@ const TableTest = () => {
     const data = dataTableDetail.data
     return (
         <div>
+
             <Table columns={columns} dataSource={data} pagination={false} bordered={true} />
+
         </div>
     )
 }
