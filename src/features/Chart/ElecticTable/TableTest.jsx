@@ -14,6 +14,7 @@ const TableTest = () => {
         })
     }, [])
     const columns = [
+
         {
             title: 'Chỉ số',
             dataIndex: 'ticker',
@@ -22,7 +23,9 @@ const TableTest = () => {
             title: 'Điểm',
             dataIndex: 'price',
             render: (text, item) => {
+
                 return <p className=''>{item.price}</p>
+
             },
             sorter: {
                 compare: (a, b) => a.chinese - b.chinese,

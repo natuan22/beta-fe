@@ -50,7 +50,9 @@ import {
 } from "./thunk";
 import LayOut from "../../HOCs/Layout";
 import TableTest from "./ElecticTable/TableTest";
+
 import CashFlowAllocation from "./components/CashFlowAllocation";
+
 
 const Home = () => {
   const dispatch = useDispatch();
