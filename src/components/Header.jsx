@@ -5,7 +5,6 @@ import { BellOutlined, MessageOutlined } from "@ant-design/icons";
 import { Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
-import './utils/button.css'
 import Switcher from "../services/switcher";
 const { Search } = Input;
 
