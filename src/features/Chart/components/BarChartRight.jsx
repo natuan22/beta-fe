@@ -62,6 +62,15 @@ const BarChartRight = () => {
     },
     legend: {
       enabled: false
+    }, tooltip: {
+      shared: true,
+      useHTML: true,
+      valueSuffix: " ",
+      pointFormatter: function () {
+        return (
+          '<span style="color:' + this.color + '">●</span>' + '<span>' + ' ' + this.name + ": <b>" + this.y + "</b></span>  <b>" + "</b><br/>"
+        );
+      },
     },
     plotOptions: {
       column: {
