@@ -13,29 +13,53 @@ const TableTest = () => {
     useEffect(() => {
         socket.on("listen-chi-so-trong-nuoc", (newData) => {
         })
-    },[])
+
+    }, [])
     const columns = [
+
         {
-          title: 'Name',
-          dataIndex: 'name',
-          key: 'name',
+            title: 'Chỉ số',
+            dataIndex: 'comGroupCode',
         },
         {
-          title: 'Age',
-          dataIndex: 'age',
-          key: 'age',
+            title: 'Điểm',
+            dataIndex: 'indexValue',
+            render: (text, item) => {
+
+                return <p className=''>{item.indexValue}</p>
+
+            },
+            sorter: {
+                compare: (a, b) => a.chinese - b.chinese,
+                multiple: 3,
+            },
         },
         {
-          title: 'Address',
-          dataIndex: 'address',
-          key: 'address',
+            title: 'Thay đổi (điểm)',
+            dataIndex: 'indexChange',
+            sorter: {
+                compare: (a, b) => a.math - b.math,
+                multiple: 2,
+            },
         },
-      ];
+        {
+            title: 'Thay đổi (%)',
+            dataIndex: 'percentIndexChange',
+            sorter: {
+                compare: (a, b) => a.english - b.english,
+                multiple: 1,
+            },
+
+    },[])
+    
     return (
         <div>
-
-            <Table columns={columns} dataSource={data} pagination={false} bordered={true} />
-
+            <Table
+                rowClassName={(record, index) => index % 2 === 0 ? 'table-row-light' : 'table-row-dark'}
+                columns={columns} 
+                dataSource={data} 
+                pagination={false} 
+                bordered={true} />
         </div>
     )
 }

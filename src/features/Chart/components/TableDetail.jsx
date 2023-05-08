@@ -13,10 +13,10 @@ const TableDetail = () => {
   }, [dataTable]);
 
   useEffect(() => {
-    socket.on("listen-chi-so-trong-nuoc", (newData) => {
+    socket.on("listen-domestic-index", (newData) => {
       setData(newData)
     });
-  }, [])
+  }, [data])
 
   return (
     <>
@@ -43,6 +43,10 @@ const TableDetail = () => {
                 </thead>
 
                 <tbody>
+
+
+
+
                   {dataTable?.data?.length > 0 ? (Array.isArray(data) &&
                     dataTable?.data?.map((item, index) => {
                       let color = getColor(item.percentIndexChange)

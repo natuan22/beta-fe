@@ -74,6 +74,16 @@ const CashFlowAllocation = () => {
                 borderRadius: 2
             }
         },
+        tooltip: {
+            shared: true,
+            useHTML: true,
+            valueSuffix: " ",
+            pointFormatter: function () {
+                return (
+                    '<span style="color:' + this.color + '">●</span>' + '<span>' + ' ' + this.name + ": <b>" + this.y + "</b></span>  <b>" + "</b><br/>"
+                );
+            },
+        },
         series: [{
             data: [
                 { name: 'Tăng', y: data.increase / 1000000000, color: '#19d216' }, // thiết lập màu cho cột tăng

@@ -1,20 +1,20 @@
-
-
 .flashUp {
-    animation-name:flashUp  ;
+    animation-name: flashUp;
     animation-duration: 0.3s;
     animation-timing-function: linear;
 }
+
 .flashDown {
-    animation-name:flashDown  ;
+    animation-name: flashDown;
     animation-duration: 0.3s;
-    animation-timing-function:linear ;
+    animation-timing-function: linear;
 }
 
 @keyframes flashUp {
     from {
         background-color: lightgreen;
     }
+
     to {
         background-color: 'transparent';
     }
@@ -24,7 +24,16 @@
     from {
         background-color: red;
     }
+
     to {
         background-color: 'transparent';
     }
+}
+
+.table-row-light {
+    background-color: #ffffff;
+}
+
+.table-row-dark {
+    background-color: #da5f5f;
 }

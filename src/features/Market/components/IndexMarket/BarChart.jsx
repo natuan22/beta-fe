@@ -47,7 +47,7 @@ const BarChart = () => {
                         onChange={(e) => {
                             handleQueryApiType(e.target.value);
                         }}
-                        className={`bg-transparent text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
+                        className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
                         <option value="0">Cổ phiếu</option>
                         <option value="1">Ngành LV1</option>
                         <option value="2">Ngành LV2</option>
@@ -157,6 +157,15 @@ const BarChart = () => {
             },
             legend: {
                 enabled: false
+            }, tooltip: {
+                shared: true,
+                useHTML: true,
+                valueSuffix: " ",
+                pointFormatter: function () {
+                    return (
+                        '<span style="color:' + this.color + '">●</span>' + '<span>' + ' ' + this.name + ": <b>" + this.y + "</b></span>  <b>" + "</b><br/>"
+                    );
+                },
             },
             plotOptions: {
                 column: {
@@ -219,6 +228,15 @@ const BarChart = () => {
             },
             legend: {
                 enabled: false
+            }, tooltip: {
+                shared: true,
+                useHTML: true,
+                valueSuffix: " ",
+                pointFormatter: function () {
+                    return (
+                        '<span style="color:' + this.color + '">●</span>' + '<span>' + ' ' + this.name + ": <b>" + this.y + "</b></span>  <b>" + "</b><br/>"
+                    );
+                },
             },
             plotOptions: {
                 column: {
