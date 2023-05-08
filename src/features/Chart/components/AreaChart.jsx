@@ -112,7 +112,7 @@ function AreaChart() {
 
   return (
     <>
-      <div className="2xl:h-[613px] xl:h-[763px] lg:h-[500px] md:h-[500px] xs:h-[500px]">
+      <div className="2xl:h-[633px] xl:h-[683px] lg:h-[500px] md:h-[500px] xs:h-[500px]">
         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
       </div>
     </>

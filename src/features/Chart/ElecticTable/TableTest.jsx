@@ -17,14 +17,14 @@ const TableTest = () => {
 
         {
             title: 'Chỉ số',
-            dataIndex: 'ticker',
+            dataIndex: 'comGroupCode',
         },
         {
             title: 'Điểm',
-            dataIndex: 'price',
+            dataIndex: 'indexValue',
             render: (text, item) => {
 
-                return <p className=''>{item.price}</p>
+                return <p className=''>{item.indexValue}</p>
 
             },
             sorter: {
@@ -34,7 +34,7 @@ const TableTest = () => {
         },
         {
             title: 'Thay đổi (điểm)',
-            dataIndex: 'change_price',
+            dataIndex: 'indexChange',
             sorter: {
                 compare: (a, b) => a.math - b.math,
                 multiple: 2,
@@ -42,7 +42,7 @@ const TableTest = () => {
         },
         {
             title: 'Thay đổi (%)',
-            dataIndex: 'percent_d',
+            dataIndex: 'percentIndexChange',
             sorter: {
                 compare: (a, b) => a.english - b.english,
                 multiple: 1,

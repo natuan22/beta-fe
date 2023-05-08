@@ -39,7 +39,7 @@ const IndexMarket = () => {
     dispatch(fetchDataLineChartMarket("VNINDEX", '0'))
   }, [dispatch]);
 
-  return (
+  return (    
     <>
       <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-full">
         <div className="md:block lg:flex justify-center">

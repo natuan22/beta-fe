@@ -36,6 +36,12 @@ const ChartInfo = () => {
     }, [dataTable]);
 
     useEffect(() => {
+        socket.on("listen-domestic-index", (newData) => {
+            setDataTableDomestic(newData)
+        });
+    }, [dataTableDomestic])
+
+    useEffect(() => {
         if (lineChartMarketData?.lineChartData?.length > 0) {
             setData(lineChartMarketData)
             setDataInfo(lineChartMarketData.lineChartData)
@@ -196,43 +202,37 @@ const ChartInfo = () => {
                                             <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
                                                 Giá trị
                                             </th>
-                                            <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
-                                                GTNN ròng
-                                            </th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         {!loading ? (Array.isArray(dataTableDomestic) &&
                                             dataTableDomestic.map((item, index) => {
-                                                let color = getColor(item.percent_d)
+                                                let color = getColor(item.percentIndexChange)
                                                 let color2 = getColor(item.net_value_foreign)
                                                 return (
-                                                    <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                                                        <th onClick={() => {
-                                                            if (!localStorage.getItem('typeApi')) {
-                                                                dispatch(fetchDataLineChartMarket(`${item.ticker}`, '0'))
-                                                            } else {
-                                                                dispatch(fetchDataLineChartMarket(`${item.ticker}`, localStorage.getItem('typeApi')))
-                                                            }
-                                                            setExchange(item.ticker)
-                                                        }} className="cursor-pointer text-left px-3 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
-                                                            {item.ticker}
+                                                    <tr onClick={() => {
+                                                        if (!localStorage.getItem('typeApi')) {
+                                                            dispatch(fetchDataLineChartMarket(`${item.comGroupCode}`, '0'))
+                                                        } else {
+                                                            dispatch(fetchDataLineChartMarket(`${item.comGroupCode}`, localStorage.getItem('typeApi')))
+                                                        }
+                                                        setExchange(item.comGroupCode)
+                                                    }} key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500 cursor-pointer'>
+                                                        <th className="text-left px-3 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
+                                                            {item.comGroupCode}
                                                         </th>
                                                         <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {item.price}
+                                                            {item.indexValue}
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {item.percent_d.toFixed(2)}%
+                                                            {item.percentIndexChange.toFixed(2)}%
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {item.volume}
+                                                            {item.totalMatchVolume.toLocaleString()}
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {item.value}
-                                                        </td>
-                                                        <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color2}`}>
-                                                            {item.net_value_foreign}
+                                                            {item.totalMatchValue.toLocaleString()}
                                                         </td>
                                                     </tr>
                                                 )
