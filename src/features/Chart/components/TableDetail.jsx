@@ -6,11 +6,8 @@ import socket from "../utils/socket";
 const TableDetail = () => {
   const dataTable = useSelector((state) => state.chart.dataTableDetail);
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     if (dataTable.data) {
-      setLoading(false);
       setData(dataTable.data)
     }
   }, [dataTable]);
@@ -46,10 +43,13 @@ const TableDetail = () => {
                 </thead>
 
                 <tbody>
-                  {!loading ? (Array.isArray(data) &&
-                    data.map((item, index) => {
-                      let color = getColor(item.percentIndexChange)
 
+
+
+
+                  {dataTable?.data?.length > 0 ? (Array.isArray(data) &&
+                    dataTable?.data?.map((item, index) => {
+                      let color = getColor(item.percentIndexChange)
                       return (
                         <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
                           <th className="text-left px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">

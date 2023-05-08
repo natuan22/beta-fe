@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../utils/Loading";
+import socket from "../utils/socket";
+import { fetchDataTreeMapBuy } from "../thunk";
 
 const TreeMapChart = () => {
+  const dispatch = useDispatch()
   const dataTreemapBuy = useSelector((state) => state.chart.dataTreemapBuy);
-  const [data = dataTreemapBuy.data || []] = useState();
+  const [data = dataTreemapBuy.data || [], setData] = useState();
+  const [query, setQuery] = useState('hsx')
+  const [socketOld, setSocketOld] = useState('')
+  useEffect(() => {
+    if (dataTreemapBuy.data) {
+        setData(dataTreemapBuy.data)
+    }
+}, [dataTreemapBuy])
+
   const arrGlobal = [
     [
       "Location",
@@ -30,6 +41,24 @@ const TreeMapChart = () => {
     ];
   });
 
+  useEffect(() => {
+    conSocket(query)
+    setSocketOld(query)
+}, [query])
+
+  const disconnectSocket = (socketOld) => {
+    if (socket.active) {
+      console.log('tắt', socketOld)
+        socket.off(`listen-foreign-buy-${socketOld}`);
+    }
+}
+
+const conSocket = (key) => {
+    socket.on(`listen-foreign-buy-${key}`, (newData) => {
+      console.log('connect',key)
+        setData(newData)
+    });
+}
   const dataTreeMapRender = arrGlobal.concat(arrTicker)
 
   const options = {
@@ -81,16 +110,34 @@ const TreeMapChart = () => {
   };
 
   return (
-    <>
-      <Chart
-        width={"100%"}
-        height={"500px"}
-        chartType="TreeMap"
-        loader={<div className="mt-16"><Loading /></div>}
-        data={dataTreeMapRender}
-        options={options}
-        rootProps={{ "data-testid": "1" }}
-      /></>
+    <div>
+      <div>
+        <select
+          className={` dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          onChange={(event) => {
+            disconnectSocket(socketOld)
+            setQuery(event.target.value)
+            
+              dispatch(fetchDataTreeMapBuy(event.target.value))
+          }}
+        >
+          <option value="hsx">HSX</option>
+          <option value="hnx">HNX</option>
+          <option value="upcom">UPCOM</option>
+        </select>
+      </div>
+      <div>
+
+        <Chart
+          width={"100%"}
+          height={"500px"}
+          chartType="TreeMap"
+          loader={<div className="mt-16"><Loading /></div>}
+          data={dataTreeMapRender}
+          options={options}
+        />
+      </div>
+    </div>
   );
 };
 

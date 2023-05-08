@@ -220,7 +220,7 @@ const ChartInfo = () => {
                                                         setExchange(item.comGroupCode)
                                                     }} key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500 cursor-pointer'>
                                                         <th className="text-left px-3 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
-                                                            {item.comGroupCode}
+                                            {item.comGroupCode}
                                                         </th>
                                                         <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                             {item.indexValue}
@@ -233,7 +233,10 @@ const ChartInfo = () => {
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                             {item.totalMatchValue.toLocaleString()}
+
+
                                                         </td>
+                                                        
                                                     </tr>
                                                 )
                                             })) : (<tr><td colSpan={6}><div className="mt-16"><Loading /></div></td></tr>)}

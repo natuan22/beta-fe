@@ -8,10 +8,12 @@ const TableTest = () => {
     const { dataTableDetail } = useSelector(state => state.chart)
     const [oldData, setOldData] = useState()
     const [newData, setNewData] = useState()
+    const data = dataTableDetail.data
 
     useEffect(() => {
         socket.on("listen-chi-so-trong-nuoc", (newData) => {
         })
+
     }, [])
     const columns = [
 
@@ -47,9 +49,9 @@ const TableTest = () => {
                 compare: (a, b) => a.english - b.english,
                 multiple: 1,
             },
-        },
-    ];
-    const data = dataTableDetail.data
+
+    },[])
+    
     return (
         <div>
             <Table
