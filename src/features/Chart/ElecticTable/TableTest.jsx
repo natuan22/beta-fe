@@ -8,47 +8,29 @@ const TableTest = () => {
     const { dataTableDetail } = useSelector(state => state.chart)
     const [oldData, setOldData] = useState()
     const [newData, setNewData] = useState()
+    const data = dataTableDetail.data
 
     useEffect(() => {
         socket.on("listen-chi-so-trong-nuoc", (newData) => {
         })
     },[])
- [
+    const columns = [
         {
-            title: 'Chỉ số',
-            dataIndex: 'ticker',
+          title: 'Name',
+          dataIndex: 'name',
+          key: 'name',
         },
         {
-            title: 'Điểm',
-            dataIndex: 'price',
-            render: (text, item) => {
-
-                return <p className=''>{item.price}</p>
-
-            },
-            sorter: {
-                compare: (a, b) => a.chinese - b.chinese,
-                multiple: 3,
-            },
+          title: 'Age',
+          dataIndex: 'age',
+          key: 'age',
         },
         {
-            title: 'Thay đổi (điểm)',
-            dataIndex: 'change_price',
-            sorter: {
-                compare: (a, b) => a.math - b.math,
-                multiple: 2,
-            },
+          title: 'Address',
+          dataIndex: 'address',
+          key: 'address',
         },
-        {
-            title: 'Thay đổi (%)',
-            dataIndex: 'percent_d',
-            sorter: {
-                compare: (a, b) => a.english - b.english,
-                multiple: 1,
-            },
-        },
-    ];
-    const data = dataTableDetail.data
+      ];
     return (
         <div>
 

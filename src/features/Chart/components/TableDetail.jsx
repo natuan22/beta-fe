@@ -6,11 +6,8 @@ import socket from "../utils/socket";
 const TableDetail = () => {
   const dataTable = useSelector((state) => state.chart.dataTableDetail);
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     if (dataTable.data) {
-      setLoading(false);
       setData(dataTable.data)
     }
   }, [dataTable]);
@@ -46,23 +43,22 @@ const TableDetail = () => {
                 </thead>
 
                 <tbody>
-                  {!loading ? (Array.isArray(data) &&
-                    data.map((item, index) => {
-                      let color = getColor(item.percent_d)
-
+                  {dataTable?.data?.length > 0 ? (Array.isArray(data) &&
+                    dataTable?.data?.map((item, index) => {
+                      let color = getColor(item.percentIndexChange)
                       return (
                         <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
                           <th className="text-left px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
-                            {item.ticker}
+                            {item.comGroupCode}
                           </th>
                           <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {item.price}
+                            {item.indexValue}
                           </td>
                           <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {item.change_price.toFixed(2)}
+                            {item.indexChange.toFixed(2)}
                           </td>
                           <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {item.percent_d.toFixed(2)}%
+                            {item.percentIndexChange.toFixed(2)}%
                           </td>
                         </tr>
                       )
