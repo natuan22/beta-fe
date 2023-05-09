@@ -45,14 +45,14 @@ const TreeMapChart = () => {
   // }, [query]);
 
 
-    // socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
-    //   // console.log('dataSocketByt',newData)
-    //   setData(newData)
-    // })
-    // setOldSocket(socketChanel)
-  
+  // socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
+  //   // console.log('dataSocketByt',newData)
+  //   setData(newData)
+  // })
+  // setOldSocket(socketChanel)
+
   // }, [dataTreemapBuy])
-  
+
   const arrGlobal = [
     [
       "Location",
@@ -72,7 +72,7 @@ const TreeMapChart = () => {
 
   const arrTicker = data.map((item) => {
     return [
-      `${item.ticker}: ${ Intl.NumberFormat("de-DE").format(item.total_value_buy) } tỉ VNĐ`,
+      `${item.ticker}: ${Intl.NumberFormat("de-DE").format(item.total_value_buy)} tỉ VNĐ`,
       item.LV2,
       item.total_value_buy,
     ];
@@ -82,9 +82,9 @@ const TreeMapChart = () => {
 
   const disconnectSocket = (socketOld) => {
     if (socket.active) {
-        socket.off(`listen-foreign-buy-${socketOld}`);
+      socket.off(`listen-foreign-buy-${socketOld}`);
     }
-}
+  }
 
   const dataTreeMapRender = arrGlobal.concat(arrTicker)
   const options = {
@@ -137,22 +137,24 @@ const TreeMapChart = () => {
 
   return (
     <div>
-
-      <div>
-        <select
-          className={` dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
-          onChange={(event) => {
-            disconnectSocket(oldSocket)
-            setSocketChanel(event.target.value)
-            dispatch(fetchDataTreeMapBuy(event.target.value))
-          }}
-        >
-          <option value="hsx">HSX</option>
-          <option value="hnx">HNX</option>
-          <option value="upcom">UPCOM</option>
-        </select>
-
+      <div className="text-center py-2">
+        <span className="dark:text-white text-black uppercase text-lg">
+          Khối ngoại mua ròng sàn
+          <select
+            className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+            onChange={(event) => {
+              disconnectSocket(oldSocket)
+              setSocketChanel(event.target.value)
+              dispatch(fetchDataTreeMapBuy(event.target.value))
+            }}
+          >
+            <option value="HOSE">HSX</option>
+            <option value="HNX">HNX</option>
+            <option value="UPCOM">UPCOM</option>
+          </select>
+        </span>
       </div>
+
       <div>
         <Chart
           width={"100%"}
