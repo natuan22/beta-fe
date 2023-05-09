@@ -26,6 +26,11 @@ const MarketBreadth = () => {
         exchange: "HOSE",
         type: 1,
     });
+    useEffect(() => {
+        dispatch(
+            fetchDataDoRongThiTruong(queryApi.exchange, queryApi.type)
+        );
+    }, [dispatch, queryApi]);
 
     useEffect(() => {
         if (dataDoRongThiTruong) {
@@ -33,11 +38,7 @@ const MarketBreadth = () => {
         }
     }, [dataDoRongThiTruong])
 
-    useEffect(() => {
-        dispatch(
-            fetchDataDoRongThiTruong(queryApi.exchange, queryApi.type)
-        );
-    }, [dispatch, queryApi]);
+
 
     const handleQueryApiExchange = (exchange) => {
         setQueryApi((prev) => ({ ...prev, exchange }));
@@ -110,13 +111,13 @@ const MarketBreadth = () => {
         </>;
     }
 
-    const timeLine = data?.map((item) =>
+    const timeLine = Array.isArray(data) && data?.map((item) =>
         moment.utc(item.time).format(formatDate)
     );
 
-    const dataAdvance = data?.map((item) => item.advance);
-    const dataDecline = data?.map((item) => item.decline);
-    const dataNoChange = data?.map((item) => item.noChange);
+    const dataAdvance = Array.isArray(data) && data?.map((item) => item.advance);
+    const dataDecline = Array.isArray(data) && data?.map((item) => item.decline);
+    const dataNoChange = Array.isArray(data) && data?.map((item) => item.noChange);
     const options = {
         accessibility: {
             enabled: false,
