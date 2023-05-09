@@ -6,19 +6,21 @@ import { fetchDataTreeMapSell } from "../thunk";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
 
-const TreeMapChart = () => {
+const TreeMapChart2 = () => {
   const dispatch = useDispatch()
   const dataTreemapSell = useSelector((state) => state.chart.dataTreemapSell);
   const [data = dataTreemapSell.data || [], setData] = useState();
   const [query, setQuery] = useState('HOSE')
-
+  const [oldSocket, setOldSocket] = useState('')
+  const [socketChanel, setSocketChanel]= useState('hsx')
 
 
   useEffect(() => {
     if (dataTreemapSell.data) {
       setData(dataTreemapSell.data)
     }
-
+    socket.on(`listen-foreign-sell-${socketChanel}`)
+    setOldSocket(query)
   }, [dataTreemapSell])
 
 
