@@ -78,7 +78,7 @@ const InvestorCashFlow = () => {
             </div>
             <div className='flex'>
                 <div>
-                    <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2">
+                    <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2 mr-4">
                         <button
                             style={activeButton2 === 1 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {

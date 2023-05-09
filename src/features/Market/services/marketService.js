@@ -20,11 +20,26 @@ export const marketServices = {
         })
     },
     fetchDataLineChartMarket: (index, type) => {
-        return https.get('api/v1/chart/line-chart',{
-            params:{
+        return https.get('api/v1/chart/line-chart', {
+            params: {
                 index,
                 type
             }
         })
-    }
+    },
+    fetchDataInvestorTransaction: (type, investorType) => {
+        return https.get('api/v1/cash-flow/investor-transaction', {
+            params: {
+                type,
+                investorType
+            }
+        })
+    },
+    fetchDataCashValue: (type) => {
+        return https.get('api/v1/cash-flow/value', {
+            params: {
+                type,
+            }
+        })
+    },
 }

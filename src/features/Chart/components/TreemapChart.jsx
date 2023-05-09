@@ -1,11 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../utils/Loading";
+import socket from "../utils/socket";
+import { fetchDataTreeMapBuy } from "../thunk";
+import { https } from "../../../services/config";
 
 const TreeMapChart = () => {
+  const dispatch = useDispatch()
   const dataTreemapBuy = useSelector((state) => state.chart.dataTreemapBuy);
-  const [data = dataTreemapBuy.data || []] = useState();
+  const [data = dataTreemapBuy.data || [], setData] = useState();
+  const [query, setQuery] = useState('HOSE')
+
+  useEffect(() => {
+    if (dataTreemapBuy.data) {
+      setData(dataTreemapBuy.data)
+    }
+  }, [dataTreemapBuy])
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await https.get('/api/v1/stock/net-foreign', {
+  //         params: {
+  //           exchange: query || undefined,
+  //           transaction: 0
+  //         }
+  //       });
+  //       const data = response.data;
+  //       // Do something with the data, such as store it in state
+  //     } catch (error) {
+  //       // Handle any errors
+  //     }
+  //   };
+
+  //   const interval = setInterval(() => {
+  //     fetchData();
+  //   }, 10000);
+
+  //   return () => clearInterval(interval);
+  // }, [query]);
+
   const arrGlobal = [
     [
       "Location",
@@ -22,6 +57,7 @@ const TreeMapChart = () => {
       addedLv2Values.add(item.LV2);
     }
   });
+
   const arrTicker = data.map((item) => {
     return [
       `${item.ticker}: ${item.total_value_buy}`,
@@ -81,16 +117,34 @@ const TreeMapChart = () => {
   };
 
   return (
-    <>
-      <Chart
-        width={"100%"}
-        height={"500px"}
-        chartType="TreeMap"
-        loader={<div className="mt-16"><Loading /></div>}
-        data={dataTreeMapRender}
-        options={options}
-        rootProps={{ "data-testid": "1" }}
-      /></>
+    <div>
+      <div className="text-center py-2">
+        <span className="dark:text-white text-black uppercase text-lg">
+          Khối ngoại mua ròng sàn
+          <select
+            className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+            onChange={(event) => {
+              setQuery(event.target.value)
+              dispatch(fetchDataTreeMapBuy(event.target.value))
+            }}
+          >
+            <option value="HOSE">HSX</option>
+            <option value="HNX">HNX</option>
+            <option value="UPCOM">UPCOM</option>
+          </select>
+        </span>
+      </div>
+      <div>
+        <Chart
+          width={"100%"}
+          height={"500px"}
+          chartType="TreeMap"
+          loader={<div className="mt-16"><Loading /></div>}
+          data={dataTreeMapRender}
+          options={options}
+        />
+      </div>
+    </div>
   );
 };
 

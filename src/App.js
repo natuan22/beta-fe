@@ -5,7 +5,6 @@ import {
   unstable_HistoryRouter as HistoryRouter,
 } from "react-router-dom";
 import { marketRoute, routes } from "./app/routes";
-import Header from "./components/Header";
 // import DemoQuery from './demo/DemoQuery';
 
 import { createBrowserHistory } from "history";

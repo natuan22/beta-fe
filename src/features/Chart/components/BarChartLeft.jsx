@@ -11,7 +11,7 @@ const BarChartLeft = () => {
   const color = useSelector((state) => state.color.colorText);
 
   useEffect(() => {
-      setColorText(color);
+    setColorText(color);
   }, [color]);
 
   useEffect(() => {
@@ -68,6 +68,15 @@ const BarChartLeft = () => {
     },
     legend: {
       enabled: false
+    }, tooltip: {
+      shared: true,
+      useHTML: true,
+      valueSuffix: " ",
+      pointFormatter: function () {
+        return (
+          '<span style="color:' + this.color + '">●</span>' + '<span>' + ' ' + this.name + ": <b>" + this.y + "</b></span>  <b>" + "</b><br/>"
+        );
+      },
     },
     plotOptions: {
       column: {

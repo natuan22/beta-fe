@@ -36,3 +36,27 @@ export const fetchDataLineChartMarket = (index, type) => async (dispatch) => {
         console.log(err)
     }
 }
+
+export const fetchDataInvestorTransaction = (type, investorType) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataInvestorTransaction(type, investorType)
+        dispatch({
+            type: marketType.FETCH_DATA_INVESTOR_TRANSACTION,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataCashValue = (type) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataCashValue(type)
+        dispatch({
+            type: marketType.FETCH_DATA_CASH_VALUE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}

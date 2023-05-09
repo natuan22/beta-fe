@@ -5,13 +5,24 @@ import { BellOutlined, MessageOutlined } from "@ant-design/icons";
 import { Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
-import './utils/button.css'
 import Switcher from "../services/switcher";
 const { Search } = Input;
 
 const Header = () => {
   const isLogin = useSelector((state) => state.authen.userData);
   const [isOpen, setIsOpen] = useState(false);
+  const [bgPosition, setBgPosition] = useState({
+    left: 0,
+    width: 0
+  })
+  function handleNavLinkClick(e) {
+    const rect = e.target.getBoundingClientRect();
+    setBgPosition({
+      left: rect.left + window.pageXOffset,
+      width: rect.width,
+    });
+    console.log(bgPosition)
+  }
   return (
     <>
       <div className=" relative">
@@ -60,14 +71,14 @@ const Header = () => {
                     </div>
                   </div>
                 </div>
-
+                {/* desktop */}
                 <div className="hidden xl:block w-max">
                   <div className="ml-4 flex items-baseline space-x-3">
                     <NavLink
                       to="/"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
                           : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
@@ -76,9 +87,10 @@ const Header = () => {
 
                     <NavLink
                       to="/thi-truong"
+
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
                           : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
@@ -87,6 +99,7 @@ const Header = () => {
 
                     <NavLink
                       to="/nganh"
+
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
@@ -99,6 +112,7 @@ const Header = () => {
 
                     <NavLink
                       to="/co-phieu"
+
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
@@ -110,6 +124,7 @@ const Header = () => {
 
                     <NavLink
                       to="/vi-mo"
+
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
@@ -121,6 +136,7 @@ const Header = () => {
 
                     <NavLink
                       to="/cong-cu-dau-tu"
+
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
@@ -132,6 +148,7 @@ const Header = () => {
 
                     <NavLink
                       to="/trung-tam-tin-tuc"
+
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
@@ -141,6 +158,7 @@ const Header = () => {
                       Trung tâm tin tức
                     </NavLink>
                   </div>
+                  {/* login */}
                 </div>
                 <div className="hidden xl:flex items-center ml-3 lg:ml-72 xl:ml-16">
                   <div className="flex">

@@ -8,21 +8,26 @@ const TableTest = () => {
     const { dataTableDetail } = useSelector(state => state.chart)
     const [oldData, setOldData] = useState()
     const [newData, setNewData] = useState()
+    const data = dataTableDetail.data
 
     useEffect(() => {
         socket.on("listen-chi-so-trong-nuoc", (newData) => {
         })
-    },[])
+
+    }, [])
     const columns = [
+
         {
             title: 'Chỉ số',
-            dataIndex: 'ticker',
+            dataIndex: 'comGroupCode',
         },
         {
             title: 'Điểm',
-            dataIndex: 'price',
+            dataIndex: 'indexValue',
             render: (text, item) => {
-                return <p className=''>{item.price}</p>
+
+                return <p className=''>{item.indexValue}</p>
+
             },
             sorter: {
                 compare: (a, b) => a.chinese - b.chinese,
@@ -31,7 +36,7 @@ const TableTest = () => {
         },
         {
             title: 'Thay đổi (điểm)',
-            dataIndex: 'change_price',
+            dataIndex: 'indexChange',
             sorter: {
                 compare: (a, b) => a.math - b.math,
                 multiple: 2,
@@ -39,17 +44,22 @@ const TableTest = () => {
         },
         {
             title: 'Thay đổi (%)',
-            dataIndex: 'percent_d',
+            dataIndex: 'percentIndexChange',
             sorter: {
                 compare: (a, b) => a.english - b.english,
                 multiple: 1,
             },
-        },
-    ];
-    const data = dataTableDetail.data
+
+        }]
+
     return (
         <div>
-            <Table columns={columns} dataSource={data} pagination={false} bordered={true} />
+            <Table
+                rowClassName={(record, index) => index % 2 === 0 ? 'table-row-light' : 'table-row-dark'}
+                columns={columns}
+                dataSource={data}
+                pagination={false}
+                bordered={true} />
         </div>
     )
 }
