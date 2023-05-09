@@ -3,7 +3,9 @@ import { marketType } from "./utils/constant";
 const initialState = {
   tableThanhKhoanData: {},
   chartTickerContribute: {},
-  lineChartMarketData:{}
+  lineChartMarketData: {},
+  dataInvestorTransaction: {},
+  topCashValue: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -14,8 +16,14 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === marketType.FETCH_DATA_CHART_TICKER_CONTRIBUTE) {
       draft.chartTickerContribute = payload
     }
-    if(type === marketType.FETCH_DATA_LINE_CHART_MARKET){
+    if (type === marketType.FETCH_DATA_LINE_CHART_MARKET) {
       draft.lineChartMarketData = payload
+    }
+    if (type === marketType.FETCH_DATA_INVESTOR_TRANSACTION) {
+      draft.dataInvestorTransaction = payload
+    }
+    if (type === marketType.FETCH_DATA_CASH_VALUE) {
+      draft.topCashValue = payload
     }
   });
 };
