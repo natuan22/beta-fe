@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
 import { fetchDataTreeMapBuy } from "../thunk";
-import { https } from "../../../services/config";
 
 const TreeMapChart = () => {
   const dispatch = useDispatch()
@@ -19,39 +18,12 @@ const TreeMapChart = () => {
       setData(dataTreemapBuy.data)
     }
 
+    socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
+      setData(newData)
+    })
+
+    setOldSocket(socketChanel)
   }, [dataTreemapBuy])
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await https.get('/api/v1/stock/net-foreign', {
-  //         params: {
-  //           exchange: query || undefined,
-  //           transaction: 0
-  //         }
-  //       });
-  //       const data = response.data;
-  //       // Do something with the data, such as store it in state
-  //     } catch (error) {
-  //       // Handle any errors
-  //     }
-  //   };
-
-  //   const interval = setInterval(() => {
-  //     fetchData();
-  //   }, 10000);
-
-  //   return () => clearInterval(interval);
-  // }, [query]);
-
-
-  // socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
-  //   // console.log('dataSocketByt',newData)
-  //   setData(newData)
-  // })
-  // setOldSocket(socketChanel)
-
-  // }, [dataTreemapBuy])
 
   const arrGlobal = [
     [
@@ -72,13 +44,11 @@ const TreeMapChart = () => {
 
   const arrTicker = data.map((item) => {
     return [
-      `${item.ticker}: ${Intl.NumberFormat("de-DE").format(item.total_value_buy)} tỉ VNĐ`,
+      `${item.ticker}: ${Intl.NumberFormat("de-DE").format(item.total_value_buy / 1000000000)} tỉ VNĐ`,
       item.LV2,
       item.total_value_buy,
     ];
   });
-
-
 
   const disconnectSocket = (socketOld) => {
     if (socket.active) {
@@ -148,9 +118,9 @@ const TreeMapChart = () => {
               dispatch(fetchDataTreeMapBuy(event.target.value))
             }}
           >
-            <option value="HOSE">HSX</option>
-            <option value="HNX">HNX</option>
-            <option value="UPCOM">UPCOM</option>
+            <option value="hsx">HSX</option>
+            <option value="hnx">HNX</option>
+            <option value="upcom">UPCOM</option>
           </select>
         </span>
       </div>

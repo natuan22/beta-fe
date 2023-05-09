@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import Loading from "../../../Chart/utils/Loading";
 import socket from "../../../Chart/utils/socket";
+import { fetchDataDoRongThiTruong } from "../../thunk";
 
 const MarketBreadth = () => {
+    const dispatch = useDispatch()
+    const { dataDoRongThiTruong } = useSelector((state) => state.market);
     const dataStackingChart = useSelector((state) => state.chart.dataStackingArea);
     const [data, setData] = useState([]);
     const [activeButton, setActiveButton] = useState('HOSE')
     const handleClick = (button) => { setActiveButton(button) }
+    const [formatDate, setFormatDate] = useState('HH:mm');
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
@@ -18,18 +22,41 @@ const MarketBreadth = () => {
         setColorText(color);
     }, [color]);
 
-    useEffect(() => {
-        // Lấy dữ liệu ban đầu từ API
-        if (dataStackingChart?.data) {
-            setData(dataStackingChart.data);
-        }
-        // Lắng nghe sự kiện từ socket
-        socket.on("listen-do-rong-thi-truong", (newData) => {
-            setData((prevData) => [...prevData, ...newData]);
-        });
+    const [queryApi, setQueryApi] = useState({
+        exchange: "HOSE",
+        type: 1,
+    });
 
-        // Hủy bỏ việc lắng nghe sự kiện khi component bị unmount
-    }, [dataStackingChart?.data]);
+    useEffect(() => {
+        if (dataDoRongThiTruong) {
+            setData(dataDoRongThiTruong)
+        }
+    }, [dataDoRongThiTruong])
+
+    useEffect(() => {
+        dispatch(
+            fetchDataDoRongThiTruong(queryApi.exchange, queryApi.type)
+        );
+    }, [dispatch, queryApi]);
+
+    const handleQueryApiExchange = (exchange) => {
+        setQueryApi((prev) => ({ ...prev, exchange }));
+    };
+    const handleQueryApiType = (type) => {
+        setQueryApi((prev) => ({ ...prev, type }));
+    };
+    // useEffect(() => {
+    //     // Lấy dữ liệu ban đầu từ API
+    //     if (dataStackingChart?.data) {
+    //         setData(dataStackingChart.data);
+    //     }
+    //     // Lắng nghe sự kiện từ socket
+    //     socket.on("listen-do-rong-thi-truong", (newData) => {
+    //         setData((prevData) => [...prevData, ...newData]);
+    //     });
+
+    //     // Hủy bỏ việc lắng nghe sự kiện khi component bị unmount
+    // }, [dataStackingChart?.data]);
 
     const [hoveredValue, setHoveredValue] = useState(null);
     if (!dataStackingChart.data || !dataStackingChart.data.length) {
@@ -84,7 +111,7 @@ const MarketBreadth = () => {
     }
 
     const timeLine = data?.map((item) =>
-        moment.utc(item.time).format("HH:mm")
+        moment.utc(item.time).format(formatDate)
     );
 
     const dataAdvance = data?.map((item) => item.advance);
@@ -248,12 +275,17 @@ const MarketBreadth = () => {
                     Diễn biến độ rộng thị trường
                 </span>
                 <select
+                    onChange={(e) => {
+                        handleQueryApiType(e.target.value);
+                        if (e.target.value != 0)
+                            setFormatDate('DD/MM')
+                    }}
                     className={`bg-[#1B496D] 2xl:ml-[100px] xl:ml-[100px] lg:ml-[135px] md:ml-[115px] sm:ml-[99px] xs:ml-[49px] p-1 text-[0.9rem] text-white border-0`}
                 >
-                    <option value="1">Phiên gần nhất</option>
-                    <option value="2">01 tháng</option>
-                    <option value="3">01 quý</option>
-                    <option value="4">01 năm</option>
+                    <option value="0">Phiên gần nhất</option>
+                    <option value="1">01 tháng</option>
+                    <option value="2">01 quý</option>
+                    <option value="3">01 năm</option>
                 </select>
             </div>
             <div className="mt-1 mb-3 dark:text-white text-black">
@@ -261,6 +293,7 @@ const MarketBreadth = () => {
                     <button
                         onClick={() => {
                             handleClick('HOSE')
+                            handleQueryApiExchange('HOSE')
                         }}
                         className={activeButton === 'HOSE'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
@@ -271,6 +304,7 @@ const MarketBreadth = () => {
                     <button
                         onClick={() => {
                             handleClick('HNX')
+                            handleQueryApiExchange('HNX')
                         }}
                         className={activeButton === 'HNX'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
@@ -281,6 +315,7 @@ const MarketBreadth = () => {
                     <button
                         onClick={() => {
                             handleClick('UPCOM')
+                            handleQueryApiExchange('UPCOM')
                         }}
                         className={activeButton === 'UPCOM'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
