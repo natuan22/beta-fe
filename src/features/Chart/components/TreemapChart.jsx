@@ -4,42 +4,26 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
 import { fetchDataTreeMapBuy } from "../thunk";
-import { https } from "../../../services/config";
 
 const TreeMapChart = () => {
   const dispatch = useDispatch()
   const dataTreemapBuy = useSelector((state) => state.chart.dataTreemapBuy);
   const [data = dataTreemapBuy.data || [], setData] = useState();
-  const [query, setQuery] = useState('HOSE')
+
+  const [socketChanel, setSocketChanel] = useState('hsx')
+  const [oldSocket, setOldSocket] = useState('')
 
   useEffect(() => {
     if (dataTreemapBuy.data) {
       setData(dataTreemapBuy.data)
     }
+
+    socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
+      setData(newData)
+    })
+
+    setOldSocket(socketChanel)
   }, [dataTreemapBuy])
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await https.get('/api/v1/stock/net-foreign', {
-  //         params: {
-  //           exchange: query || undefined,
-  //           transaction: 0
-  //         }
-  //       });
-  //       const data = response.data;
-  //       // Do something with the data, such as store it in state
-  //     } catch (error) {
-  //       // Handle any errors
-  //     }
-  //   };
-
-  //   const interval = setInterval(() => {
-  //     fetchData();
-  //   }, 10000);
-
-  //   return () => clearInterval(interval);
-  // }, [query]);
 
   const arrGlobal = [
     [
@@ -60,14 +44,19 @@ const TreeMapChart = () => {
 
   const arrTicker = data.map((item) => {
     return [
-      `${item.ticker}: ${item.total_value_buy}`,
+      `${item.ticker}: ${Intl.NumberFormat("de-DE").format(item.total_value_buy / 1000000000)} tỉ VNĐ`,
       item.LV2,
       item.total_value_buy,
     ];
   });
 
-  const dataTreeMapRender = arrGlobal.concat(arrTicker)
+  const disconnectSocket = (socketOld) => {
+    if (socket.active) {
+      socket.off(`listen-foreign-buy-${socketOld}`);
+    }
+  }
 
+  const dataTreeMapRender = arrGlobal.concat(arrTicker)
   const options = {
     highlightOnMouseOver: true,
     maxDepth: 1,
@@ -124,16 +113,18 @@ const TreeMapChart = () => {
           <select
             className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
             onChange={(event) => {
-              setQuery(event.target.value)
+              disconnectSocket(oldSocket)
+              setSocketChanel(event.target.value)
               dispatch(fetchDataTreeMapBuy(event.target.value))
             }}
           >
-            <option value="HOSE">HSX</option>
-            <option value="HNX">HNX</option>
-            <option value="UPCOM">UPCOM</option>
+            <option value="hsx">HSX</option>
+            <option value="hnx">HNX</option>
+            <option value="upcom">UPCOM</option>
           </select>
         </span>
       </div>
+
       <div>
         <Chart
           width={"100%"}

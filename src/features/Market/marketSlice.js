@@ -5,7 +5,8 @@ const initialState = {
   chartTickerContribute: {},
   lineChartMarketData: {},
   dataInvestorTransaction: {},
-  topCashValue: {}
+  topCashValue: {},
+  dataDoRongThiTruong: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -24,6 +25,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_CASH_VALUE) {
       draft.topCashValue = payload
+    }
+    if (type === marketType.FETCH_DATA_DO_RONG_THI_TRUONG) {
+      draft.dataDoRongThiTruong = payload
     }
   });
 };
