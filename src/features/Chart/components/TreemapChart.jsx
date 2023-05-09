@@ -10,12 +10,15 @@ const TreeMapChart = () => {
   const dispatch = useDispatch()
   const dataTreemapBuy = useSelector((state) => state.chart.dataTreemapBuy);
   const [data = dataTreemapBuy.data || [], setData] = useState();
-  const [query, setQuery] = useState('HOSE')
+
+  const [socketChanel, setSocketChanel] = useState('hsx')
+  const [oldSocket, setOldSocket] = useState('')
 
   useEffect(() => {
     if (dataTreemapBuy.data) {
       setData(dataTreemapBuy.data)
     }
+
   }, [dataTreemapBuy])
 
   // useEffect(() => {
@@ -41,6 +44,15 @@ const TreeMapChart = () => {
   //   return () => clearInterval(interval);
   // }, [query]);
 
+
+    // socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
+    //   // console.log('dataSocketByt',newData)
+    //   setData(newData)
+    // })
+    // setOldSocket(socketChanel)
+  
+  }, [dataTreemapBuy])
+  
   const arrGlobal = [
     [
       "Location",
@@ -60,14 +72,21 @@ const TreeMapChart = () => {
 
   const arrTicker = data.map((item) => {
     return [
-      `${item.ticker}: ${item.total_value_buy}`,
+      `${item.ticker}: ${ Intl.NumberFormat("de-DE").format(item.total_value_buy) } tỉ VNĐ`,
       item.LV2,
       item.total_value_buy,
     ];
   });
 
-  const dataTreeMapRender = arrGlobal.concat(arrTicker)
 
+
+  const disconnectSocket = (socketOld) => {
+    if (socket.active) {
+        socket.off(`listen-foreign-buy-${socketOld}`);
+    }
+}
+
+  const dataTreeMapRender = arrGlobal.concat(arrTicker)
   const options = {
     highlightOnMouseOver: true,
     maxDepth: 1,
@@ -118,21 +137,21 @@ const TreeMapChart = () => {
 
   return (
     <div>
-      <div className="text-center py-2">
-        <span className="dark:text-white text-black uppercase text-lg">
-          Khối ngoại mua ròng sàn
-          <select
-            className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
-            onChange={(event) => {
-              setQuery(event.target.value)
-              dispatch(fetchDataTreeMapBuy(event.target.value))
-            }}
-          >
-            <option value="HOSE">HSX</option>
-            <option value="HNX">HNX</option>
-            <option value="UPCOM">UPCOM</option>
-          </select>
-        </span>
+
+      <div>
+        <select
+          className={` dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          onChange={(event) => {
+            disconnectSocket(oldSocket)
+            setSocketChanel(event.target.value)
+            dispatch(fetchDataTreeMapBuy(event.target.value))
+          }}
+        >
+          <option value="hsx">HSX</option>
+          <option value="hnx">HNX</option>
+          <option value="upcom">UPCOM</option>
+        </select>
+
       </div>
       <div>
         <Chart

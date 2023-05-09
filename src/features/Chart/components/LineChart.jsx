@@ -27,6 +27,7 @@ const LineChart = () => {
 
     if (dataLineChartHomePage?.data?.length) {
       socket.on("listen-chi-so-VNINDEX", (newData) => {
+
         setDataRealTime((prevData) => [...prevData, ...newData]);
       });
     }

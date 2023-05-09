@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import { useDispatch, useSelector } from "react-redux";
+
 import { fetchDataTreeMapSell } from "../thunk";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
@@ -11,11 +12,15 @@ const TreeMapChart = () => {
   const [data = dataTreemapSell.data || [], setData] = useState();
   const [query, setQuery] = useState('HOSE')
 
+
+
   useEffect(() => {
     if (dataTreemapSell.data) {
       setData(dataTreemapSell.data)
     }
+
   }, [dataTreemapSell])
+
 
   const arrGlobal = [
     [
@@ -36,24 +41,28 @@ const TreeMapChart = () => {
 
   const arrTicker = data.map((item) => {
     return [
-      `${item.ticker}: ${item.total_value_sell}`,
+      `${item.ticker}: ${ Intl.NumberFormat("de-DE").format(item.total_value_sell) } tỉ VNĐ`,
       item.LV2,
       item.total_value_sell,
     ];
   });
 
+  const disconnectSocket = (socketOld) => {
+    if (socket.active) {
+        socket.off(`listen-foreign-sell-${socketOld}`);
+    }
+}
   const dataTreeMapRender = arrGlobal.concat(arrTicker)
-
   const options = {
     highlightOnMouseOver: true,
     maxDepth: 1,
     maxPostDepth: 2,
-    minHighlightColor: "red",
-    midHighlightColor: "red",
-    maxHighlightColor: "#red",
-    minColor: "red",
-    midColor: "pink",
-    maxColor: "red",
+    minHighlightColor: "green",
+    midHighlightColor: "green",
+    maxHighlightColor: "#green",
+    minColor: "green",
+    midColor: "#green",
+    maxColor: "#green",
     headerHeight: 0,
     showScale: false,
     height: 680,
@@ -93,33 +102,37 @@ const TreeMapChart = () => {
   };
 
   return (
-    <>
-      <div className="text-center py-2">
-        <span className="dark:text-white text-black uppercase text-lg">
-          Khối ngoại bán ròng sàn
-          <select
-            className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
-            onChange={(event) => {
-              setQuery(event.target.value)
-              dispatch(fetchDataTreeMapSell(event.target.value))
-            }}
-          >
-            <option value="HOSE">HSX</option>
-            <option value="HNX">HNX</option>
-            <option value="UPCOM">UPCOM</option>
-          </select>
-        </span>
+
+    
+
+    <div>
+      <div>
+        <select
+          className={` dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          onChange={(event) => {
+            disconnectSocket(oldSocket)
+            setSocketChanel(event.target.value)
+            dispatch(fetchDataTreeMapSell(event.target.value))
+          }}
+        >
+          <option value="hsx">HSX</option>
+          <option value="hnx">HNX</option>
+          <option value="upcom">UPCOM</option>
+        </select>
       </div>
-      <Chart
-        width={"100%"}
-        height={"400px"}
-        chartType="TreeMap"
-        loader={<div className="mt-16"><Loading /></div>}
-        data={dataTreeMapRender}
-        options={options}
-      />
-    </>
+      <div>
+        <Chart
+          width={"100%"}
+          height={"500px"}
+          chartType="TreeMap"
+          loader={<div className="mt-16"><Loading /></div>}
+          data={dataTreeMapRender}
+          options={options}
+        />
+      </div>
+    </div>
+
   );
 };
 
-export default TreeMapChart;
+export default TreeMapChart2;

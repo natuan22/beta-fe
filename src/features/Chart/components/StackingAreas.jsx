@@ -34,18 +34,17 @@ const StackingAreas = () => {
     dataStackingChart.data?.map((item) => {
       return [item.time, item.noChange];
     });
-  const [dataIncr, setDataIncr] = useState(dataAdvance);
-  const [dataDecr, setDataDecr] = useState(dataDecline);
-  const [dataNoCh, setDataNoCh] = useState(dataNoChange);
+  const [dataIncr, setDataIncr] = useState([]);
+  const [dataDecr, setDataDecr] = useState([]);
+  const [dataNoCh, setDataNoCh] = useState([]);
   useEffect(() => {
-    // Lấy dữ liệu ban đầu từ API
-
     if (dataStackingChart && dataStackingChart.data?.length) {
-      setDataIncr(dataAdvance);
-      setDataDecr(dataDecline);
-      setDataNoCh(dataNoChange);
+      setDataIncr(dataAdvance || []);
+      setDataDecr(dataDecline || []);
+      setDataNoCh(dataNoChange || []);
     }
   }, [dataStackingChart]);
+  
   useEffect(() => {
     // Lắng nghe sự kiện từ socket
     socket.on("listen-do-rong-thi-truong", (newData) => {
