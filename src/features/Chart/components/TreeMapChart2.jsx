@@ -18,11 +18,11 @@ const TreeMapChart2 = () => {
       setData(dataTreemapSell.data)
     }
 
-    socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
-      setData(newData)
-    })
+    // socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
+    //   setData(newData)
+    // })
 
-    setOldSocket(socketChanel)
+    // setOldSocket(socketChanel)
   }, [dataTreemapSell])
 
 
