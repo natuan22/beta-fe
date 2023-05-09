@@ -51,7 +51,7 @@ const TreeMapChart = () => {
     // })
     // setOldSocket(socketChanel)
   
-  }, [dataTreemapBuy])
+  // }, [dataTreemapBuy])
   
   const arrGlobal = [
     [
