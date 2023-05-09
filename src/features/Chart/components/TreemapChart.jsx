@@ -10,12 +10,41 @@ const TreeMapChart = () => {
   const dispatch = useDispatch()
   const dataTreemapBuy = useSelector((state) => state.chart.dataTreemapBuy);
   const [data = dataTreemapBuy.data || [], setData] = useState();
+
   const [socketChanel, setSocketChanel] = useState('hsx')
   const [oldSocket, setOldSocket] = useState('')
+
   useEffect(() => {
     if (dataTreemapBuy.data) {
       setData(dataTreemapBuy.data)
     }
+
+  }, [dataTreemapBuy])
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await https.get('/api/v1/stock/net-foreign', {
+  //         params: {
+  //           exchange: query || undefined,
+  //           transaction: 0
+  //         }
+  //       });
+  //       const data = response.data;
+  //       // Do something with the data, such as store it in state
+  //     } catch (error) {
+  //       // Handle any errors
+  //     }
+  //   };
+
+  //   const interval = setInterval(() => {
+  //     fetchData();
+  //   }, 10000);
+
+  //   return () => clearInterval(interval);
+  // }, [query]);
+
+
     // socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
     //   // console.log('dataSocketByt',newData)
     //   setData(newData)
@@ -40,6 +69,7 @@ const TreeMapChart = () => {
       addedLv2Values.add(item.LV2);
     }
   });
+
   const arrTicker = data.map((item) => {
     return [
       `${item.ticker}: ${ Intl.NumberFormat("de-DE").format(item.total_value_buy) } tỉ VNĐ`,
@@ -48,11 +78,14 @@ const TreeMapChart = () => {
     ];
   });
 
+
+
   const disconnectSocket = (socketOld) => {
     if (socket.active) {
         socket.off(`listen-foreign-buy-${socketOld}`);
     }
 }
+
   const dataTreeMapRender = arrGlobal.concat(arrTicker)
   const options = {
     highlightOnMouseOver: true,
@@ -104,6 +137,7 @@ const TreeMapChart = () => {
 
   return (
     <div>
+
       <div>
         <select
           className={` dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
@@ -117,6 +151,7 @@ const TreeMapChart = () => {
           <option value="hnx">HNX</option>
           <option value="upcom">UPCOM</option>
         </select>
+
       </div>
       <div>
         <Chart

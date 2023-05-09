@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import { useDispatch, useSelector } from "react-redux";
+
+import { fetchDataTreeMapSell } from "../thunk";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
-import { fetchDataTreeMapSell } from "../thunk";
 
-const TreeMapChart2 = () => {
+const TreeMapChart = () => {
   const dispatch = useDispatch()
   const dataTreemapSell = useSelector((state) => state.chart.dataTreemapSell);
   const [data = dataTreemapSell.data || [], setData] = useState();
-  const [socketChanel, setSocketChanel] = useState('hsx')
-  const [oldSocket, setOldSocket] = useState('')
+  const [query, setQuery] = useState('HOSE')
+
+
+
   useEffect(() => {
     if (dataTreemapSell.data) {
       setData(dataTreemapSell.data)
     }
-    socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
-      // console.log('dataSocketByt',newData)
-      setData(newData)
-    })
-    setOldSocket(socketChanel)
-  }, [dataTreemapSell,socketChanel])
-  
+
+  }, [dataTreemapSell])
+
+
   const arrGlobal = [
     [
       "Location",
@@ -38,6 +38,7 @@ const TreeMapChart2 = () => {
       addedLv2Values.add(item.LV2);
     }
   });
+
   const arrTicker = data.map((item) => {
     return [
       `${item.ticker}: ${ Intl.NumberFormat("de-DE").format(item.total_value_sell) } tỉ VNĐ`,
@@ -101,6 +102,9 @@ const TreeMapChart2 = () => {
   };
 
   return (
+
+    
+
     <div>
       <div>
         <select
@@ -127,6 +131,7 @@ const TreeMapChart2 = () => {
         />
       </div>
     </div>
+
   );
 };
 

@@ -27,7 +27,7 @@ const LineChart = () => {
 
     if (dataLineChartHomePage?.data?.length) {
       socket.on("listen-chi-so-VNINDEX", (newData) => {
-        console.log('linechart',newData)
+
         setDataRealTime((prevData) => [...prevData, ...newData]);
       });
     }
@@ -103,7 +103,7 @@ const LineChart = () => {
     }
   };
   return (
-    <div id="chart-container" className="h-[350px] ">
+    <div id="chart-container" className="h-[340px] ">
       {dataLineChartHomePage?.data?.length > 0 ? (
         <HighchartsReact
           highcharts={Highcharts}

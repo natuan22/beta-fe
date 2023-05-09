@@ -7,8 +7,9 @@ import InvestorCashFlow from '../../components/CashFlow/InvestorCashFlow'
 import LiquidityGrowth from '../../components/CashFlow/LiquidityGrowth'
 import NetTransferValue from '../../components/CashFlow/NetTransferValue'
 import TopCashFlow from '../../components/CashFlow/TopCashFlow'
-import TransactionProgress from '../../components/CashFlow/TransactionProgress'
 import TransactionValueRatio from '../../components/CashFlow/TransactionValueRatio'
+import InvestorTransaction from '../../components/CashFlow/InvestorTransaction'
+import NetVolumeTrade from '../../../Chart/components/NetVolumeTrade'
 
 
 const IdentifyCash = () => {
@@ -46,13 +47,13 @@ const IdentifyCash = () => {
 
         <div className='flex'>
           <div className="w-[60%]">
-            <div className="mx-1 my-1 px-[8px] py-[8px] bg-[#151924] h-[300px]">
-              <TransactionProgress />
+            <div className="mx-1 my-1 px-[8px] py-[8px] bg-[#151924]">
+              <InvestorTransaction />
             </div>
           </div>
 
           <div className='w-[40%]'>
-            <div className="mx-1 my-1 px-[8px] py-[8px] bg-[#151924] h-[300px]">
+            <div className="mx-1 my-1 px-[8px] py-[8px] bg-[#151924]">
               <TopCashFlow />
             </div>
           </div>
@@ -65,8 +66,8 @@ const IdentifyCash = () => {
         </div>
 
         <div>
-          <div className='mx-1 my-2 px-[8px] py-[8px] bg-[#151924] h-[400px]'>
-            <NetTransferValue />
+          <div className='mx-1 my-2 px-[8px] py-[8px] bg-[#151924]'>
+            <NetVolumeTrade />
           </div>
         </div>
       </div> */}
