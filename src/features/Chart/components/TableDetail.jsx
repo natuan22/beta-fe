@@ -16,7 +16,7 @@ const TableDetail = () => {
     socket.on("listen-domestic-index", (newData) => {
       setData(newData)
     });
-  }, [data])
+  }, [])
 
   return (
     <>
@@ -43,12 +43,8 @@ const TableDetail = () => {
                 </thead>
 
                 <tbody>
-
-
-
-
-                  {dataTable?.data?.length > 0 ? (Array.isArray(data) &&
-                    dataTable?.data?.map((item, index) => {
+                  {data?.length > 0 ? (Array.isArray(data) &&
+                    data?.map((item, index) => {
                       let color = getColor(item.percentIndexChange)
                       return (
                         <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
@@ -62,7 +58,7 @@ const TableDetail = () => {
                             {item.indexChange.toFixed(2)}
                           </td>
                           <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {item.percentIndexChange.toFixed(2)}%
+                            {(item.percentIndexChange * 100).toFixed(2)}%
                           </td>
                         </tr>
                       )
