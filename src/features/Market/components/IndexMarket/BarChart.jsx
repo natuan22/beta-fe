@@ -4,6 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchChartTickerContribute } from "../../thunk";
 import Loading from "../../../Chart/utils/Loading";
+import socket from "../../../Chart/utils/socket";
 
 const BarChart = () => {
     const dispatch = useDispatch();
@@ -20,13 +21,15 @@ const BarChart = () => {
     const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
-        setColorText(color);
-    }, [color]);
+        socket.on('listen-hsx-ticker-contribute-1',(newData)=> {
+            console.log(newData)
+        })
+    }, []);
 
     useEffect(() => {
         dispatch(fetchChartTickerContribute(queryApi.exchange, queryApi.type, queryApi.order));
-
-    }, [dispatch, queryApi]);
+        setColorText(color);
+    }, [dispatch, queryApi, color]);
 
     const handleQueryApiOrder = (order) => {
         setQueryApi((prev) => ({ ...prev, order }));

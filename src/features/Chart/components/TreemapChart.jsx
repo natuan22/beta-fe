@@ -4,19 +4,26 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
 import { fetchDataTreeMapBuy } from "../thunk";
+import { https } from "../../../services/config";
 
 const TreeMapChart = () => {
   const dispatch = useDispatch()
   const dataTreemapBuy = useSelector((state) => state.chart.dataTreemapBuy);
   const [data = dataTreemapBuy.data || [], setData] = useState();
-  const [query, setQuery] = useState('hsx')
-  const [socketOld, setSocketOld] = useState('')
+  const [socketChanel, setSocketChanel] = useState('hsx')
+  const [oldSocket, setOldSocket] = useState('')
   useEffect(() => {
     if (dataTreemapBuy.data) {
-        setData(dataTreemapBuy.data)
+      setData(dataTreemapBuy.data)
     }
-}, [dataTreemapBuy])
-
+    // socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
+    //   // console.log('dataSocketByt',newData)
+    //   setData(newData)
+    // })
+    // setOldSocket(socketChanel)
+  
+  }, [dataTreemapBuy])
+  
   const arrGlobal = [
     [
       "Location",
@@ -35,32 +42,18 @@ const TreeMapChart = () => {
   });
   const arrTicker = data.map((item) => {
     return [
-      `${item.ticker}: ${item.total_value_buy}`,
+      `${item.ticker}: ${ Intl.NumberFormat("de-DE").format(item.total_value_buy) } tỉ VNĐ`,
       item.LV2,
       item.total_value_buy,
     ];
   });
 
-  useEffect(() => {
-    conSocket(query)
-    setSocketOld(query)
-}, [query])
-
   const disconnectSocket = (socketOld) => {
     if (socket.active) {
-      console.log('tắt', socketOld)
         socket.off(`listen-foreign-buy-${socketOld}`);
     }
 }
-
-const conSocket = (key) => {
-    socket.on(`listen-foreign-buy-${key}`, (newData) => {
-      console.log('connect',key)
-        setData(newData)
-    });
-}
   const dataTreeMapRender = arrGlobal.concat(arrTicker)
-
   const options = {
     highlightOnMouseOver: true,
     maxDepth: 1,
@@ -115,10 +108,9 @@ const conSocket = (key) => {
         <select
           className={` dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
           onChange={(event) => {
-            disconnectSocket(socketOld)
-            setQuery(event.target.value)
-            
-              dispatch(fetchDataTreeMapBuy(event.target.value))
+            disconnectSocket(oldSocket)
+            setSocketChanel(event.target.value)
+            dispatch(fetchDataTreeMapBuy(event.target.value))
           }}
         >
           <option value="hsx">HSX</option>
@@ -127,7 +119,6 @@ const conSocket = (key) => {
         </select>
       </div>
       <div>
-
         <Chart
           width={"100%"}
           height={"500px"}

@@ -26,7 +26,8 @@ const LineChart = () => {
     }
 
     if (dataLineChartHomePage?.data?.length) {
-      socket.on("listen-chi-so-vn-index", (newData) => {
+      socket.on("listen-chi-so-VNINDEX", (newData) => {
+        console.log('linechart',newData)
         setDataRealTime((prevData) => [...prevData, ...newData]);
       });
     }
