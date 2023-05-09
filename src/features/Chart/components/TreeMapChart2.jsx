@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import { useDispatch, useSelector } from "react-redux";
-
 import { fetchDataTreeMapSell } from "../thunk";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
@@ -10,17 +9,20 @@ const TreeMapChart2 = () => {
   const dispatch = useDispatch()
   const dataTreemapSell = useSelector((state) => state.chart.dataTreemapSell);
   const [data = dataTreemapSell.data || [], setData] = useState();
-  const [query, setQuery] = useState('HOSE')
-  const [oldSocket, setOldSocket] = useState('')
-  const [socketChanel, setSocketChanel] = useState('hsx')
 
+  const [socketChanel, setSocketChanel] = useState('hsx')
+  const [oldSocket, setOldSocket] = useState('')
 
   useEffect(() => {
     if (dataTreemapSell.data) {
       setData(dataTreemapSell.data)
     }
-    socket.on(`listen-foreign-sell-${socketChanel}`)
-    setOldSocket(query)
+
+    socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
+      setData(newData)
+    })
+
+    setOldSocket(socketChanel)
   }, [dataTreemapSell])
 
 
@@ -43,7 +45,7 @@ const TreeMapChart2 = () => {
 
   const arrTicker = data.map((item) => {
     return [
-      `${item.ticker}: ${Intl.NumberFormat("de-DE").format(item.total_value_sell)} tỉ VNĐ`,
+      `${item.ticker}: ${Intl.NumberFormat("de-DE").format(item.total_value_sell / 1000000000)} tỉ VNĐ`,
       item.LV2,
       item.total_value_sell,
     ];
@@ -120,9 +122,9 @@ const TreeMapChart2 = () => {
               dispatch(fetchDataTreeMapSell(event.target.value))
             }}
           >
-            <option value="HOSE">HSX</option>
-            <option value="HNX">HNX</option>
-            <option value="UPCOM">UPCOM</option>
+            <option value="hsx">HSX</option>
+            <option value="hnx">HNX</option>
+            <option value="upcom">UPCOM</option>
           </select>
         </span>
       </div>
