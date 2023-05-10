@@ -66,7 +66,7 @@ const Header = () => {
 
                       <Search
                         placeholder="Tìm mã chứng khoán"
-                        className="xxs:hidden xs:w-[100px] sm:w-[150px] md:w-[200px] lg:w-[200px]"
+                        className="xxs:hidden xs:block xs:w-[100px] sm:w-[150px] md:w-[200px] lg:w-[200px]"
                       />
                     </div>
                   </div>
