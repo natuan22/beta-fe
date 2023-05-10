@@ -27,16 +27,16 @@ const TableDetail = () => {
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead>
                   <tr className='bg-[#1E5D8B]'>
-                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
+                    <th className="text-center align-middle px-3 py-2 xxs:text-[10px] text-sm font-semibold text-white">
                       Chỉ số
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
+                    <th className="text-center align-middle px-3 py-2 xxs:text-[10px] text-sm font-semibold text-white">
                       Điểm
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
+                    <th className="text-center align-middle px-3 py-2 xxs:text-[10px] text-sm font-semibold text-white">
                       Thay đổi (điểm)
                     </th>
-                    <th className="text-center align-middle px-3 py-2 text-sm font-semibold text-white">
+                    <th className="text-center align-middle px-3 py-2 xxs:text-[10px] text-sm font-semibold text-white">
                       Thay đổi (%)
                     </th>
                   </tr>
@@ -48,16 +48,16 @@ const TableDetail = () => {
                       let color = getColor(item.percentIndexChange)
                       return (
                         <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                          <th className="text-left px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
+                          <th className="text-left px-5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
                             {item.comGroupCode}
                           </th>
-                          <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                          <td className={`text-center px-5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                             {item.indexValue}
                           </td>
-                          <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                          <td className={`text-center px-5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                             {item.indexChange.toFixed(2)}
                           </td>
-                          <td className={`text-center px-5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                          <td className={`text-center px-5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                             {(item.percentIndexChange * 100).toFixed(2)}%
                           </td>
                         </tr>

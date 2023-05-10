@@ -33,7 +33,7 @@ const Events = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('HSX')
@@ -44,7 +44,7 @@ const Events = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('HNX')
@@ -55,7 +55,7 @@ const Events = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('UPCOM')
@@ -74,16 +74,16 @@ const Events = () => {
                             <table className="items-center bg-transparent w-full border-collapse">
                                 <thead className="sticky top-0 bg-[#1E5D8B]">
                                     <tr>
-                                        <th className="text-center align-middle px-3 py-3 text-[0.9rem] whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-3 py-3 text-[0.9rem] whitespace-nowrap font-semibold text-white">
                                             Mã CK
                                         </th>
-                                        <th className="text-center align-middle px-3 py-3 text-[0.9rem] whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-3 py-3 text-[0.9rem] whitespace-nowrap font-semibold text-white">
                                             Loại sự kiện
                                         </th>
-                                        <th className="text-center align-middle px-3 py-3 text-[0.9rem] whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-3 py-3 text-[0.9rem] whitespace-nowrap font-semibold text-white">
                                             Ngày
                                         </th>
-                                        <th className="text-center align-middle px-3 py-3 text-[0.9rem] whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-3 py-3 text-[0.9rem] whitespace-nowrap font-semibold text-white">
                                             Nội dung sự kiện
                                         </th>
                                     </tr>
@@ -94,16 +94,16 @@ const Events = () => {
                                         data.map((item, index) => {
                                             return (
                                                 <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                                                    <th className="text-center align-middle text-[0.8rem] whitespace-nowrap p-3.5 dark:text-white text-black">
+                                                    <th className="text-center align-middle xxs:text-[10px] text-[0.8rem] whitespace-nowrap p-3.5 dark:text-white text-black">
                                                         {item.ticker}
                                                     </th>
-                                                    <td className="text-center align-middle text-[0.8rem] whitespace-nowrap p-3.5 dark:text-white text-black">
+                                                    <td className="text-center align-middle xxs:text-[10px] text-[0.8rem] whitespace-nowrap p-3.5 dark:text-white text-black">
                                                         {item.LoaiSuKien}
                                                     </td>
-                                                    <td className="text-center align-center text-[0.8rem] whitespace-nowrap p-3.5 dark:text-white text-black">
+                                                    <td className="text-center align-center xxs:text-[10px] text-[0.8rem] whitespace-nowrap p-3.5 dark:text-white text-black">
                                                         {formatDate(new Date(Date.parse(item.NgayDKCC)))}
                                                     </td>
-                                                    <td className="text-left align-middle text-[0.8rem] p-3.5 dark:text-white text-black">
+                                                    <td className="text-left align-middle xxs:text-[10px] text-[0.8rem] p-3.5 dark:text-white text-black">
                                                         {item.NoiDungSuKien}
                                                     </td>
                                                 </tr>

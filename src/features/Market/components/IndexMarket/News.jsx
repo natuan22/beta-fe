@@ -61,10 +61,10 @@ const News = () => {
                             <table className="items-center bg-transparent w-full border-collapse">
                                 <thead className="sticky top-0 bg-[#1E5D8B]">
                                     <tr>
-                                        <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                             Ngày
                                         </th>
-                                        <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                             Nội dung chính
                                         </th>
                                     </tr>
@@ -75,10 +75,10 @@ const News = () => {
                                         data.map((item, index) => {
                                             return (
                                                 <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                                                    <th className="text-left align-middle whitespace-nowrap px-3 py-3.5 dark:text-white text-black text-[0.8rem]">
+                                                    <th className="text-left align-middle xxs:text-[10px] whitespace-nowrap px-3 py-3.5 dark:text-white text-black text-[0.8rem]">
                                                         {formatDate(new Date(Date.parse(item.Date)))}
                                                     </th>
-                                                    <td className='text-left align-middle px-3 py-3.5 dark:text-white text-black text-[0.8rem]'>
+                                                    <td className='text-left align-middle xxs:text-[10px] px-3 py-3.5 dark:text-white text-black text-[0.8rem]'>
                                                         <a href={item.Href} target="_blank" rel="noopener noreferrer" className='dark:text-white text-black no-underline hover:underline'>{item.Title}</a>
                                                     </td>
                                                 </tr>

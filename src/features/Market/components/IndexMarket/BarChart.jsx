@@ -17,14 +17,14 @@ const BarChart = () => {
         type: 0,
         order: 0,
     });
+    const [data, setData] = useState([])
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
-        socket.on('listen-hsx-ticker-contribute-1',(newData)=> {
-            console.log(newData)
-        })
-    }, []);
+        if (chartTickerContribute)
+            setData(chartTickerContribute)
+    }, [chartTickerContribute]);
 
     useEffect(() => {
         dispatch(fetchChartTickerContribute(queryApi.exchange, queryApi.type, queryApi.order));
@@ -112,9 +112,9 @@ const BarChart = () => {
         </>
     }
 
-    if (chartTickerContribute.length && (handleQueryType === '1' || handleQueryType === '2' || handleQueryType === '3')) {
-        const incr5 = chartTickerContribute.slice(0, 5)
-        const decr5 = chartTickerContribute.slice(-5).sort(function () {
+    if (data?.length && (handleQueryType === '1' || handleQueryType === '2' || handleQueryType === '3')) {
+        const incr5 = data.slice(0, 5)
+        const decr5 = data.slice(-5).sort(function () {
             return -1;
         })
         const data = incr5.concat(decr5)
@@ -206,7 +206,7 @@ const BarChart = () => {
                 text: "",
             },
             xAxis: {
-                categories: chartTickerContribute?.map((item) => item.symbol),
+                categories: Array.isArray(data) && data?.map((item) => item.symbol),
                 labels: {
                     step: 1,
                     rotation: -45,
@@ -253,7 +253,7 @@ const BarChart = () => {
             },
             series: [
                 {
-                    data: chartTickerContribute?.map(item => {
+                    data: Array.isArray(data) && data?.map(item => {
                         return {
                             name: item.symbol,
                             y: +item.contribute_price.toFixed(2),

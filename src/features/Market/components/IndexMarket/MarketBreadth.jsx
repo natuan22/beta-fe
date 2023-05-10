@@ -301,7 +301,7 @@ const MarketBreadth = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('HNX')
@@ -312,7 +312,7 @@ const MarketBreadth = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('UPCOM')
