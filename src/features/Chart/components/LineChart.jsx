@@ -4,7 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 import Loading from "../utils/Loading";
 import {
   timeLineChart15h00,
-  timeLineChart9h00,
+  timeLineChart9h15,
 } from "../../../helper/dateTime.helper";
 import { useSelector } from "react-redux";
 import socket from "../utils/socket";
@@ -76,7 +76,7 @@ const LineChart = () => {
     xAxis: {
       type: "datetime",
       tickInterval: 30 * 60 * 1000,
-      min: timeLineChart9h00,
+      min: timeLineChart9h15,
       max: timeLineChart15h00,
       title: {
         text: null,

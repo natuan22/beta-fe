@@ -76,17 +76,17 @@ const TableLiquidity = () => {
         </button>
         <button
           style={
-            activeButton === "1week"
+            activeButton === "1month"
               ? { ...buttonStyle, ...activeButtonStyle }
               : buttonStyle
           }
           onClick={() => {
-            handleClick("1week");
+            handleClick("1month");
             handleQueryApiOrder(2);
           }}
           className="uppercase"
         >
-          1 tuần
+          1 tháng
         </button>
         <button
           style={
@@ -138,22 +138,22 @@ const TableLiquidity = () => {
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead className="sticky top-0">
                   <tr className="bg-[#1E5D8B]">
-                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       Cổ phiếu
                     </th>
-                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       Tỷ lệ đóng góp (%)
                     </th>
-                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       GT giao dịch (tỷ)
                     </th>
-                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       KL Giao dịch (tr CP)
                     </th>
-                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       Chênh lệch cung-cầu (KL)
                     </th>
-                    <th className="text-center align-middle px-1.5 py-2 text-[0.75rem] font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       Chênh lệch cung-cầu (GT)
                     </th>
                   </tr>
@@ -166,7 +166,7 @@ const TableLiquidity = () => {
                       let color2 = getColor(item.supplyDemandValueGap)
 
                       return (
-                        <tr className="dark:text-white text-black text-center text-[13px] dark:hover:bg-gray-800 hover:bg-gray-300 duration-500" key={index}>
+                        <tr className="dark:text-white text-black text-center xxs:text-[10px] text-[13px] dark:hover:bg-gray-800 hover:bg-gray-300 duration-500" key={index}>
                           <th className="text-left px-1.5 align-middle p-3.5" >{item.symbol}</th>
                           <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{item.contribute.toFixed(2)}%</td>
                           <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.totalValueMil / 1000).toFixed(1)}</td>

@@ -75,16 +75,16 @@ const TableMarketLiquidity = () => {
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B]">
                                     <tr>
-                                        <th className="text-center align-middle px-4 py-3 uppercase text-xs font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[9px] px-4 py-3 uppercase text-xs font-semibold text-white">
                                             Mã CK
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 uppercase text-xs font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[9px] px-4 py-3 uppercase text-xs font-semibold text-white">
                                             Ngành
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 uppercase text-xs font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[9px] px-4 py-3 uppercase text-xs font-semibold text-white">
                                             Giá trị (tỷ đồng)
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 uppercase whitespace-nowrap text-xs font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[9px] px-4 py-3 uppercase whitespace-nowrap text-xs font-semibold text-white">
                                             Thay đổi
                                         </th>
                                     </tr>
@@ -96,16 +96,16 @@ const TableMarketLiquidity = () => {
                                             let color = getColor(item.value_change_percent);
                                             return (
                                                 <tr key={item.ticker} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                                                    <th className={`text-center align-middle text-sm whitespace-nowrap px-2 py-2 ${color}`}>
+                                                    <th className={`text-center align-middle xxs:text-[9px] text-sm whitespace-nowrap px-2 py-2 ${color}`}>
                                                         {item.ticker}
                                                     </th>
-                                                    <td className={`text-center align-middle text-xs px-2 py-2 font-semibold ${color}`}>
+                                                    <td className={`text-center align-middle xxs:text-[9px] text-xs px-2 py-2 font-semibold ${color}`}>
                                                         {item.industry}
                                                     </td>
-                                                    <td className={`text-center align-middle text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
+                                                    <td className={`text-center align-middle xxs:text-[9px] text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
                                                         {item.value.toFixed(2)}
                                                     </td>
-                                                    <td className={`text-center align-middle text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
+                                                    <td className={`text-center align-middle xxs:text-[9px] text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
                                                         {item.value_change_percent.toFixed(2)}%
                                                     </td>
                                                 </tr>

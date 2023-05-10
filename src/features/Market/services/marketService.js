@@ -50,4 +50,11 @@ export const marketServices = {
             }
         })
     },
+    fetchDataBienDongThiTruong: (exchange) => {
+        return https.get('api/v1/stock/bien-dong-thi-truong', {
+            params: {
+                exchange,
+            }
+        })
+    },
 }

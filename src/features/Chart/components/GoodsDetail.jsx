@@ -24,13 +24,13 @@ const GoodsDetail = () => {
             <table className="items-center w-full border-collapse bg-transparent">
               <thead className="sticky top-0 bg-[#1E5D8B]">
                 <tr className="bg-[#1E5D8B]">
-                  <th className="align-middle px-3 py-3 text-sm font-semibold text-center text-white">
+                  <th className="align-middle xxs:text-[10px] px-3 py-3 text-sm font-semibold text-center text-white">
                     Hàng hóa
                   </th>
-                  <th className="align-middle px-3 py-3 text-sm font-semibold text-right text-white">
+                  <th className="align-middle xxs:text-[10px] px-3 py-3 text-sm font-semibold text-right text-white">
                     Giá
                   </th>
-                  <th className="align-middle px-3 py-3 text-sm font-semibold text-right text-white">
+                  <th className="align-middle xxs:text-[10px] px-3 py-3 text-sm font-semibold text-right text-white">
                     % thay đổi
                   </th>
                 </tr>
@@ -48,13 +48,13 @@ const GoodsDetail = () => {
                       color = 'text-green-500'
                     return (
                       <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                        <th className="text-left align-middle md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 dark:text-white text-black">
+                        <th className="text-left align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 dark:text-white text-black">
                           {item.name} ({item.unit})
                         </th>
-                        <td className={`text-right align-middle md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
+                        <td className={`text-right align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
                           <CurrencyFormat value={item.price.toFixed(2)} displayType={'text'} thousandSeparator={true} />
                         </td>
-                        <td className={`text-right align-middle md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
+                        <td className={`text-right align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
                           {item.Day}
                         </td>
                       </tr>

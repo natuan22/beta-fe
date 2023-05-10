@@ -42,7 +42,7 @@ const Signin = () => {
 
         {/* phone */}
         <div
-          className="signIn xs:flex lg:hidden flex-col items-center relative mt-8 h-[600px]"
+          className="signIn xxs:flex xs:flex lg:hidden flex-col items-center relative mt-8 h-[600px]"
           style={{
             backgroundImage:
               "linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)",
@@ -119,19 +119,19 @@ const Signin = () => {
               Đăng nhập
             </button>
           </form>
-          <a className="text-white xs:mb-14 md:mb-6 " href="bsi.com.vn"><i>Quên mật khẩu ?</i></a>
+          <a className="text-white xxs:mb-8 xs:mb-14 md:mb-6 " href="bsi.com.vn"><i>Quên mật khẩu ?</i></a>
           <div className="w-[50%] flex justify-around">
             <img
               src={`${apiUrl}/resources/images/google-logo.png`}
               alt="logo"
-              className="w-8 h-8 xs:mx-2"
+              className="w-8 h-8 xs:mx-2 xxs:mx-2"
             />
             <img
               src={`${apiUrl}/resources/images/fb-logo.png`}
               alt="logo"
-              className="w-8 h-8 xs:mx-2"
+              className="w-8 h-8 xs:mx-2 xxs:mx-2"
             />
-            <span className="bg-white h-[28px] xs:mx-2 rounded-t-md">
+            <span className="bg-white h-[28px] xs:mx-2 xxs:mx-2 rounded-t-md">
               <img
                 src={`${apiUrl}/resources/images/zalo-logo.png`}
                 alt="zaloIcon"
@@ -142,10 +142,10 @@ const Signin = () => {
             <img
               src={`${apiUrl}/resources/images/beta-logo.png`}
               alt="betaIcon"
-              className="w-8 h-8 xs:mx-2"
+              className="w-8 h-8 xs:mx-2 xxs:mx-2"
             />
           </div>
-          <div className="absolute xs:bottom-[5%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
+          <div className="absolute xxs:bottom-[5%] xs:bottom-[5%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
             <NavLink
               to="/signin"
               className={(params) => {
@@ -176,7 +176,7 @@ const Signin = () => {
         </div>
 
         {/* tablet , desktop */}
-        <div className="mt-8 flex bg-signinColor xs:hidden lg:flex">
+        <div className="mt-8 flex bg-signinColor xxs:hidden xs:hidden lg:flex">
           <div className="relative w-[60%] z-10">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>

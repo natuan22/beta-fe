@@ -72,7 +72,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchDataInternationalIndex);
     dispatch(fetchDataTableDetail);
-    dispatch(fetchDataBarChartRight);
+    dispatch(fetchDataBarChartRight('HOSE'));
     dispatch(fetchDataBarChartLeft("VNINDEX"));
     dispatch(fetchDataGeneralIndustry('all'));
     dispatch(fetchDataTreeMapSell("HOSE"));
@@ -140,26 +140,6 @@ const Home = () => {
 
                     <div className="text-center mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                       <div className="dark:bg-[#151924] bg-gray-100">
-                        <div className="h-[29px]">
-                          <span className="font-semibold uppercase text-sm dark:text-white text-black">
-                            Top nước ngoài mua bán ròng
-                          </span>
-                          <select
-                            className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
-                            onChange={(event) => {
-                              dispatch(
-                                dispatch(
-                                  fetchDataBarChartRight(event.target.value)
-                                )
-                              );
-                            }}
-                          >
-                            <option value="VNINDEX">VNINDEX</option>
-                            <option value="HNX">HNX</option>
-                            <option value="VN30">VN30</option>
-                          </select>
-                        </div>
-
                         <BarChartRight />
                       </div>
                     </div>
@@ -199,7 +179,7 @@ const Home = () => {
 
             <div>
               <div className="lg:block xl:flex">
-                <div className="xl:w-[60%] xs:hidden md:hidden xl:block">
+                <div className="xl:w-[60%] xxs:hidden xs:hidden md:hidden xl:block">
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[725px]">
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
@@ -249,7 +229,7 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="xl:w-[60%] xl:hidden">
-                  <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md xs:h-[780px] lg:h-[725px] md:h-[750px]">
+                  <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md xxs:h-[780px] xs:h-[780px] lg:h-[725px] md:h-[750px]">
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
                         <TreemapChart />
@@ -268,7 +248,7 @@ const Home = () => {
               <div className="lg:block xl:flex mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                 <div className="xl:w-[65%]">
                   <div className="text-center dark:text-white text-black">
-                    <h3 className="p-2 uppercase">Thanh khoản thị trường sàn HOSE</h3>
+                    <h3 className="p-2 uppercase">Thanh khoản thị trường sàn HSX</h3>
                   </div>
                   <div >
                     <AreaChart />

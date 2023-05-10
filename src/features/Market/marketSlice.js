@@ -6,7 +6,8 @@ const initialState = {
   lineChartMarketData: {},
   dataInvestorTransaction: {},
   topCashValue: {},
-  dataDoRongThiTruong: {}
+  dataDoRongThiTruong: {},
+  dataBienDongThiTruong: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -28,6 +29,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_DO_RONG_THI_TRUONG) {
       draft.dataDoRongThiTruong = payload
+    }
+    if (type === marketType.FETCH_DATA_DIEN_DONG_THI_TRUONG) {
+      draft.dataBienDongThiTruong = payload
     }
   });
 };
