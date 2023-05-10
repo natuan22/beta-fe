@@ -8,13 +8,12 @@ import GeneralIndustry from "./components/GeneralIndustry";
 import Events from "./components/Events";
 import Top10Sell from "./components/Top10Sell";
 import Top10Buy from "./components/Top10Buy";
-import TreemapChart from "./components/TreemapChart";
+import TreemapChart from "./components/TreeMapBuy";
 import LineChart from "./components/LineChart";
 import chartStyle from "./utils/Chart.module.css";
 import TableDetail from "./components/TableDetail";
 import GoodsDetail from "./components/GoodsDetail";
 import TopROC from "./components/TopROC";
-import TreeMapChart2 from "./components/TreeMapChart2";
 import RateDetail from "./components/RateDetail";
 import AreaChart from "./components/AreaChart";
 import TableMarketVolatility from "./components/TableMarketVolatility";
@@ -49,9 +48,10 @@ import {
   fetchDataCashFlowAllocation,
 } from "./thunk";
 import LayOut from "../../HOCs/Layout";
-import TableTest from "./ElecticTable/TableTest";
 
 import CashFlowAllocation from "./components/CashFlowAllocation";
+import TreeMapTest2 from "./components/TreeMapTest2";
+import TreeMapBuy from "./components/TreeMapBuy";
 
 
 const Home = () => {
@@ -203,11 +203,10 @@ const Home = () => {
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[725px]">
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
-                        <TreemapChart />
+                        <TreeMapBuy />
                       </div>
-
                       <div>
-                        <TreeMapChart2 />
+                      <TreeMapTest2 />
                       </div>
                     </div>
                   </div>
@@ -253,10 +252,11 @@ const Home = () => {
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
                         <TreemapChart />
+                 
                       </div>
 
                       <div>
-                        <TreeMapChart2 />
+                        <TreeMapTest2 />
                       </div>
                     </div>
                   </div>
@@ -314,7 +314,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-            {/* <TableTest /> */}
+         
             <Footer />
           </div>
         </div>

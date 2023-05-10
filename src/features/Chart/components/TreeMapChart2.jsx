@@ -12,14 +12,13 @@ const TreeMapChart2 = () => {
   const [data = dataTreemapSell.data || [], setData] = useState();
   const [query, setQuery] = useState('HOSE')
   const [oldSocket, setOldSocket] = useState('')
-  const [socketChanel, setSocketChanel]= useState('hsx')
-
+const [socketChanel, setSocketChanel] = useState('hsx')
 
   useEffect(() => {
     if (dataTreemapSell.data) {
       setData(dataTreemapSell.data)
     }
-    socket.on(`listen-foreign-sell-${socketChanel}`)
+    socket.on(`listen-foreign-sell-hsx`)
     setOldSocket(query)
   }, [dataTreemapSell])
 

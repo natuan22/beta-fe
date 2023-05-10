@@ -22,7 +22,7 @@ const BarChart = () => {
 
     useEffect(() => {
         socket.on('listen-hsx-ticker-contribute-1',(newData)=> {
-            console.log(newData)
+            // console.log(newData)
         })
     }, []);
 

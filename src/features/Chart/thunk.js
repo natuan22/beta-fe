@@ -188,7 +188,7 @@ export const fetchDataTreeMapSell = (index) => async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_TREEMAP_SELL",
-      payload: res.data,
+      payload: res.data.data,
     });
   } catch (err) {
     console.log(err);
@@ -208,7 +208,7 @@ export const fetchDataTreeMapBuy = (index) => async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_TREEMAP_BUY",
-      payload: res.data,
+      payload: res.data.data,
     });
   } catch (err) {
     console.log(err);
