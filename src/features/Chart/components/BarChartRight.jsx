@@ -19,11 +19,14 @@ const BarChartRight = () => {
   }, [color]);
 
   useEffect(() => {
-    setData(dataBarChartRight?.data ?? []);
+    if (dataBarChartRight.data)
+      setData(dataBarChartRight?.data ?? []);
   }, [dataBarChartRight]);
   useEffect(() => {
-    conSocket(query)
-    setSocketOld(query)
+    if (dataBarChartRight.data) {
+      conSocket(query)
+      setSocketOld(query)
+    }
   }, [query])
 
   const disconnectSocket = (socketOld) => {

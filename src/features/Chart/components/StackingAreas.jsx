@@ -44,17 +44,19 @@ const StackingAreas = () => {
       setDataNoCh(dataNoChange || []);
     }
   }, [dataStackingChart]);
-  
+
   useEffect(() => {
-    // Lắng nghe sự kiện từ socket
-    socket.on("listen-do-rong-thi-truong", (newData) => {
-      let mapNewDataIncr = newData?.map((item) => [item.time, item.advance]);
-      let mapNewDataDecr = newData?.map((item) => [item.time, item.decline]);
-      let mapNewDataNoCh = newData?.map((item) => [item.time, item.noChange]);
-      setDataIncr((preData) => [...preData, ...mapNewDataIncr]);
-      setDataDecr((preData) => [...preData, ...mapNewDataDecr]);
-      setDataNoCh((preData) => [...preData, ...mapNewDataNoCh]);
-    });
+    if (dataStackingChart && dataStackingChart.data?.length) {
+      // Lắng nghe sự kiện từ socket
+      socket.on("listen-do-rong-thi-truong", (newData) => {
+        let mapNewDataIncr = newData?.map((item) => [item.time, item.advance]);
+        let mapNewDataDecr = newData?.map((item) => [item.time, item.decline]);
+        let mapNewDataNoCh = newData?.map((item) => [item.time, item.noChange]);
+        setDataIncr((preData) => [...preData, ...mapNewDataIncr]);
+        setDataDecr((preData) => [...preData, ...mapNewDataDecr]);
+        setDataNoCh((preData) => [...preData, ...mapNewDataNoCh]);
+      });
+    }
   }, []);
 
   const [hoveredValue, setHoveredValue] = useState(null);

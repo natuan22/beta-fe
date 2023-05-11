@@ -24,7 +24,7 @@ const MarketBreadth = () => {
 
     const [queryApi, setQueryApi] = useState({
         exchange: "HOSE",
-        type: 1,
+        type: 0,
     });
     useEffect(() => {
         dispatch(
@@ -34,11 +34,50 @@ const MarketBreadth = () => {
 
     useEffect(() => {
         if (dataDoRongThiTruong) {
+            if (queryApi.type != 0) {
+                disconnectSocketHNX()
+                disconnectSocketHSX()
+            } else {
+                if (queryApi.exchange === 'HOSE') {
+                    disconnectSocketHNX()
+                    conSocketHSX()
+                } else {
+                    disconnectSocketHSX()
+                    conSocketHNX()
+                }
+            }
+        }
+    }, [queryApi])
+
+    useEffect(() => {
+        if (dataDoRongThiTruong) {
             setData(dataDoRongThiTruong)
         }
     }, [dataDoRongThiTruong])
 
+    const disconnectSocketHSX = () => {
+        if (socket.active) {
+            socket.off(`listen-do-rong-thi-truong`);
+        }
+    }
 
+    const disconnectSocketHNX = () => {
+        if (socket.active) {
+            socket.off(`listen-do-rong-thi-truong-hnx`);
+        }
+    }
+
+    const conSocketHSX = () => {
+        socket.on(`listen-do-rong-thi-truong`, (newData) => {
+            setData((prevData) => [...prevData, ...newData]);
+        });
+    }
+
+    const conSocketHNX = () => {
+        socket.on(`listen-do-rong-thi-truong-hnx`, (newData) => {
+            setData((prevData) => [...prevData, ...newData]);
+        });
+    }
 
     const handleQueryApiExchange = (exchange) => {
         setQueryApi((prev) => ({ ...prev, exchange }));
@@ -46,18 +85,6 @@ const MarketBreadth = () => {
     const handleQueryApiType = (type) => {
         setQueryApi((prev) => ({ ...prev, type }));
     };
-    // useEffect(() => {
-    //     // Lấy dữ liệu ban đầu từ API
-    //     if (dataStackingChart?.data) {
-    //         setData(dataStackingChart.data);
-    //     }
-    //     // Lắng nghe sự kiện từ socket
-    //     socket.on("listen-do-rong-thi-truong", (newData) => {
-    //         setData((prevData) => [...prevData, ...newData]);
-    //     });
-
-    //     // Hủy bỏ việc lắng nghe sự kiện khi component bị unmount
-    // }, [dataStackingChart?.data]);
 
     const [hoveredValue, setHoveredValue] = useState(null);
     if (!dataStackingChart.data || !dataStackingChart.data.length) {
@@ -278,8 +305,9 @@ const MarketBreadth = () => {
                 <select
                     onChange={(e) => {
                         handleQueryApiType(e.target.value);
-                        if (e.target.value != 0)
+                        if (e.target.value != 0) {
                             setFormatDate('DD/MM')
+                        }
                     }}
                     className={`bg-[#1B496D] 2xl:ml-[100px] xl:ml-[100px] lg:ml-[135px] md:ml-[115px] sm:ml-[99px] xs:ml-[49px] p-1 text-[0.9rem] text-white border-0`}
                 >

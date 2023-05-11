@@ -27,10 +27,10 @@ const GoodsDetail = () => {
                   <th className="align-middle xxs:text-[10px] px-3 py-3 text-sm font-semibold text-center text-white">
                     Hàng hóa
                   </th>
-                  <th className="align-middle xxs:text-[10px] px-3 py-3 text-sm font-semibold text-right text-white">
+                  <th className="align-middle xxs:text-[10px] px-3 py-3 text-sm font-semibold text-center text-white">
                     Giá
                   </th>
-                  <th className="align-middle xxs:text-[10px] px-3 py-3 text-sm font-semibold text-right text-white">
+                  <th className="align-middle xxs:text-[10px] px-3 py-3 text-sm font-semibold text-center text-white">
                     % thay đổi
                   </th>
                 </tr>
@@ -51,10 +51,10 @@ const GoodsDetail = () => {
                         <th className="text-left align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 dark:text-white text-black">
                           {item.name} ({item.unit})
                         </th>
-                        <td className={`text-right align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
+                        <td className={`text-center align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
                           <CurrencyFormat value={item.price.toFixed(2)} displayType={'text'} thousandSeparator={true} />
                         </td>
-                        <td className={`text-right align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
+                        <td className={`text-center align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
                           {item.Day}
                         </td>
                       </tr>
