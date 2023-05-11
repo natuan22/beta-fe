@@ -9,20 +9,31 @@ const TreeMapChart2 = () => {
   const dispatch = useDispatch()
   const dataTreemapSell = useSelector((state) => state.chart.dataTreemapSell);
   const [data = dataTreemapSell.data || [], setData] = useState();
+<<<<<<< HEAD
+  const [query, setQuery] = useState('HOSE')
+  const [oldSocket, setOldSocket] = useState('')
+const [socketChanel, setSocketChanel] = useState('hsx')
+=======
 
   const [socketChanel, setSocketChanel] = useState('hsx')
   const [oldSocket, setOldSocket] = useState('')
+>>>>>>> dev
 
   useEffect(() => {
     if (dataTreemapSell.data) {
       setData(dataTreemapSell.data)
     }
+<<<<<<< HEAD
+    socket.on(`listen-foreign-sell-hsx`)
+    setOldSocket(query)
+=======
 
     // socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
     //   setData(newData)
     // })
 
     // setOldSocket(socketChanel)
+>>>>>>> dev
   }, [dataTreemapSell])
 
 

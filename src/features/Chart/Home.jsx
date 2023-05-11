@@ -49,8 +49,8 @@ import {
 import LayOut from "../../HOCs/Layout";
 
 import CashFlowAllocation from "./components/CashFlowAllocation";
-import TreeMapBuy from "./components/TreeMapBuy";
 import TreeMapSell from "./components/TreeMapSell";
+import TreeMapBuy from "./components/TreeMapBuy";
 
 
 const Home = () => {
@@ -184,9 +184,8 @@ const Home = () => {
                       <div>
                         <TreeMapBuy />
                       </div>
-
                       <div>
-                        <TreeMapSell />
+                      <TreeMapSell />
                       </div>
                     </div>
                   </div>
@@ -232,6 +231,7 @@ const Home = () => {
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
                         <TreeMapBuy />
+                 
                       </div>
 
                       <div>
@@ -293,7 +293,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-            {/* <TableTest /> */}
+         
             <Footer />
           </div>
         </div>

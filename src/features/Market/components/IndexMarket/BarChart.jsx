@@ -23,9 +23,10 @@ const BarChart = () => {
     const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
-        if (chartTickerContribute)
-            setData(chartTickerContribute)
-    }, [chartTickerContribute]);
+        socket.on('listen-hsx-ticker-contribute-1',(newData)=> {
+            // console.log(newData)
+        })
+    }, []);
 
     useEffect(() => {
         dispatch(fetchChartTickerContribute(queryApi.exchange, queryApi.type, queryApi.order));
