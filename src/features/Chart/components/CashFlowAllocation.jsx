@@ -22,9 +22,11 @@ const CashFlowAllocation = () => {
     }, [dataCashFlowAllocation])
 
     useEffect(() => {
-        socket.on("listen-phan-bo-dong-tien", (newData) => {
-            setData(newData)
-        });
+        if (dataCashFlowAllocation.data) {
+            socket.on("listen-phan-bo-dong-tien", (newData) => {
+                setData(newData)
+            });
+        }
     }, [data])
 
     if (!dataCashFlowAllocation.data) {

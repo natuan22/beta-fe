@@ -17,9 +17,11 @@ const TableMarketVolatility = () => {
     }, [dataMarketVolatility])
 
     useEffect(() => {
-        socket.on("listen-bien-dong-thi-truong", (newData) => {
-            setData(newData)
-        })
+        if (dataMarketVolatility?.data) {
+            socket.on("listen-bien-dong-thi-truong", (newData) => {
+                setData(newData)
+            })
+        }
     }, [dataMarketVolatility])
 
     return (

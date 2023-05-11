@@ -130,10 +130,10 @@ const MarketMap = () => {
                     <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                         <button
                             onClick={() => {
-                                handleClick('HSX')
-                                dispatch(dispatch(fetchDataMarketMap('HSX', activeButton2)))
+                                handleClick('HOSE')
+                                dispatch(dispatch(fetchDataMarketMap('HOSE', activeButton2)))
                             }}
-                            className={activeButton === 'HSX'
+                            className={activeButton === 'HOSE'
                                 ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                                 : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                         </button>

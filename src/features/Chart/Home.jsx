@@ -103,7 +103,7 @@ const Home = () => {
             <div>
               <div className="lg:block xl:flex ">
                 <div className="xl:w-[60%]">
-                  <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-[2fr_2fr] xl:grid-cols-[2fr_2fr]">
+                  <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
                     <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                       <TableDetail />
                     </div>
@@ -157,7 +157,7 @@ const Home = () => {
             <div>
               <div className="xl:flex lg:block">
                 <div className="xl:w-[60%]">
-                  <div className="grid gap-0.5 md:grid-cols-none lg:grid-cols-[2fr_2fr] xl:grid-cols-[2fr_2fr]">
+                  <div className="grid gap-0.5 md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
                     <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[380px] shadow-md">
                       <GoodsDetail />
                     </div>
