@@ -21,11 +21,15 @@ const TreeMapBuy = () => {
   const [socketOld, setSocketOld] = useState('');
   const [point, setPoint] = useState([])
   const [option, setOption] = useState({
+    accessibility: {
+      enabled: false,
+    },
     tooltip: {
       formatter: function () {
         return `<b>${this.point.name}</b>: ${this.point.value} (tỉ VNĐ)`;
       }
     },
+    credits: false,
     chart: {
       type: "treemap",
       backgroundColor: "transparent",
@@ -83,31 +87,30 @@ const TreeMapBuy = () => {
   useEffect(() => {
     if (dataTreemapBuy?.length > 0)
       setDataSocket(dataTreemapBuy);
-      
+
   }, [dataTreemapBuy]);
-  
+
   useEffect(() => {
     socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
       setDataSocket(newData);
     });
     setSocketOld(socketChanel)
     const resultMap = {};
-      dataSocket?.forEach(item => {
-        const { LV2, ticker, total_value_buy, color } = item;
-  
-        if (!resultMap.hasOwnProperty(LV2)) {
-          resultMap[LV2] = { color: color, data: {} };
-        }
-  
-        resultMap[LV2].data[ticker] = (total_value_buy / 1000000000).toFixed(2);
-      });
-  
-      console.log('resultMap', resultMap);
-      setDataTreeMap(resultMap);
+    dataSocket?.forEach(item => {
+      const { LV2, ticker, total_value_buy, color } = item;
 
-      setPoint(calculatePoints(dataTreeMap))
+      if (!resultMap.hasOwnProperty(LV2)) {
+        resultMap[LV2] = { color: color, data: {} };
+      }
 
-     setOption(prevOption => ({
+      resultMap[LV2].data[ticker] = (total_value_buy / 1000000000).toFixed(2);
+    });
+
+    setDataTreeMap(resultMap);
+
+    setPoint(calculatePoints(dataTreeMap))
+
+    setOption(prevOption => ({
       ...prevOption,
       series: [{
         ...prevOption.series[0],
@@ -176,7 +179,6 @@ const TreeMapBuy = () => {
   //   points.push(sectorPoint);
   //   sectorIndex++;
   // }
-  // console.log('points',points)
   // const options = {
   //   tooltip: {
   //     formatter: function () {
@@ -242,7 +244,7 @@ const TreeMapBuy = () => {
     <div>
       <div>
         <div className="text-center py-2">
-          <span className="dark:text-white text-black uppercase text-lg">
+          <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs">
             Khối ngoại mua ròng sàn
             <select
               className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
@@ -261,7 +263,7 @@ const TreeMapBuy = () => {
       </div>
       <div>
         {
-          dataTreemapBuy.length > 0 ? <HighchartsReact highcharts={Highcharts} options={option} containerProps={{ style: { height: '654px', width: '100%' } }} /> : <div><Loading /></div>
+          dataTreemapBuy.length > 0 ? <HighchartsReact highcharts={Highcharts} options={option} containerProps={{ style: { height: '690px', width: '100%' } }} /> : <div><Loading /></div>
         }
       </div>
     </div>
