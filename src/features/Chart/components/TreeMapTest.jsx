@@ -2,127 +2,273 @@ import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import treemap from "highcharts/modules/treemap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import '../utils/treemapStyleDrillBtn.css'
+import Loading from "../utils/Loading";
+import socket from "../utils/socket";
+import { fetchDataTreeMapSell } from "../thunk";
+import { calculatePoints } from "../constant";
+
 // Khởi tạo module treemap
 treemap(Highcharts);
 
-const TreeMapTest = () => {
-  const [data, setData] = useState([]);
-  const { dataTreemapSell } = useSelector(state => state.chart)
-  console.log(dataTreemapSell.data)
-  useEffect(() => {
-    if (dataTreemapSell?.data?.length) {
-      const dataParent = dataTreemapSell?.data.reduce((uniqueItems, item) => {
-        const isItemExist = uniqueItems.some((uniqueItem) => uniqueItem.id === item.LV2);
-
-        if (!isItemExist) {
-          const itemsWithSameLV2 = dataTreemapSell?.data.filter((dataItem) => dataItem.LV2 === item.LV2);
-          const totalValue = itemsWithSameLV2.reduce((sum, dataItem) => sum + dataItem.total_value_sell, 0);
-          uniqueItems.push({
-            id: item.LV2,
-            name:item.LV2,
-            value: +(totalValue / 1000000000).toFixed(2) ,
-          });
-        }
-        return uniqueItems;
-      }, []);
-      // console.log('dataParent',dataParent)
-
-      const dataChild = dataTreemapSell?.data.map((item) => ({
-        id: item.ticker,
-        name: item.LV2,
-        value: +(item.total_value_sell / 1000000000).toFixed(2),
-      }));
-      // console.log('dataChild',dataChild)
-      const dataRender = [...dataParent].map((item) => {
-        return {
-          ...item,
-          data: dataChild.filter(i => i.name === item.id)  
-        } 
-      })
-      console.log('dataRender',dataRender)
-      setData(dataRender);
-    }
-  }, [dataTreemapSell]);
-
-
-
-
-  const options = {
+const TreeMapSell = () => {
+  const dispatch = useDispatch()
+  const { dataTreemapSell } = useSelector(state => state.chart);
+  console.log(dataTreemapSell)
+  const [dataTreeMap, setDataTreeMap] = useState();
+  const [dataSocket, setDataSocket] = useState([]);
+  const [socketChanel, setSocketChanel] = useState('hose');
+  const [socketOld, setSocketOld] = useState('');
+  const [point, setPoint] = useState([])
+  const [option, setOption] = useState({
+    tooltip: {
+      formatter: function () {
+        return `<b>${this.point.name}</b>: ${this.point.value} (tỉ VNĐ)`;
+      }
+    },
     chart: {
       type: "treemap",
       backgroundColor: "transparent",
-      layoutAlgorithm: "squarified",
-      allowDrillToNode: true,
-      borderWidth: 2,
-      borderColor: "#000",
-      borderRadius: 6,
     },
     title: {
-      text: "Dữ liệu Treemap",
-      align: "center",
+      text: "",
+      align: "center"
     },
     series: [
       {
         type: "treemap",
+        name: "Khối ngoại mua ròng",
         layoutAlgorithm: "squarified",
+        allowDrillToNode: true,
+        dataLabels: {
+          enabled: true,
+        },
+        levelIsConstant: false,
         levels: [
           {
             level: 1,
-            layoutAlgorithm: "sliceAndDice",
             dataLabels: {
-              enabled: true,
-              align: "center",
-              verticalAlign: "top",
-              style: {
-                fontSize: "13px",
-                fontWeight: "bold",
-              },
+              enabled: true
             },
-            levelSize: {
-              unit: "pixels",
-              value: 10,
-            },
-            borderWidth: 0,
-            borderColor: null,
-          },
+            borderWidth: 3
+          }
         ],
-        data: data,
-        colorByPoint: true,
-        dataLabels: {
+        data: point,
+        drillUpButton: {
           enabled: true,
-          style: {
-            textOutline: "none",
+          relativeTo: 'spacingBox',
+          position: {
+            y: 10,
+            x: 5
           },
-        },
-        events: {
-          click: (event) => {
-            if (event.point.node.children.length > 0) {
-              // Xử lý sự kiện khi click vào parent
-              // Hiển thị các giá trị con trong parent
-              const childData = event.point.node.children.map((child) => ({
-                id: child.id,
-                name: child.name,
-                value: child.value,
-              }));
-              setData(childData);
-              
+          theme: {
+            fill: 'red',
+            'stroke-width': 1,
+            stroke: 'blue',
+            r: 0,
+            states: {
+              hover: {
+                fill: 'yellow'
+              },
+              select: {
+                stroke: '#039',
+                fill: '#a4edba'
+              }
             }
           },
         },
-      },
-    ],
+      }
+    ]
+  })
+  useEffect(() => {
+    if (dataTreemapSell?.length > 0)
+      setDataSocket(dataTreemapSell);
+      
+  }, [dataTreemapSell]);
+  
+  useEffect(() => {
+    socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
+      console.log('newData', newData);
+      setDataSocket(newData);
+    });
+    setSocketOld(socketChanel)
+    const resultMap = {};
+      dataSocket?.forEach(item => {
+        const { LV2, ticker, total_value_sell, color } = item;
+  
+        if (!resultMap.hasOwnProperty(LV2)) {
+          resultMap[LV2] = { color: color, data: {} };
+        }
+  
+        resultMap[LV2].data[ticker] = (total_value_sell / 1000000000).toFixed(2);
+      });
+  
+      console.log('resultMap', resultMap);
+      setDataTreeMap(resultMap);
+
+      setPoint(calculatePoints(dataTreeMap))
+
+     setOption(prevOption => ({
+      ...prevOption,
+      series: [{
+        ...prevOption.series[0],
+        data: point,
+        allowDrillToNode: true
+      }]
+    }));
+  }, [dataSocket]);
+
+  const disconnectSocket = (socketOld) => {
+    if (socket.active) {
+      socket.off(`listen-foreign-sell-${socketOld}`);
+    }
   };
+
+  // const points = [];
+  // let sectorIndex = 0;
+
+  // for (let sector in dataTreeMap) {
+  //   let sectorValue = 0;
+  //   let sectorPoint = {
+  //     id: `sector_${sectorIndex}`,
+  //     name: `${sector}`,
+  //     color: dataTreeMap[sector].color, // Sử dụng color từ resultMap
+  //     dataLabels: {
+  //       enabled: true,
+  //       style: {
+  //         fontSize: "12px",
+  //         fontWeight: "bold",
+  //         color: "black",
+  //       },
+  //       verticalAlign: "top",
+  //       align: "left",
+  //     },
+  //   };
+  //   let stockIndex = 0;
+
+  //   for (let stock in dataTreeMap[sector].data) { // Truy cập vào đối tượng data trong dataTreeMap
+  //     let stockPoint = {
+  //       id: `${sectorPoint.id}_${stockIndex}`,
+  //       name: stock,
+  //       parent: sectorPoint.id,
+  //       value: parseFloat(dataTreeMap[sector].data[stock]), // Truy cập vào value trong dataTreeMap
+  //       dataLabels: {
+  //         enabled: true,
+  //         formatter: function () {
+  //           return '<b>' + this.point.name + '</b>: ' + this.point.value;
+  //         },
+  //         style: {
+  //           fontSize: "11px",
+  //           fontWeight: "semibold",
+  //           color: "white",
+  //           style: {
+  //             textOutline: "none",
+  //           },
+  //         },
+  //         align: "center",
+  //       },
+  //     };
+  //     sectorValue += stockPoint.value;
+  //     points.push(stockPoint);
+  //     stockIndex++;
+  //   }
+
+  //   sectorPoint.value = Math.round(sectorValue);
+  //   points.push(sectorPoint);
+  //   sectorIndex++;
+  // }
+  // console.log('points',points)
+  // const options = {
+  //   tooltip: {
+  //     formatter: function () {
+  //       return `<b>${this.point.name}</b>: ${this.point.value} (tỉ VNĐ)`;
+  //     }
+  //   },
+  //   chart: {
+  //     type: "treemap",
+  //     backgroundColor: "transparent",
+  //   },
+  //   title: {
+  //     text: "",
+  //     align: "center"
+  //   },
+  //   series: [
+  //     {
+  //       type: "treemap",
+  //       name: "Khối ngoại mua ròng",
+  //       layoutAlgorithm: "squarified",
+  //       allowDrillToNode: true,
+  //       dataLabels: {
+  //         enabled: true,
+  //       },
+  //       levelIsConstant: false,
+  //       levels: [
+  //         {
+  //           level: 1,
+  //           dataLabels: {
+  //             enabled: true
+  //           },
+  //           borderWidth: 3
+  //         }
+  //       ],
+  //       data: point,
+  //       drillUpButton: {
+  //         enabled: true,
+  //         relativeTo: 'spacingBox',
+  //         position: {
+  //           y: 10,
+  //           x: 5
+  //         },
+  //         theme: {
+  //           fill: 'red',
+  //           'stroke-width': 1,
+  //           stroke: 'blue',
+  //           r: 0,
+  //           states: {
+  //             hover: {
+  //               fill: 'yellow'
+  //             },
+  //             select: {
+  //               stroke: '#039',
+  //               fill: '#a4edba'
+  //             }
+  //           }
+  //         },
+  //       },
+  //     }
+  //   ]
+  // };
 
   return (
     <div>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-        containerProps={{ style: { height: "800px", width: "40%" } }}
-      />
+      <div>
+        <div className="text-center py-2">
+          <span className="dark:text-white text-black uppercase text-lg">
+            Khối ngoại bán ròng sàn
+            <select
+              className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+              onChange={(event) => {
+                disconnectSocket(socketOld);
+                setSocketChanel(event.target.value);
+                dispatch(fetchDataTreeMapSell(event.target.value))
+              }}
+            >
+              <option value="hose">HSX</option>
+              <option value="hnx">HNX</option>
+              <option value="upcom">UPCOM</option>
+            </select>
+          </span>
+        </div>
+      </div>
+      <div>
+        {
+          dataTreemapSell.length > 0 ? <HighchartsReact highcharts={Highcharts} options={option} containerProps={{ style: { height: '654px', width: '100%' } }} /> : <div><Loading /></div>
+        }
+      </div>
     </div>
   );
 };
 
-export default TreeMapTest;
+export default TreeMapSell;
+
