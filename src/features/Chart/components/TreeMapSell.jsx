@@ -6,15 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import '../utils/treemapStyleDrillBtn.css'
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
-import { fetchDataTreeMapBuy } from "../thunk";
+import { fetchDataTreeMapSell } from "../thunk";
 import { calculatePoints } from "../constant";
 
 // Khởi tạo module treemap
 treemap(Highcharts);
 
-const TreeMapBuy = () => {
+const TreeMapSell = () => {
   const dispatch = useDispatch()
-  const { dataTreemapBuy } = useSelector(state => state.chart);
+  const { dataTreemapSell } = useSelector(state => state.chart);
+  console.log(dataTreemapSell)
   const [dataTreeMap, setDataTreeMap] = useState();
   const [dataSocket, setDataSocket] = useState([]);
   const [socketChanel, setSocketChanel] = useState('hose');
@@ -81,25 +82,26 @@ const TreeMapBuy = () => {
     ]
   })
   useEffect(() => {
-    if (dataTreemapBuy?.length > 0)
-      setDataSocket(dataTreemapBuy);
+    if (dataTreemapSell?.length > 0)
+      setDataSocket(dataTreemapSell);
       
-  }, [dataTreemapBuy]);
+  }, [dataTreemapSell]);
   
   useEffect(() => {
-    socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
+    socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
+      console.log('newData', newData);
       setDataSocket(newData);
     });
     setSocketOld(socketChanel)
     const resultMap = {};
       dataSocket?.forEach(item => {
-        const { LV2, ticker, total_value_buy, color } = item;
+        const { LV2, ticker, total_value_sell, color } = item;
   
         if (!resultMap.hasOwnProperty(LV2)) {
           resultMap[LV2] = { color: color, data: {} };
         }
   
-        resultMap[LV2].data[ticker] = (total_value_buy / 1000000000).toFixed(2);
+        resultMap[LV2].data[ticker] = (total_value_sell / 1000000000).toFixed(2);
       });
   
       console.log('resultMap', resultMap);
@@ -119,7 +121,7 @@ const TreeMapBuy = () => {
 
   const disconnectSocket = (socketOld) => {
     if (socket.active) {
-      socket.off(`listen-foreign-buy-${socketOld}`);
+      socket.off(`listen-foreign-sell-${socketOld}`);
     }
   };
 
@@ -243,13 +245,13 @@ const TreeMapBuy = () => {
       <div>
         <div className="text-center py-2">
           <span className="dark:text-white text-black uppercase text-lg">
-            Khối ngoại mua ròng sàn
+            Khối ngoại bán ròng sàn
             <select
               className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
               onChange={(event) => {
                 disconnectSocket(socketOld);
                 setSocketChanel(event.target.value);
-                dispatch(fetchDataTreeMapBuy(event.target.value))
+                dispatch(fetchDataTreeMapSell(event.target.value))
               }}
             >
               <option value="hose">HSX</option>
@@ -261,12 +263,12 @@ const TreeMapBuy = () => {
       </div>
       <div>
         {
-          dataTreemapBuy.length > 0 ? <HighchartsReact highcharts={Highcharts} options={option} containerProps={{ style: { height: '654px', width: '100%' } }} /> : <div><Loading /></div>
+          dataTreemapSell.length > 0 ? <HighchartsReact highcharts={Highcharts} options={option} containerProps={{ style: { height: '654px', width: '100%' } }} /> : <div><Loading /></div>
         }
       </div>
     </div>
   );
 };
 
-export default TreeMapBuy;
+export default TreeMapSell;
 
