@@ -23,12 +23,6 @@ const BarChart = () => {
     const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
-        socket.on('listen-hsx-ticker-contribute-1',(newData)=> {
-            // console.log(newData)
-        })
-    }, []);
-
-    useEffect(() => {
         dispatch(fetchChartTickerContribute(queryApi.exchange, queryApi.type, queryApi.order));
         setColorText(color);
     }, [dispatch, queryApi, color]);
@@ -42,6 +36,11 @@ const BarChart = () => {
     const handleQueryApiExchange = (exchange) => {
         setQueryApi((prev) => ({ ...prev, exchange }));
     };
+    useEffect(() => {
+        if (chartTickerContribute) {
+            setData(chartTickerContribute)
+        }
+    }, [chartTickerContribute])
 
     useEffect(() => {
         if (chartTickerContribute) {

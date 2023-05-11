@@ -184,8 +184,9 @@ const Home = () => {
                       <div>
                         <TreeMapBuy />
                       </div>
+
                       <div>
-                      <TreeMapSell />
+                        <TreeMapSell />
                       </div>
                     </div>
                   </div>
@@ -227,11 +228,10 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="xl:w-[60%] xl:hidden">
-                  <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md xxs:h-[780px] xs:h-[780px] lg:h-[725px] md:h-[750px]">
+                  <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md xxs:h-[770px] xs:h-[745px] sm:h-[750px] md:h-[725px] lg:h-[725px]">
                     <div className="grid grid-cols-2 gap-0.5">
                       <div>
                         <TreeMapBuy />
-                 
                       </div>
 
                       <div>
@@ -293,7 +293,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-         
+
             <Footer />
           </div>
         </div>
