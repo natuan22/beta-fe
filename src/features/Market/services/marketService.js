@@ -42,4 +42,19 @@ export const marketServices = {
             }
         })
     },
+    fetchDataDoRongThiTruong: (exchange, type) => {
+        return https.get('api/v1/chart/do-rong-thi-truong', {
+            params: {
+                exchange,
+                type,
+            }
+        })
+    },
+    fetchDataBienDongThiTruong: (exchange) => {
+        return https.get('api/v1/stock/bien-dong-thi-truong', {
+            params: {
+                exchange,
+            }
+        })
+    },
 }

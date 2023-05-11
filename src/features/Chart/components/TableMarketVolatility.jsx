@@ -17,9 +17,11 @@ const TableMarketVolatility = () => {
     }, [dataMarketVolatility])
 
     useEffect(() => {
-        socket.on("listen-bien-dong-thi-truong", (newData) => {
-            setData(newData)
-        })
+        if (dataMarketVolatility?.data) {
+            socket.on("listen-bien-dong-thi-truong", (newData) => {
+                setData(newData)
+            })
+        }
     }, [dataMarketVolatility])
 
     return (
@@ -31,12 +33,12 @@ const TableMarketVolatility = () => {
                             <table className="items-center bg-transparent w-full border-collapse">
                                 <thead className="bg-[#1E5D8B]">
                                     <tr>
-                                        <th className="text-center align-middle px-[5px] py-3 uppercase text-sm font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[7px] px-[5px] py-3 uppercase text-sm font-semibold text-white">
                                             Khung biến động
                                         </th>
                                         {!loading ? (Array.isArray(data) && data?.map(item => {
                                             return (
-                                                <th key={item.ticker} className="text-center align-middle px-1 py-3 uppercase text-xs font-semibold text-white">
+                                                <th key={item.ticker} className="text-center align-middle xxs:text-[7px] px-1 py-3 uppercase text-xs font-semibold text-white">
                                                     {item.ticker}
                                                 </th>
                                             )
@@ -46,52 +48,52 @@ const TableMarketVolatility = () => {
 
                                 <tbody>
                                     <tr className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                                        <th className=" sticky top-0text-center align-middle uppercase text-sm px-1 py-3.5 dark:text-white text-black">
+                                        <th className=" sticky top-0text-center align-middle xxs:text-[7px] uppercase text-sm px-1 py-3.5 dark:text-white text-black">
                                             Phiên trước
                                         </th>
                                         {data?.map(item => {
                                             let color = getColor(item.day_change_percent)
                                             return (
-                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                <td key={item.ticker} className={`${color} text-center align-middle xxs:text-[7px] text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                     {item.day_change_percent.toFixed(2)}%
                                                 </td>
                                             )
                                         })}
                                     </tr>
                                     <tr className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                                        <th className="text-center align-middle uppercase text-sm px-1 py-3.5 dark:text-white text-black">
+                                        <th className="text-center align-middle xxs:text-[7px] uppercase text-sm px-1 py-3.5 dark:text-white text-black">
                                             Trung bình tuần
                                         </th>
                                         {data?.map(item => {
                                             let color = getColor(item.week_change_percent)
                                             return (
-                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                <td key={item.ticker} className={`${color} text-center align-middle xxs:text-[7px] text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                     {item.week_change_percent.toFixed(2)}%
                                                 </td>
                                             )
                                         })}
                                     </tr>
                                     <tr className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                                        <th className="text-center align-middle uppercase text-sm px-1 py-3.5 dark:text-white text-black">
+                                        <th className="text-center align-middle xxs:text-[7px] uppercase text-sm px-1 py-3.5 dark:text-white text-black">
                                             Trung bình tháng
                                         </th>
                                         {data?.map(item => {
                                             let color = getColor(item.month_change_percent)
                                             return (
-                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                <td key={item.ticker} className={`${color} text-center align-middle xxs:text-[7px] text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                     {item.month_change_percent.toFixed(2)}%
                                                 </td>
                                             )
                                         })}
                                     </tr>
                                     <tr className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                                        <th className="text-center align-middle uppercase text-sm px-1 py-3.5 dark:text-white text-black">
+                                        <th className="text-center align-middle xxs:text-[7px] uppercase text-sm px-1 py-3.5 dark:text-white text-black">
                                             Trung bình năm
                                         </th>
                                         {data?.map(item => {
                                             let color = getColor(item.year_change_percent)
                                             return (
-                                                <td key={item.ticker} className={`${color} text-center align-middle text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                <td key={item.ticker} className={`${color} text-center align-middle xxs:text-[7px] text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                     {item.year_change_percent.toFixed(2)}%
                                                 </td>
                                             )

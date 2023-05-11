@@ -27,8 +27,10 @@ const TopROC = () => {
     }, [dataROC])
 
     useEffect(() => {
-        conSocket(query)
-        setSocketOld(query)
+        if (dataROC.data) {
+            conSocket(query)
+            setSocketOld(query)
+        }
     }, [query])
 
     const disconnectSocket = (socketOld) => {

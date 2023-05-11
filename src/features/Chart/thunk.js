@@ -17,12 +17,15 @@ export const fetchDataInternationalIndex = async (dispatch) => {
   }
 };
 
-export const fetchDataBarChartRight = async (dispatch) => {
+export const fetchDataBarChartRight = (exchange) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
       url: `${apiUrl}/api/v1/stock/top-net-foreign`,
       method: "GET",
+      params: {
+        exchange
+      }
     });
     dispatch({
       type: "beta/UPDATE_DATA_BARCHART_RIGHT",

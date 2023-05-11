@@ -60,3 +60,27 @@ export const fetchDataCashValue = (type) => async (dispatch) => {
         console.log(err)
     }
 }
+
+export const fetchDataDoRongThiTruong = (exchange, type) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataDoRongThiTruong(exchange, type)
+        dispatch({
+            type: marketType.FETCH_DATA_DO_RONG_THI_TRUONG,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataBienDongThiTruong = (exchange) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataBienDongThiTruong(exchange)
+        dispatch({
+            type: marketType.FETCH_DATA_DIEN_DONG_THI_TRUONG,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}

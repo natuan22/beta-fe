@@ -1,41 +1,29 @@
 import { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataTreeMapSell } from "../thunk";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
+import { fetchDataTreeMapBuy } from "../thunk";
 
-const TreeMapChart2 = () => {
+const TreeMapChart = () => {
   const dispatch = useDispatch()
-  const dataTreemapSell = useSelector((state) => state.chart.dataTreemapSell);
-  const [data = dataTreemapSell.data || [], setData] = useState();
-<<<<<<< HEAD
-  const [query, setQuery] = useState('HOSE')
-  const [oldSocket, setOldSocket] = useState('')
-const [socketChanel, setSocketChanel] = useState('hsx')
-=======
+  const dataTreemapBuy = useSelector((state) => state.chart.dataTreemapBuy);
+  const [data = dataTreemapBuy.data || [], setData] = useState();
 
   const [socketChanel, setSocketChanel] = useState('hsx')
   const [oldSocket, setOldSocket] = useState('')
->>>>>>> dev
 
   useEffect(() => {
-    if (dataTreemapSell.data) {
-      setData(dataTreemapSell.data)
+    if (dataTreemapBuy.data) {
+      setData(dataTreemapBuy.data)
     }
-<<<<<<< HEAD
-    socket.on(`listen-foreign-sell-hsx`)
-    setOldSocket(query)
-=======
 
-    // socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
-    //   setData(newData)
-    // })
+    socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
+      setData(newData)
+    })
 
-    // setOldSocket(socketChanel)
->>>>>>> dev
-  }, [dataTreemapSell])
-
+    setOldSocket(socketChanel)
+  }, [dataTreemapBuy])
 
   const arrGlobal = [
     [
@@ -43,42 +31,42 @@ const [socketChanel, setSocketChanel] = useState('hsx')
       "Parent",
       "Market trade volume (size)",
     ],
-    ["Khối ngoại bán ròng", null, 0],
+    ["Khối ngoại mua ròng", null, 0],
   ];
   // tạo 1 trường AddedLv2Value => chạy vòng lặp xét item.lv2 có trong addedValue chưa nếu chưa thì thực hiện arrGlobal.push([item.lv2, "Global", 0, 0]); và ngược lại
   const addedLv2Values = new Set();
   data.forEach((item) => {
     if (!addedLv2Values.has(item.LV2)) {
-      arrGlobal.push([item.LV2, "Khối ngoại bán ròng", 0]);
+      arrGlobal.push([item.LV2, "Khối ngoại mua ròng", 0]);
       addedLv2Values.add(item.LV2);
     }
   });
 
   const arrTicker = data.map((item) => {
     return [
-      `${item.ticker}: ${Intl.NumberFormat("de-DE").format(item.total_value_sell / 1000000000)} tỉ VNĐ`,
+      `${item.ticker}: ${Intl.NumberFormat("de-DE").format(item.total_value_buy / 1000000000)} tỉ VNĐ`,
       item.LV2,
-      item.total_value_sell,
+      item.total_value_buy,
     ];
   });
 
   const disconnectSocket = (socketOld) => {
     if (socket.active) {
-      socket.off(`listen-foreign-sell-${socketOld}`);
+      socket.off(`listen-foreign-buy-${socketOld}`);
     }
   }
-  const dataTreeMapRender = arrGlobal.concat(arrTicker)
 
+  const dataTreeMapRender = arrGlobal.concat(arrTicker)
   const options = {
     highlightOnMouseOver: true,
     maxDepth: 1,
     maxPostDepth: 2,
-    minHighlightColor: "red",
-    midHighlightColor: "red",
-    maxHighlightColor: "#red",
-    minColor: "red",
-    midColor: "pink",
-    maxColor: "red",
+    minHighlightColor: "green",
+    midHighlightColor: "green",
+    maxHighlightColor: "#green",
+    minColor: "green",
+    midColor: "#green",
+    maxColor: "#green",
     headerHeight: 0,
     showScale: false,
     height: 680,
@@ -118,19 +106,16 @@ const [socketChanel, setSocketChanel] = useState('hsx')
   };
 
   return (
-
-
-
     <div>
       <div className="text-center py-2">
         <span className="dark:text-white text-black uppercase text-lg">
-          Khối ngoại bán ròng sàn
+          Khối ngoại mua ròng sàn
           <select
             className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
             onChange={(event) => {
               disconnectSocket(oldSocket)
               setSocketChanel(event.target.value)
-              dispatch(fetchDataTreeMapSell(event.target.value))
+              dispatch(fetchDataTreeMapBuy(event.target.value))
             }}
           >
             <option value="hsx">HSX</option>
@@ -139,6 +124,7 @@ const [socketChanel, setSocketChanel] = useState('hsx')
           </select>
         </span>
       </div>
+
       <div>
         <Chart
           width={"100%"}
@@ -150,8 +136,7 @@ const [socketChanel, setSocketChanel] = useState('hsx')
         />
       </div>
     </div>
-
   );
 };
 
-export default TreeMapChart2;
+export default TreeMapChart;

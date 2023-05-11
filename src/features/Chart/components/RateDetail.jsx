@@ -23,13 +23,13 @@ const RateDetail = () => {
             <table className="items-center  w-full border-collapse bg-transparent">
               <thead className="bg-[#1E5D8B]">
                 <tr>
-                  <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                  <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                     Tỷ giá
                   </th>
-                  <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                  <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                     Giá trị
                   </th>
-                  <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                  <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                     Thay đổi
                   </th>
                 </tr>
@@ -48,13 +48,13 @@ const RateDetail = () => {
 
                     return (
                       <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
-                        <th className="text-center align-middle text-sm whitespace-nowrap px-3 py-3.5 dark:text-white text-black">
+                        <th className="text-center align-middle xxs:text-[10px] text-sm whitespace-nowrap px-3 py-3.5 dark:text-white text-black">
                           {item.name}
                         </th>
-                        <td className={`text-center align-middle text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
+                        <td className={`text-center align-middle xxs:text-[10px] text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
                           <CurrencyFormat value={item.price.toFixed(2)} displayType={'text'} thousandSeparator={true} />
                         </td>
-                        <td className={`text-center align-middle text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
+                        <td className={`text-center align-middle xxs:text-[10px] text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
                           {item.Day}
                         </td>
                       </tr>

@@ -10,12 +10,13 @@ const News = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1920) setSpeed(3);
-      else if (window.innerWidth >= 1440) setSpeed(2.5);
-      else if (window.innerWidth >= 1024) setSpeed(2);
-      else if (window.innerWidth >= 768) setSpeed(1);
-      else if (window.innerWidth >= 425) setSpeed(0.5);
-      else if (window.innerWidth >= 375) setSpeed(0.3);
+      if (window.innerWidth >= '1920') setSpeed(3);
+      else if (window.innerWidth >= '1440') setSpeed(2.5);
+      else if (window.innerWidth >= '1024') setSpeed(2);
+      else if (window.innerWidth >= '768') setSpeed(1);
+      else if (window.innerWidth >= '425') setSpeed(0.5);
+      else if (window.innerWidth >= '375') setSpeed(0.3);
+      else if (window.innerWidth <= '374') setSpeed(0.3);
     };
     handleResize();
 

@@ -1,22 +1,45 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import socket from "../utils/socket";
+import { fetchDataBarChartRight } from "../thunk";
 
 const BarChartRight = () => {
+  const dispatch = useDispatch()
   const dataBarChartRight = useSelector((state) => state.chart.dataBarChartRight);
   const [data, setData] = useState(dataBarChartRight?.data ?? []);
   const [colorText, setColorText] = useState(localStorage.getItem('color'));
   const color = useSelector((state) => state.color.colorText);
 
+  const [query, setQuery] = useState('hose')
+  const [socketOld, setSocketOld] = useState('')
   useEffect(() => {
     setColorText(color);
   }, [color]);
 
   useEffect(() => {
-    setData(dataBarChartRight?.data ?? []);
+    if (dataBarChartRight.data)
+      setData(dataBarChartRight?.data ?? []);
   }, [dataBarChartRight]);
+  useEffect(() => {
+    if (dataBarChartRight.data) {
+      conSocket(query)
+      setSocketOld(query)
+    }
+  }, [query])
 
+  const disconnectSocket = (socketOld) => {
+    if (socket.active) {
+      socket.off(`listen-top-foreign-${socketOld}`);
+    }
+  }
+
+  const conSocket = (key) => {
+    socket.on(`listen-top-foreign-${key}`, (newData) => {
+      setData(newData.sort((a, b) => b.net_value_foreign - a.net_value_foreign))
+    });
+  }
   const options = {
     accessibility: {
       enabled: false,
@@ -52,11 +75,11 @@ const BarChartRight = () => {
         }
       },
       min: Math.min(
-        ...data?.map((item) => item.net_value_foreign),
+        ...data?.map((item) => item.net_value_foreign / 1000000000),
         0
       ),
       max: Math.max(
-        ...data?.map((item) => item.net_value_foreign),
+        ...data?.map((item) => item.net_value_foreign / 1000000000),
         0
       ),
     },
@@ -87,20 +110,38 @@ const BarChartRight = () => {
         data: data?.map(item => {
           return {
             name: item.ticker,
-            y: item.net_value_foreign,
-            color: item.net_value_foreign > 0 ? "#15b313" : "#ff0000"
+            y: item.net_value_foreign / 1000000000,
+            color: item.net_value_foreign / 1000000000 > 0 ? "#15b313" : "#ff0000"
           };
         })
       },
     ],
   };
 
-  return (
+  return (<>
+    <div className="h-[29px]">
+      <span className="font-semibold uppercase text-sm dark:text-white text-black">
+        Top nước ngoài mua bán ròng
+      </span>
+      <select
+        className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+        onChange={(event) => {
+          disconnectSocket(socketOld)
+          setQuery(event.target.value)
+          dispatch(fetchDataBarChartRight(event.target.value));
+        }}
+      >
+        <option value="hose">HSX</option>
+        <option value="hnx">HNX</option>
+        <option value="upcom">UPCOM</option>
+      </select>
+    </div>
     <div id="chart-container">
       <div className="xl:h-[350px] 2xl:h-[350px]">
         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
       </div>
     </div>
+  </>
   );
 };
 

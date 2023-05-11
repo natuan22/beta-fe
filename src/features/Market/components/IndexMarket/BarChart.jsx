@@ -9,14 +9,16 @@ import socket from "../../../Chart/utils/socket";
 const BarChart = () => {
     const dispatch = useDispatch();
     const { chartTickerContribute } = useSelector((state) => state.market);
-    const [activeButton, setActiveButton] = useState('HOSE')
+    const [activeButton, setActiveButton] = useState('hose')
     const handleClick = (button) => { setActiveButton(button) }
     const [handleQueryType, setHandleQueryType] = useState(0)
     const [queryApi, setQueryApi] = useState({
-        exchange: "HOSE",
+        exchange: "hose",
         type: 0,
         order: 0,
     });
+    const [exchangeOld, setExchangeOld] = useState('')
+    const [data, setData] = useState([])
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
@@ -40,6 +42,51 @@ const BarChart = () => {
     const handleQueryApiExchange = (exchange) => {
         setQueryApi((prev) => ({ ...prev, exchange }));
     };
+
+    useEffect(() => {
+        if (chartTickerContribute) {
+            if (queryApi.type != 0) {
+                disconnectSocketTrongPhien(exchangeOld)
+                disconnectSocket5Phien(exchangeOld)
+            } else {
+                if (queryApi.order == 0) {
+                    disconnectSocketTrongPhien(exchangeOld)
+                    disconnectSocket5Phien(exchangeOld)
+                    conSocketTrongPhien(queryApi.exchange)
+                    setExchangeOld(queryApi.exchange)
+                } else if (queryApi.order == 1) {
+                    disconnectSocketTrongPhien(exchangeOld)
+                    disconnectSocket5Phien(exchangeOld)
+                    conSocket5Phien(queryApi.exchange)
+                    setExchangeOld(queryApi.exchange)
+                }
+            }
+        }
+    }, [queryApi])
+
+    const disconnectSocketTrongPhien = (exchange) => {
+        if (socket.active) {
+            socket.off(`listen-${exchange}-ticker-contribute-0`);
+        }
+    }
+
+    const disconnectSocket5Phien = (exchange) => {
+        if (socket.active) {
+            socket.off(`listen-${exchange}-ticker-contribute-1`);
+        }
+    }
+
+    const conSocketTrongPhien = (exchange) => {
+        socket.on(`listen-${exchange}-ticker-contribute-0`, (newData) => {
+            setData(newData.sort((a, b) => b.contribute_price - a.contribute_price));
+        });
+    }
+
+    const conSocket5Phien = (exchange) => {
+        socket.on(`listen-${exchange}-ticker-contribute-1`, (newData) => {
+            setData(newData.sort((a, b) => b.contribute_price - a.contribute_price));
+        });
+    }
 
     if (!chartTickerContribute.length) {
         return <>
@@ -73,10 +120,10 @@ const BarChart = () => {
                 <span>
                     <button
                         onClick={() => {
-                            handleClick('HOSE')
-                            handleQueryApiExchange('HOSE')
+                            handleClick('hose')
+                            handleQueryApiExchange('hose')
                         }}
-                        className={activeButton === 'HOSE'
+                        className={activeButton === 'hose'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
@@ -84,10 +131,10 @@ const BarChart = () => {
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
                     <button
                         onClick={() => {
-                            handleClick('HNX')
-                            handleQueryApiExchange('HNX')
+                            handleClick('hnx')
+                            handleQueryApiExchange('hnx')
                         }}
-                        className={activeButton === 'HNX'
+                        className={activeButton === 'hnx'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
@@ -95,10 +142,10 @@ const BarChart = () => {
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
                     <button
                         onClick={() => {
-                            handleClick('UPCOM')
-                            handleQueryApiExchange('UPCOM')
+                            handleClick('upcom')
+                            handleQueryApiExchange('upcom')
                         }}
-                        className={activeButton === 'UPCOM'
+                        className={activeButton === 'upcom'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                     </button>
@@ -112,12 +159,12 @@ const BarChart = () => {
         </>
     }
 
-    if (chartTickerContribute.length && (handleQueryType === '1' || handleQueryType === '2' || handleQueryType === '3')) {
-        const incr5 = chartTickerContribute.slice(0, 5)
-        const decr5 = chartTickerContribute.slice(-5).sort(function () {
+    if (data?.length && (handleQueryType === '1' || handleQueryType === '2' || handleQueryType === '3')) {
+        const incr5 = data.slice(0, 5)
+        const decr5 = data.slice(-5).sort(function () {
             return -1;
         })
-        const data = incr5.concat(decr5)
+        const newData = incr5.concat(decr5)
 
         var options = {
             accessibility: {
@@ -132,7 +179,7 @@ const BarChart = () => {
                 text: "",
             },
             xAxis: {
-                categories: data.sort((a, b) => b.contribute_price - a.contribute_price)?.map((item) => item.symbol),
+                categories: newData.sort((a, b) => b.contribute_price - a.contribute_price)?.map((item) => item.symbol),
                 labels: {
                     step: 1,
                     rotation: 0,
@@ -182,7 +229,7 @@ const BarChart = () => {
             },
             series: [
                 {
-                    data: data.sort((a, b) => b.contribute_price - a.contribute_price)?.map(item => {
+                    data: newData.sort((a, b) => b.contribute_price - a.contribute_price)?.map(item => {
                         return {
                             name: item.symbol,
                             y: +item.contribute_price.toFixed(2),
@@ -206,7 +253,7 @@ const BarChart = () => {
                 text: "",
             },
             xAxis: {
-                categories: chartTickerContribute?.map((item) => item.symbol),
+                categories: Array.isArray(data) && data?.map((item) => item.symbol),
                 labels: {
                     step: 1,
                     rotation: -45,
@@ -253,7 +300,7 @@ const BarChart = () => {
             },
             series: [
                 {
-                    data: chartTickerContribute?.map(item => {
+                    data: Array.isArray(data) && data?.map(item => {
                         return {
                             name: item.symbol,
                             y: +item.contribute_price.toFixed(2),
@@ -298,10 +345,10 @@ const BarChart = () => {
                 <span>
                     <button
                         onClick={() => {
-                            handleClick('HOSE')
-                            handleQueryApiExchange('HOSE')
+                            handleClick('hose')
+                            handleQueryApiExchange('hose')
                         }}
-                        className={activeButton === 'HOSE'
+                        className={activeButton === 'hose'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
@@ -309,10 +356,10 @@ const BarChart = () => {
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
                     <button
                         onClick={() => {
-                            handleClick('HNX')
-                            handleQueryApiExchange('HNX')
+                            handleClick('hnx')
+                            handleQueryApiExchange('hnx')
                         }}
-                        className={activeButton === 'HNX'
+                        className={activeButton === 'hnx'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
@@ -320,10 +367,10 @@ const BarChart = () => {
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
                     <button
                         onClick={() => {
-                            handleClick('UPCOM')
-                            handleQueryApiExchange('UPCOM')
+                            handleClick('upcom')
+                            handleQueryApiExchange('upcom')
                         }}
-                        className={activeButton === 'UPCOM'
+                        className={activeButton === 'upcom'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                     </button>

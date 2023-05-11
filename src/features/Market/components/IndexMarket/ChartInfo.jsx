@@ -4,7 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 import { useDispatch, useSelector } from 'react-redux'
 import socket from '../../../Chart/utils/socket'
 import moment from 'moment';
-import { fetchDataLineChartMarket } from '../../thunk';
+import { fetchDataBienDongThiTruong, fetchDataLineChartMarket } from '../../thunk';
 import Loading from '../../../Chart/utils/Loading';
 
 const ChartInfo = () => {
@@ -17,12 +17,19 @@ const ChartInfo = () => {
     const [query, setQuery] = useState('0')
 
     const { lineChartMarketData } = useSelector(state => state.market)
+    const { dataBienDongThiTruong } = useSelector(state => state.market)
+
     const [data, setData] = useState([])
     const [dataInfo, setDataInfo] = useState([])
     const [dataChart, setDataChart] = useState()
 
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        if (dataBienDongThiTruong)
+            setData(dataBienDongThiTruong[0])
+    }, [dataBienDongThiTruong]);
 
     useEffect(() => {
         setColorText(color);
@@ -36,30 +43,33 @@ const ChartInfo = () => {
     }, [dataTable]);
 
     useEffect(() => {
-        socket.on("listen-domestic-index", (newData) => {
-            setDataTableDomestic(newData)
-        });
+        if (dataTable.data) {
+            socket.on("listen-domestic-index", (newData) => {
+                setDataTableDomestic(newData)
+            });
+        }
     }, [dataTableDomestic])
 
     useEffect(() => {
-        if (lineChartMarketData?.lineChartData?.length > 0) {
-            setData(lineChartMarketData)
-            setDataInfo(lineChartMarketData.lineChartData)
-            setDataChart(lineChartMarketData.lineChartData)
+        if (lineChartMarketData?.length > 0) {
+            setDataInfo(lineChartMarketData)
+            setDataChart(lineChartMarketData)
         }
-    }, [lineChartMarketData.lineChartData])
+    }, [lineChartMarketData])
 
     useEffect(() => {
-        if (query === '0') {
-            disconnectSocket(localStorage.getItem('exchange'))
-            conSocket(exchange)
-            localStorage.setItem('typeTime', 'HH:mm')
-            localStorage.setItem('exchange', exchange)
-        } else {
-            disconnectSocket(localStorage.getItem('exchange'))
-            conSocket2(exchange)
-            localStorage.setItem('exchange', exchange)
-            localStorage.setItem('typeTime', "DD/MM")
+        if (lineChartMarketData?.length > 0) {
+            if (query === '0') {
+                disconnectSocket(localStorage.getItem('exchange'))
+                conSocket(exchange)
+                localStorage.setItem('typeTime', 'HH:mm')
+                localStorage.setItem('exchange', exchange)
+            } else {
+                disconnectSocket(localStorage.getItem('exchange'))
+                conSocket2(exchange)
+                localStorage.setItem('exchange', exchange)
+                localStorage.setItem('typeTime', "DD/MM")
+            }
         }
     }, [query, exchange])
 
@@ -138,14 +148,34 @@ const ChartInfo = () => {
     const lowestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.lowestIndex)
     const highestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.highestIndex)
 
+    const getExchange = (code) => {
+        let day = ''
+        switch (code) {
+            case 'VNINDEX':
+                return day = "HOSE";
+            case 'VN30':
+                return day = "HOSE";
+            case 'VNXALL':
+                return day = "HOSE";
+            case 'HNXINDEX':
+                return day = "HNX";
+            case 'HNX30':
+                return day = "HNX";
+            case 'UPINDEX':
+                return day = "UPCOM";
+            default:
+                return day = "HOSE";
+        }
+    }
+
     return (
         <>
             <div>
                 <div className='flex border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <div className='w-[345px]'>
-                        <span className='dark:text-white text-black xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]'>{vnindexData && vnindexData.comGroupCode}</span>
-                        <span className={`${colorChange} text-white xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>{vnindexData && vnindexData.indexValue}</span>
-                        <span className={`${colorChange} xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px]`}>{vnindexData && vnindexData.indexChange}/ {vnindexData && (vnindexData.percentIndexChange * 100).toFixed(2)}%</span>
+                        <span className='dark:text-white text-black xxs:text-[12px] xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]'>{vnindexData && vnindexData.comGroupCode}</span>
+                        <span className={`${colorChange} text-white xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px] xxs:pl-[10px]`}>{vnindexData && vnindexData.indexValue}</span>
+                        <span className={`${colorChange} xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[25px] xs:pl-[15px] xxs:pl-[5px]`}>{vnindexData && vnindexData.indexChange.toFixed(2)}/ {vnindexData && (vnindexData.percentIndexChange * 100).toFixed(2)}%</span>
                     </div>
                     <select className={`bg-[#1B496D] md:ml-[200px] lg:ml-3 xl:ml-3 2xl:ml-3 p-1 text-[1rem] text-white border-0`}
                         onChange={(event) => {
@@ -172,11 +202,11 @@ const ChartInfo = () => {
                 <span className='xs:text-[10px] sm:text-[12px]'>Cao nhất: <span className={`${highestColor}`}>{vnindexData && vnindexData.highestIndex}</span></span>
             </div>
             <div className='flex justify-around text-xs mt-1'>
-                <span className='text-[#5CE1E6] xs:text-[11px] sm:text-[12px]'>Sàn: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.low}</span></span>
-                <span className='text-red-500 xs:text-[11px] sm:text-[12px]'>Giảm: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.decrease}</span></span>
-                <span className='text-yellow-500 xs:text-[11px] sm:text-[12px]'>Tham chiếu: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.equal}</span></span>
-                <span className='text-green-500 xs:text-[11px] sm:text-[12px]'>Tăng: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.increase}</span></span>
-                <span className='text-[#CB6CE6] xs:text-[11px] sm:text-[12px]'>Trần: <span className='dark:text-white text-black'>{data.industryFull && data.industryFull.high}</span></span>
+                <span className='text-[#5CE1E6] xs:text-[11px] sm:text-[12px]'>Sàn: <span className='dark:text-white text-black'>{data && data.low}</span></span>
+                <span className='text-red-500 xs:text-[11px] sm:text-[12px]'>Giảm: <span className='dark:text-white text-black'>{data && data.decrease}</span></span>
+                <span className='text-yellow-500 xs:text-[11px] sm:text-[12px]'>Tham chiếu: <span className='dark:text-white text-black'>{data && data.equal}</span></span>
+                <span className='text-green-500 xs:text-[11px] sm:text-[12px]'>Tăng: <span className='dark:text-white text-black'>{data && data.increase}</span></span>
+                <span className='text-[#CB6CE6] xs:text-[11px] sm:text-[12px]'>Trần: <span className='dark:text-white text-black'>{data && data.high}</span></span>
             </div>
 
             <div className="mt-2">
@@ -187,19 +217,19 @@ const ChartInfo = () => {
                                 <table className="items-center w-full border-collapse bg-transparent">
                                     <thead>
                                         <tr className='bg-[#1E5D8B]'>
-                                            <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
+                                            <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-sm font-semibold text-white">
                                                 Chỉ số
                                             </th>
-                                            <th className="text-center align-middle px-1.5 py-2 text-sm font-semibold text-white">
+                                            <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-sm font-semibold text-white">
                                                 Điểm số
                                             </th>
-                                            <th className="text-center align-middle px-1.5 py-2 text-xs font-semibold text-white">
+                                            <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-xs font-semibold text-white">
                                                 % Thay đổi
                                             </th>
-                                            <th className="text-center align-middle px-1.5 py-2 text-xs font-semibold text-white">
+                                            <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-xs font-semibold text-white">
                                                 Khối lượng (triệu CP)
                                             </th>
-                                            <th className="text-center align-middle px-1.5 py-2 text-xs font-semibold text-white">
+                                            <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-xs font-semibold text-white">
                                                 Giá trị (tỷ đồng)
                                             </th>
                                         </tr>
@@ -217,20 +247,21 @@ const ChartInfo = () => {
                                                             dispatch(fetchDataLineChartMarket(`${item.comGroupCode}`, localStorage.getItem('typeApi')))
                                                         }
                                                         setExchange(item.comGroupCode)
+                                                        dispatch(fetchDataBienDongThiTruong(getExchange(item.comGroupCode)))
                                                     }} key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500 cursor-pointer'>
-                                                        <th className="text-left px-3 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
+                                                        <th className="text-left px-3 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
                                                             {item.comGroupCode}
                                                         </th>
-                                                        <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                             {item.indexValue}
                                                         </td>
-                                                        <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                             {(item.percentIndexChange * 100).toFixed(2)}%
                                                         </td>
-                                                        <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                             {(item.totalMatchVolume / 1000000).toFixed(2)}
                                                         </td>
-                                                        <td className={`text-center px-1.5 align-middle xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
+                                                        <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                             {(item.totalMatchValue / 1000000000).toFixed(2)}
                                                         </td>
 
