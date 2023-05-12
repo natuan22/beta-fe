@@ -29,10 +29,6 @@ const CashFlowAllocation = () => {
         }
     }, [data])
 
-    if (!dataCashFlowAllocation.data) {
-        return <div className="mt-6 mb-6"><Loading /></div>
-    }
-
     const options = {
         accessibility: {
             enabled: false,
@@ -94,12 +90,17 @@ const CashFlowAllocation = () => {
             ],
         }]
     };
+
     return (
         <>
             <div id="chart-container">
-                <div className="h-[300px]">
-                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                </div>
+                {dataCashFlowAllocation.data ? (
+                    <div className="h-[300px]">
+                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                    </div>
+                ) : (
+                    <div className="mt-6 mb-6"><Loading /></div>
+                )}
             </div>
         </>
     );

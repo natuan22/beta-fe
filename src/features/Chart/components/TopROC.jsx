@@ -5,6 +5,7 @@ import HighchartsReact from 'highcharts-react-official';
 import { fetchDataROC5Phien } from '../thunk';
 import chartStyle from "../utils/Chart.module.css";
 import socket from '../utils/socket';
+import Loading from '../utils/Loading';
 
 
 const TopROC = () => {
@@ -186,16 +187,19 @@ const TopROC = () => {
                         <span className="font-semibold uppercase dark:text-white text-black">qua 05 phiên gần nhất</span>
                     </div>
 
-                    <div className="grid grid-cols-2 dark:bg-[#151924] bg-gray-100">
-                        <div className="text-center mx-1">
-                            <HighchartsReact highcharts={Highcharts} options={optionsDecr} containerProps={{ style: { height: '721px', width: '100%' } }} />
-                        </div>
+                    {dataROC.data?.length ? (
+                        <div className="grid grid-cols-2 dark:bg-[#151924] bg-gray-100">
+                            <div className="text-center mx-1">
+                                <HighchartsReact highcharts={Highcharts} options={optionsDecr} containerProps={{ style: { height: '721px', width: '100%' } }} />
+                            </div>
 
-                        <div className="text-center mx-1">
-                            <HighchartsReact highcharts={Highcharts} options={optionsIncr} containerProps={{ style: { height: '721px', width: '100%' } }} />
+                            <div className="text-center mx-1">
+                                <HighchartsReact highcharts={Highcharts} options={optionsIncr} containerProps={{ style: { height: '721px', width: '100%' } }} />
+                            </div>
                         </div>
-                    </div>
-
+                    ) : (
+                        <div className="text-center mt-6 h-[698px]"><Loading /></div>
+                    )}
                 </div>
             </div>
         </>

@@ -4,6 +4,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import socket from "../utils/socket";
 import { fetchDataBarChartRight } from "../thunk";
+import Loading from "../utils/Loading";
 
 const BarChartRight = () => {
   const dispatch = useDispatch()
@@ -20,13 +21,11 @@ const BarChartRight = () => {
 
   useEffect(() => {
     if (dataBarChartRight.data)
-      setData(dataBarChartRight?.data ?? []);
+      setData(dataBarChartRight?.data);
   }, [dataBarChartRight]);
   useEffect(() => {
-    if (dataBarChartRight.data) {
-      conSocket(query)
-      setSocketOld(query)
-    }
+    conSocket(query)
+    setSocketOld(query)
   }, [query])
 
   const disconnectSocket = (socketOld) => {
@@ -137,9 +136,13 @@ const BarChartRight = () => {
       </select>
     </div>
     <div id="chart-container">
-      <div className="xl:h-[350px] 2xl:h-[350px]">
-        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-      </div>
+      {dataBarChartRight.data?.length ? (
+        <div className="xl:h-[350px] 2xl:h-[350px]">
+          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+        </div>
+      ) : (
+        <div className="mt-6 xl:h-[325px] 2xl:h-[325px]"><Loading /></div>
+      )}
     </div>
   </>
   );
