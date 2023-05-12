@@ -129,7 +129,7 @@ const TreeMapSell = () => {
     credits: false,
     tooltip: {
       formatter: function () {
-        return `<b>${this.point.name}</b>: ${this.point.value} (tỉ VNĐ)`;
+        return `<b>${this.point.name}</b>: ${this.point.value} (tỷ VNĐ)`;
       }
     },
     chart: {

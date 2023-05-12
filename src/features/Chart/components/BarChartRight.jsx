@@ -109,7 +109,7 @@ const BarChartRight = () => {
         data: data?.map(item => {
           return {
             name: item.ticker,
-            y: item.net_value_foreign / 1000000000,
+            y: +(item.net_value_foreign / 1000000000).toFixed(2),
             color: item.net_value_foreign / 1000000000 > 0 ? "#15b313" : "#ff0000"
           };
         })

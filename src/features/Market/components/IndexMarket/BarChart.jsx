@@ -42,26 +42,26 @@ const BarChart = () => {
         }
     }, [chartTickerContribute])
 
-    useEffect(() => {
-        if (chartTickerContribute) {
-            if (queryApi.type != 0) {
-                disconnectSocketTrongPhien(exchangeOld)
-                disconnectSocket5Phien(exchangeOld)
-            } else {
-                if (queryApi.order == 0) {
-                    disconnectSocketTrongPhien(exchangeOld)
-                    disconnectSocket5Phien(exchangeOld)
-                    conSocketTrongPhien(queryApi.exchange)
-                    setExchangeOld(queryApi.exchange)
-                } else if (queryApi.order == 1) {
-                    disconnectSocketTrongPhien(exchangeOld)
-                    disconnectSocket5Phien(exchangeOld)
-                    conSocket5Phien(queryApi.exchange)
-                    setExchangeOld(queryApi.exchange)
-                }
-            }
-        }
-    }, [queryApi])
+    // useEffect(() => {
+    //     if (chartTickerContribute) {
+    //         if (queryApi.type != 0) {
+    //             disconnectSocketTrongPhien(exchangeOld)
+    //             disconnectSocket5Phien(exchangeOld)
+    //         } else {
+    //             if (queryApi.order == 0) {
+    //                 disconnectSocketTrongPhien(exchangeOld)
+    //                 disconnectSocket5Phien(exchangeOld)
+    //                 conSocketTrongPhien(queryApi.exchange)
+    //                 setExchangeOld(queryApi.exchange)
+    //             } else if (queryApi.order == 1) {
+    //                 disconnectSocketTrongPhien(exchangeOld)
+    //                 disconnectSocket5Phien(exchangeOld)
+    //                 conSocket5Phien(queryApi.exchange)
+    //                 setExchangeOld(queryApi.exchange)
+    //             }
+    //         }
+    //     }
+    // }, [queryApi])
 
     const disconnectSocketTrongPhien = (exchange) => {
         if (socket.active) {
