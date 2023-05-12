@@ -110,6 +110,19 @@ const TreeMapSell = () => {
   }
   // console.log('points', points)
   const options = {
+    plotOptions: {
+      series: {
+        point: {
+          events: {
+            click: function () {
+              if (socket.active) {
+                socket.off(`listen-foreign-sell-${socketChanel}`);
+              }
+            },
+          },
+        },
+      },
+    },
     accessibility: {
       enabled: false,
     },
@@ -148,6 +161,13 @@ const TreeMapSell = () => {
         ],
         data: points,
         drillUpButton: {
+          events: {
+            click: function () {
+              socket.on(`listen-foreign-sell-${socketChanel}`,(newData)=> {
+                setDataSocket(newData)
+              })
+            },
+          },
           enabled: true,
           relativeTo: 'spacingBox',
           position: {

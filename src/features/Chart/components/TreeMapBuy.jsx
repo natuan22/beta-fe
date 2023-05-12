@@ -7,7 +7,6 @@ import '../utils/treemapStyleDrillBtn.css'
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
 import { fetchDataTreeMapBuy } from "../thunk";
-import { calculatePoints } from "../constant";
 
 // Khởi tạo module treemap
 treemap(Highcharts);
@@ -110,6 +109,19 @@ const TreeMapBuy = () => {
   }
   // console.log('points', points)
   const options = {
+    plotOptions: {
+      series: {
+        point: {
+          events: {
+            click: function () {
+              if (socket.active) {
+                socket.off(`listen-foreign-buy-${socketChanel}`);
+              }
+            },
+          },
+        },
+      },
+    },
     accessibility: {
       enabled: false,
     },
@@ -122,6 +134,7 @@ const TreeMapBuy = () => {
     chart: {
       type: "treemap",
       backgroundColor: "transparent",
+      
     },
     title: {
       text: "",
@@ -148,6 +161,13 @@ const TreeMapBuy = () => {
         ],
         data: points,
         drillUpButton: {
+          events: {
+            click: function () {
+              socket.on(`listen-foreign-buy-${socketChanel}`,(newData)=> {
+                setDataSocket(newData)
+              })
+            },
+          },
           enabled: true,
           relativeTo: 'spacingBox',
           position: {
