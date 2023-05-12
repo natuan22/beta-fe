@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataGeneralIndustry } from "../../../Chart/thunk";
 import Loading from "../../../Chart/utils/Loading";
+import socket from "../../../Chart/utils/socket";
 import '../../../Market/utils/tabStyle.css'
 
 const GeneralIndustry = () => {
     const apiUrl = process.env.REACT_APP_BASE_URL;
     const dispatch = useDispatch()
-    const [activeButton, setActiveButton] = useState('all');
+    const [activeButton, setActiveButton] = useState('ALL');
     const dataGeneral = useSelector((state) => state.chart.dataGeneral);
     const [data, setData] = useState([]);
     const [buySellData, setBuySellData] = useState([])
@@ -43,16 +44,57 @@ const GeneralIndustry = () => {
         setActiveButton(button);
     }
 
+    const oldData = dataGeneral?.data?.data
+    const [query, setQuery] = useState('ALL')
+    const [socketOld, setSocketOld] = useState('')
+
+    useEffect(() => {
+        if (dataGeneral?.data) {
+            conSocket(query)
+            setSocketOld(query)
+        }
+    }, [query]);
+
+    const disconnectSocket = (socketOld) => {
+        console.log('disconnect', socketOld);
+        if (socket.active) {
+            socket.off(`listen-phan-nganh-${socketOld}`);
+        }
+    }
+
+    const conSocket = (key) => {
+        socket.on(`listen-phan-nganh-${key}`, (newData) => {
+            const newDataWithChanges = oldData?.map(oldItem => {
+                const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
+                if (matchingItem) {
+                    return {
+                        ...oldItem,
+                        day_change_percent: matchingItem.day_change_percent,
+                        month_change_percent: matchingItem.month_change_percent,
+                        week_change_percent: matchingItem.week_change_percent,
+                        ytd: matchingItem.ytd
+                    }
+                } else {
+                    return oldItem
+                }
+            })
+            setData(newDataWithChanges)
+        });
+    }
+
     return (
         <>
             <div className="pt-3 mb-3 dark:text-white text-black">
                 <span>
                     <button
                         onClick={() => {
-                            handleClick('all')
-                            dispatch(dispatch(fetchDataGeneralIndustry('all')))
+                            handleClick('ALL')
+                            disconnectSocket(socketOld)
+                            setQuery('ALL')
+                            dispatch(dispatch(fetchDataGeneralIndustry('ALL')))
+
                         }}
-                        className={activeButton === 'all'
+                        className={activeButton === 'ALL'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                     </button>
@@ -60,10 +102,12 @@ const GeneralIndustry = () => {
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
-                            handleClick('HSX')
-                            dispatch(dispatch(fetchDataGeneralIndustry('HSX')))
+                            handleClick('HOSE')
+                            disconnectSocket(socketOld)
+                            setQuery('HOSE')
+                            dispatch(dispatch(fetchDataGeneralIndustry('hsx')))
                         }}
-                        className={activeButton === 'HSX'
+                        className={activeButton === 'HOSE'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
@@ -72,6 +116,8 @@ const GeneralIndustry = () => {
                     <button
                         onClick={() => {
                             handleClick('HNX')
+                            disconnectSocket(socketOld)
+                            setQuery('HNX')
                             dispatch(dispatch(fetchDataGeneralIndustry('HNX')))
                         }}
                         className={activeButton === 'HNX'
@@ -83,6 +129,8 @@ const GeneralIndustry = () => {
                     <button
                         onClick={() => {
                             handleClick('UPCOM')
+                            disconnectSocket(socketOld)
+                            setQuery('UPCOM')
                             dispatch(dispatch(fetchDataGeneralIndustry('UPCOM')))
                         }}
                         className={activeButton === 'UPCOM'

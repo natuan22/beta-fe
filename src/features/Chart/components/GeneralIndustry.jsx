@@ -31,7 +31,7 @@ const GeneralIndustry = () => {
     if (dataGeneral?.data) {
       const oldData = dataGeneral?.data.data
 
-      socket.on("listen-phan-nganh", (newData) => {
+      socket.on("listen-phan-nganh-ALL", (newData) => {
         const newDataWithChanges = oldData.map(oldItem => {
           const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
           if (matchingItem) {
@@ -45,7 +45,6 @@ const GeneralIndustry = () => {
             return oldItem
           }
         })
-
         setData(newDataWithChanges)
       });
     }
