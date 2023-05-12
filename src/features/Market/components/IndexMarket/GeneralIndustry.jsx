@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataGeneralIndustry } from "../../../Chart/thunk";
 import Loading from "../../../Chart/utils/Loading";
+import socket from "../../../Chart/utils/socket";
 import '../../../Market/utils/tabStyle.css'
 
 const GeneralIndustry = () => {
     const apiUrl = process.env.REACT_APP_BASE_URL;
     const dispatch = useDispatch()
-    const [activeButton, setActiveButton] = useState('all');
+    const [activeButton, setActiveButton] = useState('ALL');
     const dataGeneral = useSelector((state) => state.chart.dataGeneral);
     const [data, setData] = useState([]);
     const [buySellData, setBuySellData] = useState([])
@@ -43,35 +44,80 @@ const GeneralIndustry = () => {
         setActiveButton(button);
     }
 
+    const oldData = dataGeneral?.data?.data
+    const [query, setQuery] = useState('ALL')
+    const [socketOld, setSocketOld] = useState('')
+
+    useEffect(() => {
+        if (dataGeneral?.data) {
+            conSocket(query)
+            setSocketOld(query)
+        }
+    }, [query]);
+
+    const disconnectSocket = (socketOld) => {
+        console.log('disconnect', socketOld);
+        if (socket.active) {
+            socket.off(`listen-phan-nganh-${socketOld}`);
+        }
+    }
+
+    const conSocket = (key) => {
+        socket.on(`listen-phan-nganh-${key}`, (newData) => {
+            const newDataWithChanges = oldData?.map(oldItem => {
+                const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
+                if (matchingItem) {
+                    return {
+                        ...oldItem,
+                        day_change_percent: matchingItem.day_change_percent,
+                        month_change_percent: matchingItem.month_change_percent,
+                        week_change_percent: matchingItem.week_change_percent,
+                        ytd: matchingItem.ytd
+                    }
+                } else {
+                    return oldItem
+                }
+            })
+            setData(newDataWithChanges)
+        });
+    }
+
     return (
         <>
             <div className="pt-3 mb-3 dark:text-white text-black">
                 <span>
                     <button
                         onClick={() => {
-                            handleClick('all')
-                            dispatch(dispatch(fetchDataGeneralIndustry('all')))
+                            handleClick('ALL')
+                            disconnectSocket(socketOld)
+                            setQuery('ALL')
+                            dispatch(dispatch(fetchDataGeneralIndustry('ALL')))
+
                         }}
-                        className={activeButton === 'all'
+                        className={activeButton === 'ALL'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
-                            handleClick('HSX')
-                            dispatch(dispatch(fetchDataGeneralIndustry('HSX')))
+                            handleClick('HOSE')
+                            disconnectSocket(socketOld)
+                            setQuery('HOSE')
+                            dispatch(dispatch(fetchDataGeneralIndustry('hsx')))
                         }}
-                        className={activeButton === 'HSX'
+                        className={activeButton === 'HOSE'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('HNX')
+                            disconnectSocket(socketOld)
+                            setQuery('HNX')
                             dispatch(dispatch(fetchDataGeneralIndustry('HNX')))
                         }}
                         className={activeButton === 'HNX'
@@ -79,10 +125,12 @@ const GeneralIndustry = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('UPCOM')
+                            disconnectSocket(socketOld)
+                            setQuery('UPCOM')
                             dispatch(dispatch(fetchDataGeneralIndustry('UPCOM')))
                         }}
                         className={activeButton === 'UPCOM'
@@ -98,22 +146,22 @@ const GeneralIndustry = () => {
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                     <tr>
-                                        <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                             Phân ngành
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                             %D
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                             %W
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                             %M
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                             %YtD
                                         </th>
-                                        <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                             Độ rộng ngành
                                         </th>
                                     </tr>
@@ -139,10 +187,10 @@ const GeneralIndustry = () => {
                                             let total = numOfHigh + numOfLow + numOfIncrease + numOfDecrease + numOfEqual;
                                             return (
                                                 <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                                    <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-1 py-2.5`}>
+                                                    <th className={`${color} text-left align-middle xxs:text-[10px] lg:text-sm xl:text-xs px-1 py-2.5`}>
                                                         {item.industry}
                                                     </th>
-                                                    <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                    <td className={`${color} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2.5 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.day_change_percent)}
                                                         </span>
@@ -150,7 +198,7 @@ const GeneralIndustry = () => {
                                                             {item.day_change_percent.toFixed(2)}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
+                                                    <td className={`${color2} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.week_change_percent)}
                                                         </span>
@@ -158,7 +206,7 @@ const GeneralIndustry = () => {
                                                             {item.week_change_percent.toFixed(2)}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
+                                                    <td className={`${color3} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.month_change_percent)}
                                                         </span>
@@ -166,7 +214,7 @@ const GeneralIndustry = () => {
                                                             {item.month_change_percent.toFixed(2)}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color4} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
+                                                    <td className={`${color4} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.ytd)}
                                                         </span>
@@ -175,7 +223,7 @@ const GeneralIndustry = () => {
                                                         </span>
                                                     </td>
 
-                                                    <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-1 py-2  ">
+                                                    <td className="align-middle xxs:text-[10px] whitespace-nowrap lg:text-sm xl:text-xs px-1 py-2  ">
                                                         <div
                                                             className="flex relative"
                                                             onMouseOver={() => handleMouseOver(index)}
@@ -255,13 +303,13 @@ const GeneralIndustry = () => {
                     style={{
                         width: `${(buySellData.buyPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100}%`,
                     }}>
-                    <img className="xs:w-[21.5%] md:w-[12.5%] lg:w-[9.5%] xl:w-[15.5%] 2xl:w-[15.5%] pr-[5px] translate-y-[-13px] " src={`${apiUrl}/resources/icons/buffalo.gif`} alt='buffalo' />
+                    <img className="xxs:w-[29%] xs:w-[21.5%] md:w-[12.5%] lg:w-[9.5%] xl:w-[15.5%] 2xl:w-[15.5%] pr-[5px] translate-y-[-13px] " src={`${apiUrl}/resources/icons/buffalo.gif`} alt='buffalo' />
                 </div>
                 <div className='bg-red-500 h-9'
                     style={{
                         width: `${(buySellData.sellPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100}%`,
                     }}>
-                    <img className="xs:w-[19%] md:w-[11%] lg:w-[8%] xl:w-[13%] 2xl:w-[13%] pl-[5px] pt-[1px]" src={`${apiUrl}/resources/icons/bear-karhu.gif`} alt='bear' />
+                    <img className="xxs:w-[24%] xs:w-[19%] md:w-[11%] lg:w-[8%] xl:w-[13%] 2xl:w-[13%] pl-[5px] pt-[1px]" src={`${apiUrl}/resources/icons/bear-karhu.gif`} alt='bear' />
                 </div>
             </div>
         </>

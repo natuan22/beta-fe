@@ -61,7 +61,7 @@ const Signup = () => {
 
         {/* phone */}
         <div
-          className="signUp xs:flex lg:hidden flex-col items-center relative mt-8 h-[600px]"
+          className="signUp xxs:flex xs:flex lg:hidden flex-col items-center relative mt-8 h-[650px]"
           style={{
             backgroundImage:
               " linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)  ",
@@ -199,18 +199,18 @@ const Signup = () => {
               Đăng ký
             </button>
           </form>
-          <div className="w-[50%] flex justify-around mt-5 absolute md:bottom-[15%] xs:bottom-[11%]">
+          <div className="w-[50%] flex justify-around mt-5 absolute md:bottom-[15%] xs:bottom-[11%] xxs:bottom-[11%]">
             <img
               src={`${apiUrl}/resources/images/google-logo.png`}
-              className="w-8 h-8 xs:mx-2"
+              className="w-8 h-8 xs:mx-2 xxs:mx-2"
               alt="logo"
             />
             <img
               src={`${apiUrl}/resources/images/fb-logo.png`}
-              className="w-8 h-8 xs:mx-2"
+              className="w-8 h-8 xs:mx-2 xxs:mx-2"
               alt="logo"
             />
-            <span className="bg-white h-[28px] xs:mx-2 rounded-t-md">
+            <span className="bg-white h-[28px] xs:mx-2 xxs:mx-2 rounded-t-md">
               <img
                 src={`${apiUrl}/resources/images/zalo-logo.png`}
                 alt="zaloIcon"
@@ -221,10 +221,10 @@ const Signup = () => {
             <img
               src={`${apiUrl}/resources/images/beta-logo.png`}
               alt="betaIcon"
-              className="w-8 h-8 xs:mx-2"
+              className="w-8 h-8 xs:mx-2 xxs:mx-2"
             />
           </div>
-          <div className="absolute xs:bottom-[5%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
+          <div className="absolute xxs:bottom-[5%] xs:bottom-[5%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
             <NavLink
               to="/signin"
               className={(params) => {
@@ -255,7 +255,7 @@ const Signup = () => {
         </div>
 
         {/* desktop, tablet */}
-        <div className="mt-8 flex bg-signinColor xs:hidden lg:flex">
+        <div className="mt-8 flex bg-signinColor xxs:hidden xs:hidden lg:flex">
           <div className="relative w-[60%] z-10 ">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>

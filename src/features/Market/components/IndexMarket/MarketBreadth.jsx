@@ -24,7 +24,7 @@ const MarketBreadth = () => {
 
     const [queryApi, setQueryApi] = useState({
         exchange: "HOSE",
-        type: 1,
+        type: 0,
     });
     useEffect(() => {
         dispatch(
@@ -34,11 +34,50 @@ const MarketBreadth = () => {
 
     useEffect(() => {
         if (dataDoRongThiTruong) {
+            if (queryApi.type !== 0) {
+                disconnectSocketHNX()
+                disconnectSocketHSX()
+            } else {
+                if (queryApi.exchange === 'HOSE') {
+                    disconnectSocketHNX()
+                    conSocketHSX()
+                } else {
+                    disconnectSocketHSX()
+                    conSocketHNX()
+                }
+            }
+        }
+    }, [queryApi, dataDoRongThiTruong])
+
+    useEffect(() => {
+        if (dataDoRongThiTruong) {
             setData(dataDoRongThiTruong)
         }
     }, [dataDoRongThiTruong])
 
+    const disconnectSocketHSX = () => {
+        if (socket.active) {
+            socket.off(`listen-do-rong-thi-truong`);
+        }
+    }
 
+    const disconnectSocketHNX = () => {
+        if (socket.active) {
+            socket.off(`listen-do-rong-thi-truong-hnx`);
+        }
+    }
+
+    const conSocketHSX = () => {
+        socket.on(`listen-do-rong-thi-truong`, (newData) => {
+            setData((prevData) => [...prevData, ...newData]);
+        });
+    }
+
+    const conSocketHNX = () => {
+        socket.on(`listen-do-rong-thi-truong-hnx`, (newData) => {
+            setData((prevData) => [...prevData, ...newData]);
+        });
+    }
 
     const handleQueryApiExchange = (exchange) => {
         setQueryApi((prev) => ({ ...prev, exchange }));
@@ -46,70 +85,8 @@ const MarketBreadth = () => {
     const handleQueryApiType = (type) => {
         setQueryApi((prev) => ({ ...prev, type }));
     };
-    // useEffect(() => {
-    //     // Lấy dữ liệu ban đầu từ API
-    //     if (dataStackingChart?.data) {
-    //         setData(dataStackingChart.data);
-    //     }
-    //     // Lắng nghe sự kiện từ socket
-    //     socket.on("listen-do-rong-thi-truong", (newData) => {
-    //         setData((prevData) => [...prevData, ...newData]);
-    //     });
-
-    //     // Hủy bỏ việc lắng nghe sự kiện khi component bị unmount
-    // }, [dataStackingChart?.data]);
 
     const [hoveredValue, setHoveredValue] = useState(null);
-    if (!dataStackingChart.data || !dataStackingChart.data.length) {
-        return <>
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
-                <span className="dark:text-white text-black text-[0.9rem]">
-                    Diễn biến độ rộng thị trường
-                </span>
-                <select
-                    className={`bg-[#1B496D] 2xl:ml-[114px] xl:ml-[114px] lg:ml-[135px] md:ml-[115px] sm:ml-[99px] xs:ml-[49px] p-1 text-[0.9rem] text-white border-0`}
-                >
-                    <option value="1">Phiên gần nhất</option>
-                    <option value="2">01 tháng</option>
-                    <option value="3">01 quý</option>
-                    <option value="4">01 năm</option>
-                </select>
-            </div>
-            <div className="mt-1 mb-3 dark:text-white text-black">
-                <span>
-                    <button
-                        onClick={() => {
-                            handleClick('HOSE')
-                        }}
-                        className={activeButton === 'HOSE'
-                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
-                    </button>
-                </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
-                    <button
-                        onClick={() => {
-                            handleClick('HNX')
-                        }}
-                        className={activeButton === 'HNX'
-                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
-                    </button>
-                </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
-                    <button
-                        onClick={() => {
-                            handleClick('UPCOM')
-                        }}
-                        className={activeButton === 'UPCOM'
-                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
-                    </button>
-                </span>
-            </div>
-            <div className="mt-12"><Loading /></div>
-        </>;
-    }
 
     const timeLine = Array.isArray(data) && data?.map((item) =>
         moment.utc(item.time).format(formatDate)
@@ -268,9 +245,18 @@ const MarketBreadth = () => {
             },
         ],
     };
+    const currentTime = new Date();
 
-    return (
-        <>
+    // Lấy giờ và phút từ currentTime
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
+
+    // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
+    const shouldShowData = currentHour > 9 || (currentHour === 9 && currentMinute >= 15) || currentHour === 0
+
+    // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59, hiển thị dữ liệu
+    if (!shouldShowData) {
+        return <>
             <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
                 <span className="dark:text-white text-black text-[0.9rem]">
                     Diễn biến độ rộng thị trường
@@ -278,8 +264,9 @@ const MarketBreadth = () => {
                 <select
                     onChange={(e) => {
                         handleQueryApiType(e.target.value);
-                        if (e.target.value != 0)
+                        if (e.target.value !== 0) {
                             setFormatDate('DD/MM')
+                        }
                     }}
                     className={`bg-[#1B496D] 2xl:ml-[100px] xl:ml-[100px] lg:ml-[135px] md:ml-[115px] sm:ml-[99px] xs:ml-[49px] p-1 text-[0.9rem] text-white border-0`}
                 >
@@ -301,7 +288,7 @@ const MarketBreadth = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('HNX')
@@ -312,7 +299,7 @@ const MarketBreadth = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('UPCOM')
@@ -324,9 +311,75 @@ const MarketBreadth = () => {
                     </button>
                 </span>
             </div>
-            <div className="xl:h-[338px] 2xl:h-[338px]">
-                <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+            <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu</div>
+        </>
+    }
+
+    return (
+        <>
+            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
+                <span className="dark:text-white text-black text-[0.9rem]">
+                    Diễn biến độ rộng thị trường
+                </span>
+                <select
+                    onChange={(e) => {
+                        handleQueryApiType(e.target.value);
+                        if (e.target.value !== 0) {
+                            setFormatDate('DD/MM')
+                        }
+                    }}
+                    className={`bg-[#1B496D] 2xl:ml-[100px] xl:ml-[100px] lg:ml-[135px] md:ml-[115px] sm:ml-[99px] xs:ml-[49px] p-1 text-[0.9rem] text-white border-0`}
+                >
+                    <option value="0">Phiên gần nhất</option>
+                    <option value="1">01 tháng</option>
+                    <option value="2">01 quý</option>
+                    <option value="3">01 năm</option>
+                </select>
             </div>
+            <div className="mt-1 mb-3 dark:text-white text-black">
+                <span>
+                    <button
+                        onClick={() => {
+                            handleClick('HOSE')
+                            handleQueryApiExchange('HOSE')
+                        }}
+                        className={activeButton === 'HOSE'
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
+                    </button>
+                </span>
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
+                    <button
+                        onClick={() => {
+                            handleClick('HNX')
+                            handleQueryApiExchange('HNX')
+                        }}
+                        className={activeButton === 'HNX'
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
+                    </button>
+                </span>
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
+                    <button
+                        onClick={() => {
+                            handleClick('UPCOM')
+                            handleQueryApiExchange('UPCOM')
+                        }}
+                        className={activeButton === 'UPCOM'
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
+                    </button>
+                </span>
+            </div>
+
+            {dataStackingChart.data || dataStackingChart.data?.length ? (
+                <div className="xl:h-[338px] 2xl:h-[338px]">
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                </div>
+            ) : (
+                <div className="mt-12"><Loading /></div>
+            )}
+
         </>
     );
 };

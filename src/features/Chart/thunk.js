@@ -17,12 +17,15 @@ export const fetchDataInternationalIndex = async (dispatch) => {
   }
 };
 
-export const fetchDataBarChartRight = async (dispatch) => {
+export const fetchDataBarChartRight = (exchange) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
       url: `${apiUrl}/api/v1/stock/top-net-foreign`,
       method: "GET",
+      params: {
+        exchange
+      }
     });
     dispatch({
       type: "beta/UPDATE_DATA_BARCHART_RIGHT",
@@ -188,7 +191,7 @@ export const fetchDataTreeMapSell = (index) => async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_TREEMAP_SELL",
-      payload: res.data,
+      payload: res.data.data,
     });
   } catch (err) {
     console.log(err);
@@ -208,7 +211,7 @@ export const fetchDataTreeMapBuy = (index) => async (dispatch) => {
     });
     dispatch({
       type: "beta/UPDATE_DATA_TREEMAP_BUY",
-      payload: res.data,
+      payload: res.data.data,
     });
   } catch (err) {
     console.log(err);

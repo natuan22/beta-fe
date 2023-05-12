@@ -27,3 +27,64 @@ export const UPDATE_DATA_MACRO_NEWS = 'beta/UPDATE_DATA_MACRO_NEWS'
 export const UPDATE_DATA_MARKET_MAP = 'beta/UPDATE_DATA_MARKET_MAP'
 export const UPDATE_DATA_CASH_FLOW_ALLOCATION = 'beta/UPDATE_DATA_CASH_FLOW_ALLOCATION'
 export const FETCH_DATA_LINECHART_HOMEPAGE = 'beta/DATA_LINECHART_HOMEPAGE'
+
+
+
+
+export const calculatePoints = (dataTreeMap) => {
+    const points = [];
+    let sectorIndex = 0;
+  
+    for (let sector in dataTreeMap) {
+      let sectorValue = 0;
+      let sectorPoint = {
+        id: `sector_${sectorIndex}`,
+        name: `${sector}`,
+        color: dataTreeMap[sector].color,
+        dataLabels: {
+          enabled: true,
+          style: {
+            fontSize: "12px",
+            fontWeight: "bold",
+            color: "black",
+          },
+          verticalAlign: "top",
+          align: "left",
+        },
+      };
+      let stockIndex = 0;
+  
+      for (let stock in dataTreeMap[sector].data) {
+        let stockPoint = {
+          id: `${sectorPoint.id}_${stockIndex}`,
+          name: stock,
+          parent: sectorPoint.id,
+          value: parseFloat(dataTreeMap[sector].data[stock]),
+          dataLabels: {
+            enabled: true,
+            formatter: function () {
+              return '<b>' + this.point.name + '</b>: ' + this.point.value;
+            },
+            style: {
+              fontSize: "11px",
+              fontWeight: "semibold",
+              color: "white",
+              style: {
+                textOutline: "none",
+              },
+            },
+            align: "center",
+          },
+        };
+        sectorValue += stockPoint.value;
+        points.push(stockPoint);
+        stockIndex++;
+      }
+  
+      sectorPoint.value = Math.round(sectorValue);
+      points.push(sectorPoint);
+      sectorIndex++;
+    }
+  
+    return points;
+  }

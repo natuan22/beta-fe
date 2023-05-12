@@ -22,14 +22,12 @@ const CashFlowAllocation = () => {
     }, [dataCashFlowAllocation])
 
     useEffect(() => {
-        socket.on("listen-phan-bo-dong-tien", (newData) => {
-            setData(newData)
-        });
+        if (dataCashFlowAllocation.data) {
+            socket.on("listen-phan-bo-dong-tien", (newData) => {
+                setData(newData)
+            });
+        }
     }, [data])
-
-    if (!dataCashFlowAllocation.data) {
-        return <div className="mt-6 mb-6"><Loading /></div>
-    }
 
     const options = {
         accessibility: {
@@ -86,18 +84,23 @@ const CashFlowAllocation = () => {
         },
         series: [{
             data: [
-                { name: 'Tăng', y: data.increase / 1000000000, color: '#19d216' }, // thiết lập màu cho cột tăng
-                { name: 'Giảm', y: data.decrease / 1000000000, color: '#ff0000' }, // thiết lập màu cho cột giảm
-                { name: 'Không đổi', y: data.equal / 1000000000, color: '#ffd51e' }, // thiết lập màu cho cột không đổi
+                { name: 'Tăng', y: +(data.increase / 1000000000).toFixed(2), color: '#19d216' }, // thiết lập màu cho cột tăng
+                { name: 'Giảm', y: +(data.decrease / 1000000000).toFixed(2), color: '#ff0000' }, // thiết lập màu cho cột giảm
+                { name: 'Không đổi', y: +(data.equal / 1000000000).toFixed(2), color: '#ffd51e' }, // thiết lập màu cho cột không đổi
             ],
         }]
     };
+
     return (
         <>
             <div id="chart-container">
-                <div className="h-[300px]">
-                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                </div>
+                {dataCashFlowAllocation.data ? (
+                    <div className="h-[300px]">
+                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                    </div>
+                ) : (
+                    <div className="mt-6 mb-6"><Loading /></div>
+                )}
             </div>
         </>
     );

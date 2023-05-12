@@ -21,7 +21,7 @@ import News from "../components/IndexMarket/News";
 import Events from "../components/IndexMarket/Events";
 import MarketBreadth from "../components/IndexMarket/MarketBreadth";
 import TableLiquidity from "../components/IndexMarket/TableLiquidity";
-import { fetchDataLineChartMarket } from "../thunk";
+import { fetchDataBienDongThiTruong, fetchDataLineChartMarket } from "../thunk";
 
 const IndexMarket = () => {
   const dispatch = useDispatch();
@@ -37,9 +37,10 @@ const IndexMarket = () => {
     dispatch(fetchDataAreaChart1);
     dispatch(fetchDataAreaChart2);
     dispatch(fetchDataLineChartMarket("VNINDEX", '0'))
+    dispatch(fetchDataBienDongThiTruong('VNINDEX'))
   }, [dispatch]);
 
-  return (    
+  return (
     <>
       <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-full">
         <div className="md:block lg:flex justify-center">
@@ -75,7 +76,7 @@ const IndexMarket = () => {
           </div>
         </div>
 
-        <div className="xs:hidden md:hidden lg:flex xl:hidden ">
+        <div className="xxs:hidden xs:hidden md:hidden lg:flex xl:hidden ">
           <div className="w-[50%] my-1.5 mx-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div>
               <BarChart />
@@ -137,7 +138,7 @@ const IndexMarket = () => {
             <AnalysisReport />
           </div>
         </div>
-        <div className="xs:hidden md:hidden lg:block xl:hidden mx-[5px] my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md h-[700px]">
+        <div className="xxs:hidden xs:hidden md:hidden lg:block xl:hidden mx-[5px] my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md h-[700px]">
           <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
             <span className="dark:text-white text-black text-[1.2rem] font-bold">
               Báo cáo phân tích

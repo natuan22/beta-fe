@@ -15,6 +15,7 @@ const InternationalIndex = () => {
       else if (window.innerWidth >= '768') setSpeed(15)
       else if (window.innerWidth >= '425') setSpeed(10)
       else if (window.innerWidth >= '375') setSpeed(5)
+      else if (window.innerWidth <= '374') setSpeed(5);
     }
     handleResize()
 

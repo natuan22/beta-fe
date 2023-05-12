@@ -31,7 +31,7 @@ const GeneralIndustry = () => {
     if (dataGeneral?.data) {
       const oldData = dataGeneral?.data.data
 
-      socket.on("listen-phan-nganh", (newData) => {
+      socket.on("listen-phan-nganh-ALL", (newData) => {
         const newDataWithChanges = oldData.map(oldItem => {
           const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
           if (matchingItem) {
@@ -45,7 +45,6 @@ const GeneralIndustry = () => {
             return oldItem
           }
         })
-
         setData(newDataWithChanges)
       });
     }
@@ -60,19 +59,19 @@ const GeneralIndustry = () => {
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                   <tr>
-                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       Phân ngành
                     </th>
-                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       %D
                     </th>
-                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       %W
                     </th>
-                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       %M
                     </th>
-                    <th className="text-center align-middle px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                    <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       Độ rộng ngành
                     </th>
                   </tr>
@@ -97,10 +96,10 @@ const GeneralIndustry = () => {
                       let total = numOfHigh + numOfLow + numOfIncrease + numOfDecrease + numOfEqual;
                       return (
                         <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                          <th className={`${color} text-left align-middle lg:text-sm xl:text-xs px-2 py-2.5`}>
+                          <th className={`${color} text-left align-middle xxs:text-[10px] lg:text-sm xl:text-xs px-2 py-2.5`}>
                             {item.industry}
                           </th>
-                          <td className={`${color} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2.5 font-semibold`}>
+                          <td className={`${color} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2.5 font-semibold`}>
                             <span className="text-left px-1.5">
                               {getIcon(item.day_change_percent)}
                             </span>
@@ -108,7 +107,7 @@ const GeneralIndustry = () => {
                               {item.day_change_percent.toFixed(2)}%
                             </span>
                           </td>
-                          <td className={`${color2} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                          <td className={`${color2} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                             <span className="text-left px-1.5">
                               {getIcon(item.week_change_percent)}
                             </span>
@@ -116,7 +115,7 @@ const GeneralIndustry = () => {
                               {item.week_change_percent.toFixed(2)}%
                             </span>
                           </td>
-                          <td className={`${color3} align-middle lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
+                          <td className={`${color3} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-2 py-2 font-semibold`}>
                             <span className="text-left px-1.5">
                               {getIcon(item.month_change_percent)}
                             </span>
@@ -125,7 +124,7 @@ const GeneralIndustry = () => {
                             </span>
                           </td>
 
-                          <td className="align-middle whitespace-nowrap lg:text-sm xl:text-xs px-2 py-2  ">
+                          <td className="align-middle xxs:text-[10px] whitespace-nowrap lg:text-sm xl:text-xs px-2 py-2  ">
                             <div
                               className="flex relative"
                               onMouseOver={() => handleMouseOver(index)}

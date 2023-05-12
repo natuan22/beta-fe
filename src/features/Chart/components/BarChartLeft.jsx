@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
+import Loading from "../utils/Loading";
 
 const BarChartLeft = () => {
   const dataBarChartLeft = useSelector((state) => state.chart.dataBarChartLeft);
@@ -106,7 +107,7 @@ const BarChartLeft = () => {
       <div className="xl:h-[350px] 2xl:h-[350px]">
         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
       </div>
-    </div>
+    </div >
   );
 };
 
