@@ -14,7 +14,7 @@ treemap(Highcharts);
 const TreeMapSell = () => {
   const dispatch = useDispatch()
   const { dataTreemapSell } = useSelector(state => state.chart);
-  console.log(dataTreemapSell)
+  // console.log(dataTreemapSell)
   const [dataTreeMap, setDataTreeMap] = useState();
   const [dataSocket, setDataSocket] = useState([]);
   const [socketChanel, setSocketChanel] = useState('hose');
@@ -27,7 +27,7 @@ const TreeMapSell = () => {
 
   useEffect(() => {
     socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
-      console.log('newData', newData);
+      // console.log('newData', newData);
       setDataSocket(newData);
     });
     setSocketOld(socketChanel)
@@ -42,7 +42,7 @@ const TreeMapSell = () => {
       resultMap[LV2].data[ticker] = (total_value_sell / 1000000000).toFixed(2);
     });
 
-    console.log('resultMap', resultMap);
+    // console.log('resultMap', resultMap);
     setDataTreeMap(resultMap);
 
 
@@ -108,7 +108,7 @@ const TreeMapSell = () => {
     points.push(sectorPoint);
     sectorIndex++;
   }
-  console.log('points', points)
+  // console.log('points', points)
   const options = {
     accessibility: {
       enabled: false,
@@ -173,9 +173,43 @@ const TreeMapSell = () => {
       }
     ]
   };
+  const currentTime = new Date();
+
+  // Lấy giờ và phút từ currentTime
+  const currentHour = currentTime.getHours();
+  const currentMinute = currentTime.getMinutes();
+
+  // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
+  const shouldShowData = currentHour > 9 || (currentHour === 9 && currentMinute >= 15) || currentHour === 0
+
+  // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59, hiển thị dữ liệu
+  if (!shouldShowData) {
+    return <>
+      <div>
+        <div className="text-center py-2">
+          <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs">
+            Khối ngoại bán ròng sàn
+            <select
+              className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+              onChange={(event) => {
+                disconnectSocket(socketOld);
+                setSocketChanel(event.target.value);
+                dispatch(fetchDataTreeMapSell(event.target.value))
+              }}
+            >
+              <option value="hose">HSX</option>
+              <option value="hnx">HNX</option>
+              <option value="upcom">UPCOM</option>
+            </select>
+          </span>
+        </div>
+      </div>
+      <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu</div>
+    </>
+  }
 
   return (
-    <div>
+    <>
       <div>
         <div className="text-center py-2">
           <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs">
@@ -196,11 +230,13 @@ const TreeMapSell = () => {
         </div>
       </div>
       <div>
-        {
-          dataTreemapSell.length > 0 ? <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '690px', width: '100%' } }} /> : <div><Loading /></div>
-        }
+        {dataTreemapSell.length > 0 ? (
+          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '690px', width: '100%' } }} />
+        ) : (
+          <div className="mt-6"><Loading /></div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 

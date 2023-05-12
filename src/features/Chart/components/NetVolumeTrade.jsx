@@ -19,27 +19,6 @@ const NetVolumeTrade = () => {
   useEffect(() => {
     setColorText(color);
   }, [color]);
-  if (!dataNetVolume.data || !dataNetVolume.data.length)
-    return <>
-      <div className="h-[300px]">
-        <div className="bg-transparent text-center px-20 py-[10px]">
-          <span className="font-semibold text-base uppercase dark:text-white text-black">
-            Giá trị giao dịch ròng
-          </span>
-          <select className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
-            onChange={(event) => {
-              dispatch(fetchDataNetVolume(event.target.value));
-              setTitle(event.target.value)
-            }}>
-            <option value="VNINDEX">VNINDEX</option>
-            <option value="UPINDEX">UPINDEX</option>
-            <option value="HNX30">HNX30</option>
-            <option value="VN30">VN30</option>
-          </select>
-        </div>
-        <div className="mt-6"><Loading /></div>
-      </div>
-    </>
 
   const dataExchange = dataNetVolume.data?.map((item) => item.exchange_price);
   const dataForeign = dataNetVolume.data?.map(
@@ -73,7 +52,7 @@ const NetVolumeTrade = () => {
       }
     },
     xAxis: {
-      categories: timeLine.reverse(),
+      categories: timeLine?.reverse(),
       labels: {
         style: {
           color: localStorage.getItem('color') // màu cho các nhãn trục x
@@ -125,28 +104,28 @@ const NetVolumeTrade = () => {
       {
         type: "column",
         name: "Khối Ngoại",
-        data: dataForeign.reverse(),
+        data: dataForeign?.reverse(),
         yAxis: 0,
         color: "#ff0000"
       },
       {
         type: "column",
         name: "Tự Doanh",
-        data: dataProprietary.reverse(),
+        data: dataProprietary?.reverse(),
         yAxis: 0,
         color: '#0056FF'
       },
       {
         type: "column",
         name: "Cá Nhân",
-        data: dataRetail.reverse(),
+        data: dataRetail?.reverse(),
         yAxis: 0,
         color: '#ffd300'
       },
       {
         type: "spline",
         name: title,
-        data: dataExchange.reverse(),
+        data: dataExchange?.reverse(),
         yAxis: 1,
         color: '#ff8700'
       },
@@ -171,7 +150,11 @@ const NetVolumeTrade = () => {
             <option value="VN30">VN30</option>
           </select>
         </div>
-        <HighchartsReact highcharts={Highcharts} options={options} />
+        {dataNetVolume.data || dataNetVolume.data?.length ? (
+          <HighchartsReact highcharts={Highcharts} options={options} />
+        ) : (
+          <div className="mt-6"><Loading /></div>
+        )}
       </div>
     </>
   );

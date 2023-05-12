@@ -26,10 +26,6 @@ function ThanhKhoan() {
         }
     }, [dataToday]);
 
-    if (!dataPreviousDay.length && !dataToday.length)
-        return (
-            <div className="h-[200px]"><div className="mt-12"><Loading /></div></div>
-        );
     // Thiết lập cấu hình cho biểu đồ
     const options = {
         accessibility: {
@@ -107,12 +103,29 @@ function ThanhKhoan() {
             },
         ],
     };
+    const currentTime = new Date();
+
+    // Lấy giờ và phút từ currentTime
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
+
+    // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
+    const shouldShowData = currentHour > 9 || (currentHour === 9 && currentMinute >= 15) || currentHour === 0
+
+    // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59, hiển thị dữ liệu
+    if (!shouldShowData) {
+        return <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu</div>
+    }
 
     return (
         <>
-            <div className="lg:h-[365px] xl:h-[345px] 2xl:h-[344px]">
-                <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-            </div>
+            {dataPreviousDay?.length && dataToday?.length ? (
+                <div className="lg:h-[365px] xl:h-[345px] 2xl:h-[344px]">
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                </div>
+            ) : (
+                <div className="h-[200px]"><div className="mt-12"><Loading /></div></div>
+            )}
         </>
     );
 }

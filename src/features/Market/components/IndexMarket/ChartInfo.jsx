@@ -28,7 +28,7 @@ const ChartInfo = () => {
 
     useEffect(() => {
         if (dataBienDongThiTruong)
-            setData(dataBienDongThiTruong[0])
+            setData(dataBienDongThiTruong)
     }, [dataBienDongThiTruong]);
 
     useEffect(() => {
@@ -148,26 +148,6 @@ const ChartInfo = () => {
     const lowestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.lowestIndex)
     const highestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.highestIndex)
 
-    const getExchange = (code) => {
-        let day = ''
-        switch (code) {
-            case 'VNINDEX':
-                return day = "HOSE";
-            case 'VN30':
-                return day = "HOSE";
-            case 'VNXALL':
-                return day = "HOSE";
-            case 'HNXINDEX':
-                return day = "HNX";
-            case 'HNX30':
-                return day = "HNX";
-            case 'UPINDEX':
-                return day = "UPCOM";
-            default:
-                return day = "HOSE";
-        }
-    }
-
     return (
         <>
             <div>
@@ -190,8 +170,11 @@ const ChartInfo = () => {
                     </select>
                 </div>
                 <div className='md:mt-2 lg:mt-[28px] xl:mt-2 '>
-                    {dataChart?.length > 0 ? <div className='h-[405px]'><HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /></div> : <div className='text-center mt-12 h-[405px]'><Loading /></div>}
-
+                    {dataChart?.length > 0 ? (
+                        <div className='h-[405px]'><HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /></div>
+                    ) : (
+                        <div className='text-center mt-12 h-[365px]'><Loading /></div>
+                    )}
                 </div>
             </div>
             <hr />
@@ -247,7 +230,7 @@ const ChartInfo = () => {
                                                             dispatch(fetchDataLineChartMarket(`${item.comGroupCode}`, localStorage.getItem('typeApi')))
                                                         }
                                                         setExchange(item.comGroupCode)
-                                                        dispatch(fetchDataBienDongThiTruong(getExchange(item.comGroupCode)))
+                                                        dispatch(fetchDataBienDongThiTruong(item.comGroupCode))
                                                     }} key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500 cursor-pointer'>
                                                         <th className="text-left px-3 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
                                                             {item.comGroupCode}
