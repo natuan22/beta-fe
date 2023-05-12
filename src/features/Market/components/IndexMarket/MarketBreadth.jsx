@@ -34,7 +34,7 @@ const MarketBreadth = () => {
 
     useEffect(() => {
         if (dataDoRongThiTruong) {
-            if (queryApi.type != 0) {
+            if (queryApi.type !== 0) {
                 disconnectSocketHNX()
                 disconnectSocketHSX()
             } else {
@@ -47,7 +47,7 @@ const MarketBreadth = () => {
                 }
             }
         }
-    }, [queryApi])
+    }, [queryApi, dataDoRongThiTruong])
 
     useEffect(() => {
         if (dataDoRongThiTruong) {
@@ -264,7 +264,7 @@ const MarketBreadth = () => {
                 <select
                     onChange={(e) => {
                         handleQueryApiType(e.target.value);
-                        if (e.target.value != 0) {
+                        if (e.target.value !== 0) {
                             setFormatDate('DD/MM')
                         }
                     }}
@@ -324,7 +324,7 @@ const MarketBreadth = () => {
                 <select
                     onChange={(e) => {
                         handleQueryApiType(e.target.value);
-                        if (e.target.value != 0) {
+                        if (e.target.value !== 0) {
                             setFormatDate('DD/MM')
                         }
                     }}
