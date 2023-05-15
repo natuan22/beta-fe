@@ -36,19 +36,21 @@ export const fetchDataBarChartRight = (exchange) => async (dispatch) => {
   }
 };
 
-export const fetchDataBarChartLeft = (index) => async (dispatch) => {
+export const fetchDataBarChartLeft = (exchange) => async (dispatch) => {
   try {
     const res = await axios({
       // url: domain + endpoint
-      url: "https://mkw-socket.vndirect.com.vn/mkwsocket/leaderlarger",
+      url: `${apiUrl}/api/v1/chart/ticker-contribute`,
       method: "GET",
       params: {
-        index: index
+        exchange,
+        type: 0,
+        order: 0
       }
     });
     dispatch({
       type: "beta/UPDATE_DATA_BARCHART_LEFT",
-      payload: res,
+      payload: res.data.data,
     });
   } catch (err) {
     console.log(err);

@@ -9,11 +9,11 @@ import socket from "../../../Chart/utils/socket";
 const BarChart = () => {
     const dispatch = useDispatch();
     const { chartTickerContribute } = useSelector((state) => state.market);
-    const [activeButton, setActiveButton] = useState('hose')
+    const [activeButton, setActiveButton] = useState('hsx')
     const handleClick = (button) => { setActiveButton(button) }
     const [handleQueryType, setHandleQueryType] = useState(0)
     const [queryApi, setQueryApi] = useState({
-        exchange: "hose",
+        exchange: "hsx",
         type: 0,
         order: 0,
     });
@@ -42,47 +42,30 @@ const BarChart = () => {
         }
     }, [chartTickerContribute])
 
-    // useEffect(() => {
-    //     if (chartTickerContribute) {
-    //         if (queryApi.type != 0) {
-    //             disconnectSocketTrongPhien(exchangeOld)
-    //             disconnectSocket5Phien(exchangeOld)
-    //         } else {
-    //             if (queryApi.order == 0) {
-    //                 disconnectSocketTrongPhien(exchangeOld)
-    //                 disconnectSocket5Phien(exchangeOld)
-    //                 conSocketTrongPhien(queryApi.exchange)
-    //                 setExchangeOld(queryApi.exchange)
-    //             } else if (queryApi.order == 1) {
-    //                 disconnectSocketTrongPhien(exchangeOld)
-    //                 disconnectSocket5Phien(exchangeOld)
-    //                 conSocket5Phien(queryApi.exchange)
-    //                 setExchangeOld(queryApi.exchange)
-    //             }
-    //         }
-    //     }
-    // }, [queryApi])
+    useEffect(() => {
+        if (chartTickerContribute) {
+            if (queryApi.type != 0) {
+                disconnectSocket(exchangeOld)
+            } else {
+                if (queryApi.order != 0) {
+                    disconnectSocket(exchangeOld)
+                } else {
+                    disconnectSocket(exchangeOld)
+                    conSocket(queryApi.exchange)
+                    setExchangeOld(queryApi.exchange)
+                }
+            }
+        }
+    }, [queryApi])
 
-    const disconnectSocketTrongPhien = (exchange) => {
+    const disconnectSocket = (exchange) => {
         if (socket.active) {
             socket.off(`listen-${exchange}-ticker-contribute-0`);
         }
     }
 
-    const disconnectSocket5Phien = (exchange) => {
-        if (socket.active) {
-            socket.off(`listen-${exchange}-ticker-contribute-1`);
-        }
-    }
-
-    const conSocketTrongPhien = (exchange) => {
+    const conSocket = (exchange) => {
         socket.on(`listen-${exchange}-ticker-contribute-0`, (newData) => {
-            setData(newData.sort((a, b) => b.contribute_price - a.contribute_price));
-        });
-    }
-
-    const conSocket5Phien = (exchange) => {
-        socket.on(`listen-${exchange}-ticker-contribute-1`, (newData) => {
             setData(newData.sort((a, b) => b.contribute_price - a.contribute_price));
         });
     }
@@ -344,10 +327,10 @@ const BarChart = () => {
                 <span>
                     <button
                         onClick={() => {
-                            handleClick('hose')
-                            handleQueryApiExchange('hose')
+                            handleClick('hsx')
+                            handleQueryApiExchange('hsx')
                         }}
-                        className={activeButton === 'hose'
+                        className={activeButton === 'hsx'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
@@ -366,12 +349,12 @@ const BarChart = () => {
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
                     <button
                         onClick={() => {
-                            handleClick('upcom')
-                            handleQueryApiExchange('upcom')
+                            handleClick('vn30')
+                            handleQueryApiExchange('vn30')
                         }}
-                        className={activeButton === 'upcom'
+                        className={activeButton === 'vn30'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>VN30
                     </button>
                 </span>
             </div>
