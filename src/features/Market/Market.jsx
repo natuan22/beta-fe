@@ -4,7 +4,7 @@ import InternationalIndex from "../Chart/components/InternationalIndex";
 import { Outlet, useLocation } from "react-router-dom";
 import MarketTab from "./utils/MarketTab";
 import Banner from "../Chart/components/Banner";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDataInternationalIndex, fetchDataNews } from "../Chart/thunk";
 import LayOut from "../../HOCs/Layout";
 import Footer from "../../components/Footer";
@@ -13,8 +13,10 @@ const apiUrl = process.env.REACT_APP_BASE_URL;
 const Market = () => {
   const dispatch = useDispatch()
   const location = useLocation()
-  const [bannerDisplay, setBannerDisplay] = useState(false)
+  const [theme, setTheme] = useState(localStorage.getItem('theme'))
+  const color = useSelector((state) => state.color.colorTheme);
 
+  const [bannerDisplay, setBannerDisplay] = useState(false)
   useEffect(() => {
     if (location.pathname === "/thi-truong" || location.pathname === '/thi-truong/dong-tien-thi-truong' || location.pathname === '/thi-truong/ky-thuat-va-dinh-gia' || location.pathname === '/thi-truong/thi-truong-quoc-te') {
       setBannerDisplay(true);
@@ -22,6 +24,10 @@ const Market = () => {
       setBannerDisplay(false);
     }
   }, [location]);
+
+  useEffect(() => {
+    setTheme(color);
+  }, [color]);
 
   useEffect(() => {
     dispatch(fetchDataNews);
@@ -47,9 +53,15 @@ const Market = () => {
         <div>
           {bannerDisplay ?
             <div className="pt-5 pb-2 flex flex-col justify-center items-center">
-              <div>
-                <img className="w-[500px] h-[350px] mr-5" src={`${apiUrl}/resources/images/advertise.png`} alt="imgAdvertise" />
-                <img className="w-[500px] h-[350px]" src={`${apiUrl}/resources/images/advertise1.png`} alt="imgAdvertise" />
+              <div className="flex justify-around w-[50%]">
+                <a href="https://t.me/betaEmarketbot" >
+                  <img className="w-[300px] h-[300px] mr-5" src={`${apiUrl}/resources/images/chat-bot-zalo-${localStorage.getItem('theme')}.png`}
+                    alt={`error-404-${localStorage.getItem('theme')}`} />
+                </a>
+                <a href="https://zalo.me/1623670409453822014">
+                  <img className="w-[300px] h-[300px] mr-5" src={`${apiUrl}/resources/images/chat-bot-tele-${localStorage.getItem('theme')}.png`}
+                    alt={`error-404-${localStorage.getItem('theme')}`} />
+                </a>
               </div>
             </div> : <Fragment></Fragment>}
         </div>
