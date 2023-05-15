@@ -1,29 +1,50 @@
 import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../utils/Loading";
+import { fetchDataBarChartLeft } from "../thunk";
+import socket from "../utils/socket";
 
 const BarChartLeft = () => {
+  const dispatch = useDispatch()
   const dataBarChartLeft = useSelector((state) => state.chart.dataBarChartLeft);
   const [data, setData] = useState(dataBarChartLeft?.data ?? []);
 
   const [colorText, setColorText] = useState(localStorage.getItem('color'));
   const color = useSelector((state) => state.color.colorText);
 
+  const [query, setQuery] = useState('hsx')
+  const [socketOld, setSocketOld] = useState('')
+
   useEffect(() => {
     setColorText(color);
   }, [color]);
 
   useEffect(() => {
-    setData(dataBarChartLeft?.data ?? []);
+    if (dataBarChartLeft)
+      setData(dataBarChartLeft);
   }, [dataBarChartLeft]);
 
-  const sortedData =
-    data && data.data ? [...data.data].sort((a, b) => b.point - a.point) : [];
-  const top10 = sortedData.slice(0, 10);
-  const bottom10 = sortedData.slice(-10);
-  const dataStockRender = top10.concat(bottom10);
+  useEffect(() => {
+    if (dataBarChartLeft) {
+      conSocket(query)
+      setSocketOld(query)
+    }
+  }, [query])
+
+  const disconnectSocket = (socketOld) => {
+    if (socket.active) {
+      socket.off(`listen-${socketOld}-ticker-contribute-0`);
+    }
+  }
+
+  const conSocket = (key) => {
+    socket.on(`listen-${key}-ticker-contribute-0`, (newData) => {
+      setData(newData.sort((a, b) => b.contribute_price - a.contribute_price))
+    });
+  }
+
   const options = {
     accessibility: {
       enabled: false,
@@ -37,7 +58,7 @@ const BarChartLeft = () => {
       text: "",
     },
     xAxis: {
-      categories: dataStockRender?.map((item) => item.symbol),
+      categories: Array.isArray(data) && data?.map((item) => item.symbol),
       labels: {
         step: 1,
         rotation: -45,
@@ -58,14 +79,6 @@ const BarChartLeft = () => {
           color: localStorage.getItem('color')
         }
       },
-      min: Math.min(
-        ...dataStockRender?.map((item) => item.point),
-        0
-      ),
-      max: Math.max(
-        ...dataStockRender?.map((item) => item.point),
-        0
-      ),
     },
     legend: {
       enabled: false
@@ -91,11 +104,11 @@ const BarChartLeft = () => {
     },
     series: [
       {
-        data: dataStockRender?.map(item => {
+        data: Array.isArray(data) && data?.map(item => {
           return {
             name: item.symbol,
-            y: +item.point.toFixed(3),
-            color: item.point > 0 ? "#15b313" : "#ff0000"
+            y: +item.contribute_price.toFixed(2),
+            color: item.contribute_price > 0 ? "#15b313" : "#ff0000"
           };
         })
       },
@@ -103,11 +116,35 @@ const BarChartLeft = () => {
   };
 
   return (
-    <div id="chart-container">
-      <div className="xl:h-[350px] 2xl:h-[350px]">
-        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+    <>
+      <div>
+        <span className="font-semibold uppercase text-sm dark:text-white text-black">
+          Nhóm cổ phiếu dẫn dắt thị trường
+        </span>
+
+        <select
+          className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          onChange={(event) => {
+            disconnectSocket(socketOld)
+            setQuery(event.target.value)
+            dispatch(fetchDataBarChartLeft((event.target.value)))
+          }}
+        >
+          <option value="hsx">HSX</option>
+          <option value="hnx">HNX</option>
+          <option value="vn30">VN30</option>
+        </select>
       </div>
-    </div >
+      <div id="chart-container">
+        {dataBarChartLeft?.length ? (
+          <div className="xl:h-[350px] 2xl:h-[350px]">
+            <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+          </div>
+        ) : (
+          <div className="mt-6 xl:h-[325px] 2xl:h-[325px]"><Loading /></div>
+        )}
+      </div >
+    </>
   );
 };
 

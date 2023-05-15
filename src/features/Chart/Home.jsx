@@ -60,7 +60,7 @@ const Home = () => {
     dispatch(fetchDataEvents);
     dispatch(fetchDataNews);
     dispatch(fetchDataRateDetail);
-    dispatch(fetchDataTopNetForeignChange("HSX"));
+    dispatch(fetchDataTopNetForeignChange("hsx"));
     dispatch(fetchDataROC5Phien("hose"));
     dispatch(fetchDataTableMarketVolatility);
     dispatch(fetchDataTableMarketLiquidity("0"));
@@ -71,19 +71,19 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchDataInternationalIndex);
     dispatch(fetchDataTableDetail);
-    dispatch(fetchDataBarChartRight('HOSE'));
-    dispatch(fetchDataBarChartLeft("VNINDEX"));
+    dispatch(fetchDataBarChartRight('hose'));
+    dispatch(fetchDataBarChartLeft("hsx"));
     dispatch(fetchDataGeneralIndustry('all'));
-    dispatch(fetchDataTreeMapSell("HOSE"));
-    dispatch(fetchDataTreeMapBuy("HOSE"));
+    dispatch(fetchDataTreeMapSell("hose"));
+    dispatch(fetchDataTreeMapBuy("hose"));
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchDataAreaChart1);
     dispatch(fetchDataAreaChart2);
-    dispatch(fetchDataWidthMarket("VNINDEX"));
+    dispatch(fetchDataWidthMarket("vnindex"));
     dispatch(fetchDataNetVolume("vnindex"));
-    dispatch(fetchDataLineChartHomePage('VNINDEX'))
+    dispatch(fetchDataLineChartHomePage('vnindex')) 
     dispatch(fetchDataCashFlowAllocation)
   }, [dispatch]);
 
@@ -113,26 +113,7 @@ const Home = () => {
                     </div>
                     <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                       <div className="text-center dark:bg-[#151924] bg-gray-100">
-                        <div>
-                          <span className="font-semibold uppercase text-sm dark:text-white text-black">
-                            Nhóm cổ phiếu dẫn dắt thị trường
-                          </span>
 
-                          <select
-                            className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
-                            onChange={(event) => {
-                              dispatch(
-                                dispatch(
-                                  fetchDataBarChartLeft(event.target.value)
-                                )
-                              );
-                            }}
-                          >
-                            <option value="VNINDEX">VNINDEX</option>
-                            <option value="HNX">HNX</option>
-                            <option value="VN30">VN30</option>
-                          </select>
-                        </div>
                         <BarChartLeft />
                       </div>
                     </div>
