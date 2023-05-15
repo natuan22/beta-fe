@@ -14,9 +14,8 @@ import NetVolumeTrade from '../../../Chart/components/NetVolumeTrade'
 
 const IdentifyCash = () => {
   return (
-    <>
-      <Error404 />
-      {/* <div className='container mx-auto mt-2'>
+    <div>
+      <div className='container mx-auto mt-2'>
         <div className='flex'>
           <div className="w-[60%]">
             <div className="grid grid-cols-2">
@@ -70,8 +69,8 @@ const IdentifyCash = () => {
             <NetVolumeTrade />
           </div>
         </div>
-      </div> */}
-    </>
+      </div>
+    </div>
   )
 }
 
