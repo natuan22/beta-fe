@@ -143,7 +143,7 @@ const TreeMapSell = () => {
     series: [
       {
         type: "treemap",
-        name: "Khối ngoại mua ròng",
+        name: "Khối ngoại bán ròng",
         layoutAlgorithm: "squarified",
         allowDrillToNode: true,
         dataLabels: {

@@ -107,6 +107,7 @@ const MarketBreadth = () => {
             style: {
                 fontFamily: "Roboto",
             },
+            
         },
         title: {
             text: "",
@@ -125,6 +126,10 @@ const MarketBreadth = () => {
                     color: localStorage.getItem('color'),
                 },
             },
+            crosshair: {
+                color: "black",
+                width: 3,
+              },
         },
         yAxis: {
             title: {
@@ -182,6 +187,9 @@ const MarketBreadth = () => {
                 },
             },
             series: {
+                marker: {
+                    radius: 2, // Giá trị bán kính marker
+                  },
                 tooltip: {
                     headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",
                     pointFormat:

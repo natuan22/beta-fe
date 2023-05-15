@@ -51,6 +51,7 @@ import LayOut from "../../HOCs/Layout";
 import CashFlowAllocation from "./components/CashFlowAllocation";
 import TreeMapSell from "./components/TreeMapSell";
 import TreeMapBuy from "./components/TreeMapBuy";
+import Test from "./components/Test";
 
 
 const Home = () => {
@@ -274,7 +275,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-
+            {/* <Test /> */}
             <Footer />
           </div>
         </div>
