@@ -162,7 +162,7 @@ const StackingAreas = () => {
       },
       series: {
         marker: {
-          radius: 2, // Giá trị bán kính marker, ở đây là 3px
+          radius: 2, // Giá trị bán kính marker
         },
         tooltip: {
           headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",

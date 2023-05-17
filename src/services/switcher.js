@@ -17,6 +17,7 @@ export default function Switcher() {
         setColorText(colorText);
         dispatch({ type: 'beta/GET_COLOR', payload: colorText })
         dispatch({ type: 'beta/GET_THEME', payload: colorTheme })
+      
     };
 
     return (
@@ -25,6 +26,9 @@ export default function Switcher() {
                 checked={darkSide}
                 onChange={toggleDarkMode}
                 size={30}
+                onAuxClick={()=>{
+                   
+                }}
             />
         </>
     );

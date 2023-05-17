@@ -14,6 +14,7 @@ const initialState = {
   dataIndustryCashFlow: {},
   dataRSI: {},
   dataTopNetBuyIndustry: {}
+
 };
 
 const reducer = (state = initialState, { type, payload }) => {
