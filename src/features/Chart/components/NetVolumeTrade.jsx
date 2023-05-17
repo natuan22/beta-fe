@@ -17,8 +17,9 @@ const NetVolumeTrade = () => {
   const color = useSelector((state) => state.color.colorText);
 
   useEffect(() => {
+    dispatch(fetchDataNetVolume('vnindex'));
     setColorText(color);
-  }, [color]);
+  }, [dispatch, color]);
 
   const dataExchange = dataNetVolume.data?.map((item) => item.exchange_price);
   const dataForeign = dataNetVolume.data?.map(

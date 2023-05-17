@@ -24,25 +24,24 @@ const InvestorCashFlow = () => {
     return (
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='text-white'>Dòng tiền nhà đầu tư theo các nhóm ngành</span>
+                <span className='dark:text-white text-black'>Dòng tiền nhà đầu tư theo các nhóm ngành</span>
                 <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
                     onChange={(event) => {
                     }}>
-                    <option value='0'>03 tháng</option>
-                    <option value='1'>...</option>
-                    <option value='2'>...</option>
-                    <option value='3'>...</option>
+                    <option value='0'>1 tháng</option>
+                    <option value='1'>3 tháng</option>
+                    <option value='2'>1 năm</option>
                 </select>
             </div>
-            <div className="pt-3 mb-3 text-white">
+            <div className="pt-3 mb-3 dark:text-white text-black">
                 <span>
                     <button
                         onClick={() => {
                             handleClick('all')
                         }}
                         className={activeButton === 'all'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -51,8 +50,8 @@ const InvestorCashFlow = () => {
                             handleClick('HSX')
                         }}
                         className={activeButton === 'HSX'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -61,8 +60,8 @@ const InvestorCashFlow = () => {
                             handleClick('HNX')
                         }}
                         className={activeButton === 'HNX'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
@@ -71,14 +70,14 @@ const InvestorCashFlow = () => {
                             handleClick('UPCOM')
                         }}
                         className={activeButton === 'UPCOM'
-                            ? 'border-none bg-transparent relative text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent text-white md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
+                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
+                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
                     </button>
                 </span>
             </div>
             <div className='flex'>
                 <div>
-                    <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2 mr-4">
+                    <div className="dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-2 mr-4">
                         <button
                             style={activeButton2 === 1 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
@@ -106,7 +105,7 @@ const InvestorCashFlow = () => {
                     </div>
                 </div>
                 <div>
-                    <div className="bg-[#2D303A] flex justify-around items-center rounded-full mb-2">
+                    <div className="dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-2">
                         <button
                             style={activeButton3 === 5 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
