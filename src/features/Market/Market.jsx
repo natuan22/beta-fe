@@ -52,16 +52,20 @@ const Market = () => {
         </div>
         <div>
           {bannerDisplay ?
-            <div className="pt-5 pb-2 flex flex-col justify-center items-center">
-              <div className="flex justify-around w-[50%]">
-                <a href="https://t.me/betaEmarketbot" >
-                  <img className="w-[300px] h-[300px] mr-5" src={`${apiUrl}/resources/images/chat-bot-zalo-${localStorage.getItem('theme')}.png`}
-                    alt={`error-404-${localStorage.getItem('theme')}`} />
-                </a>
-                <a href="https://zalo.me/1623670409453822014">
-                  <img className="w-[300px] h-[300px] mr-5" src={`${apiUrl}/resources/images/chat-bot-tele-${localStorage.getItem('theme')}.png`}
-                    alt={`error-404-${localStorage.getItem('theme')}`} />
-                </a>
+            <div className="pt-5 pb-2 flex justify-center items-center">
+              <div className="flex md:flex-row md:justify-around sm:flex-col sm:items-center xs:flex-col xs:items-center xxs:flex-col xxs:items-center w-[50%]">
+                <div className="mr-5">
+                  <a href="https://t.me/betaEmarketbot">
+                    <img className="w-[300px] h-[300px]" src={`${apiUrl}/resources/images/chat-bot-zalo-${localStorage.getItem('theme')}.png`}
+                      alt={`error-404-${localStorage.getItem('theme')}`} />
+                  </a>
+                </div>
+                <div className="mr-5">
+                  <a href="https://zalo.me/1623670409453822014">
+                    <img className="w-[300px] h-[300px]" src={`${apiUrl}/resources/images/chat-bot-tele-${localStorage.getItem('theme')}.png`}
+                      alt={`error-404-${localStorage.getItem('theme')}`} />
+                  </a>
+                </div>
               </div>
             </div> : <Fragment></Fragment>}
         </div>
