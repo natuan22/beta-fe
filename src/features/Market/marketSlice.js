@@ -13,8 +13,8 @@ const initialState = {
   dataTransactionValueRatio: {},
   dataIndustryCashFlow: {},
   dataRSI: {},
-  dataTopNetBuyIndustry: {}
-
+  dataTopNetBuyIndustry: {},
+  dataCashFlowInvestor:{},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -57,6 +57,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_TOP_NET_BUY_INDUSTRY) {
       draft.dataTopNetBuyIndustry = payload
+    }
+    if(type === marketType.FETCH_DATA_CASHFLOW_INVESTOR) {
+      draft.dataCashFlowInvestor = payload
     }
   });
 };
