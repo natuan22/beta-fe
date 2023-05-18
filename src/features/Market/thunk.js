@@ -156,3 +156,17 @@ export const fetchDataTopNetBuyIndustry = (exchange, type) => async (dispatch) =
         console.log(err)
     }
 }
+
+
+export const fetchDataCashFlowInvestor = (type ,investorType ,exchange) => async (dispatch) => {
+    try{
+        const res = await marketServices.fetchDataCashFlowInvestor(type, investorType, exchange)
+        console.log(res.data.data)
+        dispatch({
+            type: marketType.FETCH_DATA_CASHFLOW_INVESTOR,
+            payload: res.data.data
+        })
+    } catch(err) {
+        console.log(err)
+    }
+} 

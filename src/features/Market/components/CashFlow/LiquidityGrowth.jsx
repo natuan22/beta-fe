@@ -57,7 +57,7 @@ const LiquidityGrowth = () => {
                 break;
         }
     }
-
+   
     const options = {
         accessibility: {
             enabled: false,
@@ -104,21 +104,23 @@ const LiquidityGrowth = () => {
         },
         plotOptions: {
             series: {
-                stacking: 'normal',
-            }
-        },
+                marker: {
+                  radius: 2, // Giá trị bán kính marker
+                },
+        }, 
+    },
         series: [{
             name: 'UPCOM',
             data: upcomPerChange,
-            color: '#2D8BBA'
+            color: '#2D8BBA',
         }, {
             name: 'HNX',
             data: hnxPerChange,
-            color: '#41B8D5'
+            color: '#41B8D5',
         }, {
             name: 'HOSE',
             data: hosePerChange,
-            color: '#6CE5E8'
+            color: '#6CE5E8',
         }]
     }
 
@@ -138,7 +140,7 @@ const LiquidityGrowth = () => {
             </div>
             {dataLiquidityGrowth.length ? (
                 <div id="chart-container">
-                    <div className="h-[280px] mt-3">
+                    <div className="h-[464px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 </div>

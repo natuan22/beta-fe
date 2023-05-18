@@ -274,10 +274,6 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-<<<<<<< HEAD
-            <Test />
-=======
->>>>>>> 660aed00c6c77daaaf3b5794cb048ec6518ec646
             <Footer />
           </div>
         </div>
