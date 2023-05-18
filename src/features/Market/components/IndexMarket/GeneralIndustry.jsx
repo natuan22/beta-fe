@@ -15,7 +15,7 @@ const GeneralIndustry = () => {
     const [buySellData, setBuySellData] = useState([])
     const [loading, setLoading] = useState(true);
     const [isHovering, setIsHovering] = useState(false);
-    
+
     const handleMouseOver2 = () => {
         setIsHovering(true);
     };

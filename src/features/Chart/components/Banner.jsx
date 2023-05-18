@@ -35,16 +35,16 @@ const Banner = () => {
           aria-labelledby="drawer-navigation-label"
         >
           <div>
-            <div className="relative translate-x-[-35px] translate-y-[-45px]">
+            <div className="relative translate-x-[-5px] translate-y-[-75px]">
               <img
-                src={`${apiUrl}/resources/icons/logo-beta.png`}
-                alt="logoSidebar"
-                className="w-[175px] h-[175px]"
+                className="w-[100px] h-[45px] mt-[70px] mb-[40px]"
+                src={`${apiUrl}/resources/icons/logo-beta-color.png`}
+                alt="Beta logo"
               />
-              <div className="absolute bottom-[43%] right-0">
+              {/* <div className="absolute bottom-[43%] right-0">
                 <p className="text-[#c9a808] font-bold">ETA</p>
                 <p className="text-[#2d567e] font-bold">Securities</p>
-              </div>
+              </div> */}
             </div>
 
           </div>

@@ -98,7 +98,7 @@ const ChartInfo = () => {
         },
         credits: false,
         chart: {
-            type: "line",
+            type: "spline",
             backgroundColor: "transparent",
         },
         title: {

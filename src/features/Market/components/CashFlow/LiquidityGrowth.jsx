@@ -64,7 +64,7 @@ const LiquidityGrowth = () => {
         },
         credits: false,
         chart: {
-            type: "line",
+            type: "spline",
             backgroundColor: "transparent",
         },
         title: {
@@ -100,11 +100,15 @@ const LiquidityGrowth = () => {
                 style: {
                     color: localStorage.getItem('color'),
                 },
+                // enabled: false
             },
         },
         plotOptions: {
             series: {
                 stacking: 'normal',
+                marker: {
+                    radius: 2, // Giá trị bán kính marker
+                },
             }
         },
         series: [{
@@ -125,8 +129,8 @@ const LiquidityGrowth = () => {
     return (
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black'>Mức tăng trưởng thanh khoản (%)</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                <span className='dark:text-white text-black xs:text-base xxs:text-sm font-semibold'>Mức tăng trưởng thanh khoản (%)</span>
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[90px] lg:ml-[170px] md:ml-[426px] sm:ml-[83px] xs:ml-[33px] xxs:ml-[9px]`}
                     onChange={(event) => {
                         dispatch(fetchDataLiquidityGrowth(event.target.value))
                     }}>
@@ -138,7 +142,7 @@ const LiquidityGrowth = () => {
             </div>
             {dataLiquidityGrowth.length ? (
                 <div id="chart-container">
-                    <div className="h-[280px] mt-3">
+                    <div className="h-[464px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 </div>

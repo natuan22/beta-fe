@@ -49,10 +49,9 @@ const Signin = () => {
           }}
         >
           <img
-            src={`${apiUrl}/resources/images/logo1.png`}
-            alt="logoImg"
-            width="180px"
-            height="160px"
+            className="w-[100px] h-[45px] mt-[70px] mb-[40px]"
+            src={`${apiUrl}/resources/icons/logo-beta-color.png`}
+            alt="Beta logo"
           />
           <form className="flex flex-col justify-center items-center w-[60%]">
             <div className="relative z-0 w-full mb-6 group">
@@ -209,11 +208,16 @@ const Signin = () => {
             }}
           >
             <img
+              className="w-[100px] h-[45px] mt-[70px] mb-[40px]"
+              src={`${apiUrl}/resources/icons/logo-beta-color.png`}
+              alt="Beta logo"
+            />
+            {/* <img
               src={`${apiUrl}/resources/images/logo1.png`}
               alt="logoImg"
               width="180px"
               height="160px"
-            />
+            /> */}
             <form className="flex flex-col justify-center items-center w-[60%]">
               <div className="relative z-0 w-full mb-6 group">
                 <input

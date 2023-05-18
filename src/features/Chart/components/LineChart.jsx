@@ -42,7 +42,7 @@ const LineChart = () => {
     },
     credits: false,
     chart: {
-      type: "line",
+      type: "spline",
       backgroundColor: "transparent",
     },
     title: {
@@ -114,7 +114,7 @@ const LineChart = () => {
 
   // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59, hiển thị dữ liệu
   if (!shouldShowData) {
-    return <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu</div>
+    return <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu giao dịch</div>
   }
 
   return (

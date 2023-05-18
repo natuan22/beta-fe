@@ -6,12 +6,12 @@ const TechAndValuation = () => {
   return (
     <>
       <div className='container mx-auto'>
-        <div className="flex justify-around mt-4 bg-[#195070] h-auto items-center rounded-full">
+        <div className="flex justify-around mt-5 bg-[#195070] h-auto items-center rounded-full">
           <NavLink
             to="hieu-suat"
             className={(params) => {
               const classes =
-                " w-2/6 text-white rounded-full no-underline text-center leading-8";
+                " w-2/6 text-white rounded-full no-underline text-center leading-8 text-lg";
               if (params.isActive) {
                 return clsx("bg-[#35ADF2]", classes);
               }
@@ -24,7 +24,7 @@ const TechAndValuation = () => {
             to="dinh-gia"
             className={(params) => {
               const classes =
-                " w-2/6 text-white rounded-full no-underline text-center leading-8";
+                " w-2/6 text-white rounded-full no-underline text-center leading-8 text-lg";
               if (params.isActive) {
                 return clsx("bg-[#35ADF2]", classes);
               }
@@ -37,7 +37,7 @@ const TechAndValuation = () => {
             to="ky-thuat"
             className={(params) => {
               const classes =
-                " w-2/6 text-white rounded-full no-underline text-center leading-8";
+                " w-2/6 text-white rounded-full no-underline text-center leading-8 text-lg";
               if (params.isActive) {
                 return clsx("bg-[#35ADF2]", classes);
               }

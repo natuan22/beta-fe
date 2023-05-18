@@ -154,7 +154,7 @@ const NetVolumeTrade = () => {
         {dataNetVolume.data || dataNetVolume.data?.length ? (
           <HighchartsReact highcharts={Highcharts} options={options} />
         ) : (
-          <div className="mt-6"><Loading /></div>
+          <div className="mt-6 mb-28"><Loading /></div>
         )}
       </div>
     </>

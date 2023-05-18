@@ -163,7 +163,7 @@ const TreeMapSell = () => {
         drillUpButton: {
           events: {
             click: function () {
-              socket.on(`listen-foreign-sell-${socketChanel}`,(newData)=> {
+              socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
                 setDataSocket(newData)
               })
             },
@@ -224,7 +224,7 @@ const TreeMapSell = () => {
           </span>
         </div>
       </div>
-      <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu</div>
+      <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu giao dịch</div>
     </>
   }
 

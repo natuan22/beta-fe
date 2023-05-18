@@ -24,8 +24,8 @@ const InvestorCashFlow = () => {
     return (
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black'>Dòng tiền nhà đầu tư theo các nhóm ngành</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                <span className='dark:text-white text-black sm:text-base xs:text-[14px] xxs:text-[11px] font-semibold'>Dòng tiền nhà đầu tư theo các nhóm ngành</span>
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[1029px] lg:ml-[613px] md:ml-[357px] sm:ml-[14px] xs:ml-[3px] xxs:ml-[5px]`}
                     onChange={(event) => {
                     }}>
                     <option value='0'>1 tháng</option>
@@ -44,7 +44,7 @@ const InvestorCashFlow = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('HSX')
@@ -54,7 +54,7 @@ const InvestorCashFlow = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('HNX')
@@ -64,7 +64,7 @@ const InvestorCashFlow = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('UPCOM')
@@ -75,7 +75,7 @@ const InvestorCashFlow = () => {
                     </button>
                 </span>
             </div>
-            <div className='flex'>
+            <div className='md:flex xxs:block'>
                 <div>
                     <div className="dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-2 mr-4">
                         <button
@@ -83,25 +83,25 @@ const InvestorCashFlow = () => {
                             onClick={() => {
                                 handleClick2(1)
                             }}
-                            className='rounded-tl-xl rounded-bl-xl md:text-[0.8rem] lg:text-[0.9rem]'>Giá trị mua</button>
+                            className='rounded-tl-xl rounded-bl-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Giá trị mua</button>
                         <button
                             style={activeButton2 === 2 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick2(2)
                             }}
-                            className='md:text-[0.8rem] lg:text-[0.9rem]'>Giá trị bán</button>
+                            className='lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Giá trị bán</button>
                         <button
                             style={activeButton2 === 3 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick2(3)
                             }}
-                            className='md:text-[0.8rem] lg:text-[0.9rem]'>Giá trị ròng</button>
+                            className='lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Giá trị ròng</button>
                         <button
                             style={activeButton2 === 4 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick2(4)
                             }}
-                            className='rounded-tr-xl rounded-br-xl md:text-[0.8rem] lg:text-[0.9rem]'>Tổng giá trị GD</button>
+                            className='rounded-tr-xl rounded-br-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Tổng giá trị GD</button>
                     </div>
                 </div>
                 <div>
@@ -111,25 +111,25 @@ const InvestorCashFlow = () => {
                             onClick={() => {
                                 handleClick3(5)
                             }}
-                            className='rounded-tl-xl rounded-bl-xl md:text-[0.8rem] lg:text-[0.9rem]'>Tự doanh</button>
+                            className='rounded-tl-xl rounded-bl-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Tự doanh</button>
                         <button
                             style={activeButton3 === 6 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick3(6)
                             }}
-                            className='md:text-[0.8rem] lg:text-[0.9rem]'>Khối ngoại</button>
+                            className='lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Khối ngoại</button>
                         <button
                             style={activeButton3 === 7 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick3(7)
                             }}
-                            className='md:text-[0.8rem] lg:text-[0.9rem]'>Cá nhân & TC</button>
+                            className='lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Cá nhân & TC</button>
                         <button
                             style={activeButton3 === 8 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick3(8)
                             }}
-                            className='rounded-tr-xl rounded-br-xl md:text-[0.8rem] lg:text-[0.9rem]'>Toàn thị trường</button>
+                            className='rounded-tr-xl rounded-br-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Toàn thị trường</button>
                     </div>
                 </div>
             </div>
