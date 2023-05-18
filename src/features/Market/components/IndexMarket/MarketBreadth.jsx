@@ -107,7 +107,7 @@ const MarketBreadth = () => {
             style: {
                 fontFamily: "Roboto",
             },
-            
+
         },
         title: {
             text: "",
@@ -129,7 +129,7 @@ const MarketBreadth = () => {
             crosshair: {
                 color: "black",
                 width: 3,
-              },
+            },
         },
         yAxis: {
             title: {
@@ -189,7 +189,7 @@ const MarketBreadth = () => {
             series: {
                 marker: {
                     radius: 2, // Giá trị bán kính marker
-                  },
+                },
                 tooltip: {
                     headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",
                     pointFormat:
@@ -265,7 +265,7 @@ const MarketBreadth = () => {
     // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59, hiển thị dữ liệu
     if (!shouldShowData) {
         return <>
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
+            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[16px]">
                 <span className="dark:text-white text-black text-[0.9rem]">
                     Diễn biến độ rộng thị trường
                 </span>
@@ -319,14 +319,14 @@ const MarketBreadth = () => {
                     </button>
                 </span>
             </div>
-            <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu</div>
+            <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu giao dịch</div>
         </>
     }
 
     return (
         <>
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]">
-                <span className="dark:text-white text-black text-[0.9rem]">
+            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[16px]">
+                <span className="dark:text-white text-black text-[0.9rem] font-semibold">
                     Diễn biến độ rộng thị trường
                 </span>
                 <select

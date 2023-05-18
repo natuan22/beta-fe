@@ -125,7 +125,7 @@ const ExchangeableValue = () => {
 
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 dark:text-white text-black'>
+            <div className='font-semibold mt-[3px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 dark:text-white text-black sm:text-base xs:text-sm xxs:text-xs'>
                 Giá trị giao dịch toàn thị trường qua 20 phiên gần nhất
             </div>
             {dataExchangeableValue.length ? (
@@ -136,7 +136,7 @@ const ExchangeableValue = () => {
                 </div>
             ) : (
                 <div id="chart-container">
-                    <div className="h-[333px]">
+                    <div className="h-[286px]">
                         <div className="mt-14"><Loading /></div>
                     </div>
                 </div>

@@ -15,56 +15,56 @@ const IdentifyCash = () => {
     <>
       {/* <Error404 /> */}
       <div className='container mx-auto mt-2'>
-        <div className='flex'>
-          <div className="w-[60%]">
-            <div className="grid grid-cols-2">
-              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100">
+        <div className='lg:block xl:flex'>
+          <div className="xl:w-[60%]">
+            <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
+              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
                 <LiquidityGrowth />
               </div>
 
-              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100">
+              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
                 <TransactionValueRatio />
               </div>
 
-              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100">
+              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
                 <ExchangeableValue />
               </div>
 
-              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100">
+              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
                 <CashFlowRatio />
               </div>
             </div>
           </div>
 
-          <div className='w-[40%]'>
-            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100">
+          <div className='xl:w-[40%]'>
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
               <IndustryCashFlow />
             </div>
           </div>
         </div>
 
-        <div className='flex'>
-          <div className="w-[60%]">
-            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100">
+        <div className='lg:block xl:flex'>
+          <div className="xl:w-[60%]">
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
               <InvestorTransaction />
             </div>
           </div>
 
-          <div className='w-[40%]'>
-            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100">
+          <div className='xl:w-[40%]'>
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
               <TopCashFlow />
             </div>
           </div>
         </div>
 
         <div>
-          <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 h-[500px]'>
+          <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md h-[500px]'>
             <InvestorCashFlow />
           </div>
         </div>
 
         <div>
-          <div className='mx-1 my-2 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100'>
+          <div className='mx-1 my-2 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
             <NetVolumeTrade />
           </div>
         </div>

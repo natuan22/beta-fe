@@ -26,28 +26,30 @@ const InvestorTransaction = () => {
     return (
         <>
             <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
-                <span className="dark:text-white text-black text-[0.9rem]">Diễn biến giao dịch nhóm nhà đầu tư </span>
-                <select
-                    onChange={(e) => {
-                        handleQueryApiInvestorType(e.target.value);
-                    }}
-                    className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#0097B2] border-0`}
-                >
-                    <option value="0">khối ngoại</option>
-                    <option value="1">tự doanh</option>
-                    <option value="2">cá nhân</option>
-                </select>
-                <select
-                    onChange={(e) => {
-                        handleQueryApiType(e.target.value);
-                    }}
-                    className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0`}
-                >
-                    <option value="0">Phiên gần nhất</option>
-                    <option value="1">5 phiên</option>
-                    <option value="2">1 tháng</option>
-                    <option value="3">YtD</option>
-                </select>
+                <span className="dark:text-white text-black text-[0.9rem] font-semibold">Diễn biến giao dịch nhóm nhà đầu tư </span>
+                <div className='md:inline sm:block xs:block text-center'>
+                    <select
+                        onChange={(e) => {
+                            handleQueryApiInvestorType(e.target.value);
+                        }}
+                        className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#0097B2] border-0`}
+                    >
+                        <option value="0">khối ngoại</option>
+                        <option value="1">tự doanh</option>
+                        <option value="2">cá nhân</option>
+                    </select>
+                    <select
+                        onChange={(e) => {
+                            handleQueryApiType(e.target.value);
+                        }}
+                        className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0 xl:ml-[395px] lg:ml-[555px] md:ml-[299px] sm:ml-7 xs:ml-7 xxs:ml-6`}
+                    >
+                        <option value="0">Phiên gần nhất</option>
+                        <option value="1">5 phiên</option>
+                        <option value="2">1 tháng</option>
+                        <option value="3">YtD</option>
+                    </select>
+                </div>
             </div>
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
@@ -62,16 +64,16 @@ const InvestorTransaction = () => {
                                         <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                             Giá
                                         </th>
-                                        <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle px-3 py-3 text-sm font-semibold text-white">
                                             Khối lượng mua (triệu CP)
                                         </th>
-                                        <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle px-3 py-3 text-sm font-semibold text-white">
                                             Giá trị mua (tỷ VNĐ)
                                         </th>
-                                        <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle px-3 py-3 text-sm font-semibold text-white">
                                             Khối lượng bán (triệu CP)
                                         </th>
-                                        <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
+                                        <th className="text-center align-middle px-3 py-3 text-sm font-semibold text-white">
                                             Giá trị bán (tỷ VNĐ)
                                         </th>
                                     </tr>

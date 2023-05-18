@@ -114,39 +114,8 @@ const BarChartLeft = () => {
       },
     ],
   };
-  const currentTime = new Date();
 
-  // Lấy giờ và phút từ currentTime
-  const currentHour = currentTime.getHours();
-  const currentMinute = currentTime.getMinutes();
 
-  // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
-  const shouldShowData = currentHour > 9 || (currentHour === 9 && currentMinute >= 15) || currentHour === 0
-
-  // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59, hiển thị dữ liệu
-  if (!shouldShowData) {
-    return <>
-      <div>
-        <span className="font-semibold uppercase text-sm dark:text-white text-black">
-          Nhóm cổ phiếu dẫn dắt thị trường
-        </span>
-
-        <select
-          className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
-          onChange={(event) => {
-            disconnectSocket(socketOld)
-            setQuery(event.target.value)
-            dispatch(fetchDataBarChartLeft((event.target.value)))
-          }}
-        >
-          <option value="hsx">HSX</option>
-          <option value="hnx">HNX</option>
-          <option value="vn30">VN30</option>
-        </select>
-      </div>
-      <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu</div>
-    </>
-  }
   return (
     <>
       <div>

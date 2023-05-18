@@ -104,7 +104,7 @@ const TableLiquidity = () => {
         </button>
       </div>
       <div>
-        <span className="dark:text-white text-black text-[0.9rem] pl-[2px]">Top đóng góp thanh khoản theo: </span>
+        <span className="dark:text-white text-black text-[0.9rem] pl-[2px] font-semibold">Top đóng góp thanh khoản theo: </span>
         <div className="md:inline lg:block xl:inline 2xl:inline text-center">
           <select
             onChange={(e) => {

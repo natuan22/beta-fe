@@ -72,8 +72,8 @@ const IndustryCashFlow = () => {
     return (
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black'>Dòng tiền theo ngành</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                <span className='dark:text-white text-black xs:text-base xxs:text-sm font-semibold'>Dòng tiền theo ngành</span>
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[266px] lg:ml-[714px] md:ml-[458px] sm:ml-[115px] xs:ml-[65px] xxs:ml-[29px]`}
                     onChange={(event) => {
                         dispatch(fetchDataTopNetBuyIndustry(handleExchange, event.target.value));
                         dispatch(fetchDataIndustryCashFlow(handleExchange, event.target.value));
@@ -102,7 +102,7 @@ const IndustryCashFlow = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>Toàn thị trường
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('HOSE')
@@ -116,7 +116,7 @@ const IndustryCashFlow = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('HNX')
@@ -130,7 +130,7 @@ const IndustryCashFlow = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('UPCOM')
@@ -148,7 +148,7 @@ const IndustryCashFlow = () => {
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-                        <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[529px]">
+                        <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent xl:h-[733px] lg:h-[460px] md:h-[490px] sm:h-[430px] xs:h-[430px] xxs:h-[430px]">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                     <tr>
@@ -203,7 +203,7 @@ const IndustryCashFlow = () => {
                                                             {item.foreignPerChange && item.foreignPerChange.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                         </span>
                                                     </td>
-                                                    <td className={`${color3} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
+                                                    <td className={`${color3} xl:text-left lg:text-center md:text-center align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
                                                         <span className="text-left px-1.5">
                                                             {getIcon(item.retailPerChange)}
                                                         </span>
@@ -258,20 +258,20 @@ const IndustryCashFlow = () => {
             <div className='py-1'>
                 <div className='flex dark:text-white text-black'>
                     <div className='w-3/5'>
-                        <div className='text-[10px] py-2'>TOP NGÀNH KHỐI NGOẠI MUA RÒNG: <span className='font-semibold'>{dataTopNetBuy && dataKhoiNgoai.length > 0 && dataKhoiNgoai[0].industry}</span></div>
-                        <div className='text-[10px] py-2'>TOP NGÀNH TỰ DOANH MUA RÒNG: <span className='font-semibold'>{dataTopNetBuy && dataTuDoanh.length > 0 && dataTuDoanh[0].industry}</span></div>
-                        <div className='text-[10px] py-2'>TOP NGÀNH CÁ NHÂN & TCTN MUA RÒNG: <span className='font-semibold'>{dataTopNetBuy && dataCaNhan.length > 0 && dataCaNhan[0].industry}</span></div>
+                        <div className='text-[10px] py-2'>TOP NGÀNH KHỐI NGOẠI MUA RÒNG: <span className='font-semibold md:inline xs:block'>{dataTopNetBuy && dataKhoiNgoai.length > 0 && dataKhoiNgoai[0].industry}</span></div>
+                        <div className='text-[10px] py-2'>TOP NGÀNH TỰ DOANH MUA RÒNG: <span className='font-semibold md:inline xs:block'>{dataTopNetBuy && dataTuDoanh.length > 0 && dataTuDoanh[0].industry}</span></div>
+                        <div className='text-[10px] py-2'>TOP NGÀNH CÁ NHÂN & TCTN MUA RÒNG: <span className='font-semibold md:inline xs:block'>{dataTopNetBuy && dataCaNhan.length > 0 && dataCaNhan[0].industry}</span></div>
                     </div>
                     <div className='w-2/5'>
                         <div className='grid grid-cols-2'>
-                            <div className='text-[10px] py-2'>GT MUA: <span className='font-semibold'>{dataTopNetBuy && dataKhoiNgoai.length > 0 && (dataKhoiNgoai[0].buyVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
-                            <div className='text-[10px] py-2'>GT BÁN: <span className='font-semibold'>{dataTopNetBuy && dataKhoiNgoai.length > 0 && (dataKhoiNgoai[0].sellVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
+                            <div className='text-[10px] py-2'>GT MUA: <span className='text-green-500 font-semibold md:inline xs:block'>{dataTopNetBuy && dataKhoiNgoai.length > 0 && (dataKhoiNgoai[0].buyVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
+                            <div className='text-[10px] py-2'>GT BÁN: <span className='text-red-500 font-semibold md:inline xs:block'>{dataTopNetBuy && dataKhoiNgoai.length > 0 && (dataKhoiNgoai[0].sellVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
 
-                            <div className='text-[10px] py-2'>GT MUA: <span className='font-semibold'>{dataTopNetBuy && dataTuDoanh.length > 0 && (dataTuDoanh[0].buyVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
-                            <div className='text-[10px] py-2'>GT BÁN: <span className='font-semibold'>{dataTopNetBuy && dataTuDoanh.length > 0 && (dataTuDoanh[0].sellVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
+                            <div className='text-[10px] py-2'>GT MUA: <span className='text-green-500 font-semibold md:inline xs:block'>{dataTopNetBuy && dataTuDoanh.length > 0 && (dataTuDoanh[0].buyVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
+                            <div className='text-[10px] py-2'>GT BÁN: <span className='text-red-500 font-semibold md:inline xs:block'>{dataTopNetBuy && dataTuDoanh.length > 0 && (dataTuDoanh[0].sellVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
 
-                            <div className='text-[10px] py-2'>GT MUA: <span className='font-semibold'>{dataTopNetBuy && dataCaNhan.length > 0 && (dataCaNhan[0].buyVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
-                            <div className='text-[10px] py-2'>GT BÁN: <span className='font-semibold'>{dataTopNetBuy && dataCaNhan.length > 0 && (dataCaNhan[0].sellVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
+                            <div className='text-[10px] py-2'>GT MUA: <span className='text-green-500 font-semibold md:inline xs:block'>{dataTopNetBuy && dataCaNhan.length > 0 && (dataCaNhan[0].buyVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
+                            <div className='text-[10px] py-2'>GT BÁN: <span className='text-red-500 font-semibold md:inline xs:block'>{dataTopNetBuy && dataCaNhan.length > 0 && (dataCaNhan[0].sellVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} tỷ</span></div>
                         </div>
                     </div>
                 </div>

@@ -100,7 +100,7 @@ const Home = () => {
 
           <div className="dark:bg-black bg-white">
             <div>
-              <div className="lg:block xl:flex ">
+              <div className="lg:block xl:flex">
                 <div className="xl:w-[60%]">
                   <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
                     <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
