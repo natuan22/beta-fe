@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import CurrencyFormat from 'react-currency-format';
 import { useSelector } from 'react-redux';
 import Loading from '../utils/Loading';
 
@@ -52,7 +51,7 @@ const RateDetail = () => {
                           {item.name}
                         </th>
                         <td className={`text-center align-middle xxs:text-[10px] text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
-                          <CurrencyFormat value={item.price.toFixed(2)} displayType={'text'} thousandSeparator={true} />
+                          {item.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </td>
                         <td className={`text-center align-middle xxs:text-[10px] text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
                           {item.Day}

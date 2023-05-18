@@ -8,6 +8,12 @@ const initialState = {
   topCashValue: {},
   dataDoRongThiTruong: {},
   dataBienDongThiTruong: {},
+  dataExchangeableValue: {},
+  dataLiquidityGrowth: {},
+  dataTransactionValueRatio: {},
+  dataIndustryCashFlow: {},
+  dataRSI: {},
+  dataTopNetBuyIndustry: {}
 
 };
 
@@ -34,7 +40,24 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === marketType.FETCH_DATA_DIEN_DONG_THI_TRUONG) {
       draft.dataBienDongThiTruong = payload
     }
-   
+    if (type === marketType.FETCH_DATA_EXCHANGEABLE_VALUE) {
+      draft.dataExchangeableValue = payload
+    }
+    if (type === marketType.FETCH_DATA_LIQUIDITY_GROWTH) {
+      draft.dataLiquidityGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_TRANSACTION_VALUE_RATIO) {
+      draft.dataTransactionValueRatio = payload
+    }
+    if (type === marketType.FETCH_DATA_INDUSTRY_CASH_FLOW) {
+      draft.dataIndustryCashFlow = payload
+    }
+    if (type === marketType.FETCH_DATA_RSI) {
+      draft.dataRSI = payload
+    }
+    if (type === marketType.FETCH_DATA_TOP_NET_BUY_INDUSTRY) {
+      draft.dataTopNetBuyIndustry = payload
+    }
   });
 };
 

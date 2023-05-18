@@ -78,7 +78,7 @@ function ThanhKhoan() {
                 data:
                     dataPreviousDay &&
                     dataPreviousDay.length &&
-                    dataPreviousDay.map((item) => [item.time, item.value]),
+                    dataPreviousDay.map((item) => [item.time, +item.value.toFixed(2)]),
                 color: "#ff0000",
                 opacity: "0.9",
                 lineColor: "#ff0000",
@@ -92,7 +92,7 @@ function ThanhKhoan() {
                 data:
                     dataSocket &&
                     dataSocket.length &&
-                    dataSocket.map((item) => [item.time, item.value]),
+                    dataSocket.map((item) => [item.time, +item.value.toFixed(2)]),
                 color: "#2AF371",
                 opacity: "0.7",
                 lineColor: "#2AF371",
