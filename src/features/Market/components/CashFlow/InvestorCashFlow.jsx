@@ -17,7 +17,6 @@ const activeButtonStyle = {
 }
 const InvestorCashFlow = () => {
     const { dataCashFlowInvestor,dataTotalMarket } = useSelector(state => state.market)
-    console.log(dataTotalMarket)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
     console.log(dataCashFlowInvestor)
@@ -48,7 +47,7 @@ const InvestorCashFlow = () => {
             // Lặp qua mảng dữ liệu
             dataCashFlowInvestor.forEach(item => {
               const industry = item.industry;
-              const value = item[param] ;
+              const value = item[param]/1000000000 ;
           
               // Tạo đối tượng mới với key "name" và value là tên ngành
               // cùng key "data" và value là mảng giá trị của ngành
@@ -75,8 +74,8 @@ const InvestorCashFlow = () => {
           }
     }, [param, dataCashFlowInvestor, queryApi])
 
-    // console.log('data', data)
-    // console.log('time', timeLine)
+    console.log('data', data)
+    console.log('time', timeLine)
     // hàm xử lý nút
 
     const handleClick = (button) => { setActiveButton(button) }
@@ -85,6 +84,7 @@ const InvestorCashFlow = () => {
         setActiveButton3(button)
         if (button === 8) {
             setActiveButton2(4)
+            setParam('marketTotalVal')
         }
     }
     // config chart
@@ -126,7 +126,39 @@ const InvestorCashFlow = () => {
 
         series: data,
     };
-
+    // config area chart 
+    const optionAreaChart = {
+        // Cấu hình biểu đồ area stacking
+        chart: {
+          type: 'area',
+          backgroundColor: 'transparent'
+        },
+        title: {
+          text: ''
+        },
+        xAxis: {
+          categories: timeLine
+        },
+        yAxis: {
+          title: {
+            text: 'Giá trị'
+          }
+        },
+        plotOptions: {
+            area: {
+              stacking: 'percent', // Thay đổi giá trị stacking thành 'percent'
+              dataLabels: {
+                enabled: false,
+              },
+            },
+            series: {
+                marker: {
+                  radius: 2, // Giá trị bán kính marker
+                },
+            }
+          },
+        series: data
+      };
 
     return (
         <div>
@@ -265,7 +297,10 @@ const InvestorCashFlow = () => {
                 <div>
                     <HighchartsReact highcharts={Highcharts} options={options} />
                 </div>
-                <div></div>
+                <div>
+                <HighchartsReact highcharts={Highcharts} options={optionAreaChart} />
+
+                </div>
             </div>
         </div>
     )
