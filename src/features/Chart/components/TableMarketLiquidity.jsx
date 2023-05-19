@@ -103,7 +103,7 @@ const TableMarketLiquidity = () => {
                                                         {item.industry}
                                                     </td>
                                                     <td className={`text-center align-middle xxs:text-[9px] text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
-                                                        {item.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                        {(item.value/1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                     </td>
                                                     <td className={`text-center align-middle xxs:text-[9px] text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
                                                         {item.value_change_percent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%

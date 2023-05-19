@@ -52,6 +52,7 @@ import CashFlowAllocation from "./components/CashFlowAllocation";
 import TreeMapSell from "./components/TreeMapSell";
 import TreeMapBuy from "./components/TreeMapBuy";
 import Test from "./components/Test";
+import TestChart from "./components/TestChart";
 
 
 const Home = () => {
@@ -274,6 +275,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
+            <TestChart />
             <Footer />
           </div>
         </div>
