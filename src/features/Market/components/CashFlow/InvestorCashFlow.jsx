@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataCashFlowInvestor, fetchDataTotalMarket } from '../../thunk'
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
+import moment from 'moment';
+import Loading from '../../../Chart/utils/Loading';
 const buttonStyle = {
     backgroundColor: 'transparent',
     color: '#fff',
@@ -16,7 +18,7 @@ const activeButtonStyle = {
     color: '#fff',
 }
 const InvestorCashFlow = () => {
-    const { dataCashFlowInvestor,dataTotalMarket } = useSelector(state => state.market)
+    const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
     const dispatch = useDispatch()
@@ -32,6 +34,7 @@ const InvestorCashFlow = () => {
     })
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
+
     useEffect(() => {
         dispatch(fetchDataCashFlowInvestor(queryApi.type, queryApi.investorType, queryApi.exchange))
         dispatch(fetchDataTotalMarket(queryApi.exchange, queryApi.type))
@@ -40,7 +43,7 @@ const InvestorCashFlow = () => {
 
     useEffect(() => {
         if (dataCashFlowInvestor?.length > 0 || dataTotalMarket?.length > 0) {
-            const uniqueDates = [...new Set(dataCashFlowInvestor.map(item => item.date))];
+            const uniqueDates = [...new Set(dataCashFlowInvestor.map(item => moment(item.date).format('DD/MM')))];
             setTimeLine(uniqueDates)
             // Khởi tạo đối tượng kết quả là một mảng rỗng
             const result = [];
@@ -75,8 +78,8 @@ const InvestorCashFlow = () => {
         }
     }, [param, dataCashFlowInvestor, queryApi])
 
-    console.log('data', data)
-    console.log('time', timeLine)
+    // console.log('data', data)
+    // console.log('time', timeLine)
     // hàm xử lý nút
 
     const handleClick = (button) => { setActiveButton(button) }
@@ -106,7 +109,6 @@ const InvestorCashFlow = () => {
             labels: {
                 style: {
                     color: localStorage.getItem('color'),
-                    fontSize: '9px',
                 },
             },
         },
@@ -124,7 +126,6 @@ const InvestorCashFlow = () => {
             labels: {
                 style: {
                     color: localStorage.getItem('color'),
-                    fontSize: '9px',
                 },
             },
         },
@@ -147,38 +148,62 @@ const InvestorCashFlow = () => {
         series: data,
     };
     // config area chart 
+    // Cấu hình biểu đồ area stacking
     const optionAreaChart = {
-        // Cấu hình biểu đồ area stacking
+        accessibility: {
+            enabled: false,
+        },
+        credits: false,
         chart: {
-          type: 'area',
-          backgroundColor: 'transparent'
+            type: 'area',
+            backgroundColor: 'transparent'
+        },
+        legend: {
+            enabled: true,
+            itemStyle: {
+                color: localStorage.getItem('color'),
+                fontWeight: 'bold'
+            }
         },
         title: {
-          text: ''
+            text: ''
         },
         xAxis: {
-          categories: timeLine
+            categories: timeLine,
+            labels: {
+                style: {
+                    color: localStorage.getItem('color'),
+                },
+            },
         },
         yAxis: {
-          title: {
-            text: 'Giá trị'
-          }
+            title: {
+                text: 'Giá trị',
+                style: {
+                    color: localStorage.getItem('color'),
+                },
+            },
+            labels: {
+                style: {
+                    color: localStorage.getItem('color'),
+                },
+            },
         },
         plotOptions: {
             area: {
-              stacking: 'percent', // Thay đổi giá trị stacking thành 'percent'
-              dataLabels: {
-                enabled: false,
-              },
+                stacking: 'percent', // Thay đổi giá trị stacking thành 'percent'
+                dataLabels: {
+                    enabled: false,
+                },
             },
             series: {
                 marker: {
-                  radius: 2, // Giá trị bán kính marker
+                    radius: 2, // Giá trị bán kính marker
                 },
             }
-          },
+        },
         series: data
-      };
+    };
 
     return (
         <div>
@@ -314,13 +339,19 @@ const InvestorCashFlow = () => {
                 </div>
             </div>
             <div>
-                <div>
-                    <HighchartsReact highcharts={Highcharts} options={options} />
-                </div>
-                <div>
-                <HighchartsReact highcharts={Highcharts} options={optionAreaChart} />
+                {dataCashFlowInvestor.length || dataTotalMarket.length ? (
+                    <>
+                        <div>
+                            <HighchartsReact highcharts={Highcharts} options={options} />
+                        </div>
+                        <div>
+                            <HighchartsReact highcharts={Highcharts} options={optionAreaChart} />
+                        </div>
+                    </>
+                ) : (
+                    <div className="mt-12 mb-12"><Loading /></div>
+                )}
 
-                </div>
             </div>
         </div>
     )

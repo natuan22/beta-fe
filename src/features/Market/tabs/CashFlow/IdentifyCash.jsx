@@ -13,7 +13,6 @@ import NetVolumeTrade from '../../../Chart/components/NetVolumeTrade'
 const IdentifyCash = () => {
   return (
     <>
-      {/* <Error404 /> */}
       <div className='container mx-auto mt-2'>
         <div className='lg:block xl:flex'>
           <div className="xl:w-[60%]">
@@ -65,7 +64,7 @@ const IdentifyCash = () => {
 
         <div>
           <div className='mx-1 my-2 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-            {/* <NetVolumeTrade /> */}
+            <NetVolumeTrade />
           </div>
         </div>
       </div>
