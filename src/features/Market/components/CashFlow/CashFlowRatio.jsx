@@ -236,7 +236,7 @@ const CashFlowRatio = () => {
             },
         ],
     };
-
+    
     return (
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>

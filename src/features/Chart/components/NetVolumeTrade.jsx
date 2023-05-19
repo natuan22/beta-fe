@@ -152,7 +152,7 @@ const NetVolumeTrade = () => {
           </select>
         </div>
         {dataNetVolume.data || dataNetVolume.data?.length ? (
-          <HighchartsReact highcharts={Highcharts} options={options} />
+          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
         ) : (
           <div className="mt-6 mb-28"><Loading /></div>
         )}

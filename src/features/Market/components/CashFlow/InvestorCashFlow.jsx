@@ -341,11 +341,11 @@ const InvestorCashFlow = () => {
             <div>
                 {dataCashFlowInvestor.length || dataTotalMarket.length ? (
                     <>
-                        <div>
-                            <HighchartsReact highcharts={Highcharts} options={options} />
+                        <div className='h-[450px]'>
+                            <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                         </div>
-                        <div>
-                            <HighchartsReact highcharts={Highcharts} options={optionAreaChart} />
+                        <div className='h-[450px]'>
+                            <HighchartsReact highcharts={Highcharts} options={optionAreaChart} containerProps={{ style: { height: '100%', width: '100%' } }} />
                         </div>
                     </>
                 ) : (
