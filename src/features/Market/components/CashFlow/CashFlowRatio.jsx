@@ -65,10 +65,10 @@ const CashFlowRatio = () => {
 
         switch (type) {
             case 0:
-                tuDoanhPercent.push(+percent.toFixed(2))
+                khoiNgoaiPercent.push(+percent.toFixed(2))
                 break;
             case 1:
-                khoiNgoaiPercent.push(+percent.toFixed(2))
+                tuDoanhPercent.push(+percent.toFixed(2))
                 break;
             case 2:
                 caNhanPercent.push(+percent.toFixed(2))
