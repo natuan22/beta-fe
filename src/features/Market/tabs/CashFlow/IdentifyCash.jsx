@@ -58,14 +58,14 @@ const IdentifyCash = () => {
         </div>
 
         <div>
-          <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md h-[500px]'>
+          <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
             <InvestorCashFlow />
           </div>
         </div>
 
         <div>
           <div className='mx-1 my-2 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-            <NetVolumeTrade />
+            {/* <NetVolumeTrade /> */}
           </div>
         </div>
       </div>
