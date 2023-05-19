@@ -104,5 +104,14 @@ export const marketServices = {
                 exchange
             }
         })
+    },
+    fetchDataTotalMarket: (exchange, type) => {
+        return https.get('api/v1/cash-flow/market-total-value', {
+            params: {
+                exchange,
+                type
+            }
+        })
     }
+
 }
