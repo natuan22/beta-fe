@@ -130,7 +130,7 @@ const ExchangeableValue = () => {
             </div>
             {dataExchangeableValue.length ? (
                 <div id="chart-container">
-                    <div className="h-[333px] mt-3">
+                    <div className="lg:h-[433px] xl:h-[333px] 2xl:h-[333px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 </div>

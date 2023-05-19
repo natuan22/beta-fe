@@ -275,7 +275,7 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-            <TestChart />
+            {/* <TestChart /> */}
             <Footer />
           </div>
         </div>

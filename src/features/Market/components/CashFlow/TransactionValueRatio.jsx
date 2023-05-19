@@ -33,6 +33,9 @@ const TransactionValueRatio = () => {
     const options = {
         accessibility: {
             enabled: false,
+            point: {
+                valueSuffix: '%'
+            }
         },
         credits: false,
         chart: {
@@ -48,11 +51,7 @@ const TransactionValueRatio = () => {
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
-        accessibility: {
-            point: {
-                valueSuffix: '%'
-            }
-        },
+
         plotOptions: {
             pie: {
                 allowPointSelect: true,
