@@ -48,7 +48,7 @@ const InvestorCashFlow = () => {
     useEffect(() => {
         if (dataCashFlowInvestor?.length > 0 || dataTotalMarket?.length > 0) {
             setDataToMap(dataCashFlowInvestor)
-            const uniqueDates = [...new Set(dataToMap?.map(item => item.date))];
+            const uniqueDates = [...new Set(dataToMap?.map(item => moment(item.date).format('DD/MM')))];
             setTimeLine(uniqueDates)
             // Khởi tạo đối tượng kết quả là một mảng rỗng
             const result = [];
