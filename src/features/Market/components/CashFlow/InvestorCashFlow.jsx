@@ -88,11 +88,11 @@ const InvestorCashFlow = () => {
             // Khởi tạo biến tổng giá trị và giá trị lớn nhất
             let totalValue = 0;
             let maxTotalValue = 0;
-            
+
             // Khởi tạo biến tổng giá trị âm và dương (chỉ áp dụng khi param là 'netVal')
             let negativeTotalValue = 0;
             let positiveTotalValue = 0;
-            let maxPostiveValue =0
+            let maxPostiveValue = 0
             let minNegativeValue = 0
             dataToMap?.forEach(item => {
                 const value = item[param] / 1000000000; // Chuyển đổi giá trị thành tỷ đồng
@@ -114,10 +114,10 @@ const InvestorCashFlow = () => {
                 if (totalValue > maxTotalValue) {
                     maxTotalValue = totalValue;
                 }
-                if(negativeTotalValue < minNegativeValue){
+                if (negativeTotalValue < minNegativeValue) {
                     minNegativeValue = negativeTotalValue
                 }
-                if(positiveTotalValue > maxPostiveValue ){
+                if (positiveTotalValue > maxPostiveValue) {
                     maxPostiveValue = positiveTotalValue
                 }
             });
@@ -181,7 +181,7 @@ const InvestorCashFlow = () => {
             },
         },
         yAxis: {
-            min: minValue ,
+            // min: minValue ,
             title: {
                 text: 'Giá trị',
                 style: {
@@ -365,7 +365,7 @@ const InvestorCashFlow = () => {
                             style={activeButton2 === 4 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick2(4)
-                                setParam('marketTotalVal')
+                                setParam('transVal')
                             }}
                             className='rounded-tr-xl rounded-br-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Tổng giá trị GD</button>
                     </div>
