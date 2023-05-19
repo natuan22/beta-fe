@@ -96,12 +96,20 @@ export const marketServices = {
             }
         })
     },
-    fetchDataCashFlowInvestor: (type ,investorType ,exchange ) => {
-        return https.get('api/v1/cash-flow/investor-cash-flow-by-industry',{
+    fetchDataCashFlowInvestor: (type, investorType, exchange) => {
+        return https.get('api/v1/cash-flow/investor-cash-flow-by-industry', {
             params: {
                 type,
                 investorType,
                 exchange
+            }
+        })
+    },
+    fetchDataCashFlowRatio: (exchange, type) => {
+        return https.get('api/v1/cash-flow/investor-transaction-cash-flow-ratio', {
+            params: {
+                exchange,
+                type
             }
         })
     }
