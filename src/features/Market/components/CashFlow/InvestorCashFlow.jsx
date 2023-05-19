@@ -18,6 +18,8 @@ const activeButtonStyle = {
 const InvestorCashFlow = () => {
     const { dataCashFlowInvestor,dataTotalMarket } = useSelector(state => state.market)
     const [data, setData] = useState()
+    const [dataToMap, setDataToMap] = useState()
+    const [dataAbs, setDataAbs] = useState()
     const [timeLine, setTimeLine] = useState()
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all');
@@ -40,40 +42,51 @@ const InvestorCashFlow = () => {
 
     useEffect(() => {
         if (dataCashFlowInvestor?.length > 0 || dataTotalMarket?.length > 0) {
-            const uniqueDates = [...new Set(dataCashFlowInvestor.map(item => item.date))];
+            setDataToMap(dataCashFlowInvestor)
+            const uniqueDates = [...new Set(dataToMap?.map(item => item.date))];
             setTimeLine(uniqueDates)
             // Khởi tạo đối tượng kết quả là một mảng rỗng
             const result = [];
-
+            const resultAbs = []
             // Lặp qua mảng dữ liệu
-            dataCashFlowInvestor.forEach(item => {
+            dataToMap?.forEach(item => {
                 const industry = item.industry;
-                const value = +(item[param] / 1000000000).toFixed(2);
-
+                const value = (item[param] / 1000000000);
                 // Tạo đối tượng mới với key "name" và value là tên ngành
                 // cùng key "data" và value là mảng giá trị của ngành
                 const newObj = {
                     name: industry,
                     data: [value],
                 };
-
+                const newObjAbs = {
+                    name: industry,
+                    data: [value],
+                };
                 // Tìm xem ngành đã tồn tại trong đối tượng kết quả hay chưa
                 const existingObj = result.find(obj => obj.name === industry);
-
-                if (existingObj) {
+                const existingObjAbs = resultAbs.find(obj => obj.name === industry);
+                 
+                if (existingObj ) {
                     // Nếu ngành đã tồn tại, thêm giá trị vào mảng "data" của ngành đó
+                    existingObjAbs.data.push(Math.abs(value));
                     existingObj.data.push(value);
                 } else {
                     // Nếu ngành chưa tồn tại, thêm đối tượng mới vào mảng kết quả
+                    resultAbs.push(newObjAbs);
                     result.push(newObj);
                 }
+
+             
             });
 
             // Gán mảng kết quả vào biến "output"
             const output = result;
-            setData(output);
+            const outputAbs = resultAbs  
+              
+            setData(output)  
+            setDataAbs(outputAbs) 
         }
-    }, [param, dataCashFlowInvestor, queryApi])
+    }, [param, dataCashFlowInvestor, queryApi, dataToMap])
 
     console.log('data', data)
     console.log('time', timeLine)
@@ -111,7 +124,7 @@ const InvestorCashFlow = () => {
             },
         },
         yAxis: {
-            min: 0,
+            min: -30,
             title: {
                 text: 'Giá trị',
                 style: {
@@ -177,7 +190,7 @@ const InvestorCashFlow = () => {
                 },
             }
           },
-        series: data
+        series: dataAbs
       };
 
     return (
@@ -307,7 +320,7 @@ const InvestorCashFlow = () => {
                             onClick={() => {
                                 handleClick3(8)
                                 setCanTouch(true)
-                                setData(dataTotalMarket)
+                                setDataToMap(dataTotalMarket)
                             }}
                             className='rounded-tr-xl rounded-br-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Toàn thị trường</button>
                     </div>
