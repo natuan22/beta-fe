@@ -73,7 +73,7 @@ const IndustryCashFlow = () => {
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black xs:text-base xxs:text-sm font-semibold'>Dòng tiền theo ngành</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[266px] lg:ml-[714px] md:ml-[458px] sm:ml-[115px] xs:ml-[65px] xxs:ml-[29px]`}
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[256px] lg:ml-[704px] md:ml-[448px] sm:ml-[105px] xs:ml-[55px] xxs:ml-[19px]`}
                     onChange={(event) => {
                         dispatch(fetchDataTopNetBuyIndustry(handleExchange, event.target.value));
                         dispatch(fetchDataIndustryCashFlow(handleExchange, event.target.value));
