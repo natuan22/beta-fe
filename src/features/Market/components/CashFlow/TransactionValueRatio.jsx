@@ -26,8 +26,8 @@ const TransactionValueRatio = () => {
         }
     }, [dataTransactionValueRatio]);
 
-    const dataTuDoanh = Array.isArray(data) && data.filter(transaction => transaction.type === 0);
-    const dataKhoiNgoai = Array.isArray(data) && data.filter(transaction => transaction.type === 1);
+    const dataKhoiNgoai = Array.isArray(data) && data.filter(transaction => transaction.type === 0);
+    const dataTuDoanh = Array.isArray(data) && data.filter(transaction => transaction.type === 1);
     const dataCaNhan = Array.isArray(data) && data.filter(transaction => transaction.type === 2);
 
     const options = {

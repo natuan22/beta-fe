@@ -16,11 +16,9 @@ const activeButtonStyle = {
     color: '#fff',
 }
 const InvestorCashFlow = () => {
-    const { dataCashFlowInvestor,dataTotalMarket } = useSelector(state => state.market)
-    console.log(dataTotalMarket)
+    const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
-    console.log(dataCashFlowInvestor)
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all');
     const [activeButton2, setActiveButton2] = useState(1)
@@ -32,47 +30,49 @@ const InvestorCashFlow = () => {
         investorType: 0,
         exchange: 'all'
     })
-  
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
     useEffect(() => {
         dispatch(fetchDataCashFlowInvestor(queryApi.type, queryApi.investorType, queryApi.exchange))
         dispatch(fetchDataTotalMarket(queryApi.exchange, queryApi.type))
+        setColorText(color);
     }, [queryApi, dispatch])
 
     useEffect(() => {
-        if (dataCashFlowInvestor?.length > 0 || dataTotalMarket?.length >0) {
+        if (dataCashFlowInvestor?.length > 0 || dataTotalMarket?.length > 0) {
             const uniqueDates = [...new Set(dataCashFlowInvestor.map(item => item.date))];
             setTimeLine(uniqueDates)
             // Khởi tạo đối tượng kết quả là một mảng rỗng
             const result = [];
-          
+
             // Lặp qua mảng dữ liệu
             dataCashFlowInvestor.forEach(item => {
-              const industry = item.industry;
-              const value = item[param] ;
-          
-              // Tạo đối tượng mới với key "name" và value là tên ngành
-              // cùng key "data" và value là mảng giá trị của ngành
-              const newObj = {
-                name: industry,
-                data: [value],
-              };
-          
-              // Tìm xem ngành đã tồn tại trong đối tượng kết quả hay chưa
-              const existingObj = result.find(obj => obj.name === industry);
-          
-              if (existingObj) {
-                // Nếu ngành đã tồn tại, thêm giá trị vào mảng "data" của ngành đó
-                existingObj.data.push(value);
-              } else {
-                // Nếu ngành chưa tồn tại, thêm đối tượng mới vào mảng kết quả
-                result.push(newObj);
-              }
+                const industry = item.industry;
+                const value = +(item[param] / 1000000000).toFixed(2);
+
+                // Tạo đối tượng mới với key "name" và value là tên ngành
+                // cùng key "data" và value là mảng giá trị của ngành
+                const newObj = {
+                    name: industry,
+                    data: [value],
+                };
+
+                // Tìm xem ngành đã tồn tại trong đối tượng kết quả hay chưa
+                const existingObj = result.find(obj => obj.name === industry);
+
+                if (existingObj) {
+                    // Nếu ngành đã tồn tại, thêm giá trị vào mảng "data" của ngành đó
+                    existingObj.data.push(value);
+                } else {
+                    // Nếu ngành chưa tồn tại, thêm đối tượng mới vào mảng kết quả
+                    result.push(newObj);
+                }
             });
-          
+
             // Gán mảng kết quả vào biến "output"
             const output = result;
             setData(output);
-          }
+        }
     }, [param, dataCashFlowInvestor, queryApi])
 
     // console.log('data', data)
@@ -102,18 +102,37 @@ const InvestorCashFlow = () => {
         },
         xAxis: {
             categories: timeLine,
+            labels: {
+                style: {
+                    color: localStorage.getItem('color'),
+                    fontSize: '9px',
+                },
+            },
         },
         yAxis: {
             min: 0,
             title: {
                 text: 'Giá trị',
+                style: {
+                    color: localStorage.getItem('color'),
+                },
             },
             stackLabels: {
                 enabled: false,
             },
+            labels: {
+                style: {
+                    color: localStorage.getItem('color'),
+                    fontSize: '9px',
+                },
+            },
         },
         legend: {
             enabled: true,
+            itemStyle: {
+                color: localStorage.getItem('color'),
+                fontWeight: 'bold'
+            }
         },
         plotOptions: {
             column: {
