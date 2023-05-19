@@ -158,17 +158,29 @@ export const fetchDataTopNetBuyIndustry = (exchange, type) => async (dispatch) =
 }
 
 
-export const fetchDataCashFlowInvestor = (type ,investorType ,exchange) => async (dispatch) => {
-    try{
+export const fetchDataCashFlowInvestor = (type, investorType, exchange) => async (dispatch) => {
+    try {
         const res = await marketServices.fetchDataCashFlowInvestor(type, investorType, exchange)
-        console.log(res.data.data)
         dispatch({
             type: marketType.FETCH_DATA_CASHFLOW_INVESTOR,
             payload: res.data.data
         })
-    } catch(err) {
+    } catch (err) {
         console.log(err)
     }
+}
+
+export const fetchDataCashFlowRatio = (exchange, type) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataCashFlowRatio(exchange, type)
+        dispatch({
+            type: marketType.FETCH_DATA_CASHFLOW_RATIO,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+
 } 
 
 export const fetchDataTotalMarket = (exchange, type) => async (dispatch) => {
@@ -182,4 +194,5 @@ export const fetchDataTotalMarket = (exchange, type) => async (dispatch) => {
     } catch(err){
         console.log(err)
     }
+
 }

@@ -14,8 +14,13 @@ const initialState = {
   dataIndustryCashFlow: {},
   dataRSI: {},
   dataTopNetBuyIndustry: {},
-  dataCashFlowInvestor:{},
+
+  
   dataTotalMarket:{}
+
+  dataCashFlowInvestor: {},
+  dataCashFlowRatio: {},
+
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -59,11 +64,16 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === marketType.FETCH_DATA_TOP_NET_BUY_INDUSTRY) {
       draft.dataTopNetBuyIndustry = payload
     }
-    if(type === marketType.FETCH_DATA_CASHFLOW_INVESTOR) {
+    if (type === marketType.FETCH_DATA_CASHFLOW_INVESTOR) {
       draft.dataCashFlowInvestor = payload
     }
+
     if(type === marketType.FETCH_DATA_TOTAL_MARKET) {
       draft.dataTotalMarket = payload
+
+    if (type === marketType.FETCH_DATA_CASHFLOW_RATIO) {
+      draft.dataCashFlowRatio = payload
+
     }
   });
 };

@@ -96,8 +96,8 @@ export const marketServices = {
             }
         })
     },
-    fetchDataCashFlowInvestor: (type ,investorType ,exchange ) => {
-        return https.get('api/v1/cash-flow/investor-cash-flow-by-industry',{
+    fetchDataCashFlowInvestor: (type, investorType, exchange) => {
+        return https.get('api/v1/cash-flow/investor-cash-flow-by-industry', {
             params: {
                 type,
                 investorType,
@@ -105,8 +105,17 @@ export const marketServices = {
             }
         })
     },
+
     fetchDataTotalMarket: (exchange, type) => {
         return https.get('api/v1/cash-flow/market-total-value', {
+params: {
+                exchange,
+                type
+            }
+        }},
+    fetchDataCashFlowRatio: (exchange, type) => {
+        return https.get('api/v1/cash-flow/investor-transaction-cash-flow-ratio', {
+
             params: {
                 exchange,
                 type
