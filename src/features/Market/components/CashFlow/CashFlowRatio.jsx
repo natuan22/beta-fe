@@ -65,13 +65,13 @@ const CashFlowRatio = () => {
 
         switch (type) {
             case 0:
-                khoiNgoaiPercent.push(+percent.toFixed(2))
+                khoiNgoaiPercent.push(+percent.toFixed(1))
                 break;
             case 1:
-                tuDoanhPercent.push(+percent.toFixed(2))
+                tuDoanhPercent.push(+percent.toFixed(1))
                 break;
             case 2:
-                caNhanPercent.push(+percent.toFixed(2))
+                caNhanPercent.push(+percent.toFixed(1))
                 break;
             default:
                 break;
@@ -299,7 +299,7 @@ const CashFlowRatio = () => {
                 </span>
             </div>
             {dataCashFlowRatio.length ? (
-                <div className="xl:h-[338px] 2xl:h-[338px]">
+                <div className="xl:h-[300px] 2xl:h-[300px]">
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
