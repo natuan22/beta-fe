@@ -180,4 +180,19 @@ export const fetchDataCashFlowRatio = (exchange, type) => async (dispatch) => {
     } catch (err) {
         console.log(err)
     }
+
+} 
+
+export const fetchDataTotalMarket = (exchange, type) => async (dispatch) => {
+    try{
+        const res = await marketServices.fetchDataTotalMarket(exchange, type)
+        console.log(res.data)
+        dispatch({
+            type: marketType.FETCH_DATA_TOTAL_MARKET,
+            payload: res.data.data
+        })
+    } catch(err){
+        console.log(err)
+    }
+
 }

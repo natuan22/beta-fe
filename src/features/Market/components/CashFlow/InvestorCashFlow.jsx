@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchDataCashFlowInvestor } from '../../thunk'
+import { fetchDataCashFlowInvestor, fetchDataTotalMarket } from '../../thunk'
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 const buttonStyle = {
@@ -16,7 +16,8 @@ const activeButtonStyle = {
     color: '#fff',
 }
 const InvestorCashFlow = () => {
-    const { dataCashFlowInvestor } = useSelector(state => state.market)
+    const { dataCashFlowInvestor,dataTotalMarket } = useSelector(state => state.market)
+    console.log(dataTotalMarket)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
     console.log(dataCashFlowInvestor)
@@ -31,39 +32,51 @@ const InvestorCashFlow = () => {
         investorType: 0,
         exchange: 'all'
     })
-
+  
     useEffect(() => {
         dispatch(fetchDataCashFlowInvestor(queryApi.type, queryApi.investorType, queryApi.exchange))
+        dispatch(fetchDataTotalMarket(queryApi.exchange, queryApi.type))
     }, [queryApi, dispatch])
 
     useEffect(() => {
-        if (dataCashFlowInvestor?.length > 0) {
+        if (dataCashFlowInvestor?.length > 0 || dataTotalMarket?.length >0) {
             const uniqueDates = [...new Set(dataCashFlowInvestor.map(item => item.date))];
             setTimeLine(uniqueDates)
-            const result = {};
-            if (dataCashFlowInvestor?.length > 0)
-                // Lặp qua mảng dữ liệu
-                dataCashFlowInvestor.forEach(item => {
-                    const industry = item.industry;
-                    const value = (item[param] / 1000000000);
+            // Khởi tạo đối tượng kết quả là một mảng rỗng
+            const result = [];
+          
+            // Lặp qua mảng dữ liệu
+            dataCashFlowInvestor.forEach(item => {
+              const industry = item.industry;
+              const value = item[param] ;
+          
+              // Tạo đối tượng mới với key "name" và value là tên ngành
+              // cùng key "data" và value là mảng giá trị của ngành
+              const newObj = {
+                name: industry,
+                data: [value],
+              };
+          
+              // Tìm xem ngành đã tồn tại trong đối tượng kết quả hay chưa
+              const existingObj = result.find(obj => obj.name === industry);
+          
+              if (existingObj) {
+                // Nếu ngành đã tồn tại, thêm giá trị vào mảng "data" của ngành đó
+                existingObj.data.push(value);
+              } else {
+                // Nếu ngành chưa tồn tại, thêm đối tượng mới vào mảng kết quả
+                result.push(newObj);
+              }
+            });
+          
+            // Gán mảng kết quả vào biến "output"
+            const output = result;
+            setData(output);
+          }
+    }, [param, dataCashFlowInvestor, queryApi])
 
-                    // Nếu industry chưa tồn tại trong đối tượng kết quả, khởi tạo mảng rỗng
-                    if (!result[industry]) {
-                        result[industry] = [];
-                    }
-
-                    // Thêm giá trị vào mảng tương ứng với industry
-                    result[industry].push(value);
-                });
-
-            // Tạo mảng các đối tượng với key "name" và value là mảng giá trị của ngành
-            const output = Object.entries(result).map(([name, value]) => ({ name, value }));
-            setData(output)
-        }
-    }, [param])
-
-    console.log('data', data)
-    console.log('time', timeLine)
+    // console.log('data', data)
+    // console.log('time', timeLine)
     // hàm xử lý nút
 
     const handleClick = (button) => { setActiveButton(button) }
@@ -96,7 +109,7 @@ const InvestorCashFlow = () => {
                 text: 'Giá trị',
             },
             stackLabels: {
-                enabled: true,
+                enabled: false,
             },
         },
         legend: {
@@ -106,10 +119,11 @@ const InvestorCashFlow = () => {
             column: {
                 stacking: 'normal',
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                 },
             },
         },
+
         series: data,
     };
 
@@ -144,7 +158,7 @@ const InvestorCashFlow = () => {
                     <button
                         onClick={() => {
                             handleClick('HSX')
-                            setQueryApi({ ...queryApi, exchange: "hsx" })
+                            setQueryApi({ ...queryApi, exchange: "hose" })
                         }}
                         className={activeButton === 'HSX'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
@@ -155,7 +169,7 @@ const InvestorCashFlow = () => {
                     <button
                         onClick={() => {
                             handleClick('HNX')
-                            setQueryApi({ ...queryApi, exchange: "hsx" })
+                            setQueryApi({ ...queryApi, exchange: "hnx" })
                         }}
                         className={activeButton === 'HNX'
                             ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
@@ -182,6 +196,7 @@ const InvestorCashFlow = () => {
                             style={activeButton2 === 1 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick2(1)
+                                setParam('buyVal')
                             }}
                             className='rounded-tl-xl rounded-bl-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Giá trị mua</button>
                         <button
@@ -189,6 +204,7 @@ const InvestorCashFlow = () => {
                             style={activeButton2 === 2 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick2(2)
+                                setParam('sellVal')
                             }}
                             className='lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Giá trị bán</button>
                         <button
@@ -196,12 +212,14 @@ const InvestorCashFlow = () => {
                             style={activeButton2 === 3 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick2(3)
+                                setParam('netVal')
                             }}
                             className='lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Giá trị ròng</button>
                         <button
                             style={activeButton2 === 4 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick2(4)
+                                setParam('marketTotalVal')
                             }}
                             className='rounded-tr-xl rounded-br-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Tổng giá trị GD</button>
                     </div>
@@ -229,7 +247,7 @@ const InvestorCashFlow = () => {
                             onClick={() => {
                                 handleClick3(7)
                                 setCanTouch(false)
-                                setQueryApi({ ...queryApi, investorType: 1 })
+                                setQueryApi({ ...queryApi, investorType: 2 })
                             }}
                             className='lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Cá nhân & TC</button>
                         <button
@@ -237,6 +255,7 @@ const InvestorCashFlow = () => {
                             onClick={() => {
                                 handleClick3(8)
                                 setCanTouch(true)
+                                setData(dataTotalMarket)
                             }}
                             className='rounded-tr-xl rounded-br-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Toàn thị trường</button>
                     </div>
