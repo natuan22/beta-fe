@@ -150,7 +150,7 @@ const InvestorCashFlow = () => {
                 <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
-                            handleClick('HSX')
+                            handleClick('HNX')
                             setQueryApi({ ...queryApi, exchange: "hsx" })
                         }}
                         className={activeButton === 'HNX'
@@ -223,7 +223,7 @@ const InvestorCashFlow = () => {
                         <button
                             style={activeButton3 === 7 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
-                                handleClick3(6)
+                                handleClick3(7)
                                 setCanTouch(false)
                                 setQueryApi({ ...queryApi, investorType: 1 })
                             }}
