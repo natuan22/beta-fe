@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataCashFlowInvestor, fetchDataTotalMarket } from '../../thunk'
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
-import moment from 'moment';
 import Loading from '../../../Chart/utils/Loading';
 const buttonStyle = {
     backgroundColor: 'transparent',
@@ -19,18 +18,18 @@ const activeButtonStyle = {
 }
 const InvestorCashFlow = () => {
     const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
+    console.log("dataTotalMarket",dataTotalMarket)
     const [data, setData] = useState()
     const [dataToMap, setDataToMap] = useState()
     const [dataAbs, setDataAbs] = useState()
     const [timeLine, setTimeLine] = useState()
+    const [isAllMarket, setIsAllMarket] = useState(false)
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all');
     const [activeButton2, setActiveButton2] = useState(1)
     const [activeButton3, setActiveButton3] = useState(5)
     const [canTouch, setCanTouch] = useState(false)
     const [param, setParam] = useState('buyVal')
-    const [minValue, setMinValue] = useState(0)
-    const [maxValue, setMaxValue] = useState(0)
     const [queryApi, setQueryApi] = useState({
         type: 2,
         investorType: 0,
@@ -46,7 +45,7 @@ const InvestorCashFlow = () => {
     }, [queryApi, dispatch])
 
     useEffect(() => {
-        if (dataCashFlowInvestor?.length > 0 || dataTotalMarket?.length > 0) {
+        if (!isAllMarket && dataCashFlowInvestor?.length > 0 ) {
             setDataToMap(dataCashFlowInvestor)
             const uniqueDates = [...new Set(dataToMap?.map(item => moment(item.date).format('DD/MM')))];
             setTimeLine(uniqueDates)
@@ -57,15 +56,18 @@ const InvestorCashFlow = () => {
             dataToMap?.forEach(item => {
                 const industry = item.industry;
                 const value = (item[param] / 1000000000);
+                const color = item.color
                 // Tạo đối tượng mới với key "name" và value là tên ngành
                 // cùng key "data" và value là mảng giá trị của ngành
                 const newObj = {
                     name: industry,
                     data: [value],
+                    color
                 };
                 const newObjAbs = {
                     name: industry,
-                    data: [value],
+                    data: [Math.abs(value)],
+                    color
                 };
                 // Tìm xem ngành đã tồn tại trong đối tượng kết quả hay chưa
                 const existingObj = result.find(obj => obj.name === industry);
@@ -73,8 +75,6 @@ const InvestorCashFlow = () => {
 
                 if (existingObj) {
                     // Nếu ngành đã tồn tại, thêm giá trị vào mảng "data" của ngành đó
-
-
                     existingObjAbs.data.push(Math.abs(value));
                     existingObj.data.push(value);
                 } else {
@@ -82,61 +82,51 @@ const InvestorCashFlow = () => {
                     resultAbs.push(newObjAbs);
                     result.push(newObj);
                 }
-
-
             });
-            // Khởi tạo biến tổng giá trị và giá trị lớn nhất
-            let totalValue = 0;
-            let maxTotalValue = 0;
+            // Gán mảng kết quả vào biến "output"
+            const output = result;
+            const outputAbs = resultAbs
 
-            // Khởi tạo biến tổng giá trị âm và dương (chỉ áp dụng khi param là 'netVal')
-            let negativeTotalValue = 0;
-            let positiveTotalValue = 0;
-            let maxPostiveValue = 0
-            let minNegativeValue = 0
+            setData(output)
+            setDataAbs(outputAbs)
+        } else if(isAllMarket && dataTotalMarket.length >0 ){
+            setDataToMap(dataTotalMarket)
+            const uniqueDates = [...new Set(dataToMap?.map(item => item.date))];
+            setTimeLine(uniqueDates)
+            // Khởi tạo đối tượng kết quả là một mảng rỗng
+            const result = [];
+            const resultAbs = []
+            // Lặp qua mảng dữ liệu
             dataToMap?.forEach(item => {
-                const value = item[param] / 1000000000; // Chuyển đổi giá trị thành tỷ đồng
+                const industry = item.industry;
+                const value = (item[param] / 1000000000);
+                const color = item.color
+                // Tạo đối tượng mới với key "name" và value là tên ngành
+                // cùng key "data" và value là mảng giá trị của ngành
+                const newObj = {
+                    name: industry,
+                    data: [value],
+                    color
+                };
+                const newObjAbs = {
+                    name: industry,
+                    data: [Math.abs(value)],
+                    color
+                };
+                // Tìm xem ngành đã tồn tại trong đối tượng kết quả hay chưa
+                const existingObj = result.find(obj => obj.name === industry);
+                const existingObjAbs = resultAbs.find(obj => obj.name === industry);
 
-                if (param === 'netVal') {
-                    if (value < 0) {
-                        // Nếu giá trị âm, thêm vào tổng giá trị âm
-                        negativeTotalValue += value;
-                    } else {
-                        // Nếu giá trị dương, thêm vào tổng giá trị dương
-                        positiveTotalValue += value;
-                    }
+                if (existingObj) {
+                    // Nếu ngành đã tồn tại, thêm giá trị vào mảng "data" của ngành đó
+                    existingObjAbs.data.push(Math.abs(value));
+                    existingObj.data.push(value);
                 } else {
-                    // Nếu không phải param 'netVal', cộng tổng giá trị
-                    totalValue += value;
-                }
-
-                // So sánh với giá trị lớn nhất hiện tại
-                if (totalValue > maxTotalValue) {
-                    maxTotalValue = totalValue;
-                }
-                if (negativeTotalValue < minNegativeValue) {
-                    minNegativeValue = negativeTotalValue
-                }
-                if (positiveTotalValue > maxPostiveValue) {
-                    maxPostiveValue = positiveTotalValue
+                    // Nếu ngành chưa tồn tại, thêm đối tượng mới vào mảng kết quả
+                    resultAbs.push(newObjAbs);
+                    result.push(newObj);
                 }
             });
-
-            // Lấy tổng giá trị lớn nhất (chỉ áp dụng khi param không phải 'netVal')
-            if (param !== 'netVal') {
-                console.log('Tổng giá trị lớn nhất:', maxTotalValue);
-                setMaxValue(maxTotalValue)
-            }
-
-            // Lấy tổng giá trị âm và dương (chỉ áp dụng khi param là 'netVal')
-            if (param === 'netVal') {
-                setMinValue(minNegativeValue)
-                console.log('Tổng giá trị âm:', negativeTotalValue);
-                setMaxValue(maxPostiveValue)
-                console.log('Tổng giá trị dương:', positiveTotalValue);
-            }
-
-
             // Gán mảng kết quả vào biến "output"
             const output = result;
             const outputAbs = resultAbs
@@ -144,19 +134,16 @@ const InvestorCashFlow = () => {
             setData(output)
             setDataAbs(outputAbs)
         }
-    }, [param, dataCashFlowInvestor, queryApi, dataToMap])
-    console.log(minValue)
-    // console.log('data', data)
-    // console.log('time', timeLine)
+    }, [param, dataCashFlowInvestor, queryApi, dataToMap,dataTotalMarket, isAllMarket])
     // hàm xử lý nút
-
+    console.log('data',data)
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
     const handleClick3 = (button) => {
         setActiveButton3(button)
         if (button === 8) {
             setActiveButton2(4)
-            setParam('marketTotalVal')
+            setParam('transVal')
         }
     }
     // config chart
@@ -246,8 +233,10 @@ const InvestorCashFlow = () => {
             },
         },
         yAxis: {
+            max:100,
+            min:0,
             title: {
-                text: 'Giá trị',
+                text: 'Giá trị (%)',
                 style: {
                     color: localStorage.getItem('color'),
                 },
@@ -376,6 +365,7 @@ const InvestorCashFlow = () => {
                             style={activeButton3 === 5 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick3(5)
+                                setIsAllMarket(false)
                                 setCanTouch(false)
                                 setQueryApi({ ...queryApi, investorType: 0 })
                             }}
@@ -384,6 +374,7 @@ const InvestorCashFlow = () => {
                             style={activeButton3 === 6 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick3(6)
+                                setIsAllMarket(false)
                                 setCanTouch(false)
                                 setQueryApi({ ...queryApi, investorType: 1 })
                             }}
@@ -392,6 +383,7 @@ const InvestorCashFlow = () => {
                             style={activeButton3 === 7 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick3(7)
+                                setIsAllMarket(false)
                                 setCanTouch(false)
                                 setQueryApi({ ...queryApi, investorType: 2 })
                             }}
@@ -400,6 +392,7 @@ const InvestorCashFlow = () => {
                             style={activeButton3 === 8 ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick3(8)
+                                setIsAllMarket(true)
                                 setCanTouch(true)
                                 setDataToMap(dataTotalMarket)
                             }}
@@ -408,7 +401,7 @@ const InvestorCashFlow = () => {
                 </div>
             </div>
             <div>
-                {dataCashFlowInvestor.length || dataTotalMarket.length ? (
+                {dataCashFlowInvestor?.length >0 && dataTotalMarket?.length >0 ? (
                     <>
                         <div className='h-[450px]'>
                             <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
