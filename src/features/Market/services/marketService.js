@@ -108,11 +108,14 @@ export const marketServices = {
 
     fetchDataTotalMarket: (exchange, type) => {
         return https.get('api/v1/cash-flow/market-total-value', {
-params: {
+            params: {
                 exchange,
                 type
             }
-        }},
+        })
+    },
+
+
     fetchDataCashFlowRatio: (exchange, type) => {
         return https.get('api/v1/cash-flow/investor-transaction-cash-flow-ratio', {
 
