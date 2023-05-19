@@ -42,7 +42,7 @@ const InvestorTransaction = () => {
                         onChange={(e) => {
                             handleQueryApiType(e.target.value);
                         }}
-                        className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0 xl:ml-[395px] lg:ml-[555px] md:ml-[299px] sm:ml-7 xs:ml-7 xxs:ml-6`}
+                        className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0 xl:ml-[385px] lg:ml-[545px] md:ml-[289px] sm:ml-4 xs:ml-4 xxs:ml-3`}
                     >
                         <option value="0">Phiên gần nhất</option>
                         <option value="1">5 phiên</option>

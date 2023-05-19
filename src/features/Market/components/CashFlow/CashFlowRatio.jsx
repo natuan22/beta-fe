@@ -241,7 +241,7 @@ const CashFlowRatio = () => {
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black xs:text-base xxs:text-[13px] font-semibold'>Tỷ trọng dòng tiền theo nhóm NĐT</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[75px] lg:ml-[155px] md:ml-[411px] sm:ml-[68px] xs:ml-[18px] xxs:ml-[10px]`}
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[65px] lg:ml-[145px] md:ml-[401px] sm:ml-[58px] xs:ml-[8px] xxs:ml-[1px]`}
                     onChange={(event) => {
                         handleQueryApiType(event.target.value);
                     }}>
