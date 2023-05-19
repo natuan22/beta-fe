@@ -20,6 +20,10 @@ const TestChart = () => {
   ];
 
   const options = {
+    accessibility: {
+      enabled: false,
+    },
+    credits: false,
     chart: {
       type: 'column',
     },

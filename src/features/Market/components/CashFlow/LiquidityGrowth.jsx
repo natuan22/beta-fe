@@ -42,7 +42,7 @@ const LiquidityGrowth = () => {
     for (let i = 0; i < data.length; i++) {
         let floor = data[i].floor;
         let perChange = data[i].perChange;
-
+        
         switch (floor) {
             case 'HOSE':
                 hosePerChange.push(+perChange.toFixed(2))

@@ -76,6 +76,10 @@ const InvestorCashFlow = () => {
     }
     // config chart
     const options = {
+        accessibility: {
+            enabled: false,
+        },
+        credits: false,
         chart: {
             type: 'column',
             backgroundColor: 'transparent'
