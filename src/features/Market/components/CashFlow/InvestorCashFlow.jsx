@@ -4,6 +4,7 @@ import { fetchDataCashFlowInvestor, fetchDataTotalMarket } from '../../thunk'
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
+import moment from 'moment';
 const buttonStyle = {
     backgroundColor: 'transparent',
     color: '#fff',
@@ -47,7 +48,7 @@ const InvestorCashFlow = () => {
     useEffect(() => {
         if (!isAllMarket && dataCashFlowInvestor?.length > 0 ) {
             setDataToMap(dataCashFlowInvestor)
-            const uniqueDates = [...new Set(dataToMap?.map(item => item.date))];
+            const uniqueDates = [...new Set(dataToMap?.map(item => moment(item.date).format('DD/MM')))];
             setTimeLine(uniqueDates)
             // Khởi tạo đối tượng kết quả là một mảng rỗng
             const result = [];
@@ -267,7 +268,7 @@ const InvestorCashFlow = () => {
         <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black sm:text-base xs:text-[14px] xxs:text-[11px] font-semibold'>Dòng tiền nhà đầu tư theo các nhóm ngành</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[1029px] lg:ml-[613px] md:ml-[357px] sm:ml-[14px] xs:ml-[3px] xxs:ml-[5px]`}
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[1019px] lg:ml-[603px] md:ml-[347px] sm:ml-[4px] xs:ml-[1px] xxs:ml-[1px]`}
                     onChange={(event) => {
                         setQueryApi({ ...queryApi, type: event.target.value })
                     }}>
