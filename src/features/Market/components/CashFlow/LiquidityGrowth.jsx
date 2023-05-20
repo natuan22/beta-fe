@@ -38,7 +38,7 @@ const LiquidityGrowth = () => {
     let hosePerChange = [];
     let hnxPerChange = [];
     let upcomPerChange = [];
-
+    
     for (let i = 0; i < data.length; i++) {
         let floor = data[i].floor;
         let perChange = data[i].perChange;
@@ -57,7 +57,6 @@ const LiquidityGrowth = () => {
                 break;
         }
     }
-
     const options = {
         accessibility: {
             enabled: false,
@@ -92,7 +91,7 @@ const LiquidityGrowth = () => {
                 },
             },
         }],
-        yAxis: {
+        yAxis: {      
             title: {
                 text: null
             },
@@ -100,12 +99,12 @@ const LiquidityGrowth = () => {
                 style: {
                     color: localStorage.getItem('color'),
                 },
-                // enabled: false
+                enabled: true
             },
         },
         plotOptions: {
             series: {
-                stacking: 'normal',
+                
                 marker: {
                     radius: 2, // Giá trị bán kính marker
                 },
@@ -142,7 +141,7 @@ const LiquidityGrowth = () => {
             </div>
             {dataLiquidityGrowth.length ? (
                 <div id="chart-container">
-                    <div className="h-[464px] mt-3">
+                    <div className="h-[464px]  mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 </div>
