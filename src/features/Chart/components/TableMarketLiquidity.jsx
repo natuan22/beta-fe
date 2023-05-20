@@ -82,7 +82,7 @@ const TableMarketLiquidity = () => {
                                             Ngành
                                         </th>
                                         <th className="text-center align-middle xxs:text-[9px] px-4 py-3 uppercase text-xs font-semibold text-white">
-                                            Giá trị (tỷ đồng)
+                                            Giá trị (tỷ VNĐ)
                                         </th>
                                         <th className="text-center align-middle xxs:text-[9px] px-4 py-3 uppercase whitespace-nowrap text-xs font-semibold text-white">
                                             Thay đổi
@@ -103,10 +103,10 @@ const TableMarketLiquidity = () => {
                                                         {item.industry}
                                                     </td>
                                                     <td className={`text-center align-middle xxs:text-[9px] text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
-                                                        {item.value.toFixed(2)}
+                                                        {(item.value/1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                     </td>
                                                     <td className={`text-center align-middle xxs:text-[9px] text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
-                                                        {item.value_change_percent.toFixed(2)}%
+                                                        {item.value_change_percent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                     </td>
                                                 </tr>
                                             )

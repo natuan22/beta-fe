@@ -1,28 +1,3 @@
-.flashUp {
-    animation-name:flashUp  ;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-}
-.flashDown {
-    animation-name:flashDown  ;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-}
-
-@keyframes flashUp {
-    from {
-        background-color: lightgreen;
-    }
-    to {
-        background-color: "transparent";
-    }
-}
-
-@keyframes flashDown {
-    from {
-        background-color: lightgreen;
-    }
-    to {
-        background-color: "transparent";
-    }
-}
+.ag-theme-alpine {
+    --ag-value-change-value-highlight-background-color: pink;
+  }

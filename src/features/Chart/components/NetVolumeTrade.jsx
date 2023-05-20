@@ -17,8 +17,9 @@ const NetVolumeTrade = () => {
   const color = useSelector((state) => state.color.colorText);
 
   useEffect(() => {
+    dispatch(fetchDataNetVolume('vnindex'));
     setColorText(color);
-  }, [color]);
+  }, [dispatch, color]);
 
   const dataExchange = dataNetVolume.data?.map((item) => item.exchange_price);
   const dataForeign = dataNetVolume.data?.map(
@@ -151,9 +152,9 @@ const NetVolumeTrade = () => {
           </select>
         </div>
         {dataNetVolume.data || dataNetVolume.data?.length ? (
-          <HighchartsReact highcharts={Highcharts} options={options} />
+          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
         ) : (
-          <div className="mt-6"><Loading /></div>
+          <div className="mt-6 mb-28"><Loading /></div>
         )}
       </div>
     </>

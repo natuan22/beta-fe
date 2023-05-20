@@ -68,10 +68,9 @@ const Signup = () => {
           }}
         >
           <img
-            src={`${apiUrl}/resources/images/logo1.png`}
-            alt="logoImg"
-            width="180px"
-            height="160px"
+            className="w-[100px] h-[45px] mt-[70px] mb-[40px]"
+            src={`${apiUrl}/resources/icons/logo-beta-color.png`}
+            alt="Beta logo"
           />
           <form
             onSubmit={handleSubmit}
@@ -288,10 +287,9 @@ const Signup = () => {
             }}
           >
             <img
-              src={`${apiUrl}/resources/images/logo1.png`}
-              alt="logoImg"
-              width="180px"
-              height="160px"
+              className="w-[100px] h-[45px] mt-[70px] mb-[40px]"
+              src={`${apiUrl}/resources/icons/logo-beta-color.png`}
+              alt="Beta logo"
             />
             <form
               onSubmit={handleSubmit}

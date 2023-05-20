@@ -115,6 +115,7 @@ const BarChartLeft = () => {
     ],
   };
 
+
   return (
     <>
       <div>

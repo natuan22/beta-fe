@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
 import Switcher from "../services/switcher";
 const { Search } = Input;
+const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Header = () => {
   const isLogin = useSelector((state) => state.authen.userData);
@@ -31,10 +32,12 @@ const Header = () => {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <a href="http://www.bsi.com.vn">
+                  <a href="http://www.bsi.com.vn"
+                    target="_blank"
+                    rel="noopener noreferrer">
                     <img
                       className="w-[87px] h-[33px]"
-                      src="https://trading.bsi.com.vn/static/media/075_login_logo.4ad0d1515acb4e3474cf.png"
+                      src={`${apiUrl}/resources/icons/logo-beta-color.png`}
                       alt="Beta logo"
                     />
                   </a>

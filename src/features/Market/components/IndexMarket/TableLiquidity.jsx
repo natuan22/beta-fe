@@ -104,13 +104,13 @@ const TableLiquidity = () => {
         </button>
       </div>
       <div>
-        <span className="dark:text-white text-black text-[0.9rem] pl-[2px]">Top đóng góp thanh khoản theo: </span>
+        <span className="dark:text-white text-black text-[0.9rem] pl-[2px] font-semibold">Top đóng góp thanh khoản theo: </span>
         <div className="md:inline lg:block xl:inline 2xl:inline text-center">
           <select
             onChange={(e) => {
               handleQueryApiType(e.target.value);
             }}
-            className={`bg-transparent text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
           >
             <option value="0">Cổ phiếu</option>
             <option value="1">Ngành Lv1</option>
@@ -122,7 +122,7 @@ const TableLiquidity = () => {
             onChange={(e) => {
               handleQueryApiExchange(e.target.value);
             }}
-            className={`bg-transparent text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
           >
             <option value="ALL">Toàn thị trường</option>
             <option value="HSX">HSX</option>

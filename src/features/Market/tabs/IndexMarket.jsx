@@ -67,7 +67,7 @@ const IndexMarket = () => {
             <hr />
             <div>
               <div className="text-center mb-1 mt-2">
-                <span className="dark:text-white text-black text-[1rem]">
+                <span className="dark:text-white text-black text-[1rem] font-semibold">
                   Thanh khoản trong phiên
                 </span>
               </div>
@@ -78,7 +78,7 @@ const IndexMarket = () => {
 
         <div className="xxs:hidden xs:hidden md:hidden lg:flex xl:hidden ">
           <div className="w-[50%] my-1.5 mx-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div>
+            <div className="mt-[11px]">
               <BarChart />
             </div>
           </div>

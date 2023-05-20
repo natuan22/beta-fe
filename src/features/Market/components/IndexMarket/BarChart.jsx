@@ -70,77 +70,6 @@ const BarChart = () => {
         });
     }
 
-    if (!chartTickerContribute.length) {
-        return <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
-                <span className='dark:text-white text-black text-[0.9rem] pl-[2px]'>Top đóng góp điểm số theo: </span>
-                <div className="sm:block md:inline text-center">
-                    <select
-                        onChange={(e) => {
-                            handleQueryApiType(e.target.value);
-                        }}
-                        className={`bg-[#151924] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
-                        <option value="0">Cổ phiếu</option>
-                        <option value="1">Ngành LV1</option>
-                        <option value="2">Ngành LV2</option>
-                        <option value="3">Ngành LV3</option>
-                    </select>
-                    <select
-                        onChange={(e) => {
-                            handleQueryApiOrder(e.target.value);
-                        }}
-                        className={`bg-[#1B496D] ml-2 p-1 text-[0.9rem] text-white border-0`}
-                    >
-                        <option value="0">Phiên gần nhất</option>
-                        <option value="1">5 phiên</option>
-                        <option value="2">1 tháng</option>
-                        <option value="3">YtD</option>
-                    </select>
-                </div>
-            </div>
-            <div className="mt-1 mb-3 dark:text-white text-black">
-                <span>
-                    <button
-                        onClick={() => {
-                            handleClick('hose')
-                            handleQueryApiExchange('hose')
-                        }}
-                        className={activeButton === 'hose'
-                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
-                    </button>
-                </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
-                    <button
-                        onClick={() => {
-                            handleClick('hnx')
-                            handleQueryApiExchange('hnx')
-                        }}
-                        className={activeButton === 'hnx'
-                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
-                    </button>
-                </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
-                    <button
-                        onClick={() => {
-                            handleClick('upcom')
-                            handleQueryApiExchange('upcom')
-                        }}
-                        className={activeButton === 'upcom'
-                            ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
-                            : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>UPCOM
-                    </button>
-                </span>
-            </div>
-            <div id="chart-container">
-                <div className="h-[333px]">
-                    <div className="mt-14"><Loading /></div>
-                </div>
-            </div>
-        </>
-    }
-
     if (data?.length && (handleQueryType === '1' || handleQueryType === '2' || handleQueryType === '3')) {
         const incr5 = data.slice(0, 5)
         const decr5 = data.slice(-5).sort(function () {
@@ -260,7 +189,8 @@ const BarChart = () => {
             },
             legend: {
                 enabled: false
-            }, tooltip: {
+            },
+            tooltip: {
                 shared: true,
                 useHTML: true,
                 valueSuffix: " ",
@@ -296,15 +226,15 @@ const BarChart = () => {
 
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[11px]'>
-                <span className='dark:text-white text-black text-[0.9rem] pl-[2px]'>Top đóng góp điểm số theo: </span>
+            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[5px]'>
+                <span className='dark:text-white text-black text-[0.9rem] pl-[2px] font-semibold'>Top đóng góp điểm số theo: </span>
                 <div className="sm:block md:inline text-center">
                     <select
                         onChange={(e) => {
                             handleQueryApiType(e.target.value);
                             setHandleQueryType(e.target.value)
                         }}
-                        className={`bg-transparent text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
+                        className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
                         <option value="0">Cổ phiếu</option>
                         <option value="1">Ngành LV1</option>
                         <option value="2">Ngành LV2</option>
@@ -335,7 +265,7 @@ const BarChart = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HSX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('hnx')
@@ -346,7 +276,7 @@ const BarChart = () => {
                             : 'border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer'}>HNX
                     </button>
                 </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10">
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                     <button
                         onClick={() => {
                             handleClick('vn30')
@@ -358,11 +288,19 @@ const BarChart = () => {
                     </button>
                 </span>
             </div>
-            <div id="chart-container">
-                <div className="h-[333px]">
-                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+            {chartTickerContribute.length ? (
+                <div id="chart-container">
+                    <div className="h-[333px]">
+                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div id="chart-container">
+                    <div className="h-[289px]">
+                        <div className="mt-14"><Loading /></div>
+                    </div>
+                </div>
+            )}
         </>
     );
 };

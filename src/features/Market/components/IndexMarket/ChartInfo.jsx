@@ -98,7 +98,7 @@ const ChartInfo = () => {
         },
         credits: false,
         chart: {
-            type: "line",
+            type: "spline",
             backgroundColor: "transparent",
         },
         title: {
@@ -213,7 +213,7 @@ const ChartInfo = () => {
                                                 Khối lượng (triệu CP)
                                             </th>
                                             <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-xs font-semibold text-white">
-                                                Giá trị (tỷ đồng)
+                                                Giá trị (tỷ VNĐ)
                                             </th>
                                         </tr>
                                     </thead>
@@ -236,16 +236,16 @@ const ChartInfo = () => {
                                                             {item.comGroupCode}
                                                         </th>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {item.indexValue}
+                                                            {item.indexValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {(item.percentIndexChange * 100).toFixed(2)}%
+                                                            {(item.percentIndexChange * 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {(item.totalMatchVolume / 1000000).toFixed(2)}
+                                                            {(item.totalMatchVolume / 1000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {(item.totalMatchValue / 1000000000).toFixed(2)}
+                                                            {(item.totalMatchValue / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                         </td>
 
                                                     </tr>

@@ -84,3 +84,114 @@ export const fetchDataBienDongThiTruong = (exchange) => async (dispatch) => {
         console.log(err)
     }
 }
+
+export const fetchDataExchangeableValue = () => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataExchangeableValue()
+        dispatch({
+            type: marketType.FETCH_DATA_EXCHANGEABLE_VALUE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataLiquidityGrowth = (type) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataLiquidityGrowth(type)
+        dispatch({
+            type: marketType.FETCH_DATA_LIQUIDITY_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTransactionValueRatio = () => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTransactionValueRatio()
+        dispatch({
+            type: marketType.FETCH_DATA_TRANSACTION_VALUE_RATIO,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataIndustryCashFlow = (exchange, type) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataIndustryCashFlow(exchange, type)
+        dispatch({
+            type: marketType.FETCH_DATA_INDUSTRY_CASH_FLOW,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataRSI = (exchange, session) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataRSI(exchange, session)
+        dispatch({
+            type: marketType.FETCH_DATA_RSI,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTopNetBuyIndustry = (exchange, type) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTopNetBuyIndustry(exchange, type)
+        dispatch({
+            type: marketType.FETCH_DATA_TOP_NET_BUY_INDUSTRY,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
+export const fetchDataCashFlowInvestor = (type, investorType, exchange) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataCashFlowInvestor(type, investorType, exchange)
+        dispatch({
+            type: marketType.FETCH_DATA_CASHFLOW_INVESTOR,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataCashFlowRatio = (exchange, type) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataCashFlowRatio(exchange, type)
+        dispatch({
+            type: marketType.FETCH_DATA_CASHFLOW_RATIO,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+
+}
+
+export const fetchDataTotalMarket = (exchange, type) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTotalMarket(exchange, type)
+        dispatch({
+            type: marketType.FETCH_DATA_TOTAL_MARKET,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+
+}

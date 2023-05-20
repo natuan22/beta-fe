@@ -81,7 +81,7 @@ function AreaChart() {
         data:
           dataPreviousDay &&
           dataPreviousDay.length &&
-          dataPreviousDay.map((item) => [item.time, item.value]),
+          dataPreviousDay.map((item) => [item.time, +item.value.toFixed(2)]),
         color: "#ff0000",
         opacity: "0.9",
         lineColor: "#ff0000",
@@ -95,7 +95,7 @@ function AreaChart() {
         data:
           dataSocket &&
           dataSocket.length &&
-          dataSocket.map((item) => [item.time, item.value]),
+          dataSocket.map((item) => [item.time, +item.value.toFixed(2)]),
         color: "#2AF371",
         opacity: "0.7",
         lineColor: "#2AF371",
@@ -106,7 +106,7 @@ function AreaChart() {
       },
     ],
   };
-  
+
   const currentTime = new Date();
 
   // Lấy giờ và phút từ currentTime
@@ -118,7 +118,7 @@ function AreaChart() {
 
   // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59, hiển thị dữ liệu
   if (!shouldShowData) {
-    return <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu</div>
+    return <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu giao dịch</div>
   }
 
   return (

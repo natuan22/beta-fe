@@ -14,12 +14,12 @@ const TopCashFlow = () => {
     return (
         <>
             <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
-                <span className="text-white text-[0.9rem]">Top giá trị dòng tiền </span>
+                <span className="dark:text-white text-black text-[0.9rem] font-semibold">Top giá trị dòng tiền </span>
                 <select
                     onChange={(e) => {
                         dispatch(fetchDataCashValue(e.target.value));
                     }}
-                    className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0`}
+                    className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0 xl:ml-[288px] lg:ml-[736px] md:ml-[480px] sm:ml-[137px] xs:ml-[87px] xxs:ml-[32px]`}
                 >
                     <option value="0">Phiên gần nhất</option>
                     <option value="1">5 phiên</option>
@@ -30,7 +30,7 @@ const TopCashFlow = () => {
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-                        <div className="block w-full scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-[#151924] overflow-y-scroll bg-transparent h-[350px]">
+                        <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[350px]">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                     <tr>
@@ -41,7 +41,7 @@ const TopCashFlow = () => {
                                             Giá
                                         </th>
                                         <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
-                                            Giá trị dòng tiền
+                                            Giá trị dòng tiền (tỷ VNĐ)
                                         </th>
                                     </tr>
                                 </thead>
@@ -53,7 +53,7 @@ const TopCashFlow = () => {
                                                 <tr className="dark:text-white text-black text-center text-[13px] dark:hover:bg-gray-800 hover:bg-gray-300 duration-500" key={index}>
                                                     <th className="text-center px-1.5 align-middle p-3.5" >{item.code}</th>
                                                     <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{item.price}</td>
-                                                    <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{item.cashFlowValue.toLocaleString()}</td>
+                                                    <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.cashFlowValue / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                                                 </tr>
                                             );
                                         })
