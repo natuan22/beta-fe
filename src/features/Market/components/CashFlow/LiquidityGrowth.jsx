@@ -100,12 +100,10 @@ const LiquidityGrowth = () => {
                 style: {
                     color: localStorage.getItem('color'),
                 },
-                // enabled: false
             },
         },
         plotOptions: {
             series: {
-                stacking: 'normal',
                 marker: {
                     radius: 2, // Giá trị bán kính marker
                 },
