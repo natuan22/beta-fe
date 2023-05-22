@@ -18,7 +18,7 @@ const TreeMapBuy = () => {
   const [dataSocket, setDataSocket] = useState([]);
   const [socketChanel, setSocketChanel] = useState('hose');
   const [socketOld, setSocketOld] = useState('');
-
+  
   useEffect(() => {
     if (dataTreemapBuy?.length > 0)
       setDataSocket(dataTreemapBuy);

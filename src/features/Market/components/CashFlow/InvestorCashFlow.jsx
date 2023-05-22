@@ -33,7 +33,7 @@ const InvestorCashFlow = () => {
     const [param, setParam] = useState('buyVal')
     const [queryApi, setQueryApi] = useState({
         type: 2,
-        investorType: 0,
+        investorType: 1,
         exchange: 'all'
     })
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -136,8 +136,9 @@ const InvestorCashFlow = () => {
             setDataAbs(outputAbs)
         }
     }, [param, dataCashFlowInvestor, queryApi, dataToMap,dataTotalMarket, isAllMarket])
+    
     // hàm xử lý nút
-    console.log('data',data)
+    console.log('data',dataCashFlowInvestor)
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
     const handleClick3 = (button) => {
@@ -171,7 +172,7 @@ const InvestorCashFlow = () => {
         yAxis: {
             // min: minValue ,
             title: {
-                text: 'Giá trị',
+                text: 'Giá trị (tỷ VND)',
                 style: {
                     color: localStorage.getItem('color'),
                 },
@@ -237,7 +238,7 @@ const InvestorCashFlow = () => {
             max:100,
             min:0,
             title: {
-                text: 'Giá trị (%)',
+                text: '',
                 style: {
                     color: localStorage.getItem('color'),
                 },
@@ -246,6 +247,9 @@ const InvestorCashFlow = () => {
                 style: {
                     color: localStorage.getItem('color'),
                 },
+                formatter: function () {
+                    return this.value + "%";
+                  },
             },
         },
         plotOptions: {
@@ -259,6 +263,11 @@ const InvestorCashFlow = () => {
                 marker: {
                     radius: 2, // Giá trị bán kính marker
                 },
+                tooltip: {
+                    headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",
+                    pointFormat: "<span style='color:black'>{series.name}: <b>{point.percentage:.1f}%</b></span><br/>", // Thay đổi format để hiển thị phần trăm
+                    valueDecimals: 3,
+                  },
             }
         },
         series: dataAbs
@@ -368,7 +377,7 @@ const InvestorCashFlow = () => {
                                 handleClick3(5)
                                 setIsAllMarket(false)
                                 setCanTouch(false)
-                                setQueryApi({ ...queryApi, investorType: 0 })
+                                setQueryApi({ ...queryApi, investorType: 1 })
                             }}
                             className='rounded-tl-xl rounded-bl-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Tự doanh</button>
                         <button
@@ -377,7 +386,7 @@ const InvestorCashFlow = () => {
                                 handleClick3(6)
                                 setIsAllMarket(false)
                                 setCanTouch(false)
-                                setQueryApi({ ...queryApi, investorType: 1 })
+                                setQueryApi({ ...queryApi, investorType: 0 })
                             }}
                             className='lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Khối ngoại</button>
                         <button

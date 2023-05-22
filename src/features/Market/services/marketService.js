@@ -57,6 +57,14 @@ export const marketServices = {
             }
         })
     },
+    fetchDataMarketMap: (exchange, order) => {
+        return https.get('api/v1/stock/get-market-map',{
+            params: {
+                exchange,
+                order
+            }
+        })
+    },
     fetchDataExchangeableValue: () => {
         return https.get('api/v1/cash-flow/investor-transaction-value', {
         })

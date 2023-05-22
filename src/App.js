@@ -29,7 +29,7 @@ function App() {
     localStorage.setItem('typeTime', 'HH:mm')
     localStorage.setItem('exchange', 'VNINDEX')
     localStorage.setItem('typeApi', '0')
-
+    localStorage.setItem('nameMarketMap', 'Vốn hóa')
     const token = localStorage.getItem('betaToken')
     dispatch(autoLoginWithToken(token))
   }, [dispatch])

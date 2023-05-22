@@ -12,6 +12,7 @@ const initialState = {
   dataLiquidityGrowth: {},
   dataTransactionValueRatio: {},
   dataIndustryCashFlow: {},
+  dataMarketMap :{},
   dataRSI: {},
   dataTopNetBuyIndustry: {},
 
@@ -71,6 +72,9 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === marketType.FETCH_DATA_CASHFLOW_RATIO) {
       draft.dataCashFlowRatio = payload
 
+    }
+    if(type === marketType.FETCH_DATA_MARKET_MAP){
+      draft.dataMarketMap = payload
     }
   });
 };

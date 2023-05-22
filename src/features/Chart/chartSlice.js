@@ -23,7 +23,6 @@ const initialState = {
   dataNews: {},
   dataMarketEvaluation: {},
   dataMacroNews: {},
-  dataMarketMap: {},
   dataLineChartHomePage: {},
   dataCashFlowAllocation: {}
 };
@@ -97,9 +96,7 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === actionType.UPDATE_DATA_MACRO_NEWS) {
       draft.dataMacroNews = payload
     }
-    if (type === actionType.UPDATE_DATA_MARKET_MAP) {
-      draft.dataMarketMap = payload
-    }
+   
     if (type === actionType.FETCH_DATA_LINECHART_HOMEPAGE) {
       draft.dataLineChartHomePage = payload
     }

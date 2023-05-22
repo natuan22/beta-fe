@@ -121,6 +121,17 @@ export const fetchDataTransactionValueRatio = () => async (dispatch) => {
     }
 }
 
+export const fetchDataMarketMap = (exchange, order) => async dispatch => {
+    try {
+        const res = await marketServices.fetchDataMarketMap(exchange, order)
+        dispatch({
+            type:marketType.FETCH_DATA_MARKET_MAP,
+            payload: res.data.data
+        })
+    } catch(err) {
+        console.log(err)
+    }
+}
 export const fetchDataIndustryCashFlow = (exchange, type) => async (dispatch) => {
     try {
         const res = await marketServices.fetchDataIndustryCashFlow(exchange, type)
