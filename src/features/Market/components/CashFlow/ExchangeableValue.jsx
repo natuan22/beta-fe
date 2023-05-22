@@ -79,7 +79,7 @@ const ExchangeableValue = () => {
             }
         },
         xAxis: [{
-            categories: uniqueDates,
+            categories: uniqueDates.reverse(),
             title: {
                 text: null,
                 style: {
@@ -110,15 +110,15 @@ const ExchangeableValue = () => {
         },
         series: [{
             name: 'UPCOM',
-            data: upcomTotalVal,
+            data: upcomTotalVal.reverse(),
             color: '#2D8BBA'
         }, {
             name: 'HNX',
-            data: hnxTotalVal,
+            data: hnxTotalVal.reverse(),
             color: '#41B8D5'
         }, {
             name: 'HOSE',
-            data: hoseTotalVal,
+            data: hoseTotalVal.reverse(),
             color: '#6CE5E8'
         }]
     }
