@@ -41,7 +41,7 @@ const TopCashFlow = () => {
                                             Giá
                                         </th>
                                         <th className="text-center align-middle px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
-                                            Giá trị dòng tiền (tỷ VNĐ)
+                                            Giá trị dòng tiền (VNĐ)
                                         </th>
                                     </tr>
                                 </thead>
@@ -53,7 +53,7 @@ const TopCashFlow = () => {
                                                 <tr className="dark:text-white text-black text-center text-[13px] dark:hover:bg-gray-800 hover:bg-gray-300 duration-500" key={index}>
                                                     <th className="text-center px-1.5 align-middle p-3.5" >{item.code}</th>
                                                     <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{item.price}</td>
-                                                    <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.cashFlowValue / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                                                    <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.cashFlowValue).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                                                 </tr>
                                             );
                                         })

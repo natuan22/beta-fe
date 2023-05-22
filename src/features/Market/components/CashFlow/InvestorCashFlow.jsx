@@ -19,7 +19,7 @@ const activeButtonStyle = {
 }
 const InvestorCashFlow = () => {
     const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
-    console.log("dataTotalMarket",dataTotalMarket)
+    console.log("dataTotalMarket", dataTotalMarket)
     const [data, setData] = useState()
     const [dataToMap, setDataToMap] = useState()
     const [dataAbs, setDataAbs] = useState()
@@ -46,7 +46,7 @@ const InvestorCashFlow = () => {
     }, [queryApi, dispatch])
 
     useEffect(() => {
-        if (!isAllMarket && dataCashFlowInvestor?.length > 0 ) {
+        if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
             setDataToMap(dataCashFlowInvestor)
             const uniqueDates = [...new Set(dataToMap?.map(item => moment(item.date).format('DD/MM')))];
             setTimeLine(uniqueDates)
@@ -90,7 +90,7 @@ const InvestorCashFlow = () => {
 
             setData(output)
             setDataAbs(outputAbs)
-        } else if(isAllMarket && dataTotalMarket.length >0 ){
+        } else if (isAllMarket && dataTotalMarket.length > 0) {
             setDataToMap(dataTotalMarket)
             const uniqueDates = [...new Set(dataToMap?.map(item => item.date))];
             setTimeLine(uniqueDates)
@@ -235,8 +235,8 @@ const InvestorCashFlow = () => {
             },
         },
         yAxis: {
-            max:100,
-            min:0,
+            max: 100,
+            min: 0,
             title: {
                 text: '',
                 style: {
@@ -411,7 +411,7 @@ const InvestorCashFlow = () => {
                 </div>
             </div>
             <div>
-                {dataCashFlowInvestor?.length >0 && dataTotalMarket?.length >0 ? (
+                {dataCashFlowInvestor?.length > 0 && dataTotalMarket?.length > 0 ? (
                     <>
                         <div className='h-[450px]'>
                             <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
