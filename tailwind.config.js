@@ -24,7 +24,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         "signinBackground": `url('${apiUrl}/resources/images/login-background.png')`,
-
+        "footerBackground": `url('${apiUrl}/resources/images/bg_footer.png')`
       },
       colors: {
         'signinColor': "rgba(116,99,224,0.25)",
