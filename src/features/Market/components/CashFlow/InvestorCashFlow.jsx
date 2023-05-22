@@ -19,7 +19,7 @@ const activeButtonStyle = {
 }
 const InvestorCashFlow = () => {
     const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
-    console.log("dataTotalMarket",dataTotalMarket)
+    console.log("dataTotalMarket", dataTotalMarket)
     const [data, setData] = useState()
     const [dataToMap, setDataToMap] = useState()
     const [dataAbs, setDataAbs] = useState()
@@ -33,7 +33,7 @@ const InvestorCashFlow = () => {
     const [param, setParam] = useState('buyVal')
     const [queryApi, setQueryApi] = useState({
         type: 2,
-        investorType: 0,
+        investorType: 1,
         exchange: 'all'
     })
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -46,7 +46,7 @@ const InvestorCashFlow = () => {
     }, [queryApi, dispatch])
 
     useEffect(() => {
-        if (!isAllMarket && dataCashFlowInvestor?.length > 0 ) {
+        if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
             setDataToMap(dataCashFlowInvestor)
             const uniqueDates = [...new Set(dataToMap?.map(item => moment(item.date).format('DD/MM')))];
             setTimeLine(uniqueDates)
@@ -90,7 +90,7 @@ const InvestorCashFlow = () => {
 
             setData(output)
             setDataAbs(outputAbs)
-        } else if(isAllMarket && dataTotalMarket.length >0 ){
+        } else if (isAllMarket && dataTotalMarket.length > 0) {
             setDataToMap(dataTotalMarket)
             const uniqueDates = [...new Set(dataToMap?.map(item => item.date))];
             setTimeLine(uniqueDates)
@@ -135,9 +135,10 @@ const InvestorCashFlow = () => {
             setData(output)
             setDataAbs(outputAbs)
         }
-    }, [param, dataCashFlowInvestor, queryApi, dataToMap,dataTotalMarket, isAllMarket])
+    }, [param, dataCashFlowInvestor, queryApi, dataToMap, dataTotalMarket, isAllMarket])
+
     // hàm xử lý nút
-    console.log('data',data)
+    console.log('data', dataCashFlowInvestor)
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
     const handleClick3 = (button) => {
@@ -171,7 +172,7 @@ const InvestorCashFlow = () => {
         yAxis: {
             // min: minValue ,
             title: {
-                text: 'Giá trị',
+                text: 'Giá trị (tỷ VND)',
                 style: {
                     color: localStorage.getItem('color'),
                 },
@@ -234,10 +235,10 @@ const InvestorCashFlow = () => {
             },
         },
         yAxis: {
-            max:100,
-            min:0,
+            max: 100,
+            min: 0,
             title: {
-                text: 'Giá trị (%)',
+                text: '',
                 style: {
                     color: localStorage.getItem('color'),
                 },
@@ -245,6 +246,9 @@ const InvestorCashFlow = () => {
             labels: {
                 style: {
                     color: localStorage.getItem('color'),
+                },
+                formatter: function () {
+                    return this.value + "%";
                 },
             },
         },
@@ -258,6 +262,11 @@ const InvestorCashFlow = () => {
             series: {
                 marker: {
                     radius: 2, // Giá trị bán kính marker
+                },
+                tooltip: {
+                    headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",
+                    pointFormat: "<span style='color:black'>{series.name}: <b>{point.percentage:.1f}%</b></span><br/>", // Thay đổi format để hiển thị phần trăm
+                    valueDecimals: 3,
                 },
             }
         },
@@ -368,7 +377,7 @@ const InvestorCashFlow = () => {
                                 handleClick3(5)
                                 setIsAllMarket(false)
                                 setCanTouch(false)
-                                setQueryApi({ ...queryApi, investorType: 0 })
+                                setQueryApi({ ...queryApi, investorType: 1 })
                             }}
                             className='rounded-tl-xl rounded-bl-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Tự doanh</button>
                         <button
@@ -377,7 +386,7 @@ const InvestorCashFlow = () => {
                                 handleClick3(6)
                                 setIsAllMarket(false)
                                 setCanTouch(false)
-                                setQueryApi({ ...queryApi, investorType: 1 })
+                                setQueryApi({ ...queryApi, investorType: 0 })
                             }}
                             className='lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]'>Khối ngoại</button>
                         <button
@@ -402,7 +411,7 @@ const InvestorCashFlow = () => {
                 </div>
             </div>
             <div>
-                {dataCashFlowInvestor?.length >0 && dataTotalMarket?.length >0 ? (
+                {dataCashFlowInvestor?.length > 0 && dataTotalMarket?.length > 0 ? (
                     <>
                         <div className='h-[450px]'>
                             <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />

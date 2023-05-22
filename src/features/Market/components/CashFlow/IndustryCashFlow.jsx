@@ -178,10 +178,6 @@ const IndustryCashFlow = () => {
                                             let color2 = getColor(item.foreignPerChange);
                                             let color3 = getColor(item.retailPerChange);
 
-                                            let numOfCashGain = item.cashGain;
-                                            let numOfCashLost = item.cashLost;
-                                            let total = numOfCashGain + numOfCashLost;
-
                                             return (
                                                 <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
                                                     <th className={`${color} text-left align-middle xxs:text-[10px] lg:text-sm xl:text-xs px-1 py-2.5`}>
@@ -221,23 +217,20 @@ const IndustryCashFlow = () => {
                                                             {hoveredIndex === index && (
                                                                 <div className="bg-white text-black text-xs font-medium p-1 rounded-md absolute top-0 translate-x-[-20%] translate-y-[-110%] z-40 ease-in-out duration-500">
                                                                     <span>
-                                                                        Tăng: {item.cashGain}
-                                                                    </span>
-                                                                    <span className="ml-2">
-                                                                        Giảm: {item.cashLost}
+                                                                        RSI Cash: {item.rsiCash.toFixed(2)}
                                                                     </span>
                                                                 </div>
                                                             )}
                                                             <div
                                                                 className="h-2.5 bg-green-500"
                                                                 style={{
-                                                                    width: `${(item.cashGain / total) * 100}%`,
+                                                                    width: `${item.rsiCash * 100}%`,
                                                                 }}
                                                             ></div>
                                                             <div
                                                                 className="bg-red-500 "
                                                                 style={{
-                                                                    width: `${(item.cashLost / total) * 100}%`,
+                                                                    width: `${(100 - item.rsiCash) * 100}%`,
                                                                 }}
                                                             ></div>
                                                         </div>
