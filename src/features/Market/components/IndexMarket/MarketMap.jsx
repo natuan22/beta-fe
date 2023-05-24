@@ -32,7 +32,7 @@ const MarketMap = () => {
     console.log(dataMarketMap)
     const [queryApi, setQueryApi] = useState({
         exchange: 'all',
-        order: 0
+        order: '0'
     })
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all')
@@ -42,37 +42,40 @@ const MarketMap = () => {
 
 
     const [data, setData] = useState([]);
-    const [dataTreeMap, setDataTreeMap] = useState()
+    const [dataTreeMap, setDataTreeMap] = useState([])
     useEffect(() => {
         dispatch(fetchDataMarketMap(queryApi.exchange, queryApi.order))
     }, [dispatch, queryApi])
-
     useEffect(() => {
-        if (dataMarketMap?.length > 0)
+        if (dataMarketMap?.length > 0) {
             setData(dataMarketMap)
-    }, [dataMarketMap, queryApi])
-    useEffect(() => {
-        const resultMap = {};
-        data?.forEach(item => {
-            const { LV2, ticker, value, color } = item;
+            const resultMap = {};
+            data?.forEach(item => {
+                const { LV2, ticker, value, color } = item;
+                if (!resultMap.hasOwnProperty(LV2)) {
+                    resultMap[LV2] = { color: color, data: {} };
+                }
+                if (queryApi.order === '2') {
 
-            if (!resultMap.hasOwnProperty(LV2)) {
-                resultMap[LV2] = { color: color, data: {} };
-            }
+                    resultMap[LV2].data[ticker] = (value / 1000000).toFixed(2);
+                } else {
 
-            resultMap[LV2].data[ticker] = (value / 1000000000).toFixed(2);
-        });
-        setDataTreeMap(resultMap)
-    }, [data, queryApi])
+                    resultMap[LV2].data[ticker] = (value / 1000000000).toFixed(2);
+                }
+            });
+            setDataTreeMap(resultMap)
+        }
+    }, [data, queryApi, dataMarketMap])
+
     const points = [];
     let sectorIndex = 0;
 
-    for (let sector in dataTreeMap) {
+    for (const [sector, sectorData] of Object.entries(dataTreeMap)) {
         let sectorValue = 0;
-        let sectorPoint = {
+        const sectorPoint = {
             id: `sector_${sectorIndex}`,
-            name: `${sector}`,
-            color: dataTreeMap[sector].color, // Sử dụng color từ resultMap
+            name: sector,
+            color: sectorData.color,
             dataLabels: {
                 enabled: true,
                 style: {
@@ -84,14 +87,13 @@ const MarketMap = () => {
                 align: "left",
             },
         };
-        let stockIndex = 0;
 
-        for (let stock in dataTreeMap[sector].data) { // Truy cập vào đối tượng data trong dataTreeMap
-            let stockPoint = {
+        const stockPoints = Object.entries(sectorData.data)?.map(([stock, value], stockIndex) => {
+            const stockPoint = {
                 id: `${sectorPoint.id}_${stockIndex}`,
                 name: stock,
                 parent: sectorPoint.id,
-                value: parseFloat(dataTreeMap[sector].data[stock]), // Truy cập vào value trong dataTreeMap
+                value: parseFloat(value),
                 dataLabels: {
                     enabled: true,
                     formatter: function () {
@@ -100,7 +102,7 @@ const MarketMap = () => {
                     style: {
                         fontSize: "11px",
                         fontWeight: "semibold",
-                        color: "white",
+                        color: "  white",
                         style: {
                             textOutline: "none",
                         },
@@ -109,15 +111,14 @@ const MarketMap = () => {
                 },
             };
             sectorValue += stockPoint.value;
-            points.push(stockPoint);
-            stockIndex++;
-        }
+            return stockPoint;
+        });
 
         sectorPoint.value = Math.round(sectorValue);
         points.push(sectorPoint);
+        points.push(...stockPoints);
         sectorIndex++;
     }
-    console.log('point', points)
 
     const options = {
 
@@ -127,7 +128,9 @@ const MarketMap = () => {
         credits: false,
         tooltip: {
             formatter: function () {
-                return `<b>${this.point.name}</b>: ${this.point.value} (tỷ VNĐ)`;
+                return (
+                    (queryApi.order === '2' ? `<b>${this.point.name}</b>: ${this.point.value} (triệu CP)` : `<b>${this.point.name}</b>: ${this.point.value} (tỷ VNĐ)`)
+                );
             }
         },
         chart: {
@@ -145,6 +148,7 @@ const MarketMap = () => {
                 name: localStorage.getItem('nameMarketMap'),
                 layoutAlgorithm: "squarified",
                 allowDrillToNode: true,
+                animationLimit: 2000,
                 dataLabels: {
                     enabled: true,
                 },
