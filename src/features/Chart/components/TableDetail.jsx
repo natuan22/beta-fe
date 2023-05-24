@@ -14,6 +14,7 @@ const TableDetail = () => {
 
   useEffect(() => {
     socket.on("listen-domestic-index", (newData) => {
+      console.log(newData)
       setData(newData)
     });
   }, [])

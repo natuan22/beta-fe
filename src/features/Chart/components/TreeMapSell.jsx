@@ -146,6 +146,7 @@ const TreeMapSell = () => {
         name: "Khối ngoại bán ròng",
         layoutAlgorithm: "squarified",
         allowDrillToNode: true,
+        animationLimit: 2000,
         dataLabels: {
           enabled: true,
         },
