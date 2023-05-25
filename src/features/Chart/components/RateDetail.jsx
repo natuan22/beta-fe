@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Loading from '../utils/Loading';
+import { getColor } from '../utils/utils';
 
 const RateDetail = () => {
   const dataRateDetail = useSelector(state => state.chart.dataRateDetail)
@@ -37,13 +38,7 @@ const RateDetail = () => {
               <tbody>
                 {!loading ? (Array.isArray(data) &&
                   data?.map((item, index) => {
-                    let color = ''
-                    if (item.Day === '0.00%')
-                      color = 'text-yellow-500'
-                    else if (item.Day < '0')
-                      color = 'text-red-500'
-                    else
-                      color = 'text-green-500'
+                    let color = getColor(item.Day)
 
                     return (
                       <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>

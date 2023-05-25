@@ -19,7 +19,7 @@ const activeButtonStyle = {
 }
 const InvestorCashFlow = () => {
     const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
-    console.log("dataTotalMarket", dataTotalMarket)
+    // console.log("dataTotalMarket", dataTotalMarket)
     const [data, setData] = useState()
     const [dataToMap, setDataToMap] = useState()
     const [dataAbs, setDataAbs] = useState()
@@ -138,7 +138,7 @@ const InvestorCashFlow = () => {
     }, [param, dataCashFlowInvestor, queryApi, dataToMap,dataTotalMarket, isAllMarket])
     
     // hàm xử lý nút
-    console.log('data',dataCashFlowInvestor)
+    // console.log('data',dataCashFlowInvestor)
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
     const handleClick3 = (button) => {

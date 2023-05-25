@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
+import { getColor } from "../../../Chart/utils/utils";
 import { fecthDataTableThanhKhoan } from "../../thunk";
 
 const TableLiquidity = () => {
@@ -168,14 +169,14 @@ const TableLiquidity = () => {
                       return (
                         <tr className="dark:text-white text-black text-center xxs:text-[10px] text-[13px] dark:hover:bg-gray-800 hover:bg-gray-300 duration-500" key={index}>
                           <th className="text-left px-1.5 align-middle p-3.5" >{item.symbol}</th>
-                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{item.contribute.toFixed(2)}%</td>
-                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.totalValueMil / 1000).toFixed(1)}</td>
-                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.totalVolume / 100000).toFixed(2)}</td>
+                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{item.contribute.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</td>
+                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.totalValueMil / 1000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.totalVolume / 100000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                           <td className={`${color} text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold`}>
-                            {(item.supplyDemandVolumeGap / 1000000).toFixed(2)}
+                            {(item.supplyDemandVolumeGap / 1000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                           </td>
                           <td className={`${color2} text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold`}>
-                            {(item.supplyDemandValueGap / 1000).toFixed(2)}
+                            {(item.supplyDemandValueGap / 1000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                           </td>
                         </tr>
                       );
@@ -194,12 +195,3 @@ const TableLiquidity = () => {
 };
 
 export default TableLiquidity;
-
-function getColor(item) {
-  let color = "";
-  if (item === 0) color = "text-yellow-500";
-  else if (item < 0) color = "text-red-500";
-  else color = "text-green-500";
-
-  return color;
-}

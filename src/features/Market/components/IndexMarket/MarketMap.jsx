@@ -29,7 +29,7 @@ const activeButtonStyle = {
 
 const MarketMap = () => {
     const { dataMarketMap } = useSelector(state => state.market)
-    console.log(dataMarketMap)
+    // console.log(dataMarketMap)
     const [queryApi, setQueryApi] = useState({
         exchange: 'all',
         order: '0'
@@ -277,7 +277,7 @@ const MarketMap = () => {
                 </div>
             </div>
             <div className="pt-1.5">
-                {dataMarketMap?.length > 0 ? <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /> : <div><Loading /></div>}
+                {dataMarketMap?.length > 0 ? <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /> : <div className="mt-24"><Loading /></div>}
             </div>
         </>
     );
