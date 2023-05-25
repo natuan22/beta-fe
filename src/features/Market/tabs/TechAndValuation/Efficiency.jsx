@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import Error404 from '../../../Navigation/Error404'
-import ChartIndustryChangesPrice from '../../components/Efficiency/Chart/ChartIndustryChangesPrice'
-import ChartIndustryEquityGrowth from '../../components/Efficiency/Chart/ChartIndustryEquityGrowth'
-import ChartIndustryLiabilitiesGrowth from '../../components/Efficiency/Chart/ChartIndustryLiabilitiesGrowth'
-import ChartIndustryLiquidityGrowth from '../../components/Efficiency/Chart/ChartIndustryLiquidityGrowth'
-import TableIndustryChangesPrice from '../../components/Efficiency/Table/TableIndustryChangesPrice'
-import TableIndustryEquityGrowth from '../../components/Efficiency/Table/TableIndustryEquityGrowth'
-import TableIndustryLiabilitiesGrowth from '../../components/Efficiency/Table/TableIndustryLiabilitiesGrowth'
-import TableIndustryLiquidityGrowth from '../../components/Efficiency/Table/TableIndustryLiquidityGrowth'
+import ChartChangesPrice from '../../components/Efficiency/Chart/ChartChangesPrice'
+import ChartEquityGrowth from '../../components/Efficiency/Chart/ChartEquityGrowth'
+import ChartLiabilitiesGrowth from '../../components/Efficiency/Chart/ChartLiabilitiesGrowth'
+import ChartLiquidityGrowth from '../../components/Efficiency/Chart/ChartLiquidityGrowth'
+import TableChangesPrice from '../../components/Efficiency/Table/TableChangesPrice'
+import TableEquityGrowth from '../../components/Efficiency/Table/TableEquityGrowth'
+import TableLiabilitiesGrowth from '../../components/Efficiency/Table/TableLiabilitiesGrowth'
+import TableLiquidityGrowth from '../../components/Efficiency/Table/TableLiquidityGrowth'
 
 const Efficiency = () => {
   const [exchange, setExchange] = useState("all")
@@ -213,41 +213,41 @@ const Efficiency = () => {
               <span className='dark:text-white text-black font-semibold'>Thay đổi giá của các ngành (%)</span>
             </div>
             <div className='h-[300px]'>
-              <ChartIndustryChangesPrice exchange={exchange} industryQuery={industryQuery} />
+              <ChartChangesPrice exchange={exchange} industryQuery={industryQuery} />
             </div>
             <hr />
-            <TableIndustryChangesPrice exchange={exchange} industryQuery={industryQuery} />
+            <TableChangesPrice exchange={exchange} industryQuery={industryQuery} />
           </div>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng thanh khoản của các ngành (%)</span>
             </div>
             <div className='h-[300px]'>
-              <ChartIndustryLiquidityGrowth exchange={exchange} industryQuery={industryQuery} />
+              <ChartLiquidityGrowth exchange={exchange} industryQuery={industryQuery} />
             </div>
             <hr />
-            <TableIndustryLiquidityGrowth exchange={exchange} industryQuery={industryQuery} />
+            <TableLiquidityGrowth exchange={exchange} industryQuery={industryQuery} />
           </div>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng vốn chủ sở hữu của các ngành (%)</span>
             </div>
             <div className='h-[300px]'>
-              <ChartIndustryEquityGrowth exchange={exchange} industryQuery={industryQuery} />
+              <ChartEquityGrowth exchange={exchange} industryQuery={industryQuery} />
             </div>
             <hr />
-            <TableIndustryEquityGrowth exchange={exchange} industryQuery={industryQuery} />
+            <TableEquityGrowth exchange={exchange} industryQuery={industryQuery} />
           </div>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng nợ phải trả của các ngành (%)</span>
             </div>
             <div className='h-[300px]'>
-              <ChartIndustryLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />
+              <ChartLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />
             </div>
             <hr />
             <div>
-              <TableIndustryLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />
+              <TableLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />
             </div>
           </div>
         </div>
