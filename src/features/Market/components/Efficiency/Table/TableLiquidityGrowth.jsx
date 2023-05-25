@@ -9,7 +9,7 @@ const TableLiquidityGrowth = (props) => {
     const { dataTableLiquidityGrowth } = useSelector((state) => state.market);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
-    console.log(dataTableLiquidityGrowth);
+
     useEffect(() => {
         dispatch(fetchDataTableLiquidityGrowth(props.exchange, props.industryQuery));
     }, [dispatch, props]);
