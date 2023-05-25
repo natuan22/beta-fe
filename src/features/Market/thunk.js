@@ -125,13 +125,14 @@ export const fetchDataMarketMap = (exchange, order) => async dispatch => {
     try {
         const res = await marketServices.fetchDataMarketMap(exchange, order)
         dispatch({
-            type:marketType.FETCH_DATA_MARKET_MAP,
+            type: marketType.FETCH_DATA_MARKET_MAP,
             payload: res.data.data
         })
-    } catch(err) {
+    } catch (err) {
         console.log(err)
     }
 }
+
 export const fetchDataIndustryCashFlow = (exchange, type) => async (dispatch) => {
     try {
         const res = await marketServices.fetchDataIndustryCashFlow(exchange, type)
@@ -168,7 +169,6 @@ export const fetchDataTopNetBuyIndustry = (exchange, type) => async (dispatch) =
     }
 }
 
-
 export const fetchDataCashFlowInvestor = (type, investorType, exchange) => async (dispatch) => {
     try {
         const res = await marketServices.fetchDataCashFlowInvestor(type, investorType, exchange)
@@ -191,7 +191,6 @@ export const fetchDataCashFlowRatio = (exchange, type) => async (dispatch) => {
     } catch (err) {
         console.log(err)
     }
-
 }
 
 export const fetchDataTotalMarket = (exchange, type) => async (dispatch) => {
@@ -204,5 +203,28 @@ export const fetchDataTotalMarket = (exchange, type) => async (dispatch) => {
     } catch (err) {
         console.log(err)
     }
+}
 
+export const fetchDataTableIndustryChangesPrice = (exchange, industry) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableIndustryChangesPrice(exchange, industry)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_INDUSTRY_CHANGES_PRICE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTableIndustryLiquidityGrowth = (exchange, industry) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableIndustryLiquidityGrowth(exchange, industry)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_INDUSTRY_LIQUIDITY_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
 }

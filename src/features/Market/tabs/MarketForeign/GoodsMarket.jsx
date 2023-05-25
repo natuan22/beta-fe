@@ -3,7 +3,7 @@ import Error404 from '../../../Navigation/Error404'
 
 const GoodsMarket = () => {
   return (
-    <div className='container mx-auto'>
+    <div className='container mx-auto mt-2'>
       <Error404 />
     </div>
   )
