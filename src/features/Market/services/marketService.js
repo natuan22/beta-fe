@@ -129,7 +129,7 @@ export const marketServices = {
             }
         })
     },
-    fetchDataTableIndustryChangesPrice: (exchange, industry) => {
+    fetchDataTableChangesPrice: (exchange, industry) => {
         return https.get('api/v1/market/hieu-suat-thay-doi-gia-co-phieu', {
             params: {
                 exchange,
@@ -137,7 +137,11 @@ export const marketServices = {
             }
         })
     },
+<<<<<<< HEAD
     fetchDataTableIndustryLiquidityGrowth: (exchange, industry) => {
+=======
+    fetchDataTableLiquidityGrowth: (exchange, industry) => {
+>>>>>>> c8a2782ab811ac2d6e5f11e6da22bc04c7056bae
         return https.get('api/v1/market/hieu-suat-tang-truong-thanh-khoan-co-phieu', {
             params: {
                 exchange,

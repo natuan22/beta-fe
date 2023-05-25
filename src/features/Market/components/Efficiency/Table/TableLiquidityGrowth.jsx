@@ -2,24 +2,24 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { getColor } from '../../../../Chart/utils/utils';
-import { fetchDataTableIndustryLiquidityGrowth } from '../../../thunk';
+import { fetchDataTableLiquidityGrowth } from '../../../thunk';
 
-const TableIndustryLiquidityGrowth = (props) => {
+const TableLiquidityGrowth = (props) => {
     const dispatch = useDispatch()
-    const { dataTableIndustryLiquidityGrowth } = useSelector((state) => state.market);
+    const { dataTableLiquidityGrowth } = useSelector((state) => state.market);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        dispatch(fetchDataTableIndustryLiquidityGrowth(props.exchange, props.industryQuery));
+        dispatch(fetchDataTableLiquidityGrowth(props.exchange, props.industryQuery));
     }, [dispatch, props]);
 
     useEffect(() => {
-        if (dataTableIndustryLiquidityGrowth) {
+        if (dataTableLiquidityGrowth) {
             setLoading(false);
-            setData(dataTableIndustryLiquidityGrowth)
+            setData(dataTableLiquidityGrowth)
         }
-    }, [dataTableIndustryLiquidityGrowth])
+    }, [dataTableLiquidityGrowth])
 
     return (
         <section className="bg-blueGray-50 pt-1.5">
@@ -29,7 +29,7 @@ const TableIndustryLiquidityGrowth = (props) => {
                         <table className="items-center w-full border-collapse bg-transparent">
                             <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                 <tr>
-                                    <th className="text-center align-middle px-3 py-3 text-[13px] font-semibold text-white">
+                                    <th className="text-center align-middle px-3 py-3 text-[13px] whitespace-nowrap font-semibold text-white">
                                         Cổ phiếu
                                     </th>
                                     <th className="text-center align-middle px-3 py-3 text-[13px] font-semibold text-white">
@@ -81,4 +81,4 @@ const TableIndustryLiquidityGrowth = (props) => {
     )
 }
 
-export default TableIndustryLiquidityGrowth
+export default TableLiquidityGrowth

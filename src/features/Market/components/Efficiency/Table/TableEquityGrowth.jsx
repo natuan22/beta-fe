@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
+import { fetchDataTableIndustryChangesPrice } from '../../../thunk';
 
-const TableIndustryLiabilitiesGrowth = (props) => {
+const TableEquityGrowth = (props) => {
     // const dispatch = useDispatch()
     // const { dataTableIndustryChangesPrice } = useSelector((state) => state.market);
     // const [loading, setLoading] = useState(true);
@@ -27,17 +28,20 @@ const TableIndustryLiabilitiesGrowth = (props) => {
                         <table className="items-center w-full border-collapse bg-transparent">
                             <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                 <tr>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[14px] whitespace-nowrap font-semibold text-white">
+                                    <th className="text-center align-middle px-3 py-3 text-[13px] whitespace-nowrap font-semibold text-white">
                                         Cổ phiếu
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[14px] font-semibold text-white">
-                                        Tăng trưởng nợ ngắn hạn (%)
+                                    <th className="text-center align-middle px-3 py-3 text-[13px] font-semibold text-white">
+                                        Tăng trưởng Vốn góp của chủ sở hữu(%)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[14px] font-semibold text-white">
-                                        Tăng trưởng nợ dài hạn (%)
+                                    <th className="text-center align-middle px-3 py-3 text-[13px] font-semibold text-white">
+                                        Tăng trưởng Thặng dư vốn cổ phần (%)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[14px] font-semibold text-white">
-                                        Tỷ số thanh toán nhanh (Lần)
+                                    <th className="text-center align-middle px-3 py-3 text-[13px] font-semibold text-white">
+                                        Tăng trưởng LNST chưa phân phối (%)
+                                    </th>
+                                    <th className="text-center align-middle px-3 py-3 text-[12px] font-semibold text-white">
+                                        Tăng trưởng Lợi ích cổ đông không kiểm soát (%)
                                     </th>
                                 </tr>
                             </thead>
@@ -72,7 +76,7 @@ const TableIndustryLiabilitiesGrowth = (props) => {
                                         )
                                     })
                                 ) : ( */}
-                                <tr><td colSpan={4}><div className="mt-16"><Loading /></div></td></tr>
+                                <tr><td colSpan={5}><div className="mt-16"><Loading /></div></td></tr>
                                 {/* )} */}
                             </tbody>
                         </table>
@@ -83,13 +87,4 @@ const TableIndustryLiabilitiesGrowth = (props) => {
     )
 }
 
-export default TableIndustryLiabilitiesGrowth
-
-function getColor(item) {
-    let color = "";
-    if (item === 0) color = "text-yellow-500";
-    else if (item < "0") color = "text-red-500";
-    else color = "text-green-500";
-
-    return color;
-}
+export default TableEquityGrowth
