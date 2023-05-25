@@ -138,7 +138,7 @@ export const marketServices = {
         })
     },
     fetchDataTableIndustryLiquidityGrowth: (exchange, industry) => {
-        return https.get('api/v1/market/hieu-suat-tang-trung-thanh-khoan-co-phieu', {
+        return https.get('api/v1/market/hieu-suat-tang-truong-thanh-khoan-co-phieu', {
             params: {
                 exchange,
                 industry

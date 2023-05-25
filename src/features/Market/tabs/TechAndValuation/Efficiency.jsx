@@ -13,7 +13,7 @@ const Efficiency = () => {
   const [timeFrame, setTimeFrame] = useState("2ky")
   const [type, setType] = useState("quarter")
   const [industry, setIndustry] = useState(['baoHiem', 'batDongSan', 'congNghe', 'dauKhi', 'banLe', 'taiChinh', 'tienIch', 'doGiaDung', 'duLich', 'yTe', 'hangHoa', 'hoaChat', 'nganHang', 'oto', 'truyenThong', 'taiNguyen', 'thucPham', 'vienThong', 'xayDung'])
-
+  console.log(type)
   const handleIndustryChange = e => {
     const { value, checked } = e.target
 
@@ -231,7 +231,7 @@ const Efficiency = () => {
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng vốn chủ sở hữu của các ngành (%)</span>
             </div>
             <div className='h-[300px]'>
-              <ChartIndustryEquityGrowth exchange={exchange} industryQuery={industryQuery} />
+              <ChartIndustryEquityGrowth type={type} exchange={exchange} industryQuery={industryQuery} />
             </div>
             <hr />
             <TableIndustryEquityGrowth exchange={exchange} industryQuery={industryQuery} />

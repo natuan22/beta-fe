@@ -1,8 +1,0 @@
-.actionHover:hover::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  opacity: 0.7;
-  transition: all 0.5;
-}
