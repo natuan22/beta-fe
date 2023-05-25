@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataTransactionValueRatio } from '../../thunk';
+import { getColor, getTextSellBuy } from "../../../Chart/utils/utils";
 
 variablePie(Highcharts);
 
@@ -133,7 +134,7 @@ const TransactionValueRatio = () => {
                                             Khối ngoại
                                         </th>
                                         <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold xxs:text-[10px] lg:text-sm xl:text-sm`}>
-                                            {data && dataKhoiNgoai.length > 0 && getText(dataKhoiNgoai[0].netVal)}
+                                            {data && dataKhoiNgoai.length > 0 && getTextSellBuy(dataKhoiNgoai[0].netVal)}
                                         </td>
                                         <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold xxs:text-[10px] lg:text-sm xl:text-sm`}>
 
@@ -153,7 +154,7 @@ const TransactionValueRatio = () => {
                                             Tự doanh
                                         </th>
                                         <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold xxs:text-[10px] lg:text-sm xl:text-sm`}>
-                                            {data && dataTuDoanh.length > 0 && getText(dataTuDoanh[0].netVal)}
+                                            {data && dataTuDoanh.length > 0 && getTextSellBuy(dataTuDoanh[0].netVal)}
                                         </td>
                                         <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold xxs:text-[10px] lg:text-sm xl:text-sm`}>
 
@@ -173,7 +174,7 @@ const TransactionValueRatio = () => {
                                             Cá nhân
                                         </th>
                                         <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold xxs:text-[10px] lg:text-sm xl:text-sm`}>
-                                            {data && dataCaNhan.length > 0 && getText(dataCaNhan[0].netVal)}
+                                            {data && dataCaNhan.length > 0 && getTextSellBuy(dataCaNhan[0].netVal)}
                                         </td>
                                         <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold xxs:text-[10px] lg:text-sm xl:text-sm`}>
 
@@ -200,21 +201,3 @@ const TransactionValueRatio = () => {
 
 export default TransactionValueRatio
 
-function getText(item) {
-    let text = <span></span>;
-    if (item < "0")
-        text = <span className='text-red-500'>Bán ròng</span>;
-    else
-        text = <span className='text-green-500'>Mua ròng</span>;
-
-    return text;
-}
-
-function getColor(item) {
-    let color = "";
-    if (item === 0) color = "text-yellow-500";
-    else if (item < "0") color = "text-red-500";
-    else color = "text-green-500";
-
-    return color;
-}

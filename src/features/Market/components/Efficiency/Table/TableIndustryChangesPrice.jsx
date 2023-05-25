@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
+import { getColor } from '../../../../Chart/utils/utils';
 import { fetchDataTableIndustryChangesPrice } from '../../../thunk';
 
 const TableIndustryChangesPrice = (props) => {
@@ -88,12 +89,3 @@ const TableIndustryChangesPrice = (props) => {
 }
 
 export default TableIndustryChangesPrice
-
-function getColor(item) {
-    let color = "";
-    if (item === 0) color = "text-yellow-500";
-    else if (item < "0") color = "text-red-500";
-    else color = "text-green-500";
-
-    return color;
-}

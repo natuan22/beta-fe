@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
+import { getColor } from "../utils/utils";
 
 const TableDetail = () => {
   const dataTable = useSelector((state) => state.chart.dataTableDetail);
@@ -75,12 +76,3 @@ const TableDetail = () => {
 }
 
 export default TableDetail;
-
-function getColor(item) {
-  let color = "";
-  if (item === 0) color = "text-yellow-500";
-  else if (item < "0") color = "text-red-500";
-  else color = "text-green-500";
-
-  return color;
-}

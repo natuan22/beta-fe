@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Loading from "../utils/Loading";
 import { fetchDataTableMarketLiquidity } from "../thunk";
+import { getColor } from "../utils/utils";
 
 const TableMarketLiquidity = () => {
     const dispatch = useDispatch();
@@ -103,7 +104,7 @@ const TableMarketLiquidity = () => {
                                                         {item.industry}
                                                     </td>
                                                     <td className={`text-center align-middle xxs:text-[9px] text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
-                                                        {(item.value/1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                        {(item.value / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                     </td>
                                                     <td className={`text-center align-middle xxs:text-[9px] text-sm whitespace-nowrap px-2 py-2 font-semibold ${color}`}>
                                                         {item.value_change_percent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
@@ -122,12 +123,3 @@ const TableMarketLiquidity = () => {
 }
 
 export default TableMarketLiquidity;
-
-function getColor(item) {
-    let color = "";
-    if (item === 0) color = "text-yellow-500";
-    else if (item < "0") color = "text-red-500";
-    else color = "text-green-500";
-
-    return color;
-}

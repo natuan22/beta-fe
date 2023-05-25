@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Loading from "../utils/Loading";
+import { getColor, getText } from "../utils/utils";
 
 const TableMarketEvaluation = () => {
     const dataMarketEvaluation = useSelector(state => state.chart.dataMarketEvaluation);
@@ -107,26 +108,4 @@ const TableMarketEvaluation = () => {
 
 export default TableMarketEvaluation;
 
-function getColor(item) {
-    let color = ''
-    if (item === 0)
-        color = 'text-yellow-500'
-    else if (item < 0)
-        color = 'text-red-500'
-    else
-        color = 'text-green-500'
 
-    return color
-}
-
-function getText(item) {
-    let text = ''
-    if (item === 0)
-        text = 'Trung tính'
-    else if (item < 0)
-        text = 'Tiêu cực'
-    else
-        text = 'Tích cực'
-
-    return text
-}
