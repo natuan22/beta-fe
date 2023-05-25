@@ -18,8 +18,8 @@ const initialState = {
   dataTotalMarket: {},
   dataCashFlowInvestor: {},
   dataCashFlowRatio: {},
-  dataTableIndustryChangesPrice: {},
-  dataTableIndustryLiquidityGrowth: {}
+  dataTableChangesPrice: {},
+  dataTableLiquidityGrowth: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -75,11 +75,11 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === marketType.FETCH_DATA_MARKET_MAP) {
       draft.dataMarketMap = payload
     }
-    if (type === marketType.FETCH_DATA_TABLE_INDUSTRY_CHANGES_PRICE) {
-      draft.dataTableIndustryChangesPrice = payload
+    if (type === marketType.FETCH_DATA_TABLE_CHANGES_PRICE) {
+      draft.dataTableChangesPrice = payload
     }
-    if (type === marketType.FETCH_DATA_TABLE_INDUSTRY_LIQUIDITY_GROWTH) {
-      draft.dataTableIndustryLiquidityGrowth = payload
+    if (type === marketType.FETCH_DATA_TABLE_LIQUIDITY_GROWTH) {
+      draft.dataTableLiquidityGrowth = payload
     }
   });
 };

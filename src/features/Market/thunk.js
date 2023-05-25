@@ -205,11 +205,11 @@ export const fetchDataTotalMarket = (exchange, type) => async (dispatch) => {
     }
 }
 
-export const fetchDataTableIndustryChangesPrice = (exchange, industry) => async (dispatch) => {
+export const fetchDataTableChangesPrice = (exchange, industry) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataTableIndustryChangesPrice(exchange, industry)
+        const res = await marketServices.fetchDataTableChangesPrice(exchange, industry)
         dispatch({
-            type: marketType.FETCH_DATA_TABLE_INDUSTRY_CHANGES_PRICE,
+            type: marketType.FETCH_DATA_TABLE_CHANGES_PRICE,
             payload: res.data.data
         })
     } catch (err) {
@@ -217,11 +217,11 @@ export const fetchDataTableIndustryChangesPrice = (exchange, industry) => async 
     }
 }
 
-export const fetchDataTableIndustryLiquidityGrowth = (exchange, industry) => async (dispatch) => {
+export const fetchDataTableLiquidityGrowth = (exchange, industry) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataTableIndustryLiquidityGrowth(exchange, industry)
+        const res = await marketServices.fetchDataTableLiquidityGrowth(exchange, industry)
         dispatch({
-            type: marketType.FETCH_DATA_TABLE_INDUSTRY_LIQUIDITY_GROWTH,
+            type: marketType.FETCH_DATA_TABLE_LIQUIDITY_GROWTH,
             payload: res.data.data
         })
     } catch (err) {

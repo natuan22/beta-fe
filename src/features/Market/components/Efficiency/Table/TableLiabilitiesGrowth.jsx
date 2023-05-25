@@ -1,54 +1,49 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
-import { getColor } from '../../../../Chart/utils/utils';
-import { fetchDataTableIndustryChangesPrice } from '../../../thunk';
 
-const TableIndustryChangesPrice = (props) => {
-    const dispatch = useDispatch()
-    const { dataTableIndustryChangesPrice } = useSelector((state) => state.market);
-    const [loading, setLoading] = useState(true);
-    const [data, setData] = useState([]);
+const TableLiabilitiesGrowth = (props) => {
+    // const dispatch = useDispatch()
+    // const { dataTableIndustryChangesPrice } = useSelector((state) => state.market);
+    // const [loading, setLoading] = useState(true);
+    // const [data, setData] = useState([]);
 
-    useEffect(() => {
-        dispatch(fetchDataTableIndustryChangesPrice(props.exchange, props.industryQuery));
-    }, [dispatch, props]);
+    // useEffect(() => {
+    //     dispatch(fetchDataTableIndustryChangesPrice(props.exchange, props.industryQuery));
+    // }, [dispatch, props]);
 
-    useEffect(() => {
-        if (dataTableIndustryChangesPrice) {
-            setLoading(false);
-            setData(dataTableIndustryChangesPrice)
-        }
-    }, [dataTableIndustryChangesPrice])
+    // useEffect(() => {
+    //     if (dataTableIndustryChangesPrice) {
+    //         setLoading(false);
+    //         setData(dataTableIndustryChangesPrice)
+    //     }
+    // }, [dataTableIndustryChangesPrice])
 
     return (
         <section className="bg-blueGray-50 pt-1.5">
             <div className="w-full">
                 <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-                    <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[330px]">
+                    <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[300px]">
                         <table className="items-center w-full border-collapse bg-transparent">
                             <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                 <tr>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] whitespace-nowrap font-semibold text-white">
+                                    <th className="text-center align-middle px-3 py-[19px] text-[14px] whitespace-nowrap font-semibold text-white">
                                         Cổ phiếu
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] whitespace-nowrap font-semibold text-white">
-                                        Thay đổi giá 5 phiên (%)
+                                    <th className="text-center align-middle px-3 py-[19px] text-[14px] font-semibold text-white">
+                                        Tăng trưởng nợ ngắn hạn (%)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] whitespace-nowrap font-semibold text-white">
-                                        Thay đổi giá quý (%)
+                                    <th className="text-center align-middle px-3 py-[19px] text-[14px] font-semibold text-white">
+                                        Tăng trưởng nợ dài hạn (%)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] whitespace-nowrap font-semibold text-white">
-                                        Thay đổi giá YtD (%)
-                                    </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] whitespace-nowrap font-semibold text-white">
-                                        Thay đổi giá YoY (%)
+                                    <th className="text-center align-middle px-3 py-[19px] text-[14px] font-semibold text-white">
+                                        Tỷ số thanh toán nhanh (Lần)
                                     </th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                {!loading ? (
+                                {/* {!loading ? (
                                     Array.isArray(data) &&
                                     data.map((item, index) => {
                                         let colorFive = getColor(item.perFive);
@@ -76,9 +71,9 @@ const TableIndustryChangesPrice = (props) => {
                                             </tr>
                                         )
                                     })
-                                ) : (
-                                    <tr><td colSpan={5}><div className="mt-16"><Loading /></div></td></tr>
-                                )}
+                                ) : ( */}
+                                <tr><td colSpan={4}><div className="mt-16"><Loading /></div></td></tr>
+                                {/* )} */}
                             </tbody>
                         </table>
                     </div>
@@ -88,4 +83,4 @@ const TableIndustryChangesPrice = (props) => {
     )
 }
 
-export default TableIndustryChangesPrice
+export default TableLiabilitiesGrowth
