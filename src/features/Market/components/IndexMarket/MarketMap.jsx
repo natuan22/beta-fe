@@ -148,7 +148,7 @@ const MarketMap = () => {
                 name: localStorage.getItem('nameMarketMap'),
                 layoutAlgorithm: "squarified",
                 allowDrillToNode: true,
-                animationLimit: 2000,
+                animationLimit: 3000,
                 dataLabels: {
                     enabled: true,
                 },
