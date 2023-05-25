@@ -41,7 +41,6 @@ const Efficiency = () => {
 
   return (
     <div className='container mx-auto mt-2'>
-      {/* <Error404 /> */}
       <div className='flex'>
         <div className='w-[65%]'>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
