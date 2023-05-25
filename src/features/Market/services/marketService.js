@@ -58,7 +58,7 @@ export const marketServices = {
         })
     },
     fetchDataMarketMap: (exchange, order) => {
-        return https.get('api/v1/stock/get-market-map',{
+        return https.get('api/v1/stock/get-market-map', {
             params: {
                 exchange,
                 order
@@ -121,16 +121,28 @@ export const marketServices = {
             }
         })
     },
-
-
     fetchDataCashFlowRatio: (exchange, type) => {
         return https.get('api/v1/cash-flow/investor-transaction-cash-flow-ratio', {
-
             params: {
                 exchange,
                 type
             }
         })
+    },
+    fetchDataTableIndustryChangesPrice: (exchange, industry) => {
+        return https.get('api/v1/market/hieu-suat-thay-doi-gia-co-phieu', {
+            params: {
+                exchange,
+                industry
+            }
+        })
+    },
+    fetchDataTableIndustryLiquidityGrowth: (exchange, industry) => {
+        return https.get('api/v1/market/hieu-suat-tang-trung-thanh-khoan-co-phieu', {
+            params: {
+                exchange,
+                industry
+            }
+        })
     }
-
 }
