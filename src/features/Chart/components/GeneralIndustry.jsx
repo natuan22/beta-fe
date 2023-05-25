@@ -1,8 +1,8 @@
-import { CaretDownOutlined, CaretRightOutlined, CaretUpOutlined, } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
+import { getColor, getIcon } from "../utils/utils";
 
 const GeneralIndustry = () => {
   const dataGeneral = useSelector((state) => state.chart.dataGeneral);
@@ -199,18 +199,3 @@ const GeneralIndustry = () => {
 
 export default GeneralIndustry;
 
-function getColor(item) {
-  let color = "";
-  if (item === 0) color = "text-yellow-500";
-  else if (item < "0") color = "text-red-500";
-  else color = "text-green-500";
-
-  return color;
-}
-
-function getIcon(item) {
-  if (item === 0) return <CaretRightOutlined style={{ fontSize: "18px" }} />;
-  else if (item < "0")
-    return <CaretDownOutlined style={{ fontSize: "18px" }} />;
-  else return <CaretUpOutlined style={{ fontSize: "18px" }} />;
-}
