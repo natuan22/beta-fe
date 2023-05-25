@@ -65,13 +65,13 @@ const CashFlowRatio = () => {
 
         switch (type) {
             case 0:
-                khoiNgoaiPercent.push(+percent.toFixed(1))
+                khoiNgoaiPercent.push(+percent.toFixed(2))
                 break;
             case 1:
-                tuDoanhPercent.push(+percent.toFixed(1))
+                tuDoanhPercent.push(+percent.toFixed(2))
                 break;
             case 2:
-                caNhanPercent.push(+percent.toFixed(1))
+                caNhanPercent.push(+percent.toFixed(2))
                 break;
             default:
                 break;
@@ -132,6 +132,7 @@ const CashFlowRatio = () => {
         },
         legend: {
             itemStyle: {
+                fontSize:'10px',
                 color: localStorage.getItem('color'),
             },
             enabled: true,
