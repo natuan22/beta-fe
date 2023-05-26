@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { https } from "../../../services/config";
 
 export const marketServices = {
@@ -165,6 +164,25 @@ export const marketServices = {
                 order
             }
         })
+    },
+    fetchDataChartEquityGrowth: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-von-chu-so-huu-nganh', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartLiabilitiesGrowth: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-no-phai-tra-nganh', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
     }
-
 }

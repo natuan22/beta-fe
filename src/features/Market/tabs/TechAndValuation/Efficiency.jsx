@@ -277,8 +277,8 @@ const Efficiency = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng vốn chủ sở hữu của các ngành (%)</span>
             </div>
-            <div className='h-[300px]'>
-              <ChartEquityGrowth exchange={exchange} industryQuery={industryQuery} />
+            <div>
+              <ChartEquityGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
             </div>
             <hr />
             <TableEquityGrowth exchange={exchange} industryQuery={industryQuery} />
@@ -287,8 +287,8 @@ const Efficiency = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng nợ phải trả của các ngành (%)</span>
             </div>
-            <div className='h-[300px]'>
-              <ChartLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />
+            <div>
+              <ChartLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
             </div>
             <hr />
             <div>

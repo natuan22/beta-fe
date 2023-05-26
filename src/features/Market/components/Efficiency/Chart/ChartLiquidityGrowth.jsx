@@ -12,10 +12,13 @@ const ChartLiquidityGrowth = (props) => {
     const { dataChartLiquidityGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
         dispatch(fetchDataChartLiquidityGrowth(exchange, industryQuery, timeFrame, order))
-    }, [props])
+        setColorText(color);
+    }, [props, color])
 
     useEffect(() => {
         if (dataChartLiquidityGrowth?.length > 0) {
