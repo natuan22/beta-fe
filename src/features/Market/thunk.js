@@ -228,3 +228,15 @@ export const fetchDataTableLiquidityGrowth = (exchange, industry) => async (disp
         console.log(err)
     }
 }
+
+export const fetchDataChartChangesPrice = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartChangesPrice(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_CHANGES_PRICE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
