@@ -12,10 +12,9 @@ const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Efficiency = () => {
   const [exchange, setExchange] = useState("all")
-  const [timeFrame, setTimeFrame] = useState("2ky")
-  const [order, setOrder] = useState("quarter")
+  const [timeFrame, setTimeFrame] = useState("2")
+  const [order, setOrder] = useState("0")
   const [industry, setIndustry] = useState(['baoHiem', 'batDongSan', 'congNghe', 'dauKhi', 'banLe', 'taiChinh', 'tienIch', 'doGiaDung', 'duLich', 'yTe', 'hangHoa', 'hoaChat', 'nganHang', 'oto', 'truyenThong', 'taiNguyen', 'thucPham', 'vienThong', 'xayDung'])
-  console.log(type)
   const handleIndustryChange = e => {
     const { value, checked } = e.target
 
@@ -189,27 +188,27 @@ const Efficiency = () => {
                 </div>
                 <div>
                   <label className="material-checkbox py-3 dark:text-white text-black">
-                    <input type="checkbox" name="timeFrame" value="2ky" id="2ky" checked={timeFrame === "2ky"} onChange={onTimeFrameChange} />
+                    <input type="checkbox" name="timeFrame" value="2" id="2ky" checked={timeFrame === "2"} onChange={onTimeFrameChange} />
                     <span className="checkmark"></span>
                     <span className='text-sm'>2 kỳ gần nhất</span>
                   </label>
                   <label className="material-checkbox py-3 dark:text-white text-black">
-                    <input type="checkbox" name="timeFrame" value="4ky" id="4ky" checked={timeFrame === "4ky"} onChange={onTimeFrameChange} />
+                    <input type="checkbox" name="timeFrame" value="4" id="4ky" checked={timeFrame === "4"} onChange={onTimeFrameChange} />
                     <span className="checkmark"></span>
                     <span className='text-sm'>4 kỳ gần nhất</span>
                   </label>
                   <label className="material-checkbox py-3 dark:text-white text-black">
-                    <input type="checkbox" name="timeFrame" value="8ky" id="8ky" checked={timeFrame === "8ky"} onChange={onTimeFrameChange} />
+                    <input type="checkbox" name="timeFrame" value="8" id="8ky" checked={timeFrame === "8"} onChange={onTimeFrameChange} />
                     <span className="checkmark"></span>
                     <span className='text-sm'>8 kỳ gần nhất</span>
                   </label>
                   <label className="material-checkbox py-3 dark:text-white text-black">
-                    <input type="checkbox" name="timeFrame" value="12ky" id="12ky" checked={timeFrame === "12ky"} onChange={onTimeFrameChange} />
+                    <input type="checkbox" name="timeFrame" value="12" id="12ky" checked={timeFrame === "12"} onChange={onTimeFrameChange} />
                     <span className="checkmark"></span>
                     <span className='text-sm'>12 kỳ gần nhất</span>
                   </label>
                   <label className="material-checkbox py-3 dark:text-white text-black">
-                    <input type="checkbox" name="timeFrame" value="20ky" id="20ky" checked={timeFrame === "20ky"} onChange={onTimeFrameChange} />
+                    <input type="checkbox" name="timeFrame" value="20" id="20ky" checked={timeFrame === "20"} onChange={onTimeFrameChange} />
                     <span className="checkmark"></span>
                     <span className='text-sm'>20 kỳ gần nhất</span>
                   </label>
@@ -220,12 +219,12 @@ const Efficiency = () => {
                 </div>
                 <div>
                   <label className="material-checkbox py-3 dark:text-white text-black">
-                    <input type="checkbox" name="order" value="quarter" id="quarter" checked={order === "quarter"} onChange={onOrderChange} />
+                    <input type="checkbox" name="order" value="0" id="quarter" checked={order === "0"} onChange={onOrderChange} />
                     <span className="checkmark"></span>
                     Tài chính theo quý
                   </label>
                   <label className="material-checkbox py-3 dark:text-white text-black">
-                    <input type="checkbox" name="order" value="year" id="year" checked={order === "year"} onChange={onOrderChange} />
+                    <input type="checkbox" name="order" value="1" id="year" checked={order === "1"} onChange={onOrderChange} />
                     <span className="checkmark"></span>
                     Tài chính theo năm
                   </label>
@@ -279,11 +278,7 @@ const Efficiency = () => {
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng vốn chủ sở hữu của các ngành (%)</span>
             </div>
             <div className='h-[300px]'>
-<<<<<<< HEAD
-              <ChartIndustryEquityGrowth type={type} exchange={exchange} industryQuery={industryQuery} />
-=======
               <ChartEquityGrowth exchange={exchange} industryQuery={industryQuery} />
->>>>>>> c8a2782ab811ac2d6e5f11e6da22bc04c7056bae
             </div>
             <hr />
             <TableEquityGrowth exchange={exchange} industryQuery={industryQuery} />
