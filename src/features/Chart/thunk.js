@@ -375,25 +375,7 @@ export const fetchDataMacroNews = async (dispatch) => {
   }
 }
 
-export const fetchDataMarketMap = (exchange, order) => async (dispatch) => {
-  try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/get-market-map`,
-      method: "GET",
-      params: {
-        exchange: exchange,
-        order: order
-      }
-    });
-    dispatch({
-      type: "beta/UPDATE_DATA_MARKET_MAP",
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
+
 
 export const fetchDataLineChartHomePage = (index) => async (dispatch) => {
   try {

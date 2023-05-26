@@ -2,6 +2,7 @@ import { CaretDownOutlined, CaretRightOutlined, CaretUpOutlined } from '@ant-des
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
+import { getColor, getIcon } from '../../../Chart/utils/utils';
 import { fetchDataIndustryCashFlow, fetchDataRSI, fetchDataTopNetBuyIndustry } from '../../thunk';
 
 const ENUM = {
@@ -274,19 +275,3 @@ const IndustryCashFlow = () => {
 }
 
 export default IndustryCashFlow
-
-function getColor(item) {
-    let color = "";
-    if (item === 0) color = "text-yellow-500";
-    else if (item < "0") color = "text-red-500";
-    else color = "text-green-500";
-
-    return color;
-}
-
-function getIcon(item) {
-    if (item === 0) return <CaretRightOutlined style={{ fontSize: "18px" }} />;
-    else if (item < "0")
-        return <CaretDownOutlined style={{ fontSize: "18px" }} />;
-    else return <CaretUpOutlined style={{ fontSize: "18px" }} />;
-}

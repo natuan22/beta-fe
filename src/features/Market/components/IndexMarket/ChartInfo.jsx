@@ -6,6 +6,7 @@ import socket from '../../../Chart/utils/socket'
 import moment from 'moment';
 import { fetchDataBienDongThiTruong, fetchDataLineChartMarket } from '../../thunk';
 import Loading from '../../../Chart/utils/Loading';
+import { getColor, getColorWithValueReference } from '../../../Chart/utils/utils';
 
 const ChartInfo = () => {
     const dispatch = useDispatch()
@@ -144,9 +145,9 @@ const ChartInfo = () => {
 
     const vnindexData = dataInfo && dataInfo[dataInfo.length - 1]
     const colorChange = vnindexData && getColor(vnindexData.percentIndexChange)
-    const openColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.openIndex)
-    const lowestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.lowestIndex)
-    const highestColor = vnindexData && getColor2(vnindexData.referenceIndex, vnindexData.highestIndex)
+    const openColor = vnindexData && getColorWithValueReference(vnindexData.referenceIndex, vnindexData.openIndex)
+    const lowestColor = vnindexData && getColorWithValueReference(vnindexData.referenceIndex, vnindexData.lowestIndex)
+    const highestColor = vnindexData && getColorWithValueReference(vnindexData.referenceIndex, vnindexData.highestIndex)
 
     return (
         <>
@@ -264,20 +265,4 @@ const ChartInfo = () => {
 
 export default ChartInfo
 
-function getColor(item) {
-    let color = "";
-    if (item === 0) color = "text-yellow-500";
-    else if (item < 0) color = "text-red-500";
-    else color = "text-green-500";
 
-    return color;
-}
-
-function getColor2(referenceIndex, item) {
-    let color = "";
-    if (item === referenceIndex) color = "text-yellow-500";
-    else if (item < referenceIndex) color = "text-red-500";
-    else color = "text-green-500";
-
-    return color;
-}

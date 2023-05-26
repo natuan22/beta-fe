@@ -1,9 +1,9 @@
-import { CaretDownOutlined, CaretRightOutlined, CaretUpOutlined, } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataGeneralIndustry } from "../../../Chart/thunk";
 import Loading from "../../../Chart/utils/Loading";
 import socket from "../../../Chart/utils/socket";
+import { getColor, getIcon } from "../../../Chart/utils/utils";
 import '../../../Market/utils/tabStyle.css'
 
 const GeneralIndustry = () => {
@@ -195,7 +195,7 @@ const GeneralIndustry = () => {
                                                             {getIcon(item.day_change_percent)}
                                                         </span>
                                                         <span className="text-right px-px">
-                                                            {item.day_change_percent.toFixed(2)}%
+                                                            {item.day_change_percent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                         </span>
                                                     </td>
                                                     <td className={`${color2} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
@@ -203,7 +203,7 @@ const GeneralIndustry = () => {
                                                             {getIcon(item.week_change_percent)}
                                                         </span>
                                                         <span className="text-right px-px">
-                                                            {item.week_change_percent.toFixed(2)}%
+                                                            {item.week_change_percent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                         </span>
                                                     </td>
                                                     <td className={`${color3} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
@@ -211,7 +211,7 @@ const GeneralIndustry = () => {
                                                             {getIcon(item.month_change_percent)}
                                                         </span>
                                                         <span className="text-right px-px">
-                                                            {item.month_change_percent.toFixed(2)}%
+                                                            {item.month_change_percent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                         </span>
                                                     </td>
                                                     <td className={`${color4} align-middle xxs:text-[10px] lg:text-sm xl:text-xs whitespace-nowrap px-1 py-2 font-semibold`}>
@@ -219,7 +219,7 @@ const GeneralIndustry = () => {
                                                             {getIcon(item.ytd)}
                                                         </span>
                                                         <span className="text-right px-px">
-                                                            {item.ytd.toFixed(2)}%
+                                                            {item.ytd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                         </span>
                                                     </td>
 
@@ -290,10 +290,10 @@ const GeneralIndustry = () => {
             <div className='text-center py-2'>
                 <span className='dark:text-white text-black'>Lực mua
                     {isHovering === true && (
-                        <span className="text-green-500"> {((buySellData.buyPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100).toFixed(2)}%</span>
+                        <span className="text-green-500"> {((buySellData.buyPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</span>
                     )} - bán
                     {isHovering === true && (
-                        <span className="text-red-500"> {((buySellData.sellPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100).toFixed(2)}%</span>
+                        <span className="text-red-500"> {((buySellData.sellPressure / 1000 / (buySellData.sellPressure / 1000 + buySellData.buyPressure / 1000)) * 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</span>
                     )} hiện tại</span>
             </div>
             <div className='flex relative'
@@ -317,19 +317,3 @@ const GeneralIndustry = () => {
 };
 
 export default GeneralIndustry;
-
-function getColor(item) {
-    let color = "";
-    if (item === 0) color = "text-yellow-500";
-    else if (item < "0") color = "text-red-500";
-    else color = "text-green-500";
-
-    return color;
-}
-
-function getIcon(item) {
-    if (item === 0) return <CaretRightOutlined style={{ fontSize: "18px" }} />;
-    else if (item < "0")
-        return <CaretDownOutlined style={{ fontSize: "18px" }} />;
-    else return <CaretUpOutlined style={{ fontSize: "18px" }} />;
-}

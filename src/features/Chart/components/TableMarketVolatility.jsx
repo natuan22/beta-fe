@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
+import { getColor } from "../utils/utils";
 
 const TableMarketVolatility = () => {
     const dataMarketVolatility = useSelector(state => state.chart.dataTableMarketVolatility);
@@ -55,7 +56,7 @@ const TableMarketVolatility = () => {
                                             let color = getColor(item.day_change_percent)
                                             return (
                                                 <td key={item.ticker} className={`${color} text-center align-middle xxs:text-[7px] text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.day_change_percent.toFixed(2)}%
+                                                    {item.day_change_percent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                 </td>
                                             )
                                         })}
@@ -68,7 +69,7 @@ const TableMarketVolatility = () => {
                                             let color = getColor(item.week_change_percent)
                                             return (
                                                 <td key={item.ticker} className={`${color} text-center align-middle xxs:text-[7px] text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.week_change_percent.toFixed(2)}%
+                                                    {item.week_change_percent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                 </td>
                                             )
                                         })}
@@ -81,7 +82,7 @@ const TableMarketVolatility = () => {
                                             let color = getColor(item.month_change_percent)
                                             return (
                                                 <td key={item.ticker} className={`${color} text-center align-middle xxs:text-[7px] text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.month_change_percent.toFixed(2)}%
+                                                    {item.month_change_percent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                 </td>
                                             )
                                         })}
@@ -94,7 +95,7 @@ const TableMarketVolatility = () => {
                                             let color = getColor(item.year_change_percent)
                                             return (
                                                 <td key={item.ticker} className={`${color} text-center align-middle xxs:text-[7px] text-sm whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.year_change_percent.toFixed(2)}%
+                                                    {item.year_change_percent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                 </td>
                                             )
                                         })}
@@ -110,15 +111,3 @@ const TableMarketVolatility = () => {
 }
 
 export default TableMarketVolatility;
-
-function getColor(item) {
-    let color = ''
-    if (item === 0)
-        color = 'text-yellow-500'
-    else if (item < '0')
-        color = 'text-red-500'
-    else
-        color = 'text-green-500'
-
-    return color
-}

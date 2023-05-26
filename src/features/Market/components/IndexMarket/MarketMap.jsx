@@ -1,9 +1,13 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Chart } from "react-google-charts";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataMarketMap } from "../../../Chart/thunk";
 import Loading from "../../../Chart/utils/Loading";
+import HighchartsReact from "highcharts-react-official";
+import treemap from "highcharts/modules/treemap";
+import Highcharts from "highcharts";
+import { fetchDataMarketMap } from "../../thunk";
+
+treemap(Highcharts);
 
 const ENUM = {
     vonhoa: '0',
@@ -11,107 +15,180 @@ const ENUM = {
     klGD: '2',
     gtNNGD: '3',
 }
+const buttonStyle = {
+    backgroundColor: 'transparent',
+    color: '#fff',
+    border: 'none',
+    cursor: 'pointer',
+    padding: '0.375rem 0.5rem'
+}
+const activeButtonStyle = {
+    backgroundColor: '#275F88',
+    color: '#fff',
+}
 
 const MarketMap = () => {
+    const { dataMarketMap } = useSelector(state => state.market)
+    // console.log(dataMarketMap)
+    const [queryApi, setQueryApi] = useState({
+        exchange: 'all',
+        order: '0'
+    })
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all')
     const [activeButton2, setActiveButton2] = useState(ENUM.vonhoa)
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
-    const buttonStyle = {
-        backgroundColor: 'transparent',
-        color: '#fff',
-        border: 'none',
-        cursor: 'pointer',
-        padding: '0.375rem 0.5rem'
-    }
-    const activeButtonStyle = {
-        backgroundColor: '#275F88',
-        color: '#fff',
-    }
 
-    const dataMarketMap = useSelector((state) => state.chart.dataMarketMap);
+
     const [data, setData] = useState([]);
+    const [dataTreeMap, setDataTreeMap] = useState([])
     useEffect(() => {
-        if (dataMarketMap) {
-            setData(dataMarketMap.data || [])
-        }
-    }, [dataMarketMap])
+        dispatch(fetchDataMarketMap(queryApi.exchange, queryApi.order))
+    }, [dispatch, queryApi])
+    useEffect(() => {
+        if (dataMarketMap?.length > 0) {
+            setData(dataMarketMap)
+            const resultMap = {};
+            data?.forEach(item => {
+                const { LV2, ticker, value, color } = item;
+                if (!resultMap.hasOwnProperty(LV2)) {
+                    resultMap[LV2] = { color: color, data: {} };
+                }
+                if (queryApi.order === '2') {
 
-    const arrGlobal = [
-        [
-            "Location",
-            "Parent",
-            "Market trade volume (size)",
-        ],
-        ["Bản đồ thị trường", null, 0],
-    ];
-    // tạo 1 trường AddedLv2Value => chạy vòng lặp xét item.lv2 có trong addedValue chưa nếu chưa thì thực hiện arrGlobal.push([item.lv2, "Global", 0, 0]); và ngược lại
-    const addedLv2Values = new Set();
-    data.forEach((item) => {
-        if (!addedLv2Values.has(item.industry)) {
-            arrGlobal.push([item.industry, "Bản đồ thị trường", 0]);
-            addedLv2Values.add(item.industry);
-        }
-    });
-    const arrTicker = data.map((item) => {
-        return [
-            `${item.ticker}: ${item.value}`,
-            item.industry,
-            item.value,
-        ];
-    });
+                    resultMap[LV2].data[ticker] = (value / 1000000).toFixed(2);
+                } else {
 
-    const dataTreeMapRender = arrGlobal.concat(arrTicker)
+                    resultMap[LV2].data[ticker] = (value / 1000000000).toFixed(2);
+                }
+            });
+            setDataTreeMap(resultMap)
+        }
+    }, [data, queryApi, dataMarketMap])
+
+    const points = [];
+    let sectorIndex = 0;
+
+    for (const [sector, sectorData] of Object.entries(dataTreeMap)) {
+        let sectorValue = 0;
+        const sectorPoint = {
+            id: `sector_${sectorIndex}`,
+            name: sector,
+            color: sectorData.color,
+            dataLabels: {
+                enabled: true,
+                style: {
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    color: "black",
+                },
+                verticalAlign: "top",
+                align: "left",
+            },
+        };
+
+        const stockPoints = Object.entries(sectorData.data)?.map(([stock, value], stockIndex) => {
+            const stockPoint = {
+                id: `${sectorPoint.id}_${stockIndex}`,
+                name: stock,
+                parent: sectorPoint.id,
+                value: parseFloat(value),
+                dataLabels: {
+                    enabled: true,
+                    formatter: function () {
+                        return '<b>' + this.point.name + '</b>: ' + this.point.value;
+                    },
+                    style: {
+                        fontSize: "11px",
+                        fontWeight: "semibold",
+                        color: "  white",
+                        style: {
+                            textOutline: "none",
+                        },
+                    },
+                    align: "center",
+                },
+            };
+            sectorValue += stockPoint.value;
+            return stockPoint;
+        });
+
+        sectorPoint.value = Math.round(sectorValue);
+        points.push(sectorPoint);
+        points.push(...stockPoints);
+        sectorIndex++;
+    }
 
     const options = {
-        highlightOnMouseOver: true,
-        maxDepth: 1,
-        maxPostDepth: 2,
-        minHighlightColor: "green",
-        midHighlightColor: "green",
-        maxHighlightColor: "#green",
-        minColor: "green",
-        midColor: "#green",
-        maxColor: "#green",
-        headerHeight: 0,
-        showScale: false,
-        height: 380,
-        useWeightedAverageForAggregation: true,
-        textStyle: {
-            color: '#fff',
-            fontSize: 14,
-            fontWeight: 'semibold',
-        },
-        titleTextStyle: {
-            color: '#fff',
-            fontSize: 13,
-        },
-        generateTooltip: (row) => {
-            const size = row[2];
-            const color = row[3];
-            const label = row[0];
-            return `
-                <div>
-                <div style="font-weight: bold;>${label}</div>
-                <div className='font-semibold'>Market trade volume: ${size}</div>
-                <div>Market increase/decrease: ${color}</div>
-                </div>
-            `;
-        },
-        headerTemplate: (props) => {
-            const { row, column, value } = props;
-            const label = row.getFormattedValue(column);
-            return `
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px; background-color: #333;">
-            <span style="color: black; font-size: 14px; margin-right: 8px;">${label}122</span>
-            <span style="color: black; font-size: 14px;">${value}</span>
-          </div>
-        `;
-        },
 
+        accessibility: {
+            enabled: false,
+        },
+        credits: false,
+        tooltip: {
+            formatter: function () {
+                return (
+                    (queryApi.order === '2' ? `<b>${this.point.name}</b>: ${this.point.value} (triệu CP)` : `<b>${this.point.name}</b>: ${this.point.value} (tỷ VNĐ)`)
+                );
+            }
+        },
+        chart: {
+            type: "treemap",
+            backgroundColor: "transparent",
+
+        },
+        title: {
+            text: "",
+            align: "center"
+        },
+        series: [
+            {
+                type: "treemap",
+                name: localStorage.getItem('nameMarketMap'),
+                layoutAlgorithm: "squarified",
+                allowDrillToNode: true,
+                animationLimit: 3000,
+                dataLabels: {
+                    enabled: true,
+                },
+                levelIsConstant: false,
+                levels: [
+                    {
+                        level: 1,
+                        dataLabels: {
+                            enabled: true
+                        },
+                        borderWidth: 3
+                    }
+                ],
+                data: points,
+                drillUpButton: {
+                    enabled: true,
+                    relativeTo: 'spacingBox',
+                    position: {
+                        y: 10,
+                        x: 5
+                    },
+                    theme: {
+                        fill: 'red',
+                        'stroke-width': 1,
+                        stroke: 'blue',
+                        r: 0,
+                        states: {
+                            hover: {
+                                fill: 'yellow'
+                            },
+                            select: {
+                                stroke: '#039',
+                                fill: '#a4edba'
+                            }
+                        }
+                    },
+                },
+            }
+        ]
     };
-
     return (
         <>
             <div className='grid md:grid-cols-2 pt-3 xs:grid-cols-none'>
@@ -120,7 +197,7 @@ const MarketMap = () => {
                         <button
                             onClick={() => {
                                 handleClick('all')
-                                dispatch(dispatch(fetchDataMarketMap('all', activeButton2)))
+                                setQueryApi({ ...queryApi, exchange: 'all' })
                             }}
                             className={activeButton === 'all'
                                 ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
@@ -130,8 +207,8 @@ const MarketMap = () => {
                     <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                         <button
                             onClick={() => {
+                                setQueryApi({ ...queryApi, exchange: 'hose' })
                                 handleClick('HOSE')
-                                dispatch(dispatch(fetchDataMarketMap('HOSE', activeButton2)))
                             }}
                             className={activeButton === 'HOSE'
                                 ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
@@ -141,8 +218,8 @@ const MarketMap = () => {
                     <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                         <button
                             onClick={() => {
+                                setQueryApi({ ...queryApi, exchange: 'hnx' })
                                 handleClick('HNX')
-                                dispatch(dispatch(fetchDataMarketMap('HNX', activeButton2)))
                             }}
                             className={activeButton === 'HNX'
                                 ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
@@ -152,8 +229,8 @@ const MarketMap = () => {
                     <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
                         <button
                             onClick={() => {
+                                setQueryApi({ ...queryApi, exchange: 'upcom' })
                                 handleClick('UPCOM')
-                                dispatch(dispatch(fetchDataMarketMap('UPCOM', activeButton2)))
                             }}
                             className={activeButton === 'UPCOM'
                                 ? 'border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer'
@@ -167,41 +244,40 @@ const MarketMap = () => {
                             style={activeButton2 === ENUM.vonhoa ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick2(ENUM.vonhoa)
-                                dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.vonhoa)))
+                                localStorage.setItem('nameMarketMap', 'Vốn hóa')
+
+                                setQueryApi({ ...queryApi, order: ENUM.vonhoa })
                             }}
                             className='rounded-tl-xl rounded-bl-xl md:text-[0.8rem] lg:text-[0.9rem]'>Vốn hoá</button>
                         <button
                             style={activeButton2 === ENUM.gtGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
+                                localStorage.setItem('nameMarketMap', 'Giá trị GD')
                                 handleClick2(ENUM.gtGD)
-                                dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.gtGD)))
+                                setQueryApi({ ...queryApi, order: ENUM.gtGD })
                             }}
                             className='md:text-[0.8rem] lg:text-[0.9rem]'>Giá trị GD</button>
                         <button
                             style={activeButton2 === ENUM.klGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
                                 handleClick2(ENUM.klGD)
-                                dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.klGD)))
+                                localStorage.setItem('nameMarketMap', 'Khối lượng GD')
+                                setQueryApi({ ...queryApi, order: ENUM.klGD })
                             }}
                             className='md:text-[0.8rem] lg:text-[0.9rem]'>Khối lượng GD</button>
                         <button
                             style={activeButton2 === ENUM.gtNNGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
                             onClick={() => {
+                                localStorage.setItem('nameMarketMap', 'Giá trị NN GD')
                                 handleClick2(ENUM.gtNNGD)
-                                dispatch(dispatch(fetchDataMarketMap(activeButton, ENUM.gtNNGD)))
+                                setQueryApi({ ...queryApi, order: ENUM.gtNNGD })
                             }}
                             className='rounded-tr-xl rounded-br-xl md:text-[0.8rem] lg:text-[0.9rem]'>Giá trị NN GD</button>
                     </div>
                 </div>
             </div>
             <div className="pt-1.5">
-                <Chart
-                    chartType="TreeMap"
-                    loader={<div className="mt-16"><Loading /></div>}
-                    data={dataTreeMapRender}
-                    options={options}
-                    rootProps={{ "data-testid": "1" }}
-                />
+                {dataMarketMap?.length > 0 ? <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} /> : <div className="mt-24"><Loading /></div>}
             </div>
         </>
     );

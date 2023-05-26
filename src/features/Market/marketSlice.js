@@ -12,13 +12,18 @@ const initialState = {
   dataLiquidityGrowth: {},
   dataTransactionValueRatio: {},
   dataIndustryCashFlow: {},
+  dataMarketMap: {},
   dataRSI: {},
   dataTopNetBuyIndustry: {},
-
-  dataTotalMarket:{},
+  dataTotalMarket: {},
   dataCashFlowInvestor: {},
   dataCashFlowRatio: {},
-
+  dataTableChangesPrice: {},
+  dataTableLiquidityGrowth: {},
+  dataChartChangesPrice: {},
+  dataChartLiquidityGrowth: {},
+  dataChartEquityGrowth: {},
+  dataChartLiabilitiesGrowth: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -70,7 +75,27 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_CASHFLOW_RATIO) {
       draft.dataCashFlowRatio = payload
-
+    }
+    if (type === marketType.FETCH_DATA_MARKET_MAP) {
+      draft.dataMarketMap = payload
+    }
+    if (type === marketType.FETCH_DATA_TABLE_CHANGES_PRICE) {
+      draft.dataTableChangesPrice = payload
+    }
+    if (type === marketType.FETCH_DATA_TABLE_LIQUIDITY_GROWTH) {
+      draft.dataTableLiquidityGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_CHANGES_PRICE) {
+      draft.dataChartChangesPrice = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_LIQUIDITYGROWTH) {
+      draft.dataChartLiquidityGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_EQUITY_GROWTH) {
+      draft.dataChartEquityGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_LIABILITIES_GROWTH) {
+      draft.dataChartLiabilitiesGrowth = payload
     }
   });
 };

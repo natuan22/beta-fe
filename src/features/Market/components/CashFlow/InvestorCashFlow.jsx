@@ -19,7 +19,7 @@ const activeButtonStyle = {
 }
 const InvestorCashFlow = () => {
     const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
-    console.log("dataTotalMarket", dataTotalMarket)
+    // console.log("dataTotalMarket", dataTotalMarket)
     const [data, setData] = useState()
     const [dataToMap, setDataToMap] = useState()
     const [dataAbs, setDataAbs] = useState()
@@ -56,7 +56,7 @@ const InvestorCashFlow = () => {
             // Lặp qua mảng dữ liệu
             dataToMap?.forEach(item => {
                 const industry = item.industry;
-                const value = (item[param] / 1000000000);
+                const value = +(item[param] / 1000000000).toFixed(2);
                 const color = item.color
                 // Tạo đối tượng mới với key "name" và value là tên ngành
                 // cùng key "data" và value là mảng giá trị của ngành
@@ -92,7 +92,7 @@ const InvestorCashFlow = () => {
             setDataAbs(outputAbs)
         } else if (isAllMarket && dataTotalMarket.length > 0) {
             setDataToMap(dataTotalMarket)
-            const uniqueDates = [...new Set(dataToMap?.map(item => item.date))];
+            const uniqueDates = [...new Set(dataToMap?.map(item => moment(item.date).format('DD/MM')))];
             setTimeLine(uniqueDates)
             // Khởi tạo đối tượng kết quả là một mảng rỗng
             const result = [];
@@ -138,7 +138,7 @@ const InvestorCashFlow = () => {
     }, [param, dataCashFlowInvestor, queryApi, dataToMap, dataTotalMarket, isAllMarket])
 
     // hàm xử lý nút
-    console.log('data', dataCashFlowInvestor)
+    // console.log('data',dataCashFlowInvestor)
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
     const handleClick3 = (button) => {

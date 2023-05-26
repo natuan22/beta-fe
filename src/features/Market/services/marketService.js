@@ -57,6 +57,14 @@ export const marketServices = {
             }
         })
     },
+    fetchDataMarketMap: (exchange, order) => {
+        return https.get('api/v1/stock/get-market-map', {
+            params: {
+                exchange,
+                order
+            }
+        })
+    },
     fetchDataExchangeableValue: () => {
         return https.get('api/v1/cash-flow/investor-transaction-value', {
         })
@@ -113,16 +121,68 @@ export const marketServices = {
             }
         })
     },
-
-
     fetchDataCashFlowRatio: (exchange, type) => {
         return https.get('api/v1/cash-flow/investor-transaction-cash-flow-ratio', {
-
             params: {
                 exchange,
                 type
             }
         })
+    },
+    fetchDataTableChangesPrice: (exchange, industry) => {
+        return https.get('api/v1/market/hieu-suat-thay-doi-gia-co-phieu', {
+            params: {
+                exchange,
+                industry
+            }
+        })
+    },
+    fetchDataTableLiquidityGrowth: (exchange, industry) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-thanh-khoan-co-phieu', {
+            params: {
+                exchange,
+                industry
+            }
+        })
+    },
+    fetchDataChartLiquidityGrowth: (exchange, industry, type, order) => {
+        return https.get('/api/v1/market/hieu-suat-thay-doi-thanh-khoan-nganh', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartChangesPrice: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-thay-doi-von-hoa-nganh', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartEquityGrowth: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-von-chu-so-huu-nganh', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartLiabilitiesGrowth: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-no-phai-tra-nganh', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
     }
-
 }

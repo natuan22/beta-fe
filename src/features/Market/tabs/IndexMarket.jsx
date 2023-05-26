@@ -5,7 +5,6 @@ import {
   fetchDataEvents,
   fetchDataGeneralIndustry,
   fetchDataMacroNews,
-  fetchDataMarketMap,
   fetchDataNews,
   fetchDataTableDetail,
   fetchDataWidthMarket,
@@ -30,7 +29,6 @@ const IndexMarket = () => {
     dispatch(fetchDataNews);
     dispatch(fetchDataGeneralIndustry("all"));
     dispatch(fetchDataTableDetail);
-    dispatch(fetchDataMarketMap("all", "0"));
     dispatch(fetchDataMacroNews);
     dispatch(fetchDataEvents);
     dispatch(fetchDataWidthMarket("VNINDEX"));

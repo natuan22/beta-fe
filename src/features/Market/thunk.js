@@ -121,6 +121,18 @@ export const fetchDataTransactionValueRatio = () => async (dispatch) => {
     }
 }
 
+export const fetchDataMarketMap = (exchange, order) => async dispatch => {
+    try {
+        const res = await marketServices.fetchDataMarketMap(exchange, order)
+        dispatch({
+            type: marketType.FETCH_DATA_MARKET_MAP,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const fetchDataIndustryCashFlow = (exchange, type) => async (dispatch) => {
     try {
         const res = await marketServices.fetchDataIndustryCashFlow(exchange, type)
@@ -157,7 +169,6 @@ export const fetchDataTopNetBuyIndustry = (exchange, type) => async (dispatch) =
     }
 }
 
-
 export const fetchDataCashFlowInvestor = (type, investorType, exchange) => async (dispatch) => {
     try {
         const res = await marketServices.fetchDataCashFlowInvestor(type, investorType, exchange)
@@ -180,7 +191,6 @@ export const fetchDataCashFlowRatio = (exchange, type) => async (dispatch) => {
     } catch (err) {
         console.log(err)
     }
-
 }
 
 export const fetchDataTotalMarket = (exchange, type) => async (dispatch) => {
@@ -193,5 +203,76 @@ export const fetchDataTotalMarket = (exchange, type) => async (dispatch) => {
     } catch (err) {
         console.log(err)
     }
+}
 
+export const fetchDataTableChangesPrice = (exchange, industry) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableChangesPrice(exchange, industry)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_CHANGES_PRICE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTableLiquidityGrowth = (exchange, industry) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableLiquidityGrowth(exchange, industry)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_LIQUIDITY_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartLiquidityGrowth = (exchange, industry, type, order) => async dispatch => {
+    try {
+        const res = await marketServices.fetchDataChartLiquidityGrowth(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_LIQUIDITYGROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartChangesPrice = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartChangesPrice(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_CHANGES_PRICE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartEquityGrowth = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartEquityGrowth(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_EQUITY_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartLiabilitiesGrowth = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartLiabilitiesGrowth(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_LIABILITIES_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
 }
