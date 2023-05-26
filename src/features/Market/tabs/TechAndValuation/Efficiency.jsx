@@ -257,8 +257,8 @@ const Efficiency = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Thay đổi giá của các ngành (%)</span>
             </div>
-            <div className='h-[300px]'>
-              <ChartChangesPrice exchange={exchange} industryQuery={industryQuery} />
+            <div>
+              <ChartChangesPrice exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
             </div>
             <hr />
             <TableChangesPrice exchange={exchange} industryQuery={industryQuery} />

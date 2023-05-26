@@ -56,7 +56,7 @@ const InvestorCashFlow = () => {
             // Lặp qua mảng dữ liệu
             dataToMap?.forEach(item => {
                 const industry = item.industry;
-                const value = (item[param] / 1000000000);
+                const value = +(item[param] / 1000000000).toFixed(2);
                 const color = item.color
                 // Tạo đối tượng mới với key "name" và value là tên ngành
                 // cùng key "data" và value là mảng giá trị của ngành
@@ -92,7 +92,7 @@ const InvestorCashFlow = () => {
             setDataAbs(outputAbs)
         } else if (isAllMarket && dataTotalMarket.length > 0) {
             setDataToMap(dataTotalMarket)
-            const uniqueDates = [...new Set(dataToMap?.map(item => item.date))];
+            const uniqueDates = [...new Set(dataToMap?.map(item => moment(item.date).format('DD/MM')))];
             setTimeLine(uniqueDates)
             // Khởi tạo đối tượng kết quả là một mảng rỗng
             const result = [];
@@ -135,8 +135,8 @@ const InvestorCashFlow = () => {
             setData(output)
             setDataAbs(outputAbs)
         }
-    }, [param, dataCashFlowInvestor, queryApi, dataToMap,dataTotalMarket, isAllMarket])
-    
+    }, [param, dataCashFlowInvestor, queryApi, dataToMap, dataTotalMarket, isAllMarket])
+
     // hàm xử lý nút
     // console.log('data',dataCashFlowInvestor)
     const handleClick = (button) => { setActiveButton(button) }
@@ -249,7 +249,7 @@ const InvestorCashFlow = () => {
                 },
                 formatter: function () {
                     return this.value + "%";
-                  },
+                },
             },
         },
         plotOptions: {
@@ -267,7 +267,7 @@ const InvestorCashFlow = () => {
                     headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",
                     pointFormat: "<span style='color:black'>{series.name}: <b>{point.percentage:.1f}%</b></span><br/>", // Thay đổi format để hiển thị phần trăm
                     valueDecimals: 3,
-                  },
+                },
             }
         },
         series: dataAbs
