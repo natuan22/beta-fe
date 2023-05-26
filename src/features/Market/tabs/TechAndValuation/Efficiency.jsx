@@ -86,7 +86,7 @@ const Efficiency = () => {
                   <input type="checkbox" name="industry" value="batDongSan" id="batDongSan" checked={industry.includes("batDongSan")} onChange={handleIndustryChange} />
                   <span className="checkmark"></span>
                   <span className='text-sm'>Bất động sản</span>
-                  <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} />
+                  <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} alt='icon' />
                 </label>
                 <label className="material-checkbox py-3 dark:text-white text-black">
                   <input type="checkbox" name="industry" value="congNghe" id="congNghe" checked={industry.includes("congNghe")} onChange={handleIndustryChange} />
@@ -112,7 +112,7 @@ const Efficiency = () => {
                   <input type="checkbox" name="industry" value="taiChinh" id="taiChinh" checked={industry.includes("taiChinh")} onChange={handleIndustryChange} />
                   <span className="checkmark"></span>
                   <span className='text-sm'>Dịch vụ tài chính</span>
-                  <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} />
+                  <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} alt='icon' />
                 </label>
                 <label className="material-checkbox py-3 dark:text-white text-black">
                   <input type="checkbox" name="industry" value="doGiaDung" id="doGiaDung" checked={industry.includes("doGiaDung")} onChange={handleIndustryChange} />
@@ -147,7 +147,7 @@ const Efficiency = () => {
                   <input type="checkbox" name="industry" value="nganHang" id="nganHang" checked={industry.includes("nganHang")} onChange={handleIndustryChange} />
                   <span className="checkmark"></span>
                   <span className='text-sm'>Ngân hàng</span>
-                  <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} />
+                  <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} alt='icon' />
                 </label>
                 <label className="material-checkbox py-3 dark:text-white text-black">
                   <input type="checkbox" name="industry" value="oto" id="oto" checked={industry.includes("oto")} onChange={handleIndustryChange} />
@@ -163,7 +163,7 @@ const Efficiency = () => {
                   <input type="checkbox" name="industry" value="taiNguyen" id="taiNguyen" checked={industry.includes("taiNguyen")} onChange={handleIndustryChange} />
                   <span className="checkmark"></span>
                   <span className='text-sm'>Tài nguyên</span>
-                  <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} />
+                  <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} alt='icon' />
                 </label>
                 <label className="material-checkbox py-3 dark:text-white text-black">
                   <input type="checkbox" name="industry" value="thucPham" id="thucPham" checked={industry.includes("thucPham")} onChange={handleIndustryChange} />

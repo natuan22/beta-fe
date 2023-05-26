@@ -20,7 +20,8 @@ const initialState = {
   dataCashFlowRatio: {},
   dataTableChangesPrice: {},
   dataTableLiquidityGrowth: {},
-  dataChartChangesPrice: {}
+  dataChartChangesPrice: {},
+  dataChartLiquidityGrowth: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -84,6 +85,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_CHART_CHANGES_PRICE) {
       draft.dataChartChangesPrice = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_LIQUIDITYGROWTH) {
+      draft.dataChartLiquidityGrowth = payload
     }
   });
 };

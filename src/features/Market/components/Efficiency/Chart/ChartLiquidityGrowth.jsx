@@ -1,16 +1,42 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataChartLiquidityGrowth } from '../../../thunk';
+import moment from 'moment';
 
 const ChartLiquidityGrowth = (props) => {
     const { exchange, industryQuery, order, timeFrame } = props
     const dispatch = useDispatch()
+    const [data, setData] = useState()
+    const [timeLine, setTimeLine] = useState()
     useEffect(() => {
         dispatch(fetchDataChartLiquidityGrowth(exchange, industryQuery, timeFrame, order))
-    }, [])
-
+    }, [props])
+    const { dataChartLiquidityGrowth } = useSelector(state => state.market)
+    console.log(dataChartLiquidityGrowth)
+    useEffect(() => {
+        if (dataChartLiquidityGrowth?.length > 0) {
+            const mappedData = [];
+            const uniqueDates = [...new Set(dataChartLiquidityGrowth?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            setTimeLine(uniqueDates)
+            dataChartLiquidityGrowth.forEach(item => {
+                const existingItem = mappedData.find(mappedItem => mappedItem.name === item.industry);
+                if (existingItem) {
+                    existingItem.data.push(+(item.perChange).toFixed(2));
+                } else {
+                    mappedData.push({
+                        name: item.industry,
+                        color: item.color,
+                        data: [item.perChange]
+                    });
+                }
+            });
+            setData(mappedData)
+            console.log('mappedData', mappedData)
+        }
+    }, [dataChartLiquidityGrowth])
+    console.log(timeLine)
     const options = {
         accessibility: {
             enabled: false,
@@ -31,6 +57,7 @@ const ChartLiquidityGrowth = (props) => {
             }
         },
         xAxis: [{
+            categories: timeLine,
             title: {
                 text: null,
                 style: {
@@ -53,6 +80,9 @@ const ChartLiquidityGrowth = (props) => {
                     color: localStorage.getItem('color'),
                 },
             },
+            formatter: function () {
+                return this.value + '%';
+            },
         },
         plotOptions: {
             series: {
@@ -61,6 +91,7 @@ const ChartLiquidityGrowth = (props) => {
                 },
             }
         },
+        series: data
     }
     return (
         <div>
