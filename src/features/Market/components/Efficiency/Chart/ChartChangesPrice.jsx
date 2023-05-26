@@ -11,10 +11,13 @@ const ChartChangesPrice = (props) => {
     const { dataChartChangesPrice } = useSelector((state) => state.market);
     const [data, setData] = useState([]);
     const [timeLine, setTimeLine] = useState()
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
         dispatch(fetchDataChartChangesPrice(props.exchange, props.industryQuery, props.timeFrame, props.order));
-    }, [dispatch, props]);
+        setColorText(color);
+    }, [props, color]);
 
     useEffect(() => {
         if (dataChartChangesPrice?.length > 0) {

@@ -54,7 +54,7 @@ const TableLiquidityGrowth = (props) => {
 
                                         return (
                                             <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                                <th className={`text-center align-middle whitespace-nowrap px-1 py-2.5`}>
+                                                <th className={`text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black`}>
                                                     {item.code}
                                                 </th>
                                                 <td className={`${colorQuarter} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold`}>
