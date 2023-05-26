@@ -7,14 +7,16 @@ import moment from 'moment';
 import Loading from '../../../../Chart/utils/Loading';
 
 const ChartLiquidityGrowth = (props) => {
-    const { exchange, industryQuery, order, timeFrame } = props
     const dispatch = useDispatch()
+    const { exchange, industryQuery, order, timeFrame } = props
+    const { dataChartLiquidityGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
+
     useEffect(() => {
         dispatch(fetchDataChartLiquidityGrowth(exchange, industryQuery, timeFrame, order))
     }, [props])
-    const { dataChartLiquidityGrowth } = useSelector(state => state.market)
+
     useEffect(() => {
         if (dataChartLiquidityGrowth?.length > 0) {
             const mappedData = [];
@@ -35,6 +37,7 @@ const ChartLiquidityGrowth = (props) => {
             setData(mappedData)
         }
     }, [dataChartLiquidityGrowth])
+
     const options = {
         accessibility: {
             enabled: false,
@@ -77,9 +80,6 @@ const ChartLiquidityGrowth = (props) => {
                 style: {
                     color: localStorage.getItem('color'),
                 },
-            },
-            formatter: function () {
-                return this.value + '%';
             },
         },
         plotOptions: {
