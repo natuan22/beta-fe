@@ -10,53 +10,33 @@ const ChartChangesPrice = (props) => {
     const dispatch = useDispatch()
     const { dataChartChangesPrice } = useSelector((state) => state.market);
     const [data, setData] = useState([]);
+    const [timeLine, setTimeLine] = useState()
 
     useEffect(() => {
         dispatch(fetchDataChartChangesPrice(props.exchange, props.industryQuery, props.timeFrame, props.order));
     }, [dispatch, props]);
 
     useEffect(() => {
-        if (dataChartChangesPrice) {
-            setData(dataChartChangesPrice)
+        if (dataChartChangesPrice?.length > 0) {
+            const mappedData = [];
+            const uniqueDates = [...new Set(dataChartChangesPrice?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            setTimeLine(uniqueDates)
+            dataChartChangesPrice.forEach(item => {
+                const existingItem = mappedData.find(mappedItem => mappedItem.name === item.industry);
+                if (existingItem) {
+                    existingItem.data.push(+(item.perChange).toFixed(2));
+                } else {
+                    mappedData.push({
+                        name: item.industry,
+                        color: item.color,
+                        data: [item.perChange]
+                    });
+                }
+            });
+            setData(mappedData)
         }
     }, [dataChartChangesPrice])
 
-    const uniqueDates = [];
-
-    const datesSet = new Set();
-    Array.isArray(data) && data.map(item => {
-        const date = item.date
-        if (!datesSet.has(date)) {
-            datesSet.add(date);
-            uniqueDates.push(moment(date).format('DD/MM/YYYY'));
-        }
-    })
-
-    const result = [];
-
-    Array.isArray(data) && data?.forEach(item => {
-        const industry = item.industry;
-        const value = +item.perChange.toFixed(2);
-        const color = item.color
-        // Tạo đối tượng mới với key "name" và value là tên ngành
-        // cùng key "data" và value là mảng giá trị của ngành
-        const newObj = {
-            name: industry,
-            data: [value],
-            color
-        };
-
-        // Tìm xem ngành đã tồn tại trong đối tượng kết quả hay chưa
-        const existingObj = result.find(obj => obj.name === industry);
-
-        if (existingObj) {
-            // Nếu ngành đã tồn tại, thêm giá trị vào mảng "data" của ngành đó
-            existingObj.data.push(value);
-        } else {
-            // Nếu ngành chưa tồn tại, thêm đối tượng mới vào mảng kết quả
-            result.push(newObj);
-        }
-    });
     const options = {
         accessibility: {
             enabled: false,
@@ -77,7 +57,7 @@ const ChartChangesPrice = (props) => {
             }
         },
         xAxis: [{
-            categories: uniqueDates,
+            categories: timeLine,
             title: {
                 text: null,
                 style: {
@@ -108,7 +88,7 @@ const ChartChangesPrice = (props) => {
                 },
             }
         },
-        series: result
+        series: data
     }
     return (
         <>
