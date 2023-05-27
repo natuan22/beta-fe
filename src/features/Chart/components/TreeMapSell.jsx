@@ -38,8 +38,13 @@ const TreeMapSell = () => {
       if (!resultMap.hasOwnProperty(LV2)) {
         resultMap[LV2] = { color: color, data: {} };
       }
+      if (socketChanel === 'hose') {
 
-      resultMap[LV2].data[ticker] = (total_value_sell / 1000000000).toFixed(2);
+        resultMap[LV2].data[ticker] = (total_value_sell / 1000000000).toFixed(2);
+      } {
+        resultMap[LV2].data[ticker] = (total_value_sell / 100000000).toFixed(2);
+
+      }
     });
 
     // console.log('resultMap', resultMap);

@@ -13,7 +13,7 @@ const ChartLiquidityGrowth = (props) => {
     const [timeLine, setTimeLine] = useState()
     useEffect(() => {
         dispatch(fetchDataChartLiquidityGrowth(exchange, industryQuery, timeFrame, order))
-    }, [props])
+    }, [props, dispatch])
     const { dataChartLiquidityGrowth } = useSelector(state => state.market)
     useEffect(() => {
         if (dataChartLiquidityGrowth?.length > 0) {
