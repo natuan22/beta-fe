@@ -1,4 +1,3 @@
-import { CaretDownOutlined, CaretRightOutlined, CaretUpOutlined, } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataGeneralIndustry } from "../../../Chart/thunk";

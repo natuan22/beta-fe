@@ -44,10 +44,10 @@ const BarChart = () => {
 
     useEffect(() => {
         if (chartTickerContribute) {
-            if (queryApi.type != 0) {
+            if (queryApi.type !== 0) {
                 disconnectSocket(exchangeOld)
             } else {
-                if (queryApi.order != 0) {
+                if (queryApi.order !== 0) {
                     disconnectSocket(exchangeOld)
                 } else {
                     disconnectSocket(exchangeOld)
