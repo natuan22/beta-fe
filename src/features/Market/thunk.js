@@ -300,3 +300,75 @@ export const fetchDataTableLiabilitiesGrowth = (exchange, industry) => async (di
         console.log(err)
     }
 }
+
+export const fetchDataChartNetRevenueGrowth = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartNetRevenueGrowth(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_NET_REVENUE_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartGrossProfitGrowth = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartGrossProfitGrowth(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_GROSS_PROFIT_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartEBITDAGrowth = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartEBITDAGrowth(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_EBITDA_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartEPSGrowth = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartEPSGrowth(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_EPS_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartOperatingProfitGrowth = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartOperatingProfitGrowth(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_OPERATING_PROFIT_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartCashDividendGrowth = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartCashDividendGrowth(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_CASH_DIVIDEND_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}

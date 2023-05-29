@@ -25,7 +25,13 @@ const initialState = {
   dataChartEquityGrowth: {},
   dataChartLiabilitiesGrowth: {},
   dataTableEquityGrowth: {},
-  dataTableLiabilitiesGrowth: {}
+  dataTableLiabilitiesGrowth: {},
+  dataChartNetRevenueGrowth: {},
+  dataChartGrossProfitGrowth: {},
+  dataChartEBITDAGrowth: {},
+  dataChartEPSGrowth: {},
+  dataChartOperatingProfitGrowth: {},
+  dataChartCashDividendGrowth: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -104,6 +110,24 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_TABLE_LIABILITIES_GROWTH) {
       draft.dataTableLiabilitiesGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_NET_REVENUE_GROWTH) {
+      draft.dataChartNetRevenueGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_GROSS_PROFIT_GROWTH) {
+      draft.dataChartGrossProfitGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_EBITDA_GROWTH) {
+      draft.dataChartEBITDAGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_EPS_GROWTH) {
+      draft.dataChartEPSGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_OPERATING_PROFIT_GROWTH) {
+      draft.dataChartOperatingProfitGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_CASH_DIVIDEND_GROWTH) {
+      draft.dataChartCashDividendGrowth = payload
     }
   });
 };
