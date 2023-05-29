@@ -184,5 +184,21 @@ export const marketServices = {
                 order
             }
         })
-    }
+    },
+    fetchDataTableEquityGrowth: (exchange, industry) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-von-chu-so-co-phieu', {
+            params: {
+                exchange,
+                industry
+            }
+        })
+    },
+    fetchDataTableLiabilitiesGrowth: (exchange, industry) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-no-phai-tra-co-phieu', {
+            params: {
+                exchange,
+                industry
+            }
+        })
+    },
 }
