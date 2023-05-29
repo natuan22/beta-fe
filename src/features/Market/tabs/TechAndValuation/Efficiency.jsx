@@ -291,9 +291,7 @@ const Efficiency = () => {
               <ChartLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
             </div>
             <hr />
-            <div>
-              <TableLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />
-            </div>
+            <TableLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />
           </div>
         </div>
       </div>

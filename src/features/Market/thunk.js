@@ -276,3 +276,27 @@ export const fetchDataChartLiabilitiesGrowth = (exchange, industry, type, order)
         console.log(err)
     }
 }
+
+export const fetchDataTableEquityGrowth = (exchange, industry) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableEquityGrowth(exchange, industry)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_EQUITY_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTableLiabilitiesGrowth = (exchange, industry) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableLiabilitiesGrowth(exchange, industry)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_LIABILITIES_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
