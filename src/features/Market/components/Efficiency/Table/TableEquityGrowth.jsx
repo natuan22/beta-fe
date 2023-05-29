@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
-import { fetchDataTableIndustryChangesPrice } from '../../../thunk';
+import { getColor } from '../../../../Chart/utils/utils';
+import { fetchDataTableEquityGrowth } from '../../../thunk';
 
 const TableEquityGrowth = (props) => {
-    // const dispatch = useDispatch()
-    // const { dataTableIndustryChangesPrice } = useSelector((state) => state.market);
-    // const [loading, setLoading] = useState(true);
-    // const [data, setData] = useState([]);
+    const dispatch = useDispatch()
+    const { dataTableEquityGrowth } = useSelector((state) => state.market);
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
 
-    // useEffect(() => {
-    //     dispatch(fetchDataTableIndustryChangesPrice(props.exchange, props.industryQuery));
-    // }, [dispatch, props]);
+    useEffect(() => {
+        dispatch(fetchDataTableEquityGrowth(props.exchange, props.industryQuery));
+    }, [dispatch, props]);
 
-    // useEffect(() => {
-    //     if (dataTableIndustryChangesPrice) {
-    //         setLoading(false);
-    //         setData(dataTableIndustryChangesPrice)
-    //     }
-    // }, [dataTableIndustryChangesPrice])
+    useEffect(() => {
+        if (dataTableEquityGrowth) {
+            setLoading(false);
+            setData(dataTableEquityGrowth)
+        }
+    }, [dataTableEquityGrowth])
 
     return (
         <section className="bg-blueGray-50 pt-1.5">
@@ -47,37 +48,37 @@ const TableEquityGrowth = (props) => {
                             </thead>
 
                             <tbody>
-                                {/* {!loading ? (
+                                {!loading ? (
                                     Array.isArray(data) &&
                                     data.map((item, index) => {
-                                        let colorFive = getColor(item.perFive);
-                                        let colorQuarter = getColor(item.perQuarter);
-                                        let colorYtd = getColor(item.perYtd);
-                                        let colorYtY = getColor(item.perYtY);
+                                        let colorVonChuSoHuu = getColor(item.vonChuSoHuu);
+                                        let colorLaiChuPhanPhoi = getColor(item.laiChuPhanPhoi);
+                                        let colorThangDuVon = getColor(item.thangDuVon);
+                                        let colorLoiIchCoDong = getColor(item.loiIchCoDong);
 
                                         return (
                                             <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
                                                 <th className={`text-center align-middle whitespace-nowrap px-1 py-2.5`}>
                                                     {item.code}
                                                 </th>
-                                                <td className={`${colorFive} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.perFive.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={`${colorVonChuSoHuu} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                    {item.vonChuSoHuu.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`${colorQuarter} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.perQuarter.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={`${colorLaiChuPhanPhoi} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                    {item.laiChuPhanPhoi.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`${colorYtd} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.perYtd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={`${colorThangDuVon} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                    {item.thangDuVon.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`${colorYtY} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold`}>
-                                                    {item.perYtY.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={`${colorLoiIchCoDong} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold`}>
+                                                    {item.loiIchCoDong.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
                                             </tr>
                                         )
                                     })
-                                ) : ( */}
-                                <tr><td colSpan={5}><div className="mt-16"><Loading /></div></td></tr>
-                                {/* )} */}
+                                ) : (
+                                    <tr><td colSpan={5}><div className="mt-16"><Loading /></div></td></tr>
+                                )}
                             </tbody>
                         </table>
                     </div>
