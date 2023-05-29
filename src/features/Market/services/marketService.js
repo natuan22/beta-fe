@@ -201,4 +201,64 @@ export const marketServices = {
             }
         })
     },
+    fetchDataChartNetRevenueGrowth: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-doanh-thu-thuan-nganh', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartGrossProfitGrowth: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-loi-nhuan-gop-nganh', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartEBITDAGrowth: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-ebitda', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartEPSGrowth: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-eps', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartOperatingProfitGrowth: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-loi-nhuan-kinh-doanh-nganh', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartCashDividendGrowth: (exchange, industry, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-co-tuc-tien-mat', {
+            params: {
+                exchange,
+                industry,
+                type,
+                order
+            }
+        })
+    },
 }

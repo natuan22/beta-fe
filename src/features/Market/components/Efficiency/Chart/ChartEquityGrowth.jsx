@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
 import Loading from '../../../../Chart/utils/Loading';
 import { fetchDataChartEquityGrowth } from '../../../thunk';
 
