@@ -54,18 +54,17 @@ const MarketMap = () => {
                 const { LV2, ticker, value, color } = item;
                 if (!resultMap.hasOwnProperty(LV2)) {
                     resultMap[LV2] = { color: color, data: {} };
-                }
-                if (queryApi.order === '2') {
-
-                    resultMap[LV2].data[ticker] = (value / 1000000).toFixed(2);
                 } else {
-
-                    resultMap[LV2].data[ticker] = (value / 1000000000).toFixed(2);
+                    if (queryApi.order != '2') {
+                        resultMap[LV2].data[ticker] = (value / 1000000000).toFixed(2);
+                    } else {
+                        resultMap[LV2].data[ticker] = (value / 1000000).toFixed(2);
+                    }
                 }
             });
             setDataTreeMap(resultMap)
         }
-    }, [data, queryApi, dataMarketMap])
+    }, [data, queryApi, dataMarketMap,])
 
     const points = [];
     let sectorIndex = 0;
@@ -97,7 +96,7 @@ const MarketMap = () => {
                 dataLabels: {
                     enabled: true,
                     formatter: function () {
-                        return '<b>' + this.point.name + '</b>: ' + this.point.value;
+                        return '<b>' + this.point.name + '</b>: ' + (this.point.value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                     },
                     style: {
                         fontSize: "11px",
@@ -129,7 +128,7 @@ const MarketMap = () => {
         tooltip: {
             formatter: function () {
                 return (
-                    (queryApi.order === '2' ? `<b>${this.point.name}</b>: ${this.point.value} (triệu CP)` : `<b>${this.point.name}</b>: ${this.point.value} (tỷ VNĐ)`)
+                    (queryApi.order === '2' ? `<b>${this.point.name}</b>: ${this.point.value} (triệu CP)` : `<b>${this.point.name}</b>: ${(this.point.value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (tỷ VNĐ)`)
                 );
             }
         },

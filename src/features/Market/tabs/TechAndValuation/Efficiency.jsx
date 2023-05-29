@@ -8,6 +8,7 @@ import TableEquityGrowth from '../../components/Efficiency/Table/TableEquityGrow
 import TableLiabilitiesGrowth from '../../components/Efficiency/Table/TableLiabilitiesGrowth'
 import TableLiquidityGrowth from '../../components/Efficiency/Table/TableLiquidityGrowth'
 import '../../utils/checkBox.css'
+import Loading from '../../../Chart/utils/Loading'
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Efficiency = () => {
@@ -302,13 +303,13 @@ const Efficiency = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng doanh thu thuần của các ngành qua từng kỳ (%)</span>
             </div>
-            <div className='h-[300px]'></div>
+            <div className='h-[300px]'><Loading /></div>
           </div>
           <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuân gộp các ngành qua từng kỳ (%)</span>
             </div>
-            <div className='h-[300px]'></div>
+            <div className='h-[300px]'><Loading /></div>
           </div>
         </div>
       </div>
@@ -318,13 +319,13 @@ const Efficiency = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuận gộp của các ngành qua từng kỳ (%)</span>
             </div>
-            <div className='h-[300px]'></div>
+            <div className='h-[300px]'><Loading /></div>
           </div>
           <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuận hoạt động các ngành qua từng kỳ (%)</span>
             </div>
-            <div className='h-[300px]'></div>
+            <div className='h-[300px]'><Loading /></div>
           </div>
         </div>
       </div>
@@ -334,13 +335,13 @@ const Efficiency = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng cổ tức tiền mặt của các ngành qua từng kỳ (%)</span>
             </div>
-            <div className='h-[300px]'></div>
+            <div className='h-[300px]'><Loading /></div>
           </div>
           <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng EPS các ngành qua từng kỳ (%)</span>
             </div>
-            <div className='h-[300px]'></div>
+            <div className='h-[300px]'><Loading /></div>
           </div>
         </div>
       </div>
