@@ -18,7 +18,7 @@ const ChartEBITDAGrowth = (props) => {
         setColorText(color);
     }, [props, color])
 
-    console.log('dataChartEBITDAGrowth', dataChartEBITDAGrowth);
+    // console.log('dataChartEBITDAGrowth', dataChartEBITDAGrowth);
 
     return (
         <>

@@ -18,7 +18,7 @@ const ChartEPSGrowth = (props) => {
         setColorText(color);
     }, [props, color])
 
-    console.log('dataChartEPSGrowth', dataChartEPSGrowth);
+    // console.log('dataChartEPSGrowth', dataChartEPSGrowth);
 
     return (
         <>

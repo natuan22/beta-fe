@@ -18,7 +18,7 @@ const ChartOperatingProfitGrowth = (props) => {
         setColorText(color);
     }, [props, color])
 
-    console.log('dataChartOperatingProfitGrowth', dataChartOperatingProfitGrowth);
+    // console.log('dataChartOperatingProfitGrowth', dataChartOperatingProfitGrowth);
 
     return (
         <>

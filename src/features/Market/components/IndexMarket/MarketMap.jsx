@@ -55,7 +55,7 @@ const MarketMap = () => {
                 if (!resultMap.hasOwnProperty(LV2)) {
                     resultMap[LV2] = { color: color, data: {} };
                 } else {
-                    if (queryApi.order != '2') {
+                    if (queryApi.order !== '2') {
                         resultMap[LV2].data[ticker] = (value / 1000000000).toFixed(2);
                     } else {
                         resultMap[LV2].data[ticker] = (value / 1000000).toFixed(2);

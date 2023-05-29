@@ -18,7 +18,7 @@ const ChartGrossProfitGrowth = (props) => {
         setColorText(color);
     }, [props, color])
 
-    console.log('dataChartGrossProfitGrowth', dataChartGrossProfitGrowth);
+    // console.log('dataChartGrossProfitGrowth', dataChartGrossProfitGrowth);
 
     return (
         <>

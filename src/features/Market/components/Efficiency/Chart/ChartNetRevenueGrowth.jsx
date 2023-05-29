@@ -18,7 +18,7 @@ const ChartNetRevenueGrowth = (props) => {
         setColorText(color);
     }, [props, color])
 
-    console.log('dataChartNetRevenueGrowth', dataChartNetRevenueGrowth);
+    // console.log('dataChartNetRevenueGrowth', dataChartNetRevenueGrowth);
 
     return (
         <>

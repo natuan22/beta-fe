@@ -18,7 +18,7 @@ const ChartCashDividendGrowth = (props) => {
         setColorText(color);
     }, [props, color])
 
-    console.log('dataChartCashDividendGrowth', dataChartCashDividendGrowth);
+    // console.log('dataChartCashDividendGrowth', dataChartCashDividendGrowth);
 
     return (
         <>
