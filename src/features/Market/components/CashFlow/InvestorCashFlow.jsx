@@ -28,7 +28,7 @@ const InvestorCashFlow = () => {
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all');
     const [activeButton2, setActiveButton2] = useState(1)
-    const [activeButton3, setActiveButton3] = useState(5)
+    const [activeButton3, setActiveButton3] = useState(8)
     const [canTouch, setCanTouch] = useState(false)
     const [param, setParam] = useState('buyVal')
     const [queryApi, setQueryApi] = useState({
@@ -136,18 +136,17 @@ const InvestorCashFlow = () => {
             setDataAbs(outputAbs)
         }
     }, [param, dataCashFlowInvestor, queryApi, dataToMap, dataTotalMarket, isAllMarket])
-
+    useEffect(() => {
+        if (activeButton3 === 8)
+            setActiveButton2(4)
+        setParam('transVal')
+    }, [activeButton3])
     // hàm xử lý nút
     // console.log('data',dataCashFlowInvestor)
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
-    const handleClick3 = (button) => {
-        setActiveButton3(button)
-        if (button === 8) {
-            setActiveButton2(4)
-            setParam('transVal')
-        }
-    }
+    const handleClick3 = (button) => { setActiveButton3(button) }
+
     // config chart
     const options = {
         accessibility: {

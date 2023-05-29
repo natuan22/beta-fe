@@ -38,8 +38,11 @@ const TreeMapSell = () => {
       if (!resultMap.hasOwnProperty(LV2)) {
         resultMap[LV2] = { color: color, data: {} };
       }
-
-      resultMap[LV2].data[ticker] = (total_value_sell / 1000000000).toFixed(2);
+      if (total_value_sell >= 1000000000) {
+        resultMap[LV2].data[ticker] = (total_value_sell / 1000000000).toFixed(2);
+      } else if (total_value_sell < 1000000000) {
+        resultMap[LV2].data[ticker] = (total_value_sell / 1000000000).toFixed(3);
+      }
     });
 
     // console.log('resultMap', resultMap);
