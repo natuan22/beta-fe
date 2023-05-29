@@ -14,6 +14,7 @@ import TableEquityGrowth from '../../components/Efficiency/Table/TableEquityGrow
 import TableLiabilitiesGrowth from '../../components/Efficiency/Table/TableLiabilitiesGrowth'
 import TableLiquidityGrowth from '../../components/Efficiency/Table/TableLiquidityGrowth'
 import '../../utils/checkBox.css'
+import Loading from '../../../Chart/utils/Loading'
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Efficiency = () => {
