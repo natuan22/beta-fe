@@ -1,13 +1,8 @@
-import axios from "axios";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import { chartServices } from "./services/chartServices";
 
 export const fetchDataInternationalIndex = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/international-index`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataInternationalIndex()
     dispatch({
       type: "beta/UPDATE_DATA_INTERNATIONAL_INDEX",
       payload: res.data,
@@ -19,14 +14,7 @@ export const fetchDataInternationalIndex = async (dispatch) => {
 
 export const fetchDataBarChartRight = (exchange) => async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/top-net-foreign`,
-      method: "GET",
-      params: {
-        exchange
-      }
-    });
+    const res = await chartServices.fetchDataBarChartRight(exchange)
     dispatch({
       type: "beta/UPDATE_DATA_BARCHART_RIGHT",
       payload: res.data,
@@ -38,16 +26,7 @@ export const fetchDataBarChartRight = (exchange) => async (dispatch) => {
 
 export const fetchDataBarChartLeft = (exchange) => async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/chart/ticker-contribute`,
-      method: "GET",
-      params: {
-        exchange,
-        type: 0,
-        order: 0
-      }
-    });
+    const res = await chartServices.fetchDataBarChartLeft(exchange)
     dispatch({
       type: "beta/UPDATE_DATA_BARCHART_LEFT",
       payload: res.data.data,
@@ -59,11 +38,7 @@ export const fetchDataBarChartLeft = (exchange) => async (dispatch) => {
 
 export const fetchDataEvents = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/get-events`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataEvents()
     dispatch({
       type: "beta/UPDATE_DATA_EVENTS",
       payload: res.data,
@@ -75,11 +50,7 @@ export const fetchDataEvents = async (dispatch) => {
 
 export const fetchDataTableDetail = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/domestic-index`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataTableDetail()
     dispatch({
       type: "beta/UPDATE_DATA_TABLEDETAIL",
       payload: res.data,
@@ -89,16 +60,9 @@ export const fetchDataTableDetail = async (dispatch) => {
   }
 };
 
-export const fetchDataTopNetForeignChange = (index) => async (dispatch) => {
+export const fetchDataTopNetForeignChange = (exchange) => async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/top-net-foreign-change`,
-      method: "GET",
-      params: {
-        'exchange': index
-      }
-    });
+    const res = await chartServices.fetchDataTopNetForeignChange(exchange)
     dispatch({
       type: "beta/UPDATE_DATA_TOP_NET_FOREIGN_CHANGE",
       payload: res.data,
@@ -108,16 +72,9 @@ export const fetchDataTopNetForeignChange = (index) => async (dispatch) => {
   }
 };
 
-export const fetchDataROC5Phien = (index) => async (dispatch) => {
+export const fetchDataROC5Phien = (exchange) => async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/top-roc`,
-      method: "GET",
-      params: {
-        'exchange': index
-      }
-    });
+    const res = await chartServices.fetchDataROC5Phien(exchange)
     dispatch({
       type: "beta/UPDATE_DATA_ROC_5PHIEN",
       payload: res.data,
@@ -129,11 +86,7 @@ export const fetchDataROC5Phien = (index) => async (dispatch) => {
 
 export const fetchDataGoodsDetail = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/merchandise-price?type=0`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataGoodsDetail()
     dispatch({
       type: "beta/UPDATE_DATA_GOODSDETAIL",
       payload: res.data,
@@ -146,14 +99,9 @@ export const fetchDataGoodsDetail = async (dispatch) => {
 
 export const fetchDataRateDetail = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/merchandise-price?type=1`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataRateDetail()
     dispatch({
       type: "beta/UPDATE_DATA_RATEDETAIL",
-
       payload: res.data,
     });
   } catch (err) {
@@ -161,16 +109,9 @@ export const fetchDataRateDetail = async (dispatch) => {
   }
 }
 
-export const fetchDataGeneralIndustry = (index) => async (dispatch) => {
+export const fetchDataGeneralIndustry = (exchange) => async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/industry`,
-      method: "GET",
-      params: {
-        exchange: index || undefined,
-      }
-    });
+    const res = await chartServices.fetchDataGeneralIndustry(exchange)
     dispatch({
       type: "beta/UPDATE_DATA_GENERAL",
       payload: res.data,
@@ -180,17 +121,9 @@ export const fetchDataGeneralIndustry = (index) => async (dispatch) => {
   }
 }
 
-export const fetchDataTreeMapSell = (index) => async (dispatch) => {
+export const fetchDataTreeMapSell = (exchange) => async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/net-foreign`,
-      method: "GET",
-      params: {
-        exchange: index || undefined,
-        transaction: 1
-      }
-    });
+    const res = await chartServices.fetchDataTreeMapSell(exchange)
     dispatch({
       type: "beta/UPDATE_DATA_TREEMAP_SELL",
       payload: res.data.data,
@@ -200,17 +133,9 @@ export const fetchDataTreeMapSell = (index) => async (dispatch) => {
   }
 };
 
-export const fetchDataTreeMapBuy = (index) => async (dispatch) => {
+export const fetchDataTreeMapBuy = (exchange) => async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/net-foreign`,
-      method: "GET",
-      params: {
-        exchange: index || undefined,
-        transaction: 0
-      }
-    });
+    const res = await chartServices.fetchDataTreeMapBuy(exchange)
     dispatch({
       type: "beta/UPDATE_DATA_TREEMAP_BUY",
       payload: res.data.data,
@@ -222,11 +147,7 @@ export const fetchDataTreeMapBuy = (index) => async (dispatch) => {
 
 export const fetchDataAreaChart1 = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/chart/liquidity-today`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataAreaChart1()
     dispatch({
       type: "beta/UPDATE_DATA_AREACHART1",
       payload: res.data.data,
@@ -238,11 +159,7 @@ export const fetchDataAreaChart1 = async (dispatch) => {
 
 export const fetchDataAreaChart2 = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/chart/liquidity-yesterday`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataAreaChart2()
     dispatch({
       type: "beta/UPDATE_DATA_AREACHART2",
       payload: res.data.data,
@@ -254,14 +171,7 @@ export const fetchDataAreaChart2 = async (dispatch) => {
 
 export const fetchDataWidthMarket = (index) => async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/chart/market-breadth`,
-      method: "GET",
-      params: {
-        index: index
-      }
-    });
+    const res = await chartServices.fetchDataWidthMarket(index)
     dispatch({
       type: "beta/UPDATE_DATA_STACKINGAREA",
       payload: res.data,
@@ -275,11 +185,7 @@ export const fetchDataWidthMarket = (index) => async (dispatch) => {
 
 export const fetchDataTableMarketVolatility = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/market-volatility`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataTableMarketVolatility()
     dispatch({
       type: "beta/UPDATE_DATA_TABLE_MARKET_VOLATILITY",
       payload: res.data,
@@ -289,16 +195,9 @@ export const fetchDataTableMarketVolatility = async (dispatch) => {
   }
 }
 
-export const fetchDataTableMarketLiquidity = (index) => async (dispatch) => {
+export const fetchDataTableMarketLiquidity = (order) => async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/market-liquidity`,
-      method: "GET",
-      params: {
-        order: index
-      }
-    });
+    const res = await chartServices.fetchDataTableMarketLiquidity(order)
     dispatch({
       type: "beta/UPDATE_DATA_TABLE_MARKET_LIQUIDITY",
       payload: res.data,
@@ -308,16 +207,9 @@ export const fetchDataTableMarketLiquidity = (index) => async (dispatch) => {
   }
 }
 
-export const fetchDataNetVolume = (index) => async (dispatch) => {
+export const fetchDataNetVolume = (exchange) => async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/net-transaction-value`,
-      method: "GET",
-      params: {
-        exchange: index
-      }
-    });
+    const res = await chartServices.fetchDataNetVolume(exchange)
     dispatch({
       type: "beta/UPDATE_DATA_NET_VOLUME",
       payload: res.data,
@@ -329,11 +221,7 @@ export const fetchDataNetVolume = (index) => async (dispatch) => {
 
 export const fetchDataNews = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/get-news`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataNews()
     dispatch({
       type: "beta/UPDATE_DATA_NEWS",
       payload: res.data,
@@ -345,11 +233,7 @@ export const fetchDataNews = async (dispatch) => {
 
 export const fetchDataMarketEvaluation = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/market-evaluation`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataMarketEvaluation()
     dispatch({
       type: "beta/UPDATE_DATA_MARKET_EVALUATION",
       payload: res.data,
@@ -361,11 +245,7 @@ export const fetchDataMarketEvaluation = async (dispatch) => {
 
 export const fetchDataMacroNews = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/stock/get-macro-news`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataMacroNews()
     dispatch({
       type: "beta/UPDATE_DATA_MACRO_NEWS",
       payload: res.data,
@@ -379,13 +259,7 @@ export const fetchDataMacroNews = async (dispatch) => {
 
 export const fetchDataLineChartHomePage = (index) => async (dispatch) => {
   try {
-    const res = await axios({
-      url: `${apiUrl}/api/v1/chart/line-chart-now`,
-      method: "GET",
-      params: {
-        index,
-      }
-    })
+    const res = await chartServices.fetchDataLineChartHomePage(index)
     dispatch({
       type: 'beta/DATA_LINECHART_HOMEPAGE',
       payload: res.data
@@ -397,11 +271,7 @@ export const fetchDataLineChartHomePage = (index) => async (dispatch) => {
 
 export const fetchDataCashFlowAllocation = async (dispatch) => {
   try {
-    const res = await axios({
-      // url: domain + endpoint
-      url: `${apiUrl}/api/v1/chart/market-cash-flow`,
-      method: "GET",
-    });
+    const res = await chartServices.fetchDataCashFlowAllocation()
     dispatch({
       type: "beta/UPDATE_DATA_CASH_FLOW_ALLOCATION",
       payload: res.data,
@@ -410,3 +280,4 @@ export const fetchDataCashFlowAllocation = async (dispatch) => {
     console.log(err);
   }
 }
+
