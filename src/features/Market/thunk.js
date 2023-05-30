@@ -372,3 +372,15 @@ export const fetchDataChartCashDividendGrowth = (exchange, industry, type, order
         console.log(err)
     }
 }
+
+export const fetchDataIndustryHot = () => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataIndustryHot()
+        dispatch({
+            type: marketType.FETCH_DATA_INDUSTRY_HOT,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}

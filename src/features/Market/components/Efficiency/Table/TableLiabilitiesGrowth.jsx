@@ -53,7 +53,7 @@ const TableLiabilitiesGrowth = (props) => {
 
                                         return (
                                             <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                                <th className={`text-center align-middle whitespace-nowrap px-1 py-2.5 md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                <th className={`text-center align-middle whitespace-nowrap px-1 py-2.5 md:text-base sm:text-sm xs:text-sm xxs:text-xs dark:text-white text-black`}>
                                                     {item.code}
                                                 </th>
                                                 <td className={`${colorNoNganHan} text-center align-middle whitespace-nowrap px-1 py-2.5 md:text-base sm:text-sm xs:text-sm xxs:text-xs font-semibold`}>
@@ -62,7 +62,7 @@ const TableLiabilitiesGrowth = (props) => {
                                                 <td className={`${colorNoDaiHan} text-center align-middle whitespace-nowrap px-1 py-2.5 md:text-base sm:text-sm xs:text-sm xxs:text-xs font-semibold`}>
                                                     {item.noDaiHan.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 md:text-base sm:text-sm xs:text-sm xxs:text-xs font-semibold`}>
+                                                <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 md:text-base sm:text-sm xs:text-sm xxs:text-xs font-semibold dark:text-white text-black`}>
                                                     {item.tiSoThanhToanNhanh.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
                                             </tr>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ChartCashDividendGrowth from '../../components/Efficiency/Chart/ChartCashDividendGrowth'
 import ChartChangesPrice from '../../components/Efficiency/Chart/ChartChangesPrice'
 import ChartEBITDAGrowth from '../../components/Efficiency/Chart/ChartEBITDAGrowth'
@@ -15,6 +15,8 @@ import TableLiabilitiesGrowth from '../../components/Efficiency/Table/TableLiabi
 import TableLiquidityGrowth from '../../components/Efficiency/Table/TableLiquidityGrowth'
 import '../../utils/checkBox.css'
 import Loading from '../../../Chart/utils/Loading'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchDataIndustryHot, fetchDsh } from '../../thunk'
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Efficiency = () => {
@@ -22,6 +24,13 @@ const Efficiency = () => {
   const [timeFrame, setTimeFrame] = useState("8")
   const [order, setOrder] = useState("0")
   const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
+
+  // const dispatch = useDispatch()
+  // const { dataIndustryHot } = useSelector((state) => state.market);
+  // useEffect(() => {
+  //   dispatch(fetchDataIndustryHot);
+  // }, [exchange, timeFrame, order, industry]);
+
   const handleIndustryChange = e => {
     const { value, checked } = e.target
 
@@ -501,7 +510,7 @@ const Efficiency = () => {
       </div>
 
       <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-        <div className='grid grid-cols-2 gap-5'>
+        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
           <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng doanh thu thuần của các ngành qua từng kỳ (%)</span>
@@ -521,7 +530,7 @@ const Efficiency = () => {
         </div>
       </div>
       <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-        <div className='grid grid-cols-2 gap-5'>
+        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
           <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng EBITDA của các ngành qua từng kỳ (%)</span>
@@ -541,7 +550,7 @@ const Efficiency = () => {
         </div>
       </div>
       <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-        <div className='grid grid-cols-2 gap-5'>
+        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
           <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng cổ tức tiền mặt của các ngành qua từng kỳ (%)</span>
