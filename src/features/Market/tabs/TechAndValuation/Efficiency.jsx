@@ -14,9 +14,8 @@ import TableEquityGrowth from '../../components/Efficiency/Table/TableEquityGrow
 import TableLiabilitiesGrowth from '../../components/Efficiency/Table/TableLiabilitiesGrowth'
 import TableLiquidityGrowth from '../../components/Efficiency/Table/TableLiquidityGrowth'
 import '../../utils/checkBox.css'
-import Loading from '../../../Chart/utils/Loading'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchDataIndustryHot, fetchDsh } from '../../thunk'
+import { fetchDataHotIndustry } from '../../thunk'
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Efficiency = () => {
@@ -25,15 +24,8 @@ const Efficiency = () => {
   const [order, setOrder] = useState("0")
   const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
 
-  // const dispatch = useDispatch()
-  // const { dataIndustryHot } = useSelector((state) => state.market);
-  // useEffect(() => {
-  //   dispatch(fetchDataIndustryHot);
-  // }, [exchange, timeFrame, order, industry]);
-
   const handleIndustryChange = e => {
     const { value, checked } = e.target
-
     if (checked) {
       setIndustry(prev => [...prev, value])
     } else {

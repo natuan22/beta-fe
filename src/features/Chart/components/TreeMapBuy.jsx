@@ -45,9 +45,6 @@ const TreeMapBuy = () => {
     });
     // console.log('resultMap', resultMap);
     setDataTreeMap(resultMap);
-
-
-
   }, [dataSocket]);
 
   const disconnectSocket = (socketOld) => {

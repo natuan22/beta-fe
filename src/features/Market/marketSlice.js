@@ -32,7 +32,7 @@ const initialState = {
   dataChartEPSGrowth: {},
   dataChartOperatingProfitGrowth: {},
   dataChartCashDividendGrowth: {},
-  dataIndustryHot: {}
+  dataHotIndustry: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -130,8 +130,8 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === marketType.FETCH_DATA_CHART_CASH_DIVIDEND_GROWTH) {
       draft.dataChartCashDividendGrowth = payload
     }
-    if (type === marketType.FETCH_DATA_INDUSTRY_HOT) {
-      draft.dataIndustryHot = payload
+    if (type === marketType.FETCH_DATA_HOT_INDUSTRY) {
+      draft.dataHotIndustry = payload
     }
   });
 };

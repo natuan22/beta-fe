@@ -261,8 +261,7 @@ export const marketServices = {
             }
         })
     },
-    fetchDataIndustryHot: () => {
-        return https.get('api/v1/market/top-nganh-hot', {
-        })
-    },
+    fetchDataHotIndustry: () => {
+        return https.get('api/v1/market/top-nganh-hot')
+    }
 }
