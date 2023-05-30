@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import ChartCashDividendGrowth from '../../components/Efficiency/Chart/ChartCashDividendGrowth'
 import ChartChangesPrice from '../../components/Efficiency/Chart/ChartChangesPrice'
 import ChartEBITDAGrowth from '../../components/Efficiency/Chart/ChartEBITDAGrowth'
@@ -23,6 +23,12 @@ const Efficiency = () => {
   const [timeFrame, setTimeFrame] = useState("8")
   const [order, setOrder] = useState("0")
   const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
+
+  const dispatch = useDispatch()
+  const { dataHotIndustry } = useSelector(state => state.market)
+  useEffect(() => {
+    dispatch(fetchDataHotIndustry)
+  }, [dispatch])
 
   const handleIndustryChange = e => {
     const { value, checked } = e.target

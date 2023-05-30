@@ -4,7 +4,7 @@ import Loading from '../../../../Chart/utils/Loading';
 import { getColor } from '../../../../Chart/utils/utils';
 import { fetchDataTableLiquidityGrowth } from '../../../thunk';
 
-const TableLiquidityGrowth = (props) => {
+const TableLiquidityGrowth = React.memo((props) => {
     const dispatch = useDispatch()
     const { dataTableLiquidityGrowth } = useSelector((state) => state.market);
     const [loading, setLoading] = useState(true);
@@ -79,6 +79,6 @@ const TableLiquidityGrowth = (props) => {
             </div>
         </section>
     )
-}
+})
 
 export default TableLiquidityGrowth

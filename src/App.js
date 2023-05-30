@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import { marketRoute, routes } from "./app/routes";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { autoLoginWithToken } from "./features/Auth/thunk";
 import { generateMAC } from "./utils/generateMac";
@@ -27,6 +27,7 @@ function App() {
     localStorage.setItem('nameMarketMap', 'Vốn hóa')
     const token = localStorage.getItem('betaToken')
     dispatch(autoLoginWithToken(token))
+    
   }, [dispatch])
   const mapMarketRoute = marketRoute.map(({ path, component: Component, children }) => {
     return (
