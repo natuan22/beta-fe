@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataChartEBITDAGrowth } from '../../../thunk';
 import Loading from '../../../../Chart/utils/Loading';
 import moment from 'moment';
+import { memo } from 'react';
 
-const ChartEBITDAGrowth = React.memo((props) => {
+const ChartEBITDAGrowth = (props) => {
     const dispatch = useDispatch()
     const { exchange, industryQuery, order, timeFrame } = props
     const { dataChartEBITDAGrowth } = useSelector(state => state.market)
@@ -25,7 +26,7 @@ const ChartEBITDAGrowth = React.memo((props) => {
             const transformedData = dataChartEBITDAGrowth?.map(item => {
                 return { ...item, date: moment(item.date).format('DD/MM/YYYY') };
             });
-            
+
             const uniqueIndustry = [...new Set(transformedData?.map(item => item.industry))];
             const mappedData = [];
 
@@ -136,6 +137,6 @@ const ChartEBITDAGrowth = React.memo((props) => {
             )}
         </div>
     )
-})
+}
 
-export default ChartEBITDAGrowth
+export default memo(ChartEBITDAGrowth)

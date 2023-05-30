@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,7 +6,7 @@ import { fetchDataChartEPSGrowth } from '../../../thunk';
 import Loading from '../../../../Chart/utils/Loading';
 import moment from 'moment';
 
-const ChartEPSGrowth = React.memo((props) => {
+const ChartEPSGrowth = (props) => {
     const dispatch = useDispatch()
     const { exchange, industryQuery, order, timeFrame } = props
     const { dataChartEPSGrowth } = useSelector(state => state.market)
@@ -136,6 +136,6 @@ const ChartEPSGrowth = React.memo((props) => {
             )}
         </div>
     )
-})
+}
 
-export default ChartEPSGrowth
+export default memo(ChartEPSGrowth)
