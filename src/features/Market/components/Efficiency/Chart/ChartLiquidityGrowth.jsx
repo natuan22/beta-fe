@@ -6,7 +6,7 @@ import { fetchDataChartLiquidityGrowth } from '../../../thunk';
 import moment from 'moment';
 import Loading from '../../../../Chart/utils/Loading';
 
-const ChartLiquidityGrowth = (props) => {
+const ChartLiquidityGrowth = React.memo((props) => {
     const dispatch = useDispatch()
     const { exchange, industryQuery, order, timeFrame } = props
     const { dataChartLiquidityGrowth } = useSelector(state => state.market)
@@ -109,7 +109,7 @@ const ChartLiquidityGrowth = (props) => {
             )}
         </div>
     )
-}
+})
 
 export default ChartLiquidityGrowth
 

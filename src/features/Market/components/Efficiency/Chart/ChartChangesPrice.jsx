@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { fetchDataChartChangesPrice } from '../../../thunk';
 
-const ChartChangesPrice = (props) => {
+const ChartChangesPrice = React.memo((props) => {
     const dispatch = useDispatch()
     const { dataChartChangesPrice } = useSelector((state) => state.market);
     const [data, setData] = useState([]);
@@ -17,7 +17,7 @@ const ChartChangesPrice = (props) => {
     useEffect(() => {
         dispatch(fetchDataChartChangesPrice(props.exchange, props.industryQuery, props.timeFrame, props.order));
         setColorText(color);
-    }, [props, color]);
+    }, [dispatch, props, color]);
 
     useEffect(() => {
         if (dataChartChangesPrice?.length > 0) {
@@ -108,6 +108,6 @@ const ChartChangesPrice = (props) => {
             )}
         </>
     )
-}
+})
 
 export default ChartChangesPrice

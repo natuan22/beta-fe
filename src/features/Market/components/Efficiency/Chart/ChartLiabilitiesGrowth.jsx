@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { fetchDataChartLiabilitiesGrowth } from '../../../thunk';
 
-const ChartLiabilitiesGrowth = (props) => {
+const ChartLiabilitiesGrowth = React.memo((props) => {
     const dispatch = useDispatch()
     const { exchange, industryQuery, order, timeFrame } = props
     const { dataChartLiabilitiesGrowth } = useSelector(state => state.market)
@@ -114,6 +114,6 @@ const ChartLiabilitiesGrowth = (props) => {
             )}
         </div>
     )
-}
+})
 
 export default ChartLiabilitiesGrowth
