@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { getColor } from '../../../../Chart/utils/utils';
 import { fetchDataTableChangesPrice } from '../../../thunk';
 
-const TableChangesPrice = React.memo((props) => {
+const TableChangesPrice = (props) => {
     const dispatch = useDispatch()
     const { dataTableChangesPrice } = useSelector((state) => state.market);
     const [loading, setLoading] = useState(true);
@@ -86,6 +87,6 @@ const TableChangesPrice = React.memo((props) => {
             </div>
         </section>
     )
-})
+}
 
-export default TableChangesPrice
+export default memo(TableChangesPrice)

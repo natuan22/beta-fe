@@ -4,8 +4,9 @@ import HighchartsReact from 'highcharts-react-official';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataChartOperatingProfitGrowth } from '../../../thunk'
 import Loading from '../../../../Chart/utils/Loading';
+import { memo } from 'react';
 
-const ChartOperatingProfitGrowth = React.memo((props) => {
+const ChartOperatingProfitGrowth = (props) => {
     const dispatch = useDispatch()
     const { exchange, industryQuery, order, timeFrame } = props
     const { dataChartOperatingProfitGrowth } = useSelector(state => state.market)
@@ -139,6 +140,6 @@ const ChartOperatingProfitGrowth = React.memo((props) => {
             )}
         </div>
     )
-})
+}
 
-export default ChartOperatingProfitGrowth
+export default memo(ChartOperatingProfitGrowth)

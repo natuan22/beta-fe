@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { getColor } from '../../../../Chart/utils/utils';
 import { fetchDataTableLiquidityGrowth } from '../../../thunk';
 
-const TableLiquidityGrowth = React.memo((props) => {
+const TableLiquidityGrowth = (props) => {
     const dispatch = useDispatch()
     const { dataTableLiquidityGrowth } = useSelector((state) => state.market);
     const [loading, setLoading] = useState(true);
@@ -79,6 +80,6 @@ const TableLiquidityGrowth = React.memo((props) => {
             </div>
         </section>
     )
-})
+}
 
-export default TableLiquidityGrowth
+export default memo(TableLiquidityGrowth)

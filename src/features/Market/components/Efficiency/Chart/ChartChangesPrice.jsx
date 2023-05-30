@@ -2,11 +2,12 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
+import { memo } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { fetchDataChartChangesPrice } from '../../../thunk';
 
-const ChartChangesPrice = React.memo((props) => {
+const ChartChangesPrice = (props) => {
     const dispatch = useDispatch()
     const { dataChartChangesPrice } = useSelector((state) => state.market);
     const [data, setData] = useState([]);
@@ -108,6 +109,6 @@ const ChartChangesPrice = React.memo((props) => {
             )}
         </>
     )
-})
+}
 
-export default ChartChangesPrice
+export default memo(ChartChangesPrice)
