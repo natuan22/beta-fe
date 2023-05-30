@@ -9,5 +9,17 @@ export const chartServices = {
                 exchange
             }
         })
-    }
+    },
+    fetchDataBarChartLeft: (exchange) => {
+        return https.get('/api/v1/chart/ticker-contribute', {
+            params: {
+                exchange,
+                type: 0,
+                order: 0
+            }
+        })
+    },
+    fetchDataEvents: () => {
+        return https.get('/api/v1/stock/get-events')
+    },
 }
