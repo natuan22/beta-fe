@@ -82,7 +82,8 @@ const BarChartLeft = () => {
     },
     legend: {
       enabled: false
-    }, tooltip: {
+    },
+    tooltip: {
       shared: true,
       useHTML: true,
       valueSuffix: " ",
