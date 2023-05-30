@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ChartCashDividendGrowth from '../../components/Efficiency/Chart/ChartCashDividendGrowth'
 import ChartChangesPrice from '../../components/Efficiency/Chart/ChartChangesPrice'
 import ChartEBITDAGrowth from '../../components/Efficiency/Chart/ChartEBITDAGrowth'
@@ -14,7 +14,8 @@ import TableEquityGrowth from '../../components/Efficiency/Table/TableEquityGrow
 import TableLiabilitiesGrowth from '../../components/Efficiency/Table/TableLiabilitiesGrowth'
 import TableLiquidityGrowth from '../../components/Efficiency/Table/TableLiquidityGrowth'
 import '../../utils/checkBox.css'
-import Loading from '../../../Chart/utils/Loading'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchDataHotIndustry } from '../../thunk'
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Efficiency = () => {
@@ -22,9 +23,9 @@ const Efficiency = () => {
   const [timeFrame, setTimeFrame] = useState("8")
   const [order, setOrder] = useState("0")
   const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
+
   const handleIndustryChange = e => {
     const { value, checked } = e.target
-
     if (checked) {
       setIndustry(prev => [...prev, value])
     } else {
