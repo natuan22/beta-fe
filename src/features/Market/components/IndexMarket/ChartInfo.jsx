@@ -156,7 +156,7 @@ const ChartInfo = () => {
                     <div className='w-[345px]'>
                         <span className='dark:text-white text-black xxs:text-[12px] xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]'>{vnindexData && vnindexData.comGroupCode}</span>
                         <span className={`${colorChange} text-white xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px] xxs:pl-[10px]`}>{vnindexData && vnindexData.indexValue}</span>
-                        <span className={`${colorChange} xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[25px] xs:pl-[15px] xxs:pl-[5px]`}>{vnindexData && vnindexData.indexChange.toFixed(2)}/ {vnindexData && (vnindexData.percentIndexChange * 100).toFixed(2)}%</span>
+                        <span className={`${colorChange} xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[25px] xs:pl-[15px] xxs:pl-[5px]`}>{vnindexData && vnindexData.indexChange.toFixed(2)}/ {vnindexData && (vnindexData.percentIndexChange).toFixed(2)}%</span>
                     </div>
                     <select className={`bg-[#1B496D] md:ml-[200px] lg:ml-3 xl:ml-3 2xl:ml-3 p-1 text-[1rem] text-white border-0`}
                         onChange={(event) => {
@@ -240,7 +240,7 @@ const ChartInfo = () => {
                                                             {item.indexValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {(item.percentIndexChange * 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
+                                                            {(item.percentIndexChange).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                             {(item.totalMatchVolume / 1000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
