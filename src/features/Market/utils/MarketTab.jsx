@@ -36,9 +36,9 @@ const MarketTab = () => {
             return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center";
           }
         }}
-        to="/thi-truong/ky-thuat-va-dinh-gia"
+        to="/thi-truong/hieu-suat-va-dinh-gia"
       >
-        Kỹ thuật & định giá
+        Hiệu suất & định giá
       </NavLink>
       <NavLink
         className={(params) => {
