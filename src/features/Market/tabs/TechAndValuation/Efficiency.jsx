@@ -54,7 +54,7 @@ const Efficiency = () => {
   }
 
   return (
-    <div className='container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full'>
+    <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
       <div className='xl:flex lg:block'>
         {/* respon 2xl -> sm */}
         <div className='xl:w-[65%] md:block sm:hidden xs:hidden xxs:hidden'>
