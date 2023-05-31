@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ChartCashDividendGrowth from '../../components/Efficiency/Chart/ChartCashDividendGrowth'
 import ChartChangesPrice from '../../components/Efficiency/Chart/ChartChangesPrice'
 import ChartEBITDAGrowth from '../../components/Efficiency/Chart/ChartEBITDAGrowth'
@@ -19,7 +19,6 @@ import { fetchDataHotIndustry } from '../../thunk'
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Efficiency = () => {
-  // const { dataHotIndustry } = useSelector(state => state.market)
   const [exchange, setExchange] = useState("all")
   const [timeFrame, setTimeFrame] = useState("8")
   const [order, setOrder] = useState("0")
@@ -39,10 +38,6 @@ const Efficiency = () => {
       setIndustry(prev => prev.filter(industry => industry !== value))
     }
   }
-  // useEffect(() => {
-  //   dispatch(fetchDataHotIndustry)
-  // }, [dataHotIndustry])
-
   const hashTb = {
     'Bất động sản': 'batDongSan'
   }
