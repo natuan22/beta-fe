@@ -47,6 +47,7 @@ const Checkbox = ({ children, render }) => {
         }
     }
     const industryQuery = industry.join(',')
+
     const onExchangeChange = e => {
         setExchange(e.target.value)
     }
@@ -58,6 +59,10 @@ const Checkbox = ({ children, render }) => {
     const onOrderChange = e => {
         setOrder(e.target.value)
     }
+
+    useEffect(() => {
+        dispatch({ type: 'QUERY', payload: { exchange, timeFrame, order, industryQuery } })
+    }, [exchange, timeFrame, order, industry])
 
     return (
         <div>
@@ -469,7 +474,6 @@ const Checkbox = ({ children, render }) => {
                     </div>
                 </div>
             </div>
-            {render(exchange, timeFrame, order, industryQuery)}
             {children}
         </div>
     );
