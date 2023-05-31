@@ -19,11 +19,12 @@ import { fetchDataHotIndustry } from '../../thunk'
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Efficiency = () => {
+  const dispatch = useDispatch()
+  // const { dataHotIndustry } = useSelector(state => state.market)
   const [exchange, setExchange] = useState("all")
   const [timeFrame, setTimeFrame] = useState("8")
   const [order, setOrder] = useState("0")
   const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
-
   const handleIndustryChange = e => {
     const { value, checked } = e.target
     if (checked) {
@@ -32,9 +33,17 @@ const Efficiency = () => {
       setIndustry(prev => prev.filter(industry => industry !== value))
     }
   }
+  // useEffect(() => {
+  //   dispatch(fetchDataHotIndustry)
+  // }, [dataHotIndustry])
 
+  const hashTb = {
+    'Bất động sản': 'batDongSan'
+  }
+  useEffect(() => {
+    console.log(hashTb['Bất động sản'])
+  }, [])
   const industryQuery = industry.join(',')
-
   const onExchangeChange = e => {
     setExchange(e.target.value)
   }
@@ -566,3 +575,6 @@ const Efficiency = () => {
 }
 
 export default Efficiency
+
+
+
