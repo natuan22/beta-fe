@@ -19,6 +19,7 @@ import Checkbox from '../../HOCs/Checkbox'
 
 const Efficiency = () => {
   const { dataQuery } = useSelector(state => state.market)
+  console.log(dataQuery)
   const [exchange, setExchange] = useState("all")
   const [timeFrame, setTimeFrame] = useState("8")
   const [order, setOrder] = useState("0")
