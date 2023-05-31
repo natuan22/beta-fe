@@ -48,6 +48,8 @@ const Checkbox = ({ children }) => {
             setIndustry(prev => prev.filter(industry => industry !== value))
         }
     }
+    // const industryQuery = industry.join(',')
+
     const onExchangeChange = e => {
         setExchange(e.target.value)
     }
