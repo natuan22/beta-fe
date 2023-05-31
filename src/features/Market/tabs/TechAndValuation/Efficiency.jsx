@@ -468,105 +468,110 @@ const Efficiency = () => {
 
       {/* component */}
       <div>
-        <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
-          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold'>Thay đổi giá của các ngành (%)</span>
+        <div>
+          <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold'>Thay đổi giá của các ngành (%)</span>
+              </div>
+              <div>
+                <ChartChangesPrice exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              </div>
+              <hr />
+              <TableChangesPrice exchange={exchange} industryQuery={industryQuery} />
             </div>
-            <div>
-              <ChartChangesPrice exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng thanh khoản của các ngành (%)</span>
+              </div>
+              <div>
+                <ChartLiquidityGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              </div>
+              <hr />
+              <TableLiquidityGrowth exchange={exchange} industryQuery={industryQuery} />
             </div>
-            <hr />
-            <TableChangesPrice exchange={exchange} industryQuery={industryQuery} />
-          </div>
-          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng thanh khoản của các ngành (%)</span>
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng vốn chủ sở hữu của các ngành (%)</span>
+              </div>
+              <div>
+                <ChartEquityGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              </div>
+              <hr />
+              <TableEquityGrowth exchange={exchange} industryQuery={industryQuery} />
             </div>
-            <div>
-              <ChartLiquidityGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
-            </div>
-            <hr />
-            <TableLiquidityGrowth exchange={exchange} industryQuery={industryQuery} />
-          </div>
-          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng vốn chủ sở hữu của các ngành (%)</span>
-            </div>
-            <div>
-              <ChartEquityGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
-            </div>
-            <hr />
-            <TableEquityGrowth exchange={exchange} industryQuery={industryQuery} />
-          </div>
-          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng nợ phải trả của các ngành (%)</span>
-            </div>
-            <div>
-              <ChartLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
-            </div>
-            <hr />
-            <TableLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />
-          </div>
-        </div>
-      </div>
-      <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
-          <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold'>Tăng trưởng doanh thu thuần của các ngành qua từng kỳ (%)</span>
-            </div>
-            <div>
-              <ChartNetRevenueGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
-            </div>
-          </div>
-          <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuân gộp các ngành qua từng kỳ (%)</span>
-            </div>
-            <div>
-              <ChartGrossProfitGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng nợ phải trả của các ngành (%)</span>
+              </div>
+              <div>
+                <ChartLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              </div>
+              <hr />
+              <TableLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />
             </div>
           </div>
         </div>
-      </div>
-      <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
-          <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold'>Tăng trưởng EBITDA của các ngành qua từng kỳ (%)</span>
+
+        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+          <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+            <div>
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold'>Tăng trưởng doanh thu thuần của các ngành qua từng kỳ (%)</span>
+              </div>
+              <div>
+                <ChartNetRevenueGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              </div>
             </div>
             <div>
-              <ChartEBITDAGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
-            </div>
-          </div>
-          <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuận hoạt động các ngành qua từng kỳ (%)</span>
-            </div>
-            <div>
-              <ChartOperatingProfitGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuân gộp các ngành qua từng kỳ (%)</span>
+              </div>
+              <div>
+                <ChartGrossProfitGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
-          <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold'>Tăng trưởng cổ tức tiền mặt của các ngành qua từng kỳ (%)</span>
+
+        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+          <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+            <div>
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold'>Tăng trưởng EBITDA của các ngành qua từng kỳ (%)</span>
+              </div>
+              <div>
+                <ChartEBITDAGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              </div>
             </div>
             <div>
-              <ChartCashDividendGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuận hoạt động các ngành qua từng kỳ (%)</span>
+              </div>
+              <div>
+                <ChartOperatingProfitGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              </div>
             </div>
           </div>
-          <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold'>Tăng trưởng EPS các ngành qua từng kỳ (%)</span>
+        </div>
+
+        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+          <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+            <div>
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold'>Tăng trưởng cổ tức tiền mặt của các ngành qua từng kỳ (%)</span>
+              </div>
+              <div>
+                <ChartCashDividendGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              </div>
             </div>
             <div>
-              <ChartEPSGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold'>Tăng trưởng EPS các ngành qua từng kỳ (%)</span>
+              </div>
+              <div>
+                <ChartEPSGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              </div>
             </div>
           </div>
         </div>
