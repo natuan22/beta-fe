@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ChartCashDividendGrowth from '../../components/Efficiency/Chart/ChartCashDividendGrowth'
 import ChartChangesPrice from '../../components/Efficiency/Chart/ChartChangesPrice'
 import ChartEBITDAGrowth from '../../components/Efficiency/Chart/ChartEBITDAGrowth'
@@ -38,9 +38,13 @@ const Efficiency = () => {
       setIndustry(prev => prev.filter(industry => industry !== value))
     }
   }
-
+  const hashTb = {
+    'Bất động sản': 'batDongSan'
+  }
+  useEffect(() => {
+    console.log(hashTb['Bất động sản'])
+  }, [])
   const industryQuery = industry.join(',')
-
   const onExchangeChange = e => {
     setExchange(e.target.value)
   }
@@ -462,6 +466,7 @@ const Efficiency = () => {
         </div>
       </div>
 
+      {/* component */}
       <div>
         <div>
           <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
@@ -576,3 +581,6 @@ const Efficiency = () => {
 }
 
 export default Efficiency
+
+
+
