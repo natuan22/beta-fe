@@ -32,7 +32,8 @@ const initialState = {
   dataChartEPSGrowth: {},
   dataChartOperatingProfitGrowth: {},
   dataChartCashDividendGrowth: {},
-  dataHotIndustry: {}
+  dataHotIndustry: {},
+  dataQuery: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -132,6 +133,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_HOT_INDUSTRY) {
       draft.dataHotIndustry = payload
+    }
+    if (type === 'QUERY') {
+      draft.dataQuery = payload
     }
   });
 };

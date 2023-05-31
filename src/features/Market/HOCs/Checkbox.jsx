@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDataHotIndustry } from '../thunk';
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
-const Checkbox = ({ children, render }) => {
-    const [count, setCount] = useState(0);
+const Checkbox = ({ children }) => {
+    const dispatch = useDispatch()
     const [exchange, setExchange] = useState("all")
     const [timeFrame, setTimeFrame] = useState("8")
     const [order, setOrder] = useState("0")
     const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
+
+    const { dataHotIndustry } = useSelector(state => state.market)
+
+    useEffect(() => {
+        dispatch(fetchDataHotIndustry)
+    }, [dispatch])
 
     const handleIndustryChange = e => {
         const { value, checked } = e.target
@@ -17,8 +26,8 @@ const Checkbox = ({ children, render }) => {
         }
     }
 
-
     const industryQuery = industry.join(',')
+
     const onExchangeChange = e => {
         setExchange(e.target.value)
     }
@@ -30,6 +39,10 @@ const Checkbox = ({ children, render }) => {
     const onOrderChange = e => {
         setOrder(e.target.value)
     }
+
+    useEffect(() => {
+        dispatch({ type: 'QUERY', payload: { exchange, timeFrame, order, industryQuery } })
+    }, [exchange, timeFrame, order, industry])
 
     return (
         <div>
@@ -441,7 +454,6 @@ const Checkbox = ({ children, render }) => {
                     </div>
                 </div>
             </div>
-            {render(exchange, timeFrame, order, industry)}
             {children}
         </div>
     );
