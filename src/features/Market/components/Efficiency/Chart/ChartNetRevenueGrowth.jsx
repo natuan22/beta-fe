@@ -3,6 +3,8 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataChartNetRevenueGrowth } from '../../../thunk'
+import Loading from '../../../../Chart/utils/Loading';
+import { memo } from 'react';
 
 const ChartNetRevenueGrowth = (props) => {
     const dispatch = useDispatch()
@@ -17,6 +19,7 @@ const ChartNetRevenueGrowth = (props) => {
         dispatch(fetchDataChartNetRevenueGrowth(exchange, industryQuery, timeFrame, order))
         setColorText(color);
     }, [props, color])
+
     useEffect(() => {
         if (dataChartNetRevenueGrowth?.length > 0) {
             const transformedData = dataChartNetRevenueGrowth?.map(item => {
@@ -25,6 +28,7 @@ const ChartNetRevenueGrowth = (props) => {
                 const transformedDate = `Q${quarter} ${year}`;
                 return { ...item, date: transformedDate };
             });
+
             const uniqueIndustry = [...new Set(transformedData?.map(item => item.industry))];
             const mappedData = [];
 
@@ -49,6 +53,7 @@ const ChartNetRevenueGrowth = (props) => {
             setData(mappedData)
         }
     }, [dataChartNetRevenueGrowth])
+
     // config chart
     const options = {
         chart: {
@@ -114,19 +119,29 @@ const ChartNetRevenueGrowth = (props) => {
         legend: {
             align: 'center',
             itemStyle: {
+                fontSize: '10px',
                 color: localStorage.getItem('color')
             }
         },
 
         series: data,
     };
+
     return (
-        <>
-            <div>
-                <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-            </div>
-        </>
+        <div>
+            {dataChartNetRevenueGrowth.length ? (
+                <div id="chart-container">
+                    <div className="h-[450px] mt-3">
+                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                    </div>
+                </div>
+            ) : (
+                <div id="chart-container">
+                    <div className="mt-14 mb-24"><Loading /></div>
+                </div>
+            )}
+        </div>
     )
 }
 
-export default ChartNetRevenueGrowth
+export default memo(ChartNetRevenueGrowth)

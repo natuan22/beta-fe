@@ -15,10 +15,10 @@ import NonIdentifyCash from "../features/Market/tabs/CashFlow/NonIdentifyCash";
 import IdentifyCash from "../features/Market/tabs/CashFlow/IdentifyCash";
 import Technical from "../features/Market/tabs/TechAndValuation/Technical";
 import Efficiency from "../features/Market/tabs/TechAndValuation/Efficiency";
-import Evaluation from "../features/Market/tabs/TechAndValuation/Evaluation";
 import ForeignIndex from "../features/Market/tabs/MarketForeign/ForeignIndex";
 import GoodsMarket from "../features/Market/tabs/MarketForeign/GoodsMarket";
 import CryptocurrencyMarket from "../features/Market/tabs/MarketForeign/CryptocurrencyMarket";
+import FinancialHealth from "../features/Market/tabs/TechAndValuation/FinancialHealth";
 
 export const routes = [
   { path: "/", component: Home },
@@ -52,11 +52,11 @@ export const marketRoute = [
         ],
       },
       {
-        path: "ky-thuat-va-dinh-gia",
+        path: "hieu-suat-va-dinh-gia",
         component: TechAndValuation,
         children1: [
           { path: "hieu-suat", component: Efficiency },
-          { path: "dinh-gia", component: Evaluation },
+          { path: "suc-khoe-tai-chinh", component: FinancialHealth },
           { path: "ky-thuat", component: Technical },
         ],
       },

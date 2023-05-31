@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { getColor } from '../../../../Chart/utils/utils';
@@ -81,4 +82,4 @@ const TableLiquidityGrowth = (props) => {
     )
 }
 
-export default TableLiquidityGrowth
+export default memo(TableLiquidityGrowth)

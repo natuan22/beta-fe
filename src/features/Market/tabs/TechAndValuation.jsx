@@ -21,7 +21,7 @@ const TechAndValuation = () => {
             Hiệu suất
           </NavLink>
           <NavLink
-            to="dinh-gia"
+            to="suc-khoe-tai-chinh"
             className={(params) => {
               const classes =
                 " w-2/6 text-white rounded-full no-underline text-center leading-8 text-lg";
@@ -31,7 +31,7 @@ const TechAndValuation = () => {
               return clsx("bg-transparent", classes);
             }}
           >
-            Định giá
+            Sức khoẻ tài chính
           </NavLink>
           <NavLink
             to="ky-thuat"

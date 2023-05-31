@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import ChartCashDividendGrowth from '../../components/Efficiency/Chart/ChartCashDividendGrowth'
 import ChartChangesPrice from '../../components/Efficiency/Chart/ChartChangesPrice'
 import ChartEBITDAGrowth from '../../components/Efficiency/Chart/ChartEBITDAGrowth'
@@ -19,12 +19,18 @@ import { fetchDataHotIndustry } from '../../thunk'
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Efficiency = () => {
-  const dispatch = useDispatch()
   // const { dataHotIndustry } = useSelector(state => state.market)
   const [exchange, setExchange] = useState("all")
   const [timeFrame, setTimeFrame] = useState("8")
   const [order, setOrder] = useState("0")
   const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
+
+  const dispatch = useDispatch()
+  const { dataHotIndustry } = useSelector(state => state.market)
+  useEffect(() => {
+    dispatch(fetchDataHotIndustry)
+  }, [dispatch])
+
   const handleIndustryChange = e => {
     const { value, checked } = e.target
     if (checked) {
@@ -57,7 +63,7 @@ const Efficiency = () => {
   }
 
   return (
-    <div className='container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full'>
+    <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
       <div className='xl:flex lg:block'>
         {/* respon 2xl -> sm */}
         <div className='xl:w-[65%] md:block sm:hidden xs:hidden xxs:hidden'>
@@ -511,7 +517,7 @@ const Efficiency = () => {
       </div>
 
       <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-        <div className='grid grid-cols-2 gap-5'>
+        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
           <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng doanh thu thuần của các ngành qua từng kỳ (%)</span>
@@ -531,7 +537,7 @@ const Efficiency = () => {
         </div>
       </div>
       <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-        <div className='grid grid-cols-2 gap-5'>
+        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
           <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng EBITDA của các ngành qua từng kỳ (%)</span>
@@ -551,7 +557,7 @@ const Efficiency = () => {
         </div>
       </div>
       <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-        <div className='grid grid-cols-2 gap-5'>
+        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
           <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tăng trưởng cổ tức tiền mặt của các ngành qua từng kỳ (%)</span>

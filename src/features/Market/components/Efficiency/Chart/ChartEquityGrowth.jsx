@@ -4,6 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { fetchDataChartEquityGrowth } from '../../../thunk';
+import { memo } from 'react';
 
 const ChartEquityGrowth = (props) => {
     const dispatch = useDispatch()
@@ -116,4 +117,4 @@ const ChartEquityGrowth = (props) => {
     )
 }
 
-export default ChartEquityGrowth
+export default memo(ChartEquityGrowth)

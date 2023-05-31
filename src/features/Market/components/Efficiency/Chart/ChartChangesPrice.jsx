@@ -2,6 +2,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
+import { memo } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { fetchDataChartChangesPrice } from '../../../thunk';
@@ -17,7 +18,7 @@ const ChartChangesPrice = (props) => {
     useEffect(() => {
         dispatch(fetchDataChartChangesPrice(props.exchange, props.industryQuery, props.timeFrame, props.order));
         setColorText(color);
-    }, [props, color]);
+    }, [dispatch, props, color]);
 
     useEffect(() => {
         if (dataChartChangesPrice?.length > 0) {
@@ -110,4 +111,4 @@ const ChartChangesPrice = (props) => {
     )
 }
 
-export default ChartChangesPrice
+export default memo(ChartChangesPrice)
