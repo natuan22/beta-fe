@@ -38,12 +38,8 @@ const Efficiency = () => {
       setIndustry(prev => prev.filter(industry => industry !== value))
     }
   }
-  const hashTb = {
-    'Bất động sản': 'batDongSan'
-  }
-  useEffect(() => {
-    console.log(hashTb['Bất động sản'])
-  }, [])
+
+
   const industryQuery = industry.join(',')
   const onExchangeChange = e => {
     setExchange(e.target.value)

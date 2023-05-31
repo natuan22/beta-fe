@@ -60,7 +60,7 @@ const TableDetail = () => {
                             {item.indexChange.toFixed(2)}
                           </td>
                           <td className={`text-center px-5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {(item.percentIndexChange * 100).toFixed(2)}%
+                            {(item.percentIndexChange).toFixed(2)}%
                           </td>
                         </tr>
                       )

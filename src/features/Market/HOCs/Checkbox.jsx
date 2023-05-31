@@ -1,13 +1,43 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDataHotIndustry } from '../thunk';
+import { useEffect } from 'react';
 const apiUrl = process.env.REACT_APP_BASE_URL;
-
+const hashTb = {
+    'Bảo hiểm': 'baoHiem',
+    'Bất động sản': 'batDongSan',
+    'Công nghệ': 'congNghe',
+    'Dầu khí': 'dauKhi',
+    'Dịch vụ bán lẻ': 'banLe',
+    'Dịch vụ tài chính': 'taiChinh',
+    'Dịch vụ tiện ích': 'tienIch',
+    'Đồ dùng cá nhân và đồ gia dụng': 'doGiaDung',
+    'Du lịch & Giải trí': 'duLich',
+    'Hàng hóa và dịch vụ công nghiệp': 'hangHoa',
+    'Hóa chất': 'hoaChat',
+    'Ngân hàng': 'nganHang',
+    'Ôtô & linh kiện phụ tùng': 'oto',
+    'Phương tiện truyền thông': 'truyenThong',
+    'Thực phẩm & Đồ uống': 'thucPham',
+    'Viễn thông': 'vienThong',
+    'Xây dựng & Vật liệu': 'xayDung',
+    'Tài nguyên': 'taiNguyen',
+    'Y tế': 'yTe',
+}
 const Checkbox = ({ children, render }) => {
-    const [count, setCount] = useState(0);
     const [exchange, setExchange] = useState("all")
     const [timeFrame, setTimeFrame] = useState("8")
     const [order, setOrder] = useState("0")
     const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
+    const dispatch = useDispatch()
+    const { dataHotIndustry } = useSelector(state => state.market)
+    console.log(dataHotIndustry)
+    useEffect(() => {
+        dispatch(fetchDataHotIndustry)
+    }, [dispatch])
+    useEffect(() => {
 
+    }, [])
     const handleIndustryChange = e => {
         const { value, checked } = e.target
         if (checked) {
@@ -16,8 +46,6 @@ const Checkbox = ({ children, render }) => {
             setIndustry(prev => prev.filter(industry => industry !== value))
         }
     }
-
-
     const industryQuery = industry.join(',')
     const onExchangeChange = e => {
         setExchange(e.target.value)
@@ -441,7 +469,7 @@ const Checkbox = ({ children, render }) => {
                     </div>
                 </div>
             </div>
-            {render(exchange, timeFrame, order, industry)}
+            {render(exchange, timeFrame, order, industryQuery)}
             {children}
         </div>
     );
