@@ -16,7 +16,6 @@ import TableLiquidityGrowth from '../../components/Efficiency/Table/TableLiquidi
 import '../../utils/checkBox.css'
 import { useSelector } from 'react-redux'
 import Checkbox from '../../HOCs/Checkbox'
-const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Efficiency = () => {
   const { dataQuery } = useSelector(state => state.market)
