@@ -24,20 +24,22 @@ const hashTb = {
     'Tài nguyên': 'taiNguyen',
     'Y tế': 'yTe',
 }
-const Checkbox = ({ children, render }) => {
+const Checkbox = ({ children }) => {
     const [exchange, setExchange] = useState("all")
     const [timeFrame, setTimeFrame] = useState("8")
     const [order, setOrder] = useState("0")
     const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
     const dispatch = useDispatch()
     const { dataHotIndustry } = useSelector(state => state.market)
-    console.log(dataHotIndustry)
     useEffect(() => {
         dispatch(fetchDataHotIndustry)
     }, [dispatch])
     useEffect(() => {
-
-    }, [])
+        dispatch({
+            type: 'QUERY',
+            payload: { exchange, timeFrame, order, industry }
+        })
+    }, [exchange, timeFrame, order, industry])
     const handleIndustryChange = e => {
         const { value, checked } = e.target
         if (checked) {
@@ -46,8 +48,6 @@ const Checkbox = ({ children, render }) => {
             setIndustry(prev => prev.filter(industry => industry !== value))
         }
     }
-    const industryQuery = industry.join(',')
-
     const onExchangeChange = e => {
         setExchange(e.target.value)
     }
@@ -60,9 +60,7 @@ const Checkbox = ({ children, render }) => {
         setOrder(e.target.value)
     }
 
-    useEffect(() => {
-        dispatch({ type: 'QUERY', payload: { exchange, timeFrame, order, industryQuery } })
-    }, [exchange, timeFrame, order, industry])
+
 
     return (
         <div>
