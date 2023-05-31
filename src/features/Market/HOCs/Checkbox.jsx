@@ -25,21 +25,25 @@ const hashTb = {
     'Y tế': 'yTe',
 }
 const Checkbox = ({ children }) => {
+    const dispatch = useDispatch()
     const [exchange, setExchange] = useState("all")
     const [timeFrame, setTimeFrame] = useState("8")
     const [order, setOrder] = useState("0")
     const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
-    const dispatch = useDispatch()
+    const industryQuery = industry.join(',')
     const { dataHotIndustry } = useSelector(state => state.market)
+
     useEffect(() => {
         dispatch(fetchDataHotIndustry)
     }, [dispatch])
+
     useEffect(() => {
         dispatch({
             type: 'QUERY',
-            payload: { exchange, timeFrame, order, industry }
+            payload: { exchange, timeFrame, order, industryQuery }
         })
     }, [exchange, timeFrame, order, industry])
+
     const handleIndustryChange = e => {
         const { value, checked } = e.target
         if (checked) {
