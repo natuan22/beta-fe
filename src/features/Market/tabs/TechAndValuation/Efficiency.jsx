@@ -466,6 +466,7 @@ const Efficiency = () => {
         </div>
       </div>
 
+      {/* component */}
       <div>
         <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
@@ -510,7 +511,6 @@ const Efficiency = () => {
           </div>
         </div>
       </div>
-
       <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
         <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
           <div>
