@@ -384,3 +384,15 @@ export const fetchDataHotIndustry = async dispatch => {
         console.log(err)
     }
 }
+
+export const fetchDataChartAveragePE = (exchange, industry, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartAveragePE(exchange, industry, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_AVERAGE_PE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
