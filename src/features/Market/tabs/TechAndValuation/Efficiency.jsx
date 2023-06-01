@@ -19,7 +19,6 @@ import Checkbox from '../../HOCs/Checkbox'
 
 const Efficiency = () => {
   const { dataQuery } = useSelector(state => state.market)
-  console.log(dataQuery)
   const [exchange, setExchange] = useState("all")
   const [timeFrame, setTimeFrame] = useState("8")
   const [order, setOrder] = useState("0")
@@ -42,7 +41,7 @@ const Efficiency = () => {
         <div>
           <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
             <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 mt-1'>
                 <span className='dark:text-white text-black font-semibold'>Thay đổi giá của các ngành (%)</span>
               </div>
               <div>
