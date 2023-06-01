@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataHotIndustry } from '../thunk';
 import { useEffect } from 'react';
+
 const apiUrl = process.env.REACT_APP_BASE_URL;
 const hashTb = {
     'Bảo hiểm': 'baoHiem',
@@ -29,18 +30,22 @@ const Checkbox = ({ children }) => {
     const [exchange, setExchange] = useState("all")
     const [timeFrame, setTimeFrame] = useState("8")
     const [order, setOrder] = useState("0")
-    const [industry, setIndustry] = useState(['batDongSan', 'taiChinh', 'hangHoa', 'nganHang', 'taiNguyen', 'xayDung'])
-    const industryQuery = industry.join(',')
+    const [industry, setIndustry] = useState(['batDongSan'])
     const { dataHotIndustry } = useSelector(state => state.market)
-
+    const industryQuery = industry?.join(',')
     useEffect(() => {
         dispatch(fetchDataHotIndustry)
     }, [dispatch])
-
+    useEffect(() => {
+        if (dataHotIndustry?.length > 0) {
+            const formattedData = dataHotIndustry.map(item => hashTb[item.industry]);
+            setIndustry(formattedData)
+        }
+    }, [dataHotIndustry])
     useEffect(() => {
         dispatch({
             type: 'QUERY',
-            payload: { exchange, timeFrame, order, industryQuery }
+            payload: { exchange, timeFrame, order, industryQuery, }
         })
     }, [exchange, timeFrame, order, industry])
 
@@ -52,6 +57,7 @@ const Checkbox = ({ children }) => {
             setIndustry(prev => prev.filter(industry => industry !== value))
         }
     }
+
     const onExchangeChange = e => {
         setExchange(e.target.value)
     }
@@ -65,7 +71,18 @@ const Checkbox = ({ children }) => {
     }
 
 
-
+    const createHotImage = (industry) => {
+        if (dataHotIndustry?.length > 0 && dataHotIndustry?.some(item => hashTb[item.industry] === industry)) {
+            return (
+                <img
+                    className='relative w-[50px] h-[30px] top-[-11px]'
+                    src={`${apiUrl}/resources/icons/hot.png`}
+                    alt='icon'
+                />
+            );
+        }
+        return null;
+    };
     return (
         <div>
             <div>
@@ -110,53 +127,63 @@ const Checkbox = ({ children }) => {
                                         <input type="checkbox" name="industry" value="baoHiem" id="baoHiem" checked={industry.includes("baoHiem")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Bảo hiểm</span>
+                                        {createHotImage("baoHiem")}
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="batDongSan" id="batDongSan" checked={industry.includes("batDongSan")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Bất động sản</span>
-                                        <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} alt='icon' />
+                                        {createHotImage("batDongSan")}
+
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="congNghe" id="congNghe" checked={industry.includes("congNghe")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Công nghệ</span>
+                                        {createHotImage("congNghe")}
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="dauKhi" id="dauKhi" checked={industry.includes("dauKhi")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Dầu khí</span>
+                                        {createHotImage("dauKhi")}
+
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="banLe" id="banLe" checked={industry.includes("banLe")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Dịch vụ bán lẻ</span>
+                                        {createHotImage("banLe")}
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="tienIch" id="tienIch" checked={industry.includes("tienIch")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Dịch vụ tiện ích</span>
+                                        {createHotImage("tienIch")}
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="taiChinh" id="taiChinh" checked={industry.includes("taiChinh")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Dịch vụ tài chính</span>
-                                        <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} alt='icon' />
+                                        {createHotImage("taiChinh")}
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="doGiaDung" id="doGiaDung" checked={industry.includes("doGiaDung")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Đồ dùng cá nhân và đồ gia dụng</span>
+                                        {createHotImage("doGiaDung")}
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="duLich" id="duLich" checked={industry.includes("duLich")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Du lịch & Giải trí</span>
+                                        {createHotImage("duLich")}
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="yTe" id="yTe" checked={industry.includes("yTe")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Y tế</span>
+                                        {createHotImage("yTe")}
                                     </label>
                                 </div>
 
@@ -166,48 +193,64 @@ const Checkbox = ({ children }) => {
                                         <input type="checkbox" name="industry" value="hangHoa" id="hangHoa" checked={industry.includes("hangHoa")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Hàng hóa và dịch vụ công nghiệp</span>
+                                        {createHotImage("hangHoa")}
+
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="hoaChat" id="hoaChat" checked={industry.includes("hoaChat")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Hóa chất</span>
+                                        {createHotImage("hoaChat")}
+
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="nganHang" id="nganHang" checked={industry.includes("nganHang")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Ngân hàng</span>
-                                        <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} alt='icon' />
+                                        {createHotImage("nganHang")}
+
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="oto" id="oto" checked={industry.includes("oto")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Ôtô & linh kiện phụ tùng</span>
+                                        {createHotImage("oto")}
+
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="truyenThong" id="truyenThong" checked={industry.includes("truyenThong")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Phương tiện truyền thông</span>
+                                        {createHotImage("truyenThong")}
+
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="taiNguyen" id="taiNguyen" checked={industry.includes("taiNguyen")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Tài nguyên</span>
-                                        <img className='relative w-[50px] h-[30px] top-[-11px]' src={`${apiUrl}/resources/icons/hot.png`} alt='icon' />
+                                        {createHotImage("taiNguyen")}
+
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="thucPham" id="thucPham" checked={industry.includes("thucPham")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Thực phẩm & Đồ uống</span>
+                                        {createHotImage("thucPham")}
+
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="vienThong" id="vienThong" checked={industry.includes("vienThong")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Viễn thông</span>
+                                        {createHotImage("vienThong")}
+
                                     </label>
                                     <label className="material-checkbox py-3 dark:text-white text-black">
                                         <input type="checkbox" name="industry" value="xayDung" id="xayDung" checked={industry.includes("xayDung")} onChange={handleIndustryChange} />
                                         <span className="checkmark"></span>
                                         <span className='text-sm'>Xây dựng & Vật liệu</span>
+                                        {createHotImage("xayDung")}
+
                                     </label>
                                 </div>
 

@@ -22,7 +22,7 @@ const Efficiency = () => {
   const [exchange, setExchange] = useState("all")
   const [timeFrame, setTimeFrame] = useState("8")
   const [order, setOrder] = useState("0")
-  const [industryQuery, setIndustryQuery] = useState('batDongSan,taiChinh,hangHoa,nganHang,taiNguyen,xayDung')
+  const [industryQuery, setIndustryQuery] = useState('batDongSan')
 
   useEffect(() => {
     if (dataQuery) {
@@ -36,7 +36,6 @@ const Efficiency = () => {
   return (
     <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
       <Checkbox />
-
       {/* component */}
       <div>
         <div>
