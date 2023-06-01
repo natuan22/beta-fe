@@ -21,7 +21,6 @@ const FinancialHealth = () => {
   return (
     <div className='container mx-auto mt-2'>
       <Checkbox />
-      <h1>chart ở đây</h1>
     </div>
   );
 };

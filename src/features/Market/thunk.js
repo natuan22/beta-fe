@@ -384,3 +384,5 @@ export const fetchDataHotIndustry = async dispatch => {
         console.log(err)
     }
 }
+
+
