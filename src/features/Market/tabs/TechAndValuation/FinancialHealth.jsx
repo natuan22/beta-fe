@@ -46,7 +46,7 @@ const FinancialHealth = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Diễn biến P/E bình quân các nhóm ngành (lần)</span>
             </div>
-            <div className='h-[300px]'>
+            <div>
               <ChartAveragePE exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
             </div>
             <hr />

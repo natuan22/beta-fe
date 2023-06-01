@@ -33,7 +33,8 @@ const initialState = {
   dataChartOperatingProfitGrowth: {},
   dataChartCashDividendGrowth: {},
   dataHotIndustry: {},
-  dataQuery: {}
+  dataQuery: {},
+  dataChartAveragePE: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -136,6 +137,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === 'QUERY') {
       draft.dataQuery = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_AVERAGE_PE) {
+      draft.dataChartAveragePE = payload
     }
   });
 };
