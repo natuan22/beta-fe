@@ -15,11 +15,14 @@ const ChartLiquidityGrowth = (props) => {
     const [timeLine, setTimeLine] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
+    const [isChartLoading, setIsChartLoading] = useState(true);
+    useEffect(() => {
+        setColorText(color);
+    }, [color])
 
     useEffect(() => {
         dispatch(fetchDataChartLiquidityGrowth(exchange, industryQuery, timeFrame, order))
-        setColorText(color);
-    }, [props, color])
+    }, [props])
 
     useEffect(() => {
         if (dataChartLiquidityGrowth?.length > 0) {
@@ -43,11 +46,13 @@ const ChartLiquidityGrowth = (props) => {
     }, [dataChartLiquidityGrowth])
 
     const options = {
+
         accessibility: {
             enabled: false,
         },
         credits: false,
         chart: {
+
             type: "spline",
             backgroundColor: "transparent",
         },
