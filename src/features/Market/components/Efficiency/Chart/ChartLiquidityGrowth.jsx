@@ -6,42 +6,45 @@ import { fetchDataChartLiquidityGrowth } from '../../../thunk';
 import moment from 'moment';
 import Loading from '../../../../Chart/utils/Loading';
 import { memo } from 'react';
+import { hashTb } from '../../FinancialHealth/Chart/utils/hashTb';
 
 const ChartLiquidityGrowth = (props) => {
     const dispatch = useDispatch()
     const { exchange, industryQuery, order, timeFrame } = props
+    const checkIndustry = industryQuery.split(',')
+    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
     const { dataChartLiquidityGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
-    const [isChartLoading, setIsChartLoading] = useState(true);
     useEffect(() => {
         setColorText(color);
     }, [color])
-
     useEffect(() => {
-        dispatch(fetchDataChartLiquidityGrowth(exchange, industryQuery, timeFrame, order))
+        dispatch(fetchDataChartLiquidityGrowth(exchange, timeFrame, order))
     }, [props])
 
     useEffect(() => {
         if (dataChartLiquidityGrowth?.length > 0) {
-            const mappedData = [];
+            const result = [];
             const uniqueDates = [...new Set(dataChartLiquidityGrowth?.map(item => moment(item.date).format('DD/MM/YYYY')))];
             setTimeLine(uniqueDates)
-            dataChartLiquidityGrowth.forEach(item => {
-                const existingItem = mappedData.find(mappedItem => mappedItem.name === item.industry);
-                if (existingItem) {
-                    existingItem.data.push(+(item.perChange).toFixed(2));
-                } else {
-                    mappedData.push({
-                        name: item.industry,
-                        color: item.color,
-                        data: [item.perChange]
-                    });
+            dataChartLiquidityGrowth?.forEach(item => {
+                if (mappedKeys.includes(item.industry)) {
+                    const foundItem = result.find(x => x.name === item.industry);
+                    if (foundItem) {
+                        foundItem.data.push(item.perChange);
+                    } else {
+                        result.push({
+                            name: item.industry,
+                            color: item.color,
+                            data: [item.perChange]
+                        });
+                    }
                 }
             });
-            setData(mappedData)
+            setData(result)
         }
     }, [dataChartLiquidityGrowth])
 
