@@ -48,7 +48,7 @@ const Checkbox = ({ children }) => {
     useEffect(() => {
         dispatch({
             type: 'QUERY',
-            payload: { exchange, type, order, industryQuery, }
+            payload: { exchange, type, order, industryQuery }
         })
     }, [exchange, type, order, industry])
 
