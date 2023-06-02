@@ -17,7 +17,7 @@ const hashTb = {
     'Hàng hóa và dịch vụ công nghiệp': 'hangHoa',
     'Hóa chất': 'hoaChat',
     'Ngân hàng': 'nganHang',
-    'Ôtô & linh kiện phụ tùng': 'oto',
+    'Ôtô & linh kiện phụ tùng ': 'oto',
     'Phương tiện truyền thông': 'truyenThong',
     'Thực phẩm & Đồ uống': 'thucPham',
     'Viễn thông': 'vienThong',
