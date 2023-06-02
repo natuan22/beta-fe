@@ -264,6 +264,8 @@ export const marketServices = {
     fetchDataHotIndustry: () => {
         return https.get('api/v1/market/top-nganh-hot')
     },
+
+
     fetchDataChartAveragePE: (exchange, industry, type, order) => {
         return https.get('api/v1/finance-health/p-e-binh-quan-nganh', {
             params: {
@@ -274,4 +276,5 @@ export const marketServices = {
             }
         })
     },
+
 }
