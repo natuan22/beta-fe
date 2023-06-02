@@ -262,11 +262,10 @@ export const marketServices = {
     },
 
 
-    fetchDataChartAveragePE: (exchange, industry, type, order) => {
+    fetchDataChartAveragePE: (exchange, type, order) => {
         return https.get('api/v1/finance-health/p-e-binh-quan-nganh', {
             params: {
                 exchange,
-                industry,
                 type,
                 order
             }

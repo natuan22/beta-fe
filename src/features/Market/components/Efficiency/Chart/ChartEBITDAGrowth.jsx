@@ -9,7 +9,7 @@ import { memo } from 'react';
 
 const ChartEBITDAGrowth = (props) => {
     const dispatch = useDispatch()
-    const { exchange, industryQuery, order, timeFrame } = props
+    const { exchange, industryQuery, order, type } = props
     const { dataChartEBITDAGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
@@ -17,7 +17,7 @@ const ChartEBITDAGrowth = (props) => {
     const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
-        dispatch(fetchDataChartEBITDAGrowth(exchange, industryQuery, timeFrame, order))
+        dispatch(fetchDataChartEBITDAGrowth(exchange, industryQuery, type, order))
         setColorText(color);
     }, [props, color])
 

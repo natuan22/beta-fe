@@ -2,51 +2,57 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { memo } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
-import { fetchDataChartChangesPrice } from '../../../thunk';
+import { hashTb } from "../../FinancialHealth/Chart/utils/hashTb";
 
 const ChartChangesPrice = (props) => {
-    const dispatch = useDispatch()
-    const { dataChartChangesPrice } = useSelector((state) => state.market);
-    const [data, setData] = useState([]);
+    const { dataChartChangesPrice } = useSelector(state => state.market)
+    const { industryQuery } = props
+    const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
+
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
+    const checkIndustry = industryQuery.split(',')
+    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
+
     useEffect(() => {
-        dispatch(fetchDataChartChangesPrice(props.exchange, props.industryQuery, props.timeFrame, props.order));
         setColorText(color);
-    }, [dispatch, props, color]);
+    }, [color])
 
     useEffect(() => {
         if (dataChartChangesPrice?.length > 0) {
-            const mappedData = [];
+            const result = [];
             const uniqueDates = [...new Set(dataChartChangesPrice?.map(item => moment(item.date).format('DD/MM/YYYY')))];
             setTimeLine(uniqueDates)
-            dataChartChangesPrice.forEach(item => {
-                const existingItem = mappedData.find(mappedItem => mappedItem.name === item.industry);
-                if (existingItem) {
-                    existingItem.data.push(+(item.perChange).toFixed(2));
-                } else {
-                    mappedData.push({
-                        name: item.industry,
-                        color: item.color,
-                        data: [item.perChange]
-                    });
+            dataChartChangesPrice?.forEach(item => {
+                if (mappedKeys.includes(item.industry)) {
+                    const foundItem = result.find(x => x.name === item.industry);
+                    if (foundItem) {
+                        foundItem.data.push(+item.perChange.toFixed(2));
+                    } else {
+                        result.push({
+                            name: item.industry,
+                            color: item.color,
+                            data: [+item.perChange.toFixed(2)]
+                        });
+                    }
                 }
             });
-            setData(mappedData)
+            setData(result)
         }
-    }, [dataChartChangesPrice])
+    }, [dataChartChangesPrice, industryQuery])
 
     const options = {
+
         accessibility: {
             enabled: false,
         },
         credits: false,
         chart: {
+
             type: "spline",
             backgroundColor: "transparent",
         },
@@ -95,7 +101,7 @@ const ChartChangesPrice = (props) => {
         series: data
     }
     return (
-        <>
+        <div>
             {dataChartChangesPrice.length ? (
                 <div id="chart-container">
                     <div className="h-[450px] mt-3">
@@ -107,8 +113,8 @@ const ChartChangesPrice = (props) => {
                     <div className="mt-14 mb-24"><Loading /></div>
                 </div>
             )}
-        </>
+        </div>
     )
 }
 
-export default memo(ChartChangesPrice)
+export default ChartChangesPrice

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CashPayoutRatio from '../../components/FinancialHealth/Chart/CashPayoutRatio';
 import ChartAverageDebtRatio from '../../components/FinancialHealth/Chart/ChartAverageDebtRatio';
 import ChartAveragePB from '../../components/FinancialHealth/Chart/ChartAveragePB';
@@ -19,27 +19,34 @@ import TableAveragePB from '../../components/FinancialHealth/Table/TableAverageP
 import TableAveragePE from '../../components/FinancialHealth/Table/TableAveragePE';
 import TableMiningProfitMargin from '../../components/FinancialHealth/Table/TableMiningProfitMargin';
 import Checkbox from '../../HOCs/Checkbox';
+import { fetchDataChartAveragePE } from '../../thunk';
 
 const FinancialHealth = () => {
-  const [exchange, setExchange] = useState("all")
-  const [timeFrame, setTimeFrame] = useState("8")
-  const [order, setOrder] = useState("0")
-  const [industryQuery, setIndustryQuery] = useState('batDongSan,taiChinh,hangHoa,nganHang,taiNguyen,xayDung')
+  const dispatch = useDispatch()
   const { dataQuery } = useSelector(state => state.market)
+  const [exchange, setExchange] = useState("all")
+  const [type, setType] = useState("8")
+  const [order, setOrder] = useState("0")
+  const [industryQuery, setIndustryQuery] = useState('batDongSan')
 
   useEffect(() => {
     if (dataQuery) {
-      setExchange(dataQuery.exchange)
-      setTimeFrame(dataQuery.timeFrame)
-      setOrder(dataQuery.order)
-      setIndustryQuery(dataQuery.industryQuery)
+      const { exchange, type, order, industryQuery } = dataQuery
+      setExchange(exchange)
+      setType(type)
+      setOrder(order)
+      setIndustryQuery(industryQuery)
     }
   }, [dataQuery])
+
+  useEffect(() => {
+    dispatch(fetchDataChartAveragePE(exchange, type, order))
+  }, [exchange, type, order])
 
   return (
     <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
       <Checkbox />
-
+      {/* component */}
       <div>
         <div className='grid grid-cols-2'>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
@@ -47,7 +54,7 @@ const FinancialHealth = () => {
               <span className='dark:text-white text-black font-semibold'>Diễn biến P/E bình quân các nhóm ngành (lần)</span>
             </div>
             <div>
-              <ChartAveragePE exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              <ChartAveragePE industryQuery={industryQuery} />
             </div>
             <hr />
             <TableAveragePE exchange={exchange} industryQuery={industryQuery} />
@@ -57,7 +64,7 @@ const FinancialHealth = () => {
               <span className='dark:text-white text-black font-semibold'>Diễn biến P/B bình quân các nhóm ngành (lần)</span>
             </div>
             <div className='h-[300px]'>
-              <ChartAveragePB exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              <ChartAveragePB industryQuery={industryQuery} />
             </div>
             <hr />
             <TableAveragePB exchange={exchange} industryQuery={industryQuery} />
@@ -80,7 +87,7 @@ const FinancialHealth = () => {
                 <span className='dark:text-white text-black font-semibold'>Tỷ số thanh toán hiện hành (Lần)</span>
               </div>
               <div className='h-[300px]'>
-                <CurrentPayoutRatio exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <CurrentPayoutRatio industryQuery={industryQuery} />
               </div>
             </div>
             <div>
@@ -88,7 +95,7 @@ const FinancialHealth = () => {
                 <span className='dark:text-white text-black font-semibold'>Tỷ số thanh toán nhanh (Lần)</span>
               </div>
               <div className='h-[300px]'>
-                <QuickPayoutRatio exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <QuickPayoutRatio industryQuery={industryQuery} />
               </div>
             </div>
             <div>
@@ -96,7 +103,7 @@ const FinancialHealth = () => {
                 <span className='dark:text-white text-black font-semibold'>Tỷ số thanh toán tiền mặt (Lần)</span>
               </div>
               <div className='h-[300px]'>
-                <CashPayoutRatio exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <CashPayoutRatio industryQuery={industryQuery} />
               </div>
             </div>
           </div>
@@ -109,7 +116,7 @@ const FinancialHealth = () => {
                 <span className='dark:text-white text-black font-semibold'>Lãi suất vay nợ bình quân của các ngành (%)</span>
               </div>
               <div className='h-[300px]'>
-                <ChartAverageDebtRatio exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartAverageDebtRatio industryQuery={industryQuery} />
               </div>
               <hr />
               <div className='h-[300px]'>
@@ -121,7 +128,7 @@ const FinancialHealth = () => {
                 <span className='dark:text-white text-black font-semibold'>Hệ số thanh toán lãi vay nợ bình quân của các ngành (%)</span>
               </div>
 
-              <InterestCoverageRatio exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              <InterestCoverageRatio industryQuery={industryQuery} />
             </div>
           </div>
         </div>
@@ -133,7 +140,7 @@ const FinancialHealth = () => {
                 <span className='dark:text-white text-black font-semibold'>Vòng quay Tài sản cố định (Lần)</span>
               </div>
               <div className='h-[300px]'>
-                <FixedAssetTurnover exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <FixedAssetTurnover industryQuery={industryQuery} />
               </div>
             </div>
 
@@ -142,7 +149,7 @@ const FinancialHealth = () => {
                 <span className='dark:text-white text-black font-semibold'>Vòng quay Tiền (Lần)</span>
               </div>
               <div className='h-[300px]'>
-                <MoneyWheel exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <MoneyWheel industryQuery={industryQuery} />
               </div>
             </div>
 
@@ -151,7 +158,7 @@ const FinancialHealth = () => {
                 <span className='dark:text-white text-black font-semibold'>Vòng quay Tổng tài sản (Lần)</span>
               </div>
               <div className='h-[300px]'>
-                <TotalAssetTurnover exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <TotalAssetTurnover industryQuery={industryQuery} />
               </div>
             </div>
 
@@ -160,7 +167,7 @@ const FinancialHealth = () => {
                 <span className='dark:text-white text-black font-semibold'>Vòng quay Vốn chủ sở hữu (Lần)</span>
               </div>
               <div className='h-[300px]'>
-                <EquityTurnover exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <EquityTurnover industryQuery={industryQuery} />
               </div>
             </div>
           </div>
@@ -173,7 +180,7 @@ const FinancialHealth = () => {
                 <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận gộp biên các ngành  (%)</span>
               </div>
               <div className='h-[300px]'>
-                <ChartMiningProfitMargin exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartMiningProfitMargin industryQuery={industryQuery} />
               </div>
               <hr />
               <div className='h-[300px]'>
@@ -184,7 +191,7 @@ const FinancialHealth = () => {
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận ròng các ngành (%)</span>
               </div>
-              <NetProfitMargin exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+              <NetProfitMargin industryQuery={industryQuery} />
             </div>
           </div>
         </div>

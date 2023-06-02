@@ -8,7 +8,7 @@ import moment from 'moment';
 
 const ChartEPSGrowth = (props) => {
     const dispatch = useDispatch()
-    const { exchange, industryQuery, order, timeFrame } = props
+    const { exchange, industryQuery, order, type } = props
     const { dataChartEPSGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
@@ -16,7 +16,7 @@ const ChartEPSGrowth = (props) => {
     const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
-        dispatch(fetchDataChartEPSGrowth(exchange, industryQuery, timeFrame, order))
+        dispatch(fetchDataChartEPSGrowth(exchange, industryQuery, type, order))
         setColorText(color);
     }, [props, color])
 

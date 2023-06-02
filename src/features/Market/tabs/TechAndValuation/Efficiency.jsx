@@ -16,7 +16,7 @@ import TableLiquidityGrowth from '../../components/Efficiency/Table/TableLiquidi
 import '../../utils/checkBox.css'
 import { useDispatch, useSelector } from 'react-redux'
 import Checkbox from '../../HOCs/Checkbox'
-import { fetchDataChartLiabilitiesGrowth, fetchDataChartLiquidityGrowth } from '../../thunk'
+import { fetchDataChartChangesPrice, fetchDataChartEquityGrowth, fetchDataChartLiabilitiesGrowth, fetchDataChartLiquidityGrowth } from '../../thunk'
 
 const Efficiency = () => {
   const dispatch = useDispatch()
@@ -25,7 +25,7 @@ const Efficiency = () => {
   const [type, setType] = useState("8")
   const [order, setOrder] = useState("0")
   const [industryQuery, setIndustryQuery] = useState('batDongSan')
-  console.log(type)
+
   useEffect(() => {
     if (dataQuery) {
       const { exchange, type, order, industryQuery } = dataQuery
@@ -35,10 +35,14 @@ const Efficiency = () => {
       setIndustryQuery(industryQuery)
     }
   }, [dataQuery])
+
   useEffect(() => {
     dispatch(fetchDataChartLiquidityGrowth(exchange, type, order))
+    dispatch(fetchDataChartChangesPrice(exchange, type, order))
+    dispatch(fetchDataChartEquityGrowth(exchange, type, order))
     dispatch(fetchDataChartLiabilitiesGrowth(exchange, type, order))
   }, [exchange, type, order])
+
   return (
     <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
       <Checkbox />
@@ -51,7 +55,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold'>Thay đổi giá của các ngành (%)</span>
               </div>
               <div>
-                <ChartChangesPrice exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
+                <ChartChangesPrice industryQuery={industryQuery} />
               </div>
               <hr />
               <TableChangesPrice exchange={exchange} industryQuery={industryQuery} />
@@ -61,7 +65,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng thanh khoản của các ngành (%)</span>
               </div>
               <div>
-                <ChartLiquidityGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
+                <ChartLiquidityGrowth industryQuery={industryQuery} />
               </div>
               <hr />
               <TableLiquidityGrowth exchange={exchange} industryQuery={industryQuery} />
@@ -71,7 +75,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng vốn chủ sở hữu của các ngành (%)</span>
               </div>
               <div>
-                <ChartEquityGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
+                <ChartEquityGrowth industryQuery={industryQuery} />
               </div>
               <hr />
               <TableEquityGrowth exchange={exchange} industryQuery={industryQuery} />
@@ -81,7 +85,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng nợ phải trả của các ngành (%)</span>
               </div>
               <div>
-                <ChartLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
+                <ChartLiabilitiesGrowth industryQuery={industryQuery} />
               </div>
               <hr />
               <TableLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />

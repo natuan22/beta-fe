@@ -8,7 +8,7 @@ import moment from 'moment';
 
 const ChartCashDividendGrowth = (props) => {
     const dispatch = useDispatch()
-    const { exchange, industryQuery, order, timeFrame } = props
+    const { exchange, industryQuery, order, type } = props
     const { dataChartCashDividendGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
@@ -16,7 +16,7 @@ const ChartCashDividendGrowth = (props) => {
     const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
-        dispatch(fetchDataChartCashDividendGrowth(exchange, industryQuery, timeFrame, order))
+        dispatch(fetchDataChartCashDividendGrowth(exchange, industryQuery, type, order))
         setColorText(color);
     }, [props, color])
 

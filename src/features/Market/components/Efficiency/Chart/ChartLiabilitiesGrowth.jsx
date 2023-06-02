@@ -3,16 +3,17 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
-import { memo } from 'react';
 import { hashTb } from '../../FinancialHealth/Chart/utils/hashTb';
 
 const ChartLiabilitiesGrowth = (props) => {
-    const { industryQuery } = props
     const { dataChartLiabilitiesGrowth } = useSelector(state => state.market)
+    const { industryQuery } = props
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
+
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
+
     const checkIndustry = industryQuery.split(',')
     const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
 
@@ -31,16 +32,16 @@ const ChartLiabilitiesGrowth = (props) => {
             const result = [];
             const uniqueDates = [...new Set(transformedData?.map(item => item.date))];
             setTimeLine(uniqueDates)
-            dataChartLiabilitiesGrowth?.forEach(item => {
+            transformedData?.forEach(item => {
                 if (mappedKeys.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {
-                        foundItem.data.push(item.perChange);
+                        foundItem.data.push(+item.perChange.toFixed(2));
                     } else {
                         result.push({
                             name: item.industry,
                             color: item.color,
-                            data: [item.perChange]
+                            data: [+item.perChange.toFixed(2)]
                         });
                     }
                 }
@@ -119,4 +120,4 @@ const ChartLiabilitiesGrowth = (props) => {
     )
 }
 
-export default memo(ChartLiabilitiesGrowth)
+export default ChartLiabilitiesGrowth
