@@ -10,13 +10,12 @@ import { hashTb } from "./utils/hashTb";
 
 
 const exchange = 'all'
-const industryQuery = ['baoHiem', 'batDongSan', 'congNghe', 'dauKhi', 'banLe', 'taiChinh', 'tienIch', 'doGiaDung', 'duLich', 'hangHoa', 'hoaChat', 'nganHang', 'oto', 'truyenThong', 'thucPham', 'vienThong', 'xayDung', 'taiNguyen', 'yTe']
-const industry = industryQuery.join(',')
+const industry = ['baoHiem', 'batDongSan', 'congNghe', 'dauKhi', 'banLe', 'taiChinh', 'tienIch', 'doGiaDung', 'duLich', 'hangHoa', 'hoaChat', 'nganHang', 'oto', 'truyenThong', 'thucPham', 'vienThong', 'xayDung', 'taiNguyen', 'yTe']
+const industryQuery = industry.join(',')
 const type = '4'
 const order = '0'
 
 const ChartAveragePE = (props) => {
-
     const { exchange, industryQuery, order, timeFrame } = props
     const [data, setData] = useState()
     const checkIndustry = industryQuery.split(',')
@@ -44,7 +43,7 @@ const ChartAveragePE = (props) => {
                 const res = await https.get('api/v1/market/hieu-suat-thay-doi-thanh-khoan-nganh', {
                     params: {
                         exchange,
-                        industry,
+                        industry: industryQuery,
                         type,
                         order
                     }
@@ -63,7 +62,6 @@ const ChartAveragePE = (props) => {
         <>
             <div id="chart-container">
                 <div className="h-[450px] mt-3">
-                    <HighchartsReact highcharts={Highcharts} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             </div>
 

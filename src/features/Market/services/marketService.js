@@ -149,27 +149,24 @@ export const marketServices = {
         return https.get('/api/v1/market/hieu-suat-thay-doi-thanh-khoan-nganh', {
             params: {
                 exchange,
-
                 type,
                 order
             }
         })
     },
-    fetchDataChartChangesPrice: (exchange, industry, type, order) => {
+    fetchDataChartChangesPrice: (exchange, type, order) => {
         return https.get('api/v1/market/hieu-suat-thay-doi-von-hoa-nganh', {
             params: {
                 exchange,
-                industry,
                 type,
                 order
             }
         })
     },
-    fetchDataChartEquityGrowth: (exchange, industry, type, order) => {
+    fetchDataChartEquityGrowth: (exchange, type, order) => {
         return https.get('api/v1/market/hieu-suat-tang-truong-von-chu-so-huu-nganh', {
             params: {
                 exchange,
-                industry,
                 type,
                 order
             }
