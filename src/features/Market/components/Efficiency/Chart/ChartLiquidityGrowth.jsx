@@ -4,20 +4,20 @@ import HighchartsReact from 'highcharts-react-official';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import Loading from '../../../../Chart/utils/Loading';
-import { memo } from 'react';
 import { hashTb } from '../../FinancialHealth/Chart/utils/hashTb';
 
 const ChartLiquidityGrowth = (props) => {
     const { dataChartLiquidityGrowth } = useSelector(state => state.market)
-    console.log(dataChartLiquidityGrowth)
     const { industryQuery } = props
-    console.log(industryQuery)
-    const checkIndustry = industryQuery.split(',')
-    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
+
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
+
+    const checkIndustry = industryQuery.split(',')
+    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
+
     useEffect(() => {
         setColorText(color);
     }, [color])
@@ -31,12 +31,12 @@ const ChartLiquidityGrowth = (props) => {
                 if (mappedKeys.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {
-                        foundItem.data.push(item.perChange);
+                        foundItem.data.push(+item.perChange.toFixed(2));
                     } else {
                         result.push({
                             name: item.industry,
                             color: item.color,
-                            data: [item.perChange]
+                            data: [+item.perChange.toFixed(2)]
                         });
                     }
                 }
@@ -117,6 +117,6 @@ const ChartLiquidityGrowth = (props) => {
     )
 }
 
-export default memo(ChartLiquidityGrowth)
+export default ChartLiquidityGrowth
 
 

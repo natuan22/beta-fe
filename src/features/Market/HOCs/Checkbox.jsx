@@ -33,15 +33,18 @@ const Checkbox = ({ children }) => {
     const [industry, setIndustry] = useState(['batDongSan'])
     const { dataHotIndustry } = useSelector(state => state.market)
     const industryQuery = industry?.join(',')
+
     useEffect(() => {
         dispatch(fetchDataHotIndustry)
     }, [dispatch])
+
     useEffect(() => {
         if (dataHotIndustry?.length > 0) {
             const formattedData = dataHotIndustry.map(item => hashTb[item.industry]);
             setIndustry(formattedData)
         }
     }, [dataHotIndustry])
+
     useEffect(() => {
         dispatch({
             type: 'QUERY',

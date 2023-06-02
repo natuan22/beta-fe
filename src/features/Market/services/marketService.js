@@ -172,11 +172,10 @@ export const marketServices = {
             }
         })
     },
-    fetchDataChartLiabilitiesGrowth: (exchange, industry, type, order) => {
+    fetchDataChartLiabilitiesGrowth: (exchange, type, order) => {
         return https.get('api/v1/market/hieu-suat-tang-truong-no-phai-tra-nganh', {
             params: {
                 exchange,
-                industry,
                 type,
                 order
             }
@@ -263,11 +262,10 @@ export const marketServices = {
     },
 
 
-    fetchDataChartAveragePE: (exchange, industry, type, order) => {
+    fetchDataChartAveragePE: (exchange, type, order) => {
         return https.get('api/v1/finance-health/p-e-binh-quan-nganh', {
             params: {
                 exchange,
-                industry,
                 type,
                 order
             }

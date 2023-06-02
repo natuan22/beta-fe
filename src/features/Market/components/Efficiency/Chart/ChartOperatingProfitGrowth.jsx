@@ -8,7 +8,7 @@ import { memo } from 'react';
 
 const ChartOperatingProfitGrowth = (props) => {
     const dispatch = useDispatch()
-    const { exchange, industryQuery, order, timeFrame } = props
+    const { exchange, industryQuery, order, type } = props
     const { dataChartOperatingProfitGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
@@ -16,7 +16,7 @@ const ChartOperatingProfitGrowth = (props) => {
     const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
-        dispatch(fetchDataChartOperatingProfitGrowth(exchange, industryQuery, timeFrame, order))
+        dispatch(fetchDataChartOperatingProfitGrowth(exchange, industryQuery, type, order))
         setColorText(color);
     }, [props, color])
 

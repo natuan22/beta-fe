@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
-import { fetchDataChartLiabilitiesGrowth } from '../../../thunk';
-import { memo } from 'react';
+import { hashTb } from '../../FinancialHealth/Chart/utils/hashTb';
 
 const ChartLiabilitiesGrowth = (props) => {
-    const dispatch = useDispatch()
-    const { exchange, industryQuery, order, timeFrame } = props
     const { dataChartLiabilitiesGrowth } = useSelector(state => state.market)
+    const { industryQuery } = props
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
+
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
+    const checkIndustry = industryQuery.split(',')
+    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
+
     useEffect(() => {
-        dispatch(fetchDataChartLiabilitiesGrowth(exchange, industryQuery, timeFrame, order))
         setColorText(color);
-    }, [props, color])
+    }, [color])
 
     useEffect(() => {
         if (dataChartLiabilitiesGrowth?.length > 0) {
@@ -28,24 +29,26 @@ const ChartLiabilitiesGrowth = (props) => {
                 const transformedDate = `Q${quarter} ${year}`;
                 return { ...item, date: transformedDate };
             });
-            const mappedData = [];
+            const result = [];
             const uniqueDates = [...new Set(transformedData?.map(item => item.date))];
             setTimeLine(uniqueDates)
-            dataChartLiabilitiesGrowth.forEach(item => {
-                const existingItem = mappedData.find(mappedItem => mappedItem.name === item.industry);
-                if (existingItem) {
-                    existingItem.data.push(+(item.perChange).toFixed(2));
-                } else {
-                    mappedData.push({
-                        name: item.industry,
-                        color: item.color,
-                        data: [item.perChange]
-                    });
+            transformedData?.forEach(item => {
+                if (mappedKeys.includes(item.industry)) {
+                    const foundItem = result.find(x => x.name === item.industry);
+                    if (foundItem) {
+                        foundItem.data.push(+item.perChange.toFixed(2));
+                    } else {
+                        result.push({
+                            name: item.industry,
+                            color: item.color,
+                            data: [+item.perChange.toFixed(2)]
+                        });
+                    }
                 }
             });
-            setData(mappedData)
+            setData(result)
         }
-    }, [dataChartLiabilitiesGrowth])
+    }, [dataChartLiabilitiesGrowth, industryQuery])
 
     const options = {
         accessibility: {
@@ -117,4 +120,4 @@ const ChartLiabilitiesGrowth = (props) => {
     )
 }
 
-export default memo(ChartLiabilitiesGrowth)
+export default ChartLiabilitiesGrowth

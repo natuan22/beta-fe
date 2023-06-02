@@ -7,7 +7,7 @@ import Loading from '../../../../Chart/utils/Loading';
 
 const ChartGrossProfitGrowth = (props) => {
     const dispatch = useDispatch()
-    const { exchange, industryQuery, order, timeFrame } = props
+    const { exchange, industryQuery, order, type } = props
     const { dataChartGrossProfitGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
@@ -15,7 +15,7 @@ const ChartGrossProfitGrowth = (props) => {
     const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
-        dispatch(fetchDataChartGrossProfitGrowth(exchange, industryQuery, timeFrame, order))
+        dispatch(fetchDataChartGrossProfitGrowth(exchange, industryQuery, type, order))
         setColorText(color);
     }, [props, color])
 
