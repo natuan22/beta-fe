@@ -229,9 +229,9 @@ export const fetchDataTableLiquidityGrowth = (exchange, industry) => async (disp
     }
 }
 
-export const fetchDataChartLiquidityGrowth = (exchange, industry, type, order) => async dispatch => {
+export const fetchDataChartLiquidityGrowth = (exchange, type, order) => async dispatch => {
     try {
-        const res = await marketServices.fetchDataChartLiquidityGrowth(exchange, industry, type, order)
+        const res = await marketServices.fetchDataChartLiquidityGrowth(exchange, type, order)
         dispatch({
             type: marketType.FETCH_DATA_CHART_LIQUIDITYGROWTH,
             payload: res.data.data
@@ -265,9 +265,9 @@ export const fetchDataChartEquityGrowth = (exchange, industry, type, order) => a
     }
 }
 
-export const fetchDataChartLiabilitiesGrowth = (exchange, industry, type, order) => async (dispatch) => {
+export const fetchDataChartLiabilitiesGrowth = (exchange, type, order) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataChartLiabilitiesGrowth(exchange, industry, type, order)
+        const res = await marketServices.fetchDataChartLiabilitiesGrowth(exchange, type, order)
         dispatch({
             type: marketType.FETCH_DATA_CHART_LIABILITIES_GROWTH,
             payload: res.data.data
