@@ -2,16 +2,11 @@
 
 import { memo } from "react";
 import { https } from '../../../../../services/config';
-
-
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
-import moment from 'moment';
 import React, { useEffect, useState } from 'react'
+import { hashTb } from "./utils/hashTb";
 
-import { useDispatch, useSelector } from 'react-redux';
-import Loading from "../../../../Chart/utils/Loading";
-import { fetchDataChartAveragePE } from '../../../thunk';
 
 
 const exchange = 'all'
@@ -19,27 +14,7 @@ const industry = ['baoHiem', 'batDongSan', 'congNghe', 'dauKhi', 'banLe', 'taiCh
 const industryQuery = industry.join(',')
 const type = '4'
 const order = '0'
-const hashTb = {
-    'Bảo hiểm': 'baoHiem',
-    'Bất động sản': 'batDongSan',
-    'Công nghệ': 'congNghe',
-    'Dầu khí': 'dauKhi',
-    'Dịch vụ bán lẻ': 'banLe',
-    'Dịch vụ tài chính': 'taiChinh',
-    'Dịch vụ tiện ích': 'tienIch',
-    'Đồ dùng cá nhân và đồ gia dụng': 'doGiaDung',
-    'Du lịch & Giải trí': 'duLich',
-    'Hàng hóa và dịch vụ công nghiệp': 'hangHoa',
-    'Hóa chất': 'hoaChat',
-    'Ngân hàng': 'nganHang',
-    'Ôtô & linh kiện phụ tùng ': 'oto',
-    'Phương tiện truyền thông': 'truyenThong',
-    'Thực phẩm & Đồ uống': 'thucPham',
-    'Viễn thông': 'vienThong',
-    'Xây dựng & Vật liệu': 'xayDung',
-    'Tài nguyên': 'taiNguyen',
-    'Y tế': 'yTe',
-}
+
 const ChartAveragePE = (props) => {
     const { exchange, industryQuery, order, timeFrame } = props
     const [data, setData] = useState()
