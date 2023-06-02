@@ -301,9 +301,9 @@ export const fetchDataTableLiabilitiesGrowth = (exchange, industry) => async (di
     }
 }
 
-export const fetchDataChartNetRevenueGrowth = (exchange, industry, type, order) => async (dispatch) => {
+export const fetchDataChartNetRevenueGrowth = (exchange, type, order) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataChartNetRevenueGrowth(exchange, industry, type, order)
+        const res = await marketServices.fetchDataChartNetRevenueGrowth(exchange, type, order)
         dispatch({
             type: marketType.FETCH_DATA_CHART_NET_REVENUE_GROWTH,
             payload: res.data.data
@@ -313,9 +313,9 @@ export const fetchDataChartNetRevenueGrowth = (exchange, industry, type, order) 
     }
 }
 
-export const fetchDataChartGrossProfitGrowth = (exchange, industry, type, order) => async (dispatch) => {
+export const fetchDataChartGrossProfitGrowth = (exchange, type, order) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataChartGrossProfitGrowth(exchange, industry, type, order)
+        const res = await marketServices.fetchDataChartGrossProfitGrowth(exchange, type, order)
         dispatch({
             type: marketType.FETCH_DATA_CHART_GROSS_PROFIT_GROWTH,
             payload: res.data.data
@@ -325,9 +325,9 @@ export const fetchDataChartGrossProfitGrowth = (exchange, industry, type, order)
     }
 }
 
-export const fetchDataChartEBITDAGrowth = (exchange, industry, type, order) => async (dispatch) => {
+export const fetchDataChartEBITDAGrowth = (exchange, type, order) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataChartEBITDAGrowth(exchange, industry, type, order)
+        const res = await marketServices.fetchDataChartEBITDAGrowth(exchange, type, order)
         dispatch({
             type: marketType.FETCH_DATA_CHART_EBITDA_GROWTH,
             payload: res.data.data
@@ -337,9 +337,9 @@ export const fetchDataChartEBITDAGrowth = (exchange, industry, type, order) => a
     }
 }
 
-export const fetchDataChartEPSGrowth = (exchange, industry, type, order) => async (dispatch) => {
+export const fetchDataChartEPSGrowth = (exchange, type, order) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataChartEPSGrowth(exchange, industry, type, order)
+        const res = await marketServices.fetchDataChartEPSGrowth(exchange, type, order)
         dispatch({
             type: marketType.FETCH_DATA_CHART_EPS_GROWTH,
             payload: res.data.data
@@ -349,9 +349,9 @@ export const fetchDataChartEPSGrowth = (exchange, industry, type, order) => asyn
     }
 }
 
-export const fetchDataChartOperatingProfitGrowth = (exchange, industry, type, order) => async (dispatch) => {
+export const fetchDataChartOperatingProfitGrowth = (exchange, type, order) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataChartOperatingProfitGrowth(exchange, industry, type, order)
+        const res = await marketServices.fetchDataChartOperatingProfitGrowth(exchange, type, order)
         dispatch({
             type: marketType.FETCH_DATA_CHART_OPERATING_PROFIT_GROWTH,
             payload: res.data.data
@@ -361,9 +361,9 @@ export const fetchDataChartOperatingProfitGrowth = (exchange, industry, type, or
     }
 }
 
-export const fetchDataChartCashDividendGrowth = (exchange, industry, type, order) => async (dispatch) => {
+export const fetchDataChartCashDividendGrowth = (exchange, type, order) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataChartCashDividendGrowth(exchange, industry, type, order)
+        const res = await marketServices.fetchDataChartCashDividendGrowth(exchange, type, order)
         dispatch({
             type: marketType.FETCH_DATA_CHART_CASH_DIVIDEND_GROWTH,
             payload: res.data.data
@@ -385,11 +385,47 @@ export const fetchDataHotIndustry = async dispatch => {
     }
 }
 
-export const fetchDataChartAveragePE = (exchange, type, order) => async (dispatch) => {
+export const fetchDataChartAveragePEPB = (exchange, type, order) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataChartAveragePE(exchange, type, order)
+        const res = await marketServices.fetchDataChartAveragePEPB(exchange, type, order)
         dispatch({
-            type: marketType.FETCH_DATA_CHART_AVERAGE_PE,
+            type: marketType.FETCH_DATA_CHART_AVERAGE_PE_PB,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTableAveragePE = (exchange, industry) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableAveragePE(exchange, industry)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_AVERAGE_PE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTableAveragePB = (exchange, industry) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableAveragePB(exchange, industry)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_AVERAGE_PB,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartPayoutRatio = (exchange, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartPayoutRatio(exchange, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_PAYOUT_RATIO,
             payload: res.data.data
         })
     } catch (err) {

@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { getColor } from '../../../../Chart/utils/utils';
-import { fetchDataTableEquityGrowth } from '../../../thunk';
 
-const TableEquityGrowth = (props) => {
-    const dispatch = useDispatch()
+const TableEquityGrowth = () => {
     const { dataTableEquityGrowth } = useSelector((state) => state.market);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
-
-    useEffect(() => {
-        dispatch(fetchDataTableEquityGrowth(props.exchange, props.industryQuery));
-    }, [dispatch, props]);
 
     useEffect(() => {
         if (dataTableEquityGrowth) {
@@ -89,4 +82,4 @@ const TableEquityGrowth = (props) => {
     )
 }
 
-export default memo(TableEquityGrowth)
+export default TableEquityGrowth
