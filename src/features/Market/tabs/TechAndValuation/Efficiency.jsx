@@ -95,7 +95,7 @@ const Efficiency = () => {
             </div>
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuân gộp các ngành qua từng kỳ (%)</span>
+                <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuận gộp các ngành qua từng kỳ (%)</span>
               </div>
               <div>
                 <ChartGrossProfitGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
