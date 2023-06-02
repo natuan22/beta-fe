@@ -14,25 +14,30 @@ import TableEquityGrowth from '../../components/Efficiency/Table/TableEquityGrow
 import TableLiabilitiesGrowth from '../../components/Efficiency/Table/TableLiabilitiesGrowth'
 import TableLiquidityGrowth from '../../components/Efficiency/Table/TableLiquidityGrowth'
 import '../../utils/checkBox.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Checkbox from '../../HOCs/Checkbox'
+import { fetchDataChartLiquidityGrowth } from '../../thunk'
 
 const Efficiency = () => {
+  const dispatch = useDispatch()
   const { dataQuery } = useSelector(state => state.market)
   const [exchange, setExchange] = useState("all")
-  const [timeFrame, setTimeFrame] = useState("8")
+  const [type, setType] = useState("8")
   const [order, setOrder] = useState("0")
   const [industryQuery, setIndustryQuery] = useState('batDongSan')
-
+  console.log(type)
   useEffect(() => {
     if (dataQuery) {
-      setExchange(dataQuery.exchange)
-      setTimeFrame(dataQuery.timeFrame)
-      setOrder(dataQuery.order)
-      setIndustryQuery(dataQuery.industryQuery)
+      const { exchange, type, order, industryQuery } = dataQuery
+      setExchange(exchange)
+      setType(type)
+      setOrder(order)
+      setIndustryQuery(industryQuery)
     }
   }, [dataQuery])
-
+  useEffect(() => {
+    dispatch(fetchDataChartLiquidityGrowth(exchange, type, order))
+  }, [exchange, type, order])
   return (
     <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
       <Checkbox />
@@ -45,7 +50,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold'>Thay đổi giá của các ngành (%)</span>
               </div>
               <div>
-                <ChartChangesPrice exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartChangesPrice exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
               </div>
               <hr />
               <TableChangesPrice exchange={exchange} industryQuery={industryQuery} />
@@ -55,7 +60,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng thanh khoản của các ngành (%)</span>
               </div>
               <div>
-                <ChartLiquidityGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartLiquidityGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
               </div>
               <hr />
               <TableLiquidityGrowth exchange={exchange} industryQuery={industryQuery} />
@@ -65,7 +70,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng vốn chủ sở hữu của các ngành (%)</span>
               </div>
               <div>
-                <ChartEquityGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartEquityGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
               </div>
               <hr />
               <TableEquityGrowth exchange={exchange} industryQuery={industryQuery} />
@@ -75,7 +80,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng nợ phải trả của các ngành (%)</span>
               </div>
               <div>
-                <ChartLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
               </div>
               <hr />
               <TableLiabilitiesGrowth exchange={exchange} industryQuery={industryQuery} />
@@ -90,7 +95,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold'>Tăng trưởng doanh thu thuần của các ngành qua từng kỳ (%)</span>
               </div>
               <div>
-                <ChartNetRevenueGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartNetRevenueGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
               </div>
             </div>
             <div>
@@ -98,7 +103,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuân gộp các ngành qua từng kỳ (%)</span>
               </div>
               <div>
-                <ChartGrossProfitGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartGrossProfitGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
               </div>
             </div>
           </div>
@@ -111,7 +116,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold'>Tăng trưởng EBITDA của các ngành qua từng kỳ (%)</span>
               </div>
               <div>
-                <ChartEBITDAGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartEBITDAGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
               </div>
             </div>
             <div>
@@ -119,7 +124,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuận hoạt động các ngành qua từng kỳ (%)</span>
               </div>
               <div>
-                <ChartOperatingProfitGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartOperatingProfitGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
               </div>
             </div>
           </div>
@@ -132,7 +137,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold'>Tăng trưởng cổ tức tiền mặt của các ngành qua từng kỳ (%)</span>
               </div>
               <div>
-                <ChartCashDividendGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartCashDividendGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
               </div>
             </div>
             <div>
@@ -140,7 +145,7 @@ const Efficiency = () => {
                 <span className='dark:text-white text-black font-semibold'>Tăng trưởng EPS các ngành qua từng kỳ (%)</span>
               </div>
               <div>
-                <ChartEPSGrowth exchange={exchange} industryQuery={industryQuery} order={order} timeFrame={timeFrame} />
+                <ChartEPSGrowth exchange={exchange} industryQuery={industryQuery} order={order} type={type} />
               </div>
             </div>
           </div>

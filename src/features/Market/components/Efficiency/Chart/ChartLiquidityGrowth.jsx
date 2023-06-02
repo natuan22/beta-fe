@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataChartLiquidityGrowth } from '../../../thunk';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 import Loading from '../../../../Chart/utils/Loading';
 import { memo } from 'react';
 import { hashTb } from '../../FinancialHealth/Chart/utils/hashTb';
 
 const ChartLiquidityGrowth = (props) => {
-    const dispatch = useDispatch()
-    const { exchange, industryQuery, order, timeFrame } = props
+    const { dataChartLiquidityGrowth } = useSelector(state => state.market)
+    console.log(dataChartLiquidityGrowth)
+    const { industryQuery } = props
+    console.log(industryQuery)
     const checkIndustry = industryQuery.split(',')
     const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
-    const { dataChartLiquidityGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -21,9 +21,6 @@ const ChartLiquidityGrowth = (props) => {
     useEffect(() => {
         setColorText(color);
     }, [color])
-    useEffect(() => {
-        dispatch(fetchDataChartLiquidityGrowth(exchange, timeFrame, order))
-    }, [props])
 
     useEffect(() => {
         if (dataChartLiquidityGrowth?.length > 0) {
@@ -46,7 +43,7 @@ const ChartLiquidityGrowth = (props) => {
             });
             setData(result)
         }
-    }, [dataChartLiquidityGrowth])
+    }, [dataChartLiquidityGrowth, industryQuery])
 
     const options = {
 

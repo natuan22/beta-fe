@@ -28,7 +28,7 @@ const hashTb = {
 const Checkbox = ({ children }) => {
     const dispatch = useDispatch()
     const [exchange, setExchange] = useState("all")
-    const [timeFrame, setTimeFrame] = useState("8")
+    const [type, setType] = useState("8")
     const [order, setOrder] = useState("0")
     const [industry, setIndustry] = useState(['batDongSan'])
     const { dataHotIndustry } = useSelector(state => state.market)
@@ -45,9 +45,9 @@ const Checkbox = ({ children }) => {
     useEffect(() => {
         dispatch({
             type: 'QUERY',
-            payload: { exchange, timeFrame, order, industryQuery, }
+            payload: { exchange, type, order, industryQuery, }
         })
-    }, [exchange, timeFrame, order, industry])
+    }, [exchange, type, order, industry])
 
     const handleIndustryChange = e => {
         const { value, checked } = e.target
@@ -62,8 +62,8 @@ const Checkbox = ({ children }) => {
         setExchange(e.target.value)
     }
 
-    const onTimeFrameChange = e => {
-        setTimeFrame(e.target.value)
+    const ontypeChange = e => {
+        setType(e.target.value)
     }
 
     const onOrderChange = e => {
@@ -270,27 +270,27 @@ const Checkbox = ({ children }) => {
                                     </div>
                                     <div>
                                         <label className="material-checkbox py-3 dark:text-white text-black">
-                                            <input type="checkbox" name="timeFrame" value="2" id="2ky" checked={timeFrame === "2"} onChange={onTimeFrameChange} />
+                                            <input type="checkbox" name="type" value="2" id="2ky" checked={type === "2"} onChange={ontypeChange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>2 kỳ gần nhất</span>
                                         </label>
                                         <label className="material-checkbox py-3 dark:text-white text-black">
-                                            <input type="checkbox" name="timeFrame" value="4" id="4ky" checked={timeFrame === "4"} onChange={onTimeFrameChange} />
+                                            <input type="checkbox" name="type" value="4" id="4ky" checked={type === "4"} onChange={ontypeChange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>4 kỳ gần nhất</span>
                                         </label>
                                         <label className="material-checkbox py-3 dark:text-white text-black">
-                                            <input type="checkbox" name="timeFrame" value="8" id="8ky" checked={timeFrame === "8"} onChange={onTimeFrameChange} />
+                                            <input type="checkbox" name="type" value="8" id="8ky" checked={type === "8"} onChange={ontypeChange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>8 kỳ gần nhất</span>
                                         </label>
                                         <label className="material-checkbox py-3 dark:text-white text-black">
-                                            <input type="checkbox" name="timeFrame" value="12" id="12ky" checked={timeFrame === "12"} onChange={onTimeFrameChange} />
+                                            <input type="checkbox" name="type" value="12" id="12ky" checked={type === "12"} onChange={ontypeChange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>12 kỳ gần nhất</span>
                                         </label>
                                         <label className="material-checkbox py-3 dark:text-white text-black">
-                                            <input type="checkbox" name="timeFrame" value="20" id="20ky" checked={timeFrame === "20"} onChange={onTimeFrameChange} />
+                                            <input type="checkbox" name="type" value="20" id="20ky" checked={type === "20"} onChange={ontypeChange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>20 kỳ gần nhất</span>
                                         </label>
@@ -479,27 +479,27 @@ const Checkbox = ({ children }) => {
                                     </div>
                                     <div>
                                         <label className="material-checkbox py-3 dark:text-white text-black">
-                                            <input type="checkbox" name="timeFrame" value="2" id="2ky" checked={timeFrame === "2"} onChange={onTimeFrameChange} />
+                                            <input type="checkbox" name="type" value="2" id="2ky" checked={type === "2"} onChange={ontypeChange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>2 kỳ gần nhất</span>
                                         </label>
                                         <label className="material-checkbox py-3 dark:text-white text-black">
-                                            <input type="checkbox" name="timeFrame" value="4" id="4ky" checked={timeFrame === "4"} onChange={onTimeFrameChange} />
+                                            <input type="checkbox" name="type" value="4" id="4ky" checked={type === "4"} onChange={ontypeChange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>4 kỳ gần nhất</span>
                                         </label>
                                         <label className="material-checkbox py-3 dark:text-white text-black">
-                                            <input type="checkbox" name="timeFrame" value="8" id="8ky" checked={timeFrame === "8"} onChange={onTimeFrameChange} />
+                                            <input type="checkbox" name="type" value="8" id="8ky" checked={type === "8"} onChange={ontypeChange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>8 kỳ gần nhất</span>
                                         </label>
                                         <label className="material-checkbox py-3 dark:text-white text-black">
-                                            <input type="checkbox" name="timeFrame" value="12" id="12ky" checked={timeFrame === "12"} onChange={onTimeFrameChange} />
+                                            <input type="checkbox" name="type" value="12" id="12ky" checked={type === "12"} onChange={ontypeChange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>12 kỳ gần nhất</span>
                                         </label>
                                         <label className="material-checkbox py-3 dark:text-white text-black">
-                                            <input type="checkbox" name="timeFrame" value="20" id="20ky" checked={timeFrame === "20"} onChange={onTimeFrameChange} />
+                                            <input type="checkbox" name="type" value="20" id="20ky" checked={type === "20"} onChange={ontypeChange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>20 kỳ gần nhất</span>
                                         </label>

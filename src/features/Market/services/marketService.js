@@ -146,10 +146,9 @@ export const marketServices = {
         })
     },
     fetchDataChartLiquidityGrowth: (exchange, type, order) => {
-        return https.get('/api/v1/market/hieu-suat-thay-doi-thanh-khoan-nganh', {
+        return https.get('api/v1/market/hieu-suat-thay-doi-thanh-khoan-nganh', {
             params: {
                 exchange,
-
                 type,
                 order
             }
@@ -175,10 +174,11 @@ export const marketServices = {
             }
         })
     },
-    fetchDataChartLiabilitiesGrowth: (exchange, type, order) => {
+    fetchDataChartLiabilitiesGrowth: (exchange, industry, type, order) => {
         return https.get('api/v1/market/hieu-suat-tang-truong-no-phai-tra-nganh', {
             params: {
                 exchange,
+                industry,
                 type,
                 order
             }
