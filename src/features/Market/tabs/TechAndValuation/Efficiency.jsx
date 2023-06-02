@@ -16,7 +16,7 @@ import TableLiquidityGrowth from '../../components/Efficiency/Table/TableLiquidi
 import '../../utils/checkBox.css'
 import { useDispatch, useSelector } from 'react-redux'
 import Checkbox from '../../HOCs/Checkbox'
-import { fetchDataChartLiquidityGrowth } from '../../thunk'
+import { fetchDataChartLiabilitiesGrowth, fetchDataChartLiquidityGrowth } from '../../thunk'
 
 const Efficiency = () => {
   const dispatch = useDispatch()
@@ -37,6 +37,7 @@ const Efficiency = () => {
   }, [dataQuery])
   useEffect(() => {
     dispatch(fetchDataChartLiquidityGrowth(exchange, type, order))
+    dispatch(fetchDataChartLiabilitiesGrowth(exchange, type, order))
   }, [exchange, type, order])
   return (
     <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>

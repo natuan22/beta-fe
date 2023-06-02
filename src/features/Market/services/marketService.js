@@ -172,11 +172,10 @@ export const marketServices = {
             }
         })
     },
-    fetchDataChartLiabilitiesGrowth: (exchange, industry, type, order) => {
+    fetchDataChartLiabilitiesGrowth: (exchange, type, order) => {
         return https.get('api/v1/market/hieu-suat-tang-truong-no-phai-tra-nganh', {
             params: {
                 exchange,
-                industry,
                 type,
                 order
             }
