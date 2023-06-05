@@ -242,7 +242,7 @@ const InvestorCashFlow = () => {
             },
         },
         legend: {
-            enabled: true,
+            enabled: false,
             itemStyle: {
                 color: localStorage.getItem('color'),
                 fontWeight: 'bold'
@@ -473,14 +473,18 @@ const InvestorCashFlow = () => {
                         <div className='h-[450px]'>
                             <HighchartsReact highcharts={Highcharts} options={options} callback={callBackHighchart} containerProps={{ style: { height: '100%', width: '100%' } }} />
                             <div className='legendArea'>
-                                {!loadingLegend ? <div><Loading /></div> : <div>
-                                    {sortedDataArray.map((item) => (
-                                        <button className='btnLegend' key={item.name} style={{ backgroundColor: item.color }}>
-                                            {item.name}
-                                        </button>
-                                    ))}
-                                    <button className='btnLegendAll '>Chọn tất cả</button>
-                                </div>}
+                                {!loadingLegend ? (
+                                    <div><Loading /></div>
+                                ) : (
+                                    <div>
+                                        {sortedDataArray.map((item) => (
+                                            <button className='btnLegend m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer' key={item.name} style={{ backgroundColor: item.color }}>
+                                                {item.name}
+                                            </button>
+                                        ))}
+                                        <button className='btnLegendAll m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer'>Chọn tất cả</button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className='h-[450px] mt-20'>
@@ -490,7 +494,6 @@ const InvestorCashFlow = () => {
                 ) : (
                     <div className="mt-12 mb-12"><Loading /></div>
                 )}
-
             </div>
         </div>
     )
