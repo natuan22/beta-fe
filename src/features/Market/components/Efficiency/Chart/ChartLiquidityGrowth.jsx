@@ -9,44 +9,11 @@ import { hashTb } from '../../FinancialHealth/Chart/utils/hashTb';
 const ChartLiquidityGrowth = (props) => {
     const { dataChartLiquidityGrowth } = useSelector(state => state.market)
     const { industryQuery } = props
-    const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
-
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
-
-    const checkIndustry = industryQuery.split(',')
-    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
-
-    useEffect(() => {
-        setColorText(color);
-    }, [color])
-
-    useEffect(() => {
-        if (dataChartLiquidityGrowth?.length > 0) {
-            const result = [];
-            const uniqueDates = [...new Set(dataChartLiquidityGrowth?.map(item => moment(item.date).format('DD/MM/YYYY')))];
-            setTimeLine(uniqueDates)
-            dataChartLiquidityGrowth?.forEach(item => {
-                if (mappedKeys.includes(item.industry)) {
-                    const foundItem = result.find(x => x.name === item.industry);
-                    if (foundItem) {
-                        foundItem.data.push(+item.perChange.toFixed(2));
-                    } else {
-                        result.push({
-                            name: item.industry,
-                            color: item.color,
-                            data: [+item.perChange.toFixed(2)]
-                        });
-                    }
-                }
-            });
-            setData(result)
-        }
-    }, [dataChartLiquidityGrowth, industryQuery])
-
-    const options = {
-
+    const result = [];
+    const [option, setOption] = useState({
         accessibility: {
             enabled: false,
         },
@@ -98,14 +65,49 @@ const ChartLiquidityGrowth = (props) => {
                 },
             }
         },
-        series: data
-    }
+        series: result
+    })
+    const checkIndustry = industryQuery.split(',')
+    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color])
+
+    useEffect(() => {
+        if (dataChartLiquidityGrowth?.length > 0) {
+            const uniqueDates = [...new Set(dataChartLiquidityGrowth?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            setTimeLine(uniqueDates)
+            dataChartLiquidityGrowth?.forEach(item => {
+                if (mappedKeys.includes(item.industry)) {
+                    const foundItem = result.find(x => x.name === item.industry);
+                    if (foundItem) {
+                        foundItem.data.push(+item.perChange.toFixed(2));
+                    } else {
+                        result.push({
+                            name: item.industry,
+                            color: item.color,
+                            data: [+item.perChange.toFixed(2)]
+                        });
+                    }
+                }
+            });
+            setOption((preOption) => {
+                return {
+                    ...preOption,
+                    series: result
+                }
+            })
+        }
+    }, [dataChartLiquidityGrowth, industryQuery])
+
+
     return (
         <div>
             {dataChartLiquidityGrowth.length ? (
                 <div id="chart-container">
                     <div className="h-[450px] mt-3">
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                        <HighchartsReact highcharts={Highcharts} options={option} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 </div>
             ) : (

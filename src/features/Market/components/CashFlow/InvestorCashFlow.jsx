@@ -5,6 +5,7 @@ import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
 import moment from 'moment';
+import './utils/btnLegendToggle.css'
 const buttonStyle = {
     backgroundColor: 'transparent',
     color: '#fff',
@@ -18,8 +19,8 @@ const activeButtonStyle = {
     color: '#fff',
 }
 const InvestorCashFlow = () => {
+
     const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
-    // console.log("dataTotalMarket", dataTotalMarket)
     const [data, setData] = useState()
     const [dataToMap, setDataToMap] = useState()
     const [dataAbs, setDataAbs] = useState()
@@ -36,6 +37,7 @@ const InvestorCashFlow = () => {
         investorType: 1,
         exchange: 'all'
     })
+    const [loadingLegend, setLoadingLegend] = useState(false)
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
@@ -44,7 +46,11 @@ const InvestorCashFlow = () => {
         dispatch(fetchDataTotalMarket(queryApi.exchange, queryApi.type))
         setColorText(color);
     }, [queryApi, dispatch])
-
+    useEffect(() => {
+        setInterval(() => {
+            setLoadingLegend(true)
+        }, 3500)
+    }, [])
     useEffect(() => {
         if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
             setDataToMap(dataCashFlowInvestor)
@@ -63,7 +69,7 @@ const InvestorCashFlow = () => {
                 const newObj = {
                     name: industry,
                     data: [value],
-                    color
+                    color,
                 };
                 const newObjAbs = {
                     name: industry,
@@ -142,10 +148,36 @@ const InvestorCashFlow = () => {
         setParam('transVal')
     }, [activeButton3])
     // hàm xử lý nút
-    // console.log('data',dataCashFlowInvestor)
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
     const handleClick3 = (button) => { setActiveButton3(button) }
+    // callback a huy đẹp trai dùng để render
+
+    const callBackHighchart = (chart) => {
+        console.log(chart)
+        setTimeout(() => {
+            const btnLegendAll = document.querySelector('.btnLegendAll');
+            const btnLegends = document.querySelectorAll('.btnLegend');
+            btnLegendAll.addEventListener('click', () => {
+                const isVisible = !chart.series[0].visible;
+                chart.series.forEach((item) => {
+                    item.setVisible(isVisible);
+                });
+                btnLegends.forEach((btnLegend) => {
+                    btnLegend.classList.toggle('muted', !isVisible);
+                    btnLegendAll.classList.toggle('muted')
+                });
+            });
+            chart.series.map((item, index) => {
+                const btnLegend = btnLegends[index];
+                btnLegend.addEventListener('click', () => {
+                    item.setVisible(!item.visible);
+                    btnLegend.classList.toggle('muted');
+                });
+            })
+        }, 3500)
+    }
+
 
     // config chart
     const options = {
@@ -190,7 +222,8 @@ const InvestorCashFlow = () => {
             itemStyle: {
                 color: localStorage.getItem('color'),
                 fontWeight: 'bold'
-            }
+            },
+
         },
         plotOptions: {
             column: {
@@ -221,6 +254,7 @@ const InvestorCashFlow = () => {
                 color: localStorage.getItem('color'),
                 fontWeight: 'bold'
             }
+
         },
         title: {
             text: ''
@@ -413,9 +447,20 @@ const InvestorCashFlow = () => {
                 {dataCashFlowInvestor?.length > 0 && dataTotalMarket?.length > 0 ? (
                     <>
                         <div className='h-[450px]'>
-                            <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                            <HighchartsReact highcharts={Highcharts} options={options} callback={callBackHighchart} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                            <div className='legendArea'>
+                                {!loadingLegend ? <div><Loading /></div> : <div>
+                                    {data?.map((item, index) => {
+                                        return (
+                                            <button className='btnLegend' key={index} style={{ backgroundColor: `${item.color}` }}>{item.name}</button>
+                                        )
+                                    })}
+                                    <button className='btnLegendAll '>Chọn tất cả</button>
+                                </div>}
+
+                            </div>
                         </div>
-                        <div className='h-[450px]'>
+                        <div className='h-[450px] mt-20'>
                             <HighchartsReact highcharts={Highcharts} options={optionAreaChart} containerProps={{ style: { height: '100%', width: '100%' } }} />
                         </div>
                     </>
