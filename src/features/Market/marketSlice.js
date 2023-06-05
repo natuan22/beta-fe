@@ -38,6 +38,7 @@ const initialState = {
   dataTableAveragePE: {},
   dataTableAveragePB: {},
   dataChartPayoutRatio: {},
+  dataChartAssetTurnoverRatio: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -152,6 +153,12 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_CHART_PAYOUT_RATIO) {
       draft.dataChartPayoutRatio = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_CASH_PAYOUT_RATIO) {
+      draft.dataChartCashPayoutRatio = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_ASSET_TURNOVER_RATIO) {
+      draft.dataChartAssetTurnoverRatio = payload
     }
   });
 };

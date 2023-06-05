@@ -33,7 +33,7 @@ const CurrentPayoutRatio = (props) => {
 
             transformedData?.forEach(item => {
                 if (mappedKeys.includes(item.industry)) {
-                    const colorArr = ['#D0DFFF', '#044DED', '#A8C2FB', '#0F639A', '#6893EF', '#3D78E0', '#1D63DC', '#155AD1', '#0B4DBD', '#0F459F', '#93D2FE', '#78C5FD', '#61BAFE', '#3EADFF', ' #0E97FF', '#005073', '#117DAC', '#189BD3', '#1DBBD6', ' #72C7EC'];
+                    const colorArr = ['#147DF5', '#E7C64F'];
                     const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
 
                     if (existingItem) {
