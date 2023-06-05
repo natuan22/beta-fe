@@ -138,16 +138,10 @@ const StackingAreas = () => {
       shared: true,
       useHTML: true,
       valueSuffix: " ",
+      backgroundColor: "#fff",
       pointFormatter: function () {
         return (
-          '<span style="color:' +
-          this.series.color +
-          '">' +
-          this.series.name +
-          ": <b>" +
-          this.y +
-          "</b></span>  <b>" +
-          "</b><br/>"
+          '<span style="color:' + this.series.color + '">' + this.series.name + ": <b>" + this.y + "</b></span>  <b>" + "</b><br/>"
         );
       },
     },

@@ -163,6 +163,7 @@ const MarketBreadth = () => {
             shared: true,
             useHTML: true,
             valueSuffix: " ",
+            backgroundColor: "#fff",
             pointFormatter: function () {
                 return (
                     '<span style="color:' +
