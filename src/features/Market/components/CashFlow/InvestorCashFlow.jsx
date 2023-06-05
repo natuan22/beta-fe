@@ -18,6 +18,27 @@ const activeButtonStyle = {
     backgroundColor: '#275F88',
     color: '#fff',
 }
+const hashTb = {
+    '1': 'Bảo hiểm',
+    '2': 'Bất động sản',
+    '3': 'Công nghệ',
+    '4': 'Dầu khí',
+    '5': 'Dịch vụ bán lẻ',
+    '6': 'Dịch vụ tài chính',
+    '7': 'Dịch vụ tiện ích',
+    '8': 'Đồ dùng cá nhân và đồ gia dụng',
+    '9': 'Du lịch & Giải trí',
+    '10': 'Hàng hóa và dịch vụ công nghiệp',
+    '11': 'Hóa chất',
+    '12': 'Ngân hàng',
+    '13': 'Ôtô & linh kiện phụ tùng ',
+    '14': 'Phương tiện truyền thông',
+    '15': 'Thực phẩm & Đồ uống',
+    '16': 'Viễn thông',
+    '17': 'Xây dựng & Vật liệu',
+    '18': 'Tài nguyên',
+    '19': 'Y tế',
+}
 const InvestorCashFlow = () => {
 
     const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
@@ -154,7 +175,6 @@ const InvestorCashFlow = () => {
     // callback a huy đẹp trai dùng để render
 
     const callBackHighchart = (chart) => {
-        console.log(chart)
         setTimeout(() => {
             const btnLegendAll = document.querySelector('.btnLegendAll');
             const btnLegends = document.querySelectorAll('.btnLegend');
@@ -177,8 +197,12 @@ const InvestorCashFlow = () => {
             })
         }, 3500)
     }
-
-
+    console.log(data)
+    const sortedDataArray = data?.sort((a, b) => {
+        const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
+        const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
+        return aIndex - bIndex;
+    });
     // config chart
     const options = {
         accessibility: {
@@ -187,7 +211,7 @@ const InvestorCashFlow = () => {
         credits: false,
         chart: {
             type: 'column',
-            backgroundColor: 'transparent'
+            backgroundColor: 'transparent',
         },
         title: {
             text: '',
@@ -444,20 +468,19 @@ const InvestorCashFlow = () => {
                 </div>
             </div>
             <div>
-                {dataCashFlowInvestor?.length > 0 && dataTotalMarket?.length > 0 ? (
+                {dataCashFlowInvestor?.length > 0 ? (
                     <>
                         <div className='h-[450px]'>
                             <HighchartsReact highcharts={Highcharts} options={options} callback={callBackHighchart} containerProps={{ style: { height: '100%', width: '100%' } }} />
                             <div className='legendArea'>
                                 {!loadingLegend ? <div><Loading /></div> : <div>
-                                    {data?.map((item, index) => {
-                                        return (
-                                            <button className='btnLegend' key={index} style={{ backgroundColor: `${item.color}` }}>{item.name}</button>
-                                        )
-                                    })}
+                                    {sortedDataArray.map((item) => (
+                                        <button className='btnLegend' key={item.name} style={{ backgroundColor: item.color }}>
+                                            {item.name}
+                                        </button>
+                                    ))}
                                     <button className='btnLegendAll '>Chọn tất cả</button>
                                 </div>}
-
                             </div>
                         </div>
                         <div className='h-[450px] mt-20'>
