@@ -63,7 +63,7 @@ const InvestorCashFlow = () => {
         const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
         return aIndex - bIndex;
     });
-    console.log(sortedDataArray)
+    // console.log(sortedDataArray)
     useEffect(() => {
         if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
             setDataToMap(dataCashFlowInvestor)
@@ -502,37 +502,44 @@ const InvestorCashFlow = () => {
             <div>
                 {dataCashFlowInvestor?.length > 0 && dataTotalMarket?.length > 0 ? (
                     <>
-                        <div className='h-[450px]'>
-                            <HighchartsReact highcharts={Highcharts} options={options} callback={callBackHighchart} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                            <div className='legendArea'>
+                        <div>
+                            <div className='h-[450px]'>
+                                <HighchartsReact highcharts={Highcharts} options={options} callback={callBackHighchart} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                            </div>
+                            <div className='legendArea ml-[65px]'>
                                 {!loadingLegend ? (
-                                    <div><Loading /></div>
+                                    <div className='my-2'><Loading /></div>
                                 ) : (
                                     <div>
                                         {sortedDataArray.map((item) => (
-                                            <button className='btnLegend m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer' key={item.name} style={{ backgroundColor: item.color }}>
+                                            <button className='btnLegend m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]' key={item.name} style={{ backgroundColor: item.color }}>
                                                 {item.name}
                                             </button>
                                         ))}
-                                        <button className='btnLegendAll m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer'>Chọn tất cả</button>
+                                        <button className='btnLegendAll m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]'>Chọn tất cả</button>
                                     </div>
                                 )}
                             </div>
                         </div>
-                        <div className='h-[450px] mt-20 '>
-                            <HighchartsReact highcharts={Highcharts} options={optionAreaChart} callback={callBackHighchartArea} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                            <div className='legendArea'>
-                                {!loadingLegend ? <div><Loading /></div> : <div>
-                                    {sortedDataArray.map((item) => (
-                                        <button className='btnLegendArea' Areakey={item.name} style={{ backgroundColor: item.color }}>
-                                            {item.name}
-                                        </button>
-                                    ))}
-                                    <button className='btnLegendAllArea '>Chọn tất cả</button>
-                                </div>}
+                        <div>
+                            <div className='h-[450px]'>
+                                <HighchartsReact highcharts={Highcharts} options={optionAreaChart} callback={callBackHighchartArea} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                            </div>
+                            <div className='legendArea ml-[65px]'>
+                                {!loadingLegend ? (
+                                    <div className='my-2'><Loading /></div>
+                                ) : (
+                                    <div>
+                                        {sortedDataArray.map((item) => (
+                                            <button className='btnLegendArea m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]' Areakey={item.name} style={{ backgroundColor: item.color }}>
+                                                {item.name}
+                                            </button>
+                                        ))}
+                                        <button className='btnLegendAllArea m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]'>Chọn tất cả</button>
+                                    </div>
+                                )}
                             </div>
                         </div>
-
                     </>
                 ) : (
                     <div className="mt-12 mb-12"><Loading /></div>
