@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchDataChartEBITDAGrowth } from '../../../thunk';
+import { useSelector } from 'react-redux'
 import Loading from '../../../../Chart/utils/Loading';
 import moment from 'moment';
-import { memo } from 'react';
+import { hashTb } from '../../FinancialHealth/Chart/utils/hashTb';
 
 const ChartEBITDAGrowth = (props) => {
-    const dispatch = useDispatch()
-    const { exchange, industryQuery, order, type } = props
+    const { industryQuery } = props
     const { dataChartEBITDAGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
+
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
+    const checkIndustry = industryQuery.split(',')
+    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
+
     useEffect(() => {
-        dispatch(fetchDataChartEBITDAGrowth(exchange, industryQuery, type, order))
         setColorText(color);
     }, [props, color])
 
@@ -27,28 +28,30 @@ const ChartEBITDAGrowth = (props) => {
                 return { ...item, date: moment(item.date).format('DD/MM/YYYY') };
             });
 
-            const uniqueIndustry = [...new Set(transformedData?.map(item => item.industry))];
+            const uniqueIndustry = [...new Set(transformedData.filter(item => mappedKeys.includes(item.industry)).map(item => item.industry))];
             const mappedData = [];
 
-            transformedData.forEach((item, index) => {
-                const colorArr = ['#D0DFFF', '#044DED', '#A8C2FB', '#0F639A', '#6893EF', '#3D78E0', '#1D63DC', '#155AD1', '#0B4DBD', '#0F459F', '#93D2FE', '#78C5FD', '#61BAFE', '#3EADFF', ' #0E97FF', '#005073', '#117DAC', '#189BD3', '#1DBBD6', ' #72C7EC'];
-                const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
+            transformedData?.forEach(item => {
+                if (mappedKeys.includes(item.industry)) {
+                    const colorArr = ['#D0DFFF', '#044DED', '#A8C2FB', '#0F639A', '#6893EF', '#3D78E0', '#1D63DC', '#155AD1', '#0B4DBD', '#0F459F', '#93D2FE', '#78C5FD', '#61BAFE', '#3EADFF', ' #0E97FF', '#005073', '#117DAC', '#189BD3', '#1DBBD6', ' #72C7EC'];
+                    const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
 
-                if (existingItem) {
-                    existingItem.data.push(+(item.perChange).toFixed(2));
-                } else {
-                    const uniqueColorIndex = mappedData.length % colorArr.length; // Lấy chỉ mục màu duy nhất
-                    mappedData.push({
-                        name: item.date,
-                        data: [+(item.perChange).toFixed(2)],
-                        color: colorArr[uniqueColorIndex] // Lấy màu từ mảng colorArr bằng chỉ mục màu duy nhất
-                    });
+                    if (existingItem) {
+                        existingItem.data.push(+(item.perChange).toFixed(2));
+                    } else {
+                        const uniqueColorIndex = mappedData.length % colorArr.length; // Lấy chỉ mục màu duy nhất
+                        mappedData.push({
+                            name: item.date,
+                            data: [+(item.perChange).toFixed(2)],
+                            color: colorArr[uniqueColorIndex] // Lấy màu từ mảng colorArr bằng chỉ mục màu duy nhất
+                        });
+                    }
                 }
-            });
+            })
             setCategory(uniqueIndustry)
             setData(mappedData)
         }
-    }, [dataChartEBITDAGrowth])
+    }, [dataChartEBITDAGrowth, industryQuery])
     // config chart
     const options = {
         chart: {
@@ -139,4 +142,4 @@ const ChartEBITDAGrowth = (props) => {
     )
 }
 
-export default memo(ChartEBITDAGrowth)
+export default ChartEBITDAGrowth

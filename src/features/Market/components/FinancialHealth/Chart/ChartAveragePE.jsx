@@ -8,7 +8,7 @@ import { hashTb } from "../../FinancialHealth/Chart/utils/hashTb";
 
 
 const ChartAveragePE = (props) => {
-    const { dataChartAveragePE } = useSelector(state => state.market)
+    const { dataChartAveragePEPB } = useSelector(state => state.market)
     const { industryQuery } = props
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
@@ -24,27 +24,27 @@ const ChartAveragePE = (props) => {
     }, [color])
 
     useEffect(() => {
-        if (dataChartAveragePE?.length > 0) {
+        if (dataChartAveragePEPB?.length > 0) {
             const result = [];
-            const uniqueDates = [...new Set(dataChartAveragePE?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            const uniqueDates = [...new Set(dataChartAveragePEPB?.map(item => moment(item.date).format('DD/MM/YYYY')))];
             setTimeLine(uniqueDates)
-            dataChartAveragePE?.forEach(item => {
+            dataChartAveragePEPB?.forEach(item => {
                 if (mappedKeys.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {
-                        foundItem.data.push(+item.perChange.toFixed(2));
+                        foundItem.data.push(+item.PE.toFixed(2));
                     } else {
                         result.push({
                             name: item.industry,
                             color: item.color,
-                            data: [+item.perChange.toFixed(2)]
+                            data: [+item.PE.toFixed(2)]
                         });
                     }
                 }
             });
             setData(result)
         }
-    }, [dataChartAveragePE, industryQuery])
+    }, [dataChartAveragePEPB, industryQuery])
 
     const options = {
 
@@ -103,7 +103,7 @@ const ChartAveragePE = (props) => {
     }
     return (
         <div>
-            {dataChartAveragePE.length ? (
+            {dataChartAveragePEPB.length ? (
                 <div id="chart-container">
                     <div className="h-[450px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />

@@ -19,7 +19,7 @@ import TableAveragePB from '../../components/FinancialHealth/Table/TableAverageP
 import TableAveragePE from '../../components/FinancialHealth/Table/TableAveragePE';
 import TableMiningProfitMargin from '../../components/FinancialHealth/Table/TableMiningProfitMargin';
 import Checkbox from '../../HOCs/Checkbox';
-import { fetchDataChartAveragePE } from '../../thunk';
+import { fetchDataChartAveragePEPB, fetchDataChartPayoutRatio, fetchDataTableAveragePB, fetchDataTableAveragePE } from '../../thunk';
 
 const FinancialHealth = () => {
   const dispatch = useDispatch()
@@ -40,15 +40,21 @@ const FinancialHealth = () => {
   }, [dataQuery])
 
   useEffect(() => {
-    dispatch(fetchDataChartAveragePE(exchange, type, order))
+    dispatch(fetchDataChartAveragePEPB(exchange, type, order))
+    dispatch(fetchDataChartPayoutRatio(exchange, order))
   }, [exchange, type, order])
+
+  useEffect(() => {
+    dispatch(fetchDataTableAveragePE(exchange, industryQuery));
+    dispatch(fetchDataTableAveragePB(exchange, industryQuery));
+  }, [exchange, industryQuery])
 
   return (
     <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
       <Checkbox />
       {/* component */}
       <div>
-        <div className='grid grid-cols-2'>
+        <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Diễn biến P/E bình quân các nhóm ngành (lần)</span>
@@ -57,17 +63,17 @@ const FinancialHealth = () => {
               <ChartAveragePE industryQuery={industryQuery} />
             </div>
             <hr />
-            <TableAveragePE exchange={exchange} industryQuery={industryQuery} />
+            <TableAveragePE />
           </div>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Diễn biến P/B bình quân các nhóm ngành (lần)</span>
             </div>
-            <div className='h-[300px]'>
+            <div>
               <ChartAveragePB industryQuery={industryQuery} />
             </div>
             <hr />
-            <TableAveragePB exchange={exchange} industryQuery={industryQuery} />
+            <TableAveragePB />
           </div>
         </div>
 
@@ -86,7 +92,7 @@ const FinancialHealth = () => {
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Tỷ số thanh toán hiện hành (Lần)</span>
               </div>
-              <div className='h-[300px]'>
+              <div>
                 <CurrentPayoutRatio industryQuery={industryQuery} />
               </div>
             </div>

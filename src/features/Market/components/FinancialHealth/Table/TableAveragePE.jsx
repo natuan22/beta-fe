@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { getColor } from '../../../../Chart/utils/utils';
-import { fetchDataTableChangesPrice } from '../../../thunk';
 
-const TableAveragePE = (props) => {
-    // const dispatch = useDispatch()
-    // const { dataTableChangesPrice } = useSelector((state) => state.market);
-    // const [loading, setLoading] = useState(true);
-    // const [data, setData] = useState([]);
+const TableAveragePE = () => {
+    const { dataTableAveragePE } = useSelector((state) => state.market);
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
 
-    // useEffect(() => {
-    //     dispatch(fetchDataTableChangesPrice(props.exchange, props.industryQuery));
-    // }, [dispatch, props]);
-
-    // useEffect(() => {
-    //     if (dataTableChangesPrice) {
-    //         setLoading(false);
-    //         setData(dataTableChangesPrice)
-    //     }
-    // }, [dataTableChangesPrice])
+    useEffect(() => {
+        if (dataTableAveragePE) {
+            setLoading(false);
+            setData(dataTableAveragePE)
+        }
+    }, [dataTableAveragePE])
 
     return (
         <section className="bg-blueGray-50 pt-1.5">
@@ -49,37 +43,34 @@ const TableAveragePE = (props) => {
                             </thead>
 
                             <tbody>
-                                {/* {!loading ? (
+                                {!loading ? (
                                     Array.isArray(data) &&
                                     data.map((item, index) => {
-                                        let colorFive = getColor(item.perFive);
-                                        let colorQuarter = getColor(item.perQuarter);
-                                        let colorYtd = getColor(item.perYtd);
-                                        let colorYtY = getColor(item.perYtY);
+                                        let colorPricePerChange = getColor(item.pricePerChange);
 
                                         return (
                                             <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
                                                 <th className={`text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.code}
                                                 </th>
-                                                <td className={`${colorFive} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
-                                                    {item.perFive.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={` text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                    {item.VND.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`${colorQuarter} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
-                                                    {item.perQuarter.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={`${colorPricePerChange} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                    {item.pricePerChange.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`${colorYtd} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
-                                                    {item.perYtd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={` text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                    {item.per.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`${colorYtY} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
-                                                    {item.perYtY.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={` text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                    {item.pData.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
                                             </tr>
                                         )
                                     })
-                                ) : ( */}
-                                <tr><td colSpan={5}><div className="mt-16"><Loading /></div></td></tr>
-                                {/* )} */}
+                                ) : (
+                                    <tr><td colSpan={5}><div className="mt-16"><Loading /></div></td></tr>
+                                )}
                             </tbody>
                         </table>
                     </div>
@@ -89,4 +80,4 @@ const TableAveragePE = (props) => {
     )
 }
 
-export default memo(TableAveragePE)
+export default TableAveragePE
