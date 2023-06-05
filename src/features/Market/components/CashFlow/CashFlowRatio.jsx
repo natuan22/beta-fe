@@ -132,7 +132,7 @@ const CashFlowRatio = () => {
         },
         legend: {
             itemStyle: {
-                fontSize:'10px',
+                fontSize: '10px',
                 color: localStorage.getItem('color'),
             },
             enabled: true,
@@ -148,6 +148,7 @@ const CashFlowRatio = () => {
             shared: true,
             useHTML: true,
             valueSuffix: " ",
+            backgroundColor: "#fff",
             pointFormatter: function () {
                 return (
                     '<span style="color:' +
@@ -237,7 +238,7 @@ const CashFlowRatio = () => {
             },
         ],
     };
-    
+
     return (
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
