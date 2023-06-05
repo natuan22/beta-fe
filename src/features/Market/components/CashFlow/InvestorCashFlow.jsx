@@ -6,6 +6,7 @@ import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
 import moment from 'moment';
 import './utils/btnLegendToggle.css'
+import { hashTb } from './utils/constant';
 const buttonStyle = {
     backgroundColor: 'transparent',
     color: '#fff',
@@ -18,27 +19,7 @@ const activeButtonStyle = {
     backgroundColor: '#275F88',
     color: '#fff',
 }
-const hashTb = {
-    '1': 'Bảo hiểm',
-    '2': 'Bất động sản',
-    '3': 'Công nghệ',
-    '4': 'Dầu khí',
-    '5': 'Dịch vụ bán lẻ',
-    '6': 'Dịch vụ tài chính',
-    '7': 'Dịch vụ tiện ích',
-    '8': 'Đồ dùng cá nhân và đồ gia dụng',
-    '9': 'Du lịch & Giải trí',
-    '10': 'Hàng hóa và dịch vụ công nghiệp',
-    '11': 'Hóa chất',
-    '12': 'Ngân hàng',
-    '13': 'Ôtô & linh kiện phụ tùng ',
-    '14': 'Phương tiện truyền thông',
-    '15': 'Thực phẩm & Đồ uống',
-    '16': 'Viễn thông',
-    '17': 'Xây dựng & Vật liệu',
-    '18': 'Tài nguyên',
-    '19': 'Y tế',
-}
+
 const InvestorCashFlow = () => {
 
     const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
@@ -72,6 +53,17 @@ const InvestorCashFlow = () => {
             setLoadingLegend(true)
         }, 3500)
     }, [])
+    const sortedDataArray = data?.sort((a, b) => {
+        const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
+        const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
+        return aIndex - bIndex;
+    });
+    const sortedDataArrayArea = dataAbs?.sort((a, b) => {
+        const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
+        const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
+        return aIndex - bIndex;
+    });
+    console.log(sortedDataArray)
     useEffect(() => {
         if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
             setDataToMap(dataCashFlowInvestor)
@@ -110,11 +102,18 @@ const InvestorCashFlow = () => {
                     resultAbs.push(newObjAbs);
                     result.push(newObj);
                 }
-            });
+            })
             // Gán mảng kết quả vào biến "output"
-            const output = result;
-            const outputAbs = resultAbs
-
+            const output = result.sort((a, b) => {
+                const indexA = Object.keys(hashTb).indexOf(a.name);
+                const indexB = Object.keys(hashTb).indexOf(b.name);
+                return indexA - indexB;
+            });;
+            const outputAbs = resultAbs.sort((a, b) => {
+                const indexA = Object.keys(hashTb).indexOf(a.name);
+                const indexB = Object.keys(hashTb).indexOf(b.name);
+                return indexA - indexB;
+            });
             setData(output)
             setDataAbs(outputAbs)
         } else if (isAllMarket && dataTotalMarket.length > 0) {
@@ -156,8 +155,16 @@ const InvestorCashFlow = () => {
                 }
             });
             // Gán mảng kết quả vào biến "output"
-            const output = result;
-            const outputAbs = resultAbs
+            const output = result.sort((a, b) => {
+                const indexA = Object.keys(hashTb).indexOf(a.name);
+                const indexB = Object.keys(hashTb).indexOf(b.name);
+                return indexA - indexB;
+            });;
+            const outputAbs = resultAbs.sort((a, b) => {
+                const indexA = Object.keys(hashTb).indexOf(a.name);
+                const indexB = Object.keys(hashTb).indexOf(b.name);
+                return indexA - indexB;
+            });
 
             setData(output)
             setDataAbs(outputAbs)
@@ -176,15 +183,44 @@ const InvestorCashFlow = () => {
 
     const callBackHighchart = (chart) => {
         setTimeout(() => {
+
             const btnLegendAll = document.querySelector('.btnLegendAll');
             const btnLegends = document.querySelectorAll('.btnLegend');
+
             btnLegendAll.addEventListener('click', () => {
-                const isVisible = !chart.series[0].visible;
+                console.log('count');
                 chart.series.forEach((item) => {
-                    item.setVisible(isVisible);
+                    item.setVisible(!item.visible);
                 });
                 btnLegends.forEach((btnLegend) => {
-                    btnLegend.classList.toggle('muted', !isVisible);
+                    btnLegend.classList.toggle('muted');
+                    btnLegendAll.classList.toggle('muted');
+                });
+            });
+
+            chart.series.map((item, index) => {
+                const btnLegend = btnLegends[index];
+                btnLegend.addEventListener('click', () => {
+                    item.setVisible(!item.visible);
+                    btnLegend.classList.toggle('muted');
+                });
+            });
+        }, 3500);
+    };
+
+
+
+    const callBackHighchartArea = (chart) => {
+        setTimeout(() => {
+            const btnLegendAll = document.querySelector('.btnLegendAllArea');
+            const btnLegends = document.querySelectorAll('.btnLegendArea');
+            btnLegendAll.addEventListener('click', () => {
+                console.log('count')
+                chart.series.forEach((item) => {
+                    item.setVisible(!item.visible);
+                });
+                btnLegends.forEach((btnLegend) => {
+                    btnLegend.classList.toggle('muted');
                     btnLegendAll.classList.toggle('muted')
                 });
             });
@@ -197,12 +233,9 @@ const InvestorCashFlow = () => {
             })
         }, 3500)
     }
-    console.log(data)
-    const sortedDataArray = data?.sort((a, b) => {
-        const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
-        const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
-        return aIndex - bIndex;
-    });
+
+
+
     // config chart
     const options = {
         accessibility: {
@@ -242,7 +275,7 @@ const InvestorCashFlow = () => {
             },
         },
         legend: {
-            enabled: true,
+            enabled: false,
             itemStyle: {
                 color: localStorage.getItem('color'),
                 fontWeight: 'bold'
@@ -273,7 +306,7 @@ const InvestorCashFlow = () => {
             backgroundColor: 'transparent'
         },
         legend: {
-            enabled: true,
+            enabled: false,
             itemStyle: {
                 color: localStorage.getItem('color'),
                 fontWeight: 'bold'
@@ -329,7 +362,6 @@ const InvestorCashFlow = () => {
         },
         series: dataAbs
     };
-
     return (
         <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
@@ -468,7 +500,7 @@ const InvestorCashFlow = () => {
                 </div>
             </div>
             <div>
-                {dataCashFlowInvestor?.length > 0 ? (
+                {dataCashFlowInvestor?.length > 0 && dataTotalMarket?.length > 0 ? (
                     <>
                         <div className='h-[450px]'>
                             <HighchartsReact highcharts={Highcharts} options={options} callback={callBackHighchart} containerProps={{ style: { height: '100%', width: '100%' } }} />
@@ -483,9 +515,20 @@ const InvestorCashFlow = () => {
                                 </div>}
                             </div>
                         </div>
-                        <div className='h-[450px] mt-20'>
-                            <HighchartsReact highcharts={Highcharts} options={optionAreaChart} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                        <div className='h-[450px] mt-20 '>
+                            <HighchartsReact highcharts={Highcharts} options={optionAreaChart} callback={callBackHighchartArea} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                            <div className='legendArea'>
+                                {!loadingLegend ? <div><Loading /></div> : <div>
+                                    {sortedDataArray.map((item) => (
+                                        <button className='btnLegendArea' Areakey={item.name} style={{ backgroundColor: item.color }}>
+                                            {item.name}
+                                        </button>
+                                    ))}
+                                    <button className='btnLegendAllArea '>Chọn tất cả</button>
+                                </div>}
+                            </div>
                         </div>
+
                     </>
                 ) : (
                     <div className="mt-12 mb-12"><Loading /></div>
