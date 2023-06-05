@@ -53,16 +53,16 @@ const TableAveragePE = () => {
                                                 <th className={`text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.code}
                                                 </th>
-                                                <td className={` text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                <td className={` text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.VND.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
                                                 <td className={`${colorPricePerChange} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.pricePerChange.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={` text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                <td className={` text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.per.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={` text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                <td className={` text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.pData.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
                                             </tr>
