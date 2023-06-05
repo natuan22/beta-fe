@@ -287,4 +287,20 @@ export const marketServices = {
             }
         })
     },
+    fetchDataChartCashPayoutRatio: (exchange, order) => {
+        return https.get('api/v1/finance-health/ty-so-thanh-toan-tien-mat', {
+            params: {
+                exchange,
+                order
+            }
+        })
+    },
+    fetchDataChartAssetTurnoverRatio: (exchange, order) => {
+        return https.get('api/v1/finance-health/ty-so-vong-xoay', {
+            params: {
+                exchange,
+                order
+            }
+        })
+    },
 }

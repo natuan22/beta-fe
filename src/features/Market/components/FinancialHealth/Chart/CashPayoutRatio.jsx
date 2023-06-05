@@ -7,7 +7,7 @@ import { hashTb } from './utils/hashTb';
 import Loading from '../../../../Chart/utils/Loading';
 
 const CashPayoutRatio = (props) => {
-    const { dataChartPayoutRatio } = useSelector(state => state.market)
+    const { dataChartCashPayoutRatio } = useSelector(state => state.market)
     const { industryQuery } = props
     const [data, setData] = useState()
     const [category, setCategory] = useState()
@@ -22,36 +22,39 @@ const CashPayoutRatio = (props) => {
         setColorText(color);
     }, [color])
 
-    // useEffect(() => {
-    //     if (dataChartPayoutRatio?.length > 0) {
-    //         const transformedData = dataChartPayoutRatio?.map(item => {
-    //             return { ...item, date: moment(item.date).format('DD/MM/YYYY') };
-    //         });
+    useEffect(() => {
+        if (dataChartCashPayoutRatio?.length > 0) {
+            const transformedData = dataChartCashPayoutRatio?.map(item => {
+                const year = item.date.slice(0, 4);
+                const quarter = item.date.slice(4);
+                const transformedDate = `Q${quarter} ${year}`;
+                return { ...item, date: transformedDate };
+            });
 
-    //         const uniqueIndustry = [...new Set(transformedData.filter(item => mappedKeys.includes(item.industry)).map(item => item.industry))];
-    //         const mappedData = [];
+            const uniqueIndustry = [...new Set(transformedData.filter(item => mappedKeys.includes(item.industry)).map(item => item.industry))];
+            const mappedData = [];
 
-    //         transformedData?.forEach(item => {
-    //             if (mappedKeys.includes(item.industry)) {
-    //                 const colorArr = ['#D0DFFF', '#044DED', '#A8C2FB', '#0F639A', '#6893EF', '#3D78E0', '#1D63DC', '#155AD1', '#0B4DBD', '#0F459F', '#93D2FE', '#78C5FD', '#61BAFE', '#3EADFF', ' #0E97FF', '#005073', '#117DAC', '#189BD3', '#1DBBD6', ' #72C7EC'];
-    //                 const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
+            transformedData?.forEach(item => {
+                if (mappedKeys.includes(item.industry)) {
+                    const colorArr = ['#147DF5', '#E7C64F'];
+                    const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
 
-    //                 if (existingItem) {
-    //                     existingItem.data.push(+(item.quickRatio).toFixed(2));
-    //                 } else {
-    //                     const uniqueColorIndex = mappedData.length % colorArr.length; // Lấy chỉ mục màu duy nhất
-    //                     mappedData.push({
-    //                         name: item.date,
-    //                         data: [+(item.quickRatio).toFixed(2)],
-    //                         color: colorArr[uniqueColorIndex] // Lấy màu từ mảng colorArr bằng chỉ mục màu duy nhất
-    //                     });
-    //                 }
-    //             }
-    //         })
-    //         setCategory(uniqueIndustry)
-    //         setData(mappedData)
-    //     }
-    // }, [dataChartPayoutRatio, industryQuery])
+                    if (existingItem) {
+                        existingItem.data.push(+(item.cashRatio).toFixed(2));
+                    } else {
+                        const uniqueColorIndex = mappedData.length % colorArr.length; // Lấy chỉ mục màu duy nhất
+                        mappedData.push({
+                            name: item.date,
+                            data: [+(item.cashRatio).toFixed(2)],
+                            color: colorArr[uniqueColorIndex] // Lấy màu từ mảng colorArr bằng chỉ mục màu duy nhất
+                        });
+                    }
+                }
+            })
+            setCategory(uniqueIndustry)
+            setData(mappedData)
+        }
+    }, [dataChartCashPayoutRatio, industryQuery])
     // config chart
     const options = {
         chart: {
@@ -124,7 +127,7 @@ const CashPayoutRatio = (props) => {
 
     return (
         <div>
-            {dataChartPayoutRatio.length ? (
+            {dataChartCashPayoutRatio?.length ? (
                 <div id="chart-container">
                     <div className="h-[500px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />

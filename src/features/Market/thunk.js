@@ -432,3 +432,27 @@ export const fetchDataChartPayoutRatio = (exchange, order) => async (dispatch) =
         console.log(err)
     }
 }
+
+export const fetchDataChartCashPayoutRatio = (exchange, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartCashPayoutRatio(exchange, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_CASH_PAYOUT_RATIO,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartAssetTurnoverRatio = (exchange, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartAssetTurnoverRatio(exchange, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_ASSET_TURNOVER_RATIO,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}

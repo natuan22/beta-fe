@@ -19,7 +19,7 @@ import TableAveragePB from '../../components/FinancialHealth/Table/TableAverageP
 import TableAveragePE from '../../components/FinancialHealth/Table/TableAveragePE';
 import TableMiningProfitMargin from '../../components/FinancialHealth/Table/TableMiningProfitMargin';
 import Checkbox from '../../HOCs/Checkbox';
-import { fetchDataChartAveragePEPB, fetchDataChartPayoutRatio, fetchDataTableAveragePB, fetchDataTableAveragePE } from '../../thunk';
+import { fetchDataChartAssetTurnoverRatio, fetchDataChartAveragePEPB, fetchDataChartCashPayoutRatio, fetchDataChartPayoutRatio, fetchDataTableAveragePB, fetchDataTableAveragePE } from '../../thunk';
 
 const FinancialHealth = () => {
   const dispatch = useDispatch()
@@ -42,6 +42,8 @@ const FinancialHealth = () => {
   useEffect(() => {
     dispatch(fetchDataChartAveragePEPB(exchange, type, order))
     dispatch(fetchDataChartPayoutRatio(exchange, order))
+    dispatch(fetchDataChartCashPayoutRatio(exchange, order))
+    dispatch(fetchDataChartAssetTurnoverRatio(exchange, order))
   }, [exchange, type, order])
 
   useEffect(() => {
@@ -145,7 +147,7 @@ const FinancialHealth = () => {
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Vòng quay Tài sản cố định (Lần)</span>
               </div>
-              <div className='h-[300px]'>
+              <div>
                 <FixedAssetTurnover industryQuery={industryQuery} />
               </div>
             </div>
@@ -154,7 +156,7 @@ const FinancialHealth = () => {
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Vòng quay Tiền (Lần)</span>
               </div>
-              <div className='h-[300px]'>
+              <div>
                 <MoneyWheel industryQuery={industryQuery} />
               </div>
             </div>
@@ -163,7 +165,7 @@ const FinancialHealth = () => {
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Vòng quay Tổng tài sản (Lần)</span>
               </div>
-              <div className='h-[300px]'>
+              <div>
                 <TotalAssetTurnover industryQuery={industryQuery} />
               </div>
             </div>
@@ -172,7 +174,7 @@ const FinancialHealth = () => {
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Vòng quay Vốn chủ sở hữu (Lần)</span>
               </div>
-              <div className='h-[300px]'>
+              <div>
                 <EquityTurnover industryQuery={industryQuery} />
               </div>
             </div>
