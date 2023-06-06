@@ -79,45 +79,39 @@ const FinancialHealth = () => {
           </div>
         </div>
 
-        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+        {/* <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
           <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
             <span className='dark:text-white text-black font-semibold'>Tổng quan sức khỏe tài chính các ngành (%)</span>
           </div>
           <div className='h-[300px]'>
             <FinancialHealthOverview exchange={exchange} industryQuery={industryQuery} />
           </div>
-        </div>
+        </div> */}
 
         <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-          <div className='grid grid-cols-3 gap-5'>
+          <div className='grid md:grid-cols-3 sm:grid-cols-none gap-5'>
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Tỷ số thanh toán hiện hành (Lần)</span>
+                <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán hiện hành (Lần)</span>
               </div>
-              <div>
-                <CurrentPayoutRatio industryQuery={industryQuery} />
-              </div>
+              <CurrentPayoutRatio industryQuery={industryQuery} />
             </div>
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Tỷ số thanh toán nhanh (Lần)</span>
+                <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán nhanh (Lần)</span>
               </div>
-              <div className='h-[300px]'>
-                <QuickPayoutRatio industryQuery={industryQuery} />
-              </div>
+              <QuickPayoutRatio industryQuery={industryQuery} />
             </div>
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Tỷ số thanh toán tiền mặt (Lần)</span>
+                <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán tiền mặt (Lần)</span>
               </div>
-              <div className='h-[300px]'>
-                <CashPayoutRatio industryQuery={industryQuery} />
-              </div>
+              <CashPayoutRatio industryQuery={industryQuery} />
             </div>
           </div>
         </div>
 
-        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+        {/* <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
           <div className='grid grid-cols-2 gap-5'>
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
@@ -127,7 +121,7 @@ const FinancialHealth = () => {
                 <ChartAverageDebtRatio industryQuery={industryQuery} />
               </div>
               <hr />
-              <div className='h-[300px]'>
+              <div>
                 <TableAverageDebtRatio exchange={exchange} industryQuery={industryQuery} />
               </div>
             </div>
@@ -135,53 +129,44 @@ const FinancialHealth = () => {
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Hệ số thanh toán lãi vay nợ bình quân của các ngành (%)</span>
               </div>
-
               <InterestCoverageRatio industryQuery={industryQuery} />
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-          <div className='grid grid-cols-4 gap-5'>
+          <div className='grid lg:grid-cols-4 gap-5 md:grid-cols-2'>
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Vòng quay Tài sản cố định (Lần)</span>
+                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tài sản cố định (Lần)</span>
               </div>
-              <div>
-                <FixedAssetTurnover industryQuery={industryQuery} />
-              </div>
+              <FixedAssetTurnover industryQuery={industryQuery} />
             </div>
 
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Vòng quay Tiền (Lần)</span>
+                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tiền (Lần)</span>
               </div>
-              <div>
-                <MoneyWheel industryQuery={industryQuery} />
-              </div>
+              <MoneyWheel industryQuery={industryQuery} />
             </div>
 
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Vòng quay Tổng tài sản (Lần)</span>
+                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tổng tài sản (Lần)</span>
               </div>
-              <div>
-                <TotalAssetTurnover industryQuery={industryQuery} />
-              </div>
+              <TotalAssetTurnover industryQuery={industryQuery} />
             </div>
 
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Vòng quay Vốn chủ sở hữu (Lần)</span>
+                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Vốn chủ sở hữu (Lần)</span>
               </div>
-              <div>
-                <EquityTurnover industryQuery={industryQuery} />
-              </div>
+              <EquityTurnover industryQuery={industryQuery} />
             </div>
           </div>
         </div>
 
-        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+        {/* <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
           <div className='grid grid-cols-2 gap-5'>
             <div>
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
@@ -202,7 +187,7 @@ const FinancialHealth = () => {
               <NetProfitMargin industryQuery={industryQuery} />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
