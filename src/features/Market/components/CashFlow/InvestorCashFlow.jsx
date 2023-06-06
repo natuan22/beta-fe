@@ -51,7 +51,7 @@ const InvestorCashFlow = () => {
     useEffect(() => {
         setInterval(() => {
             setLoadingLegend(true)
-        }, 3500)
+        }, 4000)
     }, [])
     const sortedDataArray = data?.sort((a, b) => {
         const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
@@ -183,10 +183,8 @@ const InvestorCashFlow = () => {
 
     const callBackHighchart = (chart) => {
         setTimeout(() => {
-
             const btnLegendAll = document.querySelector('.btnLegendAll');
             const btnLegends = document.querySelectorAll('.btnLegend');
-
             btnLegendAll.addEventListener('click', () => {
                 console.log('count');
                 chart.series.forEach((item) => {
@@ -510,7 +508,7 @@ const InvestorCashFlow = () => {
                                 ) : (
                                     <div>
                                         {sortedDataArray.map((item) => (
-                                            <button className='btnLegend m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer' key={item.name} style={{ backgroundColor: item.color }}>
+                                            <button className='btnLegend m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer ' key={item.name} style={{ backgroundColor: item.color }}>
                                                 {item.name}
                                             </button>
                                         ))}
