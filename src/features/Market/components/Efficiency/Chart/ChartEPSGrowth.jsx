@@ -124,6 +124,7 @@ const ChartEPSGrowth = (props) => {
 
         series: data,
     };
+    console.log(data)
 
     return (
         <div>

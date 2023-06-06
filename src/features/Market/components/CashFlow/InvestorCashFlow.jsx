@@ -181,12 +181,12 @@ const InvestorCashFlow = () => {
     const handleClick3 = (button) => { setActiveButton3(button) }
     // callback a huy đẹp trai dùng để render
 
+    const [isLegendTicked, setIsLegendTicked] = useState(false)
     const callBackHighchart = (chart) => {
         setTimeout(() => {
             const btnLegendAll = document.querySelector('.btnLegendAll');
             const btnLegends = document.querySelectorAll('.btnLegend');
             btnLegendAll.addEventListener('click', () => {
-                console.log('count');
                 chart.series.forEach((item) => {
                     item.setVisible(!item.visible);
                 });
@@ -207,13 +207,11 @@ const InvestorCashFlow = () => {
     };
 
 
-
     const callBackHighchartArea = (chart) => {
         setTimeout(() => {
             const btnLegendAll = document.querySelector('.btnLegendAllArea');
             const btnLegends = document.querySelectorAll('.btnLegendArea');
             btnLegendAll.addEventListener('click', () => {
-                console.log('count')
                 chart.series.forEach((item) => {
                     item.setVisible(!item.visible);
                 });
@@ -529,7 +527,7 @@ const InvestorCashFlow = () => {
                                 ) : (
                                     <div>
                                         {sortedDataArray.map((item) => (
-                                            <button className='btnLegendArea m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]' Areakey={item.name} style={{ backgroundColor: item.color }}>
+                                            <button className='btnLegendArea m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]' key={item.name} style={{ backgroundColor: item.color }}>
                                                 {item.name}
                                             </button>
                                         ))}
