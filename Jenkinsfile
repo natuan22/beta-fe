@@ -3,7 +3,7 @@ pipeline {
     environment {
         registryUrl = "https://index.docker.io/v1/"
         credentialsId = "DOCKER_CE_HUB"
-        VERSION = sh(returnStdout: true, script: "cat package.json | jq -r '.version'").tri m()
+        VERSION = sh(returnStdout: true, script: "cat package.json | jq -r '.version'").trim()
     }
     stages {
         stage('Checkout') {
@@ -43,7 +43,7 @@ pipeline {
         stage('Deploy Frontend') {
             steps {
                 script {
-                    sh 'export TAG=${VERSION} && cd /home/beta/services/b-infor-frontend && ./deploy.sh'
+                    sh 'echo Beta123 | export TAG=${VERSION} && cd /home/beta/services/b-infor-frontend && sudo -S ./deploy.sh'
                 }
             }
         }
