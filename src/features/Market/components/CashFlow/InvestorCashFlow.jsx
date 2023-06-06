@@ -5,6 +5,8 @@ import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
 import moment from 'moment';
+import './utils/btnLegendToggle.css'
+import { hashTb } from './utils/constant';
 const buttonStyle = {
     backgroundColor: 'transparent',
     color: '#fff',
@@ -17,9 +19,10 @@ const activeButtonStyle = {
     backgroundColor: '#275F88',
     color: '#fff',
 }
+
 const InvestorCashFlow = () => {
+
     const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
-    // console.log("dataTotalMarket", dataTotalMarket)
     const [data, setData] = useState()
     const [dataToMap, setDataToMap] = useState()
     const [dataAbs, setDataAbs] = useState()
@@ -36,6 +39,7 @@ const InvestorCashFlow = () => {
         investorType: 1,
         exchange: 'all'
     })
+    const [loadingLegend, setLoadingLegend] = useState(false)
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
@@ -44,7 +48,22 @@ const InvestorCashFlow = () => {
         dispatch(fetchDataTotalMarket(queryApi.exchange, queryApi.type))
         setColorText(color);
     }, [queryApi, dispatch])
-
+    useEffect(() => {
+        setInterval(() => {
+            setLoadingLegend(true)
+        }, 4000)
+    }, [])
+    const sortedDataArray = data?.sort((a, b) => {
+        const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
+        const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
+        return aIndex - bIndex;
+    });
+    const sortedDataArrayArea = dataAbs?.sort((a, b) => {
+        const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
+        const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
+        return aIndex - bIndex;
+    });
+    // console.log(sortedDataArray)
     useEffect(() => {
         if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
             setDataToMap(dataCashFlowInvestor)
@@ -63,7 +82,7 @@ const InvestorCashFlow = () => {
                 const newObj = {
                     name: industry,
                     data: [value],
-                    color
+                    color,
                 };
                 const newObjAbs = {
                     name: industry,
@@ -83,11 +102,18 @@ const InvestorCashFlow = () => {
                     resultAbs.push(newObjAbs);
                     result.push(newObj);
                 }
-            });
+            })
             // Gán mảng kết quả vào biến "output"
-            const output = result;
-            const outputAbs = resultAbs
-
+            const output = result.sort((a, b) => {
+                const indexA = Object.keys(hashTb).indexOf(a.name);
+                const indexB = Object.keys(hashTb).indexOf(b.name);
+                return indexA - indexB;
+            });;
+            const outputAbs = resultAbs.sort((a, b) => {
+                const indexA = Object.keys(hashTb).indexOf(a.name);
+                const indexB = Object.keys(hashTb).indexOf(b.name);
+                return indexA - indexB;
+            });
             setData(output)
             setDataAbs(outputAbs)
         } else if (isAllMarket && dataTotalMarket.length > 0) {
@@ -129,8 +155,16 @@ const InvestorCashFlow = () => {
                 }
             });
             // Gán mảng kết quả vào biến "output"
-            const output = result;
-            const outputAbs = resultAbs
+            const output = result.sort((a, b) => {
+                const indexA = Object.keys(hashTb).indexOf(a.name);
+                const indexB = Object.keys(hashTb).indexOf(b.name);
+                return indexA - indexB;
+            });;
+            const outputAbs = resultAbs.sort((a, b) => {
+                const indexA = Object.keys(hashTb).indexOf(a.name);
+                const indexB = Object.keys(hashTb).indexOf(b.name);
+                return indexA - indexB;
+            });
 
             setData(output)
             setDataAbs(outputAbs)
@@ -142,10 +176,61 @@ const InvestorCashFlow = () => {
         setParam('transVal')
     }, [activeButton3])
     // hàm xử lý nút
-    // console.log('data',dataCashFlowInvestor)
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
     const handleClick3 = (button) => { setActiveButton3(button) }
+    // callback a huy đẹp trai dùng để render
+
+    const [isLegendTicked, setIsLegendTicked] = useState(false)
+    const callBackHighchart = (chart) => {
+        setTimeout(() => {
+            const btnLegendAll = document.querySelector('.btnLegendAll');
+            const btnLegends = document.querySelectorAll('.btnLegend');
+            btnLegendAll.addEventListener('click', () => {
+                chart.series.forEach((item) => {
+                    item.setVisible(!item.visible);
+                });
+                btnLegends.forEach((btnLegend) => {
+                    btnLegend.classList.toggle('muted');
+                    btnLegendAll.classList.toggle('muted');
+                });
+            });
+
+            chart.series.map((item, index) => {
+                const btnLegend = btnLegends[index];
+                btnLegend.addEventListener('click', () => {
+                    item.setVisible(!item.visible);
+                    btnLegend.classList.toggle('muted');
+                });
+            });
+        }, 3500);
+    };
+
+
+    const callBackHighchartArea = (chart) => {
+        setTimeout(() => {
+            const btnLegendAll = document.querySelector('.btnLegendAllArea');
+            const btnLegends = document.querySelectorAll('.btnLegendArea');
+            btnLegendAll.addEventListener('click', () => {
+                chart.series.forEach((item) => {
+                    item.setVisible(!item.visible);
+                });
+                btnLegends.forEach((btnLegend) => {
+                    btnLegend.classList.toggle('muted');
+                    btnLegendAll.classList.toggle('muted')
+                });
+            });
+            chart.series.map((item, index) => {
+                const btnLegend = btnLegends[index];
+                btnLegend.addEventListener('click', () => {
+                    item.setVisible(!item.visible);
+                    btnLegend.classList.toggle('muted');
+                });
+            })
+        }, 3500)
+    }
+
+
 
     // config chart
     const options = {
@@ -155,7 +240,7 @@ const InvestorCashFlow = () => {
         credits: false,
         chart: {
             type: 'column',
-            backgroundColor: 'transparent'
+            backgroundColor: 'transparent',
         },
         title: {
             text: '',
@@ -186,11 +271,12 @@ const InvestorCashFlow = () => {
             },
         },
         legend: {
-            enabled: true,
+            enabled: false,
             itemStyle: {
                 color: localStorage.getItem('color'),
                 fontWeight: 'bold'
-            }
+            },
+
         },
         plotOptions: {
             column: {
@@ -216,11 +302,12 @@ const InvestorCashFlow = () => {
             backgroundColor: 'transparent'
         },
         legend: {
-            enabled: true,
+            enabled: false,
             itemStyle: {
                 color: localStorage.getItem('color'),
                 fontWeight: 'bold'
             }
+
         },
         title: {
             text: ''
@@ -271,7 +358,6 @@ const InvestorCashFlow = () => {
         },
         series: dataAbs
     };
-
     return (
         <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
@@ -412,17 +498,48 @@ const InvestorCashFlow = () => {
             <div>
                 {dataCashFlowInvestor?.length > 0 && dataTotalMarket?.length > 0 ? (
                     <>
-                        <div className='h-[450px]'>
-                            <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                        <div>
+                            <div className='h-[450px]'>
+                                <HighchartsReact highcharts={Highcharts} options={options} callback={callBackHighchart} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                            </div>
+                            <div className='legendArea ml-[65px]'>
+                                {!loadingLegend ? (
+                                    <div className='my-2'><Loading /></div>
+                                ) : (
+                                    <div>
+                                        {sortedDataArray.map((item) => (
+                                            <button className='btnLegend m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]' key={item.name} style={{ backgroundColor: item.color }}>
+                                                {item.name}
+                                            </button>
+                                        ))}
+                                        <button className='btnLegendAll m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]'>Chọn tất cả</button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                        <div className='h-[450px]'>
-                            <HighchartsReact highcharts={Highcharts} options={optionAreaChart} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                        <div>
+                            <div className='h-[450px]'>
+                                <HighchartsReact highcharts={Highcharts} options={optionAreaChart} callback={callBackHighchartArea} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                            </div>
+                            <div className='legendArea ml-[65px]'>
+                                {!loadingLegend ? (
+                                    <div className='my-2'><Loading /></div>
+                                ) : (
+                                    <div>
+                                        {sortedDataArray.map((item) => (
+                                            <button className='btnLegendArea m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]' key={item.name} style={{ backgroundColor: item.color }}>
+                                                {item.name}
+                                            </button>
+                                        ))}
+                                        <button className='btnLegendAllArea m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]'>Chọn tất cả</button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </>
                 ) : (
                     <div className="mt-12 mb-12"><Loading /></div>
                 )}
-
             </div>
         </div>
     )

@@ -62,7 +62,7 @@ const Home = () => {
     dispatch(fetchDataEvents);
     dispatch(fetchDataNews);
     dispatch(fetchDataRateDetail);
-    dispatch(fetchDataTopNetForeignChange("hsx"));
+    dispatch(fetchDataTopNetForeignChange("hose"));
     dispatch(fetchDataROC5Phien("hose"));
     dispatch(fetchDataTableMarketVolatility);
     dispatch(fetchDataTableMarketLiquidity("0"));
@@ -190,7 +190,7 @@ const Home = () => {
                           );
                         }}
                       >
-                        <option value="HSX">HSX</option>
+                        <option value="hose">HSX</option>
                         <option value="HNX">HNX</option>
                         <option value="UPCOM">UPCOM</option>
                       </select>

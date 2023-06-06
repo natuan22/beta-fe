@@ -25,7 +25,20 @@ const initialState = {
   dataChartEquityGrowth: {},
   dataChartLiabilitiesGrowth: {},
   dataTableEquityGrowth: {},
-  dataTableLiabilitiesGrowth: {}
+  dataTableLiabilitiesGrowth: {},
+  dataChartNetRevenueGrowth: {},
+  dataChartGrossProfitGrowth: {},
+  dataChartEBITDAGrowth: {},
+  dataChartEPSGrowth: {},
+  dataChartOperatingProfitGrowth: {},
+  dataChartCashDividendGrowth: {},
+  dataHotIndustry: {},
+  dataQuery: {},
+  dataChartAveragePEPB: {},
+  dataTableAveragePE: {},
+  dataTableAveragePB: {},
+  dataChartPayoutRatio: {},
+  dataChartAssetTurnoverRatio: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -104,6 +117,48 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_TABLE_LIABILITIES_GROWTH) {
       draft.dataTableLiabilitiesGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_NET_REVENUE_GROWTH) {
+      draft.dataChartNetRevenueGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_GROSS_PROFIT_GROWTH) {
+      draft.dataChartGrossProfitGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_EBITDA_GROWTH) {
+      draft.dataChartEBITDAGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_EPS_GROWTH) {
+      draft.dataChartEPSGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_OPERATING_PROFIT_GROWTH) {
+      draft.dataChartOperatingProfitGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_CASH_DIVIDEND_GROWTH) {
+      draft.dataChartCashDividendGrowth = payload
+    }
+    if (type === marketType.FETCH_DATA_HOT_INDUSTRY) {
+      draft.dataHotIndustry = payload
+    }
+    if (type === 'QUERY') {
+      draft.dataQuery = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_AVERAGE_PE_PB) {
+      draft.dataChartAveragePEPB = payload
+    }
+    if (type === marketType.FETCH_DATA_TABLE_AVERAGE_PE) {
+      draft.dataTableAveragePE = payload
+    }
+    if (type === marketType.FETCH_DATA_TABLE_AVERAGE_PB) {
+      draft.dataTableAveragePB = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_PAYOUT_RATIO) {
+      draft.dataChartPayoutRatio = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_CASH_PAYOUT_RATIO) {
+      draft.dataChartCashPayoutRatio = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_ASSET_TURNOVER_RATIO) {
+      draft.dataChartAssetTurnoverRatio = payload
     }
   });
 };

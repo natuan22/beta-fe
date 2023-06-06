@@ -145,41 +145,37 @@ export const marketServices = {
             }
         })
     },
-    fetchDataChartLiquidityGrowth: (exchange, industry, type, order) => {
-        return https.get('/api/v1/market/hieu-suat-thay-doi-thanh-khoan-nganh', {
+    fetchDataChartLiquidityGrowth: (exchange, type, order) => {
+        return https.get('api/v1/market/hieu-suat-thay-doi-thanh-khoan-nganh', {
             params: {
                 exchange,
-                industry,
                 type,
                 order
             }
         })
     },
-    fetchDataChartChangesPrice: (exchange, industry, type, order) => {
+    fetchDataChartChangesPrice: (exchange, type, order) => {
         return https.get('api/v1/market/hieu-suat-thay-doi-von-hoa-nganh', {
             params: {
                 exchange,
-                industry,
                 type,
                 order
             }
         })
     },
-    fetchDataChartEquityGrowth: (exchange, industry, type, order) => {
+    fetchDataChartEquityGrowth: (exchange, type, order) => {
         return https.get('api/v1/market/hieu-suat-tang-truong-von-chu-so-huu-nganh', {
             params: {
                 exchange,
-                industry,
                 type,
                 order
             }
         })
     },
-    fetchDataChartLiabilitiesGrowth: (exchange, industry, type, order) => {
+    fetchDataChartLiabilitiesGrowth: (exchange, type, order) => {
         return https.get('api/v1/market/hieu-suat-tang-truong-no-phai-tra-nganh', {
             params: {
                 exchange,
-                industry,
                 type,
                 order
             }
@@ -198,6 +194,112 @@ export const marketServices = {
             params: {
                 exchange,
                 industry
+            }
+        })
+    },
+    fetchDataChartNetRevenueGrowth: (exchange, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-doanh-thu-thuan-nganh', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartGrossProfitGrowth: (exchange, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-loi-nhuan-gop-nganh', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartEBITDAGrowth: (exchange, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-ebitda', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartEPSGrowth: (exchange, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-eps', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartOperatingProfitGrowth: (exchange, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-loi-nhuan-kinh-doanh-nganh', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartCashDividendGrowth: (exchange, type, order) => {
+        return https.get('api/v1/market/hieu-suat-tang-truong-co-tuc-tien-mat', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataHotIndustry: () => {
+        return https.get('api/v1/market/top-nganh-hot')
+    },
+    fetchDataChartAveragePEPB: (exchange, type, order) => {
+        return https.get('api/v1/finance-health/p-e-p-b-binh-quan-nganh', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataTableAveragePE: (exchange, industry) => {
+        return https.get('api/v1/finance-health/p-e-binh-quan-co-phieu', {
+            params: {
+                exchange,
+                industry
+            }
+        })
+    },
+    fetchDataTableAveragePB: (exchange, industry) => {
+        return https.get('api/v1/finance-health/p-b-binh-quan-co-phieu', {
+            params: {
+                exchange,
+                industry
+            }
+        })
+    },
+    fetchDataChartPayoutRatio: (exchange, order) => {
+        return https.get('api/v1/finance-health/ty-so-thanh-toan', {
+            params: {
+                exchange,
+                order
+            }
+        })
+    },
+    fetchDataChartCashPayoutRatio: (exchange, order) => {
+        return https.get('api/v1/finance-health/ty-so-thanh-toan-tien-mat', {
+            params: {
+                exchange,
+                order
+            }
+        })
+    },
+    fetchDataChartAssetTurnoverRatio: (exchange, order) => {
+        return https.get('api/v1/finance-health/ty-so-vong-xoay', {
+            params: {
+                exchange,
+                order
             }
         })
     },

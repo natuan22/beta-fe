@@ -1,45 +1,49 @@
 import React, { useEffect, useState } from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataChartLiquidityGrowth } from '../../../thunk';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 import Loading from '../../../../Chart/utils/Loading';
+import { hashTb } from '../../FinancialHealth/Chart/utils/hashTb';
 
 const ChartLiquidityGrowth = (props) => {
-    const dispatch = useDispatch()
-    const { exchange, industryQuery, order, timeFrame } = props
     const { dataChartLiquidityGrowth } = useSelector(state => state.market)
+    const { industryQuery } = props
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
+
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
+    const checkIndustry = industryQuery.split(',')
+    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
+
     useEffect(() => {
-        dispatch(fetchDataChartLiquidityGrowth(exchange, industryQuery, timeFrame, order))
         setColorText(color);
-    }, [props, color])
+    }, [color])
 
     useEffect(() => {
         if (dataChartLiquidityGrowth?.length > 0) {
-            const mappedData = [];
+            const result = [];
             const uniqueDates = [...new Set(dataChartLiquidityGrowth?.map(item => moment(item.date).format('DD/MM/YYYY')))];
             setTimeLine(uniqueDates)
-            dataChartLiquidityGrowth.forEach(item => {
-                const existingItem = mappedData.find(mappedItem => mappedItem.name === item.industry);
-                if (existingItem) {
-                    existingItem.data.push(+(item.perChange).toFixed(2));
-                } else {
-                    mappedData.push({
-                        name: item.industry,
-                        color: item.color,
-                        data: [item.perChange]
-                    });
+            dataChartLiquidityGrowth?.forEach(item => {
+                if (mappedKeys.includes(item.industry)) {
+                    const foundItem = result.find(x => x.name === item.industry);
+                    if (foundItem) {
+                        foundItem.data.push(+item.perChange.toFixed(2));
+                    } else {
+                        result.push({
+                            name: item.industry,
+                            color: item.color,
+                            data: [+item.perChange.toFixed(2)]
+                        });
+                    }
                 }
             });
-            setData(mappedData)
+            setData(result)
         }
-    }, [dataChartLiquidityGrowth])
+    }, [dataChartLiquidityGrowth, industryQuery])
 
     const options = {
         accessibility: {
@@ -47,6 +51,7 @@ const ChartLiquidityGrowth = (props) => {
         },
         credits: false,
         chart: {
+
             type: "spline",
             backgroundColor: "transparent",
         },
@@ -94,6 +99,7 @@ const ChartLiquidityGrowth = (props) => {
         },
         series: data
     }
+
     return (
         <div>
             {dataChartLiquidityGrowth.length ? (
