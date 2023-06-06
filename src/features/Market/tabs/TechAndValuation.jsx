@@ -24,7 +24,7 @@ const TechAndValuation = () => {
             to="suc-khoe-tai-chinh"
             className={(params) => {
               const classes =
-                " w-2/6 text-white rounded-full no-underline text-center leading-8 text-lg";
+                " w-2/6 text-white rounded-full no-underline text-center leading-8 xxs:text-[11px] xs:text-[14px] sm:text-[15px] md:text-lg";
               if (params.isActive) {
                 return clsx("bg-[#35ADF2]", classes);
               }
