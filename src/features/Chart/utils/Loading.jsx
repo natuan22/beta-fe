@@ -1,5 +1,4 @@
 import React from "react";
-
 const Loading = () => {
   return (
     <div role="status" className="text-center ">
@@ -19,7 +18,7 @@ const Loading = () => {
           fill="currentFill"
         />
       </svg>
-      <span className="dark:text-white text-black font-semibold">Loading...</span>
+      <span className="dark:text-white text-black font-semibold  ">Loading...</span>
     </div>
   );
 };

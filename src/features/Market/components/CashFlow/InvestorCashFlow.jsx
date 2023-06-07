@@ -181,7 +181,6 @@ const InvestorCashFlow = () => {
     const handleClick3 = (button) => { setActiveButton3(button) }
     // callback a huy đẹp trai dùng để render
 
-    const [isLegendTicked, setIsLegendTicked] = useState(false)
     const callBackHighchart = (chart) => {
         setTimeout(() => {
             const btnLegendAll = document.querySelector('.btnLegendAll');
