@@ -303,4 +303,12 @@ export const marketServices = {
             }
         })
     },
+    fetchDataTableAverageDebtRatio: (exchange, order) => {
+        return https.get('api/v1/finance-health/cac-chi-so-kha-nang-tra-no-nganh', {
+            params: {
+                exchange,
+                order
+            }
+        })
+    },
 }

@@ -456,3 +456,15 @@ export const fetchDataChartAssetTurnoverRatio = (exchange, order) => async (disp
         console.log(err)
     }
 }
+
+export const fetchDataTableAverageDebtRatio = (exchange, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableAverageDebtRatio(exchange, order)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_AVERAGE_DEBT_RATIO,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
