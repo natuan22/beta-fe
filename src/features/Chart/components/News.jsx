@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Card } from "antd";
 import Marquee from "react-fast-marquee";
-import Moment from "react-moment";
+import moment from "moment";
 
 const News = () => {
   const dataNews = useSelector((state) => state.chart.dataNews);
@@ -75,9 +75,7 @@ const News = () => {
                         </p>
                       </a>
                       <span className="text-[0.65rem] dark:text-white text-black items-center justify-center">
-                        <Moment format="DD/MM/YYYY - HH:mm ">
-                          {item.Date}
-                        </Moment>
+                        {moment(item.Date).format("DD/MM/YYYY - HH:mm")}
                       </span>
                     </div>
                   </div>

@@ -25,7 +25,10 @@ const ChartEPSGrowth = (props) => {
     useEffect(() => {
         if (dataChartEPSGrowth?.length > 0) {
             const transformedData = dataChartEPSGrowth?.map(item => {
-                return { ...item, date: moment(item.date).format('DD/MM/YYYY') };
+                const year = item.date.slice(0, 4);
+                const quarter = item.date.slice(4);
+                const transformedDate = `Q${quarter} ${year}`;
+                return { ...item, date: transformedDate };
             });
 
             const uniqueIndustry = [...new Set(transformedData.filter(item => mappedKeys.includes(item.industry)).map(item => item.industry))];
@@ -124,7 +127,6 @@ const ChartEPSGrowth = (props) => {
 
         series: data,
     };
-    console.log(data)
 
     return (
         <div>
@@ -136,7 +138,7 @@ const ChartEPSGrowth = (props) => {
                 </div>
             ) : (
                 <div id="chart-container">
-                    <div className="mt-14 mb-24"><Loading /></div>
+                    <div className="mt-14 mb-[379px]"><Loading /></div>
                 </div>
             )}
         </div>

@@ -39,6 +39,7 @@ const initialState = {
   dataTableAveragePB: {},
   dataChartPayoutRatio: {},
   dataChartAssetTurnoverRatio: {},
+  dataTableAverageDebtRatio: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -159,6 +160,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_CHART_ASSET_TURNOVER_RATIO) {
       draft.dataChartAssetTurnoverRatio = payload
+    }
+    if (type === marketType.FETCH_DATA_TABLE_AVERAGE_DEBT_RATIO) {
+      draft.dataTableAverageDebtRatio = payload
     }
   });
 };

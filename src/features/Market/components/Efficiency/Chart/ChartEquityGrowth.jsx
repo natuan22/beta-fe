@@ -113,7 +113,7 @@ const ChartEquityGrowth = (props) => {
                 </div>
             ) : (
                 <div id="chart-container">
-                    <div className="mt-14 mb-24"><Loading /></div>
+                    <div className="mt-14 mb-[379px]"><Loading /></div>
                 </div>
             )}
         </div>
