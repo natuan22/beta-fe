@@ -27,7 +27,7 @@ const InvestorCashFlow = () => {
     const [dataToMap, setDataToMap] = useState()
     const [dataAbs, setDataAbs] = useState()
     const [timeLine, setTimeLine] = useState()
-    const [isAllMarket, setIsAllMarket] = useState(false)
+    const [isAllMarket, setIsAllMarket] = useState(true)
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all');
     const [activeButton2, setActiveButton2] = useState(1)
@@ -180,9 +180,8 @@ const InvestorCashFlow = () => {
     const handleClick2 = (button) => { setActiveButton2(button) }
     const handleClick3 = (button) => { setActiveButton3(button) }
     // callback a huy đẹp trai dùng để render
-
-    const [isLegendTicked, setIsLegendTicked] = useState(false)
     const callBackHighchart = (chart) => {
+        console.log(chart)
         setTimeout(() => {
             const btnLegendAll = document.querySelector('.btnLegendAll');
             const btnLegends = document.querySelectorAll('.btnLegend');
