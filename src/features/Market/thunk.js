@@ -468,3 +468,15 @@ export const fetchDataTableAverageDebtRatio = (exchange, order) => async (dispat
         console.log(err)
     }
 }
+
+export const fetchDataChartMiningProfitMargin = (exchange, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartMiningProfitMargin(exchange, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_MINING_PROFIT_MARGIN,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
