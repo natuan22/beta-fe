@@ -7,8 +7,7 @@ import Loading from '../../../Chart/utils/Loading';
 import moment from 'moment';
 import './utils/btnLegendToggle.css'
 import { hashTb } from './utils/constant';
-import LegendBtn from './utils/component/LegendBtn';
-import LegendBtnArea from './utils/component/LegendBtnArea';
+import LegendBtn from './utils/LegendBtn';
 const buttonStyle = {
     backgroundColor: 'transparent',
     color: '#fff',
@@ -22,9 +21,8 @@ const activeButtonStyle = {
     color: '#fff',
 }
 
-const InvestorCashFlow = () => {
-    const [configChart, setConfigChart] = useState(null)
-    const [configChartArea, setConfigChartArea] = useState(null)
+const Test = () => {
+
     const { dataCashFlowInvestor, dataTotalMarket } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [dataToMap, setDataToMap] = useState()
@@ -54,14 +52,18 @@ const InvestorCashFlow = () => {
     useEffect(() => {
         setInterval(() => {
             setLoadingLegend(true)
-        }, 4000)
+        }, 3500)
     }, [])
     const sortedDataArray = data?.sort((a, b) => {
         const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
         const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
         return aIndex - bIndex;
     });
-
+    const sortedDataArrayArea = dataAbs?.sort((a, b) => {
+        const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
+        const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
+        return aIndex - bIndex;
+    });
     // console.log(sortedDataArray)
     useEffect(() => {
         if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
@@ -179,12 +181,31 @@ const InvestorCashFlow = () => {
     const handleClick2 = (button) => { setActiveButton2(button) }
     const handleClick3 = (button) => { setActiveButton3(button) }
     // callback a huy đẹp trai dùng để render
-    const chartAreaRef = useRef(null)
+    const chartRef = useRef(null);
     const callBackHighchart = (chart) => {
-        setConfigChart(chart)
+        chartRef.current = chart;
     };
     const callBackHighchartArea = (chart) => {
-        setConfigChartArea(chart)
+        setTimeout(() => {
+            const btnLegendAll = document.querySelector('.btnLegendAllArea');
+            const btnLegends = document.querySelectorAll('.btnLegendArea');
+            btnLegendAll.addEventListener('click', () => {
+                chart.series.forEach((item) => {
+                    item.setVisible(!item.visible);
+                });
+                btnLegends.forEach((btnLegend) => {
+                    btnLegend.classList.toggle('muted');
+                    btnLegendAll.classList.toggle('muted')
+                });
+            });
+            chart.series.map((item, index) => {
+                const btnLegend = btnLegends[index];
+                btnLegend.addEventListener('click', () => {
+                    item.setVisible(!item.visible);
+                    btnLegend.classList.toggle('muted');
+                });
+            })
+        }, 3500)
     }
 
 
@@ -460,7 +481,7 @@ const InvestorCashFlow = () => {
                                 <HighchartsReact highcharts={Highcharts} options={options} callback={callBackHighchart} containerProps={{ style: { height: '100%', width: '100%' } }} />
                             </div>
                             <div className='legendArea ml-[65px]'>
-                                <LegendBtn chart={configChart} sortedDataArray={sortedDataArray} />
+                                <LegendBtn chart={chartRef.current} sortedDataArray={sortedDataArray} />
                             </div>
                         </div>
                         <div>
@@ -468,7 +489,18 @@ const InvestorCashFlow = () => {
                                 <HighchartsReact highcharts={Highcharts} options={optionAreaChart} callback={callBackHighchartArea} containerProps={{ style: { height: '100%', width: '100%' } }} />
                             </div>
                             <div className='legendArea ml-[65px]'>
-                                <LegendBtnArea chart={configChartArea} sortedDataArray={sortedDataArray} />
+                                {!loadingLegend ? (
+                                    <div className='my-2'><Loading /></div>
+                                ) : (
+                                    <div>
+                                        {sortedDataArray.map((item) => (
+                                            <button className='btnLegendArea m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]' key={item.name} style={{ backgroundColor: item.color }}>
+                                                {item.name}
+                                            </button>
+                                        ))}
+                                        <button className='btnLegendAllArea m-1 py-1.5 px-3 rounded-lg border-none cursor-pointer xxs:text-[6px] xs:text-[9px] sm:text-[11px] md:text-[13.5px] lg:text-[11px] xl:text-[13.5px] 2xl:text-[13.5px]'>Chọn tất cả</button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </>
@@ -480,4 +512,4 @@ const InvestorCashFlow = () => {
     )
 }
 
-export default InvestorCashFlow
+export default Test
