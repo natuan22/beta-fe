@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Banner from "./components/Banner";
 import BarChartLeft from "./components/BarChartLeft";
@@ -50,11 +50,12 @@ import LayOut from "../../HOCs/Layout";
 import CashFlowAllocation from "./components/CashFlowAllocation";
 import TreeMapSell from "./components/TreeMapSell";
 import TreeMapBuy from "./components/TreeMapBuy";
+import LazyLoad from "react-lazyload";
 
 
 const Home = () => {
   const dispatch = useDispatch();
-
+  const [shouldLoadApi, setShouldLoadApi] = useState(false);
   useEffect(() => {
     dispatch(fetchDataEvents);
     dispatch(fetchDataNews);
@@ -73,8 +74,7 @@ const Home = () => {
     dispatch(fetchDataBarChartRight('hose'));
     dispatch(fetchDataBarChartLeft("hsx"));
     dispatch(fetchDataGeneralIndustry('all'));
-    dispatch(fetchDataTreeMapSell("hose"));
-    dispatch(fetchDataTreeMapBuy("hose"));
+
   }, [dispatch]);
 
   useEffect(() => {
@@ -85,8 +85,26 @@ const Home = () => {
     dispatch(fetchDataCashFlowAllocation)
   }, [dispatch]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+      const componentOffset = document.getElementById('treemap').offsetTop;
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > componentOffset - windowHeight / 2) {
+        setShouldLoadApi(true)
+      }
+    };
 
-
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  useEffect(() => {
+    if (shouldLoadApi)
+      dispatch(fetchDataTreeMapSell("hose"));
+    dispatch(fetchDataTreeMapBuy("hose"));
+  }, [shouldLoadApi, dispatch])
   return (
     <LayOut>
       <div className="px-1.5 sticky top-0 z-20">
@@ -162,12 +180,15 @@ const Home = () => {
                 <div className="xl:w-[60%] xxs:hidden xs:hidden md:hidden xl:block">
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[725px]">
                     <div id="treemap" className="grid grid-cols-2 gap-0.5">
-                      <div >
-                        <TreeMapBuy />
+                      <div>
+                        <LazyLoad height={200} offset={100}>
+                          <TreeMapBuy />
+                        </LazyLoad>
                       </div>
-
                       <div  >
-                        <TreeMapSell />
+                        <LazyLoad height={200} offset={100}>
+                          <TreeMapSell />
+                        </LazyLoad>
                       </div>
                     </div>
                   </div>
