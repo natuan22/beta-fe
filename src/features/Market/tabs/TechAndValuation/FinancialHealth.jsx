@@ -23,6 +23,7 @@ import {
   fetchDataChartAssetTurnoverRatio,
   fetchDataChartAveragePEPB,
   fetchDataChartCashPayoutRatio,
+  fetchDataChartMiningProfitMargin,
   fetchDataChartPayoutRatio,
   fetchDataTableAverageDebtRatio,
   fetchDataTableAveragePB,
@@ -53,6 +54,7 @@ const FinancialHealth = () => {
     dispatch(fetchDataChartCashPayoutRatio(exchange, order))
     dispatch(fetchDataChartAssetTurnoverRatio(exchange, order))
     dispatch(fetchDataTableAverageDebtRatio(exchange, order))
+    dispatch(fetchDataChartMiningProfitMargin(exchange, type, order))
   }, [exchange, type, order])
 
   useEffect(() => {
@@ -179,7 +181,7 @@ const FinancialHealth = () => {
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận gộp biên các ngành  (%)</span>
               </div>
-              <div className='h-[300px]'>
+              <div>
                 <ChartMiningProfitMargin industryQuery={industryQuery} />
               </div>
               <hr />
