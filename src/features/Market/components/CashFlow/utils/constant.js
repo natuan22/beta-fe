@@ -18,4 +18,5 @@ export const hashTb = {
     '17': 'Xây dựng & Vật liệu',
     '18': 'Tài nguyên',
     '19': 'Y tế',
+    '20': 'Quỹ mở & quỹ đóng'
 }

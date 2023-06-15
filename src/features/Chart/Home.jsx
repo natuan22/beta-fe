@@ -40,7 +40,6 @@ import {
   fetchDataWidthMarket,
   fetchDataTableMarketVolatility,
   fetchDataTableMarketLiquidity,
-  fetchDataNetVolume,
   fetchDataNews,
   fetchDataMarketEvaluation,
   fetchDataLineChartHomePage,
@@ -51,8 +50,6 @@ import LayOut from "../../HOCs/Layout";
 import CashFlowAllocation from "./components/CashFlowAllocation";
 import TreeMapSell from "./components/TreeMapSell";
 import TreeMapBuy from "./components/TreeMapBuy";
-import Test from "./components/Test";
-import TestChart from "./components/TestChart";
 
 
 const Home = () => {
@@ -87,6 +84,8 @@ const Home = () => {
     dispatch(fetchDataLineChartHomePage('vnindex'))
     dispatch(fetchDataCashFlowAllocation)
   }, [dispatch]);
+
+
 
   return (
     <LayOut>
@@ -162,12 +161,12 @@ const Home = () => {
               <div className="lg:block xl:flex">
                 <div className="xl:w-[60%] xxs:hidden xs:hidden md:hidden xl:block">
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[725px]">
-                    <div className="grid grid-cols-2 gap-0.5">
-                      <div>
+                    <div id="treemap" className="grid grid-cols-2 gap-0.5">
+                      <div >
                         <TreeMapBuy />
                       </div>
 
-                      <div>
+                      <div  >
                         <TreeMapSell />
                       </div>
                     </div>
