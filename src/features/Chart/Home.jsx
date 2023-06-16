@@ -88,11 +88,16 @@ const Home = () => {
   useEffect(() => {
     const handleScroll = () => {
       const windowHeight = window.innerHeight;
-      const componentOffset = document.getElementById('treemap').offsetTop;
+      const components = document.querySelectorAll('.treemap');
       const scrollPosition = window.scrollY;
-      if (scrollPosition > componentOffset - windowHeight / 2) {
-        setShouldLoadApi(true)
-      }
+
+      components.forEach((component) => {
+        const componentOffset = component.offsetTop;
+
+        if (scrollPosition > componentOffset - windowHeight / 2) {
+          setShouldLoadApi(true);
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -100,11 +105,14 @@ const Home = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   useEffect(() => {
-    if (shouldLoadApi)
+    if (shouldLoadApi) {
       dispatch(fetchDataTreeMapSell("hose"));
-    dispatch(fetchDataTreeMapBuy("hose"));
+      dispatch(fetchDataTreeMapBuy("hose"));
+    }
   }, [shouldLoadApi, dispatch])
+
   return (
     <LayOut>
       <div className="px-1.5 sticky top-0 z-20">
@@ -179,14 +187,14 @@ const Home = () => {
               <div className="lg:block xl:flex">
                 <div className="xl:w-[60%] xxs:hidden xs:hidden md:hidden xl:block">
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[725px]">
-                    <div id="treemap" className="grid grid-cols-2 gap-0.5">
+                    <div className="grid grid-cols-2 gap-0.5 treemap">
                       <div>
-                        <LazyLoad height={200} offset={100}>
+                        <LazyLoad >
                           <TreeMapBuy />
                         </LazyLoad>
                       </div>
                       <div  >
-                        <LazyLoad height={200} offset={100}>
+                        <LazyLoad >
                           <TreeMapSell />
                         </LazyLoad>
                       </div>
@@ -231,13 +239,16 @@ const Home = () => {
                 </div>
                 <div className="xl:w-[60%] xl:hidden">
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md xxs:h-[765px] xs:h-[745px] sm:h-[750px] md:h-[725px] lg:h-[725px]">
-                    <div className="grid grid-cols-2 gap-0.5">
+                    <div className="grid grid-cols-2 gap-0.5 treemap">
                       <div>
-                        <TreeMapBuy />
+                        <LazyLoad >
+                          <TreeMapBuy />
+                        </LazyLoad>
                       </div>
-
-                      <div>
-                        <TreeMapSell />
+                      <div  >
+                        <LazyLoad >
+                          <TreeMapSell />
+                        </LazyLoad>
                       </div>
                     </div>
                   </div>
