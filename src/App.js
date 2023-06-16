@@ -3,9 +3,9 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { marketRoute, routes } from "./app/routes";
+import { macroRoutes, marketRoute, routes } from "./app/routes";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { autoLoginWithToken } from "./features/Auth/thunk";
 import { generateMAC } from "./utils/generateMac";
@@ -27,7 +27,7 @@ function App() {
     localStorage.setItem('nameMarketMap', 'Vốn hóa')
     const token = localStorage.getItem('betaToken')
     dispatch(autoLoginWithToken(token))
-    
+
   }, [dispatch])
   const mapMarketRoute = marketRoute.map(({ path, component: Component, children }) => {
     return (
@@ -50,7 +50,13 @@ function App() {
       </Route>
     );
   });
-
+  const mapMacroRoute = macroRoutes.map(({ path, component: Component, children }) => {
+    return <Route path={path} element={<Component />} key={path}>
+      {children?.map(Item => {
+        return <Route path={Item.path} key={Item.path} element={<Item.component />} />
+      })}
+    </Route>
+  })
   return (
     <BrowserRouter>
       <Routes>
@@ -58,6 +64,7 @@ function App() {
           return <Route key={path} path={path} element={<Component />}></Route>;
         })}
         {mapMarketRoute}
+        {mapMacroRoute}
       </Routes>
     </BrowserRouter>
   );
