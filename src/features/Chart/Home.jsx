@@ -88,11 +88,16 @@ const Home = () => {
   useEffect(() => {
     const handleScroll = () => {
       const windowHeight = window.innerHeight;
-      const componentOffset = document.getElementById('treemap').offsetTop;
+      const components = document.querySelectorAll('.treemap');
       const scrollPosition = window.scrollY;
-      if (scrollPosition > componentOffset - windowHeight / 2) {
-        setShouldLoadApi(true)
-      }
+
+      components.forEach((component) => {
+        const componentOffset = component.offsetTop;
+
+        if (scrollPosition > componentOffset - windowHeight / 2) {
+          setShouldLoadApi(true);
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -100,10 +105,12 @@ const Home = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   useEffect(() => {
-    if (shouldLoadApi)
+    if (shouldLoadApi) {
+      dispatch(fetchDataTreeMapBuy("hose"));
       dispatch(fetchDataTreeMapSell("hose"));
-    dispatch(fetchDataTreeMapBuy("hose"));
+    }
   }, [shouldLoadApi, dispatch])
   return (
     <LayOut>
@@ -179,7 +186,7 @@ const Home = () => {
               <div className="lg:block xl:flex">
                 <div className="xl:w-[60%] xxs:hidden xs:hidden md:hidden xl:block">
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[725px]">
-                    <div id="treemap" className="grid grid-cols-2 gap-0.5">
+                    <div className="treemap grid grid-cols-2 gap-0.5">
                       <div>
                         <LazyLoad height={200} offset={100}>
                           <TreeMapBuy />
