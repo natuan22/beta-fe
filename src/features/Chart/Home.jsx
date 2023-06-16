@@ -112,6 +112,7 @@ const Home = () => {
       dispatch(fetchDataTreeMapSell("hose"));
     }
   }, [shouldLoadApi, dispatch])
+
   return (
     <LayOut>
       <div className="px-1.5 sticky top-0 z-20">
@@ -188,12 +189,12 @@ const Home = () => {
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[725px]">
                     <div className="treemap grid grid-cols-2 gap-0.5">
                       <div>
-                        <LazyLoad height={200} offset={100}>
+                        <LazyLoad >
                           <TreeMapBuy />
                         </LazyLoad>
                       </div>
                       <div  >
-                        <LazyLoad height={200} offset={100}>
+                        <LazyLoad >
                           <TreeMapSell />
                         </LazyLoad>
                       </div>
@@ -238,13 +239,16 @@ const Home = () => {
                 </div>
                 <div className="xl:w-[60%] xl:hidden">
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md xxs:h-[765px] xs:h-[745px] sm:h-[750px] md:h-[725px] lg:h-[725px]">
-                    <div className="grid grid-cols-2 gap-0.5">
+                    <div className="grid grid-cols-2 gap-0.5 treemap">
                       <div>
-                        <TreeMapBuy />
+                        <LazyLoad >
+                          <TreeMapBuy />
+                        </LazyLoad>
                       </div>
-
-                      <div>
-                        <TreeMapSell />
+                      <div  >
+                        <LazyLoad >
+                          <TreeMapSell />
+                        </LazyLoad>
                       </div>
                     </div>
                   </div>
