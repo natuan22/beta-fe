@@ -18,7 +18,7 @@ const Macro = () => {
 
     const [bannerDisplay, setBannerDisplay] = useState(false)
     useEffect(() => {
-        if (location.pathname === "/vi-mo" || location.pathname === '/vi-mo/vi-mo-quoc-te' || location.pathname === '/vi-mo/vi-mo-trong-nuoc') {
+        if (location.pathname === "/vi-mo" || location.pathname === '/vi-mo/vi-mo-quoc-te') {
             setBannerDisplay(true);
         } else {
             setBannerDisplay(false);
