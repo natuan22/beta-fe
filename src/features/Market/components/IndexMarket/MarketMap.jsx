@@ -29,11 +29,12 @@ const activeButtonStyle = {
 
 const MarketMap = () => {
     const { dataMarketMap } = useSelector(state => state.market)
-    // console.log(dataMarketMap)
+    console.log({ dataMarketMap })
     const [queryApi, setQueryApi] = useState({
         exchange: 'all',
         order: '0'
     })
+
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all')
     const [activeButton2, setActiveButton2] = useState(ENUM.vonhoa)
@@ -50,18 +51,32 @@ const MarketMap = () => {
         if (dataMarketMap?.length > 0) {
             setData(dataMarketMap)
             const resultMap = {};
-            data?.forEach(item => {
-                const { LV2, ticker, value, color } = item;
-                if (!resultMap.hasOwnProperty(LV2)) {
-                    resultMap[LV2] = { color: color, data: {} };
+            dataMarketMap.forEach((item) => {
+                const { LV2, color, ticker, value } = item;
+                let modifiedValue = value;
+
+                // Kiểm tra giá trị của queryApi
+                if (queryApi.order != 2) {
+                    modifiedValue /= 1000000000;
                 } else {
-                    if (queryApi.order !== '2') {
-                        resultMap[LV2].data[ticker] = (value / 1000000000).toFixed(2);
-                    } else {
-                        resultMap[LV2].data[ticker] = (value / 1000000).toFixed(2);
-                    }
+                    modifiedValue = value / 1000000
+                }
+                // Nếu chưa tồn tại thuộc tính LV2 trong đối tượng kết quả, tạo mới
+                if (!resultMap.hasOwnProperty(LV2)) {
+                    resultMap[LV2] = {
+                        color: color,
+                        data: {}
+                    };
+                }
+                // Nếu ticker đã tồn tại trong mảng data của thuộc tính LV2, cộng giá trị
+                if (resultMap[LV2].data.hasOwnProperty(ticker)) {
+                    resultMap[LV2].data[ticker] += modifiedValue;
+                } else {
+                    // Nếu ticker chưa tồn tại, gán giá trị mới
+                    resultMap[LV2].data[ticker] = modifiedValue;
                 }
             });
+            console.log({ resultMap })
             setDataTreeMap(resultMap)
         }
     }, [data, queryApi, dataMarketMap,])
@@ -118,7 +133,6 @@ const MarketMap = () => {
         points.push(...stockPoints);
         sectorIndex++;
     }
-
     const options = {
 
         accessibility: {

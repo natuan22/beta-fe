@@ -61,7 +61,11 @@ const InvestorCashFlow = () => {
         const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
         return aIndex - bIndex;
     });
-
+    const sortedDataAbsArray = dataAbs?.sort((a, b) => {
+        const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
+        const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
+        return aIndex - bIndex;
+    });
     // console.log(sortedDataArray)
     useEffect(() => {
         if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
@@ -468,7 +472,7 @@ const InvestorCashFlow = () => {
                                 <HighchartsReact highcharts={Highcharts} options={optionAreaChart} callback={callBackHighchartArea} containerProps={{ style: { height: '100%', width: '100%' } }} />
                             </div>
                             <div className='legendArea ml-[65px]'>
-                                <LegendBtnArea chart={configChartArea} sortedDataArray={sortedDataArray} />
+                                <LegendBtnArea chart={configChartArea} sortedDataArray={sortedDataAbsArray} />
                             </div>
                         </div>
                     </>
