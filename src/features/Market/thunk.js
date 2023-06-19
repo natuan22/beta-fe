@@ -385,18 +385,28 @@ export const fetchDataHotIndustry = async dispatch => {
     }
 }
 
-export const fetchDataChartAveragePEPB = (exchange, type, order) => async (dispatch) => {
+export const fetchDataChartAveragePE = (exchange, type, order) => async (dispatch) => {
     try {
-        const res = await marketServices.fetchDataChartAveragePEPB(exchange, type, order)
+        const res = await marketServices.fetchDataChartAveragePE(exchange, type, order)
         dispatch({
-            type: marketType.FETCH_DATA_CHART_AVERAGE_PE_PB,
+            type: marketType.FETCH_DATA_CHART_AVERAGE_PE,
             payload: res.data.data
         })
     } catch (err) {
         console.log(err)
     }
 }
-
+export const fetchDataChartAveragePB = (exchange, type, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataChartAveragePB(exchange, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_AVERAGE_PB,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
 export const fetchDataTableAveragePE = (exchange, industry) => async (dispatch) => {
     try {
         const res = await marketServices.fetchDataTableAveragePE(exchange, industry)

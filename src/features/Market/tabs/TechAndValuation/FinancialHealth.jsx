@@ -21,7 +21,8 @@ import TableMiningProfitMargin from '../../components/FinancialHealth/Table/Tabl
 import Checkbox from '../../HOCs/Checkbox';
 import {
   fetchDataChartAssetTurnoverRatio,
-  fetchDataChartAveragePEPB,
+  fetchDataChartAveragePB,
+  fetchDataChartAveragePE,
   fetchDataChartCashPayoutRatio,
   fetchDataChartMiningProfitMargin,
   fetchDataChartPayoutRatio,
@@ -49,7 +50,8 @@ const FinancialHealth = () => {
   }, [dataQuery])
 
   useEffect(() => {
-    dispatch(fetchDataChartAveragePEPB(exchange, type, order))
+    dispatch(fetchDataChartAveragePE(exchange, type, order))
+    dispatch(fetchDataChartAveragePB(exchange, type, order))
     dispatch(fetchDataChartPayoutRatio(exchange, order))
     dispatch(fetchDataChartCashPayoutRatio(exchange, order))
     dispatch(fetchDataChartAssetTurnoverRatio(exchange, order))
