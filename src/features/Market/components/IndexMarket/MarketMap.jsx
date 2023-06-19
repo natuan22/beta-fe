@@ -56,7 +56,7 @@ const MarketMap = () => {
                 let modifiedValue = value;
 
                 // Kiểm tra giá trị của queryApi
-                if (queryApi.order != 2) {
+                if (queryApi.order !== 2) {
                     modifiedValue /= 1000000000;
                 } else {
                     modifiedValue = value / 1000000

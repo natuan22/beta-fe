@@ -34,7 +34,8 @@ const initialState = {
   dataChartCashDividendGrowth: {},
   dataHotIndustry: {},
   dataQuery: {},
-  dataChartAveragePEPB: {},
+  dataChartAveragePE: {},
+  dataChartAveragePB: {},
   dataTableAveragePE: {},
   dataTableAveragePB: {},
   dataChartPayoutRatio: {},
@@ -144,8 +145,11 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === 'QUERY') {
       draft.dataQuery = payload
     }
-    if (type === marketType.FETCH_DATA_CHART_AVERAGE_PE_PB) {
-      draft.dataChartAveragePEPB = payload
+    if (type === marketType.FETCH_DATA_CHART_AVERAGE_PE) {
+      draft.dataChartAveragePE = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_AVERAGE_PB) {
+      draft.dataChartAveragePB = payload
     }
     if (type === marketType.FETCH_DATA_TABLE_AVERAGE_PE) {
       draft.dataTableAveragePE = payload
