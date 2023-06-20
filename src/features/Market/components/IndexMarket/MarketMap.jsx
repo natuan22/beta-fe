@@ -29,7 +29,6 @@ const activeButtonStyle = {
 
 const MarketMap = () => {
     const { dataMarketMap } = useSelector(state => state.market)
-    console.log({ dataMarketMap })
     const [queryApi, setQueryApi] = useState({
         exchange: 'all',
         order: '0'
@@ -76,7 +75,6 @@ const MarketMap = () => {
                     resultMap[LV2].data[ticker] = modifiedValue;
                 }
             });
-            console.log({ resultMap })
             setDataTreeMap(resultMap)
         }
     }, [data, queryApi, dataMarketMap,])
