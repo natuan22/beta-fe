@@ -8,22 +8,21 @@ import { FaUserCircle } from "react-icons/fa";
 import Switcher from "../services/switcher";
 const { Search } = Input;
 const apiUrl = process.env.REACT_APP_BASE_URL;
+const hashTbHeader = {
+  "Trang chủ": "/",
+  "Thị trường": "thi-truong",
+  "Ngành": "nganh",
+  "Cổ phiếu": "co-phieu",
+  "Vĩ mô": "vi-mo",
+  "Công cụ đầu tư": "cong-cu-dau-tu",
+  "Trung tâm tin tức": "trung-tam-tin-tuc"
+
+};
 
 const Header = () => {
   const isLogin = useSelector((state) => state.authen.userData);
   const [isOpen, setIsOpen] = useState(false);
-  const [bgPosition, setBgPosition] = useState({
-    left: 0,
-    width: 0
-  })
-  function handleNavLinkClick(e) {
-    const rect = e.target.getBoundingClientRect();
-    setBgPosition({
-      left: rect.left + window.pageXOffset,
-      width: rect.width,
-    });
-    console.log(bgPosition)
-  }
+
   return (
     <>
       <div className=" relative">
@@ -87,7 +86,6 @@ const Header = () => {
                     >
                       Trang chủ
                     </NavLink>
-
                     <NavLink
                       to="/thi-truong"
 
@@ -99,7 +97,6 @@ const Header = () => {
                     >
                       Thị trường
                     </NavLink>
-
                     <NavLink
                       to="/nganh"
 
@@ -112,7 +109,6 @@ const Header = () => {
                     >
                       Ngành
                     </NavLink>
-
                     <NavLink
                       to="/co-phieu"
 
@@ -124,7 +120,6 @@ const Header = () => {
                     >
                       Cổ phiếu
                     </NavLink>
-
                     <NavLink
                       to="/vi-mo"
 
@@ -136,10 +131,8 @@ const Header = () => {
                     >
                       Vĩ mô
                     </NavLink>
-
                     <NavLink
                       to="/cong-cu-dau-tu"
-
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
@@ -148,7 +141,6 @@ const Header = () => {
                     >
                       Công cụ đầu tư
                     </NavLink>
-
                     <NavLink
                       to="/trung-tam-tin-tuc"
 

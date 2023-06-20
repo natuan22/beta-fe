@@ -1,14 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import GDPByIndustry from '../../components/GDP/GDPByIndustry'
 import GDPByPrice from '../../components/GDP/GDPByPrice'
 import GDPContributionRatio from '../../components/GDP/GDPContributionRatio';
 import GDPGrowth from '../../components/GDP/GDPGrowth';
 import { fetchDataGDPByIndustry, fetchDataGDPByPrice, fetchDataGDPContributionRatio, fetchDataGDPGrowth } from '../../thunk';
+import Loading from '../../../Chart/utils/Loading';
 
 const GDP = () => {
     const dispatch = useDispatch();
-
+    const [isLoading, setIsLoading] = useState(false)
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true)
+        }, 700)
+    }, [])
     useEffect(() => {
         dispatch(fetchDataGDPByIndustry);
         dispatch(fetchDataGDPByPrice);
@@ -18,7 +24,7 @@ const GDP = () => {
 
     return (
         <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">
-            <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
+            {isLoading ? (<div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
                 <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
                     <div>
                         <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
@@ -53,7 +59,8 @@ const GDP = () => {
                         <GDPGrowth />
                     </div>
                 </div>
-            </div>
+            </div>) : <div><Loading /></div>}
+
         </div>
     )
 }
