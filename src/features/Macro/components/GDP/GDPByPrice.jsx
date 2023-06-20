@@ -13,6 +13,12 @@ const GDPByPrice = () => {
     const [nameTb, setNameTb] = useState([])
     const [price1, setprice1] = useState()
     const [price2, setprice2] = useState()
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color])
 
     useEffect(() => {
         if (dataGDPByPrice?.length > 0) {
