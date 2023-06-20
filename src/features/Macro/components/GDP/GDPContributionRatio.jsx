@@ -14,6 +14,12 @@ const GDPContributionRatio = () => {
     const [industry1, setIndustry1] = useState()
     const [industry2, setIndustry2] = useState()
     const [industry3, setIndustry3] = useState()
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color])
 
     useEffect(() => {
         if (dataGDPContributionRatio?.length > 0) {
