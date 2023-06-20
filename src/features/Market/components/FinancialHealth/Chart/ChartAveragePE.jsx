@@ -9,7 +9,6 @@ import { hashTb } from "../../FinancialHealth/Chart/utils/hashTb";
 
 const ChartAveragePE = (props) => {
     const { dataChartAveragePE } = useSelector(state => state.market)
-    console.log({ dataChartAveragePE })
     const { industryQuery } = props
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
