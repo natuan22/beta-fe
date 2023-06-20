@@ -11,6 +11,12 @@ const GDPGrowth = () => {
     const { dataGDPGrowth } = useSelector(state => state.marco)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color])
 
     useEffect(() => {
         if (dataGDPGrowth?.length > 0) {
