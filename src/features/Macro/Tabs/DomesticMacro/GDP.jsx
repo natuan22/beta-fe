@@ -4,8 +4,9 @@ import GDPByIndustry from '../../components/GDP/GDPByIndustry'
 import GDPByPrice from '../../components/GDP/GDPByPrice'
 import GDPContributionRatio from '../../components/GDP/GDPContributionRatio';
 import GDPGrowth from '../../components/GDP/GDPGrowth';
-import { fetchDataGDPByIndustry, fetchDataGDPByPrice, fetchDataGDPContributionRatio, fetchDataGDPGrowth } from '../../thunk';
+import { fetchDataGDPByIndustry, fetchDataGDPByPrice, fetchDataGDPContributionRatio, fetchDataGDPGrowth, fetchDataPerGDPGrowth } from '../../thunk';
 import Loading from '../../../Chart/utils/Loading';
+import PerGDPGrowth from '../../components/GDP/PerGDPGrowth';
 
 const GDP = () => {
     const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const GDP = () => {
         dispatch(fetchDataGDPByPrice);
         dispatch(fetchDataGDPContributionRatio);
         dispatch(fetchDataGDPGrowth(0));
+        dispatch(fetchDataPerGDPGrowth);
     }, [dispatch]);
 
     return (
@@ -55,7 +57,7 @@ const GDP = () => {
                                 <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                                     <span className='dark:text-white text-black font-semibold md:text-base sm:text-[15px] xs:text-[15px] xxs:text-[14px]'>Tăng trưởng GDP theo từng ngành nghề (%)</span>
                                 </div>
-                                <div className='h-[263px]'></div>
+                                <PerGDPGrowth />
                             </div>
                         </div>
                         <div>
