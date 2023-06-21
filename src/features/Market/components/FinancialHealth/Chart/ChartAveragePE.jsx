@@ -1,6 +1,5 @@
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
-import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
