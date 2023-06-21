@@ -48,3 +48,15 @@ export const fetchDataGDPGrowth = (order) => async (dispatch) => {
         console.log(err)
     }
 }
+
+export const fetchDataPerGDPGrowth = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataPerGDPGrowth()
+        dispatch({
+            type: macroType.FETCH_DATA_PER_GDP_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
