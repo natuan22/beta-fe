@@ -5,7 +5,6 @@ import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
 import moment from 'moment';
-import './utils/btnLegendToggle.css'
 import { hashTb } from './utils/constant';
 import LegendBtn from '../../../../utils/Component/BtnLegend';
 const buttonStyle = {
@@ -41,7 +40,6 @@ const InvestorCashFlow = () => {
         investorType: 1,
         exchange: 'all'
     })
-    const [loadingLegend, setLoadingLegend] = useState(false)
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 

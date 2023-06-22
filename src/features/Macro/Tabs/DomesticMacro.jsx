@@ -2,11 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { hashTb } from '../utils/antComponentChild';
 
 function DomesticMacro() {
-    const [activeTab, setActiveTab] = useState(0);
+    const [activeTab, setActiveTab] = useState(localStorage.getItem('userTabCurrent'));
     const tabsRef = useRef([]);
 
     const handleTabClick = (index) => {
         setActiveTab(index);
+        localStorage.setItem('userTabCurrent', index)
+
     };
 
     useEffect(() => {

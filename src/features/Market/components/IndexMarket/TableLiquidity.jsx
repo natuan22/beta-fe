@@ -13,7 +13,14 @@ const TableLiquidity = () => {
     type: 0,
     order: 0,
   });
-
+  const [title, setTitle] = useState('Cổ phiếu')
+  useEffect(() => {
+    if (queryApi.type != 0) {
+      setTitle("Ngành")
+    } else {
+      setTitle('Cổ phiếu')
+    }
+  }, [queryApi.type])
   useEffect(() => {
     dispatch(
       fecthDataTableThanhKhoan(queryApi.exchange, queryApi.type, queryApi.order)
@@ -141,7 +148,7 @@ const TableLiquidity = () => {
                 <thead className="sticky top-0">
                   <tr className="bg-[#1E5D8B]">
                     <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-[0.75rem] font-semibold text-white">
-                      Cổ phiếu
+                      {title}
                     </th>
                     <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       Tỷ lệ đóng góp (%)
