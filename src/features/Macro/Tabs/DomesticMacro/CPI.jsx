@@ -31,7 +31,7 @@ const CPI = () => {
                 <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
                     <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
                         <div>
-                            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 mt-1'>
                                 <span className='dark:text-white text-black font-semibold'>CPI theo các lĩnh vực của nền kinh tế (%)</span>
                             </div>
                             <PerCPIBySectors />
