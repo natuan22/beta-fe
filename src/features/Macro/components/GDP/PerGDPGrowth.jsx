@@ -23,7 +23,10 @@ const PerGDPGrowth = () => {
     useEffect(() => {
         if (dataPerGDPGrowth?.length > 0) {
             const transformedData = dataPerGDPGrowth?.map(item => {
-                return { ...item, date: moment(item.date).format('DD/MM/YYYY') };
+                const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
+                const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
+
+                return { ...item, date: `Quý ${quarter}/${year}` };
             });
 
             const result = [];

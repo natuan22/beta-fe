@@ -1,14 +1,14 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataGDPGrowth } from '../../thunk';
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataChangeCPISectors } from '../../thunk';
 
-const GDPGrowth = () => {
+const ChangeCPISectors = () => {
     const dispatch = useDispatch();
-    const { dataGDPGrowth } = useSelector(state => state.marco)
+    const { dataChangeCPISectors } = useSelector(state => state.marco)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -19,9 +19,13 @@ const GDPGrowth = () => {
     }, [color])
 
     useEffect(() => {
-        if (dataGDPGrowth?.length > 0) {
-            const transformedData = dataGDPGrowth?.map(item => {
-                return { ...item, date: moment(item.date).format('DD/MM/YYYY') };
+        if (dataChangeCPISectors?.length > 0) {
+            const transformedData = dataChangeCPISectors?.map(item => {
+                const modifiedName = item.name.replace('Tăng trưởng CPI :', '').replace('MoM (%)', '');
+                const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
+                const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
+
+                return { ...item, name: modifiedName, date: `Quý ${quarter}/${year}` };
             });
 
             const uniqueIndustry = [...new Set(transformedData.map(item => item.name))];
@@ -45,12 +49,12 @@ const GDPGrowth = () => {
             setCategory(uniqueIndustry)
             setData(mappedData)
         }
-    }, [dataGDPGrowth]);
+    }, [dataChangeCPISectors]);
 
     const options = {
         chart: {
             backgroundColor: "transparent", // màu nền của biểu đồ
-            type: 'bar'
+            type: 'column'
         },
         accessibility: {
             enabled: false
@@ -106,7 +110,7 @@ const GDPGrowth = () => {
 
         ],
         legend: {
-            enabled: false,
+            enabled: true,
             align: 'center',
             itemStyle: {
                 fontSize: '10px',
@@ -116,32 +120,27 @@ const GDPGrowth = () => {
 
         series: data,
     };
-
     return (
-        <div>
+        <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold md:text-base sm:text-xs xs:text-[15px] xxs:text-[13px]'>Tăng trưởng GDP theo từng ngành nghề (Tỷ đồng)</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[220px] lg:ml-[420px] md:ml-[190px] sm:ml-[20px] xs:ml-[130px] xxs:ml-[100px]`}
+                <span className='dark:text-white text-black font-semibold'>Thay đổi CPI các lĩnh vực của nền kinh tế </span>
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
                     onChange={(event) => {
-                        dispatch(fetchDataGDPGrowth(event.target.value));
+                        dispatch(fetchDataChangeCPISectors(event.target.value))
                     }}>
                     <option value='0'>Kỳ gần nhất</option>
                     <option value='1'>Cùng kỳ</option>
                 </select>
             </div>
-            {dataGDPGrowth.length ? (
-                <div id="chart-container">
-                    <div className="h-[883px]">
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                    </div>
+            {dataChangeCPISectors?.length > 0 ? (
+                <div className='h-[298px] mt-2'>
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div id="chart-container">
-                    <div className=""><Loading /></div>
-                </div>
+                <div className="mt-16 mb-52"><Loading /></div>
             )}
-        </div>
+        </>
     )
 }
 
-export default GDPGrowth
+export default ChangeCPISectors

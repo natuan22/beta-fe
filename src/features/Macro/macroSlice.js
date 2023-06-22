@@ -6,6 +6,8 @@ const initialState = {
     dataGDPContributionRatio: {},
     dataGDPGrowth: {},
     dataPerGDPGrowth: {},
+    dataPerCPIBySectors: {},
+    dataChangeCPISectors: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -24,6 +26,12 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === macroType.FETCH_DATA_PER_GDP_GROWTH) {
             draft.dataPerGDPGrowth = payload
+        }
+        if (type === macroType.FETCH_DATA_PER_CPI_BY_SECTORS) {
+            draft.dataPerCPIBySectors = payload
+        }
+        if (type === macroType.FETCH_DATA_CHANGE_CPI_SECTORS) {
+            draft.dataChangeCPISectors = payload
         }
     });
 };

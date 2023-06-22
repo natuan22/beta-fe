@@ -1,8 +1,61 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import Loading from '../../../Chart/utils/Loading';
+import ChangeCPISectors from '../../components/CPI/ChangeCPISectors';
+import PerCPIBySectors from '../../components/CPI/PerCPIBySectors';
+import WeightedCPICommodityBasket from '../../components/CPI/WeightedCPICommodityBasket';
+import { fetchDataChangeCPISectors, fetchDataPerCPIBySectors } from '../../thunk';
 
 const CPI = () => {
+    const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true)
+        }, 700)
+    }, [])
+
+    useEffect(() => {
+        dispatch(fetchDataPerCPIBySectors)
+        dispatch(fetchDataChangeCPISectors(0))
+    }, [dispatch]);
+
     return (
-        <div>CPI</div>
+        <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">
+            {isLoading ? (
+                <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
+                    <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+                        <div>
+                            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                <span className='dark:text-white text-black font-semibold'>CPI theo các lĩnh vực của nền kinh tế (%)</span>
+                            </div>
+                            <PerCPIBySectors />
+                        </div>
+                        <div>
+                            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                <span className='dark:text-white text-black font-semibold'>CPI các tháng so với cùng kỳ năm trước (%)</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className='flex gap-5'>
+                        <div className='w-[40%] mt-2'>
+                            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                <span className='dark:text-white text-black font-semibold'>Quyền số CPI theo rổ hàng hóa (%)</span>
+                            </div>
+                            <WeightedCPICommodityBasket />
+                        </div>
+                        <div className='w-[60%]'>
+
+                            <ChangeCPISectors />
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div className='mt-20 mb-20'><Loading /></div>
+            )}
+        </div>
     )
 }
 

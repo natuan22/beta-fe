@@ -24,4 +24,15 @@ export const macroServices = {
         return https.get('api/v1/macro/per-gdp-tang-truong', {
         })
     },
+    fetchDataPerCPIBySectors: () => {
+        return https.get('api/v1/macro/per-cpi-theo-linh-vuc', {
+        })
+    },
+    fetchDataChangeCPISectors: (order) => {
+        return https.get('api/v1/macro/cpi-thay-doi', {
+            params: {
+                order
+            }
+        })
+    },
 }
