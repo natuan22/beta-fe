@@ -73,6 +73,7 @@ const Efficiency = () => {
 
   return (
     <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
+
       <Checkbox />
       {/* component */}
       <div>
@@ -184,6 +185,8 @@ const Efficiency = () => {
           </div>
         </div>
       </div>
+
+
     </div>
   )
 }

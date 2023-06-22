@@ -13,6 +13,7 @@ const TableLiquidity = () => {
     type: 0,
     order: 0,
   });
+
   useEffect(() => {
     dispatch(
       fecthDataTableThanhKhoan(queryApi.exchange, queryApi.type, queryApi.order)

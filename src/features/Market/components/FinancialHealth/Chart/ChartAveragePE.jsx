@@ -16,7 +16,7 @@ const ChartAveragePE = (props) => {
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
-    const checkIndustry = industryQuery.split(',')
+    const checkIndustry = industryQuery?.split(',')
     const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
 
     useEffect(() => {

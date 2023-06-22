@@ -1,17 +1,24 @@
-import clsx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 const hashTbCashFlow = {
   "Dòng tiền định danh": "dong-tien-dinh-danh",
   "Dòng tiền phi định danh": "dong-tien-phi-dinh-danh",
 };
 
 const CashFlow = () => {
-  const [activeNavlink, setActiveNav] = useState(0);
+  const location = useLocation()
+  const [activeNavlink, setActiveNavlink] = useState();
   const navRef = useRef([]);
   const handleActiveNav = (index) => {
-    setActiveNav(index);
+    setActiveNavlink(index);
   };
+  useEffect(() => {
+    if (location.pathname === '/thi-truong/dong-tien-thi-truong/dong-tien-dinh-danh') {
+      setActiveNavlink(0)
+    } else if (location.pathname === '/thi-truong/dong-tien-thi-truong/dong-tien-phi-dinh-danh') {
+      setActiveNavlink(1)
+    }
+  }, [location.pathname])
   useEffect(() => {
     const activeNav = navRef.current[activeNavlink]
     const movingBackground = document.querySelector('.moving-background')
@@ -23,7 +30,7 @@ const CashFlow = () => {
   return (
     <>
       <div className="container mx-auto">
-        <div className="flex justify-around mt-5 bg-[#195070] h-auto items-center rounded-full">
+        {/* <div className="flex justify-around mt-5 bg-[#195070] h-auto items-center rounded-full">
           <NavLink
             to="dong-tien-dinh-danh"
             className={(params) => {
@@ -50,9 +57,9 @@ const CashFlow = () => {
           >
             Dòng tiền phi định danh
           </NavLink>
-        </div>
+        </div> */}
         <div className="relative  flex justify-around mt-5 bg-[#195070] h-auto items-center rounded-full">
-          <div className="moving-background absolute h-full top-0 bg-[#35adf2] transition-all ease-in-out  duration-1000 rounded-full z-0"></div>
+          <div className="moving-background absolute h-full top-0 bg-[#35adf2] transition-all duration-500 rounded-full z-0"></div>
           {Object.entries(hashTbCashFlow).map(([label, value], index) => (
             <NavLink
               ref={el => navRef.current[index] = el}
