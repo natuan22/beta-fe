@@ -5,17 +5,14 @@ import Loading from '../../../Chart/utils/Loading';
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 
-const PerCPIBySectors = () => {
-    const { dataPerCPIBySectors } = useSelector(state => state.marco)
-    const { dataTablePerCPIBySectors } = useSelector(state => state.marco)
+const PerCPIMonth = () => {
+    const { dataPerCPIMonth } = useSelector(state => state.marco)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true);
     const [nameTb, setNameTb] = useState([])
-    const [sectors1, setSectors1] = useState()
-    const [sectors2, setSectors2] = useState()
-    const [sectors3, setSectors3] = useState()
-
+    const [price1, setprice1] = useState()
+    const [price2, setprice2] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
@@ -24,14 +21,13 @@ const PerCPIBySectors = () => {
     }, [color])
 
     useEffect(() => {
-        if (dataPerCPIBySectors?.length > 0) {
+        if (dataPerCPIMonth?.length > 0) {
             setLoading(false);
-            const modifiedArray = dataPerCPIBySectors.map(item => {
-                const modifiedName = item.name.replace('Tăng trưởng CPI :', '').replace('MoM (%)', '');
+            const modifiedArray = dataPerCPIMonth.map(item => {
+                const modifiedName = `${item.name.replace('Tăng trưởng CPI CPI :', '').replace('MoM (%)', '')} - ${item.date.slice(0, 4)}`;
                 const month = moment(item.date, 'YYYY/MM/DD').month() + 1 // Lấy tên tháng từ ngày
-                const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
 
-                return { ...item, name: modifiedName, date: `Tháng ${month}/${year}` };
+                return { ...item, name: modifiedName, date: `Tháng ${month}` };
             });
             const uniqueDates = [...new Set(modifiedArray?.map(item => item.date))];
             setTimeLine(uniqueDates)
@@ -39,48 +35,35 @@ const PerCPIBySectors = () => {
             const result = [];
 
             modifiedArray?.forEach(item => {
+                const colorArr = ['#00B4D8', '#0077B6'];
                 const name = item.name;
                 const value = item.value;
-                const color = item.color;
 
                 const existingObj = result.find(obj => obj.name === name);
 
                 if (existingObj) {
                     existingObj.data.push(value);
                 } else {
+                    const uniqueColorIndex = result.length % colorArr.length; // Lấy chỉ mục màu duy nhất
                     result.push({
                         name: name,
                         data: [value],
-                        color
+                        color: colorArr[uniqueColorIndex] // Lấy màu từ mảng colorArr bằng chỉ mục màu duy nhất
                     });
                 }
             })
             setData(result)
 
-        }
-    }, [dataPerCPIBySectors])
-
-    useEffect(() => {
-        if (dataTablePerCPIBySectors?.length > 0) {
-            const modifiedArray2 = dataTablePerCPIBySectors.map(item => {
-                const modifiedName = item.name.replace('Tăng trưởng CPI :', '').replace('MoM (%)', '').replace('Tăng trưởng CPI CPI :', '');
-                const month = moment(item.date, 'YYYY/MM/DD').month() + 1 // Lấy tên tháng từ ngày
-                const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
-
-                return { ...item, name: modifiedName, date: `Tháng ${month}/${year}` };
-            });
-            const uniqueNames = [...new Set(modifiedArray2?.map(item => item.name))];
+            const uniqueNames = [...new Set(modifiedArray?.map(item => item.name))];
             setNameTb(uniqueNames)
 
             // Cắt thành 3 mảng giá trị dựa trên từng "name"
-            const sectorsSt = modifiedArray2.filter(item => item.name === uniqueNames[0]).map(item => item.value);
-            const sectorsNd = modifiedArray2.filter(item => item.name === uniqueNames[1]).map(item => item.value);
-            const sectorsRd = modifiedArray2.filter(item => item.name === uniqueNames[2]).map(item => item.value);
-            setSectors1(sectorsSt)
-            setSectors2(sectorsNd)
-            setSectors3(sectorsRd)
+            const priceSt = modifiedArray.filter(item => item.name === uniqueNames[0]).map(item => item.value);
+            const priceNd = modifiedArray.filter(item => item.name === uniqueNames[1]).map(item => item.value);
+            setprice1(priceSt)
+            setprice2(priceNd)
         }
-    }, [dataTablePerCPIBySectors])
+    }, [dataPerCPIMonth])
 
     const options = {
         chart: {
@@ -142,8 +125,8 @@ const PerCPIBySectors = () => {
 
         ],
         legend: {
-            verticalAlign: 'top',
             align: 'center',
+            verticalAlign: 'top',
             itemStyle: {
                 fontSize: '10px',
                 color: localStorage.getItem('color')
@@ -155,7 +138,7 @@ const PerCPIBySectors = () => {
 
     return (
         <>
-            {dataPerCPIBySectors?.length > 0 ? (
+            {dataPerCPIMonth?.length > 0 ? (
                 <div className='h-[300px] mt-2'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
@@ -185,36 +168,24 @@ const PerCPIBySectors = () => {
 
                                 <tbody>
                                     <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
+                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-6 text-sm dark:text-white text-black`}>
                                             {nameTb[0]}
                                         </th>
-                                        {sectors1?.map((item, index) => {
+                                        {price1?.map((item, index) => {
                                             return (
-                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-6 font-semibold dark:text-white text-black`}>
                                                     {item.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
                                             )
                                         })}
                                     </tr>
                                     <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
+                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-6 text-sm dark:text-white text-black`}>
                                             {nameTb[1]}
                                         </th>
-                                        {sectors2?.map((item, index) => {
+                                        {price2?.map((item, index) => {
                                             return (
-                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
-                                                    {item.toLocaleString('en-US', { maximumFractionDigits: 2 })}
-                                                </td>
-                                            )
-                                        })}
-                                    </tr>
-                                    <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
-                                            {nameTb[2]}
-                                        </th>
-                                        {sectors3?.map((item, index) => {
-                                            return (
-                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-6 font-semibold dark:text-white text-black`}>
                                                     {item.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
                                             )
@@ -230,4 +201,4 @@ const PerCPIBySectors = () => {
     )
 }
 
-export default PerCPIBySectors
+export default PerCPIMonth
