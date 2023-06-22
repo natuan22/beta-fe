@@ -4,19 +4,22 @@ import { useSelector } from 'react-redux';
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import Loading from '../../../Chart/utils/Loading';
+import { useRef } from 'react';
+import LegendBtn from '../../../../utils/Component/BtnLegend';
 
 const PerGDPGrowth = () => {
     const { dataPerGDPGrowth } = useSelector(state => state.marco)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
-
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
-
     useEffect(() => {
         setColorText(color);
     }, [color])
-
+    const chartRef = useRef(null)
+    const callBackHighChartGDP = (chart) => {
+        chartRef.current = chart
+    }
     useEffect(() => {
         if (dataPerGDPGrowth?.length > 0) {
             const transformedData = dataPerGDPGrowth?.map(item => {
@@ -30,6 +33,7 @@ const PerGDPGrowth = () => {
             transformedData?.forEach(item => {
                 const name = item.name;
                 const value = +item.value.toFixed(2);
+                const color = item.color
 
                 const existingObj = result.find(obj => obj.name === name);
 
@@ -39,13 +43,13 @@ const PerGDPGrowth = () => {
                     result.push({
                         name: name,
                         data: [value],
+                        color
                     });
                 }
             });
             setData(result)
         }
     }, [dataPerGDPGrowth])
-
     const options = {
         accessibility: {
             enabled: false,
@@ -99,12 +103,14 @@ const PerGDPGrowth = () => {
         },
         series: data
     }
-
     return (
         <>
             {dataPerGDPGrowth?.length > 0 ? (
                 <div className="h-[263px] mt-2">
-                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                    <HighchartsReact callback={callBackHighChartGDP} highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                    <div>
+                        <LegendBtn chart={chartRef.current} data={data} />
+                    </div>
                 </div>
             ) : (
                 <div className="mt-14 mb-40"><Loading /></div>

@@ -18,7 +18,7 @@ const TechAndValuation = () => {
       setActiveNavlink(0)
     } else if (location.pathname === '/thi-truong/hieu-suat-va-dinh-gia/suc-khoe-tai-chinh') {
       setActiveNavlink(1)
-    } else {
+    } else if (location.pathname === '/thi-truong/hieu-suat-va-dinh-gia/ky-thuat') {
       setActiveNavlink(2)
     }
   }, [location.pathname])
