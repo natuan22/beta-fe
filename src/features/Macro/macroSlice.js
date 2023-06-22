@@ -5,6 +5,7 @@ const initialState = {
     dataGDPByPrice: {},
     dataGDPContributionRatio: {},
     dataGDPGrowth: {},
+    dataPerGDPGrowth: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -20,6 +21,9 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === macroType.FETCH_DATA_GDP_GROWTH) {
             draft.dataGDPGrowth = payload
+        }
+        if (type === macroType.FETCH_DATA_PER_GDP_GROWTH) {
+            draft.dataPerGDPGrowth = payload
         }
     });
 };

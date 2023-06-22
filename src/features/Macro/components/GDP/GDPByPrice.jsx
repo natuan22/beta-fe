@@ -36,7 +36,6 @@ const GDPByPrice = () => {
                 const colorArr = ['#2D8BBA', '#41B8D5'];
                 const name = item.name;
                 const value = item.value;
-                const date = item.date
 
                 const existingObj = result.find(obj => obj.name === name);
 
@@ -134,7 +133,7 @@ const GDPByPrice = () => {
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                     <tr>
-                                        <th className="text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
+                                        <th className="sticky left-0 bg-[#1E5D8B] text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
                                             Kỳ
                                         </th>
                                         {!loading ? (Array.isArray(timeLine) && timeLine?.map(item => {
@@ -149,7 +148,7 @@ const GDPByPrice = () => {
 
                                 <tbody>
                                     <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                        <th className={`text-left align-middle whitespace-nowrap px-1 py-6 text-sm dark:text-white text-black`}>
+                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-6 text-sm dark:text-white text-black`}>
                                             {nameTb[0]}
                                         </th>
                                         {price1?.map(item => {
@@ -161,7 +160,7 @@ const GDPByPrice = () => {
                                         })}
                                     </tr>
                                     <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                        <th className={`text-left align-middle whitespace-nowrap px-1 py-6 text-sm dark:text-white text-black`}>
+                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-6 text-sm dark:text-white text-black`}>
                                             {nameTb[1]}
                                         </th>
                                         {price2?.map(item => {

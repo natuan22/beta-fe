@@ -20,4 +20,8 @@ export const macroServices = {
             }
         })
     },
+    fetchDataPerGDPGrowth: () => {
+        return https.get('api/v1/macro/per-gdp-tang-truong', {
+        })
+    },
 }
