@@ -112,6 +112,7 @@ const ChangeCPISectors = () => {
         legend: {
             enabled: true,
             align: 'center',
+            verticalAlign: 'top',
             itemStyle: {
                 fontSize: '10px',
                 color: localStorage.getItem('color')
@@ -124,7 +125,7 @@ const ChangeCPISectors = () => {
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Thay đổi CPI các lĩnh vực của nền kinh tế </span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[430px] lg:ml-[490px] md:ml-[260px] sm:ml-[150px] xs:ml-[120px] xxs:ml-[100px]`}
                     onChange={(event) => {
                         dispatch(fetchDataChangeCPISectors(event.target.value))
                     }}>
@@ -133,7 +134,7 @@ const ChangeCPISectors = () => {
                 </select>
             </div>
             {dataChangeCPISectors?.length > 0 ? (
-                <div className='h-[298px] mt-2'>
+                <div className=' mt-2'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (

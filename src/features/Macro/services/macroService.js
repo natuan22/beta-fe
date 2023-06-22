@@ -35,4 +35,16 @@ export const macroServices = {
             }
         })
     },
+    fetchDataTablePerCPIBySectors: () => {
+        return https.get('api/v1/macro/table-cpi-theo-linh-vuc', {
+        })
+    },
+    fetchDataPerCPIMonth: () => {
+        return https.get('api/v1/macro/per-cpi-cung-ky', {
+        })
+    },
+    fetchDataWeightedCPICommodityBasket: () => {
+        return https.get('api/v1/macro/cpi-quyen-so', {
+        })
+    },
 }

@@ -7,7 +7,10 @@ const initialState = {
     dataGDPGrowth: {},
     dataPerGDPGrowth: {},
     dataPerCPIBySectors: {},
+    dataTablePerCPIBySectors: {},
     dataChangeCPISectors: {},
+    dataPerCPIMonth: {},
+    dataWeightedCPICommodityBasket: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -30,8 +33,17 @@ const reducer = (state = initialState, { type, payload }) => {
         if (type === macroType.FETCH_DATA_PER_CPI_BY_SECTORS) {
             draft.dataPerCPIBySectors = payload
         }
+        if (type === macroType.FETCH_DATA_TABLE_PER_CPI_BY_SECTORS) {
+            draft.dataTablePerCPIBySectors = payload
+        }
         if (type === macroType.FETCH_DATA_CHANGE_CPI_SECTORS) {
             draft.dataChangeCPISectors = payload
+        }
+        if (type === macroType.FETCH_DATA_PER_CPI_MONTH) {
+            draft.dataPerCPIMonth = payload
+        }
+        if (type === macroType.FETCH_DATA_WEIGHTED_CPI_COMMODITY_BASKET) {
+            draft.dataWeightedCPICommodityBasket = payload
         }
     });
 };

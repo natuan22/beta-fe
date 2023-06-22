@@ -1,8 +1,84 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import Highcharts from "highcharts/highstock";
+import variablePie from "highcharts/modules/variable-pie.js";
+import HighchartsReact from "highcharts-react-official";
+import Loading from '../../../Chart/utils/Loading';
+
+variablePie(Highcharts);
 
 const WeightedCPICommodityBasket = () => {
+    const { dataWeightedCPICommodityBasket } = useSelector(state => state.marco)
+    const [data, setData] = useState()
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color])
+
+    useEffect(() => {
+        if (dataWeightedCPICommodityBasket?.length > 0) {
+            const danhSachMoi = [
+                {
+                    name: 'Quyền số CPI',
+                    data: dataWeightedCPICommodityBasket.map((item) => ({
+                        name: item.name,
+                        y: item.value,
+                    })),
+                },
+            ];
+            setData(danhSachMoi)
+        }
+    }, [dataWeightedCPICommodityBasket])
+
+    const options = {
+        accessibility: {
+            enabled: false,
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        credits: false,
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+            backgroundColor: "transparent",
+        },
+        title: {
+            text: null
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f}%'
+                }
+            }
+        },
+        series: data
+    }
+
     return (
-        <div className='dark:text-white text-black h-[300px]'>WeightedCPICommodityBasket</div>
+        <>
+            {dataWeightedCPICommodityBasket.length ? (
+                <div className="">
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                </div>
+            ) : (
+                <div className="">
+                    <div className="mt-16 mb-52"><Loading /></div>
+                </div>
+            )}
+        </>
     )
 }
 
