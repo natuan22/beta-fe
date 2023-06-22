@@ -1,19 +1,22 @@
-import moment from 'moment'
+import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import Loading from '../../../Chart/utils/Loading';
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
-import Loading from '../../../Chart/utils/Loading';
 
-const GDPByIndustry = () => {
-    const { dataGDPByIndustry } = useSelector(state => state.marco)
+const PerCPIBySectors = () => {
+    const { dataPerCPIBySectors } = useSelector(state => state.marco)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true);
     const [nameTb, setNameTb] = useState([])
-    const [industry1, setIndustry1] = useState()
-    const [industry2, setIndustry2] = useState()
-    const [industry3, setIndustry3] = useState()
+    const [sectors1, setSectors1] = useState()
+    const [sectors2, setSectors2] = useState()
+    const [sectors3, setSectors3] = useState()
+    const [sectors4, setSectors4] = useState()
+    const [sectors5, setSectors5] = useState()
+
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
@@ -22,14 +25,14 @@ const GDPByIndustry = () => {
     }, [color])
 
     useEffect(() => {
-        if (dataGDPByIndustry?.length > 0) {
+        if (dataPerCPIBySectors?.length > 0) {
             setLoading(false);
-            const modifiedArray = dataGDPByIndustry.map(item => {
-                const modifiedName = item.name.replace('Giá trị GDP (2010) : ', '').replace(' (Tỷ VNĐ)', '');
-                const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
+            const modifiedArray = dataPerCPIBySectors.map(item => {
+                const modifiedName = item.name.replace('Tăng trưởng CPI :', '').replace('MoM (%)', '');
+                const month = moment(item.date, 'YYYY/MM/DD').month() + 1 // Lấy tên tháng từ ngày
                 const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
 
-                return { ...item, name: modifiedName, date: `Quý ${quarter}/${year}` };
+                return { ...item, name: modifiedName, date: `Tháng ${month}/${year}` };
             });
             const uniqueDates = [...new Set(modifiedArray?.map(item => item.date))];
             setTimeLine(uniqueDates)
@@ -37,7 +40,6 @@ const GDPByIndustry = () => {
             const result = [];
 
             modifiedArray?.forEach(item => {
-                const colorArr = ['#2D8BBA', '#41B8D5', '#6CE5E8'];
                 const name = item.name;
                 const value = item.value;
 
@@ -46,11 +48,9 @@ const GDPByIndustry = () => {
                 if (existingObj) {
                     existingObj.data.push(value);
                 } else {
-                    const uniqueColorIndex = result.length % colorArr.length;
                     result.push({
                         name: name,
                         data: [value],
-                        color: colorArr[uniqueColorIndex]
                     });
                 }
             })
@@ -60,74 +60,92 @@ const GDPByIndustry = () => {
             setNameTb(uniqueNames)
 
             // Cắt thành 3 mảng giá trị dựa trên từng "name"
-            const industrySt = modifiedArray.filter(item => item.name === uniqueNames[0]).map(item => item.value);
-            const industryNd = modifiedArray.filter(item => item.name === uniqueNames[1]).map(item => item.value);
-            const industryRd = modifiedArray.filter(item => item.name === uniqueNames[2]).map(item => item.value);
-            setIndustry1(industrySt)
-            setIndustry2(industryNd)
-            setIndustry3(industryRd)
+            const sectorsSt = modifiedArray.filter(item => item.name === uniqueNames[0]).map(item => item.value);
+            const sectorsNd = modifiedArray.filter(item => item.name === uniqueNames[1]).map(item => item.value);
+            const sectorsRd = modifiedArray.filter(item => item.name === uniqueNames[2]).map(item => item.value);
+            const sectors4Th = modifiedArray.filter(item => item.name === uniqueNames[3]).map(item => item.value);
+            const sectors5Th = modifiedArray.filter(item => item.name === uniqueNames[4]).map(item => item.value);
+            setSectors1(sectorsSt)
+            setSectors2(sectorsNd)
+            setSectors3(sectorsRd)
+            setSectors4(sectors4Th)
+            setSectors5(sectors5Th)
         }
-    }, [dataGDPByIndustry])
+    }, [dataPerCPIBySectors])
 
     const options = {
+        chart: {
+            backgroundColor: "transparent", // màu nền của biểu đồ
+            type: 'column'
+        },
         accessibility: {
-            enabled: false,
+            enabled: false
         },
         credits: false,
-        chart: {
-            type: 'column',
-            backgroundColor: 'transparent',
-        },
         title: {
-            text: '',
+            text: "",
+            style: {
+                color: 'white'
+            }
         },
         xAxis: {
             categories: timeLine,
             labels: {
                 style: {
-                    color: localStorage.getItem('color'),
+                    color: localStorage.getItem('color'), // màu cho các nhãn trục x
                     fontSize: '9px',
-                },
+                }
             },
-        },
-        yAxis: {
             title: {
-                text: null,
                 style: {
-                    color: localStorage.getItem('color'),
-                },
-            },
-            stackLabels: {
-                enabled: false,
-            },
-            labels: {
-                style: {
-                    color: localStorage.getItem('color'),
-                },
-            },
+                    color: localStorage.getItem('color') // màu cho tiêu đề trục x
+                }
+            }
         },
-        legend: {
-            enabled: false,
-            itemStyle: {
-                color: localStorage.getItem('color'),
-                fontWeight: 'bold'
+        yAxis: [
+            {
+                title: {
+                    text: "",
+                    style: {
+                        color: localStorage.getItem('color'),
+                    },
+                },
+                labels: {
+                    style: {
+                        color: localStorage.getItem('color') // màu cho các nhãn trục y
+                    },
+                }
+            },
+            {
+                title: {
+                    text: "",
+                    style: {
+                        color: localStorage.getItem('color'),
+                    },
+                },
+                labels: {
+                    style: {
+                        color: localStorage.getItem('color') // màu cho các nhãn trục y
+                    }
+                },
+                opposite: true,
             },
 
+        ],
+        legend: {
+            align: 'center',
+            itemStyle: {
+                fontSize: '10px',
+                color: localStorage.getItem('color')
+            }
         },
-        plotOptions: {
-            column: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled: false,
-                },
-            },
-        },
+
         series: data,
     };
 
     return (
-        <div>
-            {dataGDPByIndustry?.length > 0 ? (
+        <>
+            {dataPerCPIBySectors?.length > 0 ? (
                 <div className='h-[298px] mt-2'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
@@ -160,9 +178,9 @@ const GDPByIndustry = () => {
                                         <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
                                             {nameTb[0]}
                                         </th>
-                                        {industry1?.map(item => {
+                                        {sectors1?.map((item, index) => {
                                             return (
-                                                <td key={item} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
                                                     {item.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
                                             )
@@ -172,9 +190,9 @@ const GDPByIndustry = () => {
                                         <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
                                             {nameTb[1]}
                                         </th>
-                                        {industry2?.map(item => {
+                                        {sectors2?.map((item, index) => {
                                             return (
-                                                <td key={item} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
                                                     {item.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
                                             )
@@ -184,9 +202,33 @@ const GDPByIndustry = () => {
                                         <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
                                             {nameTb[2]}
                                         </th>
-                                        {industry3?.map(item => {
+                                        {sectors3?.map((item, index) => {
                                             return (
-                                                <td key={item} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                    {item.toLocaleString('en-US', { maximumFractionDigits: 2 })}
+                                                </td>
+                                            )
+                                        })}
+                                    </tr>
+                                    <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
+                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
+                                            {nameTb[3]}
+                                        </th>
+                                        {sectors4?.map((item, index) => {
+                                            return (
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                    {item.toLocaleString('en-US', { maximumFractionDigits: 2 })}
+                                                </td>
+                                            )
+                                        })}
+                                    </tr>
+                                    <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
+                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
+                                            {nameTb[4]}
+                                        </th>
+                                        {sectors5?.map((item, index) => {
+                                            return (
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
                                                     {item.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
                                             )
@@ -198,8 +240,8 @@ const GDPByIndustry = () => {
                     </div>
                 </div>
             </section>
-        </div >
+        </>
     )
 }
 
-export default GDPByIndustry
+export default PerCPIBySectors

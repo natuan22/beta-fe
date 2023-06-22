@@ -25,9 +25,12 @@ const GDPByPrice = () => {
             setLoading(false);
             const modifiedArray = dataGDPByPrice.map(item => {
                 const modifiedName = item.name.replace(' (2010) (Tỷ VNĐ)', '').replace(' (Tỷ VNĐ)', '');
-                return { ...item, name: modifiedName };
+                const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
+                const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
+
+                return { ...item, name: modifiedName, date: `Quý ${quarter}/${year}` };
             });
-            const uniqueDates = [...new Set(modifiedArray?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            const uniqueDates = [...new Set(modifiedArray?.map(item => item.date))];
             setTimeLine(uniqueDates)
 
             const result = [];
@@ -129,7 +132,7 @@ const GDPByPrice = () => {
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-                        <div className="block xxs:w-[295px] xs:w-[350px] sm:w-[400px] md:w-[670px] lg:w-[897px] xl:w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent h-[209px]">
+                        <div className="block xxs:w-[295px] xs:w-[350px] sm:w-[400px] md:w-[670px] lg:w-[897px] xl:w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent h-[225px]">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
                                     <tr>

@@ -60,3 +60,27 @@ export const fetchDataPerGDPGrowth = async (dispatch) => {
         console.log(err)
     }
 }
+
+export const fetchDataPerCPIBySectors = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataPerCPIBySectors()
+        dispatch({
+            type: macroType.FETCH_DATA_PER_CPI_BY_SECTORS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChangeCPISectors = (order) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataChangeCPISectors(order)
+        dispatch({
+            type: macroType.FETCH_DATA_CHANGE_CPI_SECTORS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
