@@ -47,4 +47,12 @@ export const macroServices = {
         return https.get('api/v1/macro/cpi-quyen-so', {
         })
     },
+    fetchDataIndexIndustrialProduction: () => {
+        return https.get('api/v1/macro/ipp-chi-so-cong-nghiep', {
+        })
+    },
+    fetchDataTableIndexIndustrialProduction: () => {
+        return https.get('api/v1/macro/ipp-chi-so-cong-nghiep-table', {
+        })
+    },
 }

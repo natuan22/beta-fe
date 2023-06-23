@@ -44,7 +44,7 @@ const CPI = () => {
                         </div>
                     </div>
                     <div className='lg:block xl:flex gap-5 mt-2'>
-                        <div className='lg:w-full xl:w-[40%] mt-2'>
+                        <div className='lg:w-full xl:w-[40%] mt-[7.5px]'>
                             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                                 <span className='dark:text-white text-black font-semibold'>Quyền số CPI theo rổ hàng hóa (%)</span>
                             </div>

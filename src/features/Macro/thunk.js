@@ -120,3 +120,27 @@ export const fetchDataWeightedCPICommodityBasket = async (dispatch) => {
         console.log(err)
     }
 }
+
+export const fetchDataIndexIndustrialProduction = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataIndexIndustrialProduction()
+        dispatch({
+            type: macroType.FETCH_DATA_INDEX_INDUSTRIAL_PRODUCTION,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTableIndexIndustrialProduction = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataTableIndexIndustrialProduction()
+        dispatch({
+            type: macroType.FETCH_DATA_TABLE_INDEX_INDUSTRIAL_PRODUCTION,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}

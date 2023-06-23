@@ -21,61 +21,65 @@ const IdentifyCash = () => {
   return (
     <>
       <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
-        {isLoading ? (<>
-          <div className='lg:block xl:flex'>
-            <div className="xl:w-[60%]">
-              <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
-                <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                  <LiquidityGrowth />
-                </div>
+        {isLoading ? (
+          <>
+            <div className='lg:block xl:flex'>
+              <div className="xl:w-[60%]">
+                <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
+                  <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                    <LiquidityGrowth />
+                  </div>
 
-                <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                  <TransactionValueRatio />
-                </div>
+                  <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                    <TransactionValueRatio />
+                  </div>
 
-                <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                  <ExchangeableValue />
-                </div>
+                  <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                    <ExchangeableValue />
+                  </div>
 
+                  <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                    <CashFlowRatio />
+                  </div>
+                </div>
+              </div>
+
+              <div className='xl:w-[40%]'>
                 <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                  <CashFlowRatio />
+                  <IndustryCashFlow />
                 </div>
               </div>
             </div>
 
-            <div className='xl:w-[40%]'>
-              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                <IndustryCashFlow />
+            <div className='lg:block xl:flex'>
+              <div className="xl:w-[60%]">
+                <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                  <InvestorTransaction />
+                </div>
+              </div>
+
+              <div className='xl:w-[40%]'>
+                <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                  <TopCashFlow />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className='lg:block xl:flex'>
-            <div className="xl:w-[60%]">
-              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                <InvestorTransaction />
+            <div>
+              <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
+                <InvestorCashFlow />
               </div>
             </div>
 
-            <div className='xl:w-[40%]'>
-              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                <TopCashFlow />
+            <div>
+              <div className='mx-1 my-2 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
+                <NetVolumeTrade />
               </div>
             </div>
-          </div>
-
-          <div>
-            <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-              <InvestorCashFlow />
-            </div>
-          </div>
-
-          <div>
-            <div className='mx-1 my-2 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-              <NetVolumeTrade />
-            </div>
-          </div></>) : <div><Loading /></div>}
-
+          </>
+        ) : (
+          <div className='mt-20 mb-20'><Loading /></div>
+        )}
       </div>
     </>
   )
