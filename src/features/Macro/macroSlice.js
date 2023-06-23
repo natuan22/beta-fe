@@ -13,6 +13,9 @@ const initialState = {
     dataWeightedCPICommodityBasket: {},
     dataIndexIndustrialProduction: {},
     dataTableIndexIndustrialProduction: {},
+    dataIndexConsumptionStorage: {},
+    dataIndexIndustrialProductionByIndustry: {},
+    dataIndustrialProductionPrimarily: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -52,6 +55,15 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === macroType.FETCH_DATA_TABLE_INDEX_INDUSTRIAL_PRODUCTION) {
             draft.dataTableIndexIndustrialProduction = payload
+        }
+        if (type === macroType.FETCH_DATA_INDEX_CONSUMPTION_STORAGE) {
+            draft.dataIndexConsumptionStorage = payload
+        }
+        if (type === macroType.FETCH_DATA_INDEX_INDUSTRIAL_PRODUCTION_BY_INDUSTRY) {
+            draft.dataIndexIndustrialProductionByIndustry = payload
+        }
+        if (type === macroType.FETCH_DATA_INDUSTRIAL_PRODUCTION_PRIMARILY) {
+            draft.dataIndustrialProductionPrimarily = payload
         }
     });
 };
