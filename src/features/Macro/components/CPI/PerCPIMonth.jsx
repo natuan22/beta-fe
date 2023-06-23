@@ -10,9 +10,8 @@ const PerCPIMonth = () => {
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true);
-    const [nameTb, setNameTb] = useState([])
-    const [price1, setprice1] = useState()
-    const [price2, setprice2] = useState()
+    const [dates, setDates] = useState()
+    const [dataTb, setDataTb] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
@@ -54,14 +53,16 @@ const PerCPIMonth = () => {
             })
             setData(result)
 
-            const uniqueNames = [...new Set(modifiedArray?.map(item => item.name))];
-            setNameTb(uniqueNames)
-
-            // Cắt thành 3 mảng giá trị dựa trên từng "name"
-            const priceSt = modifiedArray.filter(item => item.name === uniqueNames[0]).map(item => item.value);
-            const priceNd = modifiedArray.filter(item => item.name === uniqueNames[1]).map(item => item.value);
-            setprice1(priceSt)
-            setprice2(priceNd)
+            const dates = [...new Set(modifiedArray?.map(item => item.date))];
+            setDates(dates);
+            const newData = {};
+            modifiedArray.forEach(item => {
+                if (!newData[item.name]) {
+                    newData[item.name] = [];
+                }
+                newData[item.name].push(item.value);
+            });
+            setDataTb(Object.entries(newData).map(([name, values]) => ({ name, values })));
         }
     }, [dataPerCPIMonth])
 
@@ -156,7 +157,7 @@ const PerCPIMonth = () => {
                                         <th className="sticky left-0 bg-[#1E5D8B] text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
                                             Kỳ
                                         </th>
-                                        {!loading ? (Array.isArray(timeLine) && timeLine?.map(item => {
+                                        {!loading ? (Array.isArray(dates) && dates?.map(item => {
                                             return (
                                                 <th key={item} className="text-center align-middle px-3 py-[19px] text-xs font-semibold text-white">
                                                     {item}
@@ -167,30 +168,18 @@ const PerCPIMonth = () => {
                                 </thead>
 
                                 <tbody>
-                                    <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-6 text-sm dark:text-white text-black`}>
-                                            {nameTb[0]}
-                                        </th>
-                                        {price1?.map((item, index) => {
-                                            return (
+                                    {Array.isArray(dataTb) && dataTb.map(item => (
+                                        <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
+                                            <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-6 text-sm dark:text-white text-black`}>
+                                                {item.name}
+                                            </th>
+                                            {item.values.map((value, index) => (
                                                 <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-6 font-semibold dark:text-white text-black`}>
-                                                    {item.toLocaleString('en-US', { maximumFractionDigits: 2 })}
+                                                    {value.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
-                                            )
-                                        })}
-                                    </tr>
-                                    <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                        <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-6 text-sm dark:text-white text-black`}>
-                                            {nameTb[1]}
-                                        </th>
-                                        {price2?.map((item, index) => {
-                                            return (
-                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-6 font-semibold dark:text-white text-black`}>
-                                                    {item.toLocaleString('en-US', { maximumFractionDigits: 2 })}
-                                                </td>
-                                            )
-                                        })}
-                                    </tr>
+                                            ))}
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

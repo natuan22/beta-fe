@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../../../Chart/utils/Loading';
 import CashPayoutRatio from '../../components/FinancialHealth/Chart/CashPayoutRatio';
 import ChartAverageDebtRatio from '../../components/FinancialHealth/Chart/ChartAverageDebtRatio';
 import ChartAveragePB from '../../components/FinancialHealth/Chart/ChartAveragePB';
@@ -38,6 +39,13 @@ const FinancialHealth = () => {
   const [type, setType] = useState("8")
   const [order, setOrder] = useState("0")
   const [industryQuery, setIndustryQuery] = useState('batDongSan')
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(true)
+    }, 700)
+  }, [])
 
   useEffect(() => {
     if (dataQuery) {
@@ -57,148 +65,153 @@ const FinancialHealth = () => {
     dispatch(fetchDataChartAssetTurnoverRatio(exchange, order))
     dispatch(fetchDataTableAverageDebtRatio(exchange, order))
     dispatch(fetchDataChartMiningProfitMargin(exchange, type, order))
-  }, [exchange, type, order])
+  }, [dispatch, exchange, type, order])
 
   useEffect(() => {
     dispatch(fetchDataTableAveragePE(exchange, industryQuery));
     dispatch(fetchDataTableAveragePB(exchange, industryQuery));
-  }, [exchange, industryQuery])
+  }, [dispatch, exchange, industryQuery])
 
   return (
     <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
       <Checkbox />
       {/* component */}
-      <div>
-        <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
-          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold'>Diễn biến P/E bình quân các nhóm ngành (lần)</span>
-            </div>
-            <div>
-              <ChartAveragePE industryQuery={industryQuery} />
-            </div>
-            <hr />
-            <TableAveragePE />
-          </div>
-          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold'>Diễn biến P/B bình quân các nhóm ngành (lần)</span>
-            </div>
-            <div>
-              <ChartAveragePB industryQuery={industryQuery} />
-            </div>
-            <hr />
-            <TableAveragePB />
-          </div>
-        </div>
-        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-          <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-            <span className='dark:text-white text-black font-semibold'>Tổng quan sức khỏe tài chính các ngành (%)</span>
-          </div>
-          <div className='h-[300px]'>
-            <FinancialHealthOverview exchange={exchange} industryQuery={industryQuery} />
-          </div>
-        </div>
+      {isLoading ? (
 
-        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-          <div className='grid md:grid-cols-3 sm:grid-cols-none gap-5'>
-            <div>
+        <div>
+          <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
               <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán hiện hành (Lần)</span>
-              </div>
-              <CurrentPayoutRatio industryQuery={industryQuery} />
-            </div>
-            <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán nhanh (Lần)</span>
-              </div>
-              <QuickPayoutRatio industryQuery={industryQuery} />
-            </div>
-            <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán tiền mặt (Lần)</span>
-              </div>
-              <CashPayoutRatio industryQuery={industryQuery} />
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-          <div className='grid grid-cols-2 gap-5'>
-            <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Lãi suất vay nợ bình quân của các ngành (%)</span>
-              </div>
-              <div className='h-[300px]'>
-                <ChartAverageDebtRatio industryQuery={industryQuery} />
-              </div>
-              <hr />
-              <TableAverageDebtRatio />
-            </div>
-            <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Hệ số thanh toán lãi vay nợ bình quân của các ngành (%)</span>
-              </div>
-              <InterestCoverageRatio industryQuery={industryQuery} />
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-          <div className='grid lg:grid-cols-4 gap-5 md:grid-cols-2'>
-            <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tài sản cố định (Lần)</span>
-              </div>
-              <FixedAssetTurnover industryQuery={industryQuery} />
-            </div>
-
-            <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tiền (Lần)</span>
-              </div>
-              <MoneyWheel industryQuery={industryQuery} />
-            </div>
-
-            <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tổng tài sản (Lần)</span>
-              </div>
-              <TotalAssetTurnover industryQuery={industryQuery} />
-            </div>
-
-            <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Vốn chủ sở hữu (Lần)</span>
-              </div>
-              <EquityTurnover industryQuery={industryQuery} />
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-          <div className='grid grid-cols-2 gap-5'>
-            <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận gộp biên các ngành  (%)</span>
+                <span className='dark:text-white text-black font-semibold'>Diễn biến P/E bình quân các nhóm ngành (lần)</span>
               </div>
               <div>
-                <ChartMiningProfitMargin industryQuery={industryQuery} />
+                <ChartAveragePE industryQuery={industryQuery} />
               </div>
               <hr />
-              <div className='h-[300px]'>
-                <TableMiningProfitMargin exchange={exchange} industryQuery={industryQuery} />
+              <TableAveragePE />
+            </div>
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold'>Diễn biến P/B bình quân các nhóm ngành (lần)</span>
+              </div>
+              <div>
+                <ChartAveragePB industryQuery={industryQuery} />
+              </div>
+              <hr />
+              <TableAveragePB />
+            </div>
+          </div>
+          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+              <span className='dark:text-white text-black font-semibold'>Tổng quan sức khỏe tài chính các ngành (%)</span>
+            </div>
+            <div className='h-[300px]'>
+              <FinancialHealthOverview exchange={exchange} industryQuery={industryQuery} />
+            </div>
+          </div>
+
+          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+            <div className='grid md:grid-cols-3 sm:grid-cols-none gap-5'>
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán hiện hành (Lần)</span>
+                </div>
+                <CurrentPayoutRatio industryQuery={industryQuery} />
+              </div>
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán nhanh (Lần)</span>
+                </div>
+                <QuickPayoutRatio industryQuery={industryQuery} />
+              </div>
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán tiền mặt (Lần)</span>
+                </div>
+                <CashPayoutRatio industryQuery={industryQuery} />
               </div>
             </div>
-            <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận ròng các ngành (%)</span>
+          </div>
+
+          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+            <div className='grid grid-cols-2 gap-5'>
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold'>Lãi suất vay nợ bình quân của các ngành (%)</span>
+                </div>
+                <div className='h-[300px]'>
+                  <ChartAverageDebtRatio industryQuery={industryQuery} />
+                </div>
+                <hr />
+                <TableAverageDebtRatio />
               </div>
-              <NetProfitMargin industryQuery={industryQuery} />
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold'>Hệ số thanh toán lãi vay nợ bình quân của các ngành (%)</span>
+                </div>
+                <InterestCoverageRatio industryQuery={industryQuery} />
+              </div>
+            </div>
+          </div>
+
+          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+            <div className='grid lg:grid-cols-4 gap-5 md:grid-cols-2'>
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tài sản cố định (Lần)</span>
+                </div>
+                <FixedAssetTurnover industryQuery={industryQuery} />
+              </div>
+
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tiền (Lần)</span>
+                </div>
+                <MoneyWheel industryQuery={industryQuery} />
+              </div>
+
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tổng tài sản (Lần)</span>
+                </div>
+                <TotalAssetTurnover industryQuery={industryQuery} />
+              </div>
+
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Vốn chủ sở hữu (Lần)</span>
+                </div>
+                <EquityTurnover industryQuery={industryQuery} />
+              </div>
+            </div>
+          </div>
+
+          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+            <div className='grid grid-cols-2 gap-5'>
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận gộp biên các ngành  (%)</span>
+                </div>
+                <div>
+                  <ChartMiningProfitMargin industryQuery={industryQuery} />
+                </div>
+                <hr />
+                <div className='h-[300px]'>
+                  <TableMiningProfitMargin exchange={exchange} industryQuery={industryQuery} />
+                </div>
+              </div>
+              <div>
+                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận ròng các ngành (%)</span>
+                </div>
+                <NetProfitMargin industryQuery={industryQuery} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className='mt-20 mb-20'><Loading /></div>
+      )}
     </div>
   );
 };
