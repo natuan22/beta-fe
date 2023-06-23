@@ -144,3 +144,39 @@ export const fetchDataTableIndexIndustrialProduction = async (dispatch) => {
         console.log(err)
     }
 }
+
+export const fetchDataIndexConsumptionStorage = (industry) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataIndexConsumptionStorage(industry)
+        dispatch({
+            type: macroType.FETCH_DATA_INDEX_CONSUMPTION_STORAGE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataIndexIndustrialProductionByIndustry = (industry) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataIndexIndustrialProductionByIndustry(industry)
+        dispatch({
+            type: macroType.FETCH_DATA_INDEX_INDUSTRIAL_PRODUCTION_BY_INDUSTRY,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataIndustrialProductionPrimarily = (industry) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataIndustrialProductionPrimarily(industry)
+        dispatch({
+            type: macroType.FETCH_DATA_INDUSTRIAL_PRODUCTION_PRIMARILY,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}

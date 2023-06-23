@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading'
+import IndexConsumptionStorage from '../../components/Produce/IndexConsumptionStorage';
 import IndexIndustrialProduction from '../../components/Produce/IndexIndustrialProduction';
-import { fetchDataIndexIndustrialProduction, fetchDataTableIndexIndustrialProduction } from '../../thunk';
+import IndexIndustrialProductionByIndustry from '../../components/Produce/IndexIndustrialProductionByIndustry';
+import IndustrialProductionPrimarily from '../../components/Produce/IndustrialProductionPrimarily';
+import { fetchDataIndexConsumptionStorage, fetchDataIndexIndustrialProduction, fetchDataIndexIndustrialProductionByIndustry, fetchDataIndustrialProductionPrimarily, fetchDataTableIndexIndustrialProduction } from '../../thunk';
 
 const Produce = () => {
     const dispatch = useDispatch();
@@ -17,6 +20,9 @@ const Produce = () => {
     useEffect(() => {
         dispatch(fetchDataIndexIndustrialProduction)
         dispatch(fetchDataTableIndexIndustrialProduction)
+        dispatch(fetchDataIndexConsumptionStorage('cheBienGo'))
+        dispatch(fetchDataIndexIndustrialProductionByIndustry('cheBienGo'))
+        dispatch(fetchDataIndustrialProductionPrimarily('acQuyDienCacLoai'))
     }, [dispatch]);
 
     return (
@@ -32,42 +38,15 @@ const Produce = () => {
                     <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
                         <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
                             <div>
-                                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                                    <span className='dark:text-white text-black font-semibold'>Chỉ số sản xuất công nghiệp theo ngành công nghiệp (%)</span>
-                                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
-                                        onChange={(event) => {
-                                        }}>
-                                        <option value='0'>Sản xuất kim loại</option>
-                                        <option value='1'></option>
-                                    </select>
-                                </div>
-                                <div className='h-[400px]'></div>
+                                <IndexIndustrialProductionByIndustry />
                             </div>
                             <div>
-                                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                                    <span className='dark:text-white text-black font-semibold'>Chỉ số tiêu thụ & tồn kho SP công nghiệp (%)</span>
-                                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
-                                        onChange={(event) => {
-                                        }}>
-                                        <option value='0'>Sản xuất kim loại</option>
-                                        <option value='1'></option>
-                                    </select>
-                                </div>
-                                <div className='h-[400px]'></div>
+                                <IndexConsumptionStorage />
                             </div>
                         </div>
                     </div>
                     <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-                        <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                            <span className='dark:text-white text-black font-semibold'>Sản lượng công nghiệp các sản phẩm chủ yếu</span>
-                            <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
-                                onChange={(event) => {
-                                }}>
-                                <option value='0'>Bột ngọt (Nghìn tấn)</option>
-                                <option value='1'></option>
-                            </select>
-                        </div>
-                        <div className='h-[400px]'></div>
+                        <IndustrialProductionPrimarily />
                     </div>
                 </>
             ) : (

@@ -55,4 +55,25 @@ export const macroServices = {
         return https.get('api/v1/macro/ipp-chi-so-cong-nghiep-table', {
         })
     },
+    fetchDataIndexConsumptionStorage: (industry) => {
+        return https.get('api/v1/macro/ipp-tieu-thu-va-ton-kho', {
+            params: {
+                industry
+            }
+        })
+    },
+    fetchDataIndexIndustrialProductionByIndustry: (industry) => {
+        return https.get('api/v1/macro/ipp-san-xuat-cong-nghiep', {
+            params: {
+                industry
+            }
+        })
+    },
+    fetchDataIndustrialProductionPrimarily: (industry) => {
+        return https.get('api/v1/macro/ipp-san-luong-cong-nghiep', {
+            params: {
+                industry
+            }
+        })
+    },
 }
