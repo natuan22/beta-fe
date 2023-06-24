@@ -116,8 +116,8 @@ const IndustrialProductionPrimarily = () => {
     return (
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Sản lượng công nghiệp các sản phẩm chủ yếu</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-[14px]'>Sản lượng công nghiệp các sản phẩm chủ yếu</span>
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[780px] lg:ml-[260px] md:ml-[35px] sm:ml-[54px] xs:ml-[30px] xxs:ml-[2px]`}
                     onChange={(event) => {
                         dispatch(fetchDataIndustrialProductionPrimarily(event.target.value))
                     }}>

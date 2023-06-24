@@ -117,8 +117,8 @@ const IndexConsumptionStorage = () => {
     return (
         <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Chỉ số tiêu thụ & tồn kho SP công nghiệp (%)</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 `}
+                <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Chỉ số tiêu thụ & tồn kho SP công nghiệp (%)</span>
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[80px] lg:ml-[280px] md:ml-[50px] sm:ml-[60px] xs:ml-[35px] xxs:ml-[7px]`}
                     onChange={(event) => {
                         dispatch(fetchDataIndexConsumptionStorage(event.target.value))
                     }}>
