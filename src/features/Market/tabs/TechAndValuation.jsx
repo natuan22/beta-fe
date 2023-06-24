@@ -1,51 +1,51 @@
-import clsx from 'clsx';
-import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
-
+import React, { useEffect, useRef } from 'react'
+import { useState } from 'react';
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
+const hashTbTechAndValue = {
+  "Hiệu suất": "hieu-suat",
+  "Sức khoẻ tài chính": "suc-khoe-tai-chinh",
+  "Kỹ thuật": "ky-thuat"
+}
 const TechAndValuation = () => {
+  const [activeNavlink, setActiveNavlink] = useState()
+  const location = useLocation()
+  const navRef = useRef([])
+  const handleActiveNav = (index) => {
+    setActiveNavlink(index);
+  };
+  useEffect(() => {
+    if (location.pathname === '/thi-truong/hieu-suat-va-dinh-gia/hieu-suat') {
+      setActiveNavlink(0)
+    } else if (location.pathname === '/thi-truong/hieu-suat-va-dinh-gia/suc-khoe-tai-chinh') {
+      setActiveNavlink(1)
+    } else if (location.pathname === '/thi-truong/hieu-suat-va-dinh-gia/ky-thuat') {
+      setActiveNavlink(2)
+    }
+  }, [location.pathname])
+  useEffect(() => {
+    const activedNav = navRef.current[activeNavlink]
+    const movingBackground = document.querySelector('.moving-background')
+    if (activedNav && movingBackground) {
+      movingBackground.style.left = `${activedNav.offsetLeft}px`;
+      movingBackground.style.width = `${activedNav.offsetWidth}px`;
+    }
+  }, [activeNavlink])
   return (
     <>
       <div className='container mx-auto'>
-        <div className="flex justify-around mt-5 bg-[#195070] h-auto items-center rounded-full">
-          <NavLink
-            to="hieu-suat"
-            className={(params) => {
-              const classes =
-                " w-2/6 text-white rounded-full no-underline text-center leading-8 text-lg";
-              if (params.isActive) {
-                return clsx("bg-[#35ADF2]", classes);
-              }
-              return clsx("bg-transparent", classes);
-            }}
-          >
-            Hiệu suất
-          </NavLink>
-          <NavLink
-            to="suc-khoe-tai-chinh"
-            className={(params) => {
-              const classes =
-                " w-2/6 text-white rounded-full no-underline text-center leading-8 xxs:text-[11px] xs:text-[14px] sm:text-[15px] md:text-lg";
-              if (params.isActive) {
-                return clsx("bg-[#35ADF2]", classes);
-              }
-              return clsx("bg-transparent", classes);
-            }}
-          >
-            Sức khoẻ tài chính
-          </NavLink>
-          <NavLink
-            to="ky-thuat"
-            className={(params) => {
-              const classes =
-                " w-2/6 text-white rounded-full no-underline text-center leading-8 text-lg";
-              if (params.isActive) {
-                return clsx("bg-[#35ADF2]", classes);
-              }
-              return clsx("bg-transparent", classes);
-            }}
-          >
-            Kỹ thuật
-          </NavLink>
+        <div className="relative flex justify-around mt-5 bg-[#195070] h-auto items-center rounded-full">
+          <div className="moving-background absolute h-full top-0 bg-[#35adf2] transition-all duration-500 rounded-full "></div>
+          {Object.entries(hashTbTechAndValue).map(([label, value], index) => (
+            <NavLink
+              ref={el => navRef.current[index] = el}
+              to={value}
+              key={index}
+              onClick={() => handleActiveNav(index)}
+              className={`${activeNavlink === index ? 'active' : ''} z-10 w-2/6 bg-transparent text-white rounded-full no-underline text-center leading-8 text-lg`}
+            >
+              {label}
+            </NavLink>
+          ))}
         </div>
         <div className='h-auto text-white'>
           <Outlet />

@@ -254,8 +254,17 @@ export const marketServices = {
     fetchDataHotIndustry: () => {
         return https.get('api/v1/market/top-nganh-hot')
     },
-    fetchDataChartAveragePEPB: (exchange, type, order) => {
-        return https.get('api/v1/finance-health/p-e-p-b-binh-quan-nganh', {
+    fetchDataChartAveragePB: (exchange, type, order) => {
+        return https.get('/api/v1/finance-health/p-b-binh-quan-nganh', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartAveragePE: (exchange, type, order) => {
+        return https.get('/api/v1/finance-health/p-e-binh-quan-nganh', {
             params: {
                 exchange,
                 type,

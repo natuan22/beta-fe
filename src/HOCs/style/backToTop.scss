@@ -1,0 +1,81 @@
+.animationBtn {
+  animation: updown 2s infinite ease-in-out;
+}
+
+.icon-1:hover {
+  transform: translateY(20px);
+}
+.btnBackToTop-container {
+  .btnBackToTop {
+    .img-container {
+      transform: scale(1);
+      transition: all 0.5s;
+    }
+    .icon-container {
+      .icon-1 {
+        transform: translateY(20);
+        transition: all 0.5s;
+        z-index: -1;
+      }
+      .icon-2 {
+        transform: translateY(0);
+        transition: all 0.5s;
+        z-index: -1;
+      }
+      .icon-3 {
+        transform: translateY(-20);
+        transition: all 0.5s;
+        z-index: -1;
+      }
+    }
+    &:hover {
+      .img-container {
+        transform: scale(1.25);
+        transition: all 0.5s;
+      }
+      .icon-1 {
+        transform: translateY(-35px);
+        transition: all 0.5s;
+        animation: color_anim 1s infinite 0.2s;
+      }
+      .icon-2 {
+        transform: translateY(-65px);
+        transition: all 0.5s;
+        animation: color_anim 1s infinite 0.4s;
+      }
+      .icon-3 {
+        transform: translateY(-100px);
+        transition: all 0.5s;
+        animation: color_anim 1s infinite 0.6s;
+      }
+    }
+  }
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(10px);
+  }
+
+  50% {
+    transform: translateY(25px);
+  }
+
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes color_anim {
+  0% {
+    color: white;
+  }
+
+  50% {
+    color: black;
+  }
+
+  100% {
+    color: white;
+  }
+}

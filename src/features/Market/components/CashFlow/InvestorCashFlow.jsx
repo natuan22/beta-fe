@@ -5,10 +5,8 @@ import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
 import moment from 'moment';
-import './utils/btnLegendToggle.css'
 import { hashTb } from './utils/constant';
-import LegendBtn from './utils/component/LegendBtn';
-import LegendBtnArea from './utils/component/LegendBtnArea';
+import LegendBtn from '../../../../utils/Component/BtnLegend';
 const buttonStyle = {
     backgroundColor: 'transparent',
     color: '#fff',
@@ -42,7 +40,6 @@ const InvestorCashFlow = () => {
         investorType: 1,
         exchange: 'all'
     })
-    const [loadingLegend, setLoadingLegend] = useState(false)
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
@@ -51,17 +48,17 @@ const InvestorCashFlow = () => {
         dispatch(fetchDataTotalMarket(queryApi.exchange, queryApi.type))
         setColorText(color);
     }, [queryApi, dispatch])
-    useEffect(() => {
-        setInterval(() => {
-            setLoadingLegend(true)
-        }, 4000)
-    }, [])
+
     const sortedDataArray = data?.sort((a, b) => {
         const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
         const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
         return aIndex - bIndex;
     });
-
+    const sortedDataAbsArray = dataAbs?.sort((a, b) => {
+        const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
+        const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
+        return aIndex - bIndex;
+    });
     // console.log(sortedDataArray)
     useEffect(() => {
         if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
@@ -460,7 +457,7 @@ const InvestorCashFlow = () => {
                                 <HighchartsReact highcharts={Highcharts} options={options} callback={callBackHighchart} containerProps={{ style: { height: '100%', width: '100%' } }} />
                             </div>
                             <div className='legendArea ml-[65px]'>
-                                <LegendBtn chart={configChart} sortedDataArray={sortedDataArray} />
+                                <LegendBtn chart={configChart} data={sortedDataArray} />
                             </div>
                         </div>
                         <div>
@@ -468,7 +465,7 @@ const InvestorCashFlow = () => {
                                 <HighchartsReact highcharts={Highcharts} options={optionAreaChart} callback={callBackHighchartArea} containerProps={{ style: { height: '100%', width: '100%' } }} />
                             </div>
                             <div className='legendArea ml-[65px]'>
-                                <LegendBtnArea chart={configChartArea} sortedDataArray={sortedDataArray} />
+                                <LegendBtn chart={configChartArea} data={sortedDataAbsArray} />
                             </div>
                         </div>
                     </>

@@ -1,6 +1,5 @@
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
-import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
@@ -8,7 +7,7 @@ import { hashTb } from "../../FinancialHealth/Chart/utils/hashTb";
 
 
 const ChartAveragePE = (props) => {
-    const { dataChartAveragePEPB } = useSelector(state => state.market)
+    const { dataChartAveragePE } = useSelector(state => state.market)
     const { industryQuery } = props
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
@@ -16,7 +15,7 @@ const ChartAveragePE = (props) => {
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
-    const checkIndustry = industryQuery.split(',')
+    const checkIndustry = industryQuery?.split(',')
     const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
 
     useEffect(() => {
@@ -24,11 +23,17 @@ const ChartAveragePE = (props) => {
     }, [color])
 
     useEffect(() => {
-        if (dataChartAveragePEPB?.length > 0) {
+        if (dataChartAveragePE?.length > 0) {
+            const transformedData = dataChartAveragePE?.map(item => {
+                const year = item.date.slice(0, 4);
+                const quarter = item.date.slice(4);
+                const transformedDate = `Q${quarter} ${year}`;
+                return { ...item, date: transformedDate };
+            });
             const result = [];
-            const uniqueDates = [...new Set(dataChartAveragePEPB?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            const uniqueDates = [...new Set(transformedData?.map(item => item.date))];
             setTimeLine(uniqueDates)
-            dataChartAveragePEPB?.forEach(item => {
+            transformedData?.forEach(item => {
                 if (mappedKeys.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {
@@ -42,10 +47,10 @@ const ChartAveragePE = (props) => {
                     }
                 }
             });
+
             setData(result)
         }
-    }, [dataChartAveragePEPB, industryQuery])
-
+    }, [dataChartAveragePE, industryQuery])
     const options = {
 
         accessibility: {
@@ -103,7 +108,7 @@ const ChartAveragePE = (props) => {
     }
     return (
         <div>
-            {dataChartAveragePEPB.length ? (
+            {dataChartAveragePE?.length > 0 ? (
                 <div id="chart-container">
                     <div className="h-[450px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />

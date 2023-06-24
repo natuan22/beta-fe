@@ -7,7 +7,6 @@ import TechAndValuation from "../features/Market/tabs/TechAndValuation";
 import Market from "../features/Market/Market";
 import Nav1 from "../features/Navigation/Nav1";
 import Nav2 from "../features/Navigation/Nav2";
-import Nav3 from "../features/Navigation/Nav3";
 import Nav4 from "../features/Navigation/Nav4";
 import Nav5 from "../features/Navigation/Nav5";
 import IndexMarket from "../features/Market/tabs/IndexMarket";
@@ -19,6 +18,9 @@ import ForeignIndex from "../features/Market/tabs/MarketForeign/ForeignIndex";
 import GoodsMarket from "../features/Market/tabs/MarketForeign/GoodsMarket";
 import CryptocurrencyMarket from "../features/Market/tabs/MarketForeign/CryptocurrencyMarket";
 import FinancialHealth from "../features/Market/tabs/TechAndValuation/FinancialHealth";
+import Macro from "../features/Macro/Macro";
+import DomesticMacro from "../features/Macro/Tabs/DomesticMacro";
+import ForeignMacro from "../features/Macro/Tabs/ForeignMacro";
 
 export const routes = [
   { path: "/", component: Home },
@@ -26,7 +28,7 @@ export const routes = [
   // navigation tab
   { path: "/nganh", component: Nav1 },
   { path: "/co-phieu", component: Nav2 },
-  { path: "/vi-mo", component: Nav3 },
+  { path: "/vi-mo", component: Macro },
   { path: "/cong-cu-dau-tu", component: Nav4 },
   { path: "/trung-tam-tin-tuc", component: Nav5 },
 
@@ -41,7 +43,7 @@ export const marketRoute = [
     path: "thi-truong",
     component: Market,
     children: [
-      
+
       { path: "chi-so-thi-truong", component: IndexMarket },
       {
         path: "dong-tien-thi-truong",
@@ -72,3 +74,22 @@ export const marketRoute = [
     ],
   },
 ];
+
+export const macroRoutes = [
+  {
+    path: "vi-mo",
+    component: Macro,
+    children: [
+      {
+        path: "vi-mo-trong-nuoc", component: DomesticMacro
+      },
+      {
+        path: "vi-mo-quoc-te", component: ForeignMacro
+      }
+    ]
+  }
+]
+
+
+
+

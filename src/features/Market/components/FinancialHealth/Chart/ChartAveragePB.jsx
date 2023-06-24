@@ -7,7 +7,7 @@ import Loading from '../../../../Chart/utils/Loading';
 import { hashTb } from "../../FinancialHealth/Chart/utils/hashTb";
 
 const ChartAveragePB = (props) => {
-    const { dataChartAveragePEPB } = useSelector(state => state.market)
+    const { dataChartAveragePB } = useSelector(state => state.market)
     const { industryQuery } = props
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
@@ -23,11 +23,11 @@ const ChartAveragePB = (props) => {
     }, [color])
 
     useEffect(() => {
-        if (dataChartAveragePEPB?.length > 0) {
+        if (dataChartAveragePB?.length > 0) {
             const result = [];
-            const uniqueDates = [...new Set(dataChartAveragePEPB?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            const uniqueDates = [...new Set(dataChartAveragePB?.map(item => moment(item.date).format('DD/MM/YYYY')))];
             setTimeLine(uniqueDates)
-            dataChartAveragePEPB?.forEach(item => {
+            dataChartAveragePB?.forEach(item => {
                 if (mappedKeys.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {
@@ -43,7 +43,7 @@ const ChartAveragePB = (props) => {
             });
             setData(result)
         }
-    }, [dataChartAveragePEPB, industryQuery])
+    }, [dataChartAveragePB, industryQuery])
 
     const options = {
 
@@ -102,7 +102,7 @@ const ChartAveragePB = (props) => {
     }
     return (
         <div>
-            {dataChartAveragePEPB.length ? (
+            {dataChartAveragePB.length ? (
                 <div id="chart-container">
                     <div className="h-[450px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />

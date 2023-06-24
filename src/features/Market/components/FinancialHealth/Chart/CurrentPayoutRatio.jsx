@@ -121,7 +121,6 @@ const CurrentPayoutRatio = (props) => {
 
         series: data,
     };
-
     return (
         <div>
             {dataChartPayoutRatio.length ? (
