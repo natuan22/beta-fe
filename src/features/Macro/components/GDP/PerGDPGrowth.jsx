@@ -108,13 +108,14 @@ const PerGDPGrowth = () => {
     }
     return (
         <>
-            {dataPerGDPGrowth?.length > 0 ? (
+            {dataPerGDPGrowth?.length > 0 ? (<>
                 <div className="h-[310px] mt-2">
                     <HighchartsReact callback={callBackHighChartGDP} highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                    <div>
-                        <LegendBtn chart={chartRef.current} data={data} />
-                    </div>
                 </div>
+                <div>
+                    <LegendBtn chart={chartRef.current} data={data} />
+                </div>
+            </>
             ) : (
                 <div className="mt-14 mb-40"><Loading /></div>
             )}
