@@ -1,8 +1,9 @@
 import React from 'react'
+import Error404 from '../../../Navigation/Error404'
 
 const Labour = () => {
     return (
-        <div>Labour</div>
+        <Error404 />
     )
 }
 

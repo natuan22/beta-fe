@@ -136,7 +136,7 @@ const ChartInfo = () => {
                     color: localStorage.getItem('color'),
                 },
             },
-            categories: dataChart?.map(item => moment(item.tradingDate).utc().format(localStorage.getItem('typeTime'))),
+            categories: dataChart?.map(item => moment(item.tradingDate).utc().subtract(1, 'days').format(localStorage.getItem('typeTime'))),
         },
         legend: {
             enabled: false // Tắt chú thích
