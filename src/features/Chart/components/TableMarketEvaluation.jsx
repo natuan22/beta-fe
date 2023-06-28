@@ -28,13 +28,11 @@ const TableMarketEvaluation = () => {
                                         <th className="text-center align-middle xxs:text-[6px] px-[5px] py-3 uppercase text-sm font-semibold text-white">
                                             Khung biến động
                                         </th>
-                                        {!loading ? (Array.isArray(data) && data?.map(item => {
-                                            return (
-                                                <th key={item.Ticker} className="text-center align-middle xxs:text-[6px] px-1 py-3 uppercase text-xs font-semibold text-white">
-                                                    {item.Ticker}
-                                                </th>
-                                            )
-                                        })) : (<div><Loading /></div>)}
+                                        {Array.isArray(data) && data?.map(item => (
+                                            <th key={item.Ticker} className="text-center align-middle xxs:text-[6px] px-1 py-3 uppercase text-xs font-semibold text-white">
+                                                {item.Ticker}
+                                            </th>
+                                        ))}
                                     </tr>
                                 </thead>
 
