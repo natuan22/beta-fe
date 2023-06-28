@@ -99,7 +99,7 @@ const CashFlowAllocation = () => {
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 ) : (
-                    <div className="mt-6 mb-16"><Loading /></div>
+                    <div className="h-[70px] flex flex-col items-center justify-center  "><Loading /></div>
                 )}
             </div>
         </>

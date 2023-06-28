@@ -135,7 +135,7 @@ const ChartEBITDAGrowth = (props) => {
                 </div>
             ) : (
                 <div id="chart-container">
-                    <div className="mt-14 mb-[379px]"><Loading /></div>
+                    <div className="mt-14 mb-[379px] flex flex-col justify-center"><Loading /></div>
                 </div>
             )}
         </div>

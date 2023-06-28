@@ -23,8 +23,8 @@ const TableMarketEvaluation = () => {
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded ">
                         <div className="block w-full bg-transparent scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-transparent xl:overflow-x-hidden xs:overflow-x-scroll">
                             <table className="items-center bg-transparent w-full border-collapse">
-                                <thead className="bg-[#1E5D8B]">
-                                    <tr>
+                                <thead className="bg-[#1E5D8B] ">
+                                    <tr >
                                         <th className="text-center align-middle xxs:text-[6px] px-[5px] py-3 uppercase text-sm font-semibold text-white">
                                             Khung biến động
                                         </th>
@@ -34,7 +34,7 @@ const TableMarketEvaluation = () => {
                                                     {item.Ticker}
                                                 </th>
                                             )
-                                        })) : (<th colSpan={5}><Loading /></th>)}
+                                        })) : (<div><Loading /></div>)}
                                     </tr>
                                 </thead>
 

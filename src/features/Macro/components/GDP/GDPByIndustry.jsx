@@ -130,7 +130,7 @@ const GDPByIndustry = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
             )}
 
             <section className="bg-blueGray-50 pt-1.5">
@@ -149,7 +149,7 @@ const GDPByIndustry = () => {
                                                     {item}
                                                 </th>
                                             )
-                                        })) : (<th><Loading /></th>)}
+                                        })) : (<div><Loading /></div>)}
                                     </tr>
                                 </thead>
 
