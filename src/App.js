@@ -3,8 +3,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { macroRoutes, marketRoute, routes } from "./app/routes";
-
+import { macroRoutes, marketRoute, newsCenterRoutes, routes } from "./app/routes";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { autoLoginWithToken } from "./features/Auth/thunk";
@@ -58,6 +57,13 @@ function App() {
       })}
     </Route>
   })
+  const mapNewsCenterRoute = newsCenterRoutes.map(({ path, component: Component, children }) => {
+    return <Route path={path} element={<Component />} key={path}>
+      {children?.map(Item => {
+        return <Route path={Item.path} key={Item.path} element={<Item.component />} />
+      })}
+    </Route>
+  })
   return (
     <BrowserRouter>
       <Routes>
@@ -66,6 +72,7 @@ function App() {
         })}
         {mapMarketRoute}
         {mapMacroRoute}
+        {mapNewsCenterRoute}
       </Routes>
     </BrowserRouter>
   );

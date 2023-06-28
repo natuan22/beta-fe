@@ -37,11 +37,16 @@ const TableMarketVolatility = () => {
                                         <th className="text-center align-middle xxs:text-[7px] px-[5px] py-3 uppercase text-sm font-semibold text-white">
                                             Khung biến động
                                         </th>
-                                        {Array.isArray(data) && data?.map(item => (
-                                            <th key={item.ticker} className="text-center align-middle xxs:text-[7px] px-1 py-3 uppercase text-xs font-semibold text-white">
-                                                {item.ticker}
-                                            </th>
-                                        ))}
+
+                                        {!loading ? (Array.isArray(data) && data?.map(item => {
+                                            return (
+                                                <th key={item.ticker} className="text-center align-middle xxs:text-[7px] px-1 py-3 uppercase text-xs font-semibold text-white">
+                                                    {item.ticker}
+                                                </th>
+                                            )
+                                        })) : (<th><Loading /></th>)}
+                                       
+
                                     </tr>
                                 </thead>
 

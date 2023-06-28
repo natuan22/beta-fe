@@ -7,13 +7,11 @@ import News from '../Chart/components/News';
 import { fetchDataInternationalIndex, fetchDataNews } from '../Chart/thunk';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from "../../components/Footer";
-import Banner from '../Chart/components/Banner';
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Macro = () => {
     const dispatch = useDispatch()
     const location = useLocation()
-    const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const color = useSelector((state) => state.color.colorTheme);
 
     const [bannerDisplay, setBannerDisplay] = useState(false)
@@ -36,7 +34,6 @@ const Macro = () => {
                 <InternationalIndex />
                 <News />
             </div>
-            <Banner />
             <div className="container mx-auto">
                 <div>
                     <div className="px-11">
