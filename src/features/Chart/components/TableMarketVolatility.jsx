@@ -37,6 +37,7 @@ const TableMarketVolatility = () => {
                                         <th className="text-center align-middle xxs:text-[7px] px-[5px] py-3 uppercase text-sm font-semibold text-white">
                                             Khung biến động
                                         </th>
+
                                         {!loading ? (Array.isArray(data) && data?.map(item => {
                                             return (
                                                 <th key={item.ticker} className="text-center align-middle xxs:text-[7px] px-1 py-3 uppercase text-xs font-semibold text-white">
@@ -44,6 +45,8 @@ const TableMarketVolatility = () => {
                                                 </th>
                                             )
                                         })) : (<th><Loading /></th>)}
+                                       
+
                                     </tr>
                                 </thead>
 

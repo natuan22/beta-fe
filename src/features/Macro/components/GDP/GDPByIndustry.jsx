@@ -143,18 +143,16 @@ const GDPByIndustry = () => {
                                         <th className="sticky left-0 bg-[#1E5D8B] text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
                                             Kỳ
                                         </th>
-                                        {!loading ? (Array.isArray(dates) && dates?.map(item => {
-                                            return (
-                                                <th key={item} className="text-center align-middle px-3 py-[19px] text-xs font-semibold text-white">
-                                                    {item}
-                                                </th>
-                                            )
-                                        })) : (<div><Loading /></div>)}
+                                        {Array.isArray(timeLine) && timeLine?.map(item => (
+                                            <th key={item} className="text-center align-middle px-3 py-[19px] text-xs font-semibold text-white">
+                                                {item}
+                                            </th>
+                                        ))}
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    {Array.isArray(dataTb) && dataTb.map(item => (
+                                    {!loading ? (Array.isArray(dataTb) && dataTb.map(item => (
                                         <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
                                             <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
                                                 {item.name}
@@ -165,7 +163,7 @@ const GDPByIndustry = () => {
                                                 </td>
                                             ))}
                                         </tr>
-                                    ))}
+                                    ))) : (<tr><Loading /></tr>)}
                                 </tbody>
                             </table>
                         </div>
