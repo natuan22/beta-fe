@@ -137,7 +137,7 @@ const GDPGrowth = () => {
                 </div>
             ) : (
                 <div id="chart-container">
-                    <div className=""><Loading /></div>
+                    <div className="flex flex-col justify-center h-[70px]"><Loading /></div>
                 </div>
             )}
         </div>

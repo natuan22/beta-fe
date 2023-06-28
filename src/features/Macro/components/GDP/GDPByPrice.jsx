@@ -129,7 +129,7 @@ const GDPByPrice = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
             )}
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
@@ -137,7 +137,7 @@ const GDPByPrice = () => {
                         <div className="block xxs:w-[295px] xs:w-[350px] sm:w-[400px] md:w-[670px] lg:w-[897px] xl:w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent h-[225px]">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="sticky top-0 bg-[#1E5D8B] z-10">
-                                    <tr>
+                                    <tr >
                                         <th className="sticky left-0 bg-[#1E5D8B] text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
                                             Kỳ
                                         </th>
@@ -147,7 +147,7 @@ const GDPByPrice = () => {
                                                     {item}
                                                 </th>
                                             )
-                                        })) : (<th><Loading /></th>)}
+                                        })) : (<div><Loading /></div>)}
                                     </tr>
                                 </thead>
 

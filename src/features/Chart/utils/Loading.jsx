@@ -1,7 +1,7 @@
 import React from 'react';
 import './loading.css'
 const Loading = () => (
-  <div className="loader">
+  <div className="loader relative">
     <div className="square" id="sq1" />
     <div className="square" id="sq2" />
     <div className="square" id="sq3" />

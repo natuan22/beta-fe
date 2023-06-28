@@ -384,7 +384,7 @@ const MarketBreadth = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-12"><Loading /></div>
+                <div className="mt-12 "><Loading /></div>
             )}
 
         </>

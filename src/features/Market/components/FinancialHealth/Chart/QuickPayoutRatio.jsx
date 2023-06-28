@@ -132,7 +132,7 @@ const QuickPayoutRatio = (props) => {
                 </div>
             ) : (
                 <div id="chart-container">
-                    <div className="mt-14 mb-[428px]"><Loading /></div>
+                    <div className="mt-14 mb-[428px]  grid place-items-center"><Loading /></div>
                 </div>
             )}
         </div>
