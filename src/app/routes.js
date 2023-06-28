@@ -8,7 +8,6 @@ import Market from "../features/Market/Market";
 import Nav1 from "../features/Navigation/Nav1";
 import Nav2 from "../features/Navigation/Nav2";
 import Nav4 from "../features/Navigation/Nav4";
-import Nav5 from "../features/Navigation/Nav5";
 import IndexMarket from "../features/Market/tabs/IndexMarket";
 import NonIdentifyCash from "../features/Market/tabs/CashFlow/NonIdentifyCash";
 import IdentifyCash from "../features/Market/tabs/CashFlow/IdentifyCash";
@@ -21,6 +20,11 @@ import FinancialHealth from "../features/Market/tabs/TechAndValuation/FinancialH
 import Macro from "../features/Macro/Macro";
 import DomesticMacro from "../features/Macro/Tabs/DomesticMacro";
 import ForeignMacro from "../features/Macro/Tabs/ForeignMacro";
+import NewsCenter from "../features/NewsCenter/NewsCenter";
+import NewsFilterTool from "../features/NewsCenter/tabs/NewsFilterTool";
+import EnterpriseNews from "../features/NewsCenter/tabs/EnterpriseNews";
+import AnalyzeReport from "../features/NewsCenter/tabs/AnalyzeReport";
+import MacroNews from "../features/NewsCenter/tabs/MacroNews";
 
 export const routes = [
   { path: "/", component: Home },
@@ -30,7 +34,7 @@ export const routes = [
   { path: "/co-phieu", component: Nav2 },
   { path: "/vi-mo", component: Macro },
   { path: "/cong-cu-dau-tu", component: Nav4 },
-  { path: "/trung-tam-tin-tuc", component: Nav5 },
+
 
   // authen
   { path: "/signin", component: Signin },
@@ -90,6 +94,25 @@ export const macroRoutes = [
   }
 ]
 
-
+export const newsCenterRoutes = [
+  {
+    path: "trung-tam-tin-tuc",
+    component: NewsCenter,
+    children: [
+      {
+        path: "bao-cao-phan-tich", component: AnalyzeReport
+      },
+      {
+        path: "bo-loc-tin-tuc", component: NewsFilterTool
+      },
+      {
+        path: "tin-doanh-nghiep", component: EnterpriseNews
+      },
+      {
+        path: "tin-tuc-vi-mo", component: MacroNews
+      }
+    ]
+  }
+]
 
 

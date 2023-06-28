@@ -34,7 +34,7 @@ const TableMarketEvaluation = () => {
                                                     {item.Ticker}
                                                 </th>
                                             )
-                                        })) : (<div><Loading /></div>)}
+                                        })) : (<th><Loading /></th>)}
                                     </tr>
                                 </thead>
 

@@ -43,7 +43,7 @@ const TableMarketVolatility = () => {
                                                     {item.ticker}
                                                 </th>
                                             )
-                                        })) : (<div><Loading /></div>)}
+                                        })) : (<th><Loading /></th>)}
                                     </tr>
                                 </thead>
 
