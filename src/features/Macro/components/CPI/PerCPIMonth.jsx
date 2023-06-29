@@ -168,11 +168,11 @@ const PerCPIMonth = () => {
                                 <tbody>
                                     {!loading ? (Array.isArray(dataTb) && dataTb.map(item => (
                                         <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                            <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
+                                            <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[26px] text-sm dark:text-white text-black`}>
                                                 {item.name}
                                             </th>
                                             {item.values.map((value, index) => (
-                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[26px] font-semibold dark:text-white text-black`}>
                                                     {value.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
                                             ))}

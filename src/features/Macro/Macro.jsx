@@ -46,7 +46,7 @@ const Macro = () => {
                 </div>
                 <div>
                     {bannerDisplay ? (
-                        <div className="h-auto pt-5 pb-2 flex justify-center ">
+                        <div className="h-auto pt-4 pb-2 flex justify-center ">
                             <div className="flex  md:flex-row md:justify-around sm:flex-col sm:items-center xs:flex-col xs:items-center xxs:flex-col xxs:items-center w-[50%]">
                                 <div className="px-2 relative">
                                     <a href="https://zalo.me/1623670409453822014" target="_blank" rel="noopener noreferrer">
