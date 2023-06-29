@@ -121,7 +121,7 @@ const GDPGrowth = () => {
         <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold md:text-base sm:text-xs xs:text-[15px] xxs:text-[13px]'>Tăng trưởng GDP theo từng ngành nghề (Tỷ đồng)</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[220px] lg:ml-[420px] md:ml-[190px] sm:ml-[20px] xs:ml-[130px] xxs:ml-[100px]`}
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[220px] lg:ml-[420px] md:ml-[190px] sm:ml-[10px] xs:ml-[130px] xxs:ml-[100px]`}
                     onChange={(event) => {
                         dispatch(fetchDataGDPGrowth(event.target.value));
                     }}>
