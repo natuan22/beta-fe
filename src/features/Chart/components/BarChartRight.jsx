@@ -141,7 +141,7 @@ const BarChartRight = () => {
           <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
         </div>
       ) : (
-        <div className="mt-6 xl:h-[325px] 2xl:h-[325px]"><Loading /></div>
+        <div className="mt-6 flex flex-col justify-center xl:h-[325px] 2xl:h-[325px]"><Loading /></div>
       )}
     </div>
   </>

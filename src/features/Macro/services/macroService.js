@@ -76,4 +76,29 @@ export const macroServices = {
             }
         })
     },
+    fetchDataRetailValue: (order) => {
+        return https.get('api/v1/retail/ban-le-theo-nganh', {
+            params: {
+                order
+            }
+        })
+    },
+    fetchDataRetailSalesGrowth: (order) => {
+        return https.get('api/v1/retail/tang-truong-doanh-so-theo-nganh', {
+            params: {
+                order
+            }
+        })
+    },
+    fetchDataTableTotalRetail: () => {
+        return https.get('api/v1/retail/tong-ban-le', {
+        })
+    },
+    fetchDataTotalImportExport: (order) => {
+        return https.get('api/v1/retail/tong-xuat-nhap-khau', {
+            params: {
+                order
+            }
+        })
+    },
 }

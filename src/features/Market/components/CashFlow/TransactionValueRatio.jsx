@@ -99,7 +99,7 @@ const TransactionValueRatio = () => {
             ) : (
                 <div id="chart-container">
                     <div className="">
-                        <div className="mt-16 mb-[201px]"><Loading /></div>
+                        <div className="mt-20 mb-[108px]"><Loading /></div>
                     </div>
                 </div>
             )}

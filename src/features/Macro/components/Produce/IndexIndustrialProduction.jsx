@@ -154,28 +154,28 @@ const IndexIndustrialProduction = () => {
                                         <th className="sticky left-0 bg-[#1E5D8B] text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
                                             Lĩnh vực
                                         </th>
-                                        {!loading ? (Array.isArray(dates) && dates?.map(item => {
-                                            return (
-                                                <th key={item} className="text-center align-middle px-3 py-[19px] text-xs font-semibold text-white">
-                                                    {item}
-                                                </th>
-                                            )
-                                        })) : (<th><Loading /></th>)}
+                                        {Array.isArray(dates) && dates?.map(item => (
+                                            <th key={item} className="text-center align-middle px-3 py-[19px] text-xs font-semibold text-white">
+                                                {item}
+                                            </th>
+                                        ))}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {Array.isArray(dataTb) && dataTb.map(item => (
-                                        <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                            <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[18px] text-sm dark:text-white text-black`}>
-                                                {item.name}
-                                            </th>
-                                            {item.values.map((value, index) => (
-                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[18px] font-semibold dark:text-white text-black`}>
-                                                    {value.toLocaleString('en-US', { maximumFractionDigits: 2 })}
-                                                </td>
-                                            ))}
-                                        </tr>
-                                    ))}
+                                    {!loading ? (Array.isArray(dataTb) && dataTb.map(item => {
+                                        return (
+                                            <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
+                                                <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[18px] text-sm dark:text-white text-black`}>
+                                                    {item.name}
+                                                </th>
+                                                {item.values.map((value, index) => (
+                                                    <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[18px] font-semibold dark:text-white text-black`}>
+                                                        {value.toLocaleString('en-US', { maximumFractionDigits: 2 })}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                        )
+                                    })) : (<tr><Loading /></tr>)}
                                 </tbody>
                             </table>
                         </div>

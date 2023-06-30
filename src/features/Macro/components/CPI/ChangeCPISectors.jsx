@@ -125,7 +125,7 @@ const ChangeCPISectors = () => {
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Thay đổi CPI các lĩnh vực của nền kinh tế </span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[410px] lg:ml-[470px] md:ml-[240px] sm:ml-[120px] xs:ml-[100px] xxs:ml-[80px]`}
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[410px] lg:ml-[470px] md:ml-[240px] sm:ml-[140px] xs:ml-[100px] xxs:ml-[80px]`}
                     onChange={(event) => {
                         dispatch(fetchDataChangeCPISectors(event.target.value))
                     }}>

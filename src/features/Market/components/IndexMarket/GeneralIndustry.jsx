@@ -56,7 +56,7 @@ const GeneralIndustry = () => {
     }, [query]);
 
     const disconnectSocket = (socketOld) => {
-        console.log('disconnect', socketOld);
+        // console.log('disconnect', socketOld);
         if (socket.active) {
             socket.off(`listen-phan-nganh-${socketOld}`);
         }
@@ -64,6 +64,7 @@ const GeneralIndustry = () => {
 
     const conSocket = (key) => {
         socket.on(`listen-phan-nganh-${key}`, (newData) => {
+            console.log(newData)
             const newDataWithChanges = oldData?.map(oldItem => {
                 const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
                 if (matchingItem) {
@@ -159,7 +160,7 @@ const GeneralIndustry = () => {
                                             %M
                                         </th>
                                         <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
-                                            %YtD
+                                            %Year
                                         </th>
                                         <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                                             Độ rộng ngành

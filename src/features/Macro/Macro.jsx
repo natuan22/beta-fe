@@ -7,13 +7,11 @@ import News from '../Chart/components/News';
 import { fetchDataInternationalIndex, fetchDataNews } from '../Chart/thunk';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from "../../components/Footer";
-import Banner from '../Chart/components/Banner';
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Macro = () => {
     const dispatch = useDispatch()
     const location = useLocation()
-    const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const color = useSelector((state) => state.color.colorTheme);
 
     const [bannerDisplay, setBannerDisplay] = useState(false)
@@ -36,7 +34,6 @@ const Macro = () => {
                 <InternationalIndex />
                 <News />
             </div>
-            <Banner />
             <div className="container mx-auto">
                 <div>
                     <div className="px-11">
@@ -49,7 +46,7 @@ const Macro = () => {
                 </div>
                 <div>
                     {bannerDisplay ? (
-                        <div className="h-auto pt-5 pb-2 flex justify-center ">
+                        <div className="h-auto pt-4 pb-2 flex justify-center ">
                             <div className="flex  md:flex-row md:justify-around sm:flex-col sm:items-center xs:flex-col xs:items-center xxs:flex-col xxs:items-center w-[50%]">
                                 <div className="px-2 relative">
                                     <a href="https://zalo.me/1623670409453822014" target="_blank" rel="noopener noreferrer">

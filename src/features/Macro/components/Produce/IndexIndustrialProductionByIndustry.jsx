@@ -117,7 +117,7 @@ const IndexIndustrialProductionByIndustry = () => {
         <>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm sm:text-[15px] xs:text-[13px] xxs:text-[11px]'>Chỉ số sản xuất công nghiệp theo ngành công nghiệp (%)</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[10px] lg:ml-[190px] md:ml-[15px] sm:ml-[60px] xs:ml-[40px] xxs:ml-[7px]`}
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[5px] lg:ml-[180px] md:ml-[5px] sm:ml-[60px] xs:ml-[40px] xxs:ml-[7px]`}
                     onChange={(event) => {
                         dispatch(fetchDataIndexIndustrialProductionByIndustry(event.target.value))
                     }}>

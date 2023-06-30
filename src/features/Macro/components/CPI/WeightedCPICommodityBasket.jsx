@@ -75,7 +75,7 @@ const WeightedCPICommodityBasket = () => {
                 </div>
             ) : (
                 <div className="">
-                    <div className="mt-16 mb-52"><Loading /></div>
+                    <div className="mt-16 mb-52 flex flex-col justify-center"><Loading /></div>
                 </div>
             )}
         </>

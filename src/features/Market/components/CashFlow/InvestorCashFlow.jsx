@@ -470,7 +470,7 @@ const InvestorCashFlow = () => {
                         </div>
                     </>
                 ) : (
-                    <div className="mt-12 mb-12"><Loading /></div>
+                    <div className="mt-12 mb-12 h-[70px]"><Loading /></div>
                 )}
             </div>
         </div>
