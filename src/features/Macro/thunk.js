@@ -180,3 +180,51 @@ export const fetchDataIndustrialProductionPrimarily = (industry) => async (dispa
         console.log(err)
     }
 }
+
+export const fetchDataRetailValue = (order) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataRetailValue(order)
+        dispatch({
+            type: macroType.FETCH_DATA_RETAIL_VALUE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataRetailSalesGrowth = (order) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataRetailSalesGrowth(order)
+        dispatch({
+            type: macroType.FETCH_DATA_RETAIL_SALES_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTableTotalRetail = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataTableTotalRetail()
+        dispatch({
+            type: macroType.FETCH_DATA_TABLE_TOTAL_RETAIL,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTotalImportExport = (order) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataTotalImportExport(order)
+        dispatch({
+            type: macroType.FETCH_DATA_TOTAL_IMPORT_EXPORT,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}

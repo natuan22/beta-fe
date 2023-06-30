@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
-import Error404 from '../../../Navigation/Error404';
-import ExportAndImportTransfer from '../../components/RetailImportAndExport/ExportAndImportTransfer';
-import ExportValue from '../../components/RetailImportAndExport/ExportValue';
-import ImportValue from '../../components/RetailImportAndExport/ImportValue';
 import RetailSalesGrowth from '../../components/RetailImportAndExport/RetailSalesGrowth';
 import RetailValue from '../../components/RetailImportAndExport/RetailValue';
+import TotalRetail from '../../components/RetailImportAndExport/TotalRetail';
+import ExportValue from '../../components/RetailImportAndExport/ExportValue';
+import ImportValue from '../../components/RetailImportAndExport/ImportValue';
 import TotalImportExport from '../../components/RetailImportAndExport/TotalImportExport';
+import ExportAndImportTransfer from '../../components/RetailImportAndExport/ExportAndImportTransfer';
+import { fetchDataRetailSalesGrowth, fetchDataRetailValue, fetchDataTableTotalRetail, fetchDataTotalImportExport } from '../../thunk';
 
 const RetailImportAndExport = () => {
   const dispatch = useDispatch();
@@ -20,57 +21,59 @@ const RetailImportAndExport = () => {
   }, [])
 
   useEffect(() => {
-
+    dispatch(fetchDataRetailValue(2))
+    dispatch(fetchDataRetailSalesGrowth(1))
+    dispatch(fetchDataTableTotalRetail)
+    dispatch(fetchDataTotalImportExport(2))
   }, [dispatch]);
 
   return (
-    <Error404 />
-    // <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">
-    //   {isLoading ? (
-    //     <>
-    //       <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-    //         <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
-    //           <div>
-    //             <RetailValue />
-    //           </div>
-    //           <div>
-    //             <RetailSalesGrowth />
-    //           </div>
-    //         </div>
-    //         <hr />
-    //         <div>
-    //           <div className='h-[300px]'></div>
-    //         </div>
-    //       </div>
-    //       <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-    //         <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
-    //           <div>
-    //             <ExportAndImportTransfer />
-    //           </div>
-    //           <div>
-    //             <TotalImportExport />
-    //           </div>
-    //         </div>
-    //         <hr />
-    //         <div>
-    //           <div className='h-[300px]'></div>
-    //         </div>
-    //       </div>
-    //       <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-    //         <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
-    //           <div>
-    //             <ExportValue />
-    //           </div>
-    //           <div>
-    //             <ImportValue />
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </>
-    //   ) : (
-    //     <div className='h-[100px] mb-[70px] translate-y-[20px]'><Loading /></div>
-    //   )}
-    // </div>
+    <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">
+      {isLoading ? (
+        <>
+          <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+              <div>
+                <RetailValue />
+              </div>
+              <div>
+                <RetailSalesGrowth />
+              </div>
+            </div>
+            <hr />
+            <div>
+              <TotalRetail />
+            </div>
+          </div>
+          <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+              <div>
+                <ExportAndImportTransfer />
+              </div>
+              <div>
+                <TotalImportExport />
+              </div>
+            </div>
+            <hr />
+            <div>
+              <div className='h-[300px]'></div>
+            </div>
+          </div>
+          <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+              <div>
+                <ExportValue />
+              </div>
+              <div>
+                <ImportValue />
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className='h-[100px] mb-[70px] translate-y-[20px]'><Loading /></div>
+      )}
+    </div>
   )
 }
 
