@@ -16,6 +16,10 @@ const initialState = {
     dataIndexConsumptionStorage: {},
     dataIndexIndustrialProductionByIndustry: {},
     dataIndustrialProductionPrimarily: {},
+    dataRetailValue: {},
+    dataRetailSalesGrowth: {},
+    dataTableTotalRetail: {},
+    dataTotalImportExport: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -64,6 +68,18 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === macroType.FETCH_DATA_INDUSTRIAL_PRODUCTION_PRIMARILY) {
             draft.dataIndustrialProductionPrimarily = payload
+        }
+        if (type === macroType.FETCH_DATA_RETAIL_VALUE) {
+            draft.dataRetailValue = payload
+        }
+        if (type === macroType.FETCH_DATA_RETAIL_SALES_GROWTH) {
+            draft.dataRetailSalesGrowth = payload
+        }
+        if (type === macroType.FETCH_DATA_TABLE_TOTAL_RETAIL) {
+            draft.dataTableTotalRetail = payload
+        }
+        if (type === macroType.FETCH_DATA_TOTAL_IMPORT_EXPORT) {
+            draft.dataTotalImportExport = payload
         }
     });
 };

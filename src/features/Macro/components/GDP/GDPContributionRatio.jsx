@@ -167,7 +167,7 @@ const GDPContributionRatio = () => {
                                                 </td>
                                             ))}
                                         </tr>
-                                    ))) : (<tr><Loading /></tr>)}
+                                    ))) : (<tr><td><div><Loading /></div></td></tr>)}
                                 </tbody>
                             </table>
                         </div>

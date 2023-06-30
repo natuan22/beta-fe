@@ -56,7 +56,7 @@ const GeneralIndustry = () => {
     }, [query]);
 
     const disconnectSocket = (socketOld) => {
-        console.log('disconnect', socketOld);
+        // console.log('disconnect', socketOld);
         if (socket.active) {
             socket.off(`listen-phan-nganh-${socketOld}`);
         }
