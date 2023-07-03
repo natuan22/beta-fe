@@ -101,4 +101,22 @@ export const macroServices = {
             }
         })
     },
+    fetchDataTableImportExportMarket: () => {
+        return https.get('api/v1/retail/thi-truong-xuat-nhap-khau-chinh', {
+        })
+    },
+    fetchDataExportValue: (order) => {
+        return https.get('api/v1/retail/xuat-nhap-khau-mat-hang-chinh', {
+            params: {
+                order
+            }
+        })
+    },
+    fetchDataImportValue: (order) => {
+        return https.get('api/v1/retail/nhap-khau-mat-hang-chinh', {
+            params: {
+                order
+            }
+        })
+    },
 }

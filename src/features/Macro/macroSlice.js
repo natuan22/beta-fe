@@ -20,6 +20,9 @@ const initialState = {
     dataRetailSalesGrowth: {},
     dataTableTotalRetail: {},
     dataTotalImportExport: {},
+    dataTableImportExportMarket: {},
+    dataExportValue: {},
+    dataImportValue: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -80,6 +83,15 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === macroType.FETCH_DATA_TOTAL_IMPORT_EXPORT) {
             draft.dataTotalImportExport = payload
+        }
+        if (type === macroType.FETCH_DATA_TABLE_IMPORT_EXPORT_MARKET) {
+            draft.dataTableImportExportMarket = payload
+        }
+        if (type === macroType.FETCH_DATA_EXPORT_VALUE) {
+            draft.dataExportValue = payload
+        }
+        if (type === macroType.FETCH_DATA_IMPORT_VALUE) {
+            draft.dataImportValue = payload
         }
     });
 };
