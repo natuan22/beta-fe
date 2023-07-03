@@ -40,9 +40,9 @@ const RetailImportAndExport = () => {
               <div>
                 <RetailValue />
               </div>
-              <div>
+              <divl>
                 <RetailSalesGrowth />
-              </div>
+              </divl>
             </div>
             <hr />
             <div>

@@ -168,7 +168,7 @@ const TotalImportExport = () => {
                         <LegendBtn chart={chartRef.current} data={data} />
                     </div>
                     <div className='h-[300px]'>
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                        <HighchartsReact callback={callBackHighChart} highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 </>
             ) : (
