@@ -58,7 +58,6 @@ const Home = () => {
   const [shouldLoadApi, setShouldLoadApi] = useState(false);
   useEffect(() => {
     dispatch(fetchDataEvents);
-    dispatch(fetchDataNews);
     dispatch(fetchDataRateDetail);
     dispatch(fetchDataTopNetForeignChange("hose"));
     dispatch(fetchDataROC5Phien("hose"));
@@ -69,7 +68,6 @@ const Home = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchDataInternationalIndex);
     dispatch(fetchDataTableDetail);
     dispatch(fetchDataBarChartRight('hose'));
     dispatch(fetchDataBarChartLeft("hsx"));

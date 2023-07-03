@@ -23,11 +23,6 @@ const Macro = () => {
         }
     }, [location]);
 
-    useEffect(() => {
-        dispatch(fetchDataNews);
-        dispatch(fetchDataInternationalIndex);
-    }, [dispatch]);
-
     return (
         <LayOut>
             <div>

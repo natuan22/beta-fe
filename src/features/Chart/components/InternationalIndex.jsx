@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsFillArrowDownCircleFill, BsFillArrowUpCircleFill } from "react-icons/bs";
 import Marquee from "react-fast-marquee";
+import { fetchDataInternationalIndex } from "../thunk";
 
 const InternationalIndex = () => {
+  const dispatch = useDispatch()
   const dataInternationalIndex = useSelector((state) => state.chart.dataInternationalIndex);
   const [speed, setSpeed] = useState();
 
@@ -18,11 +20,12 @@ const InternationalIndex = () => {
       else if (window.innerWidth <= '374') setSpeed(5);
     }
     handleResize()
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
+  useEffect(() => {
+    dispatch(fetchDataInternationalIndex)
+  }, [])
   return (
     <div className="dark:bg-black bg-white pt-1">
       <Marquee
