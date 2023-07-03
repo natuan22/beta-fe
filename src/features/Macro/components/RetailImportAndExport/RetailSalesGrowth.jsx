@@ -1,10 +1,11 @@
 import moment from 'moment'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
 import { fetchDataRetailSalesGrowth } from '../../thunk';
+import LegendBtn from '../../../../utils/Component/BtnLegend';
 
 const RetailSalesGrowth = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,10 @@ const RetailSalesGrowth = () => {
 
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
-
+    const chartRef = useRef(null)
+    const callBackHighChart = (chart) => {
+        chartRef.current = chart
+    }
     useEffect(() => {
         setColorText(color);
     }, [color])
@@ -103,7 +107,7 @@ const RetailSalesGrowth = () => {
         },
         legend: {
             verticalAlign: 'top',
-            enabled: true,
+            enabled: false,
             itemStyle: {
                 color: localStorage.getItem('color'),
                 fontWeight: 'bold'
@@ -134,9 +138,14 @@ const RetailSalesGrowth = () => {
                 </select>
             </div>
             {dataRetailSalesGrowth?.length > 0 ? (
-                <div className='h-[300px] mt-2'>
-                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                </div>
+                <>
+                    <div className='flex justify-center mt-1'>
+                        <LegendBtn chart={chartRef.current} data={data} />
+                    </div>
+                    <div className='h-[300px]'>
+                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                    </div>
+                </>
             ) : (
                 <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
             )}

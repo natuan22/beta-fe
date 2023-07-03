@@ -64,7 +64,7 @@ const GeneralIndustry = () => {
 
     const conSocket = (key) => {
         socket.on(`listen-phan-nganh-${key}`, (newData) => {
-            console.log(newData)
+            // console.log(newData)
             const newDataWithChanges = oldData?.map(oldItem => {
                 const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
                 if (matchingItem) {
