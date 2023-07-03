@@ -1,6 +1,5 @@
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
-import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
@@ -11,7 +10,6 @@ const ChartAveragePB = (props) => {
     const { industryQuery } = props
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
-
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
@@ -25,9 +23,15 @@ const ChartAveragePB = (props) => {
     useEffect(() => {
         if (dataChartAveragePB?.length > 0) {
             const result = [];
-            const uniqueDates = [...new Set(dataChartAveragePB?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            const transformedData = dataChartAveragePB?.map(item => {
+                const year = item.date.slice(0, 4);
+                const quarter = item.date.slice(4);
+                const transformedDate = `Q${quarter} ${year}`;
+                return { ...item, date: transformedDate };
+            });
+            const uniqueDates = [...new Set(transformedData?.map(item => item.date))];
             setTimeLine(uniqueDates)
-            dataChartAveragePB?.forEach(item => {
+            transformedData?.forEach(item => {
                 if (mappedKeys.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {
