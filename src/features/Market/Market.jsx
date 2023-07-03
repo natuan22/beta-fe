@@ -29,10 +29,6 @@ const Market = () => {
     setTheme(color);
   }, [color]);
 
-  useEffect(() => {
-    dispatch(fetchDataNews);
-    dispatch(fetchDataInternationalIndex);
-  }, [dispatch]);
   return (
     <LayOut>
       <div>

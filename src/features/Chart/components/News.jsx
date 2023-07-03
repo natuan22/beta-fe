@@ -1,33 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Card } from "antd";
 import Marquee from "react-fast-marquee";
 import moment from "moment";
+import { fetchDataNews } from "../thunk";
 
 const News = () => {
   const dataNews = useSelector((state) => state.chart.dataNews);
-  const [speed, setSpeed] = useState();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= '1920') setSpeed(3);
-      else if (window.innerWidth >= '1440') setSpeed(2.5);
-      else if (window.innerWidth >= '1024') setSpeed(2);
-      else if (window.innerWidth >= '768') setSpeed(1);
-      else if (window.innerWidth >= '425') setSpeed(0.5);
-      else if (window.innerWidth >= '375') setSpeed(0.3);
-      else if (window.innerWidth <= '374') setSpeed(0.3);
-    };
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
+    dispatch(fetchDataNews)
+  }, [])
   return (
     <>
       <div className="dark:bg-black bg-white">
-        <Marquee speed={speed} pauseOnHover={true} gradientColor="[0,0,0]">
+        <Marquee pauseOnHover={true} gradientColor="[0,0,0]">
           <div className="blog-news flex h-[130px]">
             {dataNews.data?.map((item, index) => {
               return (
