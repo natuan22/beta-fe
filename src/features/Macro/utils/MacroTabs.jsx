@@ -7,9 +7,9 @@ const MacroTabs = () => {
             <NavLink
                 className={(params) => {
                     if (params.isActive) {
-                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
+                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[30%] text-center tabUnderline relative";
                     } else {
-                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center";
+                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[30%] text-center";
                     }
                 }}
                 to="/vi-mo/vi-mo-trong-nuoc" >
@@ -18,9 +18,9 @@ const MacroTabs = () => {
             <NavLink
                 className={(params) => {
                     if (params.isActive) {
-                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
+                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[30%] text-center tabUnderline relative";
                     } else {
-                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center";
+                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[30%] text-center";
                     }
                 }}
                 to="/vi-mo/vi-mo-quoc-te">

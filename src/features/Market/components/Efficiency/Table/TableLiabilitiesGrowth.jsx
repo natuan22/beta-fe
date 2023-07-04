@@ -39,7 +39,7 @@ const TableLiabilitiesGrowth = () => {
                             </thead>
 
                             <tbody>
-                                {loading ? (
+                                {!loading ? (
                                     Array.isArray(data) &&
                                     data.map((item, index) => {
                                         let colorNoNganHan = getColor(item.noNganHan);
