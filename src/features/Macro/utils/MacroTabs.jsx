@@ -7,9 +7,9 @@ const MacroTabs = () => {
             <NavLink
                 className={(params) => {
                     if (params.isActive) {
-                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
+                        return " button no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-centerrelative";
                     } else {
-                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center";
+                        return " button no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] opacity-70  text-center";
                     }
                 }}
                 to="/vi-mo/vi-mo-trong-nuoc" >
@@ -18,9 +18,9 @@ const MacroTabs = () => {
             <NavLink
                 className={(params) => {
                     if (params.isActive) {
-                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center tabUnderline relative";
+                        return " button no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center relative";
                     } else {
-                        return "no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%] text-center";
+                        return " button no-underline dark:text-white text-black xs:text-[0.9rem] md:text-[1rem] lg:text-[1rem] xl:text-[1.2rem] 2xl:text-[1.2rem] font-bold w-[25%]  opacity-70  text-center";
                     }
                 }}
                 to="/vi-mo/vi-mo-quoc-te">

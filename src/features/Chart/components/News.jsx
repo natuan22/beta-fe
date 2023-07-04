@@ -15,7 +15,7 @@ const News = () => {
   return (
     <>
       <div className="dark:bg-black bg-white">
-        <Marquee pauseOnHover={true} gradientColor="[0,0,0]">
+        <Marquee speed={10} pauseOnHover={true} gradientColor="[0,0,0]">
           <div className="blog-news flex h-[130px]">
             {dataNews.data?.map((item, index) => {
               return (
