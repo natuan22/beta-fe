@@ -1,18 +1,12 @@
-.button {
-  position: relative;
-  width: 150px;
-  font-size: 14px;
-  border: none;
-  background: #1e5d8b;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 5px;
-  box-shadow: #1c82ad 0px 7px 2px, #1c82ad 0px 8px 5px;
-}
-
-.button:active {
-  top: 4px;
-  box-shadow: #1c82ad 0px 3px 2px, #000 0px 3px 5px;
+.tabUnderline::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 5px;
+    bottom: -30%;
+    left: 0;
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+    --tw-gradient-from: #7163E0;
+    --tw-gradient-to: #083B98;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
