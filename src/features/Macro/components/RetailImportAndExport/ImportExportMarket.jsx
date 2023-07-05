@@ -58,33 +58,40 @@ const ImportExportMarket = () => {
                                 {!loading ? (Array.isArray(dataTb) && dataTb.map(item => (
                                     <>
                                         <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                            <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`} rowSpan="3">
+                                            <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`} rowSpan="3" style={{ border: '1px solid white' }}>
                                                 {item.name}
                                             </th>
-                                            <td className='text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black'>Xuất khẩu</td>
+                                            <td className='text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black' style={{ border: '1px solid white' }}>
+                                                Xuất khẩu
+                                            </td>
 
                                             {item.values.map((value, index) => (
-                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`} style={{ border: '1px solid white' }}>
                                                     {value.xk.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
                                             ))}
                                         </tr>
                                         <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                            <td className='text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black'>Nhập khẩu</td>
+                                            <td className='text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black' style={{ border: '1px solid white' }}>
+                                                Nhập khẩu
+                                            </td>
                                             {item.values.map((value, index) => (
-                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`} style={{ border: '1px solid white' }}>
                                                     {value.nk.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
                                             ))}
                                         </tr>
                                         <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                            <td className='text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black'>XNK Ròng</td>
+                                            <td className='text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black' style={{ border: '1px solid white' }}>
+                                                XNK Ròng
+                                            </td>
                                             {item.values.map((value, index) => (
-                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`} style={{ border: '1px solid white' }}>
                                                     {value.net_xnk.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
                                             ))}
                                         </tr>
+
                                     </>
                                 ))) : (<tr><td><div><Loading /></div></td></tr>)}
                             </tbody>
