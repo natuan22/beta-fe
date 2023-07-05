@@ -1,0 +1,24 @@
+.slide {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (min-width: 768px) {
+  .marquee-content {
+    animation: marquee 16s linear infinite;
+  }
+}
+
+@media (min-width: 1024px) {
+  .marquee-content {
+    animation: marquee 10s linear infinite;
+  }
+}
