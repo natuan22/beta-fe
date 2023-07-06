@@ -25,8 +25,7 @@ const MoneyWheel = (props) => {
         if (dataChartAssetTurnoverRatio?.length > 0) {
             const transformedData = dataChartAssetTurnoverRatio?.map(item => {
                 const year = item.date.slice(0, 4);
-                const quarter = item.date.slice(4);
-                const transformedDate = `Q${quarter} ${year}`;
+                const transformedDate = `${year}`;
                 return { ...item, date: transformedDate };
             });
 

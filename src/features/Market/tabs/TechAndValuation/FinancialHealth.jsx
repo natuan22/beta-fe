@@ -25,6 +25,7 @@ import {
   fetchDataChartAveragePB,
   fetchDataChartAveragePE,
   fetchDataChartCashPayoutRatio,
+  fetchDataChartInterestCoverageRatio,
   fetchDataChartMiningProfitMargin,
   fetchDataChartPayoutRatio,
   fetchDataTableAverageDebtRatio,
@@ -65,6 +66,7 @@ const FinancialHealth = () => {
     dispatch(fetchDataChartAssetTurnoverRatio(exchange, order))
     dispatch(fetchDataTableAverageDebtRatio(exchange, order))
     dispatch(fetchDataChartMiningProfitMargin(exchange, type, order))
+    dispatch(fetchDataChartInterestCoverageRatio(exchange, type, order))
   }, [dispatch, exchange, type, order])
 
   useEffect(() => {

@@ -26,8 +26,7 @@ const CashPayoutRatio = (props) => {
         if (dataChartCashPayoutRatio?.length > 0) {
             const transformedData = dataChartCashPayoutRatio?.map(item => {
                 const year = item.date.slice(0, 4);
-                const quarter = item.date.slice(4);
-                const transformedDate = `Q${quarter} ${year}`;
+                const transformedDate = `${year}`;
                 return { ...item, date: transformedDate };
             });
 
