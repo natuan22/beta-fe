@@ -41,7 +41,8 @@ const initialState = {
   dataChartPayoutRatio: {},
   dataChartAssetTurnoverRatio: {},
   dataTableAverageDebtRatio: {},
-  dataChartMiningProfitMargin: {}
+  dataChartMiningProfitMargin: {},
+  dataChartInterestCoverageRatio: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -171,6 +172,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_CHART_MINING_PROFIT_MARGIN) {
       draft.dataChartMiningProfitMargin = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_INTEREST_COVERAGE_RATIO) {
+      draft.dataChartInterestCoverageRatio = payload
     }
   });
 };
