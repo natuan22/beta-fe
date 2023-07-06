@@ -22,6 +22,15 @@ module.exports = {
       },
     },
     extend: {
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        }
+      },
+      animation: {
+        marquee: 'marquee 30s linear infinite',
+      },
       backgroundImage: {
         "signinBackground": `url('${apiUrl}/resources/images/login-background.png')`,
         "footerBackground": `url('${apiUrl}/resources/images/bg_footer.png')`,
