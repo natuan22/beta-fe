@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
-import { fetchTableEvents } from '../../thunk';
+import { fetchDataTableEvents } from '../../thunk';
 
 const TableEvents = () => {
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const TableEvents = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        dispatch(fetchTableEvents('hnx'));
+        dispatch(fetchDataTableEvents(1, 10, 'hnx'));
     }, []);
 
     useEffect(() => {
@@ -63,7 +63,7 @@ const TableEvents = () => {
                                                         {item.code}
                                                     </th>
                                                     <td className="text-center align-middle px-3 p-4 dark:text-white text-black text-sm">
-                                                        {item.floor}
+                                                        {item.exchange}
                                                     </td>
                                                     <td className="text-center align-middle px-3 p-4 dark:text-white text-black text-sm">
                                                         {moment(item.date_gdkhq).format('DD-MM-YYYY')}

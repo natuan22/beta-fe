@@ -7,7 +7,6 @@ import News from '../Chart/components/News';
 import { fetchDataInternationalIndex, fetchDataNews } from '../Chart/thunk';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from "../../components/Footer";
-import Test from './utils/Test';
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Macro = () => {
@@ -34,7 +33,6 @@ const Macro = () => {
                 <div>
                     <div className="px-11">
                         <MacroTabs />
-                        <Test />
                     </div>
 
                     <div>

@@ -329,4 +329,13 @@ export const marketServices = {
             }
         })
     },
+    fetchDataChartInterestCoverageRatio: (exchange, type, order) => {
+        return https.get('api/v1/finance-health/he-so-thanh-toan-lai-vay', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    },
 }

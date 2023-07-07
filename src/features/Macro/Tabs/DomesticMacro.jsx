@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { hashTb } from '../utils/antComponentChild';
+import Test from '../utils/Test';
 
 function DomesticMacro() {
     const [activeTab, setActiveTab] = useState(localStorage.getItem('userTabCurrent'));
@@ -40,6 +41,7 @@ function DomesticMacro() {
                     ))}
                 </div>
             </div>
+            {/* <Test /> */}
 
             <div className="tab-content">
                 <TabContent />
