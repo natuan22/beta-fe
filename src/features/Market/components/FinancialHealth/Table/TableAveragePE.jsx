@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { getColor } from '../../../../Chart/utils/utils';

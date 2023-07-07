@@ -37,7 +37,6 @@ export function getText(item) {
     return text
 }
 
-
 export function getTextSellBuy(item) {
     let text = <span></span>;
     if (item < "0")

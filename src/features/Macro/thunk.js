@@ -228,3 +228,39 @@ export const fetchDataTotalImportExport = (order) => async (dispatch) => {
         console.log(err)
     }
 }
+
+export const fetchDataTableImportExportMarket = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataTableImportExportMarket()
+        dispatch({
+            type: macroType.FETCH_DATA_TABLE_IMPORT_EXPORT_MARKET,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataExportValue = (order) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataExportValue(order)
+        dispatch({
+            type: macroType.FETCH_DATA_EXPORT_VALUE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataImportValue = (order) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataImportValue(order)
+        dispatch({
+            type: macroType.FETCH_DATA_IMPORT_VALUE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}

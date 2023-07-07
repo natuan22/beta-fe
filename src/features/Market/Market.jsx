@@ -4,14 +4,12 @@ import InternationalIndex from "../Chart/components/InternationalIndex";
 import { Outlet, useLocation } from "react-router-dom";
 import MarketTab from "./utils/MarketTab";
 import Banner from "../Chart/components/Banner";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchDataInternationalIndex, fetchDataNews } from "../Chart/thunk";
+import { useSelector } from "react-redux";
 import LayOut from "../../HOCs/Layout";
 import Footer from "../../components/Footer";
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Market = () => {
-  const dispatch = useDispatch()
   const location = useLocation()
   const [theme, setTheme] = useState(localStorage.getItem('theme'))
   const color = useSelector((state) => state.color.colorTheme);
@@ -29,10 +27,6 @@ const Market = () => {
     setTheme(color);
   }, [color]);
 
-  useEffect(() => {
-    dispatch(fetchDataNews);
-    dispatch(fetchDataInternationalIndex);
-  }, [dispatch]);
   return (
     <LayOut>
       <div>

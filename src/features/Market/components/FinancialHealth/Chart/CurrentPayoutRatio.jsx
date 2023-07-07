@@ -25,7 +25,7 @@ const CurrentPayoutRatio = (props) => {
     useEffect(() => {
         if (dataChartPayoutRatio?.length > 0) {
             const transformedData = dataChartPayoutRatio?.map(item => {
-                return { ...item, date: moment(item.date).format('DD/MM/YYYY') };
+                return { ...item, date: moment(item.date).format('YYYY') };
             });
 
             const uniqueIndustry = [...new Set(transformedData.filter(item => mappedKeys.includes(item.industry)).map(item => item.industry))];

@@ -8,7 +8,8 @@ import ExportValue from '../../components/RetailImportAndExport/ExportValue';
 import ImportValue from '../../components/RetailImportAndExport/ImportValue';
 import TotalImportExport from '../../components/RetailImportAndExport/TotalImportExport';
 import ExportAndImportTransfer from '../../components/RetailImportAndExport/ExportAndImportTransfer';
-import { fetchDataRetailSalesGrowth, fetchDataRetailValue, fetchDataTableTotalRetail, fetchDataTotalImportExport } from '../../thunk';
+import { fetchDataExportValue, fetchDataImportValue, fetchDataRetailSalesGrowth, fetchDataRetailValue, fetchDataTableImportExportMarket, fetchDataTableTotalRetail, fetchDataTotalImportExport } from '../../thunk';
+import ImportExportMarket from '../../components/RetailImportAndExport/ImportExportMarket';
 
 const RetailImportAndExport = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ const RetailImportAndExport = () => {
     dispatch(fetchDataRetailSalesGrowth(1))
     dispatch(fetchDataTableTotalRetail)
     dispatch(fetchDataTotalImportExport(2))
+    dispatch(fetchDataTableImportExportMarket)
+    dispatch(fetchDataExportValue(2))
+    dispatch(fetchDataImportValue(2))
   }, [dispatch]);
 
   return (
@@ -36,9 +40,9 @@ const RetailImportAndExport = () => {
               <div>
                 <RetailValue />
               </div>
-              <div>
+              <divl>
                 <RetailSalesGrowth />
-              </div>
+              </divl>
             </div>
             <hr />
             <div>
@@ -56,7 +60,7 @@ const RetailImportAndExport = () => {
             </div>
             <hr />
             <div>
-              <div className='h-[300px]'></div>
+              <ImportExportMarket />
             </div>
           </div>
           <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
