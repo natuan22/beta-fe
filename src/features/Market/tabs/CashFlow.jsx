@@ -30,7 +30,6 @@ const CashFlow = () => {
   return (
     <>
       <div className="container mx-auto">
-
         <div className="relative  flex justify-around mt-5 bg-[#195070] h-auto items-center rounded-full">
           <div className="moving-background absolute h-full top-0 bg-[#35adf2] transition-all duration-500 rounded-full z-0"></div>
           {Object.entries(hashTbCashFlow).map(([label, value], index) => (

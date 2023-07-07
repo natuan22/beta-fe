@@ -21,6 +21,7 @@ function App() {
   useEffect(() => {
     // data local để giữ trạng thái user để call api ở chỉ số thị trường
     localStorage.setItem('userTabCurrent', 0)
+    localStorage.setItem('userNewsCenterMacroTabCurrent', 0)
     localStorage.setItem('typeTime', 'HH:mm')
     localStorage.setItem('exchange', 'VNINDEX')
     localStorage.setItem('typeApi', '0')
