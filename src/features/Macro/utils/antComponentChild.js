@@ -8,7 +8,6 @@ import Bonds from "../Tabs/DomesticMacro/Bonds";
 import Labour from "../Tabs/DomesticMacro/Labour";
 import RetailImportAndExport from "../Tabs/DomesticMacro/RetailImportAndExport";
 
-
 export const hashTb = {
     'GDP': GDP,
     'CPI': CPI,

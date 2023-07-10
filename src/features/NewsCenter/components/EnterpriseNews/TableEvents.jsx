@@ -12,7 +12,7 @@ const TableEvents = () => {
 
     useEffect(() => {
         dispatch(fetchDataTableEvents(1, 10, 'hnx'));
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataTableEvents) {

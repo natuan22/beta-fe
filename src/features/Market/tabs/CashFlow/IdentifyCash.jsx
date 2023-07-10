@@ -78,7 +78,7 @@ const IdentifyCash = () => {
             </div>
           </>
         ) : (
-          <div className='h-[100px] mb-[70px] translate-y-[20px]'><Loading /></div>
+          <div className='h-[300px] flex items-center justify-center'><Loading /></div>
         )}
       </div>
     </>

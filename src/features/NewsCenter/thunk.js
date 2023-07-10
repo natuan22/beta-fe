@@ -25,6 +25,18 @@ export const fetchDataDomesticMacro = (page, limit) => async (dispatch) => {
     }
 }
 
+export const fetchDataForeignMacro = (page, limit) => async (dispatch) => {
+    try {
+        const res = await newsCenterServices.fetchDataForeignMacro(page, limit)
+        dispatch({
+            type: newsCenterType.FETCH_DATA_FOREIGN_MARCO,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const fetchDataListEnterpriseNews = async (dispatch) => {
     try {
         const res = await newsCenterServices.fetchDataListEnterpriseNews()

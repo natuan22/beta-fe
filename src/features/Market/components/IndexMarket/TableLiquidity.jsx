@@ -15,7 +15,7 @@ const TableLiquidity = () => {
   });
   const [title, setTitle] = useState('Cổ phiếu')
   useEffect(() => {
-    if (queryApi.type != 0) {
+    if (queryApi.type !== 0) {
       setTitle("Ngành")
     } else {
       setTitle('Cổ phiếu')
@@ -121,10 +121,10 @@ const TableLiquidity = () => {
             }}
             className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
           >
-            <option value="0">Cổ phiếu</option>
-            <option value="1">Ngành Lv1</option>
-            <option value="2">Ngành Lv2</option>
-            <option value="3">Ngành Lv3</option>
+            <option value={0}>Cổ phiếu</option>
+            <option value={1}>Ngành Lv1</option>
+            <option value={2}>Ngành Lv2</option>
+            <option value={3}>Ngành Lv3</option>
           </select>
           <span className="dark:text-white text-black text-[0.9rem] ml-4">Sàn</span>
           <select
