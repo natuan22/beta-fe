@@ -14,7 +14,7 @@ const ListEnterpriseNews = () => {
 
     useEffect(() => {
         dispatch(fetchDataListEnterpriseNews);
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataListEnterpriseNews) {

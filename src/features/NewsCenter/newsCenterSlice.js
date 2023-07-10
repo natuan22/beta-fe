@@ -3,6 +3,7 @@ import { newsCenterType } from "./utils/constant";
 const initialState = {
   dataTableEvents: {},
   dataDomesticMacro: {},
+  dataForeignMacro: {},
   dataListEnterpriseNews: {},
 };
 
@@ -13,6 +14,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === newsCenterType.FETCH_DATA_DOMESTIC_MARCO) {
       draft.dataDomesticMacro = payload
+    }
+    if (type === newsCenterType.FETCH_DATA_FOREIGN_MARCO) {
+      draft.dataForeignMacro = payload
     }
     if (type === newsCenterType.FETCH_DATA_LIST_ENTERPRISE_NEWS) {
       draft.dataListEnterpriseNews = payload

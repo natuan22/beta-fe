@@ -18,6 +18,14 @@ export const newsCenterServices = {
             }
         })
     },
+    fetchDataForeignMacro: (page, limit) => {
+        return https.get('api/v1/news/vi-mo-quoc-te', {
+            params: {
+                page,
+                limit
+            }
+        })
+    },
     fetchDataListEnterpriseNews: () => {
         return https.get('api/v1/news/tin-tuc-doanh-nghiep', {
         })
