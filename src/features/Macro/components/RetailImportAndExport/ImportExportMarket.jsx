@@ -31,7 +31,7 @@ const ImportExportMarket = () => {
             setDataTb(Object.entries(newData).map(([name, values]) => ({ name, values })));
         }
     }, [dataTableImportExportMarket])
-    console.log(dataTb);
+
     return (
         <section className="bg-blueGray-50 pt-1.5">
             <div className="w-full">

@@ -17,10 +17,11 @@ import Labour from './DomesticMacro/Labour';
 import '../utils/style/muiTabHeader.css'
 
 function DomesticMacro() {
-    const [value, setValue] = useState('0');
+    const [value, setValue] = useState(localStorage.getItem('userTabCurrent'));
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        localStorage.setItem('userTabCurrent', newValue)
     };
     // const [activeTab, setActiveTab] = useState(localStorage.getItem('userTabCurrent'));
     // const tabsRef = useRef([]);
