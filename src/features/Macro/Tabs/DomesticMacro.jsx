@@ -1,49 +1,82 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { hashTb } from '../utils/antComponentChild';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import GDP from './DomesticMacro/GDP';
+import CPI from './DomesticMacro/CPI';
+import Produce from './DomesticMacro/Produce';
+import RetailImportAndExport from './DomesticMacro/RetailImportAndExport';
+import FDI from './DomesticMacro/FDI';
+import Credit from './DomesticMacro/Credit';
+import RateAndInterestRate from './DomesticMacro/RateAndInterestRate';
+import Bonds from './DomesticMacro/Bonds';
+import Labour from './DomesticMacro/Labour';
+import '../utils/style/muiTabHeader.css'
 
 function DomesticMacro() {
-    const [activeTab, setActiveTab] = useState(localStorage.getItem('userTabCurrent'));
-    const tabsRef = useRef([]);
+    const [value, setValue] = useState(localStorage.getItem('userTabCurrent'));
 
-    const handleTabClick = (index) => {
-        setActiveTab(index);
-        localStorage.setItem('userTabCurrent', index)
-
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+        localStorage.setItem('userTabCurrent', newValue)
     };
+    // const [activeTab, setActiveTab] = useState(localStorage.getItem('userTabCurrent'));
+    // const tabsRef = useRef([]);
 
-    useEffect(() => {
-        const activeButton = tabsRef.current[activeTab];
-        const movingBackground = document.querySelector('.moving-background');
-        if (activeButton && movingBackground) {
-            movingBackground.style.left = `${activeButton.offsetLeft}px`;
-            movingBackground.style.width = `${activeButton.offsetWidth}px`;
-        }
-    }, [activeTab]);
+    // const handleTabClick = (index) => {
+    //     setActiveTab(index);
+    //     localStorage.setItem('userTabCurrent', index)
+    // };
 
-    const tabLabels = Object.keys(hashTb);
-    const TabContent = Object.values(hashTb)[activeTab];
+    // useEffect(() => {
+    //     const activeButton = tabsRef.current[activeTab];
+    //     const movingBackground = document.querySelector('.moving-background');
+    //     if (activeButton && movingBackground) {
+    //         movingBackground.style.left = `${activeButton.offsetLeft}px`;
+    //         movingBackground.style.width = `${activeButton.offsetWidth}px`;
+    //     }
+    // }, [activeTab]);
+
+    // const tabLabels = Object.keys(hashTb);
+    // const TabContent = Object.values(hashTb)[activeTab];
 
     return (
-        <div className='tab'>
-            <div className='flex flex-col justify-center items-center mt-4'>
-                <div className="tab-container w-auto flex justify-evenly bg-[#195070] px-5 py-1 rounded-3xl z-0 relative mt-1.5">
-                    <div className="moving-background absolute h-full top-0 bg-[#35adf2] transition-all duration-500 rounded-full z-0"></div>
-                    {tabLabels.map((label, index) => (
-                        <button
-                            key={index}
-                            className={`relative z-10 ${activeTab === index ? 'active ' : ''} cursor-pointer mr-3 xl:px-7 lg:px-4 md:px-2 sm:px-1 xs:px-1 xxs:px-1 xl:text-[14px] lg:text-[11px] md:text-[11px] sm:text-[7px] xs:text-[5px] xxs:text-[4px] py-2 w-auto h-[33px] border-0 rounded-full font-bold text-white bg-transparent`}
-                            onClick={() => handleTabClick(index)}
-                            ref={el => tabsRef.current[index] = el}
+        <div className='tab container mx-auto'>
+            <Box sx={{ width: '100%', typography: 'body1', bgcolor: 'transparent' }} className='pt-1' id='domesticMacro'>
+                <TabContext value={value}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        <TabList
+                            onChange={handleChange}
+                            variant="scrollable"
+                            scrollButtons
+                            allowScrollButtonsMobile
                         >
-                            {label}
-                        </button>
-                    ))}
-                </div>
-            </div>
+                            <Tab label="GDP" value="0" />
+                            <Tab label="CPI" value="1" />
+                            <Tab label="SẢN XUẤT" value="2" />
+                            <Tab label="BÁN LẺ & XUẤT NHẬP KHẨU" value="3" />
+                            <Tab label="FDI" value="4" />
+                            <Tab label="TÍN DỤNG" value="5" />
+                            <Tab label="TỶ GIÁ VÀ LÃI SUẤT" value="6" />
+                            <Tab label="TRÁI PHIẾU" value="7" />
+                            <Tab label="LAO ĐỘNG" value="8" />
+                        </TabList>
+                    </Box>
 
-            <div className="tab-content">
-                <TabContent />
-            </div>
+                    <TabPanel value="0"><GDP /></TabPanel>
+                    <TabPanel value="1"><CPI /></TabPanel>
+                    <TabPanel value="2"><Produce /></TabPanel>
+                    <TabPanel value="3"><RetailImportAndExport /></TabPanel>
+                    <TabPanel value="4"><FDI /></TabPanel>
+                    <TabPanel value="5"><Credit /></TabPanel>
+                    <TabPanel value="6"><RateAndInterestRate /></TabPanel>
+                    <TabPanel value="7"><Bonds /></TabPanel>
+                    <TabPanel value="8"><Labour /></TabPanel>
+                </TabContext>
+            </Box>
         </div>
     );
 }

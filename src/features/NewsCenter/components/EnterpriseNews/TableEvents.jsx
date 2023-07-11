@@ -2,11 +2,15 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
+
 import { fetchTableEvents } from '../../thunk';
 import { AiFillFilter } from "react-icons/ai";
 import { CSSTransition } from 'react-transition-group';
 import checkboxStyle from '../../utils/styles/checkboxStyle.module.css'
 import '../../utils/styles/filterStyle.css'
+
+import { fetchDataTableEvents } from '../../thunk';
+
 const TableEvents = () => {
     const dispatch = useDispatch();
     const { dataTableEvents } = useSelector(state => state.newsCenter)
@@ -15,8 +19,8 @@ const TableEvents = () => {
     const [isShowFilter, setIsShowFilter] = useState(false)
     console.log(dataTableEvents)
     useEffect(() => {
-        dispatch(fetchTableEvents('hnx'));
-    }, []);
+        dispatch(fetchDataTableEvents(1, 10, 'hnx'));
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataTableEvents) {
@@ -118,7 +122,10 @@ const TableEvents = () => {
                                                         {item.code}
                                                     </th>
                                                     <td className="text-center align-middle px-3 p-4 dark:text-white text-black text-sm">
-                                                        {(item.floor).toUpperCase()}
+
+                                                        {(item.exchange).toUpperCase()}
+
+
                                                     </td>
                                                     <td className="text-center align-middle px-3 p-4 dark:text-white text-black text-sm">
                                                         {moment(item.date_gdkhq).format('DD-MM-YYYY')}

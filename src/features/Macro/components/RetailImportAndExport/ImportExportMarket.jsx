@@ -31,14 +31,14 @@ const ImportExportMarket = () => {
             setDataTb(Object.entries(newData).map(([name, values]) => ({ name, values })));
         }
     }, [dataTableImportExportMarket])
-    console.log(dataTb);
+
     return (
         <section className="bg-blueGray-50 pt-1.5">
             <div className="w-full">
                 <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
                     <div className="block xxs:w-[295px] xs:w-[350px] sm:w-[400px] md:w-[670px] lg:w-[897px] xl:w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent h-[367px]">
                         <table className="items-center w-full border-collapse bg-transparent">
-                            <thead className="sticky top-0 bg-[#1E5D8B] z-10">
+                            <thead className="bg-[#1E5D8B] z-10" style={{ position: 'sticky', top: 0 }}>
                                 <tr>
                                     <th className="sticky left-0 bg-[#1E5D8B] text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
                                         Thị trường

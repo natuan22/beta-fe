@@ -1,9 +1,15 @@
+
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchNewsTool } from '../thunk'
 import Loading from '../../Chart/utils/Loading'
 import { Checkbox, Button } from 'antd'
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
+
+import React from 'react'
+import Error404 from '../../Navigation/Error404'
+
+
 const NewsFilterTool = () => {
     const dispatch = useDispatch()
     const { newsTool } = useSelector(state => state.newsCenter)
@@ -39,6 +45,7 @@ const NewsFilterTool = () => {
     }
 
     return (
+
         <div className='h-screen'>
             {newsTool?.length ?
                 <div className='container h-full mt-5 bg-[#151924] '>
@@ -119,6 +126,9 @@ const NewsFilterTool = () => {
                 <div className='h-[50%] flex flex-col justify-center'><Loading /></div>
             }
         </div>
+
+        <div><Error404 /></div>
+
     )
 }
 
