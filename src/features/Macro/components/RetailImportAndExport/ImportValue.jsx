@@ -135,7 +135,7 @@ const ImportValue = () => {
         <div>
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold sm:text-base xs:text-sm xxs:text-xs'>Giá trị nhập khẩu một số mặt hàng chính</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[324px] lg:ml-[519px] md:ml-[294px] sm:ml-[25px] xs:ml-[22px] xxs:ml-[4px]`}
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[324px] lg:ml-[519px] md:ml-[294px] sm:ml-[25px] xs:ml-[15px] xxs:ml-[1px]`}
                     onChange={(event) => {
                         setOrder(event.target.value)
                         dispatch(fetchDataImportValue(event.target.value))

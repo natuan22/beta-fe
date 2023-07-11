@@ -49,7 +49,7 @@ const GDP = () => {
                         <div>
                             <div>
                                 <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 mt-[3px]'>
-                                    <span className='dark:text-white text-black font-semibold md:text-base sm:text-[15px] xs:text-[14px] xxs:text-[12px]'>Tỷ trọng đóng góp GDP theo các nhóm ngành chính (%)</span>
+                                    <span className='dark:text-white text-black font-semibold md:text-base sm:text-[15px] xs:text-[13px] xxs:text-[11px]'>Tỷ trọng đóng góp GDP theo các nhóm ngành chính (%)</span>
                                 </div>
                                 <GDPContributionRatio />
                             </div>
