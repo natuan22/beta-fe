@@ -1,6 +1,7 @@
 import { newsCenterServices } from "./services/newsCenterServices";
 import { newsCenterType } from "./utils/constant";
 
+
 export const fetchDataTableEvents = (page, limit, exchange) => async (dispatch) => {
     try {
         const res = await newsCenterServices.fetchDataTableEvents(page, limit, exchange)
@@ -13,17 +14,27 @@ export const fetchDataTableEvents = (page, limit, exchange) => async (dispatch) 
     }
 }
 
+
+export const fetchNewsTool = () => async dispatch => {
+    try {
+        const res = await newsCenterServices.fetchNewsTool()
+        dispatch({
+            type: newsCenterType.FETCH_NEWS_TOOL,
+
 export const fetchDataDomesticMacro = (page, limit) => async (dispatch) => {
     try {
         const res = await newsCenterServices.fetchDataDomesticMacro(page, limit)
         dispatch({
             type: newsCenterType.FETCH_DATA_DOMESTIC_MARCO,
+
             payload: res.data.data
         })
     } catch (err) {
         console.log(err)
     }
 }
+
+
 
 export const fetchDataForeignMacro = (page, limit) => async (dispatch) => {
     try {
@@ -48,3 +59,4 @@ export const fetchDataListEnterpriseNews = async (dispatch) => {
         console.log(err)
     }
 }
+
