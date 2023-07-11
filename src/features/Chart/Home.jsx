@@ -91,13 +91,11 @@ const Home = () => {
 
       components.forEach((component) => {
         const componentOffset = component.offsetTop;
-
         if (scrollPosition > componentOffset - windowHeight / 2) {
           setShouldLoadApi(true);
         }
       });
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);

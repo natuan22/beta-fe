@@ -14,7 +14,7 @@ const News = () => {
   }, []);
 
   useEffect(() => {
-    if (dataNews.data && dataNews.data.length > 0) {
+    if (dataNews.data?.length > 0) {
       adjustBlogNewsSize();
       window.addEventListener("resize", adjustBlogNewsSize);
     }

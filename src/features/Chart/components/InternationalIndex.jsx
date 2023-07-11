@@ -1,35 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BsFillArrowDownCircleFill, BsFillArrowUpCircleFill } from "react-icons/bs";
+import { fetchDataInternationalIndex, } from "../thunk";
 import Marquee from "react-fast-marquee";
-import { fetchDataInternationalIndex } from "../thunk";
 
 const InternationalIndex = () => {
   const dispatch = useDispatch()
   const dataInternationalIndex = useSelector((state) => state.chart.dataInternationalIndex);
-  const [speed, setSpeed] = useState();
 
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth >= '1920') setSpeed(45)
-      else if (window.innerWidth >= '1440') setSpeed(25)
-      else if (window.innerWidth >= '1024') setSpeed(25)
-      else if (window.innerWidth >= '768') setSpeed(15)
-      else if (window.innerWidth >= '425') setSpeed(10)
-      else if (window.innerWidth >= '375') setSpeed(5)
-      else if (window.innerWidth <= '374') setSpeed(5);
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
   useEffect(() => {
     dispatch(fetchDataInternationalIndex)
   }, [])
   return (
     <div className="dark:bg-black bg-white pt-1">
-      <Marquee
-        speed={speed} pauseOnHover="true" gradientColor="[0,0,0]">
+      <Marquee gradient={false} pauseOnHover={true} speed={40}>
         <div className="flex">
           {dataInternationalIndex.data?.map((item, index) => {
             return (
@@ -55,7 +39,9 @@ const InternationalIndex = () => {
             );
           })}
         </div>
+
       </Marquee>
+
     </div>
   );
 };
