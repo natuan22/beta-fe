@@ -6,7 +6,7 @@ const initialState = {
   dataDomesticMacro: {},
   dataForeignMacro: {},
   dataListEnterpriseNews: {},
-
+  dataStockInfo: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -26,7 +26,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === newsCenterType.FETCH_DATA_LIST_ENTERPRISE_NEWS) {
       draft.dataListEnterpriseNews = payload
-
+    }
+    if (type === newsCenterType.FETCH_DATA_STOCK_INFO) {
+      draft.dataStockInfo = payload
     }
   });
 };
