@@ -1,18 +1,19 @@
-import moment from 'moment'
+import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataCreditBalance } from '../../thunk';
 
-const GDPByPrice = () => {
-    const { dataGDPByPrice } = useSelector(state => state.marco)
+const CreditBalance = () => {
+    const dispatch = useDispatch();
+    const { dataCreditBalance } = useSelector(state => state.marco)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true);
     const [dates, setDates] = useState()
     const [dataTb, setDataTb] = useState()
-
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
@@ -21,10 +22,14 @@ const GDPByPrice = () => {
     }, [color])
 
     useEffect(() => {
-        if (dataGDPByPrice?.length > 0) {
+        dispatch(fetchDataCreditBalance)
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (dataCreditBalance?.length > 0) {
             setLoading(false);
-            const modifiedArray = dataGDPByPrice.map(item => {
-                const modifiedName = item.name.replace(' (2010) (Tỷ VNĐ)', '').replace(' (Tỷ VNĐ)', '');
+            const modifiedArray = dataCreditBalance.map(item => {
+                const modifiedName = item.name.replace(' (Tỷ đồng)', '');
                 const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
                 const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
 
@@ -36,24 +41,24 @@ const GDPByPrice = () => {
             const result = [];
 
             modifiedArray?.forEach(item => {
-                const colorArr = ['#2D8BBA', '#41B8D5'];
                 const name = item.name;
-                const value = item.value;
+                const value = +item.value.toFixed(2);
+                const color = item.color;
 
                 const existingObj = result.find(obj => obj.name === name);
 
                 if (existingObj) {
                     existingObj.data.push(value);
                 } else {
-                    const uniqueColorIndex = result.length % colorArr.length;
                     result.push({
                         name: name,
                         data: [value],
-                        color: colorArr[uniqueColorIndex]
+                        color
                     });
                 }
             })
             setData(result)
+
             const dates = [...new Set(modifiedArray?.map(item => item.date))];
             setDates(dates);
             const newData = {};
@@ -65,79 +70,96 @@ const GDPByPrice = () => {
             });
             setDataTb(Object.entries(newData).map(([name, values]) => ({ name, values })));
         }
-    }, [dataGDPByPrice])
+    }, [dataCreditBalance])
 
     const options = {
+        chart: {
+            backgroundColor: "transparent", // màu nền của biểu đồ
+            type: 'column'
+        },
         accessibility: {
-            enabled: false,
+            enabled: false
         },
         credits: false,
-        chart: {
-            type: 'line',
-            backgroundColor: 'transparent',
-        },
         title: {
-            text: '',
+            text: "",
+            style: {
+                color: 'white'
+            }
         },
         xAxis: {
             categories: timeLine,
             labels: {
                 style: {
-                    color: localStorage.getItem('color'),
+                    color: localStorage.getItem('color'), // màu cho các nhãn trục x
                     fontSize: '9px',
-                },
+                }
             },
-        },
-        yAxis: {
             title: {
-                text: null,
                 style: {
-                    color: localStorage.getItem('color'),
-                },
-            },
-            stackLabels: {
-                enabled: false,
-            },
-            labels: {
-                style: {
-                    color: localStorage.getItem('color'),
-                },
-            },
+                    color: localStorage.getItem('color') // màu cho tiêu đề trục x
+                }
+            }
         },
-        legend: {
-            enabled: false,
-            itemStyle: {
-                color: localStorage.getItem('color'),
-                fontWeight: 'bold'
+        yAxis: [
+            {
+                title: {
+                    text: "",
+                    style: {
+                        color: localStorage.getItem('color'),
+                    },
+                },
+                labels: {
+                    style: {
+                        color: localStorage.getItem('color') // màu cho các nhãn trục y
+                    },
+                }
+            },
+            {
+                title: {
+                    text: "",
+                    style: {
+                        color: localStorage.getItem('color'),
+                    },
+                },
+                labels: {
+                    style: {
+                        color: localStorage.getItem('color') // màu cho các nhãn trục y
+                    }
+                },
+                opposite: true,
             },
 
+        ],
+        legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            itemStyle: {
+                fontSize: '10px',
+                color: localStorage.getItem('color')
+            }
         },
-        plotOptions: {
-            series: {
-                marker: {
-                    radius: 2, // Giá trị bán kính marker
-                },
-            },
-        },
+
         series: data,
     };
 
     return (
         <div>
-            {dataGDPByPrice?.length > 0 ? (
-                <div className='h-[300px] mt-2'>
+            {dataCreditBalance?.length > 0 ? (
+                <div className='h-[300px]'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
                 <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
             )}
+
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
                         <div className="block xxs:w-[295px] xs:w-[350px] sm:w-[400px] md:w-[670px] lg:w-[897px] xl:w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent h-[225px]">
                             <table className="items-center w-full border-collapse bg-transparent">
                                 <thead className="bg-[#1E5D8B] z-10" style={{ position: 'sticky', top: 0 }}>
-                                    <tr >
+                                    <tr>
                                         <th className="sticky left-0 bg-[#1E5D8B] text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
                                             Kỳ
                                         </th>
@@ -152,11 +174,11 @@ const GDPByPrice = () => {
                                 <tbody>
                                     {!loading ? (Array.isArray(dataTb) && dataTb.map(item => (
                                         <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                            <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[26px] text-sm dark:text-white text-black`}>
+                                            <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
                                                 {item.name}
                                             </th>
                                             {item.values.map((value, index) => (
-                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[26px] font-semibold dark:text-white text-black`}>
+                                                <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
                                                     {value.toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                                 </td>
                                             ))}
@@ -168,8 +190,8 @@ const GDPByPrice = () => {
                     </div>
                 </div>
             </section>
-        </div >
+        </div>
     )
 }
 
-export default GDPByPrice
+export default CreditBalance

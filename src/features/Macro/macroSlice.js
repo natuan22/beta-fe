@@ -23,6 +23,18 @@ const initialState = {
     dataTableImportExportMarket: {},
     dataExportValue: {},
     dataImportValue: {},
+    dataLaborForce: {},
+    dataUnemploymentRate: {},
+    dataAverageSalary: {},
+    dataLaborRateBySector: {},
+    dataRateOfInformalEmployment: {},
+    dataJobFluctuations: {},
+    dataChartTotalMeansOfPayment: {},
+    dataTableTotalMeansOfPayment: {},
+    dataInternationalBalanceOfPayments: {},
+    dataCreditBalance: {},
+    dataCreditBalanceGrowth: {},
+    dataStatisticsCreditInstitution: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -92,6 +104,42 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === macroType.FETCH_DATA_IMPORT_VALUE) {
             draft.dataImportValue = payload
+        }
+        if (type === macroType.FETCH_DATA_LABOR_FORCE) {
+            draft.dataLaborForce = payload
+        }
+        if (type === macroType.FETCH_DATA_UNEMPLOYMENT_RATE) {
+            draft.dataUnemploymentRate = payload
+        }
+        if (type === macroType.FETCH_DATA_AVERAGE_SALARY) {
+            draft.dataAverageSalary = payload
+        }
+        if (type === macroType.FETCH_DATA_LABOR_RATE_BY_SECTOR) {
+            draft.dataLaborRateBySector = payload
+        }
+        if (type === macroType.FETCH_DATA_RATE_OF_INFORMAL_EMPLOYMENT) {
+            draft.dataRateOfInformalEmployment = payload
+        }
+        if (type === macroType.FETCH_DATA_JOB_FLUCTUATIONS) {
+            draft.dataJobFluctuations = payload
+        }
+        if (type === macroType.FETCH_DATA_CHART_TOTAL_MEANS_OF_PAYMENT) {
+            draft.dataChartTotalMeansOfPayment = payload
+        }
+        if (type === macroType.FETCH_DATA_TABLE_TOTAL_MEANS_OF_PAYMENT) {
+            draft.dataTableTotalMeansOfPayment = payload
+        }
+        if (type === macroType.FETCH_DATA_INTERNATIONAL_BALANCE_OF_PAYMENTS) {
+            draft.dataInternationalBalanceOfPayments = payload
+        }
+        if (type === macroType.FETCH_DATA_CREDIT_BALANCE) {
+            draft.dataCreditBalance = payload
+        }
+        if (type === macroType.FETCH_DATA_CREDIT_BALANCE_GROWTH) {
+            draft.dataCreditBalanceGrowth = payload
+        }
+        if (type === macroType.FETCH_DATA_STATISTICS_CREDIT_INSTITUTION) {
+            draft.dataStatisticsCreditInstitution = payload
         }
     });
 };

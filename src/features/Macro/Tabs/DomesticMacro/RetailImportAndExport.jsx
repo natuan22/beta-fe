@@ -36,13 +36,13 @@ const RetailImportAndExport = () => {
       {isLoading ? (
         <>
           <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
               <div>
                 <RetailValue />
               </div>
-              <divl>
+              <div>
                 <RetailSalesGrowth />
-              </divl>
+              </div>
             </div>
             <hr />
             <div>
@@ -50,7 +50,7 @@ const RetailImportAndExport = () => {
             </div>
           </div>
           <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
               <div>
                 <ExportAndImportTransfer />
               </div>
@@ -64,7 +64,7 @@ const RetailImportAndExport = () => {
             </div>
           </div>
           <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
               <div>
                 <ExportValue />
               </div>

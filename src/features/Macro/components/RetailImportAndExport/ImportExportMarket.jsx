@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 
@@ -47,7 +47,7 @@ const ImportExportMarket = () => {
                                         Chỉ tiêu
                                     </th>
                                     {Array.isArray(dates) && dates?.map((item, index) => (
-                                        <th key={item} className={`text-center align-middle px-3 py-[19px] text-xs font-semibold text-white ${index === 0 ? 'whitespace-nowrap' : ''}`}>
+                                        <th key={index} className={`text-center align-middle px-3 py-[19px] text-xs font-semibold text-white ${index === 0 ? 'whitespace-nowrap' : ''}`}>
                                             {item}
                                         </th>
                                     ))}
@@ -55,9 +55,9 @@ const ImportExportMarket = () => {
                             </thead>
 
                             <tbody>
-                                {!loading ? (Array.isArray(dataTb) && dataTb.map(item => (
-                                    <>
-                                        <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
+                                {!loading ? (Array.isArray(dataTb) && dataTb.map((item, index) => (
+                                    <Fragment key={index}>
+                                        <tr className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
                                             <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`} rowSpan="3" style={{ border: '1px solid white' }}>
                                                 {item.name}
                                             </th>
@@ -91,8 +91,7 @@ const ImportExportMarket = () => {
                                                 </td>
                                             ))}
                                         </tr>
-
-                                    </>
+                                    </Fragment>
                                 ))) : (<tr><td><div><Loading /></div></td></tr>)}
                             </tbody>
                         </table>

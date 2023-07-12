@@ -119,4 +119,52 @@ export const macroServices = {
             }
         })
     },
+    fetchDataLaborForce: () => {
+        return https.get('api/v1/macro/luc-luong-lao-dong', {
+        })
+    },
+    fetchDataUnemploymentRate: () => {
+        return https.get('api/v1/macro/ti-le-that-nghiep-cac-nhom-lao-dong', {
+        })
+    },
+    fetchDataAverageSalary: () => {
+        return https.get('api/v1/macro/muc-luong-binh-quan-thi-truong-lao-dong', {
+        })
+    },
+    fetchDataLaborRateBySector: () => {
+        return https.get('api/v1/macro/ti-le-lao-dong-theo-linh-vuc', {
+        })
+    },
+    fetchDataRateOfInformalEmployment: () => {
+        return https.get('api/v1/macro/ti-le-lao-dong-phi-chinh-thuc', {
+        })
+    },
+    fetchDataJobFluctuations: () => {
+        return https.get('api/v1/macro/bien-dong-viec-lam-so-voi-cung-ky', {
+        })
+    },
+    fetchDataChartTotalMeansOfPayment: () => {
+        return https.get('api/v1/macro/tong-phuong-tien-thanh-toan', {
+        })
+    },
+    fetchDataTableTotalMeansOfPayment: () => {
+        return https.get('api/v1/macro/tang-truong-tong-phuong-tien-thanh-toan', {
+        })
+    },
+    fetchDataInternationalBalanceOfPayments: () => {
+        return https.get('api/v1/macro/can-can-thanh-toan-quoc-te', {
+        })
+    },
+    fetchDataCreditBalance: () => {
+        return https.get('api/v1/macro/du-no-tin-dung', {
+        })
+    },
+    fetchDataCreditBalanceGrowth: () => {
+        return https.get('api/v1/macro/tang-truong-du-no-tin-dung', {
+        })
+    },
+    fetchDataStatisticsCreditInstitution: () => {
+        return https.get('api/v1/macro/thong-ke-theo-loai-hinh-to-chuc-tin-dung', {
+        })
+    },
 }

@@ -264,3 +264,147 @@ export const fetchDataImportValue = (order) => async (dispatch) => {
         console.log(err)
     }
 }
+
+export const fetchDataLaborForce = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataLaborForce()
+        dispatch({
+            type: macroType.FETCH_DATA_LABOR_FORCE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataUnemploymentRate = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataUnemploymentRate()
+        dispatch({
+            type: macroType.FETCH_DATA_UNEMPLOYMENT_RATE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataAverageSalary = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataAverageSalary()
+        dispatch({
+            type: macroType.FETCH_DATA_AVERAGE_SALARY,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataLaborRateBySector = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataLaborRateBySector()
+        dispatch({
+            type: macroType.FETCH_DATA_LABOR_RATE_BY_SECTOR,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataRateOfInformalEmployment = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataRateOfInformalEmployment()
+        dispatch({
+            type: macroType.FETCH_DATA_RATE_OF_INFORMAL_EMPLOYMENT,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataJobFluctuations = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataJobFluctuations()
+        dispatch({
+            type: macroType.FETCH_DATA_JOB_FLUCTUATIONS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataChartTotalMeansOfPayment = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataChartTotalMeansOfPayment()
+        dispatch({
+            type: macroType.FETCH_DATA_CHART_TOTAL_MEANS_OF_PAYMENT,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTableTotalMeansOfPayment = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataTableTotalMeansOfPayment()
+        dispatch({
+            type: macroType.FETCH_DATA_TABLE_TOTAL_MEANS_OF_PAYMENT,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataInternationalBalanceOfPayments = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataInternationalBalanceOfPayments()
+        dispatch({
+            type: macroType.FETCH_DATA_INTERNATIONAL_BALANCE_OF_PAYMENTS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataCreditBalance = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataCreditBalance()
+        dispatch({
+            type: macroType.FETCH_DATA_CREDIT_BALANCE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataCreditBalanceGrowth = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataCreditBalanceGrowth()
+        dispatch({
+            type: macroType.FETCH_DATA_CREDIT_BALANCE_GROWTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataStatisticsCreditInstitution = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataStatisticsCreditInstitution()
+        dispatch({
+            type: macroType.FETCH_DATA_STATISTICS_CREDIT_INSTITUTION,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
