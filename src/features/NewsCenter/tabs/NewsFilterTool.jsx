@@ -5,50 +5,55 @@ import Loading from '../../Chart/utils/Loading'
 import '../utils/styles/buttonNews.css'
 
 const NewsFilterTool = () => {
-    const dispatch = useDispatch()
-    const { newsTool } = useSelector(state => state.newsCenter)
-    const [selectedExchange, setSelectedExchange] = useState(null)
-    const [selectedLV2, setSelectedLV2] = useState([])
-    const [selectedLV4, setSelectedLV4] = useState([])
-    const [isExchangeSelected, setIsExchangeSelected] = useState(false)
+    const dispatch = useDispatch();
+    const { newsTool } = useSelector(state => state.newsCenter);
+    const [selectedExchange, setSelectedExchange] = useState(null);
+    const [selectedLV2, setSelectedLV2] = useState([]);
+    const [selectedLV4, setSelectedLV4] = useState([]);
+    const [selectedCode, setSelectedCode] = useState([]);
+    const [lv2MessageVisible, setLv2MessageVisible] = useState(false);
+    const [lv4MessageVisible, setLv4MessageVisible] = useState(false);
+
     useEffect(() => {
-        dispatch(fetchNewsTool)
-        dispatch(fetchDataStockInfo)
-    }, [dispatch])
+        dispatch(fetchNewsTool);
+        dispatch(fetchDataStockInfo);
+    }, [dispatch]);
 
     const handleFilterExchange = (e) => {
-        const exchangeName = e.target.value
-        setSelectedExchange(exchangeName)
-        setSelectedLV2([])
-        setSelectedLV4([])
-        setIsExchangeSelected(!isExchangeSelected)
-    }
+        const exchangeName = e.target.value;
+        setSelectedExchange(exchangeName);
+        setSelectedLV2([]);
+        setSelectedLV4([]);
+        setLv2MessageVisible(false);
+        setLv4MessageVisible(false);
+    };
 
     const handleFilterLV2 = (lv2Name) => {
         if (selectedLV2.includes(lv2Name)) {
-            setSelectedLV2(selectedLV2.filter(name => name !== lv2Name))
+            setSelectedLV2(selectedLV2.filter(name => name !== lv2Name));
+            setSelectedLV4([]);
+            setLv4MessageVisible(false);
         } else {
-            setSelectedLV2([...selectedLV2, lv2Name])
+            setSelectedLV2([...selectedLV2, lv2Name]);
+            setLv2MessageVisible(false);
         }
-    }
+    };
 
     const handleFilterLV4 = (lv4Name) => {
         if (selectedLV4.includes(lv4Name)) {
-            setSelectedLV4(selectedLV4.filter(name => name !== lv4Name))
+            setSelectedLV4(selectedLV4.filter(name => name !== lv4Name));
         } else {
-            setSelectedLV4([...selectedLV4, lv4Name])
+            setSelectedLV4([...selectedLV4, lv4Name]);
         }
-    }
+    };
 
-    console.log(isExchangeSelected)
     return (
         <div className='h-screen'>
-            {newsTool?.length ?
+            {newsTool?.length > 0 ?
                 <div className='container h-full mt-5 bg-[#151924] '>
                     <div className='h-[300px] w-full p-2 ' style={{ borderBottom: "solid 1px grey", display: 'grid', gridTemplateColumns: '0.5fr 1.5fr 1.5fr 1fr 2fr' }}>
                         <div className='exchange__tabs  flex flex-col justify-between   ' style={{ borderRight: 'solid 1px gray', borderTop: 'solid 3px #147df5' }}>
                             <div className='bg-[#04013d] w-[100%]' style={{ borderBottom: "solid 1px grey" }}>
-
                                 <p className='text-white font-semibold text-base text-center '>Chọn sàn</p>
                             </div>
                             <div className='h-[100%]'>
@@ -62,14 +67,15 @@ const NewsFilterTool = () => {
                                     </div>
                                 ))}
                             </div>
-
                         </div>
                         <div className='relative industryLv2__tabs overflow-auto ml-1 ' style={{ borderRight: 'solid 1px gray', borderTop: 'solid 3px #147df5' }}>
                             <div className='sticky top-0 bg-[#04013d] z-10 ' style={{ borderBottom: "solid 1px grey" }}>
-                                <p className='text-white text-base font-semibold  text-center'>Nhóm ngành (ICBID LV2)</p>
+                                <p className='text-white text-base font-semibold  text-center'>
+                                    {selectedExchange ? 'Nhóm ngành (ICBID LV2)' : 'Vui lòng chọn sàn để tiếp tục'}
+                                </p>
                             </div>
-                            {selectedExchange?.length > 0 ?
-                                <div >
+                            {selectedExchange ? (
+                                <div>
                                     {selectedExchange && newsTool.find(exchange => exchange.name === selectedExchange).LV2.map((lv2, index) => (
                                         <div key={index}>
                                             <label className="material-checkbox py-2 dark:text-white text-black">
@@ -78,16 +84,19 @@ const NewsFilterTool = () => {
                                                 <span className='text-sm'>{lv2.name}</span>
                                             </label>
                                         </div>
-                                    ))
-                                    }
+                                    ))}
                                 </div>
-                                : <div className=' grid place-items-center mt-5'><p className='text-white font-semibold text-base'>Vui lòng chọn sàn để tiếp tục</p></div>}
-
-
+                            ) : (
+                                <div className='grid place-items-center mt-5'>
+                                    <p className='text-white font-semibold text-base'>Vui lòng chọn sàn để tiếp tục</p>
+                                </div>
+                            )}
                         </div>
                         <div className='industryLv4__tabs overflow-auto ml-2' style={{ borderRight: 'solid 1px gray', borderTop: 'solid 3px #147df5' }}>
                             <div className='sticky top-0 bg-[#04013d] z-10 ' style={{ borderBottom: "solid 1px grey" }}>
-                                <p className='text-white text-base font-semibold text-center '>Ngành nghề (ICBID LV4)</p>
+                                <p className='text-white text-base font-semibold text-center '>
+                                    {selectedLV2.length === 0 ? 'Vui lòng chọn ngành' : 'Ngành nghề (ICBID LV4)'}
+                                </p>
                             </div>
 
                             <div >
@@ -111,7 +120,9 @@ const NewsFilterTool = () => {
                         </div>
                         <div className='code__tabs overflow-auto  ml-2' style={{ borderRight: 'solid 1px gray', borderTop: 'solid 3px #147df5' }}>
                             <div className='sticky top-0 bg-[#04013d] z-10 ' style={{ borderBottom: "solid 1px grey" }}>
-                                <p className='text-white text-base font-semibold text-center '>Mã cổ phiếu</p>
+                                <p className='text-white text-base font-semibold text-center '>
+                                    {selectedLV4.length === 0 ? 'Vui lòng chọn ngành' : 'Mã cổ phiếu'}
+                                </p>
                             </div>
                             {selectedLV4.length > 0 &&
                                 newsTool
@@ -135,11 +146,14 @@ const NewsFilterTool = () => {
                         </div>
                         <div className='watchList__tabs'></div>
                     </div>
-                </div> :
-                <div className='h-[50%] flex flex-col justify-center'><Loading /></div>
-            }
+                </div>
+                : (
+                    <div className='h-[50%] flex flex-col justify-center'>
+                        <Loading />
+                    </div>
+                )}
         </div>
-    )
-}
+    );
+};
 
-export default NewsFilterTool
+export default NewsFilterTool;
