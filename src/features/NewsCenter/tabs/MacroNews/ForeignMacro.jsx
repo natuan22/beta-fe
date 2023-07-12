@@ -19,7 +19,7 @@ const ForeignMacro = () => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(true)
-        }, 600)
+        }, 500)
     }, [])
 
     useEffect(() => {

@@ -7,7 +7,7 @@ const DomesticMacro = () => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(true)
-        }, 600)
+        }, 500)
     }, [])
     return (
         <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-full pt-2">
