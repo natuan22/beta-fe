@@ -72,7 +72,7 @@ const ModalFilter = () => {
                             <div className='h-[150px]'>
                                 {newsTool.map((exchange, index) => (
                                     <div key={index}>
-                                        <label className="material-checkbox py-2 dark:text-white text-black">
+                                        <label className="material-checkbox py-2 text-white ">
                                             <input type="checkbox" name="exchange" value={exchange.name} id={exchange.name} checked={selectedExchange === exchange.name} onChange={handleFilterExchange} />
                                             <span className="checkmark"></span>
                                             <span className='text-sm'>{exchange.name}</span>
@@ -93,7 +93,7 @@ const ModalFilter = () => {
                                     <div>
                                         {selectedExchange && newsTool.find(exchange => exchange.name === selectedExchange).LV2.map((lv2, index) => (
                                             <div key={index}>
-                                                <label className="material-checkbox py-2 dark:text-white text-black">
+                                                <label className="material-checkbox py-2 text-white ">
                                                     <input type="checkbox" name="exchange" value={lv2.name} id={lv2.name} checked={selectedLV2.includes(lv2.name)} onChange={() => handleFilterLV2(lv2.name)} />
                                                     <span className="checkmark"></span>
                                                     <span className='text-sm'>{lv2.name}</span>
@@ -125,7 +125,7 @@ const ModalFilter = () => {
                                         .flat()
                                         .map((lv4, index) => (
                                             <div key={index}>
-                                                <label className="material-checkbox py-2 dark:text-white text-black">
+                                                <label className="material-checkbox py-2 text-white ">
                                                     <input type="checkbox" name="exchange" value={lv4.name} id={lv4.name} checked={selectedLV4.includes(lv4.name)} onChange={() => handleFilterLV4(lv4.name)} />
                                                     <span className="checkmark"></span>
                                                     <span className='text-sm'>{lv4.name}</span>
