@@ -15,8 +15,8 @@ export const newsCenterServices = {
 
     fetchNewsTool: () => {
         return https.get('/api/v1/news/filter')
-    }
-}
+    },
+
     fetchDataDomesticMacro: (page, limit) => {
         return https.get('api/v1/news/vi-mo-trong-nuoc', {
             params: {

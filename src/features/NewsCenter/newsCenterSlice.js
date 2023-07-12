@@ -2,9 +2,7 @@ import produce from "immer";
 import { newsCenterType } from "./utils/constant";
 const initialState = {
   dataTableEvents: {},
-
-  newsTool: {}
-
+  newsTool: {},
   dataDomesticMacro: {},
   dataForeignMacro: {},
   dataListEnterpriseNews: {},
