@@ -14,12 +14,17 @@ export const fetchDataTableEvents = (page, limit, exchange) => async (dispatch) 
     }
 }
 
-
-export const fetchNewsTool = () => async dispatch => {
+export const fetchNewsTool = async (dispatch) => {
     try {
         const res = await newsCenterServices.fetchNewsTool()
         dispatch({
             type: newsCenterType.FETCH_NEWS_TOOL,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 export const fetchDataDomesticMacro = (page, limit) => async (dispatch) => {
     try {
@@ -33,8 +38,6 @@ export const fetchDataDomesticMacro = (page, limit) => async (dispatch) => {
         console.log(err)
     }
 }
-
-
 
 export const fetchDataForeignMacro = (page, limit) => async (dispatch) => {
     try {

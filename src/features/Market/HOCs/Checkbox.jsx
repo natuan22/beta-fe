@@ -50,7 +50,7 @@ const Checkbox = ({ children }) => {
             type: 'QUERY',
             payload: { exchange, type, order, industryQuery }
         })
-    }, [exchange, type, order, industry])
+    }, [exchange, type, order, industry, dispatch, industryQuery])
 
     const handleIndustryChange = e => {
         const { value, checked } = e.target
