@@ -16,7 +16,7 @@ const ImportValue = () => {
 
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
-    
+
     const chartRef = useRef(null)
     const callBackHighChart = (chart) => {
         chartRef.current = chart
@@ -24,6 +24,10 @@ const ImportValue = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+
+    useEffect(() => {
+        dispatch(fetchDataImportValue(2))
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataImportValue?.length > 0) {

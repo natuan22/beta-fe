@@ -1,29 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 import ChangeCPISectors from '../../components/CPI/ChangeCPISectors';
 import PerCPIBySectors from '../../components/CPI/PerCPIBySectors';
 import PerCPIMonth from '../../components/CPI/PerCPIMonth';
 import WeightedCPICommodityBasket from '../../components/CPI/WeightedCPICommodityBasket';
-import { fetchDataChangeCPISectors, fetchDataPerCPIBySectors, fetchDataPerCPIMonth, fetchDataTablePerCPIBySectors, fetchDataWeightedCPICommodityBasket } from '../../thunk';
 
 const CPI = () => {
-    const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(true)
-        }, 500)
+        }, 600)
     }, [])
-
-    useEffect(() => {
-        dispatch(fetchDataPerCPIBySectors)
-        dispatch(fetchDataTablePerCPIBySectors)
-        dispatch(fetchDataChangeCPISectors(0))
-        dispatch(fetchDataPerCPIMonth)
-        dispatch(fetchDataWeightedCPICommodityBasket)
-    }, [dispatch]);
 
     return (
         <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">

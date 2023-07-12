@@ -1,13 +1,15 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import Loading from '../../../Chart/utils/Loading';
 import { useRef } from 'react';
 import LegendBtn from '../../../../utils/Component/BtnLegend';
+import { fetchDataPerGDPGrowth } from '../../thunk';
 
 const PerGDPGrowth = () => {
+    const dispatch = useDispatch();
     const { dataPerGDPGrowth } = useSelector(state => state.marco)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
@@ -20,6 +22,9 @@ const PerGDPGrowth = () => {
     const callBackHighChartGDP = (chart) => {
         chartRef.current = chart
     }
+    useEffect(() => {
+        dispatch(fetchDataPerGDPGrowth);
+    }, [dispatch]);
     useEffect(() => {
         if (dataPerGDPGrowth?.length > 0) {
             const transformedData = dataPerGDPGrowth?.map(item => {

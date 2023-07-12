@@ -87,6 +87,7 @@ const InternationalBalanceOfPayments = () => {
         xAxis: {
             categories: timeLine,
             labels: {
+                rotation: 0,
                 style: {
                     color: localStorage.getItem('color'),
                     fontSize: '9px',

@@ -1,29 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading'
 import IndexConsumptionStorage from '../../components/Produce/IndexConsumptionStorage';
 import IndexIndustrialProduction from '../../components/Produce/IndexIndustrialProduction';
 import IndexIndustrialProductionByIndustry from '../../components/Produce/IndexIndustrialProductionByIndustry';
 import IndustrialProductionPrimarily from '../../components/Produce/IndustrialProductionPrimarily';
-import { fetchDataIndexConsumptionStorage, fetchDataIndexIndustrialProduction, fetchDataIndexIndustrialProductionByIndustry, fetchDataIndustrialProductionPrimarily, fetchDataTableIndexIndustrialProduction } from '../../thunk';
 
 const Produce = () => {
-    const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(true)
-        }, 500)
+        }, 600)
     }, [])
-
-    useEffect(() => {
-        dispatch(fetchDataIndexIndustrialProduction)
-        dispatch(fetchDataTableIndexIndustrialProduction)
-        dispatch(fetchDataIndexConsumptionStorage('cheBienGo'))
-        dispatch(fetchDataIndexIndustrialProductionByIndustry('cheBienGo'))
-        dispatch(fetchDataIndustrialProductionPrimarily('acQuyDienCacLoai'))
-    }, [dispatch]);
 
     return (
         <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">

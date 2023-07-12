@@ -14,6 +14,10 @@ const IndexIndustrialProductionByIndustry = () => {
     const [data, setData] = useState()
 
     useEffect(() => {
+        dispatch(fetchDataIndexIndustrialProductionByIndustry('cheBienGo'))
+    }, [dispatch]);
+
+    useEffect(() => {
         if (dataIndexIndustrialProductionByIndustry?.length > 0) {
             const uniqueDates = [...new Set(dataIndexIndustrialProductionByIndustry?.map(item => moment(item.date, 'YYYY/MM/DD').year()))];
             setTimeLine(uniqueDates)

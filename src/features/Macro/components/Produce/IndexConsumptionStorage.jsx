@@ -14,6 +14,10 @@ const IndexConsumptionStorage = () => {
     const [data, setData] = useState()
 
     useEffect(() => {
+        dispatch(fetchDataIndexConsumptionStorage('cheBienGo'))
+    }, [dispatch]);
+
+    useEffect(() => {
         if (dataIndexConsumptionStorage?.length > 0) {
             const uniqueDates = [...new Set(dataIndexConsumptionStorage?.map(item => moment(item.date, 'YYYY/MM/DD').year()))];
             setTimeLine(uniqueDates)

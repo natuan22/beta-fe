@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataRateOfInformalEmployment } from '../../thunk';
 import Highcharts from "highcharts/highstock";
-import drilldow from "highcharts/modules/drilldown";
 import PieChart from "highcharts-react-official";
 import Loading from '../../../Chart/utils/Loading';
-drilldow(Highcharts);
 
 const RateOfInformalEmployment = () => {
     const dispatch = useDispatch();
     const { dataRateOfInformalEmployment } = useSelector(state => state.marco)
     const [data, setData] = useState()
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
+
+    useEffect(() => {
+        setColorText(color);
+    }, [color])
 
     useEffect(() => {
         dispatch(fetchDataRateOfInformalEmployment)
@@ -18,13 +22,18 @@ const RateOfInformalEmployment = () => {
 
     useEffect(() => {
         if (dataRateOfInformalEmployment?.length > 0) {
-            const danhSachMoi = dataRateOfInformalEmployment.map(item => ({
+            const modifiedArray = dataRateOfInformalEmployment.map(item => {
+                const modifiedName = item.name.replace(' (%)', '').replace('Tỉ ', 'Tỷ ');
+
+                return { ...item, name: modifiedName };
+            });
+            const danhSachMoi = modifiedArray.map(item => ({
                 name: item.name,
                 y: item.value,
                 color: '#2CC8DD'
             }));
             const newItem = {
-                name: 'Khác',
+                name: 'Tỷ lệ lao động chính thức',
                 y: 100 - danhSachMoi[0].y,
                 color: '#436FB5'
             };
@@ -60,12 +69,21 @@ const RateOfInformalEmployment = () => {
         tooltip: {
             valueSuffix: "%"
         },
+        legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            itemStyle: {
+                fontSize: '10px',
+                color: localStorage.getItem('color')
+            }
+        },
         series: [
             {
                 name: "Tỷ lệ",
                 data: data,
                 size: '80%',
                 innerSize: '50%',
+                showInLegend: true // Hiển thị trong legend
             }
         ],
     };

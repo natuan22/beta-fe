@@ -1,11 +1,13 @@
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataIndexIndustrialProduction, fetchDataTableIndexIndustrialProduction } from '../../thunk';
 
 const IndexIndustrialProduction = () => {
+    const dispatch = useDispatch();
     const { dataIndexIndustrialProduction } = useSelector(state => state.marco)
     const { dataTableIndexIndustrialProduction } = useSelector(state => state.marco)
     const [loading, setLoading] = useState(true);
@@ -20,6 +22,11 @@ const IndexIndustrialProduction = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+
+    useEffect(() => {
+        dispatch(fetchDataIndexIndustrialProduction)
+        dispatch(fetchDataTableIndexIndustrialProduction)
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataIndexIndustrialProduction?.length > 0) {

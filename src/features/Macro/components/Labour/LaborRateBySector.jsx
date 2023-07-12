@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import variablePie from "highcharts/modules/variable-pie.js";
 import Highcharts from "highcharts/highstock";
-import HighchartsReact from "highcharts-react-official";
+import PieChart from "highcharts-react-official";
 import Loading from '../../../Chart/utils/Loading';
 import { fetchDataLaborRateBySector } from '../../thunk';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,16 +25,11 @@ const LaborRateBySector = () => {
 
     useEffect(() => {
         if (dataLaborRateBySector?.length > 0) {
-            const danhSachMoi = [
-                {
-                    name: 'Tỷ lệ lao động',
-                    data: dataLaborRateBySector.map((item) => ({
-                        name: item.name,
-                        y: item.value,
-                    })),
-                    colors: dataLaborRateBySector.map(item => item.color)
-                },
-            ];
+            const danhSachMoi = dataLaborRateBySector.map(item => ({
+                name: item.name,
+                y: item.value,
+                color: item.color
+            }));
             setData(danhSachMoi)
         }
     }, [dataLaborRateBySector])
@@ -42,43 +37,53 @@ const LaborRateBySector = () => {
     const options = {
         accessibility: {
             enabled: false,
-            point: {
-                valueSuffix: '%'
-            }
         },
         credits: false,
         chart: {
-            type: 'pie',
-            backgroundColor: "transparent",
+            type: "pie",
+            backgroundColor: 'transparent',
         },
         title: {
-            text: null
+            text: ""
         },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        subtitle: {
+            text: ""
         },
         plotOptions: {
             pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
                 dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f}%',
-                    distance: '1',
-                    style: {
-                        fontSize: '9px' // Kích thước font chữ nhỏ hơn
-                    }
-                }
+                    enabled: false
+                },
+                borderRadius: '50%'
             }
         },
-        series: data
-    }
+        tooltip: {
+            valueSuffix: "%"
+        },
+        legend: {
+            align: 'center',
+            verticalAlign: 'top',
+            itemStyle: {
+                fontSize: '10px',
+                color: localStorage.getItem('color')
+            }
+        },
+        series: [
+            {
+                name: "Tỷ lệ",
+                data: data,
+                size: '80%',
+                innerSize: '50%',
+                showInLegend: true // Hiển thị trong legend
+            }
+        ],
+    };
 
     return (
         <>
             {dataLaborRateBySector.length ? (
                 <div className="h-[348px]">
-                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                    <PieChart highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
                 <div className="">

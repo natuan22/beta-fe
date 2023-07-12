@@ -38,7 +38,7 @@ const CashFlow = () => {
               to={value}
               key={index}
               onClick={() => handleActiveNav(index)}
-              className="w-[50%] z-10 text-white rounded-full no-underline text-center leading-8 md:text-lg sm:text-[15px] xs:text-[15px] xxs:text-xs"
+              className="w-[50%] z-10 text-white rounded-full no-underline text-center leading-8 md:text-lg sm:text-base xs:text-[15px] xxs:text-[13px]"
             >
               {label}
             </NavLink>

@@ -14,6 +14,10 @@ const IndustrialProductionPrimarily = () => {
     const [data, setData] = useState()
 
     useEffect(() => {
+        dispatch(fetchDataIndustrialProductionPrimarily('acQuyDienCacLoai'))
+    }, [dispatch]);
+
+    useEffect(() => {
         if (dataIndustrialProductionPrimarily?.length > 0) {
             const uniqueDates = [...new Set(dataIndustrialProductionPrimarily?.map(item => moment(item.date, 'YYYY/MM/DD').year()))];
             setTimeLine(uniqueDates)

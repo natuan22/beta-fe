@@ -25,6 +25,10 @@ const RetailValue = () => {
     }, [color])
 
     useEffect(() => {
+        dispatch(fetchDataRetailValue(2))
+      }, [dispatch]);
+    
+    useEffect(() => {
         if (dataRetailValue?.length > 0) {
             let modifiedArray;
             let uniqueDates;

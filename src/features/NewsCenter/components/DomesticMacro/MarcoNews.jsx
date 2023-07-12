@@ -14,7 +14,9 @@ const MarcoNews = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        dispatch(fetchDataDomesticMacro(1, currentLimit));
+        if (currentLimit > 1) {
+            dispatch(fetchDataDomesticMacro(1, currentLimit));
+        }
     }, [dispatch, currentLimit]);
 
     useEffect(() => {
@@ -38,13 +40,7 @@ const MarcoNews = () => {
             setCurrentLimit((prevLimit) => prevLimit + 10);
         }
     };
-
-    useEffect(() => {
-        if (currentLimit > 1) {
-            dispatch(fetchDataDomesticMacro(1, currentLimit));
-        }
-    }, [dispatch, currentLimit]);
-
+    
     return (
         <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
             <div className='h-[800px] overflow-auto' onScroll={handleScroll}>

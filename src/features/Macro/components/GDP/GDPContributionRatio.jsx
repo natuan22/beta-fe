@@ -1,11 +1,13 @@
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataGDPContributionRatio } from '../../thunk';
 
 const GDPContributionRatio = () => {
+    const dispatch = useDispatch();
     const { dataGDPContributionRatio } = useSelector(state => state.marco)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
@@ -18,6 +20,10 @@ const GDPContributionRatio = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+
+    useEffect(() => {
+        dispatch(fetchDataGDPContributionRatio);
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataGDPContributionRatio?.length > 0) {
