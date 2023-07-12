@@ -20,7 +20,13 @@ export const fetchNewsTool = () => async dispatch => {
         const res = await newsCenterServices.fetchNewsTool()
         dispatch({
             type: newsCenterType.FETCH_NEWS_TOOL,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
 
+}
 export const fetchDataDomesticMacro = (page, limit) => async (dispatch) => {
     try {
         const res = await newsCenterServices.fetchDataDomesticMacro(page, limit)
@@ -60,3 +66,15 @@ export const fetchDataListEnterpriseNews = async (dispatch) => {
     }
 }
 
+export const fetchDataStockInfo = () => async dispatch => {
+    try {
+        const res = await newsCenterServices.fetchDataStockInfo()
+        console.log(res.data.data)
+        dispatch({
+            type: newsCenterType.FETCH_DATA_STOCK_INFO,
+            payload: res.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
