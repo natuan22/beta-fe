@@ -50,7 +50,7 @@ const Checkbox = ({ children }) => {
             type: 'QUERY',
             payload: { exchange, type, order, industryQuery }
         })
-    }, [exchange, type, order, industry])
+    }, [exchange, type, order, industry, dispatch, industryQuery])
 
     const handleIndustryChange = e => {
         const { value, checked } = e.target
@@ -103,7 +103,7 @@ const Checkbox = ({ children }) => {
                     {/* respon 2xl -> sm */}
                     <div className='xl:w-[65%] md:block sm:hidden xs:hidden xxs:hidden'>
                         <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                            <div className='grid grid-cols-4 gap-5'>
+                            <div className='grid grid-cols-4 gap-3'>
                                 <div>
                                     <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                                         <span className='dark:text-white text-black font-semibold'>Sàn giao dịch</span>
@@ -348,7 +348,7 @@ const Checkbox = ({ children }) => {
                                     </label>
                                 </div>
                             </div>
-                            <div className='grid grid-cols-2 gap-5'>
+                            <div className='grid grid-cols-2 gap-3'>
 
                                 <div>
                                     <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
@@ -475,7 +475,7 @@ const Checkbox = ({ children }) => {
                                 </div>
                             </div>
 
-                            <div className='grid grid-cols-2 gap-5'>
+                            <div className='grid grid-cols-2 gap-3'>
                                 <div>
                                     <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                                         <span className='dark:text-white text-black font-semibold'>Khung thời gian</span>

@@ -30,7 +30,7 @@ const GDP = () => {
         <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-full">
             {isLoading ? (
                 <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-                    <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+                    <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
                         <div>
                             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                                 <span className='dark:text-white text-black font-semibold md:text-base sm:text-[15px] xs:text-[15px] xxs:text-[13px]'>Giá trị GDP theo các nhóm ngành chính (Tỷ đồng)</span>
@@ -45,7 +45,7 @@ const GDP = () => {
                         </div>
                     </div>
 
-                    <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5 mt-1'>
+                    <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3 mt-1'>
                         <div>
                             <div>
                                 <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 mt-[3px]'>

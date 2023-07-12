@@ -1,38 +1,38 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchDataJobFluctuations } from '../../thunk';
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import Loading from '../../../Chart/utils/Loading';
-import { fetchDataChangeCPISectors } from '../../thunk';
 
-const ChangeCPISectors = () => {
+const JobFluctuations = () => {
     const dispatch = useDispatch();
-    const { dataChangeCPISectors } = useSelector(state => state.marco)
+    const { dataJobFluctuations } = useSelector(state => state.marco)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
     useEffect(() => {
+        dispatch(fetchDataJobFluctuations)
+    }, [dispatch]);
+
+    useEffect(() => {
         setColorText(color);
     }, [color])
 
     useEffect(() => {
-        if (dataChangeCPISectors?.length > 0) {
-            const transformedData = dataChangeCPISectors?.map(item => {
-                const modifiedName = item.name.replace('Tăng trưởng CPI :', '').replace('MoM (%)', '');
-                const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
-                const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
-
-                return { ...item, name: modifiedName, date: `Quý ${quarter}/${year}` };
+        if (dataJobFluctuations?.length > 0) {
+            const transformedData = dataJobFluctuations?.map(item => {
+                return { ...item, date: moment(item.date).format('DD/MM/YYYY') };
             });
 
             const uniqueIndustry = [...new Set(transformedData.map(item => item.name))];
             const mappedData = [];
 
             transformedData?.forEach(item => {
-                const colorArr = ['#00B4D8', '#0077B6'];
+                const colorArr = ['#2CC8DD'];
                 const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
 
                 if (existingItem) {
@@ -49,12 +49,12 @@ const ChangeCPISectors = () => {
             setCategory(uniqueIndustry)
             setData(mappedData)
         }
-    }, [dataChangeCPISectors]);
+    }, [dataJobFluctuations]);
 
     const options = {
         chart: {
             backgroundColor: "transparent", // màu nền của biểu đồ
-            type: 'column'
+            type: 'bar'
         },
         accessibility: {
             enabled: false
@@ -110,9 +110,8 @@ const ChangeCPISectors = () => {
 
         ],
         legend: {
-            enabled: true,
+            enabled: false,
             align: 'center',
-            verticalAlign: 'top',
             itemStyle: {
                 fontSize: '10px',
                 color: localStorage.getItem('color')
@@ -123,25 +122,19 @@ const ChangeCPISectors = () => {
     };
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Thay đổi CPI các lĩnh vực của nền kinh tế </span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[410px] lg:ml-[470px] md:ml-[240px] sm:ml-[140px] xs:ml-[100px] xxs:ml-[80px]`}
-                    onChange={(event) => {
-                        dispatch(fetchDataChangeCPISectors(event.target.value))
-                    }}>
-                    <option value='0'>Kỳ gần nhất</option>
-                    <option value='1'>Cùng kỳ</option>
-                </select>
-            </div>
-            {dataChangeCPISectors?.length > 0 ? (
-                <div className=''>
-                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+            {dataJobFluctuations.length ? (
+                <div id="chart-container">
+                    <div className="h-[727px]">
+                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                    </div>
                 </div>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div id="chart-container">
+                    <div className="mt-20 flex flex-col justify-center"><Loading /></div>
+                </div>
             )}
         </>
     )
 }
 
-export default ChangeCPISectors
+export default JobFluctuations

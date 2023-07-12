@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataStockInfo, fetchNewsTool } from '../thunk'
@@ -16,8 +15,8 @@ const NewsFilterTool = () => {
     const [selectedLV4, setSelectedLV4] = useState([])
     const [isExchangeSelected, setIsExchangeSelected] = useState(false)
     useEffect(() => {
-        dispatch(fetchNewsTool())
-        dispatch(fetchDataStockInfo())
+        dispatch(fetchNewsTool)
+        dispatch(fetchDataStockInfo)
     }, [dispatch])
 
     const handleFilterExchange = (e) => {
@@ -46,7 +45,6 @@ const NewsFilterTool = () => {
 
     console.log(isExchangeSelected)
     return (
-
         <div className='h-screen'>
             {newsTool?.length ?
                 <div className='container h-full mt-5 bg-[#151924] '>
@@ -154,9 +152,6 @@ const NewsFilterTool = () => {
                 <div className='h-[50%] flex flex-col justify-center'><Loading /></div>
             }
         </div>
-
-
-
     )
 }
 

@@ -29,9 +29,9 @@ const CPI = () => {
         <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">
             {isLoading ? (
                 <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-                    <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+                    <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
                         <div>
-                            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 mt-1'>
+                            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                                 <span className='dark:text-white text-black font-semibold'>CPI theo các lĩnh vực của nền kinh tế (%)</span>
                             </div>
                             <PerCPIBySectors />
@@ -43,8 +43,8 @@ const CPI = () => {
                             <PerCPIMonth />
                         </div>
                     </div>
-                    <div className='lg:block xl:flex gap-5 mt-2'>
-                        <div className='lg:w-full xl:w-[40%] mt-[7.5px]'>
+                    <div className='lg:block xl:flex gap-3 mt-2'>
+                        <div className='lg:w-full xl:w-[40%] mt-[3px]'>
                             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                                 <span className='dark:text-white text-black font-semibold'>Quyền số CPI theo rổ hàng hóa (%)</span>
                             </div>

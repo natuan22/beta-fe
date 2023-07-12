@@ -154,7 +154,7 @@ const PerCPIBySectors = () => {
     return (
         <>
             {dataPerCPIBySectors?.length > 0 ? (
-                <div className='h-[300px] mt-2'>
+                <div className='h-[300px]'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
@@ -171,7 +171,7 @@ const PerCPIBySectors = () => {
                                         <th className="sticky left-0 bg-[#1E5D8B] text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
                                             Kỳ
                                         </th>
-                                        {Array.isArray(timeLine) && timeLine?.map(item => (
+                                        {Array.isArray(dates) && dates?.map(item => (
                                             <th key={item} className="text-center align-middle px-3 py-[19px] text-xs font-semibold text-white">
                                                 {item}
                                             </th>
