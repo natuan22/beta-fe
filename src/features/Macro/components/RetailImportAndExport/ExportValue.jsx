@@ -26,6 +26,10 @@ const ExportValue = () => {
     }, [color])
 
     useEffect(() => {
+        dispatch(fetchDataExportValue(2))
+      }, [dispatch]);
+    
+    useEffect(() => {
         if (dataExportValue?.length > 0) {
             let modifiedArray;
             let uniqueDates;

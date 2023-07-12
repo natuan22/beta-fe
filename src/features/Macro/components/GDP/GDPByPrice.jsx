@@ -1,11 +1,13 @@
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataGDPByPrice } from '../../thunk';
 
 const GDPByPrice = () => {
+    const dispatch = useDispatch();
     const { dataGDPByPrice } = useSelector(state => state.marco)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
@@ -19,6 +21,10 @@ const GDPByPrice = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+
+    useEffect(() => {
+        dispatch(fetchDataGDPByPrice);
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataGDPByPrice?.length > 0) {

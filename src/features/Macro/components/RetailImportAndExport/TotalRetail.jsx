@@ -1,13 +1,19 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataTableTotalRetail } from '../../thunk';
 
 const TotalRetail = () => {
+    const dispatch = useDispatch();
     const { dataTableTotalRetail } = useSelector(state => state.marco)
     const [dates, setDates] = useState()
     const [dataTb, setDataTb] = useState()
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        dispatch(fetchDataTableTotalRetail)
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataTableTotalRetail?.length > 0) {

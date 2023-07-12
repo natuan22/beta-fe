@@ -1,13 +1,19 @@
 import moment from 'moment';
 import React, { Fragment, useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataTableImportExportMarket } from '../../thunk';
 
 const ImportExportMarket = () => {
+    const dispatch = useDispatch();
     const { dataTableImportExportMarket } = useSelector(state => state.marco)
     const [dates, setDates] = useState()
     const [dataTb, setDataTb] = useState()
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        dispatch(fetchDataTableImportExportMarket)
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataTableImportExportMarket?.length > 0) {

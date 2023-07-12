@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 import RetailSalesGrowth from '../../components/RetailImportAndExport/RetailSalesGrowth';
 import RetailValue from '../../components/RetailImportAndExport/RetailValue';
@@ -8,11 +7,9 @@ import ExportValue from '../../components/RetailImportAndExport/ExportValue';
 import ImportValue from '../../components/RetailImportAndExport/ImportValue';
 import TotalImportExport from '../../components/RetailImportAndExport/TotalImportExport';
 import ExportAndImportTransfer from '../../components/RetailImportAndExport/ExportAndImportTransfer';
-import { fetchDataExportValue, fetchDataImportValue, fetchDataRetailSalesGrowth, fetchDataRetailValue, fetchDataTableImportExportMarket, fetchDataTableTotalRetail, fetchDataTotalImportExport } from '../../thunk';
 import ImportExportMarket from '../../components/RetailImportAndExport/ImportExportMarket';
 
 const RetailImportAndExport = () => {
-  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -20,16 +17,6 @@ const RetailImportAndExport = () => {
       setIsLoading(true)
     }, 700)
   }, [])
-
-  useEffect(() => {
-    dispatch(fetchDataRetailValue(2))
-    dispatch(fetchDataRetailSalesGrowth(1))
-    dispatch(fetchDataTableTotalRetail)
-    dispatch(fetchDataTotalImportExport(2))
-    dispatch(fetchDataTableImportExportMarket)
-    dispatch(fetchDataExportValue(2))
-    dispatch(fetchDataImportValue(2))
-  }, [dispatch]);
 
   return (
     <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">

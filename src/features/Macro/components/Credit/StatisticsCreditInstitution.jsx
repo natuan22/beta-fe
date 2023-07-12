@@ -29,7 +29,7 @@ const StatisticsCreditInstitution = () => {
                 const month = moment(item.date, 'YYYY/MM/DD').month() + 1 // Lấy tên tháng từ ngày
                 const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
 
-                return { ...item, name: modifiedName, date: `Tháng ${month}/${year}` };
+                return { ...item, name: modifiedName, date: `T${month}/${year}` };
             });
             const uniqueDates = [...new Set(modifiedArray?.map(item => item.date))];
             setTimeLine(uniqueDates)
@@ -72,6 +72,7 @@ const StatisticsCreditInstitution = () => {
         xAxis: {
             categories: timeLine,
             labels: {
+                rotation: 0,
                 style: {
                     color: localStorage.getItem('color'),
                     fontSize: '9px',

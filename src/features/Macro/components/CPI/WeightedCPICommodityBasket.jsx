@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Highcharts from "highcharts/highstock";
 import variablePie from "highcharts/modules/variable-pie.js";
 import HighchartsReact from "highcharts-react-official";
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataWeightedCPICommodityBasket } from '../../thunk';
 
 variablePie(Highcharts);
 
 const WeightedCPICommodityBasket = () => {
+    const dispatch = useDispatch();
     const { dataWeightedCPICommodityBasket } = useSelector(state => state.marco)
     const [data, setData] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -16,6 +18,10 @@ const WeightedCPICommodityBasket = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+
+    useEffect(() => {
+        dispatch(fetchDataWeightedCPICommodityBasket)
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataWeightedCPICommodityBasket?.length > 0) {

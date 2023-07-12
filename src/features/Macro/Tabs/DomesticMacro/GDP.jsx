@@ -1,30 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
 import GDPByIndustry from '../../components/GDP/GDPByIndustry'
 import GDPByPrice from '../../components/GDP/GDPByPrice'
 import GDPContributionRatio from '../../components/GDP/GDPContributionRatio';
 import GDPGrowth from '../../components/GDP/GDPGrowth';
-import { fetchDataGDPByIndustry, fetchDataGDPByPrice, fetchDataGDPContributionRatio, fetchDataGDPGrowth, fetchDataPerGDPGrowth } from '../../thunk';
 import Loading from '../../../Chart/utils/Loading';
 import PerGDPGrowth from '../../components/GDP/PerGDPGrowth';
 
 const GDP = () => {
-    const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(true)
-        }, 500)
+        }, 600)
     }, [])
-
-    useEffect(() => {
-        dispatch(fetchDataGDPByIndustry);
-        dispatch(fetchDataGDPByPrice);
-        dispatch(fetchDataGDPContributionRatio);
-        dispatch(fetchDataGDPGrowth(0));
-        dispatch(fetchDataPerGDPGrowth);
-    }, [dispatch]);
 
     return (
         <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-full">

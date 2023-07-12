@@ -1,11 +1,13 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
+import { fetchDataPerCPIBySectors, fetchDataTablePerCPIBySectors } from '../../thunk';
 
 const PerCPIBySectors = () => {
+    const dispatch = useDispatch();
     const { dataPerCPIBySectors } = useSelector(state => state.marco)
     const { dataTablePerCPIBySectors } = useSelector(state => state.marco)
     const [timeLine, setTimeLine] = useState()
@@ -20,6 +22,11 @@ const PerCPIBySectors = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+
+    useEffect(() => {
+        dispatch(fetchDataPerCPIBySectors)
+        dispatch(fetchDataTablePerCPIBySectors)
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataPerCPIBySectors?.length > 0) {

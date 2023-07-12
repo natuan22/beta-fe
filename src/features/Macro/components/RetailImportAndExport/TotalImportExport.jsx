@@ -27,6 +27,10 @@ const TotalImportExport = () => {
     }, [color])
 
     useEffect(() => {
+        dispatch(fetchDataTotalImportExport(2))
+      }, [dispatch]);
+    
+    useEffect(() => {
         if (dataTotalImportExport?.length > 0) {
             let modifiedArray;
             let uniqueDates;

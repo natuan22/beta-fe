@@ -17,6 +17,10 @@ const GDPGrowth = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+    
+    useEffect(() => {
+        dispatch(fetchDataGDPGrowth(0))
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataGDPGrowth?.length > 0) {

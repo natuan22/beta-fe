@@ -1,11 +1,13 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
+import { fetchDataPerCPIMonth } from '../../thunk';
 
 const PerCPIMonth = () => {
+    const dispatch = useDispatch();
     const { dataPerCPIMonth } = useSelector(state => state.marco)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
@@ -18,6 +20,10 @@ const PerCPIMonth = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+
+    useEffect(() => {
+        dispatch(fetchDataPerCPIMonth)
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataPerCPIMonth?.length > 0) {

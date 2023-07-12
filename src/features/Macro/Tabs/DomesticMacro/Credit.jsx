@@ -12,7 +12,7 @@ const Credit = () => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(true)
-        }, 500)
+        }, 600)
     }, [])
 
     return (

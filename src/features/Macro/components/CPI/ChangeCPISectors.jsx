@@ -17,6 +17,10 @@ const ChangeCPISectors = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+    
+    useEffect(() => {
+        dispatch(fetchDataChangeCPISectors(0))
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataChangeCPISectors?.length > 0) {
