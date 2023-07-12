@@ -8,7 +8,7 @@ const FDI = () => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(true)
-        }, 600)
+        }, 500)
     }, [])
 
     return (
