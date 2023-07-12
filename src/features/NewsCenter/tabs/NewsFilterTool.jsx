@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataStockInfo, fetchNewsTool } from '../thunk';
-import Loading from '../../Chart/utils/Loading';
-import { Checkbox, Button } from 'antd';
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchDataStockInfo, fetchNewsTool } from '../thunk'
+import Loading from '../../Chart/utils/Loading'
+import '../utils/styles/buttonNews.css'
 
 const NewsFilterTool = () => {
     const dispatch = useDispatch();
@@ -60,14 +59,11 @@ const NewsFilterTool = () => {
                             <div className='h-[100%]'>
                                 {newsTool.map((exchange, index) => (
                                     <div key={index}>
-                                        <Checkbox
-                                            checked={selectedExchange === exchange.name}
-                                            onChange={handleFilterExchange}
-                                            value={exchange.name}
-                                            className='text-white text-sm mt-3'
-                                        >
-                                            {exchange.name}
-                                        </Checkbox>
+                                        <label className="material-checkbox py-2 dark:text-white text-black">
+                                            <input type="checkbox" name="exchange" value={exchange.name} id={exchange.name} checked={selectedExchange === exchange.name} onChange={handleFilterExchange} />
+                                            <span className="checkmark"></span>
+                                            <span className='text-sm'>{exchange.name}</span>
+                                        </label>
                                     </div>
                                 ))}
                             </div>
@@ -82,13 +78,11 @@ const NewsFilterTool = () => {
                                 <div>
                                     {selectedExchange && newsTool.find(exchange => exchange.name === selectedExchange).LV2.map((lv2, index) => (
                                         <div key={index}>
-                                            <Checkbox
-                                                checked={selectedLV2.includes(lv2.name)}
-                                                onChange={() => handleFilterLV2(lv2.name)}
-                                                className='text-white text-sm mt-3'
-                                            >
-                                                {lv2.name}
-                                            </Checkbox>
+                                            <label className="material-checkbox py-2 dark:text-white text-black">
+                                                <input type="checkbox" name="exchange" value={lv2.name} id={lv2.name} checked={selectedLV2.includes(lv2.name)} onChange={() => handleFilterLV2(lv2.name)} />
+                                                <span className="checkmark"></span>
+                                                <span className='text-sm'>{lv2.name}</span>
+                                            </label>
                                         </div>
                                     ))}
                                 </div>
@@ -104,30 +98,25 @@ const NewsFilterTool = () => {
                                     {selectedLV2.length === 0 ? 'Vui lòng chọn ngành' : 'Ngành nghề (ICBID LV4)'}
                                 </p>
                             </div>
-                            {selectedLV2.length === 0 && (
-                                <div className='grid place-items-center mt-5'>
-                                    <p className='text-white font-semibold text-base'>Vui lòng chọn ngành nghề để tiếp tục</p>
-                                </div>
-                            )}
-                            {selectedLV2.length > 0 && (
-                                <div>
-                                    {newsTool
+
+                            <div >
+                                {selectedLV2.length > 0 &&
+                                    newsTool
                                         .find(exchange => exchange.name === selectedExchange)
                                         .LV2.filter(lv2 => selectedLV2.includes(lv2.name))
-                                        .flatMap(lv2 => lv2.LV4)
+                                        .map(lv2 => lv2.LV4)
+                                        .flat()
                                         .map((lv4, index) => (
                                             <div key={index}>
-                                                <Checkbox
-                                                    checked={selectedLV4.includes(lv4.name)}
-                                                    onChange={() => handleFilterLV4(lv4.name)}
-                                                    className='text-white text-sm mt-3'
-                                                >
-                                                    {lv4.name}
-                                                </Checkbox>
+                                                <label className="material-checkbox py-2 dark:text-white text-black">
+                                                    <input type="checkbox" name="exchange" value={lv4.name} id={lv4.name} checked={selectedLV4.includes(lv4.name)} onChange={() => handleFilterLV4(lv4.name)} />
+                                                    <span className="checkmark"></span>
+                                                    <span className='text-sm'>{lv4.name}</span>
+                                                </label>
                                             </div>
-                                        ))}
-                                </div>
-                            )}
+                                        ))
+                                }
+                            </div>
                         </div>
                         <div className='code__tabs overflow-auto  ml-2' style={{ borderRight: 'solid 1px gray', borderTop: 'solid 3px #147df5' }}>
                             <div className='sticky top-0 bg-[#04013d] z-10 ' style={{ borderBottom: "solid 1px grey" }}>
@@ -135,32 +124,25 @@ const NewsFilterTool = () => {
                                     {selectedLV4.length === 0 ? 'Vui lòng chọn ngành' : 'Mã cổ phiếu'}
                                 </p>
                             </div>
-                            {selectedLV4.length === 0 && (
-                                <div className='grid place-items-center mt-5'>
-                                    <p className='text-white font-semibold text-base'>Vui lòng chọn mã cổ phiếu để tiếp tục</p>
-                                </div>
-                            )}
-                            {selectedLV4.length > 0 && (
-                                <div>
-                                    {newsTool
-                                        .find(exchange => exchange.name === selectedExchange)
-                                        .LV2.filter(lv2 => selectedLV2.includes(lv2.name))
-                                        .flatMap(lv2 => lv2.LV4)
-                                        .filter(lv4 => selectedLV4.includes(lv4.name))
-                                        .map((lv4, index) => (
-                                            <div key={lv4.name} className='flex flex-col '>
-                                                {lv4.code.map((code, index) => (
-                                                    <div className='flex flex-col justify-center items-center'>
-                                                        <Button className='mt-2 w-[50%] text-sm border-0 p-2 rounded-lg font-bold flex justify-between items-center' key={index}>
-                                                            {code}
-                                                            <BsFillArrowRightCircleFill className='text-base' />
-                                                        </Button>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        ))}
-                                </div>
-                            )}
+                            {selectedLV4.length > 0 &&
+                                newsTool
+                                    .find(exchange => exchange.name === selectedExchange)
+                                    .LV2.filter(lv2 => selectedLV2.includes(lv2.name))
+                                    .flatMap(lv2 => lv2.LV4)
+                                    .filter(lv4 => selectedLV4.includes(lv4.name))
+                                    .map(lv4 => (
+                                        <div key={lv4.name} className='flex flex-col '>
+                                            {lv4.code.map((code, index) => (
+                                                <div key={index} className='flex flex-col justify-center items-center'>
+                                                    <button type="button" class="buttonNews">
+                                                        <span class="buttonNews__text">{code}</span>
+                                                        <span class="buttonNews__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ))
+                            }
                         </div>
                         <div className='watchList__tabs'></div>
                     </div>
