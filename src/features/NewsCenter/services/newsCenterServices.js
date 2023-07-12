@@ -34,7 +34,9 @@ export const newsCenterServices = {
         })
     },
     fetchDataListEnterpriseNews: () => {
-        return https.get('api/v1/news/tin-tuc-doanh-nghiep', {
-        })
+        return https.get('api/v1/news/tin-tuc-doanh-nghiep')
     },
+    fetchDataStockInfo: () => {
+        return https.get('api/v1/news/info-stock')
+    }
 }
