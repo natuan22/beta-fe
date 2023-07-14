@@ -8,8 +8,9 @@ import Slide from '@mui/material/Slide';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsArrowRepeat, BsCardList, BsFileEarmarkX, BsXOctagonFill } from "react-icons/bs";
 import Loading from '../../Chart/utils/Loading';
-import { fetchDataNewsFilter, fetchDataStockInfo, fetchNewsTool } from '../thunk';
+import { fetchDataStockInfo, fetchNewsTool } from '../thunk';
 import '../utils/styles/buttonNews.css'
+import ListNewsFilter from '../components/NewsFilterTool/ListNewsFilter';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="down" ref={ref} {...props} />;
@@ -23,11 +24,10 @@ const NewsFilterTool = () => {
     const [selectedLV2, setSelectedLV2] = useState([]);
     const [selectedLV4, setSelectedLV4] = useState([]);
     const [selectedCode, setSelectedCode] = useState([]);
-
+    const [codeTranmission, setCodeTranmission] = useState('all')
     useEffect(() => {
         dispatch(fetchNewsTool);
         dispatch(fetchDataStockInfo);
-        dispatch(fetchDataNewsFilter(1, 10, 'all'))
     }, [dispatch]);
 
     const handleFilterExchange = (e) => {
@@ -80,13 +80,13 @@ const NewsFilterTool = () => {
 
     const handleApply = () => {
         setOpen(false);
-        if (selectedCode.length === 0) {
-            dispatch(fetchDataNewsFilter(1, 10, 'all'))
+        if (!selectedCode) {
+            setCodeTranmission('all')
         } else {
-            dispatch(fetchDataNewsFilter(1, 10, selectedCode.map(item => item.code).toString()))
+            setCodeTranmission(selectedCode?.map(item => item.code).toString())
         }
     };
-
+    console.log(selectedCode)
     return (
         <div>
             <Button variant="outlined" onClick={handleClickOpen}>
@@ -259,7 +259,7 @@ const NewsFilterTool = () => {
                     <Button onClick={handleApply}>Áp dụng bộ lọc</Button>
                 </DialogActions>
             </Dialog>
-
+            <ListNewsFilter codeTranmission={codeTranmission} />
         </div>
     )
 }
