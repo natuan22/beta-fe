@@ -75,3 +75,16 @@ export const fetchDataStockInfo = async dispatch => {
         console.log(err)
     }
 }
+
+export const fetchDataNewsFilter = (page, limit, code) => async (dispatch) => {
+    try {
+        const res = await newsCenterServices.fetchDataNewsFilter(page, limit, code)
+        dispatch({
+            type: newsCenterType.FETCH_DATA_NEWS_FILTER,
+
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}

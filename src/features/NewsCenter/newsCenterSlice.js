@@ -6,7 +6,8 @@ const initialState = {
   dataDomesticMacro: {},
   dataForeignMacro: {},
   dataListEnterpriseNews: {},
-  dataStockInfo: {}
+  dataStockInfo: {},
+  dataNewsFilter: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -29,6 +30,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === newsCenterType.FETCH_DATA_STOCK_INFO) {
       draft.dataStockInfo = payload
+    }
+    if (type === newsCenterType.FETCH_DATA_NEWS_FILTER) {
+      draft.dataNewsFilter = payload
     }
   });
 };

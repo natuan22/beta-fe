@@ -3,6 +3,8 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { https } from '../../../../services/config';
+import '../../utils/styles/styleHeader.css'
+import { useSelector } from "react-redux";
 
 const ExchangeFilterHeader = ({ value, onFilterChange }) => {
   const [filterValue, setFilterValue] = useState(value);
@@ -15,8 +17,8 @@ const ExchangeFilterHeader = ({ value, onFilterChange }) => {
 
   return (
     <div>
-      <span>Sàn:</span>
-      <select className={`bg-[#222628] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`} value={filterValue} onChange={handleFilterChange} >
+      <span className='text-white'>Sàn:</span>
+      <select className={`bg-[#1E5D8B] text-[0.9rem] ml-1.5 text-white border-0 font-bold`} value={filterValue} onChange={handleFilterChange} >
         <option value="all">Tất cả</option>
         <option value="hose">HSX</option>
         <option value="hnx">HNX</option>
@@ -36,8 +38,8 @@ const TypeEventFilterHeader = ({ value, onFilterChange }) => {
   };
   return (
     <div>
-      <span>Loại sự kiện:</span>
-      <select className={`bg-[#222628] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`} value={typeEventValue} onChange={handleFilterChange} >
+      <span className='text-white'>Loại sự kiện:</span>
+      <select className={`bg-[#1E5D8B] text-[0.9rem] ml-1.5 text-white border-0 font-bold`} value={typeEventValue} onChange={handleFilterChange} >
         <option value="0 ">Tất cả</option>
         <option value="1">Trả cổ tức bằng tiền mặt</option>
         <option value="2">Trả cổ tức bằng cổ phiếu</option>
@@ -52,6 +54,13 @@ const NewsOfEnterprise = () => {
   const [gridApi, setGridApi] = useState(null);
   const [filterValue, setFilterValue] = useState('all');
   const [typeEventValue, setTypeEventValue] = useState('0');
+
+  const [theme, setTheme] = useState(localStorage.getItem('theme'))
+  const color = useSelector((state) => state.color.colorTheme);
+
+  useEffect(() => {
+    setTheme(color);
+  }, [color]);
   const columnDefs = [
     {
       headerName: 'Mã chứng khoán',
@@ -72,54 +81,55 @@ const NewsOfEnterprise = () => {
         onFilterChange: (newValue) => setFilterValue(newValue)
       },
       cellRenderer: params => {
-        return <p className='font-bold  '> {params.value} </p>;
+        return <p className='font-bold text-center'> {params.value} </p>;
       }
     },
     {
       headerName: 'Ngày GDKHQ',
       field: 'date_gdkhq',
-      width: 155,
+      width: 130,
       cellRenderer: params => {
-        return <p className='text-left'> {params.value} </p>;
+        return <p className='text-center'> {params.value} </p>;
       }
     },
     {
       headerName: 'Ngày ĐKCC',
       field: 'date_dkcc',
-      width: 155,
+      width: 125,
       suppressMovable: true,
-
       cellRenderer: params => {
-        return <p className='text-left'> {params.value} </p>;
+        return <p className='text-center'> {params.value} </p>;
       }
     },
     {
       headerName: 'Ngày thực hiện',
       field: 'date',
-      width: 155,
+      width: 130,
       suppressMovable: true,
-
       cellRenderer: params => {
-        return <p className='text-left'> {params.value} </p>;
+        return <p className='text-center'> {params.value} </p>;
       }
     },
     {
       headerName: 'Nội dung sự kiện',
       field: 'content',
       suppressMovable: true,
-
-      width: 330
+      width: 404,
+      autoHeight: true,
+      cellStyle: { whiteSpace: 'normal', lineHeight: '1.1rem', display: 'flex', alignItems: 'center' },
+      cellRenderer: params => {
+        return <p> {params.value}</p>;
+      }
     },
     {
       headerName: 'Loại sự kiện', field: 'type',
       headerComponentFramework: TypeEventFilterHeader,
-      width: 300,
+      width: 310,
       suppressMovable: true,
-
       headerComponentParams: {
         onFilterChange: (newValue) => setTypeEventValue(newValue)
       }, cellRenderer: params => {
-        return <p className='text-center'> {params.value} </p>;
+        return <p className=''> {params.value} </p>;
       }
 
     }
@@ -154,9 +164,9 @@ const NewsOfEnterprise = () => {
   };
 
   return (
-    <div>
-      <div className="ag-theme-alpine-dark" style={{ height: '500px' }}>
-        <AgGridReact
+    <div className='mt-2'>
+      <div className={`${localStorage.getItem('theme') === 'dark' ? "ag-theme-alpine-dark" : "ag-theme-alpine"}`} style={{ height: '500px' }}>
+        <AgGridReact 
           suppressDragLeaveHidesColumns={true}
           columnDefs={columnDefs}
           pagination={true}
