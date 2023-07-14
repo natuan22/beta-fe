@@ -17,7 +17,7 @@ const ExchangeFilterHeader = ({ value, onFilterChange }) => {
     <div>
       <span>Sàn:</span>
       <select className={`bg-[#222628] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`} value={filterValue} onChange={handleFilterChange} >
-        <option value="all ">Tất cả</option>
+        <option value="all">Tất cả</option>
         <option value="hose">HSX</option>
         <option value="hnx">HNX</option>
         <option value="upcom">UPCOM</option>
@@ -26,16 +26,38 @@ const ExchangeFilterHeader = ({ value, onFilterChange }) => {
 
   );
 };
+const TypeEventFilterHeader = ({ value, onFilterChange }) => {
+  const [typeEventValue, setTypeEventValue] = useState(value);
 
+  const handleFilterChange = (event) => {
+    const newValue = event.target.value;
+    setTypeEventValue(newValue);
+    onFilterChange(newValue);
+  };
+  return (
+    <div>
+      <span>Loại sự kiện:</span>
+      <select className={`bg-[#222628] text-[0.9rem] ml-1.5 text-[#0097B2] border-0`} value={typeEventValue} onChange={handleFilterChange} >
+        <option value="0 ">Tất cả</option>
+        <option value="1">Trả cổ tức bằng tiền mặt</option>
+        <option value="2">Trả cổ tức bằng cổ phiếu</option>
+        <option value="3">Thưởng cổ phiếu</option>
+        <option value="4">Phát hành thêm</option>
+      </select>
+    </div>
+
+  );
+};
 const NewsOfEnterprise = () => {
   const [gridApi, setGridApi] = useState(null);
   const [filterValue, setFilterValue] = useState('all');
-  const [filterOptions, setFilterOptions] = useState([]);
+  const [typeEventValue, setTypeEventValue] = useState('0');
   const columnDefs = [
     {
       headerName: 'Mã chứng khoán',
       field: 'code',
       width: 150,
+      suppressMovable: true,
       cellRenderer: params => {
         return <p className='font-bold text-center'> {params.value} </p>;
       }
@@ -44,6 +66,7 @@ const NewsOfEnterprise = () => {
       headerName: 'Sàn',
       field: 'exchange',
       width: 150,
+      suppressMovable: true,
       headerComponentFramework: ExchangeFilterHeader,
       headerComponentParams: {
         onFilterChange: (newValue) => setFilterValue(newValue)
@@ -64,6 +87,8 @@ const NewsOfEnterprise = () => {
       headerName: 'Ngày ĐKCC',
       field: 'date_dkcc',
       width: 155,
+      suppressMovable: true,
+
       cellRenderer: params => {
         return <p className='text-left'> {params.value} </p>;
       }
@@ -72,6 +97,8 @@ const NewsOfEnterprise = () => {
       headerName: 'Ngày thực hiện',
       field: 'date',
       width: 155,
+      suppressMovable: true,
+
       cellRenderer: params => {
         return <p className='text-left'> {params.value} </p>;
       }
@@ -79,9 +106,23 @@ const NewsOfEnterprise = () => {
     {
       headerName: 'Nội dung sự kiện',
       field: 'content',
+      suppressMovable: true,
+
       width: 330
     },
-    { headerName: 'Loại sự kiện', field: 'type' }
+    {
+      headerName: 'Loại sự kiện', field: 'type',
+      headerComponentFramework: TypeEventFilterHeader,
+      width: 300,
+      suppressMovable: true,
+
+      headerComponentParams: {
+        onFilterChange: (newValue) => setTypeEventValue(newValue)
+      }, cellRenderer: params => {
+        return <p className='text-center'> {params.value} </p>;
+      }
+
+    }
   ];
 
   useEffect(() => {
@@ -90,7 +131,7 @@ const NewsOfEnterprise = () => {
         getRows: async (params) => {
           try {
             const response = await https.get(
-              `/api/v1/news/event?page=${params.startRow / 10 + 1}&limit=20&exchange=${filterValue}`
+              `/api/v1/news/event?page=${params.startRow / 10 + 1}&limit=20&exchange=${filterValue}&type=${typeEventValue}`
             );
             params.successCallback(
               response.data.data.list,
@@ -106,7 +147,7 @@ const NewsOfEnterprise = () => {
       gridApi.setDatasource(datasource);
     }
     // ...
-  }, [gridApi, filterValue]);
+  }, [gridApi, filterValue, typeEventValue]);
 
   const onGridReady = (params) => {
     setGridApi(params.api);
