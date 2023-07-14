@@ -5,6 +5,13 @@ import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
 import { fetchDataIndexIndustrialProduction, fetchDataTableIndexIndustrialProduction } from '../../thunk';
+const hashtb = {
+    'Toàn ngành công nghiệp': 0,
+    'Sản xuất và Phân phối điện': 1,
+    'Khai khoáng': 2,
+    'Cung cấp nước, hoạt động quản lý và xử lý rác thải, nước thải': 3,
+    'Công nghiệp chế biến, chế tạo': 4
+}
 
 const IndexIndustrialProduction = () => {
     const dispatch = useDispatch();
@@ -24,7 +31,7 @@ const IndexIndustrialProduction = () => {
     }, [color])
 
     useEffect(() => {
-        dispatch(fetchDataIndexIndustrialProduction)
+        dispatch(fetchDataIndexIndustrialProduction(0))
         dispatch(fetchDataTableIndexIndustrialProduction)
     }, [dispatch]);
 
@@ -93,7 +100,7 @@ const IndexIndustrialProduction = () => {
         },
         credits: false,
         chart: {
-            type: 'line',
+            type: 'spline',
             backgroundColor: 'transparent',
         },
         title: {
@@ -172,7 +179,10 @@ const IndexIndustrialProduction = () => {
                                     {!loading ? (Array.isArray(dataTb) && dataTb.map(item => {
                                         return (
                                             <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                                <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[18px] text-sm dark:text-white text-black`}>
+                                                <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[18px] cursor-pointer text-sm dark:text-white text-black dark:hover:bg-gray-800 hover:bg-gray-300 duration-500`}
+                                                    onClick={() => {
+                                                        dispatch(fetchDataIndexIndustrialProduction(hashtb[item.name]))
+                                                    }}>
                                                     {item.name}
                                                 </th>
                                                 {item.values.map((value, index) => (

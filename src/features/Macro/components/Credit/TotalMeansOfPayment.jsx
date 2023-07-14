@@ -90,7 +90,7 @@ const TotalMeansOfPayment = () => {
         },
         credits: false,
         chart: {
-            type: 'line',
+            type: 'spline',
             backgroundColor: 'transparent',
         },
         title: {

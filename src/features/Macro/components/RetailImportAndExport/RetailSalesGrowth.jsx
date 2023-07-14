@@ -78,7 +78,7 @@ const RetailSalesGrowth = () => {
         },
         credits: false,
         chart: {
-            type: 'line',
+            type: 'spline',
             backgroundColor: 'transparent',
         },
         title: {
