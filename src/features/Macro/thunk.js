@@ -121,9 +121,9 @@ export const fetchDataWeightedCPICommodityBasket = async (dispatch) => {
     }
 }
 
-export const fetchDataIndexIndustrialProduction = async (dispatch) => {
+export const fetchDataIndexIndustrialProduction = (industry) => async (dispatch) => {
     try {
-        const res = await macroServices.fetchDataIndexIndustrialProduction()
+        const res = await macroServices.fetchDataIndexIndustrialProduction(industry)
         dispatch({
             type: macroType.FETCH_DATA_INDEX_INDUSTRIAL_PRODUCTION,
             payload: res.data.data
