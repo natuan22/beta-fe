@@ -1,9 +1,7 @@
 import { https } from "../../../services/config";
 
 export const newsCenterServices = {
-
     fetchDataTableEvents: (page, limit, exchange) => {
-
         return https.get('api/v1/news/event', {
             params: {
                 page,
@@ -12,7 +10,6 @@ export const newsCenterServices = {
             }
         })
     },
-
     fetchNewsTool: () => {
         return https.get('/api/v1/news/filter')
     },
@@ -38,5 +35,14 @@ export const newsCenterServices = {
     },
     fetchDataStockInfo: () => {
         return https.get('api/v1/news/info-stock')
-    }
+    },
+    fetchDataNewsFilter: (page, limit, code) => {
+        return https.get('api/v1/news/bo-loc-tin-tuc', {
+            params: {
+                page,
+                limit,
+                code
+            }
+        })
+    },
 }

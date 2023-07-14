@@ -4,15 +4,12 @@ import InternationalIndex from "../Chart/components/InternationalIndex";
 import { Outlet, useLocation } from "react-router-dom";
 import MarketTab from "./utils/MarketTab";
 import Banner from "../Chart/components/Banner";
-import { useSelector } from "react-redux";
 import LayOut from "../../HOCs/Layout";
 import Footer from "../../components/Footer";
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Market = () => {
   const location = useLocation()
-  const [theme, setTheme] = useState(localStorage.getItem('theme'))
-  const color = useSelector((state) => state.color.colorTheme);
 
   const [bannerDisplay, setBannerDisplay] = useState(false)
   useEffect(() => {
@@ -22,10 +19,6 @@ const Market = () => {
       setBannerDisplay(false);
     }
   }, [location]);
-
-  useEffect(() => {
-    setTheme(color);
-  }, [color]);
 
   return (
     <LayOut>

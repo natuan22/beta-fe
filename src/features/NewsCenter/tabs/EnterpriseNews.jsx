@@ -1,6 +1,5 @@
 import React from 'react'
 import ListEnterpriseNews from '../components/EnterpriseNews/ListEnterpriseNews'
-import TableEvents from '../components/EnterpriseNews/TableEvents'
 import NewsOfEnterprise from '../components/EnterpriseNews/NewsOfEnterprise'
 
 const EnterpriseNews = () => {
