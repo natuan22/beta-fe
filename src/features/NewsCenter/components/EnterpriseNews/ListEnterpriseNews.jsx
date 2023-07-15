@@ -10,18 +10,19 @@ const ListEnterpriseNews = () => {
     const { dataListEnterpriseNews } = useSelector(state => state.newsCenter)
     const [data, setData] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [currentPage, setCurrentPage] = useState(20);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         dispatch(fetchDataListEnterpriseNews);
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataListEnterpriseNews) {
             setLoading(false);
-            setData(dataListEnterpriseNews);
+            setData(Array.isArray(dataListEnterpriseNews) && dataListEnterpriseNews.slice(0, currentPage));
         }
-    }, [dataListEnterpriseNews]);
+    }, [dataListEnterpriseNews, currentPage]);
 
     const handleItemClick = (item) => {
         setSelectedItem(item);
@@ -31,9 +32,17 @@ const ListEnterpriseNews = () => {
         setSelectedItem(null);
     };
 
+    const handleScroll = (event) => {
+        const { scrollTop, clientHeight, scrollHeight } = event.target;
+        if (scrollTop + clientHeight >= scrollHeight * 1 && dataListEnterpriseNews.length > 0) {
+            setCurrentPage((prevLimit) => prevLimit + 10);
+            setData([...data, ...dataListEnterpriseNews.slice(currentPage, currentPage + 10)])
+        }
+    };
+
     return (
         <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
-            <div className='h-[800px] overflow-auto'>
+            <div className='h-[800px] overflow-auto' onScroll={handleScroll}>
                 {!loading ? (Array.isArray(data) &&
                     data.map((item, index) => {
                         let color = getColor(item.perChange)

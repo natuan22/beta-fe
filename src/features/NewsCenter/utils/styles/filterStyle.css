@@ -1,0 +1,20 @@
+.filterContainer-enter {
+  opacity: 0;
+  transform: scale(0.8) translateX(50px);
+}
+
+.filterContainer-enter-active {
+  opacity: 1;
+  transform: scale(1) translateX(-100px);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.filterContainer-exit {
+  opacity: 1;
+}
+
+.filterContainer-exit-active {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 200ms, transform 200ms;
+}

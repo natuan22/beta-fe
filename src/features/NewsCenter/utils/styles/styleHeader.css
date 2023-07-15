@@ -1,0 +1,13 @@
+.ag-header-cell-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ag-header-container {
+  background-color: #1E5D8B;
+}
+
+.ag-theme-alpine .ag-header-cell-label {
+  color: white;
+}

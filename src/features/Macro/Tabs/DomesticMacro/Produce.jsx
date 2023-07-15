@@ -1,29 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading'
 import IndexConsumptionStorage from '../../components/Produce/IndexConsumptionStorage';
 import IndexIndustrialProduction from '../../components/Produce/IndexIndustrialProduction';
 import IndexIndustrialProductionByIndustry from '../../components/Produce/IndexIndustrialProductionByIndustry';
 import IndustrialProductionPrimarily from '../../components/Produce/IndustrialProductionPrimarily';
-import { fetchDataIndexConsumptionStorage, fetchDataIndexIndustrialProduction, fetchDataIndexIndustrialProductionByIndustry, fetchDataIndustrialProductionPrimarily, fetchDataTableIndexIndustrialProduction } from '../../thunk';
 
 const Produce = () => {
-    const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(true)
-        }, 700)
+        }, 500)
     }, [])
-
-    useEffect(() => {
-        dispatch(fetchDataIndexIndustrialProduction)
-        dispatch(fetchDataTableIndexIndustrialProduction)
-        dispatch(fetchDataIndexConsumptionStorage('cheBienGo'))
-        dispatch(fetchDataIndexIndustrialProductionByIndustry('cheBienGo'))
-        dispatch(fetchDataIndustrialProductionPrimarily('acQuyDienCacLoai'))
-    }, [dispatch]);
 
     return (
         <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">
@@ -36,7 +25,7 @@ const Produce = () => {
                         <IndexIndustrialProduction />
                     </div>
                     <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-                        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-5'>
+                        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
                             <div>
                                 <IndexIndustrialProductionByIndustry />
                             </div>
@@ -50,7 +39,7 @@ const Produce = () => {
                     </div>
                 </>
             ) : (
-                <div className='h-[100px] mb-[70px] translate-y-[20px]'><Loading /></div>
+                <div className='h-[300px] flex items-center justify-center'><Loading /></div>
             )}
         </div>
     )

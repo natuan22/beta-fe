@@ -31,16 +31,12 @@
     content: "";
     position: absolute;
     top: 2px;
-    left: 6px;
+    left: 7px;
     width: 4px;
     height: 10px;
     border: solid #FFD300;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
-}
-
-.material-checkbox input[type="checkbox"]:focus~.checkmark {
-    box-shadow: 0 0 0 2px #6f9ccf;
 }
 
 .material-checkbox:hover input[type="checkbox"]~.checkmark {

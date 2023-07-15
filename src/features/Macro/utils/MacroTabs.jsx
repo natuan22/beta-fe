@@ -8,9 +8,9 @@ const MacroTabs = () => {
             <NavLink
                 className={(params) => {
                     if (params.isActive) {
-                        return "buttonStyle no-underline text-white font-bold w-[30%] text-center relative";
+                        return "buttonStyle no-underline mx-1 text-white font-bold w-[30%] text-center relative";
                     } else {
-                        return "buttonStyle no-underline text-white font-bold w-[30%] opacity-70 text-center";
+                        return "buttonStyle no-underline mx-1 text-white font-bold w-[30%] opacity-70 text-center";
                     }
                 }}
                 to="/vi-mo/vi-mo-trong-nuoc" >
@@ -19,9 +19,9 @@ const MacroTabs = () => {
             <NavLink
                 className={(params) => {
                     if (params.isActive) {
-                        return "buttonStyle no-underline text-white font-bold w-[30%] text-center relative";
+                        return "buttonStyle no-underline mx-1 text-white font-bold w-[30%] text-center relative";
                     } else {
-                        return "buttonStyle no-underline text-white font-bold w-[30%] opacity-70 text-center";
+                        return "buttonStyle no-underline mx-1 text-white font-bold w-[30%] opacity-70 text-center";
                     }
                 }}
                 to="/vi-mo/vi-mo-quoc-te">

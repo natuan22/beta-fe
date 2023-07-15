@@ -10,6 +10,10 @@ export const newsCenterServices = {
             }
         })
     },
+    fetchNewsTool: () => {
+        return https.get('/api/v1/news/filter')
+    },
+
     fetchDataDomesticMacro: (page, limit) => {
         return https.get('api/v1/news/vi-mo-trong-nuoc', {
             params: {
@@ -18,8 +22,27 @@ export const newsCenterServices = {
             }
         })
     },
+    fetchDataForeignMacro: (page, limit) => {
+        return https.get('api/v1/news/vi-mo-quoc-te', {
+            params: {
+                page,
+                limit
+            }
+        })
+    },
     fetchDataListEnterpriseNews: () => {
-        return https.get('api/v1/news/tin-tuc-doanh-nghiep', {
+        return https.get('api/v1/news/tin-tuc-doanh-nghiep')
+    },
+    fetchDataStockInfo: () => {
+        return https.get('api/v1/news/info-stock')
+    },
+    fetchDataNewsFilter: (page, limit, code) => {
+        return https.get('api/v1/news/bo-loc-tin-tuc', {
+            params: {
+                page,
+                limit,
+                code
+            }
         })
     },
 }

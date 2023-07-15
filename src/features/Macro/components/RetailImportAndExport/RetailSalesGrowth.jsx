@@ -25,6 +25,10 @@ const RetailSalesGrowth = () => {
     }, [color])
 
     useEffect(() => {
+        dispatch(fetchDataRetailSalesGrowth(1))
+      }, [dispatch]);
+    
+    useEffect(() => {
         if (dataRetailSalesGrowth?.length > 0) {
             let modifiedArray;
             let uniqueDates;
@@ -74,7 +78,7 @@ const RetailSalesGrowth = () => {
         },
         credits: false,
         chart: {
-            type: 'line',
+            type: 'spline',
             backgroundColor: 'transparent',
         },
         title: {

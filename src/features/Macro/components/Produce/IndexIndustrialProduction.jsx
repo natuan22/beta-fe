@@ -1,11 +1,20 @@
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataIndexIndustrialProduction, fetchDataTableIndexIndustrialProduction } from '../../thunk';
+const hashtb = {
+    'Toàn ngành công nghiệp': 0,
+    'Sản xuất và Phân phối điện': 1,
+    'Khai khoáng': 2,
+    'Cung cấp nước, hoạt động quản lý và xử lý rác thải, nước thải': 3,
+    'Công nghiệp chế biến, chế tạo': 4
+}
 
 const IndexIndustrialProduction = () => {
+    const dispatch = useDispatch();
     const { dataIndexIndustrialProduction } = useSelector(state => state.marco)
     const { dataTableIndexIndustrialProduction } = useSelector(state => state.marco)
     const [loading, setLoading] = useState(true);
@@ -20,6 +29,11 @@ const IndexIndustrialProduction = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+
+    useEffect(() => {
+        dispatch(fetchDataIndexIndustrialProduction(0))
+        dispatch(fetchDataTableIndexIndustrialProduction)
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataIndexIndustrialProduction?.length > 0) {
@@ -86,7 +100,7 @@ const IndexIndustrialProduction = () => {
         },
         credits: false,
         chart: {
-            type: 'line',
+            type: 'spline',
             backgroundColor: 'transparent',
         },
         title: {
@@ -149,7 +163,7 @@ const IndexIndustrialProduction = () => {
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
                         <div className="block xxs:w-[295px] xs:w-[350px] sm:w-[400px] md:w-[670px] lg:w-[897px] xl:w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent h-[300px]">
                             <table className="items-center w-full border-collapse bg-transparent">
-                                <thead className="sticky top-0 bg-[#1E5D8B] z-10">
+                                <thead className="bg-[#1E5D8B] z-10" style={{ position: 'sticky', top: 0 }}>
                                     <tr>
                                         <th className="sticky left-0 bg-[#1E5D8B] text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
                                             Lĩnh vực
@@ -165,7 +179,10 @@ const IndexIndustrialProduction = () => {
                                     {!loading ? (Array.isArray(dataTb) && dataTb.map(item => {
                                         return (
                                             <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                                <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[18px] text-sm dark:text-white text-black`}>
+                                                <th className={`sticky left-0 dark:bg-[#151924] bg-gray-100 text-left align-middle whitespace-nowrap px-1 py-[18px] cursor-pointer text-sm dark:text-white text-black dark:hover:bg-gray-800 hover:bg-gray-300 duration-500`}
+                                                    onClick={() => {
+                                                        dispatch(fetchDataIndexIndustrialProduction(hashtb[item.name]))
+                                                    }}>
                                                     {item.name}
                                                 </th>
                                                 {item.values.map((value, index) => (

@@ -1,11 +1,13 @@
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataGDPByPrice } from '../../thunk';
 
 const GDPByPrice = () => {
+    const dispatch = useDispatch();
     const { dataGDPByPrice } = useSelector(state => state.marco)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
@@ -19,6 +21,10 @@ const GDPByPrice = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
+
+    useEffect(() => {
+        dispatch(fetchDataGDPByPrice);
+    }, [dispatch]);
 
     useEffect(() => {
         if (dataGDPByPrice?.length > 0) {
@@ -73,7 +79,7 @@ const GDPByPrice = () => {
         },
         credits: false,
         chart: {
-            type: 'line',
+            type: 'spline',
             backgroundColor: 'transparent',
         },
         title: {
@@ -125,7 +131,7 @@ const GDPByPrice = () => {
     return (
         <div>
             {dataGDPByPrice?.length > 0 ? (
-                <div className='h-[298px] mt-2'>
+                <div className='h-[300px] mt-2'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
@@ -136,12 +142,12 @@ const GDPByPrice = () => {
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
                         <div className="block xxs:w-[295px] xs:w-[350px] sm:w-[400px] md:w-[670px] lg:w-[897px] xl:w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent h-[225px]">
                             <table className="items-center w-full border-collapse bg-transparent">
-                                <thead className="sticky top-0 bg-[#1E5D8B] z-10">
+                                <thead className="bg-[#1E5D8B] z-10" style={{ position: 'sticky', top: 0 }}>
                                     <tr >
                                         <th className="sticky left-0 bg-[#1E5D8B] text-center align-middle px-3 py-[19px] whitespace-nowrap font-semibold text-xs text-white">
                                             Kỳ
                                         </th>
-                                        {Array.isArray(timeLine) && timeLine?.map(item => (
+                                        {Array.isArray(dates) && dates?.map(item => (
                                             <th key={item} className="text-center align-middle px-3 py-[19px] text-xs font-semibold text-white">
                                                 {item}
                                             </th>
