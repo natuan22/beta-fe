@@ -22,7 +22,7 @@ const ListEnterpriseNews = () => {
             setLoading(false);
             setData(Array.isArray(dataListEnterpriseNews) && dataListEnterpriseNews.slice(0, currentPage));
         }
-    }, [dataListEnterpriseNews]);
+    }, [dataListEnterpriseNews, currentPage]);
 
     const handleItemClick = (item) => {
         setSelectedItem(item);

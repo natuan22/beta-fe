@@ -3,13 +3,19 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { https } from '../../../../services/config';
-import { Modal } from 'antd';
+import { useSelector } from "react-redux";
+
 
 const ListNewsFilter = ({ codeTranmission }) => {
 
     const [selectedItem, setSelectedItem] = useState(null);
-
     const [gridApi, setGridApi] = useState(null);
+    const [theme, setTheme] = useState(localStorage.getItem('theme'))
+    const color = useSelector((state) => state.color.colorTheme);
+
+    useEffect(() => {
+        setTheme(color);
+    }, [color]);
 
 
     useEffect(() => {
@@ -82,7 +88,7 @@ const ListNewsFilter = ({ codeTranmission }) => {
 
     return (
         <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
-            <div className={`ag-theme-alpine-dark`} style={{ height: '800px' }}>
+            <div className={`${localStorage.getItem('theme') === 'dark' ? "ag-theme-alpine-dark" : "ag-theme-alpine"}`} style={{ height: '800px' }}>
                 <AgGridReact
                     rowClass="pointer-cursor"
                     onRowClicked={handleItemClick}
