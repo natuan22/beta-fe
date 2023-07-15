@@ -9,7 +9,7 @@ const Test = () => {
             const topology = await fetch(
                 'https://code.highcharts.com/mapdata/custom/world-highres.topo.json'
             ).then((response) => response.json());
-            console.log({ topology });
+            // console.log({ topology });
             const data = [
                 {
                     'hc-key': 'ye',
