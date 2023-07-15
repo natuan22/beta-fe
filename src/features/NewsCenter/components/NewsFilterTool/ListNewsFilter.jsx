@@ -12,7 +12,6 @@ const ListNewsFilter = ({ codeTranmission }) => {
     const [gridApi, setGridApi] = useState(null);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const color = useSelector((state) => state.color.colorTheme);
-
     useEffect(() => {
         setTheme(color);
     }, [color]);
@@ -27,10 +26,15 @@ const ListNewsFilter = ({ codeTranmission }) => {
                             `/api/v1/news/bo-loc-tin-tuc?page=${params.startRow / 10 + 1}&limit=20&code=${codeTranmission}`
                         );
 
-                        params.successCallback(
-                            response.data.data.list,
-                            response.data.data.total_record
-                        );
+                        if (response.data.data.list.length === 0) {
+                            gridApi.showNoRowsOverlay();
+                        } else {
+                            gridApi.hideOverlay();
+                            params.successCallback(
+                                response.data.data.list,
+                                response.data.data.total_record
+                            );
+                        }
 
                     } catch (error) {
                         console.error("Error:", error);
@@ -85,12 +89,16 @@ const ListNewsFilter = ({ codeTranmission }) => {
     const handleCloseIframe = () => {
         setSelectedItem(null);
     };
+    const localeText = {
+        // ...
+        noRowsToShow: 'Mã cổ phiếu này không có tin tức. Vui lòng chọn mã cổ phiếu khác.',
+    };
 
     return (
         <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
             <div className={`${localStorage.getItem('theme') === 'dark' ? "ag-theme-alpine-dark" : "ag-theme-alpine"}`} style={{ height: '800px' }}>
                 <AgGridReact
-                    rowClass="pointer-cursor"
+                    rowClass='pointer-cursor'
                     onRowClicked={handleItemClick}
                     suppressDragLeaveHidesColumns={true}
                     columnDefs={columnDefs}
@@ -98,8 +106,9 @@ const ListNewsFilter = ({ codeTranmission }) => {
                     paginationPageSize={20}
                     cacheBlockSize={20}
                     animateRows={true}
-                    rowModelType="infinite"
+                    rowModelType='infinite'
                     onGridReady={onGridReady}
+                    localeText={localeText}
                 />
             </div>
             <div className=''>
