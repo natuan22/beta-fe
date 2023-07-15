@@ -65,6 +65,7 @@ const NewsFilterTool = () => {
     const handleBtnDelAll = () => {
         setSelectedLV4([...selectedLV4, ...selectedCode.map(stock => stock.code)]);
         setSelectedCode([]);
+        setCodeTranmission('all')
     };
 
     const isCodeSelected = (code) => {
@@ -80,11 +81,9 @@ const NewsFilterTool = () => {
 
     const handleApply = () => {
         setOpen(false);
-        if (!selectedCode) {
-            setCodeTranmission('all')
-        } else {
-            setCodeTranmission(selectedCode?.map(item => item.code).toString())
-        }
+
+        setCodeTranmission(selectedCode?.map(item => item.code).toString())
+
     };
     console.log(selectedCode)
     return (
