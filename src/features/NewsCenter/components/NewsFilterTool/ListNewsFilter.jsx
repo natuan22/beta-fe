@@ -5,9 +5,10 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { https } from '../../../../services/config';
 import { Modal } from 'antd';
 
-
-
 const ListNewsFilter = ({ codeTranmission }) => {
+
+    const [selectedItem, setSelectedItem] = useState(null);
+
     const [gridApi, setGridApi] = useState(null);
 
 
@@ -19,11 +20,10 @@ const ListNewsFilter = ({ codeTranmission }) => {
                         const response = await https.get(
                             `/api/v1/news/bo-loc-tin-tuc?page=${params.startRow / 10 + 1}&limit=10&code=${codeTranmission}`
                         );
-                        console.log(response.data.data.list.length)
 
                         params.successCallback(
                             response.data.data.list,
-                            response.data.datatotal_record
+                            response.data.data.total_record
                         );
 
                     } catch (error) {
@@ -41,6 +41,7 @@ const ListNewsFilter = ({ codeTranmission }) => {
             headerName: 'Cổ phiếu',
             field: 'code',
             suppressMovable: true,
+            width: 100,
             cellRenderer: params => {
                 return <p className='font-bold text-center'> {params.value} </p>;
             }
@@ -48,6 +49,7 @@ const ListNewsFilter = ({ codeTranmission }) => {
         {
             headerName: 'Ngày đăng',
             field: 'date',
+            width: 110,
             suppressMovable: true,
             cellRenderer: params => {
                 return <p className='font-bold text-center'> {params.value} </p>;
@@ -56,9 +58,12 @@ const ListNewsFilter = ({ codeTranmission }) => {
         {
             headerName: 'Tiêu đề',
             field: 'title',
+            width: 480,
             suppressMovable: true,
+            autoHeight: true,
+            cellStyle: { whiteSpace: 'normal', lineHeight: '1.1rem', display: 'flex', alignItems: 'center' },
             cellRenderer: params => {
-                return <p className='font-bold text-center'> {params.value} </p>;
+                return <p className='font-bold'> {params.value}</p>;
             }
         },
     ]
@@ -67,10 +72,20 @@ const ListNewsFilter = ({ codeTranmission }) => {
         setGridApi(params.api);
     };
 
+    const handleItemClick = (params) => {
+        setSelectedItem(params.data);
+    };
+
+    const handleCloseIframe = () => {
+        setSelectedItem(null);
+    };
+
     return (
-        <div className='mt-2'>
-            <div className={`ag-theme-alpine-dark`} style={{ height: '500px' }}>
+        <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
+            <div className={`ag-theme-alpine-dark`} style={{ height: '800px' }}>
                 <AgGridReact
+                    rowClass="pointer-cursor"
+                    onRowClicked={handleItemClick}
                     suppressDragLeaveHidesColumns={true}
                     columnDefs={columnDefs}
                     pagination={true}
@@ -81,8 +96,20 @@ const ListNewsFilter = ({ codeTranmission }) => {
                     onGridReady={onGridReady}
                 />
             </div>
-
-
+            <div className=''>
+                {selectedItem ? (
+                    <div className='relative'>
+                        <div class="close cursor-pointer md:block sm:hidden xs:hidden xxs:hidden" onClick={handleCloseIframe} />
+                        <iframe
+                            src={selectedItem.href}
+                            title={selectedItem.title}
+                            className='2xl:w-[704px] xl:w-[632px] lg:w-[890px] md:w-[660px] sm:w-[393px] xs:w-[343px] xxs:w-[290px] h-[796px]'
+                        />
+                    </div>
+                ) : (
+                    <div className='h-[800px] flex items-center justify-center dark:text-white text-black uppercase font-bold'>Chọn tin để đọc</div>
+                )}
+            </div>
         </div>
     )
 }
