@@ -5,7 +5,9 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { https } from '../../../../services/config';
 import { useSelector } from "react-redux";
 
+
 const ListNewsFilter = ({ codeTranmission }) => {
+
     const [selectedItem, setSelectedItem] = useState(null);
     const [gridApi, setGridApi] = useState(null);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
@@ -15,19 +17,21 @@ const ListNewsFilter = ({ codeTranmission }) => {
         setTheme(color);
     }, [color]);
 
+
     useEffect(() => {
         if (gridApi) {
             const datasource = {
                 getRows: async (params) => {
                     try {
                         const response = await https.get(
-                            `/api/v1/news/bo-loc-tin-tuc?page=${params.startRow / 10 + 1}&limit=20&code=${codeTranmission}`
+                            `/api/v1/news/bo-loc-tin-tuc?page=${params.startRow / 10 + 1}&limit=10&code=${codeTranmission}`
                         );
-                        // console.log(response)
+
                         params.successCallback(
                             response.data.data.list,
                             response.data.data.total_record
                         );
+
                     } catch (error) {
                         console.error("Error:", error);
                         params.failCallback();
@@ -37,7 +41,6 @@ const ListNewsFilter = ({ codeTranmission }) => {
 
             gridApi.setDatasource(datasource);
         }
-        // ...
     }, [gridApi, codeTranmission]);
     const columnDefs = [
         {
@@ -92,8 +95,8 @@ const ListNewsFilter = ({ codeTranmission }) => {
                     suppressDragLeaveHidesColumns={true}
                     columnDefs={columnDefs}
                     pagination={true}
-                    paginationPageSize={20}
-                    cacheBlockSize={20}
+                    paginationPageSize={10}
+                    cacheBlockSize={10}
                     animateRows={true}
                     rowModelType="infinite"
                     onGridReady={onGridReady}
