@@ -3,7 +3,6 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { https } from '../../../../services/config';
-import { Modal } from 'antd';
 
 const ListNewsFilter = ({ codeTranmission }) => {
 
@@ -18,7 +17,7 @@ const ListNewsFilter = ({ codeTranmission }) => {
                 getRows: async (params) => {
                     try {
                         const response = await https.get(
-                            `/api/v1/news/bo-loc-tin-tuc?page=${params.startRow / 10 + 1}&limit=10&code=${codeTranmission}`
+                            `/api/v1/news/bo-loc-tin-tuc?page=${params.startRow / 10 + 1}&limit=20&code=${codeTranmission}`
                         );
 
                         params.successCallback(
@@ -89,8 +88,8 @@ const ListNewsFilter = ({ codeTranmission }) => {
                     suppressDragLeaveHidesColumns={true}
                     columnDefs={columnDefs}
                     pagination={true}
-                    paginationPageSize={10}
-                    cacheBlockSize={10}
+                    paginationPageSize={20}
+                    cacheBlockSize={20}
                     animateRows={true}
                     rowModelType="infinite"
                     onGridReady={onGridReady}
