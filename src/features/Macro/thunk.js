@@ -409,11 +409,60 @@ export const fetchDataStatisticsCreditInstitution = async (dispatch) => {
     }
 }
 
+export const fetchDataTotalInvestProjects = (order) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataTotalInvestProjects(order)
+        dispatch({
+            type: macroType.FETCH_DATA_TOTAL_INVEST_PROJECTS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataForeignInvestIndex = (order, type) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataForeignInvestIndex(order, type)
+        dispatch({
+            type: macroType.FETCH_DATA_FOREIGN_INVEST_INDEX,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataTotalRegisteredAndDisbursedCapital = (order) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataTotalRegisteredAndDisbursedCapital(order)
+        dispatch({
+            type: macroType.FETCH_DATA_TOTAL_REGISTERED_AND_DISBURSED_CAPITAL,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataAccumulatedAndTotalInvestment = (order) => async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataAccumulatedAndTotalInvestment(order)
+        dispatch({
+            type: macroType.FETCH_DATA_ACCUMULATED_AND_TOTAL_INVESTMENT,
+          payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const fetchDataMapImportAndExport = (order, type) => async dispatch => {
     try {
         const res = await macroServices.fetchDataMapImportAndExport(order, type)
         dispatch({
             type: macroType.FETCH_DATA_MAP_IMPORT_AND_EXPORT,
+
             payload: res.data.data
         })
     } catch (err) {

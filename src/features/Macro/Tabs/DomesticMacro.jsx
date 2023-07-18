@@ -61,7 +61,7 @@ function DomesticMacro() {
                             <Tab label="FDI" value="4" />
                             <Tab label="TÍN DỤNG" value="5" />
                             <Tab label="TỶ GIÁ VÀ LÃI SUẤT" value="6" />
-                            <Tab label="TRÁI PHIẾU" value="7" />
+                            <Tab label="TRÁI PHIẾU DN" value="7" />
                             <Tab label="LAO ĐỘNG" value="8" />
                         </TabList>
                     </Box>

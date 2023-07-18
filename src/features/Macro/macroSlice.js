@@ -35,6 +35,10 @@ const initialState = {
     dataCreditBalance: {},
     dataCreditBalanceGrowth: {},
     dataStatisticsCreditInstitution: {},
+    dataTotalInvestProjects: {},
+    dataForeignInvestIndex: {},
+    dataTotalRegisteredAndDisbursedCapital: {},
+    dataAccumulatedAndTotalInvestment: {},
     dataMapExImport: {},
 };
 
@@ -142,6 +146,17 @@ const reducer = (state = initialState, { type, payload }) => {
         if (type === macroType.FETCH_DATA_STATISTICS_CREDIT_INSTITUTION) {
             draft.dataStatisticsCreditInstitution = payload
         }
+        if (type === macroType.FETCH_DATA_TOTAL_INVEST_PROJECTS) {
+            draft.dataTotalInvestProjects = payload
+        }
+        if (type === macroType.FETCH_DATA_FOREIGN_INVEST_INDEX) {
+            draft.dataForeignInvestIndex = payload
+        }
+        if (type === macroType.FETCH_DATA_TOTAL_REGISTERED_AND_DISBURSED_CAPITAL) {
+            draft.dataTotalRegisteredAndDisbursedCapital = payload
+        }
+        if (type === macroType.FETCH_DATA_ACCUMULATED_AND_TOTAL_INVESTMENT) {
+            draft.dataAccumulatedAndTotalInvestment = payload
         if (type === macroType.FETCH_DATA_MAP_IMPORT_AND_EXPORT) {
             draft.dataMapExImport = payload
         }

@@ -89,9 +89,9 @@ const NewsFilterTool = () => {
     return (
         <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-full pt-2">
             <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                <button class="Btn" onClick={handleClickOpen}>
-                    <span class="text">Bộ lọc tin tức</span>
-                    <span class="svgIcon">
+                <button className="Btn" onClick={handleClickOpen}>
+                    <span className="text">Bộ lọc tin tức</span>
+                    <span className="svgIcon">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
                     </span>
                 </button>
