@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { hashTb } from '../utils/antComponentChild';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import TabContext from '@mui/lab/TabContext';
@@ -15,6 +14,17 @@ import RateAndInterestRate from './DomesticMacro/RateAndInterestRate';
 import Bonds from './DomesticMacro/Bonds';
 import Labour from './DomesticMacro/Labour';
 import '../utils/style/muiTabHeader.css'
+export const hashTb = {
+    'GDP': '0',
+    'CPI': '1',
+    'SẢN XUẤT': '2',
+    'BÁN LẺ & XUẤT NHẬP KHẨU': '3',
+    'FDI': '4',
+    'TÍN DỤNG': '5',
+    'TỶ GIÁ VÀ LÃI SUẤT': '6',
+    'TRÁI PHIẾU': '7',
+    'LAO ĐỘNG': '8',
+}
 
 function DomesticMacro() {
     const [value, setValue] = useState(localStorage.getItem('userTabCurrent'));
@@ -23,25 +33,24 @@ function DomesticMacro() {
         setValue(newValue);
         localStorage.setItem('userTabCurrent', newValue)
     };
-    // const [activeTab, setActiveTab] = useState(localStorage.getItem('userTabCurrent'));
-    // const tabsRef = useRef([]);
+    const [activeTab, setActiveTab] = useState(localStorage.getItem('userTabCurrent'));
+    const tabsRef = useRef([]);
 
-    // const handleTabClick = (index) => {
-    //     setActiveTab(index);
-    //     localStorage.setItem('userTabCurrent', index)
-    // };
+    const handleTabClick = (value) => {
+        setActiveTab(value);
+        localStorage.setItem('userTabCurrent', value)
+    };
 
-    // useEffect(() => {
-    //     const activeButton = tabsRef.current[activeTab];
-    //     const movingBackground = document.querySelector('.moving-background');
-    //     if (activeButton && movingBackground) {
-    //         movingBackground.style.left = `${activeButton.offsetLeft}px`;
-    //         movingBackground.style.width = `${activeButton.offsetWidth}px`;
-    //     }
-    // }, [activeTab]);
+    useEffect(() => {
+        const activeButton = tabsRef.current[activeTab];
+        const movingBackground = document.querySelector('.moving-background');
+        if (activeButton && movingBackground) {
+            movingBackground.style.left = `${activeButton.offsetLeft}px`;
+            movingBackground.style.width = `${activeButton.offsetWidth}px`;
+        }
+    }, [activeTab]);
 
-    // const tabLabels = Object.keys(hashTb);
-    // const TabContent = Object.values(hashTb)[activeTab];
+
 
     return (
         <div className='tab container mx-auto'>
@@ -54,15 +63,12 @@ function DomesticMacro() {
                             scrollButtons
                             allowScrollButtonsMobile
                         >
-                            <Tab label="GDP" value="0" />
-                            <Tab label="CPI" value="1" />
-                            <Tab label="SẢN XUẤT" value="2" />
-                            <Tab label="BÁN LẺ & XUẤT NHẬP KHẨU" value="3" />
-                            <Tab label="FDI" value="4" />
-                            <Tab label="TÍN DỤNG" value="5" />
-                            <Tab label="TỶ GIÁ VÀ LÃI SUẤT" value="6" />
-                            <Tab label="TRÁI PHIẾU DN" value="7" />
-                            <Tab label="LAO ĐỘNG" value="8" />
+                            <div className="moving-background absolute h-full top-0 bg-[#35adf2] transition-all duration-500 rounded-full "></div>
+                            {Object.entries(hashTb).map(([label, value]) => (
+                                <Tab
+                                    ref={el => tabsRef.current[value] = el}
+                                    onClick={() => handleTabClick(value)} className='btn' key={value} label={label} value={value} />
+                            ))}
                         </TabList>
                     </Box>
 
