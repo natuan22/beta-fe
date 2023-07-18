@@ -3,6 +3,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import "./utils/styles/mapStyle.css";
+import Loading from "../../../Chart/utils/Loading";
 highchartsMap(Highcharts); // Khởi tạo highcharts module map
 const data = [
     {
@@ -48,7 +49,7 @@ const coordinates = [
     { 'korea': [127.9785, 36.5388] },
     { 'jp': [138.2529, 36.2048] },
 ]
-export default function Test({ dataMapExImport }) {
+export default function ExportAndImportTransferChart({ dataMapExImport }) {
     const optionsCoordinatesExport = coordinates.map((countryInfo) => {
         const countryName = Object.keys(countryInfo)[0]; // Lấy tên quốc gia từ key
         const coordinatesArray = countryInfo[countryName]; // Lấy mảng tọa độ từ value
@@ -343,13 +344,16 @@ export default function Test({ dataMapExImport }) {
     return (
         <div>
             {mapData ? (
-                <HighchartsReact
-                    highcharts={Highcharts}
-                    constructorType={"mapChart"}
-                    options={options}
-                />
+                <div className="h-[300px]">
+                    <HighchartsReact
+                        highcharts={Highcharts}
+                        constructorType={"mapChart"}
+                        options={options}
+                        containerProps={{ style: { height: '100%', width: '100%' } }}
+                    />
+                </div>
             ) : (
-                <div>Loading....</div>
+                <div className="h-[335px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     );
