@@ -344,7 +344,7 @@ export default function ExportAndImportTransferChart({ dataMapExImport }) {
     return (
         <div>
             {mapData ? (
-                <div className="h-[300px]">
+                <div className="h-[335px]">
                     <HighchartsReact
                         highcharts={Highcharts}
                         constructorType={"mapChart"}
