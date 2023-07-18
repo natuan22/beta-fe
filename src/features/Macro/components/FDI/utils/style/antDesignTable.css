@@ -1,68 +1,66 @@
 .ant-table-thead .ant-table-cell {
-    background-color: #1E5D8B !important;
-    color: white !important;
+  background-color: #1e5d8b !important;
+  color: white !important;
 }
 
 .ant-table-wrapper .ant-table {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
-
-.ant-table-wrapper .ant-table-row:hover .ant-table-cell,
 .ant-table-column-sort {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .ant-table-cell-row:hover {
-    background-color: transparent !important;
-
+  background-color: transparent !important;
 }
 
 .ant-table-tbody .ant-table-row {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .ant-dropdown-trigger {
-    color: white !important;
+  color: white !important;
 }
 
 .ant-table-column-title {
-    color: white;
+  color: white;
 }
 
 .ant-pagination {
-    background-color: #1E5D8B !important;
-    margin: 0px !important;
-    padding: 10px;
-    color: white !important;
-    border-radius: 0px 0px 8px 8px;
-    border: 1px solid #f0f0f0;
+  background-color: #1e5d8b !important;
+  margin: 0px !important;
+  padding: 10px;
+  color: white !important;
+  border-radius: 0px 0px 8px 8px;
 }
 
 .ant-pagination-item-active {
-    border-color: white !important;
-
+  border-color: white !important;
 }
 
 .ant-pagination-item-link-icon {
-    color: white !important;
+  color: white !important;
 }
 
-.ant-pagination-prev>button {
-    background-color: #1E5D8B !important;
-    color: white !important;
+.ant-pagination-prev > button {
+  background-color: #1e5d8b !important;
+  color: white !important;
 }
 
-.ant-pagination-next>button {
-    background-color: #1E5D8B !important;
-    color: white !important;
+.ant-pagination-next > button {
+  background-color: #1e5d8b !important;
+  color: white !important;
 }
 
 .ant-pagination-item-ellipsis {
-    color: white !important;
+  color: white !important;
 }
 
-.ant-pagination-item>a {
-    background-color: #1E5D8B !important;
-    color: white !important;
+.ant-pagination-item > a {
+  background-color: #1e5d8b !important;
+  color: white !important;
+}
+.pointer-events-none {
+  pointer-events: none;
 }

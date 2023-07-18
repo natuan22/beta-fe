@@ -189,7 +189,8 @@ const ForeignInvestIndex = () => {
                 <div className='mt-2'>
                     <Table
                         scroll={{ x: 400 }}
-                        bordered={true}
+                        rowClassName="pointer-events-none "
+                        bordered={false}
                         columns={columns}
                         dataSource={data}
                         pagination={{ defaultPageSize: 7, showSizeChanger: false }}
