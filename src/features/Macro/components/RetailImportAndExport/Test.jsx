@@ -1,298 +1,356 @@
-import React, { useEffect } from 'react';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import HighchartsMap from 'highcharts/modules/map';
+import React, { useEffect, useState } from "react";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import highchartsMap from "highcharts/modules/map";
+import "./utils/styles/mapStyle.css";
+highchartsMap(Highcharts); // Khởi tạo highcharts module map
+const data = [
+    {
+        "hc-key": "vn",
+        color: "red",
+    },
 
-const Test = () => {
-    useEffect(() => {
-        (async () => {
-            const topology = await fetch(
-                'https://code.highcharts.com/mapdata/custom/world-highres.topo.json'
-            ).then((response) => response.json());
-            // console.log({ topology });
-            const data = [
-                {
-                    'hc-key': 'ye',
-                    color: '#ffa500',
-                    info: 'Yemen is where coffee took off.',
-                },
-                {
-                    'hc-key': 'br',
-                    color: '#c0ffd5',
-                    info: 'Coffee came from La Reunion.',
-                },
-                {
-                    'hc-key': 'fr',
-                    color: '#c0ffd5',
-                    info: 'Coffee came from Java.',
-                },
-                {
-                    'hc-key': 'gb',
-                    color: '#c0ffd5',
-                    info: 'Coffee came from Java.',
-                },
-                {
-                    'hc-key': 'id',
-                    color: '#c0ffd5',
-                    info: 'Coffee came from Yemen.',
-                },
-                {
-                    'hc-key': 'nl',
-                    color: '#c0ffd5',
-                    info: 'Coffee came from Java.',
-                },
-                {
-                    'hc-key': 'gu',
-                    color: '#c0ffd5',
-                    info: 'Coffee came from France.',
-                },
-                {
-                    'hc-key': 're',
-                    color: '#c0ffd5',
-                    info: 'Coffee came from Yemen.',
-                },
-                {
-                    'hc-key': 'in',
-                    color: '#c0ffd5',
-                    info: 'Coffee came from Yemen.',
-                },
-            ];
-
-            // Initialize the chart
-            Highcharts.mapChart('container', {
-                chart: {
-                    map: topology,
-                },
-
-                title: {
-                    text: 'The history of the coffee bean ☕',
-                },
-                legend: {
-                    enabled: false,
-                },
-                tooltip: {
-                    useHTML: true,
-                    headerFormat: '<b>{point.key}</b>:<br/>',
-                    pointFormat: '{point.info}',
-                },
-
-                mapView: {
-                    fitToGeometry: {
-                        type: 'MultiPoint',
-                        coordinates: [
-                            // Alaska west
-                            [-164, 54],
-                            // Greenland north
-                            [-35, 84],
-                            // New Zealand east
-                            [179, -38],
-                            // Chile south
-                            [-68, -55],
-                        ],
-                    },
-                },
-
-                series: [
-                    {
-                        data,
-                        keys: ['hc-key', 'color', 'info'],
-                        name: 'Coffee',
-                    },
-                    {
-                        type: 'mapline',
-                        data: [
-                            {
-                                geometry: {
-                                    type: 'LineString',
-                                    coordinates: [
-                                        [48.516388, 15.552727], // Yemen
-                                        [110.004444, -7.491667], // Java
-                                    ],
-                                },
-                                className: 'animated-line',
-                                color: '#666',
-                            },
-                            {
-                                geometry: {
-                                    type: 'LineString',
-                                    coordinates: [
-                                        [48.516388, 15.552727], // Yemen
-                                        [55.5325, -21.114444], // La reunion
-                                    ],
-                                },
-                                className: 'animated-line',
-                                color: '#666',
-                            },
-                            {
-                                geometry: {
-                                    type: 'LineString',
-                                    coordinates: [
-                                        [55.5325, -21.114444], // La reunion
-                                        [-43.2, -22.9], // Brazil
-                                    ],
-                                },
-                                className: 'animated-line',
-                                color: '#666',
-                            },
-                            {
-                                geometry: {
-                                    type: 'LineString',
-                                    coordinates: [
-                                        [48.516388, 15.552727], // Yemen
-                                        [78, 21], // India
-                                    ],
-                                },
-                                className: 'animated-line',
-                                color: '#666',
-                            },
-                            {
-                                geometry: {
-                                    type: 'LineString',
-                                    coordinates: [
-                                        [110.004444, -7.491667], // Java
-                                        [4.9, 52.366667], // Amsterdam
-                                    ],
-                                },
-                                className: 'animated-line',
-                                color: '#666',
-                            },
-                            {
-                                geometry: {
-                                    type: 'LineString',
-                                    coordinates: [
-                                        [-3, 55], // UK
-                                        [-61.030556, 14.681944], // Antilles
-                                    ],
-                                },
-                                className: 'animated-line',
-                                color: '#666',
-                            },
-                            {
-                                geometry: {
-                                    type: 'LineString',
-                                    coordinates: [
-                                        [2.352222, 48.856613], // Paris
-                                        [-53, 4], // Guyane
-                                    ],
-                                },
-                                className: 'animated-line',
-                                color: '#666',
-                            },
-                        ],
-                        lineWidth: 2,
-                        enableMouseTracking: false,
-                    },
-                    {
-                        type: 'mappoint',
-                        color: '#333',
-                        dataLabels: {
-                            format:
-                                '<b>{point.name}</b><br><span style="font-weight: normal; opacity: 0.5">{point.custom.arrival}</span>',
-                            align: 'left',
-                            verticalAlign: 'middle',
-                        },
-                        data: [
-                            {
-                                name: 'Yemen',
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [48.516388, 15.552727], // Yemen
-                                },
-                                custom: {
-                                    arrival: 1414,
-                                },
-                                dataLabels: {
-                                    align: 'right',
-                                },
-                            },
-                            {
-                                name: 'Java',
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [110.004444, -7.491667], // Java
-                                },
-                                custom: {
-                                    arrival: 1696,
-                                },
-                            },
-                            {
-                                name: 'La Reunion',
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [55.5325, -21.114444], // La reunion
-                                },
-                                custom: {
-                                    arrival: 1708,
-                                },
-                            },
-                            {
-                                name: 'Brazil',
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [-43.2, -22.9], // Brazil
-                                },
-                                custom: {
-                                    arrival: 1770,
-                                },
-                                dataLabels: {
-                                    align: 'right',
-                                },
-                            },
-                            {
-                                name: 'India',
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [78, 21], // India
-                                },
-                                custom: {
-                                    arrival: 1670,
-                                },
-                            },
-                            {
-                                name: 'Amsterdam',
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [4.9, 52.366667], // Amsterdam
-                                },
-                                custom: {
-                                    arrival: 1696,
-                                },
-                            },
-                            {
-                                name: 'Antilles',
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [-61.030556, 14.681944], // Antilles
-                                },
-                                custom: {
-                                    arrival: 1714,
-                                },
-                                dataLabels: {
-                                    align: 'right',
-                                },
-                            },
-                            {
-                                name: 'Guyane',
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [-53, 4], // Guyane
-                                },
-                                custom: {
-                                    arrival: 1714,
-                                },
-                                dataLabels: {
-                                    align: 'right',
-                                },
-                            },
-                        ],
-                        enableMouseTracking: false,
-                    },
+    {
+        "hc-key": "cn",
+        color: "#c0ffd5",
+    },
+    {
+        "hc-key": "hk",
+        color: "#c0ffd5",
+    },
+    {
+        "hc-key": "in", // ấn độ
+        color: "#c0ffd5",
+    },
+    {
+        "hc-key": "jp",
+        color: "#c0ffd5",
+    },
+    {
+        "hc-key": "kr",
+        color: "#c0ffd5",
+    },
+    {
+        "hc-key": "tw",
+        color: "#c0ffd5",
+    },
+    {
+        "hc-key": "us",
+        color: "#c0ffd5",
+    },
+];
+const coordinates = [
+    { 'taiwan': [121.5654, 23.6978] },
+    { 'us': [-95.7129, 37.0902] },
+    { 'india': [78, 21] },
+    { 'china': [116.4074, 39.9042] },
+    { 'hongkong': [114.1095, 22.3964] },
+    { 'korea': [127.9785, 36.5388] },
+    { 'jp': [138.2529, 36.2048] },
+]
+export default function Test({ dataMapExImport }) {
+    const optionsCoordinatesExport = coordinates.map((countryInfo) => {
+        const countryName = Object.keys(countryInfo)[0]; // Lấy tên quốc gia từ key
+        const coordinatesArray = countryInfo[countryName]; // Lấy mảng tọa độ từ value
+        return {
+            geometry: {
+                type: "LineString",
+                coordinates: [
+                    [105.84117, 21.0245], // Tọa độ của Việt Nam
+                    coordinatesArray, // Tọa độ của quốc gia khác
                 ],
+            },
+            className: "animated-line",
+            color: "#147df5",
+        };
+    });
+    const optionsCoordinatesImport = coordinates.map((countryInfo) => {
+        const countryName = Object.keys(countryInfo)[0]; // Lấy tên quốc gia từ key
+        const coordinatesArray = countryInfo[countryName]; // Lấy mảng tọa độ từ value
+        return {
+            geometry: {
+                type: "LineString",
+                coordinates: [
+                    coordinatesArray, // Tọa độ của quốc gia khác
+                    [105.84117, 21.0245], // Tọa độ của Việt Nam
+                ],
+            },
+            className: "animated-line",
+            color: "#e7c64f",
+        };
+    });
+
+    const [mapData, setMapData] = useState(null);
+    useEffect(() => {
+        // Fetch data
+        fetch("https://code.highcharts.com/mapdata/custom/world-highres.topo.json")
+            .then((response) => response.json())
+            .then((data) => {
+                setMapData(data);
             });
-        })();
     }, []);
 
-    return <div id="container" style={{ height: '500px' }}></div>;
-};
+    const options = {
+        accessibility: {
+            enabled: false,
+        },
+        credits: false,
+        chart: {
+            map: mapData,
+            backgroundColor: "transparent",
+        },
+        title: {
+            text: "",
+        },
+        legend: {
+            enabled: false,
+        },
+        tooltip: {
+            useHTML: true,
+            headerFormat: "<b>{point.key}</b>:<br/>",
+            pointFormat: "{point.info}",
+            style: {
+                color: "black", // Màu chữ của tooltip
+                fontSize: "12px", // Cỡ chữ của tooltip
+                fontWeight: 'bold'
+            },
+            formatter: function () {
+                const country = this.key;
+                const exportValue = dataMapExImport.find(item => item.name.includes(country) || item.name.includes("United States"))?.value || "N/A";
+                return (
+                    `
+                    <b>${country}</b>:<br/>
+                    <span >Giá trị ${localStorage.getItem('typeTransfer') === '0' ? 'xuất khẩu' : 'nhập khẩu'} : ${(exportValue / 1000000000).toFixed(2)} tỉ USD</span>
+                    `
+                );
+            },
+        },
+        mapView: {
+            fitToGeometry: {
+                type: "MultiPoint",
+                coordinates: [
+                    // Alaska west
+                    [-164, 54],
+                    // Greenland north
+                    [-35, 84],
+                    // New Zealand east
+                    [179, -38],
+                    // Chile south
+                    [-68, -55],
+                ],
+            },
+        },
+        series: [
+            {
+                data,
+                keys: ["hc-key", "color"],
+                name: "Xuất khẩu",
 
-export default Test;
+            },
+            {
+                type: "mapline",
+                data: localStorage.getItem('typeTransfer') === '0' ? optionsCoordinatesExport : optionsCoordinatesImport,
+                lineWidth: 2,
+                enableMouseTracking: false,
+            },
+            {
+                type: "mappoint",
+                color: "#333",
+                dataLabels: {
+                    format:
+                        '<b>{point.name}</b><br><span style="font-weight: normal; opacity: 0.5">{point.custom.arrival}</span>',
+                    align: "left",
+                    verticalAlign: "middle",
+                },
+                data: [
+                    {
+                        name: "Vietnam",
+                        geometry: {
+                            type: "Point",
+                            coordinates: [105.84117, 21.0245], // Việt Nam
+                        },
+                        marker: {
+                            radius: 4,
+                            fillColor: "yellow",
+                            lineColor: "yellow",
+                        },
+                        dataLabels: {
+                            align: "right",
+                            x: 20,
+                            y: 10,
+                            style: {
+                                color: "yellow",
+                                fontSize: "10px",
+                                fontStyle: "italic",
+                            },
+                        },
+                    },
+
+                    {
+                        name: "Nhật Bản",
+                        geometry: {
+                            type: "Point",
+                            coordinates: [138.2529, 36.2048], // Nhật Bản
+                        },
+                        marker: {
+                            radius: 4,
+                            fillColor: "red",
+                            lineColor: "red",
+                        },
+                        dataLabels: {
+                            align: "left",
+                            y: 10,
+                            style: {
+                                color: "black",
+                                fontStyle: "bold",
+                                fontSize: "8px",
+                            },
+                        },
+                    },
+                    {
+                        name: "Taiwan",
+                        geometry: {
+                            type: "Point",
+                            coordinates: [121.5654, 23.6978], // Đài Loan
+                        },
+                        marker: {
+                            radius: 4,
+                            fillColor: "red",
+                            lineColor: "red",
+                        },
+
+                        dataLabels: {
+                            align: "top",
+                            y: -5,
+                            x: 0,
+                            style: {
+                                color: "black",
+                                fontStyle: "bold",
+                                fontSize: "8px",
+                            },
+                        },
+                    },
+                    {
+                        name: "Hoa Kỳ",
+                        color: "black",
+                        geometry: {
+                            type: "Point",
+                            coordinates: [-95.7129, 37.0902], // Hoa Kỳ
+                        },
+                        marker: {
+                            radius: 4,
+                            fillColor: "red",
+                            lineColor: "red",
+                        },
+                        dataLabels: {
+                            align: "left",
+                            style: {
+                                color: "black",
+                                fontStyle: "bold",
+                                fontSize: "8px",
+                            },
+                        },
+                    },
+
+                    {
+                        name: "Trung Quốc",
+                        geometry: {
+                            type: "Point",
+                            coordinates: [116.4074, 39.9042], // Trung Quốc
+                        },
+                        marker: {
+                            radius: 4,
+                            fillColor: "red",
+                            lineColor: "red",
+                        },
+                        dataLabels: {
+                            align: "right",
+                            style: {
+                                color: "black",
+                                fontStyle: "bold",
+                                fontSize: "8px",
+                            },
+                        },
+                    },
+                    {
+                        name: "Hong Kong",
+                        geometry: {
+                            type: "Point",
+                            coordinates: [114.1095, 22.3964], // Hong Kong
+                        },
+                        marker: {
+                            radius: 4,
+                            fillColor: "red",
+                            lineColor: "red",
+                        },
+                        dataLabels: {
+                            align: "left",
+                            y: 10,
+                            style: {
+                                color: "black",
+                                fontStyle: "bold",
+                                fontSize: "8px",
+                            },
+                        },
+                    },
+                    {
+                        name: "Ấn Độ",
+                        geometry: {
+                            type: "Point",
+                            coordinates: [78, 21], // India
+                        },
+                        marker: {
+                            radius: 4,
+                            fillColor: "red",
+                            lineColor: "red",
+                        },
+                        dataLabels: {
+                            align: "right",
+                            style: {
+                                color: "black",
+                                fontStyle: "bold",
+                                fontSize: "8px",
+                            },
+                        },
+                    },
+                    {
+                        name: "Hàn Quốc",
+                        geometry: {
+                            type: "Point",
+                            coordinates: [127.9785, 36.5388], // Hàn Quốc
+                        },
+                        marker: {
+                            radius: 4,
+                            fillColor: "red",
+                            lineColor: "red",
+                        },
+                        dataLabels: {
+                            align: "top",
+                            x: -30,
+                            y: 10,
+                            style: {
+                                color: "black",
+                                fontSize: "8px",
+                            },
+                        },
+                    },
+                ],
+                enableMouseTracking: false,
+            },
+        ],
+    };
+
+    return (
+        <div>
+            {mapData ? (
+                <HighchartsReact
+                    highcharts={Highcharts}
+                    constructorType={"mapChart"}
+                    options={options}
+                />
+            ) : (
+                <div>Loading....</div>
+            )}
+        </div>
+    );
+}

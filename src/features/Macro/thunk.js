@@ -408,3 +408,15 @@ export const fetchDataStatisticsCreditInstitution = async (dispatch) => {
         console.log(err)
     }
 }
+
+export const fetchDataMapImportAndExport = (order, type) => async dispatch => {
+    try {
+        const res = await macroServices.fetchDataMapImportAndExport(order, type)
+        dispatch({
+            type: macroType.FETCH_DATA_MAP_IMPORT_AND_EXPORT,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
