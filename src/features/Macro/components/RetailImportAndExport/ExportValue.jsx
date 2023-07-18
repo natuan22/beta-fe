@@ -9,7 +9,7 @@ import LegendBtn from '../../../../utils/Component/BtnLegend';
 
 const ExportValue = () => {
     const dispatch = useDispatch();
-    const { dataExportValue } = useSelector(state => state.marco)
+    const { dataExportValue, } = useSelector(state => state.marco)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [order, setOrder] = useState('2')
@@ -27,8 +27,8 @@ const ExportValue = () => {
 
     useEffect(() => {
         dispatch(fetchDataExportValue(2))
-      }, [dispatch]);
-    
+    }, [dispatch]);
+
     useEffect(() => {
         if (dataExportValue?.length > 0) {
             let modifiedArray;

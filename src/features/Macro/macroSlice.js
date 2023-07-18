@@ -39,6 +39,7 @@ const initialState = {
     dataForeignInvestIndex: {},
     dataTotalRegisteredAndDisbursedCapital: {},
     dataAccumulatedAndTotalInvestment: {},
+    dataMapExImport: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -156,6 +157,8 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === macroType.FETCH_DATA_ACCUMULATED_AND_TOTAL_INVESTMENT) {
             draft.dataAccumulatedAndTotalInvestment = payload
+        if (type === macroType.FETCH_DATA_MAP_IMPORT_AND_EXPORT) {
+            draft.dataMapExImport = payload
         }
     });
 };

@@ -180,6 +180,14 @@ export const macroServices = {
     fetchDataForeignInvestIndex: (order, type) => {
         return https.get('api/v1/macro/chi-so-dau-tu-nuoc-ngoai', {
             params: {
+                order, 
+                type
+            }
+        })
+    },
+    fetchDataMapImportAndExport: (order, type) => {
+        return https.get('api/v1/retail/map-xuat-nhap-khau', {
+            params: {
                 order,
                 type
             }

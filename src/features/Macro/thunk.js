@@ -450,6 +450,19 @@ export const fetchDataAccumulatedAndTotalInvestment = (order) => async (dispatch
         const res = await macroServices.fetchDataAccumulatedAndTotalInvestment(order)
         dispatch({
             type: macroType.FETCH_DATA_ACCUMULATED_AND_TOTAL_INVESTMENT,
+          payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const fetchDataMapImportAndExport = (order, type) => async dispatch => {
+    try {
+        const res = await macroServices.fetchDataMapImportAndExport(order, type)
+        dispatch({
+            type: macroType.FETCH_DATA_MAP_IMPORT_AND_EXPORT,
+
             payload: res.data.data
         })
     } catch (err) {

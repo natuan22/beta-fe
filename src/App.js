@@ -27,6 +27,7 @@ function App() {
     localStorage.setItem('exchange', 'VNINDEX')
     localStorage.setItem('typeApi', '0')
     localStorage.setItem('nameMarketMap', 'Vốn hóa')
+    localStorage.setItem('typeTransfer', '0')
     const token = localStorage.getItem('betaToken')
     dispatch(autoLoginWithToken(token))
 
