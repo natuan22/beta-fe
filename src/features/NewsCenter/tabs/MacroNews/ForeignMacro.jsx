@@ -85,7 +85,7 @@ const ForeignMacro = () => {
                                                 <SwiperSlide key={index}>
                                                     <a href={item.href} className='no-underline' target="_blank" rel="noopener noreferrer">
                                                         <div>
-                                                            <img src={item.img} alt={item.title} className='bg-cover bg-center h-[400px] w-full' />
+                                                            <img src={item.img} alt={item.title} className='bg-cover bg-center sm:h-[400px] xxs:h-[300px] w-full' />
                                                             <h3 className='dark:text-white text-black my-2'>{item.title}</h3>
                                                             <p className='dark:text-white text-black text-[0.9rem]'>{item.sub_title}</p>
                                                         </div>

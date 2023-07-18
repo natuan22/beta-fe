@@ -170,4 +170,33 @@ export const macroServices = {
         return https.get('api/v1/macro/thong-ke-theo-loai-hinh-to-chuc-tin-dung', {
         })
     },
+    fetchDataTotalInvestProjects: (order) => {
+        return https.get('api/v1/macro/tong-so-du-an-dau-tu', {
+            params: {
+                order
+            }
+        })
+    },
+    fetchDataForeignInvestIndex: (order, type) => {
+        return https.get('api/v1/macro/chi-so-dau-tu-nuoc-ngoai', {
+            params: {
+                order,
+                type
+            }
+        })
+    },
+    fetchDataTotalRegisteredAndDisbursedCapital: (order) => {
+        return https.get('api/v1/macro/tong-von-dang-ky-va-giai-ngan', {
+            params: {
+                order
+            }
+        })
+    },
+    fetchDataAccumulatedAndTotalInvestment: (order) => {
+        return https.get('api/v1/macro/luy-ke', {
+            params: {
+                order
+            }
+        })
+    },
 }
