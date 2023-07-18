@@ -170,4 +170,12 @@ export const macroServices = {
         return https.get('api/v1/macro/thong-ke-theo-loai-hinh-to-chuc-tin-dung', {
         })
     },
+    fetchDataMapImportAndExport: (order, type) => {
+        return https.get('api/v1/retail/map-xuat-nhap-khau', {
+            params: {
+                order,
+                type
+            }
+        })
+    }
 }

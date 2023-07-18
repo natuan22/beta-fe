@@ -30,7 +30,7 @@ const TotalMeansOfPayment = () => {
     useEffect(() => {
         if (dataChartTotalMeansOfPayment?.length > 0) {
             setLoading(false);
-            const modifiedArray = dataChartTotalMeansOfPayment.map(item => {
+            const modifiedArray = dataChartTotalMeansOfPayment?.map(item => {
                 const modifiedName = item.name.replace(' (Tỷ đồng)', '');
                 const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
                 const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
@@ -65,7 +65,7 @@ const TotalMeansOfPayment = () => {
 
     useEffect(() => {
         if (dataTableTotalMeansOfPayment?.length > 0) {
-            const modifiedArray = dataChartTotalMeansOfPayment.map(item => {
+            const modifiedArray = dataChartTotalMeansOfPayment?.map(item => {
                 const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
                 const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
 
