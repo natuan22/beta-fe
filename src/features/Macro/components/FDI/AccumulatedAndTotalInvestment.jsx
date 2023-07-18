@@ -26,8 +26,8 @@ const AccumulatedAndTotalInvestment = () => {
     }, [color])
 
     useEffect(() => {
-        dispatch(fetchDataAccumulatedAndTotalInvestment(0));
-    }, [dispatch]);
+        dispatch(fetchDataAccumulatedAndTotalInvestment(order));
+    }, [dispatch, order]);
 
     useEffect(() => {
         if (dataAccumulatedAndTotalInvestment?.length > 0) {
@@ -58,19 +58,19 @@ const AccumulatedAndTotalInvestment = () => {
 
             modifiedArray?.forEach(item => {
                 const name = item.name;
-                const value = +item.luy_ke.toFixed(2);
-                const value2 = +item.luy_ke_von.toFixed(2);
+                const luy_ke = +item.luy_ke.toFixed(2);
+                const luy_ke_von = +item.luy_ke_von.toFixed(2);
                 const color = item.color;
 
                 const existingObj = result.find(obj => obj.name === name);
 
                 if (existingObj) {
-                    existingObj.data.push(value);
+                    existingObj.data.push(luy_ke);
                 } else {
                     result.push({
                         type: 'column',
                         name: name,
-                        data: [value],
+                        data: [luy_ke],
                         yAxis: 0,
                         color: color
                     });
@@ -78,12 +78,12 @@ const AccumulatedAndTotalInvestment = () => {
                 const existingLineObj = result.find(obj => obj.type === 'spline' && obj.name === name);
 
                 if (existingLineObj) {
-                    existingLineObj.data.push(value);
+                    existingLineObj.data.push(luy_ke_von);
                 } else {
                     result.push({
                         type: 'spline',
                         name: name,
-                        data: [value2],
+                        data: [luy_ke_von],
                         yAxis: 1,
                         color: color
                     });
