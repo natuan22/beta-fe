@@ -6,7 +6,7 @@ import { fetchDataTableImportExportMarket } from '../../thunk';
 
 const ImportExportMarket = () => {
     const dispatch = useDispatch();
-    const { dataTableImportExportMarket } = useSelector(state => state.marco)
+    const { dataTableImportExportMarket } = useSelector(state => state.macro)
     const [dates, setDates] = useState()
     const [dataTb, setDataTb] = useState()
     const [loading, setLoading] = useState(true);

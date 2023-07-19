@@ -10,7 +10,7 @@ variablePie(Highcharts);
 
 const WeightedCPICommodityBasket = () => {
     const dispatch = useDispatch();
-    const { dataWeightedCPICommodityBasket } = useSelector(state => state.marco)
+    const { dataWeightedCPICommodityBasket } = useSelector(state => state.macro)
     const [data, setData] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
@@ -81,7 +81,7 @@ const WeightedCPICommodityBasket = () => {
                 </div>
             ) : (
                 <div className="">
-                    <div className="mt-16 mb-52 flex flex-col justify-center"><Loading /></div>
+                    <div className="h-[300px] flex items-center justify-center"><Loading /></div>
                 </div>
             )}
         </>

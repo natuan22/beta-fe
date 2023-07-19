@@ -10,7 +10,7 @@ import { fetchDataPerGDPGrowth } from '../../thunk';
 
 const PerGDPGrowth = () => {
     const dispatch = useDispatch();
-    const { dataPerGDPGrowth } = useSelector(state => state.marco)
+    const { dataPerGDPGrowth } = useSelector(state => state.macro)
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -122,7 +122,7 @@ const PerGDPGrowth = () => {
                 </div>
             </>
             ) : (
-                <div className="mt-14 mb-40"><Loading /></div>
+                <div className="h-[310px] flex items-center justify-center"><Loading /></div>
             )}
         </>
     )

@@ -3,14 +3,14 @@ import thunk from "redux-thunk";
 import chartReducer from '../features/Chart/chartSlice'
 import authenReducer from '../features/Auth/authenSlice'
 import marketReducer from '../features/Market/marketSlice'
-import marcoReducer from '../features/Macro/macroSlice'
+import macroReducer from '../features/Macro/macroSlice'
 import newsCenterReducer from '../features/NewsCenter/newsCenterSlice'
 import rootColor from '../services/servicesSlice'
 const reducer = combineReducers({
   chart: chartReducer,
   authen: authenReducer,
   market: marketReducer,
-  marco: marcoReducer,
+  macro: macroReducer,
   newsCenter: newsCenterReducer,
   color: rootColor
 });

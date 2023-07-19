@@ -10,7 +10,6 @@ const data = [
         "hc-key": "vn",
         color: "red",
     },
-
     {
         "hc-key": "cn",
         color: "#c0ffd5",

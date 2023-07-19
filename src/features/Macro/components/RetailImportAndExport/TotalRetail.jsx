@@ -6,7 +6,7 @@ import { fetchDataTableTotalRetail } from '../../thunk';
 
 const TotalRetail = () => {
     const dispatch = useDispatch();
-    const { dataTableTotalRetail } = useSelector(state => state.marco)
+    const { dataTableTotalRetail } = useSelector(state => state.macro)
     const [dates, setDates] = useState()
     const [dataTb, setDataTb] = useState()
     const [loading, setLoading] = useState(true);

@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import variablePie from "highcharts/modules/variable-pie.js";
 import Highcharts from "highcharts/highstock";
 import PieChart from "highcharts-react-official";
 import Loading from '../../../Chart/utils/Loading';
 import { fetchDataLaborRateBySector } from '../../thunk';
 import { useDispatch, useSelector } from 'react-redux';
 
-variablePie(Highcharts);
-
 const LaborRateBySector = () => {
     const dispatch = useDispatch();
-    const { dataLaborRateBySector } = useSelector(state => state.marco)
+    const { dataLaborRateBySector } = useSelector(state => state.macro)
     const [data, setData] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
@@ -86,9 +83,7 @@ const LaborRateBySector = () => {
                     <PieChart highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="">
-                    <div className="mt-16 mb-52 flex flex-col justify-center"><Loading /></div>
-                </div>
+                <div className="h-[348px] flex items-center justify-center"><Loading /></div>
             )}
         </>
     )

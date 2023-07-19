@@ -8,7 +8,7 @@ import { fetchDataPerCPIMonth } from '../../thunk';
 
 const PerCPIMonth = () => {
     const dispatch = useDispatch();
-    const { dataPerCPIMonth } = useSelector(state => state.marco)
+    const { dataPerCPIMonth } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true);
@@ -150,7 +150,7 @@ const PerCPIMonth = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
 
             <section className="bg-blueGray-50 pt-1.5">

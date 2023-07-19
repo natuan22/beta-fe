@@ -8,7 +8,7 @@ import { fetchDataGDPContributionRatio } from '../../thunk';
 
 const GDPContributionRatio = () => {
     const dispatch = useDispatch();
-    const { dataGDPContributionRatio } = useSelector(state => state.marco)
+    const { dataGDPContributionRatio } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true);
@@ -141,7 +141,7 @@ const GDPContributionRatio = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
+                <div className="h-[218px] flex items-center justify-center"><Loading /></div>
             )}
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">
