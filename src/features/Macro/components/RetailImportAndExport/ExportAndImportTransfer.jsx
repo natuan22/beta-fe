@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import ExportAndImportTransferChart from './ExportAndImportTransferChart'
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataMapImportAndExport } from '../../thunk';
+import Loading from '../../../Chart/utils/Loading';
 
 const ExportAndImportTransfer = () => {
-    const { dataMapExImport } = useSelector(state => state.marco)
+    const { dataMapExImport } = useSelector(state => state.macro)
     const dispatch = useDispatch()
     const [queryApi, setQueryApi] = useState({
         order: '0',
@@ -40,8 +41,12 @@ const ExportAndImportTransfer = () => {
                     <option value={'1'}>Nhập khẩu</option>
                 </select>
             </div>
-            <div >
-                <ExportAndImportTransferChart dataMapExImport={dataMapExImport} />
+            <div>
+                {dataMapExImport?.length > 0 ? (
+                    <ExportAndImportTransferChart dataMapExImport={dataMapExImport} />
+                ) : (
+                    <div className="h-[335px] flex items-center justify-center"><Loading /></div>
+                )}
             </div>
         </div>
     )

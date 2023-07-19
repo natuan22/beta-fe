@@ -8,7 +8,7 @@ import './utils/style/antDesignTable.css'
 
 const ForeignInvestIndex = () => {
     const dispatch = useDispatch();
-    const { dataForeignInvestIndex } = useSelector(state => state.marco)
+    const { dataForeignInvestIndex } = useSelector(state => state.macro)
     const [data, setData] = useState([])
     const [queryApi, setQueryApi] = useState({
         order: 2,

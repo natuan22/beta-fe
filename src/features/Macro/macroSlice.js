@@ -40,6 +40,14 @@ const initialState = {
     dataTotalRegisteredAndDisbursedCapital: {},
     dataAccumulatedAndTotalInvestment: {},
     dataMapExImport: {},
+    dataBondsIssued: {},
+    dataBondInterestRate: {},
+    dataTotalOutstandingDebtAndBondInterest: {},
+    dataEstimatedValueBondsDueDate: {},
+    dataListMaturityBonds: {},
+    dataListOverdueBondObligation: {},
+    dataDebtBalanceStructure: {},
+    dataProportionOutstandingLoans: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -160,6 +168,30 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === macroType.FETCH_DATA_MAP_IMPORT_AND_EXPORT) {
             draft.dataMapExImport = payload
+        }
+        if (type === macroType.FETCH_DATA_BONDS_ISSUED) {
+            draft.dataBondsIssued = payload
+        }
+        if (type === macroType.FETCH_DATA_BONDS_INTEREST_RATE) {
+            draft.dataBondInterestRate = payload
+        }
+        if (type === macroType.FETCH_DATA_TOTAL_OUTSTANDING_DEBT_AND_BOND_INTEREST) {
+            draft.dataTotalOutstandingDebtAndBondInterest = payload
+        }
+        if (type === macroType.FETCH_DATA_ESTIMATED_VALUE_BONDS_DUE_DATE) {
+            draft.dataEstimatedValueBondsDueDate = payload
+        }
+        if (type === macroType.FETCH_DATA_LIST_MATURITY_BONDS) {
+            draft.dataListMaturityBonds = payload
+        }
+        if (type === macroType.FETCH_DATA_LIST_OVERDUE_BOND_OBLIGATION) {
+            draft.dataListOverdueBondObligation = payload
+        }
+        if (type === macroType.FETCH_DATA_DEBT_BALANCE_STRUCTURE) {
+            draft.dataDebtBalanceStructure = payload
+        }
+        if (type === macroType.FETCH_DATA_PROPORTION_OUTSTANDING_LOANS) {
+            draft.dataProportionOutstandingLoans = payload
         }
     });
 };

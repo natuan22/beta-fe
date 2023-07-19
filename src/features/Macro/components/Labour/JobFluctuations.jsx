@@ -8,7 +8,7 @@ import Loading from '../../../Chart/utils/Loading';
 
 const JobFluctuations = () => {
     const dispatch = useDispatch();
-    const { dataJobFluctuations } = useSelector(state => state.marco)
+    const { dataJobFluctuations } = useSelector(state => state.macro)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -123,15 +123,11 @@ const JobFluctuations = () => {
     return (
         <>
             {dataJobFluctuations.length ? (
-                <div id="chart-container">
-                    <div className="h-[727px]">
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                    </div>
+                <div className="h-[727px]">
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div id="chart-container">
-                    <div className="mt-20 flex flex-col justify-center"><Loading /></div>
-                </div>
+                <div className="h-[727px] flex items-center justify-center"><Loading /></div>
             )}
         </>
     )

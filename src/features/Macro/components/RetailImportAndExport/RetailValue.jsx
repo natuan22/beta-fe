@@ -9,7 +9,7 @@ import LegendBtn from '../../../../utils/Component/BtnLegend';
 
 const RetailValue = () => {
     const dispatch = useDispatch();
-    const { dataRetailValue } = useSelector(state => state.marco)
+    const { dataRetailValue } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [order, setOrder] = useState('2')
@@ -26,8 +26,8 @@ const RetailValue = () => {
 
     useEffect(() => {
         dispatch(fetchDataRetailValue(2))
-      }, [dispatch]);
-    
+    }, [dispatch]);
+
     useEffect(() => {
         if (dataRetailValue?.length > 0) {
             let modifiedArray;
@@ -160,7 +160,7 @@ const RetailValue = () => {
                     </div>
                 </>
             ) : (
-                <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )

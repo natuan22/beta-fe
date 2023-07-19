@@ -180,7 +180,7 @@ export const macroServices = {
     fetchDataForeignInvestIndex: (order, type) => {
         return https.get('api/v1/macro/chi-so-dau-tu-nuoc-ngoai', {
             params: {
-                order, 
+                order,
                 type
             }
         })
@@ -205,6 +205,38 @@ export const macroServices = {
             params: {
                 order
             }
+        })
+    },
+    fetchDataBondsIssued: () => {
+        return https.get('api/v1/macro/tpdn-phat-hanh-thanh-cong-theo-tung-ky', {
+        })
+    },
+    fetchDataBondInterestRate: () => {
+        return https.get('api/v1/macro/lai-suat-trai-phieu-huy-dong-binh-quan', {
+        })
+    },
+    fetchDataTotalOutstandingDebtAndBondInterest: () => {
+        return https.get('api/v1/macro/bang-doanh-nghiep-tong-du-no-va-lai-suat-tp-binh-quan', {
+        })
+    },
+    fetchDataEstimatedValueBondsDueDate: () => {
+        return https.get('api/v1/macro/uoc-tinh-gia-tri-tpdn-dao-han', {
+        })
+    },
+    fetchDataListMaturityBonds: () => {
+        return https.get('api/v1/macro/danh-sach-trai-phieu-den-ky-dao-han', {
+        })
+    },
+    fetchDataListOverdueBondObligation: () => {
+        return https.get('api/v1/macro/danh-sach-doanh-nghiep-cham-nghia-vu-trai-phieu', {
+        })
+    },
+    fetchDataDebtBalanceStructure: () => {
+        return https.get('api/v1/macro/co-cau-du-no-tpdn', {
+        })
+    },
+    fetchDataProportionOutstandingLoans: () => {
+        return https.get('api/v1/macro/ty-trong-du-no-cac-dn', {
         })
     },
 }

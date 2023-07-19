@@ -9,7 +9,7 @@ import LegendBtn from '../../../../utils/Component/BtnLegend';
 
 const TotalInvestProjects = () => {
     const dispatch = useDispatch();
-    const { dataTotalInvestProjects } = useSelector(state => state.marco)
+    const { dataTotalInvestProjects } = useSelector(state => state.macro)
     const [data, setData] = useState([])
     const [timeLine, setTimeLine] = useState([])
     const [order, setOrder] = useState('0')

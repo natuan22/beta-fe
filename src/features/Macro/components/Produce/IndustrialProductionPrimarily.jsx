@@ -9,7 +9,7 @@ import { fetchDataIndustrialProductionPrimarily } from '../../thunk';
 
 const IndustrialProductionPrimarily = () => {
     const dispatch = useDispatch();
-    const { dataIndustrialProductionPrimarily } = useSelector(state => state.marco)
+    const { dataIndustrialProductionPrimarily } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
 
@@ -137,7 +137,7 @@ const IndustrialProductionPrimarily = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div className="h-[350px] flex items-center justify-center"><Loading /></div>
             )}
         </>
     )

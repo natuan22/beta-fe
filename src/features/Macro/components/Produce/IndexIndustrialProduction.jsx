@@ -15,8 +15,8 @@ const hashtb = {
 
 const IndexIndustrialProduction = () => {
     const dispatch = useDispatch();
-    const { dataIndexIndustrialProduction } = useSelector(state => state.marco)
-    const { dataTableIndexIndustrialProduction } = useSelector(state => state.marco)
+    const { dataIndexIndustrialProduction } = useSelector(state => state.macro)
+    const { dataTableIndexIndustrialProduction } = useSelector(state => state.macro)
     const [loading, setLoading] = useState(true);
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
@@ -156,7 +156,7 @@ const IndexIndustrialProduction = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div className="h-[350px] flex items-center justify-center"><Loading /></div>
             )}
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">

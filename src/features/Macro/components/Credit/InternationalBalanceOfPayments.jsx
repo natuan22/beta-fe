@@ -8,7 +8,7 @@ import { fetchDataInternationalBalanceOfPayments } from '../../thunk';
 
 const InternationalBalanceOfPayments = () => {
     const dispatch = useDispatch();
-    const { dataInternationalBalanceOfPayments } = useSelector(state => state.marco)
+    const { dataInternationalBalanceOfPayments } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true);
@@ -136,7 +136,7 @@ const InternationalBalanceOfPayments = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
 
             <section className="bg-blueGray-50 pt-1.5">
