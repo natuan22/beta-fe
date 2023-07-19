@@ -8,8 +8,8 @@ import { fetchDataPerCPIBySectors, fetchDataTablePerCPIBySectors } from '../../t
 
 const PerCPIBySectors = () => {
     const dispatch = useDispatch();
-    const { dataPerCPIBySectors } = useSelector(state => state.marco)
-    const { dataTablePerCPIBySectors } = useSelector(state => state.marco)
+    const { dataPerCPIBySectors } = useSelector(state => state.macro)
+    const { dataTablePerCPIBySectors } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true);
@@ -165,7 +165,7 @@ const PerCPIBySectors = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
 
             <section className="bg-blueGray-50 pt-1.5">

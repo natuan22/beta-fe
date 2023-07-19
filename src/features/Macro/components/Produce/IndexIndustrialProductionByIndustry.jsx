@@ -9,7 +9,7 @@ import { fetchDataIndexIndustrialProductionByIndustry } from '../../thunk';
 
 const IndexIndustrialProductionByIndustry = () => {
     const dispatch = useDispatch();
-    const { dataIndexIndustrialProductionByIndustry } = useSelector(state => state.marco)
+    const { dataIndexIndustrialProductionByIndustry } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
 
@@ -137,7 +137,7 @@ const IndexIndustrialProductionByIndustry = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div className="h-[350px] flex items-center justify-center"><Loading /></div>
             )}
         </>
     )

@@ -9,7 +9,7 @@ export const fecthDataTableThanhKhoan = (exchange, type, order) => async (dispat
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -21,7 +21,7 @@ export const fetchChartTickerContribute = (exchange, type, order) => async (disp
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -33,7 +33,7 @@ export const fetchDataLineChartMarket = (index, type) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -45,7 +45,7 @@ export const fetchDataInvestorTransaction = (type, investorType) => async (dispa
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -57,7 +57,7 @@ export const fetchDataCashValue = (type) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -69,7 +69,7 @@ export const fetchDataDoRongThiTruong = (exchange, type) => async (dispatch) => 
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -81,7 +81,7 @@ export const fetchDataBienDongThiTruong = (exchange) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -93,7 +93,7 @@ export const fetchDataExchangeableValue = () => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -105,7 +105,7 @@ export const fetchDataLiquidityGrowth = (type) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -117,7 +117,7 @@ export const fetchDataTransactionValueRatio = () => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -129,7 +129,7 @@ export const fetchDataMarketMap = (exchange, order) => async dispatch => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -141,7 +141,7 @@ export const fetchDataIndustryCashFlow = (exchange, type) => async (dispatch) =>
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -153,7 +153,7 @@ export const fetchDataRSI = (exchange, session) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -165,7 +165,7 @@ export const fetchDataTopNetBuyIndustry = (exchange, type) => async (dispatch) =
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -177,7 +177,7 @@ export const fetchDataCashFlowInvestor = (type, investorType, exchange) => async
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -189,7 +189,7 @@ export const fetchDataCashFlowRatio = (exchange, type) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -201,7 +201,7 @@ export const fetchDataTotalMarket = (exchange, type) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -213,7 +213,7 @@ export const fetchDataTableChangesPrice = (exchange, industry) => async (dispatc
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -225,7 +225,7 @@ export const fetchDataTableLiquidityGrowth = (exchange, industry) => async (disp
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -237,7 +237,7 @@ export const fetchDataChartLiquidityGrowth = (exchange, type, order) => async di
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -249,7 +249,7 @@ export const fetchDataChartChangesPrice = (exchange, type, order) => async (disp
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -261,7 +261,7 @@ export const fetchDataChartEquityGrowth = (exchange, type, order) => async (disp
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -273,7 +273,7 @@ export const fetchDataChartLiabilitiesGrowth = (exchange, type, order) => async 
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -285,7 +285,7 @@ export const fetchDataTableEquityGrowth = (exchange, industry) => async (dispatc
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -297,7 +297,7 @@ export const fetchDataTableLiabilitiesGrowth = (exchange, industry) => async (di
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -309,7 +309,7 @@ export const fetchDataChartNetRevenueGrowth = (exchange, type, order) => async (
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -321,7 +321,7 @@ export const fetchDataChartGrossProfitGrowth = (exchange, type, order) => async 
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -333,7 +333,7 @@ export const fetchDataChartEBITDAGrowth = (exchange, type, order) => async (disp
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -345,7 +345,7 @@ export const fetchDataChartEPSGrowth = (exchange, type, order) => async (dispatc
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -357,7 +357,7 @@ export const fetchDataChartOperatingProfitGrowth = (exchange, type, order) => as
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -369,7 +369,7 @@ export const fetchDataChartCashDividendGrowth = (exchange, type, order) => async
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -381,7 +381,7 @@ export const fetchDataHotIndustry = async dispatch => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -393,7 +393,7 @@ export const fetchDataChartAveragePE = (exchange, type, order) => async (dispatc
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 export const fetchDataChartAveragePB = (exchange, type, order) => async (dispatch) => {
@@ -404,7 +404,7 @@ export const fetchDataChartAveragePB = (exchange, type, order) => async (dispatc
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 export const fetchDataTableAveragePE = (exchange, industry) => async (dispatch) => {
@@ -415,7 +415,7 @@ export const fetchDataTableAveragePE = (exchange, industry) => async (dispatch) 
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -427,7 +427,7 @@ export const fetchDataTableAveragePB = (exchange, industry) => async (dispatch) 
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -439,7 +439,7 @@ export const fetchDataChartPayoutRatio = (exchange, order) => async (dispatch) =
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -451,7 +451,7 @@ export const fetchDataChartCashPayoutRatio = (exchange, order) => async (dispatc
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -463,7 +463,7 @@ export const fetchDataChartAssetTurnoverRatio = (exchange, order) => async (disp
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -475,7 +475,7 @@ export const fetchDataTableAverageDebtRatio = (exchange, order) => async (dispat
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -487,7 +487,7 @@ export const fetchDataChartMiningProfitMargin = (exchange, type, order) => async
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -499,6 +499,6 @@ export const fetchDataChartInterestCoverageRatio = (exchange, type, order) => as
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }

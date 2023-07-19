@@ -8,7 +8,7 @@ import { fetchDataChangeCPISectors } from '../../thunk';
 
 const ChangeCPISectors = () => {
     const dispatch = useDispatch();
-    const { dataChangeCPISectors } = useSelector(state => state.marco)
+    const { dataChangeCPISectors } = useSelector(state => state.macro)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -17,7 +17,7 @@ const ChangeCPISectors = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
-    
+
     useEffect(() => {
         dispatch(fetchDataChangeCPISectors(0))
     }, [dispatch]);
@@ -142,7 +142,7 @@ const ChangeCPISectors = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
         </>
     )

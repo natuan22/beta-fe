@@ -9,7 +9,7 @@ import LegendBtn from '../../../../utils/Component/BtnLegend';
 
 const TotalImportExport = () => {
     const dispatch = useDispatch();
-    const { dataTotalImportExport } = useSelector(state => state.marco)
+    const { dataTotalImportExport } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [order, setOrder] = useState('2')
@@ -28,8 +28,8 @@ const TotalImportExport = () => {
 
     useEffect(() => {
         dispatch(fetchDataTotalImportExport(2))
-      }, [dispatch]);
-    
+    }, [dispatch]);
+
     useEffect(() => {
         if (dataTotalImportExport?.length > 0) {
             let modifiedArray;
@@ -176,7 +176,7 @@ const TotalImportExport = () => {
                     </div>
                 </>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )

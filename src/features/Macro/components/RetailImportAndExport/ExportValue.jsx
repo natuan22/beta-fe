@@ -9,7 +9,7 @@ import LegendBtn from '../../../../utils/Component/BtnLegend';
 
 const ExportValue = () => {
     const dispatch = useDispatch();
-    const { dataExportValue, } = useSelector(state => state.marco)
+    const { dataExportValue, } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [order, setOrder] = useState('2')
@@ -159,7 +159,7 @@ const ExportValue = () => {
                     </div>
                 </>
             ) : (
-                <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )

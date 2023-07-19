@@ -10,7 +10,7 @@ import './utils/style/buttonExchange.css'
 
 const AccumulatedAndTotalInvestment = () => {
     const dispatch = useDispatch();
-    const { dataAccumulatedAndTotalInvestment } = useSelector(state => state.marco)
+    const { dataAccumulatedAndTotalInvestment } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [order, setOrder] = useState('0')

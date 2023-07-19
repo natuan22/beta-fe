@@ -9,7 +9,7 @@ export const fetchDataGDPByIndustry = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -21,7 +21,7 @@ export const fetchDataGDPByPrice = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -33,7 +33,7 @@ export const fetchDataGDPContributionRatio = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -45,7 +45,7 @@ export const fetchDataGDPGrowth = (order) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -57,7 +57,7 @@ export const fetchDataPerGDPGrowth = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -69,7 +69,7 @@ export const fetchDataPerCPIBySectors = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -81,7 +81,7 @@ export const fetchDataTablePerCPIBySectors = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -93,7 +93,7 @@ export const fetchDataChangeCPISectors = (order) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -105,7 +105,7 @@ export const fetchDataPerCPIMonth = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -117,7 +117,7 @@ export const fetchDataWeightedCPICommodityBasket = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -129,7 +129,7 @@ export const fetchDataIndexIndustrialProduction = (industry) => async (dispatch)
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -141,7 +141,7 @@ export const fetchDataTableIndexIndustrialProduction = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -153,7 +153,7 @@ export const fetchDataIndexConsumptionStorage = (industry) => async (dispatch) =
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -165,7 +165,7 @@ export const fetchDataIndexIndustrialProductionByIndustry = (industry) => async 
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -177,7 +177,7 @@ export const fetchDataIndustrialProductionPrimarily = (industry) => async (dispa
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -189,7 +189,7 @@ export const fetchDataRetailValue = (order) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -201,7 +201,7 @@ export const fetchDataRetailSalesGrowth = (order) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -213,7 +213,7 @@ export const fetchDataTableTotalRetail = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -225,7 +225,7 @@ export const fetchDataTotalImportExport = (order) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -237,7 +237,7 @@ export const fetchDataTableImportExportMarket = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -249,7 +249,7 @@ export const fetchDataExportValue = (order) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -261,7 +261,7 @@ export const fetchDataImportValue = (order) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -273,7 +273,7 @@ export const fetchDataLaborForce = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -285,7 +285,7 @@ export const fetchDataUnemploymentRate = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -297,7 +297,7 @@ export const fetchDataAverageSalary = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -309,7 +309,7 @@ export const fetchDataLaborRateBySector = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -321,7 +321,7 @@ export const fetchDataRateOfInformalEmployment = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -333,7 +333,7 @@ export const fetchDataJobFluctuations = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -345,7 +345,7 @@ export const fetchDataChartTotalMeansOfPayment = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -357,7 +357,7 @@ export const fetchDataTableTotalMeansOfPayment = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -369,7 +369,7 @@ export const fetchDataInternationalBalanceOfPayments = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -381,7 +381,7 @@ export const fetchDataCreditBalance = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -393,7 +393,7 @@ export const fetchDataCreditBalanceGrowth = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -405,7 +405,7 @@ export const fetchDataStatisticsCreditInstitution = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -417,7 +417,7 @@ export const fetchDataTotalInvestProjects = (order) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -429,7 +429,7 @@ export const fetchDataForeignInvestIndex = (order, type) => async (dispatch) => 
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -441,7 +441,7 @@ export const fetchDataTotalRegisteredAndDisbursedCapital = (order) => async (dis
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -453,7 +453,7 @@ export const fetchDataAccumulatedAndTotalInvestment = (order) => async (dispatch
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -466,6 +466,102 @@ export const fetchDataMapImportAndExport = (order, type) => async dispatch => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
+    }
+}
+
+export const fetchDataBondsIssued = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataBondsIssued()
+        dispatch({
+            type: macroType.FETCH_DATA_BONDS_ISSUED,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataBondInterestRate = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataBondInterestRate()
+        dispatch({
+            type: macroType.FETCH_DATA_BONDS_INTEREST_RATE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataTotalOutstandingDebtAndBondInterest = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataTotalOutstandingDebtAndBondInterest()
+        dispatch({
+            type: macroType.FETCH_DATA_TOTAL_OUTSTANDING_DEBT_AND_BOND_INTEREST,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataEstimatedValueBondsDueDate = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataEstimatedValueBondsDueDate()
+        dispatch({
+            type: macroType.FETCH_DATA_ESTIMATED_VALUE_BONDS_DUE_DATE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataListMaturityBonds = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataListMaturityBonds()
+        dispatch({
+            type: macroType.FETCH_DATA_LIST_MATURITY_BONDS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataListOverdueBondObligation = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataListOverdueBondObligation()
+        dispatch({
+            type: macroType.FETCH_DATA_LIST_OVERDUE_BOND_OBLIGATION,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataDebtBalanceStructure = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataDebtBalanceStructure()
+        dispatch({
+            type: macroType.FETCH_DATA_DEBT_BALANCE_STRUCTURE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataProportionOutstandingLoans = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataProportionOutstandingLoans()
+        dispatch({
+            type: macroType.FETCH_DATA_PROPORTION_OUTSTANDING_LOANS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
     }
 }

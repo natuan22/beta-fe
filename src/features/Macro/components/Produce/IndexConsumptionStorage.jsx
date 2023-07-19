@@ -9,7 +9,7 @@ import { optionsSelect } from './utils/optionsSelect';
 
 const IndexConsumptionStorage = () => {
     const dispatch = useDispatch();
-    const { dataIndexConsumptionStorage } = useSelector(state => state.marco)
+    const { dataIndexConsumptionStorage } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
 
@@ -138,7 +138,7 @@ const IndexConsumptionStorage = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52"><Loading /></div>
+                <div className="h-[350px] flex items-center justify-center"><Loading /></div>
             )}
         </div >
     )

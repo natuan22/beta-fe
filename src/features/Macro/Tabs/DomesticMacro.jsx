@@ -22,7 +22,7 @@ export const hashTb = {
     'FDI': '4',
     'TÍN DỤNG': '5',
     'TỶ GIÁ VÀ LÃI SUẤT': '6',
-    'TRÁI PHIẾU': '7',
+    'TRÁI PHIẾU DN': '7',
     'LAO ĐỘNG': '8',
 }
 
