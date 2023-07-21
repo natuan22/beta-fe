@@ -154,17 +154,19 @@ const TotalImportExport = () => {
 
     return (
         <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold sm:text-base xs:text-sm xxs:text-xs'>Tổng giá trị xuất nhập khẩu qua từng kỳ</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[330px] lg:ml-[525px] md:ml-[300px] sm:ml-[32px] xs:ml-[25px] xxs:ml-[4px]`}
-                    onChange={(event) => {
-                        setOrder(event.target.value)
-                        dispatch(fetchDataTotalImportExport(event.target.value))
-                    }}>
-                    <option value='2'>Tháng</option>
-                    <option value='0'>Quý</option>
-                    <option value='1'>Năm</option>
-                </select>
+                <div>
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            setOrder(event.target.value)
+                            dispatch(fetchDataTotalImportExport(event.target.value))
+                        }}>
+                        <option value='2'>Tháng</option>
+                        <option value='0'>Quý</option>
+                        <option value='1'>Năm</option>
+                    </select>
+                </div>
             </div>
             {dataTotalImportExport?.length > 0 ? (
                 <>

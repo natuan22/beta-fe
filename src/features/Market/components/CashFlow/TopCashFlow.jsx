@@ -13,19 +13,21 @@ const TopCashFlow = () => {
 
     return (
         <>
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+            <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black text-[0.9rem] font-semibold">Top giá trị dòng tiền </span>
-                <select
-                    onChange={(e) => {
-                        dispatch(fetchDataCashValue(e.target.value));
-                    }}
-                    className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0 xl:ml-[288px] lg:ml-[736px] md:ml-[480px] sm:ml-[137px] xs:ml-[87px] xxs:ml-[32px]`}
-                >
-                    <option value="0">Phiên gần nhất</option>
-                    <option value="1">5 phiên</option>
-                    <option value="2">1 tháng</option>
-                    <option value="3">YtD</option>
-                </select>
+                <div>
+                    <select
+                        onChange={(e) => {
+                            dispatch(fetchDataCashValue(e.target.value));
+                        }}
+                        className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0`}
+                    >
+                        <option value="0">Phiên gần nhất</option>
+                        <option value="1">5 phiên</option>
+                        <option value="2">1 tháng</option>
+                        <option value="3">YtD</option>
+                    </select>
+                </div>
             </div>
             <section className="bg-blueGray-50 pt-1.5">
                 <div className="w-full">

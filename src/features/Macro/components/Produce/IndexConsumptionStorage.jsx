@@ -120,18 +120,20 @@ const IndexConsumptionStorage = () => {
 
     return (
         <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Chỉ số tiêu thụ & tồn kho SP công nghiệp (%)</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[80px] lg:ml-[280px] md:ml-[50px] sm:ml-[60px] xs:ml-[35px] xxs:ml-[7px]`}
-                    onChange={(event) => {
-                        dispatch(fetchDataIndexConsumptionStorage(event.target.value))
-                    }}>
-                    {optionsSelect.map((item, index) => {
-                        return (
-                            <option key={index} value={`${item.value}`}>{`${item.label}`}</option>
-                        )
-                    })}
-                </select>
+                <div className="flex items-center justify-center">
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            dispatch(fetchDataIndexConsumptionStorage(event.target.value))
+                        }}>
+                        {optionsSelect.map((item, index) => {
+                            return (
+                                <option key={index} value={`${item.value}`}>{`${item.label}`}</option>
+                            )
+                        })}
+                    </select>
+                </div>
             </div>
             {dataIndexConsumptionStorage?.length > 0 ? (
                 <div className='h-[350px] mt-2'>

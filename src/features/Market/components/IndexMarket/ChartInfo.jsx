@@ -152,23 +152,25 @@ const ChartInfo = () => {
     return (
         <>
             <div>
-                <div className='flex border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <div className='w-[345px]'>
                         <span className='dark:text-white text-black xxs:text-[12px] xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]'>{vnindexData && vnindexData.comGroupCode}</span>
                         <span className={`${colorChange} text-white xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px] xxs:pl-[10px]`}>{vnindexData && vnindexData.indexValue}</span>
                         <span className={`${colorChange} xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[25px] xs:pl-[15px] xxs:pl-[5px]`}>{vnindexData && vnindexData.indexChange.toFixed(2)}/ {vnindexData && (vnindexData.percentIndexChange).toFixed(2)}%</span>
                     </div>
-                    <select className={`bg-[#1B496D] md:ml-[200px] lg:ml-3 xl:ml-3 2xl:ml-3 p-1 text-[1rem] text-white border-0`}
-                        onChange={(event) => {
-                            localStorage.setItem('typeApi', event.target.value)
-                            setQuery(event.target.value)
-                            dispatch(fetchDataLineChartMarket(exchange, event.target.value))
-                        }}>
-                        <option value='0'>Trong ngày</option>
-                        <option value='1'>5 phiên</option>
-                        <option value='2'>1 tháng</option>
-                        <option value='3'>YtD</option>
-                    </select>
+                    <div>
+                        <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                            onChange={(event) => {
+                                localStorage.setItem('typeApi', event.target.value)
+                                setQuery(event.target.value)
+                                dispatch(fetchDataLineChartMarket(exchange, event.target.value))
+                            }}>
+                            <option value='0'>Trong ngày</option>
+                            <option value='1'>5 phiên</option>
+                            <option value='2'>1 tháng</option>
+                            <option value='3'>YtD</option>
+                        </select>
+                    </div>
                 </div>
                 <div className='md:mt-2 lg:mt-[28px] xl:mt-2 '>
                     {dataChart?.length > 0 ? (

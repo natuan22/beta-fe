@@ -148,16 +148,18 @@ const TotalInvestProjects = () => {
 
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Tổng số dự án đầu tư</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[444px] lg:ml-[645px] md:ml-[414px] sm:ml-[150px] xs:ml-[100px] xxs:ml-[45px]`}
-                    onChange={(event) => {
-                        setOrder(event.target.value)
-                        dispatch(fetchDataTotalInvestProjects(event.target.value))
-                    }}>
-                    <option value='0'>Quý</option>
-                    <option value='2'>Tháng</option>
-                </select>
+                <div>
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            setOrder(event.target.value)
+                            dispatch(fetchDataTotalInvestProjects(event.target.value))
+                        }}>
+                        <option value='0'>Quý</option>
+                        <option value='2'>Tháng</option>
+                    </select>
+                </div>
             </div>
             {dataTotalInvestProjects?.length > 0 ? (
                 <>

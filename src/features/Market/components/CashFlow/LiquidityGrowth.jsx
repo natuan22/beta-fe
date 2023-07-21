@@ -38,7 +38,7 @@ const LiquidityGrowth = () => {
     let hosePerChange = [];
     let hnxPerChange = [];
     let upcomPerChange = [];
-    
+
     for (let i = 0; i < data.length; i++) {
         let floor = data[i].floor;
         let perChange = data[i].perChange;
@@ -91,7 +91,7 @@ const LiquidityGrowth = () => {
                 },
             },
         }],
-        yAxis: {      
+        yAxis: {
             title: {
                 text: null
             },
@@ -125,17 +125,19 @@ const LiquidityGrowth = () => {
 
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black xs:text-base xxs:text-sm font-semibold'>Mức tăng trưởng thanh khoản (%)</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[80px] lg:ml-[160px] md:ml-[416px] sm:ml-[73px] xs:ml-[23px] xxs:ml-[1px]`}
-                    onChange={(event) => {
-                        dispatch(fetchDataLiquidityGrowth(event.target.value))
-                    }}>
-                    <option value='1'>5 phiên</option>
-                    <option value='2'>1 tháng</option>
-                    <option value='3'>YtD</option>
-                    <option value='5'>YoY</option>
-                </select>
+                <div>
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            dispatch(fetchDataLiquidityGrowth(event.target.value))
+                        }}>
+                        <option value='1'>5 phiên</option>
+                        <option value='2'>1 tháng</option>
+                        <option value='3'>YtD</option>
+                        <option value='5'>YoY</option>
+                    </select>
+                </div>
             </div>
             {dataLiquidityGrowth.length ? (
                 <div id="chart-container">

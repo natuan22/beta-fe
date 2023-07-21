@@ -137,17 +137,19 @@ const ImportValue = () => {
     };
     return (
         <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold sm:text-base xs:text-sm xxs:text-xs'>Giá trị nhập khẩu một số mặt hàng chính</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[324px] lg:ml-[519px] md:ml-[294px] sm:ml-[25px] xs:ml-[15px] xxs:ml-[1px]`}
-                    onChange={(event) => {
-                        setOrder(event.target.value)
-                        dispatch(fetchDataImportValue(event.target.value))
-                    }}>
-                    <option value='2'>Tháng</option>
-                    <option value='0'>Quý</option>
-                    <option value='1'>Năm</option>
-                </select>
+                <div>
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            setOrder(event.target.value)
+                            dispatch(fetchDataImportValue(event.target.value))
+                        }}>
+                        <option value='2'>Tháng</option>
+                        <option value='0'>Quý</option>
+                        <option value='1'>Năm</option>
+                    </select>
+                </div>
             </div>
             {dataImportValue?.length > 0 ? (<>
                 <div className='mt-1'>

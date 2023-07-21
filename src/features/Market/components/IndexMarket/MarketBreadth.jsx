@@ -265,24 +265,26 @@ const MarketBreadth = () => {
     // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59, hiển thị dữ liệu
     if (!shouldShowData) {
         return <>
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[16px]">
+            <div className="xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[16px]">
                 <span className="dark:text-white text-black text-[0.9rem]">
                     Diễn biến độ rộng thị trường
                 </span>
-                <select
-                    onChange={(e) => {
-                        handleQueryApiType(e.target.value);
-                        if (e.target.value !== 0) {
-                            setFormatDate('DD/MM')
-                        }
-                    }}
-                    className={`bg-[#1B496D] 2xl:ml-[100px] xl:ml-[100px] lg:ml-[135px] md:ml-[115px] sm:ml-[99px] xs:ml-[49px] p-1 text-[0.9rem] text-white border-0`}
-                >
-                    <option value="0">Phiên gần nhất</option>
-                    <option value="1">01 tháng</option>
-                    <option value="2">01 quý</option>
-                    <option value="3">01 năm</option>
-                </select>
+                <div className="flex items-center justify-center">
+                    <select
+                        onChange={(e) => {
+                            handleQueryApiType(e.target.value);
+                            if (e.target.value !== 0) {
+                                setFormatDate('DD/MM')
+                            }
+                        }}
+                        className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0`}
+                    >
+                        <option value="0">Phiên gần nhất</option>
+                        <option value="1">01 tháng</option>
+                        <option value="2">01 quý</option>
+                        <option value="3">01 năm</option>
+                    </select>
+                </div>
             </div>
             <div className="mt-1 mb-3 dark:text-white text-black">
                 <span>
@@ -324,24 +326,26 @@ const MarketBreadth = () => {
     }
     return (
         <>
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[16px]">
+            <div className="xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[16px]">
                 <span className="dark:text-white text-black text-[0.9rem] font-semibold">
                     Diễn biến độ rộng thị trường
                 </span>
-                <select
-                    onChange={(e) => {
-                        handleQueryApiType(e.target.value);
-                        if (e.target.value !== 0) {
-                            setFormatDate('DD/MM')
-                        }
-                    }}
-                    className={`bg-[#1B496D] 2xl:ml-[100px] xl:ml-[100px] lg:ml-[135px] md:ml-[115px] sm:ml-[99px] xs:ml-[49px] p-1 text-[0.9rem] text-white border-0`}
-                >
-                    <option value="0">Phiên gần nhất</option>
-                    <option value="1">01 tháng</option>
-                    <option value="2">01 quý</option>
-                    <option value="3">01 năm</option>
-                </select>
+                <div className="flex items-center justify-center">
+                    <select
+                        onChange={(e) => {
+                            handleQueryApiType(e.target.value);
+                            if (e.target.value !== 0) {
+                                setFormatDate('DD/MM')
+                            }
+                        }}
+                        className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0`}
+                    >
+                        <option value="0">Phiên gần nhất</option>
+                        <option value="1">01 tháng</option>
+                        <option value="2">01 quý</option>
+                        <option value="3">01 năm</option>
+                    </select>
+                </div>
             </div>
             <div className="mt-1 mb-3 dark:text-white text-black">
                 <span>

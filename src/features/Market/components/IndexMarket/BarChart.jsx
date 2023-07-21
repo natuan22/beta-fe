@@ -226,15 +226,28 @@ const BarChart = () => {
 
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[5px]'>
-                <span className='dark:text-white text-black text-[0.9rem] pl-[2px] font-semibold'>Top đóng góp điểm số theo: </span>
-                <div className="sm:block md:inline text-center">
+            <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[5px]'>
+                <div>
+                    <span className='dark:text-white text-black text-[0.9rem] pl-[2px] font-semibold'>Top đóng góp điểm số theo: </span>
                     <select
                         onChange={(e) => {
                             handleQueryApiType(e.target.value);
                             setHandleQueryType(e.target.value)
                         }}
-                        className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}>
+                        className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0 md:inline sm:hidden xs:hidden xxs:hidden`}>
+                        <option value="0">Cổ phiếu</option>
+                        <option value="1">Ngành LV1</option>
+                        <option value="2">Ngành LV2</option>
+                        <option value="3">Ngành LV3</option>
+                    </select>
+                </div>
+                <div className="flex items-center justify-center">
+                    <select
+                        onChange={(e) => {
+                            handleQueryApiType(e.target.value);
+                            setHandleQueryType(e.target.value)
+                        }}
+                        className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0 md:hidden sm:inline`}>
                         <option value="0">Cổ phiếu</option>
                         <option value="1">Ngành LV1</option>
                         <option value="2">Ngành LV2</option>
@@ -244,7 +257,7 @@ const BarChart = () => {
                         onChange={(e) => {
                             handleQueryApiOrder(e.target.value);
                         }}
-                        className={`bg-[#1B496D] ml-1 p-1 text-[0.9rem] text-white border-0`}
+                        className={`bg-[#1B496D] p-1 text-[0.9rem] ml-2 text-white border-0`}
                     >
                         <option value="0">Phiên gần nhất</option>
                         <option value="1">5 phiên</option>
@@ -288,19 +301,21 @@ const BarChart = () => {
                     </button>
                 </span>
             </div>
-            {chartTickerContribute.length ? (
-                <div id="chart-container">
-                    <div className="h-[333px]">
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+            {
+                chartTickerContribute.length ? (
+                    <div id="chart-container">
+                        <div className="h-[333px]">
+                            <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                        </div>
                     </div>
-                </div>
-            ) : (
-                <div id="chart-container">
-                    <div className="h-[289px]">
-                        <div className="mt-14"><Loading /></div>
+                ) : (
+                    <div id="chart-container">
+                        <div className="h-[289px]">
+                            <div className="mt-14"><Loading /></div>
+                        </div>
                     </div>
-                </div>
-            )}
+                )
+            }
         </>
     );
 };
