@@ -116,13 +116,15 @@ const StatisticsCreditInstitution = () => {
     };
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='sm:flex xs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold md:text-base sm:text-[13px]'>Thống kê theo loại hình tổ chức tín dụng</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[230px] lg:ml-[420px] md:ml-[190px] sm:ml-[8px] xs:ml-[110px] xxs:ml-[80px]`}
-                    onChange={(event) => {
-                    }}>
-                    <option value='0'>Tỷ lệ an toàn vốn</option>
-                </select>
+                <div className="flex items-center justify-center">
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                        }}>
+                        <option value='0'>Tỷ lệ an toàn vốn</option>
+                    </select>
+                </div>
             </div>
             {dataStatisticsCreditInstitution?.length > 0 ? (
                 <div className='h-[200px]'>

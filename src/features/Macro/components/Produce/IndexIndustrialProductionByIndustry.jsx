@@ -119,18 +119,20 @@ const IndexIndustrialProductionByIndustry = () => {
     };
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm sm:text-[15px] xs:text-[13px] xxs:text-[11px]'>Chỉ số sản xuất công nghiệp theo ngành công nghiệp (%)</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[3px] lg:ml-[180px] md:ml-[11px] sm:ml-[60px] xs:ml-[40px] xxs:ml-[7px]`}
-                    onChange={(event) => {
-                        dispatch(fetchDataIndexIndustrialProductionByIndustry(event.target.value))
-                    }}>
-                    {optionsSelect2.map((item, index) => {
-                        return (
-                            <option key={index} value={`${item.value}`}>{`${item.label}`}</option>
-                        )
-                    })}
-                </select>
+                <div className="flex items-center justify-center">
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            dispatch(fetchDataIndexIndustrialProductionByIndustry(event.target.value))
+                        }}>
+                        {optionsSelect2.map((item, index) => {
+                            return (
+                                <option key={index} value={`${item.value}`}>{`${item.label}`}</option>
+                            )
+                        })}
+                    </select>
+                </div>
             </div>
             {dataIndexIndustrialProductionByIndustry?.length > 0 ? (
                 <div className='h-[350px] mt-2'>

@@ -137,9 +137,10 @@ const ExportValue = () => {
     };
     return (
         <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold sm:text-base xs:text-sm xxs:text-xs'>Giá trị xuất khẩu các loại mặt hàng chính</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[320px] lg:ml-[518px] md:ml-[293px] sm:ml-[25px] xs:ml-[15px] xxs:ml-[1px]`}
+                <div>
+                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
                     onChange={(event) => {
                         setOrder(event.target.value)
                         dispatch(fetchDataExportValue(event.target.value))
@@ -148,6 +149,7 @@ const ExportValue = () => {
                     <option value='0'>Quý</option>
                     <option value='1'>Năm</option>
                 </select>
+                </div>
             </div>
             {dataExportValue?.length > 0 ? (
                 <>
