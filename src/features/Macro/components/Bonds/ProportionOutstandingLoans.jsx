@@ -86,11 +86,11 @@ const ProportionOutstandingLoans = () => {
     return (
         <>
             {dataProportionOutstandingLoans.length ? (
-                <div className="h-[348px]">
+                <div className="h-[300px]">
                     <PieChart highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="h-[348px] flex items-center justify-center"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
         </>
     )

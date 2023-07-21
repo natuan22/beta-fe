@@ -115,11 +115,11 @@ const BondInterestRate = () => {
     return (
         <div>
             {dataBondInterestRate?.length > 0 ? (
-                <div className='h-[355px]'>
+                <div className='h-[300px]'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="h-[355px] flex items-center justify-center"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )

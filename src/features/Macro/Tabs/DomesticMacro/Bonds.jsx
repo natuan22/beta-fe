@@ -23,64 +23,70 @@ const Bonds = () => {
             {isLoading ? (
                 <>
                     <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-                        <div className='xl:flex lg:block gap-3'>
-                            <div className='xl:w-[40%] lg:w-full'>
+                        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
+                            <div>
                                 <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                                     <span className='dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-xs'>TPDN phát hành thành công theo từng kỳ (tỷ đồng)</span>
                                 </div>
                                 <BondsIssued />
                             </div>
-                            <div className='lg:flex md:block xl:w-[60%] lg:w-full gap-3'>
-                                <div className='lg:w-[65%] md:w-full'>
-                                    <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                                        <span className='dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-xs'>Ước tính giá trị TPDN đáo hạn theo từng kỳ (tỷ đồng)</span>
-                                    </div>
-                                    <EstimatedValueBondsDueDate />
+                            <div>
+                                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                    <span className='dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-xs'>Ước tính giá trị TPDN đáo hạn theo từng kỳ (tỷ đồng)</span>
                                 </div>
-                                <div className='lg:w-[35%] md:w-full'>
-                                    <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                                        <span className='dark:text-white text-black font-semibold'>Cơ cấu dư nợ TPDN (%)</span>
-                                    </div>
-                                    <DebtBalanceStructure />
-                                </div>
+                                <EstimatedValueBondsDueDate />
                             </div>
                         </div>
                     </div>
+
                     <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-                        <div className='xl:flex lg:block gap-3'>
+                        <div className='lg:block xl:flex gap-3'>
                             <div className='xl:w-[40%] lg:w-full'>
                                 <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                                     <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Lãi suất trái phiếu huy động bình quân (%)</span>
                                 </div>
                                 <BondInterestRate />
                             </div>
-                            <div className='xl:w-[60%] lg:w-full'>
-                                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                                    <span className='dark:text-white text-black font-semibold'>Danh sách trái phiếu đến kỳ đáo hạn (%)</span>
-                                </div>
-                                <ListMaturityBonds />
-                            </div>
-                        </div>
-                    </div>
-                    <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-                        <div className='xl:flex lg:block gap-3'>
-                            <div className='xl:w-[40%] lg:w-full xl:mt-[27px] lg:mt-0'>
-                                <TotalOutstandingDebtAndBondInterest />
-                            </div>
-                            <div className='xl:flex lg:block xl:w-[60%] lg:w-full gap-3'>
-                                <div className='xl:w-[65%] lg:w-full'>
+                            <div className='lg:w-full xl:w-[60%] grid md:grid-cols-2 sm:grid-cols-none gap-3'>
+                                <div>
                                     <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                                        <span className='dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-xs'>Danh sách doanh nghiệp chậm nghĩa vụ trái phiếu</span>
+                                        <span className='dark:text-white text-black font-semibold'>Cơ cấu dư nợ TPDN (%)</span>
                                     </div>
-                                    <ListOverdueBondObligation />
+                                    <DebtBalanceStructure />
                                 </div>
-                                <div className='xl:w-[35%] lg:w-full'>
+                                <div>
                                     <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                                         <span className='dark:text-white text-black font-semibold xl:text-sm lg:text-base xs:text-base xxs:text-sm'>Tỷ trọng dư nợ các DN chậm thanh toán (%)</span>
                                     </div>
                                     <ProportionOutstandingLoans />
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
+                        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
+                            <div>
+                                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                    <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Danh sách tổng dư nợ thị trường trái phiếu</span>
+                                </div>
+                                <TotalOutstandingDebtAndBondInterest />
+                            </div>
+                            <div>
+                                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                    <span className='dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-xs'>Danh sách doanh nghiệp chậm nghĩa vụ trái phiếu</span>
+                                </div>
+                                <ListOverdueBondObligation />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
+                        <div>
+                            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                <span className='dark:text-white text-black font-semibold'>Danh sách trái phiếu đến kỳ đáo hạn (%)</span>
+                            </div>
+                            <ListMaturityBonds />
                         </div>
                     </div>
                 </>
