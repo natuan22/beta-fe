@@ -40,7 +40,7 @@ const MarcoNews = () => {
             setCurrentLimit((prevLimit) => prevLimit + 10);
         }
     };
-    
+
     return (
         <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
             <div className='h-[800px] overflow-auto' onScroll={handleScroll}>
@@ -51,15 +51,31 @@ const MarcoNews = () => {
                             onClick={() => handleItemClick(item)}
                             className='mx-1 my-4 cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-300'
                         >
-                            <h4 className='dark:text-white text-black mb-1'>{item.title}</h4>
-                            <div className='flex'>
-                                <img src={item.img} alt={item.title} width={150} height={100} />
-                                <div className='relative'>
-                                    <div className='line-clamp-2 px-2 text-[0.8rem] dark:text-white text-black text-justify items-center justify-center mt-1.5'>
-                                        {item.sub_title}
+                            <a className='md:hidden sm:block no-underline' href={item.href} target="_blank" rel="noopener noreferrer">
+                                <h4 className='dark:text-white text-black mb-1'>{item.title}</h4>
+                                <div className='flex'>
+                                    <img src={item.img} alt={item.title} width={150} height={100} />
+                                    <div className='relative'>
+                                        <div className='line-clamp-2 px-2 text-[0.8rem] dark:text-white text-black text-justify items-center justify-center mt-1.5'>
+                                            {item.sub_title}
+                                        </div>
+                                        <div className='text-[#FFD300] text-[0.8rem] text-right absolute bottom-0 right-0'>
+                                            {moment(item.date).format('DD.MM.YYYY')}
+                                        </div>
                                     </div>
-                                    <div className='text-[#FFD300] text-[0.8rem] text-right absolute bottom-0 right-0'>
-                                        {moment(item.date).format('DD.MM.YYYY')}
+                                </div>
+                            </a>
+                            <div className='md:block sm:hidden xs:hidden xxs:hidden'>
+                                <h4 className='dark:text-white text-black mb-1'>{item.title}</h4>
+                                <div className='flex'>
+                                    <img src={item.img} alt={item.title} width={150} height={100} />
+                                    <div className='relative'>
+                                        <div className='line-clamp-2 px-2 text-[0.8rem] dark:text-white text-black text-justify items-center justify-center mt-1.5'>
+                                            {item.sub_title}
+                                        </div>
+                                        <div className='text-[#FFD300] text-[0.8rem] text-right absolute bottom-0 right-0'>
+                                            {moment(item.date).format('DD.MM.YYYY')}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +83,7 @@ const MarcoNews = () => {
                     ))) : (<div className='h-[800px] flex items-center justify-center'><Loading /></div>)}
             </div>
 
-            <div className=''>
+            <div className='md:block sm:hidden xs:hidden xxs:hidden'>
                 {selectedItem ? (
                     <div className='relative'>
                         <div class="close cursor-pointer md:block sm:hidden xs:hidden xxs:hidden" onClick={handleCloseIframe} />

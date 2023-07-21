@@ -8,7 +8,7 @@ export const fetchDataInternationalIndex = async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -20,7 +20,7 @@ export const fetchDataBarChartRight = (exchange) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -32,7 +32,7 @@ export const fetchDataBarChartLeft = (exchange) => async (dispatch) => {
       payload: res.data.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -44,7 +44,7 @@ export const fetchDataEvents = async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -56,7 +56,7 @@ export const fetchDataTableDetail = async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -68,7 +68,7 @@ export const fetchDataTopNetForeignChange = (exchange) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -80,7 +80,7 @@ export const fetchDataROC5Phien = (exchange) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -93,7 +93,7 @@ export const fetchDataGoodsDetail = async (dispatch) => {
 
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -105,7 +105,7 @@ export const fetchDataRateDetail = async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -117,7 +117,7 @@ export const fetchDataGeneralIndustry = (exchange) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -129,7 +129,7 @@ export const fetchDataTreeMapSell = (exchange) => async (dispatch) => {
       payload: res.data.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -141,7 +141,7 @@ export const fetchDataTreeMapBuy = (exchange) => async (dispatch) => {
       payload: res.data.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -153,7 +153,7 @@ export const fetchDataAreaChart1 = async (dispatch) => {
       payload: res.data.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -165,7 +165,7 @@ export const fetchDataAreaChart2 = async (dispatch) => {
       payload: res.data.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -179,7 +179,7 @@ export const fetchDataWidthMarket = (index) => async (dispatch) => {
 
 
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -191,7 +191,7 @@ export const fetchDataTableMarketVolatility = async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -203,7 +203,7 @@ export const fetchDataTableMarketLiquidity = (order) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -215,7 +215,7 @@ export const fetchDataNetVolume = (exchange) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -227,7 +227,7 @@ export const fetchDataNews = async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -239,7 +239,7 @@ export const fetchDataMarketEvaluation = async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -251,7 +251,7 @@ export const fetchDataMacroNews = async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -277,7 +277,7 @@ export const fetchDataCashFlowAllocation = async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 

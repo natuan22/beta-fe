@@ -1,33 +1,35 @@
 #domesticMacro .MuiTabs-scroller {
-    display: grid !important;
-    place-items: center;
+  display: grid !important;
+  place-items: center;
 }
 
 #domesticMacro .MuiTabPanel-root {
-    padding: 0px !important;
+  padding: 0px !important;
 }
 
 #domesticMacro .MuiTabs-root {
-    background-color: #195070;
-    border-radius: 1.5rem;
+  background-color: #195070;
+  border-radius: 1.5rem;
 }
 
 #domesticMacro .MuiBox-root {
-    margin-bottom: 8px;
-    border-bottom: none !important;
+  margin-bottom: 8px;
+  border-bottom: none !important;
 }
 
-#domesticMacro .Mui-selected {
-    background-color: #35adf2 !important;
-    border-radius: 1.5rem !important;
+/* #domesticMacro .Mui-selected {
+  background-color: #35adf2 !important;
+  border-radius: 1.5rem !important;
+} */
+.MuiTouchRipple-root {
+  border-radius: 1.5rem !important;
 }
-
 #domesticMacro .MuiButtonBase-root {
-    color: white !important;
-    margin-left: 3px !important;
-    margin-right: 3px !important;
+  color: white !important;
+  margin-left: 3px !important;
+  margin-right: 3px !important;
 }
 
 #domesticMacro .MuiTabs-indicator {
-    display: none !important;
+  display: none !important;
 }

@@ -8,7 +8,7 @@ import { fetchDataCreditBalance } from '../../thunk';
 
 const CreditBalance = () => {
     const dispatch = useDispatch();
-    const { dataCreditBalance } = useSelector(state => state.marco)
+    const { dataCreditBalance } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true);
@@ -150,7 +150,7 @@ const CreditBalance = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
 
             <section className="bg-blueGray-50 pt-1.5">

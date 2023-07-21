@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataRateOfInformalEmployment } from '../../thunk';
 import Highcharts from "highcharts/highstock";
 import PieChart from "highcharts-react-official";
 import Loading from '../../../Chart/utils/Loading';
+import { fetchDataProportionOutstandingLoans } from '../../thunk';
 
-const RateOfInformalEmployment = () => {
+const ProportionOutstandingLoans = () => {
     const dispatch = useDispatch();
-    const { dataRateOfInformalEmployment } = useSelector(state => state.macro)
+    const { dataProportionOutstandingLoans } = useSelector(state => state.macro)
     const [data, setData] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
@@ -17,30 +17,25 @@ const RateOfInformalEmployment = () => {
     }, [color])
 
     useEffect(() => {
-        dispatch(fetchDataRateOfInformalEmployment)
+        dispatch(fetchDataProportionOutstandingLoans)
     }, [dispatch]);
 
     useEffect(() => {
-        if (dataRateOfInformalEmployment?.length > 0) {
-            const modifiedArray = dataRateOfInformalEmployment.map(item => {
-                const modifiedName = item.name.replace(' (%)', '').replace('Tỉ ', 'Tỷ ');
-
-                return { ...item, name: modifiedName };
-            });
-            const danhSachMoi = modifiedArray.map(item => ({
-                name: item.name,
-                y: item.value,
+        if (dataProportionOutstandingLoans?.length > 0) {
+            const danhSachMoi = dataProportionOutstandingLoans.map(item => ({
+                name: 'DN chậm thanh toán',
+                y: +item.value.toFixed(2),
                 color: '#2CC8DD'
             }));
             const newItem = {
-                name: 'Tỷ lệ lao động chính thức',
+                name: 'DN còn lại',
                 y: 100 - danhSachMoi[0].y,
-                color: '#436FB5'
+                color: '#147DF5'
             };
             danhSachMoi.push(newItem)
             setData(danhSachMoi)
         }
-    }, [dataRateOfInformalEmployment])
+    }, [dataProportionOutstandingLoans])
 
     // Create the chart
     const options = {
@@ -90,17 +85,15 @@ const RateOfInformalEmployment = () => {
 
     return (
         <>
-            {dataRateOfInformalEmployment.length ? (
-                <div className="h-[348px]">
+            {dataProportionOutstandingLoans.length ? (
+                <div className="h-[300px]">
                     <PieChart highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="h-[348px] flex items-center justify-center"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
         </>
     )
 }
 
-export default RateOfInformalEmployment
-
-
+export default ProportionOutstandingLoans

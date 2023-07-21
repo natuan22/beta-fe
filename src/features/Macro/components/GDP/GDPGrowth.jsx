@@ -8,7 +8,7 @@ import Loading from '../../../Chart/utils/Loading';
 
 const GDPGrowth = () => {
     const dispatch = useDispatch();
-    const { dataGDPGrowth } = useSelector(state => state.marco)
+    const { dataGDPGrowth } = useSelector(state => state.macro)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -17,7 +17,7 @@ const GDPGrowth = () => {
     useEffect(() => {
         setColorText(color);
     }, [color])
-    
+
     useEffect(() => {
         dispatch(fetchDataGDPGrowth(0))
     }, [dispatch]);
@@ -134,15 +134,11 @@ const GDPGrowth = () => {
                 </select>
             </div>
             {dataGDPGrowth.length ? (
-                <div id="chart-container">
-                    <div className="h-[883px]">
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                    </div>
+                <div className="h-[883px]">
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div id="chart-container">
-                    <div className="mt-20 flex flex-col justify-center"><Loading /></div>
-                </div>
+                <div className="h-[883px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )

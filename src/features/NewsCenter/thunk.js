@@ -10,7 +10,7 @@ export const fetchDataTableEvents = (page, limit, exchange) => async (dispatch) 
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -22,7 +22,7 @@ export const fetchNewsTool = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -36,7 +36,7 @@ export const fetchDataDomesticMacro = (page, limit) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -48,7 +48,7 @@ export const fetchDataForeignMacro = (page, limit) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -60,7 +60,7 @@ export const fetchDataListEnterpriseNews = async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -72,7 +72,7 @@ export const fetchDataStockInfo = async dispatch => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -85,6 +85,6 @@ export const fetchDataNewsFilter = (page, limit, code) => async (dispatch) => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }

@@ -8,8 +8,8 @@ import Loading from '../../../Chart/utils/Loading';
 
 const TotalMeansOfPayment = () => {
     const dispatch = useDispatch();
-    const { dataChartTotalMeansOfPayment } = useSelector(state => state.marco)
-    const { dataTableTotalMeansOfPayment } = useSelector(state => state.marco)
+    const { dataChartTotalMeansOfPayment } = useSelector(state => state.macro)
+    const { dataTableTotalMeansOfPayment } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true);
@@ -30,7 +30,7 @@ const TotalMeansOfPayment = () => {
     useEffect(() => {
         if (dataChartTotalMeansOfPayment?.length > 0) {
             setLoading(false);
-            const modifiedArray = dataChartTotalMeansOfPayment.map(item => {
+            const modifiedArray = dataChartTotalMeansOfPayment?.map(item => {
                 const modifiedName = item.name.replace(' (Tỷ đồng)', '');
                 const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
                 const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
@@ -65,7 +65,7 @@ const TotalMeansOfPayment = () => {
 
     useEffect(() => {
         if (dataTableTotalMeansOfPayment?.length > 0) {
-            const modifiedArray = dataChartTotalMeansOfPayment.map(item => {
+            const modifiedArray = dataTableTotalMeansOfPayment?.map(item => {
                 const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
                 const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
 
@@ -149,7 +149,7 @@ const TotalMeansOfPayment = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
 
             <section className="bg-blueGray-50 pt-1.5">

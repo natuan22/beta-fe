@@ -9,7 +9,7 @@ import LegendBtn from '../../../../utils/Component/BtnLegend';
 
 const RetailSalesGrowth = () => {
     const dispatch = useDispatch();
-    const { dataRetailSalesGrowth } = useSelector(state => state.marco)
+    const { dataRetailSalesGrowth } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [order, setOrder] = useState('1')
@@ -26,8 +26,8 @@ const RetailSalesGrowth = () => {
 
     useEffect(() => {
         dispatch(fetchDataRetailSalesGrowth(1))
-      }, [dispatch]);
-    
+    }, [dispatch]);
+
     useEffect(() => {
         if (dataRetailSalesGrowth?.length > 0) {
             let modifiedArray;
@@ -70,7 +70,7 @@ const RetailSalesGrowth = () => {
 
             setData(result);
         }
-    }, [dataRetailSalesGrowth])
+    }, [dataRetailSalesGrowth, order])
 
     const options = {
         accessibility: {
@@ -151,7 +151,7 @@ const RetailSalesGrowth = () => {
                     </div>
                 </>
             ) : (
-                <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )

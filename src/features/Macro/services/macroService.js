@@ -170,4 +170,73 @@ export const macroServices = {
         return https.get('api/v1/macro/thong-ke-theo-loai-hinh-to-chuc-tin-dung', {
         })
     },
+    fetchDataTotalInvestProjects: (order) => {
+        return https.get('api/v1/macro/tong-so-du-an-dau-tu', {
+            params: {
+                order
+            }
+        })
+    },
+    fetchDataForeignInvestIndex: (order, type) => {
+        return https.get('api/v1/macro/chi-so-dau-tu-nuoc-ngoai', {
+            params: {
+                order,
+                type
+            }
+        })
+    },
+    fetchDataMapImportAndExport: (order, type) => {
+        return https.get('api/v1/retail/map-xuat-nhap-khau', {
+            params: {
+                order,
+                type
+            }
+        })
+    },
+    fetchDataTotalRegisteredAndDisbursedCapital: (order) => {
+        return https.get('api/v1/macro/tong-von-dang-ky-va-giai-ngan', {
+            params: {
+                order
+            }
+        })
+    },
+    fetchDataAccumulatedAndTotalInvestment: (order) => {
+        return https.get('api/v1/macro/luy-ke', {
+            params: {
+                order
+            }
+        })
+    },
+    fetchDataBondsIssued: () => {
+        return https.get('api/v1/macro/tpdn-phat-hanh-thanh-cong-theo-tung-ky', {
+        })
+    },
+    fetchDataBondInterestRate: () => {
+        return https.get('api/v1/macro/lai-suat-trai-phieu-huy-dong-binh-quan', {
+        })
+    },
+    fetchDataTotalOutstandingDebtAndBondInterest: () => {
+        return https.get('api/v1/macro/bang-doanh-nghiep-tong-du-no-va-lai-suat-tp-binh-quan', {
+        })
+    },
+    fetchDataEstimatedValueBondsDueDate: () => {
+        return https.get('api/v1/macro/uoc-tinh-gia-tri-tpdn-dao-han', {
+        })
+    },
+    fetchDataListMaturityBonds: () => {
+        return https.get('api/v1/macro/danh-sach-trai-phieu-den-ky-dao-han', {
+        })
+    },
+    fetchDataListOverdueBondObligation: () => {
+        return https.get('api/v1/macro/danh-sach-doanh-nghiep-cham-nghia-vu-trai-phieu', {
+        })
+    },
+    fetchDataDebtBalanceStructure: () => {
+        return https.get('api/v1/macro/co-cau-du-no-tpdn', {
+        })
+    },
+    fetchDataProportionOutstandingLoans: () => {
+        return https.get('api/v1/macro/ty-trong-du-no-cac-dn', {
+        })
+    },
 }

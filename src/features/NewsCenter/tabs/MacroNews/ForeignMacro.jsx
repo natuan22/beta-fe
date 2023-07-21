@@ -67,7 +67,7 @@ const ForeignMacro = () => {
                         <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                             <span className='dark:text-white text-black font-semibold uppercase'>Thế giới</span>
                         </div>
-                        <div className="grid grid-cols-5 gap-2 m-2">
+                        <div className="grid grid-cols-5 gap-3 m-2">
                             <div className="lg:col-span-3 md:col-span-full sm:col-span-full xs:col-span-full xxs:col-span-full">
                                 <div className='mb-2'>
                                     <Swiper
@@ -85,7 +85,7 @@ const ForeignMacro = () => {
                                                 <SwiperSlide key={index}>
                                                     <a href={item.href} className='no-underline' target="_blank" rel="noopener noreferrer">
                                                         <div>
-                                                            <img src={item.img} alt={item.title} className='bg-cover bg-center h-[400px] w-full' />
+                                                            <img src={item.img} alt={item.title} className='bg-cover bg-center sm:h-[400px] xxs:h-[300px] w-full' />
                                                             <h3 className='dark:text-white text-black my-2'>{item.title}</h3>
                                                             <p className='dark:text-white text-black text-[0.9rem]'>{item.sub_title}</p>
                                                         </div>

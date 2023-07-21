@@ -8,7 +8,7 @@ import Loading from '../../../Chart/utils/Loading';
 
 const CreditBalanceGrowth = () => {
     const dispatch = useDispatch();
-    const { dataCreditBalanceGrowth } = useSelector(state => state.marco)
+    const { dataCreditBalanceGrowth } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -121,7 +121,7 @@ const CreditBalanceGrowth = () => {
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="mt-16 mb-52 grid place-content-center"><Loading /></div>
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )
