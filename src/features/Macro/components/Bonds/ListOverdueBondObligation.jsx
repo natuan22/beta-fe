@@ -52,16 +52,16 @@ const ListOverdueBondObligation = () => {
                                 <tbody>
                                     {!loading ? (Array.isArray(data) && data.map(item => (
                                         <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                            <th className={`dark:bg-[#151924] bg-gray-100 text-left align-middle px-1 py-[14px] text-sm dark:text-white text-black`}>
+                                            <th className={`text-left align-middle px-1 py-[14px] text-sm dark:text-white text-black`}>
                                                 {item.name}
                                             </th>
-                                            <th className={`dark:bg-[#151924] bg-gray-100 text-center align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
+                                            <th className={`text-center align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
                                                 {item.code}
                                             </th>
-                                            <th className={`dark:bg-[#151924] bg-gray-100 text-center align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
+                                            <th className={`text-center align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
                                                 {(item.lai_tra_ky / 1000000000).toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                             </th>
-                                            <th className={`dark:bg-[#151924] bg-gray-100 text-center align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
+                                            <th className={`text-center align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
                                                 {(item.gia_tri_goc / 1000000000).toLocaleString('en-US', { maximumFractionDigits: 2 })}
                                             </th>
 
