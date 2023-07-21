@@ -123,15 +123,17 @@ const GDPGrowth = () => {
 
     return (
         <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='sm:flex xs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold md:text-base sm:text-xs xs:text-[15px] xxs:text-[13px]'>Tăng trưởng GDP theo từng ngành nghề (Tỷ đồng)</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[220px] lg:ml-[420px] md:ml-[190px] sm:ml-[10px] xs:ml-[130px] xxs:ml-[100px]`}
-                    onChange={(event) => {
-                        dispatch(fetchDataGDPGrowth(event.target.value));
-                    }}>
-                    <option value='0'>Kỳ gần nhất</option>
-                    <option value='1'>Cùng kỳ</option>
-                </select>
+                <div className="flex items-center justify-center">
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            dispatch(fetchDataGDPGrowth(event.target.value));
+                        }}>
+                        <option value='0'>Kỳ gần nhất</option>
+                        <option value='1'>Cùng kỳ</option>
+                    </select>
+                </div>
             </div>
             {dataGDPGrowth.length ? (
                 <div className="h-[883px]">

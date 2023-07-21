@@ -314,17 +314,18 @@ const InvestorCashFlow = () => {
     };
     return (
         <div>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black sm:text-base xs:text-[14px] xxs:text-[11px] font-semibold'>Dòng tiền nhà đầu tư theo các nhóm ngành</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[1019px] lg:ml-[603px] md:ml-[347px] sm:ml-[4px] xs:ml-[1px] xxs:ml-[1px]`}
-                    onChange={(event) => {
-                        setQueryApi({ ...queryApi, type: event.target.value })
-                    }}>
-                    <option value='2'>1 tháng</option>
-                    <option value='4'>3 tháng</option>
-                    <option value='5'>1 năm</option>
-
-                </select>
+                <div>
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            setQueryApi({ ...queryApi, type: event.target.value })
+                        }}>
+                        <option value='2'>1 tháng</option>
+                        <option value='4'>3 tháng</option>
+                        <option value='5'>1 năm</option>
+                    </select>
+                </div>
             </div>
             <div className="pt-3 mb-3 dark:text-white text-black">
                 <span>

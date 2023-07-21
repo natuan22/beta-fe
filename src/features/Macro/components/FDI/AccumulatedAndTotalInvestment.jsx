@@ -187,38 +187,40 @@ const AccumulatedAndTotalInvestment = () => {
 
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-xs xxs:text-[11px]'>Lũy kế số dự án cấp mới và tổng vốn đầu tư từ năm 1988</span>
-                <select className={`bg-[#1B496D] py-[6px] px-[6px] text-[1rem] text-white border-0 rounded-[6px] xl:ml-[805px] lg:ml-[285px] md:ml-[55px] sm:ml-[115px] xs:ml-[90px] xxs:ml-[60px]`}
-                    onChange={(event) => {
-                        setOrder(event.target.value)
-                    }}>
-                    <option value='0'>Quý</option>
-                    <option value='2'>Tháng</option>
-                </select>
-                <Popover
-                    content={
-                        <div className='h-[200px] overflow-auto'>
-                            {button?.map((item, index) => (
-                                <div key={index}>
-                                    <label className="material-checkbox py-2 text-black">
-                                        <input type="checkbox" name="exchange" value={item.name} id={item.name} checked={selectedNames.includes(item.name)} onChange={() => handleClick(item.name)} />
-                                        <span className="checkmark"></span>
-                                        <span className='text-sm'>{item.name}</span>
-                                    </label>
-                                </div>
-                            ))}
-                        </div>
-                    }
-                    placement="bottom"
-                    trigger="click"
-                    open={open}
-                    onOpenChange={handleOpenChange}
-                >
-                    <Button className='bg-[#1B496D] text-white border-none ml-2'>Ngành
-                        <span role="img" aria-label="filter" className="anticon anticon-filter"><svg viewBox="64 64 896 896" focusable="false" data-icon="filter" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"></path></svg></span>
-                    </Button>
-                </Popover>
+                <div className="flex items-center justify-center">
+                    <select className={`bg-[#1B496D] py-[6px] px-[6px] text-[1rem] text-white border-0 rounded-[6px]`}
+                        onChange={(event) => {
+                            setOrder(event.target.value)
+                        }}>
+                        <option value='0'>Quý</option>
+                        <option value='2'>Tháng</option>
+                    </select>
+                    <Popover
+                        content={
+                            <div className='h-[200px] overflow-auto'>
+                                {button?.map((item, index) => (
+                                    <div key={index}>
+                                        <label className="material-checkbox py-2 text-black">
+                                            <input type="checkbox" name="exchange" value={item.name} id={item.name} checked={selectedNames.includes(item.name)} onChange={() => handleClick(item.name)} />
+                                            <span className="checkmark"></span>
+                                            <span className='text-sm'>{item.name}</span>
+                                        </label>
+                                    </div>
+                                ))}
+                            </div>
+                        }
+                        placement="bottom"
+                        trigger="click"
+                        open={open}
+                        onOpenChange={handleOpenChange}
+                    >
+                        <Button className='bg-[#1B496D] text-white border-none ml-2'>Ngành
+                            <span role="img" aria-label="filter" className="anticon anticon-filter"><svg viewBox="64 64 896 896" focusable="false" data-icon="filter" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"></path></svg></span>
+                        </Button>
+                    </Popover>
+                </div>
             </div>
 
             {dataAccumulatedAndTotalInvestment?.length > 0 ? (

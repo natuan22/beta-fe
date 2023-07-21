@@ -168,22 +168,24 @@ const ForeignInvestIndex = () => {
 
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-[11px]'>Chỉ số đầu tư nước ngoài</span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[1050px] lg:ml-[535px] md:ml-[305px] sm:ml-[36px] xs:ml-[4px] xxs:ml-[5px]`}
-                    onChange={(event) => {
-                        handleQueryApiOrder(event.target.value)
-                    }}>
-                    <option value='2'>Tháng</option>
-                    <option value='0'>Quý</option>
-                </select>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 ml-2`}
-                    onChange={(event) => {
-                        handleQueryApiType(event.target.value)
-                    }}>
-                    <option value='2'>Đối tác</option>
-                    <option value='1'>Ngành</option>
-                </select>
+                <div>
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            handleQueryApiOrder(event.target.value)
+                        }}>
+                        <option value='2'>Tháng</option>
+                        <option value='0'>Quý</option>
+                    </select>
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 ml-2`}
+                        onChange={(event) => {
+                            handleQueryApiType(event.target.value)
+                        }}>
+                        <option value='2'>Đối tác</option>
+                        <option value='1'>Ngành</option>
+                    </select>
+                </div>
             </div>
             {Array.isArray(data) ? (
                 <div className='mt-2'>

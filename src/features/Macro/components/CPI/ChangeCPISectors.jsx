@@ -127,15 +127,17 @@ const ChangeCPISectors = () => {
     };
     return (
         <>
-            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Thay đổi CPI các lĩnh vực của nền kinh tế </span>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0 xl:ml-[410px] lg:ml-[470px] md:ml-[240px] sm:ml-[140px] xs:ml-[100px] xxs:ml-[80px]`}
-                    onChange={(event) => {
-                        dispatch(fetchDataChangeCPISectors(event.target.value))
-                    }}>
-                    <option value='0'>Kỳ gần nhất</option>
-                    <option value='1'>Cùng kỳ</option>
-                </select>
+                <div className="flex items-center justify-center">
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            dispatch(fetchDataChangeCPISectors(event.target.value))
+                        }}>
+                        <option value='0'>Kỳ gần nhất</option>
+                        <option value='1'>Cùng kỳ</option>
+                    </select>
+                </div>
             </div>
             {dataChangeCPISectors?.length > 0 ? (
                 <div className=''>

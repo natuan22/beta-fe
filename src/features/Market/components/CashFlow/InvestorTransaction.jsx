@@ -25,14 +25,26 @@ const InvestorTransaction = () => {
 
     return (
         <>
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
-                <span className="dark:text-white text-black text-[0.9rem] font-semibold">Diễn biến giao dịch nhóm nhà đầu tư </span>
-                <div className='md:inline sm:block xs:block text-center'>
+            <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                <div>
+                    <span className="dark:text-white text-black text-[0.9rem] font-semibold">Diễn biến giao dịch nhóm nhà đầu tư </span>
                     <select
                         onChange={(e) => {
                             handleQueryApiInvestorType(e.target.value);
                         }}
-                        className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#0097B2] border-0`}
+                        className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#0097B2] border-0 md:inline sm:hidden xs:hidden xxs:hidden`}
+                    >
+                        <option value="0">khối ngoại</option>
+                        <option value="1">tự doanh</option>
+                        <option value="2">cá nhân</option>
+                    </select>
+                </div>
+                <div className="flex items-center justify-center">
+                    <select
+                        onChange={(e) => {
+                            handleQueryApiInvestorType(e.target.value);
+                        }}
+                        className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#0097B2] border-0 md:hidden sm:inline`}
                     >
                         <option value="0">khối ngoại</option>
                         <option value="1">tự doanh</option>
@@ -42,7 +54,7 @@ const InvestorTransaction = () => {
                         onChange={(e) => {
                             handleQueryApiType(e.target.value);
                         }}
-                        className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0 xl:ml-[385px] lg:ml-[545px] md:ml-[289px] sm:ml-4 xs:ml-4 xxs:ml-3`}
+                        className={`bg-[#1B496D] p-1 ml-2 text-[0.9rem] text-white border-0`}
                     >
                         <option value="0">Phiên gần nhất</option>
                         <option value="1">5 phiên</option>
