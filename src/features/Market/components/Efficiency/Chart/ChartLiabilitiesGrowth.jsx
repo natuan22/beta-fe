@@ -120,7 +120,7 @@ const ChartLiabilitiesGrowth = (props) => {
             {dataChartLiabilitiesGrowth.length ? (
                 <div>
                     <div className='xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                        <span className='dark:text-white text-black font-semibold sm:text-sm xs:text-[13px] xxs:text-sm'>Tăng trưởng nợ phải trả của các ngành (%)</span>
+                        <span className='dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-[13px] xxs:text-sm'>Tăng trưởng nợ phải trả của các ngành (%)</span>
                         <div className='flex items-center justify-center'>
                             <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
                         </div>

@@ -35,9 +35,16 @@ const ChartChangesPrice = () => {
     useEffect(() => {
         if (dataChartChangesPrice?.length > 0) {
             const result = [];
-            const uniqueDates = [...new Set(dataChartChangesPrice?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            const transformedData = dataChartChangesPrice?.map(item => {
+                const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
+                const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
+
+                const transformedDate = `Q${quarter} ${year}`;
+                return { ...item, date: transformedDate };
+            });
+            const uniqueDates = [...new Set(transformedData?.map(item => item.date))];
             setTimeLine(uniqueDates)
-            dataChartChangesPrice?.forEach(item => {
+            transformedData?.forEach(item => {
                 if (industryQuery.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {

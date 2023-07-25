@@ -34,9 +34,16 @@ const ChartLiquidityGrowth = (props) => {
     useEffect(() => {
         if (dataChartLiquidityGrowth?.length > 0) {
             const result = [];
-            const uniqueDates = [...new Set(dataChartLiquidityGrowth?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            const transformedData = dataChartLiquidityGrowth?.map(item => {
+                const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
+                const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
+
+                const transformedDate = `Q${quarter} ${year}`;
+                return { ...item, date: transformedDate };
+            });
+            const uniqueDates = [...new Set(transformedData?.map(item => item.date))];
             setTimeLine(uniqueDates)
-            dataChartLiquidityGrowth?.forEach(item => {
+            transformedData?.forEach(item => {
                 if (industryQuery.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {
@@ -114,7 +121,7 @@ const ChartLiquidityGrowth = (props) => {
     return (
         <div>
             <div className='xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold sm:text-sm xs:text-[12px] xxs:text-sm'>Tăng trưởng thanh khoản của các ngành (%)</span>
+                <span className='dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-[12px] xxs:text-sm'>Tăng trưởng thanh khoản của các ngành (%)</span>
                 <div className='flex items-center justify-center'>
                     <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
                 </div>
