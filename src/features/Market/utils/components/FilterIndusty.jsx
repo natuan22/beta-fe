@@ -72,7 +72,6 @@ const FilterIndusty = ({ onSelectedNamesChange }) => {
     const handleOpenChange = (newOpen) => {
         setOpen(newOpen);
     };
-    console.log({ selectedNames })
     return (
         <div>
             <Popover

@@ -338,4 +338,13 @@ export const marketServices = {
             }
         })
     },
+    fetchDataAverageDebitIndustry: (exchange, type, order) => {
+        return https.get('/api/v1/finance-health/lai-suat-vay-no-cac-nhom-nganh', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    }
 }
