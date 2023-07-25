@@ -69,11 +69,10 @@ const FinancialHealth = () => {
 
 
   return (
-    <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
+    <div className='container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full'>
       <Checkbox />
       {/* component */}
       {isLoading ? (
-
         <div>
           <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
             <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
@@ -89,7 +88,7 @@ const FinancialHealth = () => {
           </div>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold'>Tổng quan sức khỏe tài chính các ngành (%)</span>
+              <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tổng quan sức khỏe tài chính các ngành (%)</span>
             </div>
             <div>
               <FinancialHealthOverview exchange={exchange} />
@@ -113,9 +112,6 @@ const FinancialHealth = () => {
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold'>Lãi suất vay nợ bình quân của các ngành (%)</span>
-                </div>
                 <div>
                   <ChartAverageDebtRatio />
                 </div>

@@ -23,19 +23,19 @@ const TableAverageDebtRatio = () => {
                         <table className="items-center w-full border-collapse bg-transparent">
                             <thead className="bg-[#1E5D8B] z-10" style={{ position: 'sticky', top: 0 }}>
                                 <tr>
-                                    <th className="text-center align-middle px-3 py-[10px] text-[14px] font-semibold text-white">
+                                    <th className="text-center align-middle px-1 whitespace-nowrap py-[10px] text-[14px] font-semibold text-white">
                                         Ngành
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[10px] text-[14px] font-semibold text-white">
+                                    <th className="text-center align-middle px-1 py-[10px] text-[14px] font-semibold text-white">
                                         Hệ số thanh toán lãi vay bình quân (lần)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[10px] text-[14px] font-semibold text-white">
+                                    <th className="text-center align-middle px-1 py-[10px] text-[14px] font-semibold text-white">
                                         Tỷ số khả năng trả nợ (DSCR) (lần)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[10px] text-[14px] font-semibold text-white">
+                                    <th className="text-center align-middle px-1 py-[10px] text-[14px] font-semibold text-white">
                                         Nợ/Tổng tài sản (lần)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[10px] text-[14px] font-semibold text-white">
+                                    <th className="text-center align-middle px-1 py-[10px] text-[14px] font-semibold text-white">
                                         Nợ/Vốn chủ sở hữu (lần)
                                     </th>
                                 </tr>
@@ -47,19 +47,19 @@ const TableAverageDebtRatio = () => {
                                     data.map((item, index) => {
                                         return (
                                             <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                                <th className={`text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                <th className={`text-left align-middle px-1 py-2.5 dark:text-white text-black md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.industry}
                                                 </th>
-                                                <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                <td className={`text-center align-middle px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.ICR.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                <td className={`text-center align-middle px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.DSCR.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                <td className={`text-center align-middle px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.TDTA.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                <td className={`text-center align-middle px-1 py-2.5 dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.DE.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
                                             </tr>

@@ -116,19 +116,15 @@ const ChartChangesPrice = () => {
         <>
             <div >
                 <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 mt-1'>
-                    <span className='dark:text-white text-black font-semibold'>Thay đổi giá của các ngành (%)</span>
+                    <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Thay đổi giá của các ngành (%)</span>
                     <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
                 </div>
                 {dataChartChangesPrice.length ? (
-                    <div id="chart-container">
-                        <div className="h-[450px] mt-3">
-                            <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                        </div>
+                    <div className="h-[450px] mt-3">
+                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 ) : (
-                    <div id="chart-container">
-                        <div className="mt-14 mb-[379px] flex flex-col justify-center"><Loading /></div>
-                    </div>
+                    <div className="h-[450px] flex items-center justify-center"><Loading /></div>
                 )}
 
                 <div>

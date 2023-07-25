@@ -127,7 +127,7 @@ const TotalAssetTurnover = () => {
     return (
         <div>
             <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tổng tài sản (Lần)</span>
+                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm xs:text-base xxs:text-sm'>Vòng quay Tổng tài sản (Lần)</span>
                 <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
             </div>
             {dataChartAssetTurnoverRatio?.length ? (

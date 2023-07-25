@@ -129,9 +129,11 @@ const ChartEBITDAGrowth = (props) => {
         <div>
             {dataChartEBITDAGrowth.length ? (
                 <div>
-                    <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                        <span className='dark:text-white text-black font-semibold'>Tăng trưởng EBITDA của các ngành qua từng kỳ (%)</span>
-                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                    <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                        <span className='dark:text-white text-black font-semibold sm:text-base xs:text-sm xxs:text-[12px]'>Tăng trưởng EBITDA của các ngành qua từng kỳ (%)</span>
+                        <div className='flex items-center justify-center'>
+                            <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                        </div>
                     </div>
                     <div className="h-[450px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />

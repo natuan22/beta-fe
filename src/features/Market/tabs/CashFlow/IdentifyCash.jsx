@@ -20,7 +20,7 @@ const IdentifyCash = () => {
   }, [])
   return (
     <>
-      <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
+      <div className='container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full'>
         {isLoading ? (
           <>
             <div className='lg:block xl:flex'>

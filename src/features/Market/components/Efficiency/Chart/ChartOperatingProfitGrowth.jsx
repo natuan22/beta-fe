@@ -132,9 +132,11 @@ const ChartOperatingProfitGrowth = (props) => {
         <div>
             {dataChartOperatingProfitGrowth.length ? (
                 <div>
-                    <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                        <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuận hoạt động các ngành qua từng kỳ (%)</span>
-                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                    <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                        <span className='dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-[13px] xxs:text-[11px]'>Tăng trưởng lợi nhuận hoạt động các ngành qua từng kỳ (%)</span>
+                        <div className='flex items-center justify-center'>
+                            <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                        </div>
                     </div>
                     <div className="h-[450px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />

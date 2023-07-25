@@ -125,7 +125,7 @@ const CurrentPayoutRatio = () => {
     return (
         <div>
             <div className='lg:flex md:block sm:flex xs:flex xxs:flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-[13px] md:text-sm xxs:text-[13px]'>Tỷ số thanh toán hiện hành (Lần)</span>
+                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-[13px] md:text-sm xs:text-base xxs:text-[13px]'>Tỷ số thanh toán hiện hành (Lần)</span>
                 <div className='flex items-center justify-center'>
                     <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
                 </div>

@@ -128,16 +128,18 @@ const InterestCoverageRatio = () => {
     };
     return (
         <div>
-            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold md:text-base sm:text-sm'>Hệ số thanh toán lãi vay nợ bình quân của các ngành (%)</span>
-                <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+            <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-[11.8px]'>Hệ số thanh toán lãi vay nợ bình quân của các ngành (%)</span>
+                <div className='flex items-center justify-center'>
+                    <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                </div>
             </div>
             {dataChartInterestCoverageRatio?.length ? (
-                <div className="h-[640px]">
+                <div className="h-[803px]">
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="h-[640px] flex items-center justify-center"><Loading /></div>
+                <div className="h-[803px] flex items-center justify-center"><Loading /></div>
             )}
         </div >
     )
