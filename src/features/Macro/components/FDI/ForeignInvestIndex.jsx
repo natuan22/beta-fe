@@ -70,7 +70,6 @@ const ForeignInvestIndex = () => {
             dataIndex: 'cm_usd',
             render: (_, record) => {
                 const colorcmUsd = getColorWithValueReference(record.cm_usd_pre, record.cm_usd);
-
                 return <p className={`${colorcmUsd} text-center font-semibold`}>{record.cm_usd.toFixed(2)}</p>;
             },
             // width: '100px',
@@ -82,7 +81,6 @@ const ForeignInvestIndex = () => {
                 // Thực hiện tính toán dựa trên dữ liệu và trả về giá trị tùy chỉnh
                 const calculatedValue = record.cm_usd_pre ? ((record.cm_usd - record.cm_usd_pre) / record.cm_usd_pre) * 100 : 0;
                 const colorcmUsdPer = getColor(calculatedValue);
-
                 return <p className={`${colorcmUsdPer} text-center font-semibold`}>{calculatedValue.toFixed(2)}%</p>;
             },
             // width: '100px',
@@ -92,7 +90,6 @@ const ForeignInvestIndex = () => {
             dataIndex: 'tv',
             render: (_, record) => {
                 const colortv = getColorWithValueReference(record.tv_pre, record.tv);
-
                 return <p className={`${colortv} text-center font-semibold`}>{record.tv.toFixed(2)}</p>;
             },
             // width: '100px',
@@ -102,7 +99,6 @@ const ForeignInvestIndex = () => {
             dataIndex: 'tv_usd',
             render: (_, record) => {
                 const colortvUsd = getColorWithValueReference(record.tv_usd_pre, record.tv_usd);
-
                 return <p className={`${colortvUsd} text-center font-semibold`}>{record.tv_usd.toFixed(2)}</p>;
             },
             // width: '100px',
@@ -114,7 +110,6 @@ const ForeignInvestIndex = () => {
                 // Thực hiện tính toán dựa trên dữ liệu và trả về giá trị tùy chỉnh
                 const calculatedValue = record.tv_usd_pre ? ((record.tv_usd - record.tv_usd_pre) / record.tv_usd_pre) * 100 : 0;
                 const colortvUsdPer = getColor(calculatedValue);
-
                 return <p className={`${colortvUsdPer} text-center font-semibold`}>{calculatedValue.toFixed(2)}%</p>;
             },
             // width: '100px',
@@ -124,7 +119,6 @@ const ForeignInvestIndex = () => {
             dataIndex: 'gv',
             render: (_, record) => {
                 const colorgv = getColorWithValueReference(record.gv_pre, record.gv);
-
                 return <p className={`${colorgv} text-center font-semibold`}>{record.gv.toFixed(2)}</p>;
             },
             // width: '100px',
@@ -134,7 +128,6 @@ const ForeignInvestIndex = () => {
             dataIndex: 'gv_usd',
             render: (_, record) => {
                 const colorgvUsd = getColorWithValueReference(record.gv_usd_pre, record.gv_usd);
-
                 return <p className={`${colorgvUsd} text-center font-semibold`}>{record.gv_usd.toFixed(2)}</p>;
             },
             // width: '100px',
@@ -146,7 +139,6 @@ const ForeignInvestIndex = () => {
                 // Thực hiện tính toán dựa trên dữ liệu và trả về giá trị tùy chỉnh
                 const calculatedValue = record.gv_usd_pre ? ((record.gv_usd - record.gv_usd_pre) / record.gv_usd_pre) * 100 : 0;
                 const colorgvUsdPer = getColor(calculatedValue);
-
                 return <p className={`${colorgvUsdPer} text-center font-semibold`}>{calculatedValue.toFixed(2)}%</p>;
             },
             // width: '100px',
@@ -156,7 +148,6 @@ const ForeignInvestIndex = () => {
             dataIndex: 'total',
             render: (_, record) => {
                 const colorTotal = getColorWithValueReference(record.total_pre, record.total);
-
                 return <p className={`${colorTotal} text-center font-semibold`}>{record.total.toFixed(2)}</p>;
             },
             sorter: (a, b) => a.total - b.total,

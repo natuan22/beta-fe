@@ -4,18 +4,16 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { hashTb } from "../../FinancialHealth/Chart/utils/hashTb";
+import FilterIndusty from "../../../utils/components/FilterIndusty";
 
-const ChartMiningProfitMargin = (props) => {
+const ChartMiningProfitMargin = () => {
     const { dataChartMiningProfitMargin } = useSelector(state => state.market)
-    const { industryQuery } = props
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
-
+    const [industryQuery, setIndustryQuery] = useState([])
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
-    const checkIndustry = industryQuery.split(',')
-    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
 
     useEffect(() => {
         setColorText(color);
@@ -33,7 +31,7 @@ const ChartMiningProfitMargin = (props) => {
             const uniqueDates = [...new Set(transformedData?.map(item => item.date))];
             setTimeLine(uniqueDates)
             transformedData?.forEach(item => {
-                if (mappedKeys.includes(item.industry)) {
+                if (industryQuery.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {
                         foundItem.data.push(+item.GPM.toFixed(2));
@@ -105,11 +103,15 @@ const ChartMiningProfitMargin = (props) => {
         },
         series: data
     }
+    const handleSelectedNamesChange = (selectedNames) => {
+        setIndustryQuery(selectedNames)
+    };
     return (
         <div>
             {dataChartMiningProfitMargin.length ? (
                 <div id="chart-container">
                     <div className="h-[450px] mt-3">
+                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 </div>

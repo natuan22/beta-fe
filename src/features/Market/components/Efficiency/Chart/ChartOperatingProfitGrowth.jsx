@@ -4,18 +4,16 @@ import HighchartsReact from 'highcharts-react-official';
 import { useSelector } from 'react-redux'
 import Loading from '../../../../Chart/utils/Loading';
 import { hashTb } from '../../FinancialHealth/Chart/utils/hashTb';
+import FilterIndusty from '../../../utils/components/FilterIndusty';
 
 const ChartOperatingProfitGrowth = (props) => {
-    const { industryQuery } = props
     const { dataChartOperatingProfitGrowth } = useSelector(state => state.market)
     const [data, setData] = useState()
     const [category, setCategory] = useState()
-
+    const [industryQuery, setIndustryQuery] = useState([])
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
-    const checkIndustry = industryQuery.split(',')
-    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
 
     useEffect(() => {
         setColorText(color);
@@ -30,11 +28,11 @@ const ChartOperatingProfitGrowth = (props) => {
                 return { ...item, date: transformedDate };
             });
 
-            const uniqueIndustry = [...new Set(transformedData.filter(item => mappedKeys.includes(item.industry)).map(item => item.industry))];
+            const uniqueIndustry = [...new Set(transformedData.filter(item => industryQuery.includes(item.industry)).map(item => item.industry))];
             const mappedData = [];
 
             transformedData?.forEach(item => {
-                if (mappedKeys.includes(item.industry)) {
+                if (industryQuery.includes(item.industry)) {
                     const colorArr = ['#D0DFFF', '#044DED', '#A8C2FB', '#0F639A', '#6893EF', '#3D78E0', '#1D63DC', '#155AD1', '#0B4DBD', '#0F459F', '#93D2FE', '#78C5FD', '#61BAFE', '#3EADFF', ' #0E97FF', '#005073', '#117DAC', '#189BD3', '#1DBBD6', ' #72C7EC'];
                     const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
 
@@ -127,11 +125,17 @@ const ChartOperatingProfitGrowth = (props) => {
 
         series: data,
     };
-
+    const handleSelectedNamesChange = (selectedNames) => {
+        setIndustryQuery(selectedNames)
+    };
     return (
         <div>
             {dataChartOperatingProfitGrowth.length ? (
-                <div id="chart-container">
+                <div>
+                    <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                        <span className='dark:text-white text-black font-semibold'>Tăng trưởng lợi nhuận hoạt động các ngành qua từng kỳ (%)</span>
+                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                    </div>
                     <div className="h-[450px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
