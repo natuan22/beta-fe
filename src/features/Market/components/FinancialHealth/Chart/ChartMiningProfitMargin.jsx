@@ -108,17 +108,16 @@ const ChartMiningProfitMargin = () => {
     };
     return (
         <div>
+            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận gộp biên các ngành  (%)</span>
+                <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+            </div>
             {dataChartMiningProfitMargin.length ? (
-                <div id="chart-container">
-                    <div className="h-[450px] mt-3">
-                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                    </div>
+                <div className="h-[450px] mt-3">
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div id="chart-container">
-                    <div className="mt-14 mb-[379px] grid place-content-center"><Loading /></div>
-                </div>
+                <div className="h-[450px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )

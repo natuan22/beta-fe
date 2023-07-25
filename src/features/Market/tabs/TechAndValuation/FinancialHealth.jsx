@@ -75,17 +75,11 @@ const FinancialHealth = () => {
         <div>
           <div className='grid xl:grid-cols-2 lg:grid-cols-none'>
             <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Diễn biến P/E bình quân các nhóm ngành (lần)</span>
-              </div>
               <div>
                 <ChartAveragePE />
               </div>
             </div>
             <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Diễn biến P/B bình quân các nhóm ngành (lần)</span>
-              </div>
               <div>
                 <ChartAveragePB />
               </div>
@@ -95,7 +89,7 @@ const FinancialHealth = () => {
             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold'>Tổng quan sức khỏe tài chính các ngành (%)</span>
             </div>
-            <div className='h-[300px]'>
+            <div>
               <FinancialHealthOverview exchange={exchange} />
             </div>
           </div>
@@ -103,28 +97,19 @@ const FinancialHealth = () => {
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className='grid md:grid-cols-3 sm:grid-cols-none gap-3'>
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán hiện hành (Lần)</span>
-                </div>
                 <CurrentPayoutRatio />
               </div>
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán nhanh (Lần)</span>
-                </div>
                 <QuickPayoutRatio />
               </div>
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold lg:text-base md:text-sm'>Tỷ số thanh toán tiền mặt (Lần)</span>
-                </div>
                 <CashPayoutRatio />
               </div>
             </div>
           </div>
 
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className='grid grid-cols-2 gap-3'>
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
               <div>
                 <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                   <span className='dark:text-white text-black font-semibold'>Lãi suất vay nợ bình quân của các ngành (%)</span>
@@ -136,52 +121,34 @@ const FinancialHealth = () => {
                 <TableAverageDebtRatio />
               </div>
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold'>Hệ số thanh toán lãi vay nợ bình quân của các ngành (%)</span>
-                </div>
                 <InterestCoverageRatio />
               </div>
             </div>
           </div>
 
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className='grid lg:grid-cols-4 gap-3 md:grid-cols-2'>
+            <div className='grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-none gap-3'>
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tài sản cố định (Lần)</span>
-                </div>
                 <FixedAssetTurnover />
               </div>
 
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tiền (Lần)</span>
-                </div>
                 <MoneyWheel />
               </div>
 
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tổng tài sản (Lần)</span>
-                </div>
                 <TotalAssetTurnover />
               </div>
 
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Vốn chủ sở hữu (Lần)</span>
-                </div>
                 <EquityTurnover />
               </div>
             </div>
           </div>
 
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className='grid grid-cols-2 gap-3'>
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận gộp biên các ngành  (%)</span>
-                </div>
                 <div>
                   <ChartMiningProfitMargin />
                 </div>

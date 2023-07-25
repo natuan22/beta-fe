@@ -125,17 +125,16 @@ const FixedAssetTurnover = () => {
     };
     return (
         <div>
+            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold xl:text-base lg:text-sm'>Vòng quay Tài sản cố định (Lần)</span>
+                <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+            </div>
             {dataChartAssetTurnoverRatio?.length ? (
-                <div id="chart-container">
-                    <div className="h-[500px] mt-3">
-                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                    </div>
+                <div className="h-[500px]">
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div id="chart-container">
-                    <div className="mt-14 mb-[379px] grid place-items-center"><Loading /></div>
-                </div>
+                <div className="h-[500px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )

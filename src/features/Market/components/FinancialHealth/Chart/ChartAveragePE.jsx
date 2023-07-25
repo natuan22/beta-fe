@@ -122,17 +122,18 @@ const ChartAveragePE = () => {
     };
     return (
         <div>
+            <div className='xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-xs xxs:text-sm'>Diễn biến P/E bình quân các nhóm ngành (lần)</span>
+                <div className='flex items-center justify-center'>
+                    <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                </div>
+            </div>
             {dataChartAveragePE?.length > 0 ? (
-                <div id="chart-container">
-                    <div className="h-[450px] mt-3">
-                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                    </div>
+                <div className="h-[450px] mt-3">
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div id="chart-container">
-                    <div className="mt-14 mb-[379px] grid place-items-center"><Loading /></div>
-                </div>
+                <div className="h-[450px] flex items-center justify-center"><Loading /></div>
             )}
             <div>
                 <TableAveragePE />
