@@ -22,6 +22,7 @@ import TableMiningProfitMargin from '../../components/FinancialHealth/Table/Tabl
 import Checkbox from '../../HOCs/Checkbox';
 import {
   fetchDataChartAssetTurnoverRatio,
+  fetchDataChartAverageDebitIndustry,
   fetchDataChartAveragePB,
   fetchDataChartAveragePE,
   fetchDataChartCashPayoutRatio,
@@ -63,6 +64,7 @@ const FinancialHealth = () => {
     dispatch(fetchDataTableAverageDebtRatio(exchange, order))
     dispatch(fetchDataChartMiningProfitMargin(exchange, type, order))
     dispatch(fetchDataChartInterestCoverageRatio(exchange, type, order))
+    dispatch(fetchDataChartAverageDebitIndustry(exchange, type, order))
   }, [dispatch, exchange, type, order])
 
 
@@ -129,11 +131,9 @@ const FinancialHealth = () => {
                 <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                   <span className='dark:text-white text-black font-semibold'>Lãi suất vay nợ bình quân của các ngành (%)</span>
                 </div>
-                <div className='h-[300px]'>
+                <div>
                   <ChartAverageDebtRatio />
                 </div>
-                <hr />
-                <TableAverageDebtRatio />
               </div>
               <div>
                 <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>

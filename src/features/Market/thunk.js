@@ -502,3 +502,15 @@ export const fetchDataChartInterestCoverageRatio = (exchange, type, order) => as
         console.error(err)
     }
 }
+
+export const fetchDataChartAverageDebitIndustry = (exchange, type, order) => async dispatch => {
+    try {
+        const res = await marketServices.fetchDataAverageDebitIndustry(exchange, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_AVERAGE_DEBIT_INDUSTRY,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
