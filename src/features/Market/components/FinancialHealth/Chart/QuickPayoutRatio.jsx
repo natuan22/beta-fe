@@ -5,18 +5,16 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { hashTb } from './utils/hashTb';
 import Loading from '../../../../Chart/utils/Loading';
+import FilterIndusty from '../../../utils/components/FilterIndusty';
 
-const QuickPayoutRatio = (props) => {
+const QuickPayoutRatio = () => {
     const { dataChartPayoutRatio } = useSelector(state => state.market)
-    const { industryQuery } = props
+    const [industryQuery, setIndustryQuery] = useState([])
     const [data, setData] = useState()
     const [category, setCategory] = useState()
-
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
-    const checkIndustry = industryQuery.split(',')
-    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
 
     useEffect(() => {
         setColorText(color);
@@ -28,11 +26,11 @@ const QuickPayoutRatio = (props) => {
                 return { ...item, date: moment(item.date).format('YYYY') };
             });
 
-            const uniqueIndustry = [...new Set(transformedData.filter(item => mappedKeys.includes(item.industry)).map(item => item.industry))];
+            const uniqueIndustry = [...new Set(transformedData.filter(item => industryQuery.includes(item.industry)).map(item => item.industry))];
             const mappedData = [];
 
             transformedData?.forEach(item => {
-                if (mappedKeys.includes(item.industry)) {
+                if (industryQuery.includes(item.industry)) {
                     const colorArr = ['#147DF5', '#E7C64F'];
                     const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
 
@@ -121,12 +119,15 @@ const QuickPayoutRatio = (props) => {
 
         series: data,
     };
-
+    const handleSelectedNamesChange = (selectedNames) => {
+        setIndustryQuery(selectedNames)
+    };
     return (
         <div>
             {dataChartPayoutRatio.length ? (
                 <div id="chart-container">
                     <div className="h-[500px] mt-3">
+                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 </div>

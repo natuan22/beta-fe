@@ -2,20 +2,19 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { hashTb } from './utils/hashTb';
 import Loading from '../../../../Chart/utils/Loading';
+import FilterIndusty from "../../../utils/components/FilterIndusty";
 
-const TotalAssetTurnover = (props) => {
+const TotalAssetTurnover = () => {
     const { dataChartAssetTurnoverRatio } = useSelector(state => state.market)
-    const { industryQuery } = props
     const [data, setData] = useState()
+    const [industryQuery, setIndustryQuery] = useState([])
+
     const [category, setCategory] = useState()
 
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
-    const checkIndustry = industryQuery.split(',')
-    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
 
     useEffect(() => {
         setColorText(color);
@@ -29,11 +28,11 @@ const TotalAssetTurnover = (props) => {
                 return { ...item, date: transformedDate };
             });
 
-            const uniqueIndustry = [...new Set(transformedData.filter(item => mappedKeys.includes(item.industry)).map(item => item.industry))];
+            const uniqueIndustry = [...new Set(transformedData.filter(item => industryQuery.includes(item.industry)).map(item => item.industry))];
             const mappedData = [];
 
             transformedData?.forEach(item => {
-                if (mappedKeys.includes(item.industry)) {
+                if (industryQuery.includes(item.industry)) {
                     const colorArr = ['#147DF5', '#E7C64F'];
                     const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
 
@@ -122,12 +121,15 @@ const TotalAssetTurnover = (props) => {
 
         series: data,
     };
-
+    const handleSelectedNamesChange = (selectedNames) => {
+        setIndustryQuery(selectedNames)
+    };
     return (
         <div>
             {dataChartAssetTurnoverRatio?.length ? (
                 <div id="chart-container">
                     <div className="h-[500px] mt-3">
+                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 </div>

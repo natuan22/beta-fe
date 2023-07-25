@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { autoLoginWithToken } from "./features/Auth/thunk";
 import { generateMAC } from "./utils/generateMac";
 function App() {
+
   useEffect(() => {
     const deviceId = JSON.parse(localStorage.getItem(localStorage.getItem('DeviceId')))
 

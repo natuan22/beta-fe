@@ -1,0 +1,14 @@
+/* utils/flashStyle.css */
+@keyframes flash {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: yellow;
+  }
+}
+
+.flash-cell.flash {
+  animation: flash 1s;
+}

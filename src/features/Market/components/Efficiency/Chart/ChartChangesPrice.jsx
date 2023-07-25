@@ -2,33 +2,43 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
-import { hashTb } from "../../FinancialHealth/Chart/utils/hashTb";
+import FilterIndusty from "../../../utils/components/FilterIndusty";
+import TableChangesPrice from "../Table/TableChangesPrice";
+import { fetchDataTableChangesPrice } from "../../../thunk";
+import { hashTb } from "../../utils/hashTb";
 
-const ChartChangesPrice = (props) => {
-    const { dataChartChangesPrice } = useSelector(state => state.market)
-    const { industryQuery } = props
+
+const ChartChangesPrice = () => {
+    const dispatch = useDispatch()
+    const { dataChartChangesPrice, dataQuery } = useSelector(state => state.market)
+    const { exchange } = dataQuery
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
-
+    const [industryQuery, setIndustryQuery] = useState([])
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
-    const checkIndustry = industryQuery.split(',')
-    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
-
+    useEffect(() => {
+        if (dataQuery && industryQuery.length > 0) {
+            const industryValues = industryQuery.map(query => getIndustryValue(query));
+            dispatch(fetchDataTableChangesPrice(exchange, industryValues.toString()))
+        }
+    }, [industryQuery, exchange])
     useEffect(() => {
         setColorText(color);
     }, [color])
-
+    const getIndustryValue = (query) => {
+        return hashTb[query] || null;
+    };
     useEffect(() => {
         if (dataChartChangesPrice?.length > 0) {
             const result = [];
             const uniqueDates = [...new Set(dataChartChangesPrice?.map(item => moment(item.date).format('DD/MM/YYYY')))];
             setTimeLine(uniqueDates)
             dataChartChangesPrice?.forEach(item => {
-                if (mappedKeys.includes(item.industry)) {
+                if (industryQuery.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {
                         foundItem.data.push(+item.perChange.toFixed(2));
@@ -43,8 +53,10 @@ const ChartChangesPrice = (props) => {
             });
             setData(result)
         }
-    }, [dataChartChangesPrice, industryQuery])
-
+    }, [industryQuery, dataChartChangesPrice])
+    const handleSelectedNamesChange = (selectedNames) => {
+        setIndustryQuery(selectedNames)
+    };
     const options = {
 
         accessibility: {
@@ -101,19 +113,29 @@ const ChartChangesPrice = (props) => {
         series: data
     }
     return (
-        <div>
-            {dataChartChangesPrice.length ? (
-                <div id="chart-container">
-                    <div className="h-[450px] mt-3">
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+        <>
+            <div >
+                <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 mt-1'>
+                    <span className='dark:text-white text-black font-semibold'>Thay đổi giá của các ngành (%)</span>
+                    <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                </div>
+                {dataChartChangesPrice.length ? (
+                    <div id="chart-container">
+                        <div className="h-[450px] mt-3">
+                            <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                        </div>
                     </div>
+                ) : (
+                    <div id="chart-container">
+                        <div className="mt-14 mb-[379px] flex flex-col justify-center"><Loading /></div>
+                    </div>
+                )}
+
+                <div>
+                    <TableChangesPrice />
                 </div>
-            ) : (
-                <div id="chart-container">
-                    <div className="mt-14 mb-[379px] flex flex-col justify-center"><Loading /></div>
-                </div>
-            )}
-        </div>
+            </div>
+        </>
     )
 }
 

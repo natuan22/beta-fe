@@ -1,20 +1,33 @@
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
-import { hashTb } from "../../FinancialHealth/Chart/utils/hashTb";
+import TableAveragePB from "../Table/TableAveragePB";
+import { hashTb } from "../../utils/hashTb";
+import { fetchDataTableAveragePB } from "../../../thunk";
+import FilterIndusty from "../../../utils/components/FilterIndusty";
 
-const ChartAveragePB = (props) => {
-    const { dataChartAveragePB } = useSelector(state => state.market)
-    const { industryQuery } = props
+const getIndustryValue = (query) => {
+    return hashTb[query] || null;
+};
+const ChartAveragePB = () => {
+    const dispatch = useDispatch()
+    const { dataChartAveragePB, dataQuery } = useSelector(state => state.market)
+    const { exchange } = dataQuery
+    const [industryQuery, setIndustryQuery] = useState([])
+
     const [data, setData] = useState()
     const [timeLine, setTimeLine] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
-    const checkIndustry = industryQuery.split(',')
-    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
+    useEffect(() => {
+        if (dataQuery && industryQuery.length > 0) {
+            const industryValues = industryQuery.map(query => getIndustryValue(query));
+            dispatch(fetchDataTableAveragePB(exchange, industryValues.toString()))
+        }
+    }, [industryQuery, exchange])
 
     useEffect(() => {
         setColorText(color);
@@ -32,7 +45,7 @@ const ChartAveragePB = (props) => {
             const uniqueDates = [...new Set(transformedData?.map(item => item.date))];
             setTimeLine(uniqueDates)
             transformedData?.forEach(item => {
-                if (mappedKeys.includes(item.industry)) {
+                if (industryQuery.includes(item.industry)) {
                     const foundItem = result.find(x => x.name === item.industry);
                     if (foundItem) {
                         foundItem.data.push(+item.PB.toFixed(2));
@@ -104,11 +117,15 @@ const ChartAveragePB = (props) => {
         },
         series: data
     }
+    const handleSelectedNamesChange = (selectedNames) => {
+        setIndustryQuery(selectedNames)
+    };
     return (
         <div>
             {dataChartAveragePB.length ? (
                 <div id="chart-container">
                     <div className="h-[450px] mt-3">
+                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                     </div>
                 </div>
@@ -117,6 +134,9 @@ const ChartAveragePB = (props) => {
                     <div className="mt-14 mb-[379px] grid place-items-center"><Loading /></div>
                 </div>
             )}
+            <div>
+                <TableAveragePB />
+            </div>
         </div>
     )
 }
