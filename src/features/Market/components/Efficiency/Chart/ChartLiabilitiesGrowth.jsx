@@ -119,9 +119,11 @@ const ChartLiabilitiesGrowth = (props) => {
         <div>
             {dataChartLiabilitiesGrowth.length ? (
                 <div>
-                    <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                        <span className='dark:text-white text-black font-semibold xs:text-base xxs:text-sm'>Tăng trưởng nợ phải trả của các ngành (%)</span>
-                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                    <div className='xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                        <span className='dark:text-white text-black font-semibold sm:text-sm xs:text-[13px] xxs:text-sm'>Tăng trưởng nợ phải trả của các ngành (%)</span>
+                        <div className='flex items-center justify-center'>
+                            <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                        </div>
                     </div>
                     <div className="h-[450px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />

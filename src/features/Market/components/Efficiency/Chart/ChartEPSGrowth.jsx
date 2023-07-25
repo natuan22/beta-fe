@@ -130,9 +130,11 @@ const ChartEPSGrowth = (props) => {
         <div>
             {dataChartEPSGrowth.length ? (
                 <div>
-                    <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                        <span className='dark:text-white text-black font-semibold'>Tăng trưởng EPS các ngành qua từng kỳ (%)</span>
-                        <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                    <div className='sm:flex xs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                        <span className='dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-base xxs:text-sm'>Tăng trưởng EPS các ngành qua từng kỳ (%)</span>
+                        <div className='flex items-center justify-center'>
+                            <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                        </div>
                     </div>
                     <div className="h-[450px] mt-3">
                         <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />

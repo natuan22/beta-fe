@@ -23,19 +23,19 @@ const TableAveragePE = () => {
                         <table className="items-center w-full border-collapse bg-transparent">
                             <thead className="bg-[#1E5D8B] z-10" style={{ position: 'sticky', top: 0 }}>
                                 <tr>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] whitespace-nowrap font-semibold text-white">
+                                    <th className="text-center align-middle px-2 py-[19px] text-[13px] whitespace-nowrap font-semibold text-white">
                                         Cổ phiếu
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] font-semibold text-white">
+                                    <th className="text-center align-middle px-2 py-[19px] text-[13px] font-semibold text-white">
                                         EPS 04 quý gần nhất (VNĐ/CP)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] font-semibold text-white">
+                                    <th className="text-center align-middle px-2 py-[19px] text-[13px] font-semibold text-white">
                                         Thay đổi giá qua 04 Quý (%)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] font-semibold text-white">
+                                    <th className="text-center align-middle px-2 py-[19px] text-[13px] font-semibold text-white">
                                         Thay đổi EPS 04 quý liền kề (%)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] font-semibold text-white">
+                                    <th className="text-center align-middle px-2 py-[19px] text-[13px] font-semibold text-white">
                                         P/E (Lần)
                                     </th>
                                 </tr>

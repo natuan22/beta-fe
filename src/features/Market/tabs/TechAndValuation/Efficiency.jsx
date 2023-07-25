@@ -65,7 +65,7 @@ const Efficiency = () => {
 
 
   return (
-    <div className='container mx-auto mt-2 xl:w-full lg:w-[90%] md:w-[90%]'>
+    <div className='container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full'>
       <Checkbox />
       {/* component */}
       {isLoading ? (
@@ -115,10 +115,7 @@ const Efficiency = () => {
                 <ChartCashDividendGrowth />
               </div>
               <div>
-
-                <div>
-                  <ChartEPSGrowth />
-                </div>
+                <ChartEPSGrowth />
               </div>
             </div>
           </div>

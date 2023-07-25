@@ -108,9 +108,11 @@ const ChartMiningProfitMargin = () => {
     };
     return (
         <div>
-            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận gộp biên các ngành  (%)</span>
-                <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+            <div className='xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold sm:text-base xs:text-[13px]'>Tỷ suất lợi nhuận gộp biên các ngành  (%)</span>
+                <div className="flex items-center justify-center">
+                    <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                </div>
             </div>
             {dataChartMiningProfitMargin.length ? (
                 <div className="h-[450px] mt-3">
