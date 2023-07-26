@@ -96,7 +96,7 @@ const NewsFilterTool = () => {
                     </span>
                 </button>
                 <Dialog
-                    fullWidth
+                    fullW idth
                     maxWidth='xl'
                     open={open}
                     TransitionComponent={Transition}

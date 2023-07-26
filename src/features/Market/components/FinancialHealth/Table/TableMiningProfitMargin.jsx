@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { getColor } from '../../../../Chart/utils/utils';
@@ -30,19 +29,19 @@ const TableMiningProfitMargin = (props) => {
                         <table className="items-center w-full border-collapse bg-transparent">
                             <thead className="bg-[#1E5D8B] z-10" style={{ position: 'sticky', top: 0 }}>
                                 <tr>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] whitespace-nowrap font-semibold text-white">
+                                    <th className="text-center align-middle px-2 py-[19px] text-[13px] whitespace-nowrap font-semibold text-white">
                                         Ngành
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] font-semibold text-white">
+                                    <th className="text-center align-middle px-2 py-[19px] text-[13px] font-semibold text-white">
                                         Tỷ suất lợi nhuận gộp biên (%)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] font-semibold text-white">
+                                    <th className="text-center align-middle px-2 py-[19px] text-[13px] font-semibold text-white">
                                         Tỷ suất lợi nhuận ròng (%)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] font-semibold text-white">
+                                    <th className="text-center align-middle px-2 py-[19px] text-[13px] font-semibold text-white">
                                         Lợi nhuận trên tài sản (%)
                                     </th>
-                                    <th className="text-center align-middle px-3 py-[19px] text-[13px] font-semibold text-white">
+                                    <th className="text-center align-middle px-2 py-[19px] text-[13px] font-semibold text-white">
                                         Lợi nhuận trên VCSH (%)
                                     </th>
                                 </tr>
@@ -89,4 +88,4 @@ const TableMiningProfitMargin = (props) => {
     )
 }
 
-export default memo(TableMiningProfitMargin)
+export default TableMiningProfitMargin

@@ -116,5 +116,6 @@ export const chartServices = {
     },
     fetchDataCashFlowAllocation: () => {
         return https.get('/api/v1/chart/market-cash-flow')
-    }
+    },
+
 }

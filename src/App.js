@@ -3,12 +3,13 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { macroRoutes, marketRoute, newsCenterRoutes, routes } from "./app/routes";
+import { macroRoutes, marketRoute, newsCenterRoutes, routes, stockRoutes } from "./app/routes";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { autoLoginWithToken } from "./features/Auth/thunk";
 import { generateMAC } from "./utils/generateMac";
 function App() {
+
   useEffect(() => {
     const deviceId = JSON.parse(localStorage.getItem(localStorage.getItem('DeviceId')))
 
@@ -60,6 +61,13 @@ function App() {
       })}
     </Route>
   })
+  const mapStockRoute = stockRoutes.map(({ path, component: Component, children }) => {
+    return <Route path={path} element={<Component />} key={path}>
+      {children?.map(Item => {
+        return <Route path={Item.path} key={Item.path} element={<Item.component />} />
+      })}
+    </Route>
+  })
   const mapNewsCenterRoute = newsCenterRoutes.map(({ path, component: Component, children }) => {
     return <Route path={path} element={<Component />} key={path}>
       {children?.map(Item => {
@@ -76,6 +84,7 @@ function App() {
         {mapMarketRoute}
         {mapMacroRoute}
         {mapNewsCenterRoute}
+        {mapStockRoute}
       </Routes>
     </BrowserRouter>
   );

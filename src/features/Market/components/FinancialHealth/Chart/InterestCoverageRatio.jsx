@@ -3,20 +3,18 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { hashTb } from './utils/hashTb';
 import Loading from '../../../../Chart/utils/Loading';
+import FilterIndusty from '../../../utils/components/FilterIndusty';
 
-const InterestCoverageRatio = (props) => {
+const InterestCoverageRatio = () => {
     const { dataChartInterestCoverageRatio } = useSelector(state => state.market)
-    const { industryQuery } = props
+    const [industryQuery, setIndustryQuery] = useState([])
     const [data, setData] = useState()
     const [category, setCategory] = useState()
 
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
 
-    const checkIndustry = industryQuery.split(',')
-    const mappedKeys = checkIndustry.map((query) => Object.keys(hashTb).find((key) => hashTb[key] === query));
 
     useEffect(() => {
         setColorText(color);
@@ -31,11 +29,11 @@ const InterestCoverageRatio = (props) => {
                 return { ...item, date: transformedDate };
             });
 
-            const uniqueIndustry = [...new Set(transformedData.filter(item => mappedKeys.includes(item.industry)).map(item => item.industry))];
+            const uniqueIndustry = [...new Set(transformedData.filter(item => industryQuery.includes(item.industry)).map(item => item.industry))];
             const mappedData = [];
 
             transformedData?.forEach(item => {
-                if (mappedKeys.includes(item.industry)) {
+                if (industryQuery.includes(item.industry)) {
                     const colorArr = ['#044DED', '#A8C2FB', '#0F639A', '#6893EF', '#3D78E0', '#1D63DC', '#155AD1', '#0B4DBD', '#0F459F', '#93D2FE', '#78C5FD', '#61BAFE', '#3EADFF', ' #0E97FF', '#005073', '#117DAC', '#189BD3', '#1DBBD6', ' #72C7EC'];
                     const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
 
@@ -125,20 +123,25 @@ const InterestCoverageRatio = (props) => {
 
         series: data,
     };
+    const handleSelectedNamesChange = (selectedNames) => {
+        setIndustryQuery(selectedNames)
+    };
     return (
         <div>
+            <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-[11.8px]'>Hệ số thanh toán lãi vay nợ bình quân của các ngành (%)</span>
+                <div className='flex items-center justify-center'>
+                    <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
+                </div>
+            </div>
             {dataChartInterestCoverageRatio?.length ? (
-                <div id="chart-container">
-                    <div className="h-[640px]">
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                    </div>
+                <div className="h-[803px]">
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div id="chart-container">
-                    <div className="mt-14 mb-[428px] grid place-items-center"><Loading /></div>
-                </div>
+                <div className="h-[803px] flex items-center justify-center"><Loading /></div>
             )}
-        </div>
+        </div >
     )
 }
 
