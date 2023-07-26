@@ -81,7 +81,7 @@ export default function SearchDialog() {
     useEffect(() => {
         if (searchResult) {
             setDataSearchLength(searchResult)
-            setDataSearch(searchResult.slice(0, displayLimit));
+            setDataSearch(Array.isArray(searchResult) && searchResult?.slice(0, displayLimit));
         }
     }, [searchResult, displayLimit])
 
@@ -140,7 +140,7 @@ export default function SearchDialog() {
                         <span className='text-[#e70a0a] text-base'>(-)</span>
                     )}
                     </h4>
-                    {dataSearch?.map((item, index) => {
+                    {Array.isArray(dataSearch) && dataSearch?.map((item, index) => {
                         const characters = item.code.split('');
                         return (
                             <div key={index}>
