@@ -11,6 +11,8 @@ import { handleDebounceSearch } from '../../thunk';
 import { NavLink } from 'react-router-dom';
 import { ImSearch } from "react-icons/im";
 import CloseIcon from '@mui/icons-material/Close';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import Loading from '../../../Chart/utils/Loading';
 const resourceURL = process.env.REACT_APP_RESOURCE_URL
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -50,9 +52,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            width: '12ch',
+            width: '35ch',
             '&:focus': {
-                width: '20ch',
+                width: '55ch',
             },
         },
     },
@@ -61,28 +63,31 @@ export default function SearchDialog() {
     const dispatch = useDispatch()
     const { searchResult } = useSelector(state => state.search)
     const [dataSearch, setDataSearch] = useState()
-    const [isTyping, setIsTyping] = useState('Typing stopped');
+    const [dataSearchLength, setDataSearchLength] = useState()
     const [val, setVal] = useState('');
     const [debouncedValue, setDebouncedValue] = useState('');
     const [open, setOpen] = useState(false);
+    const [displayLimit, setDisplayLimit] = useState(10);
 
     useEffect(() => {
         if (debouncedValue === '') {
             setDataSearch([]);
+            setDataSearchLength([])
+            setDisplayLimit(10)
             return
         }
         dispatch(handleDebounceSearch(debouncedValue))
     }, [debouncedValue])
     useEffect(() => {
-        if (searchResult?.length > 0) {
-            setDataSearch(searchResult)
+        if (searchResult) {
+            setDataSearchLength(searchResult)
+            setDataSearch(searchResult.slice(0, displayLimit));
         }
-    }, [searchResult])
+    }, [searchResult, displayLimit])
 
     // debounce
     const [, cancel] = useDebounce(
         () => {
-            setIsTyping('Typing stopped');
             setDebouncedValue(val);
         },
         500,
@@ -94,6 +99,13 @@ export default function SearchDialog() {
     };
     const handleClose = () => {
         setOpen(false);
+        setDataSearch([]);
+        setDataSearchLength([])
+        setDisplayLimit(10)
+        setVal('')
+    };
+    const handleLoadMore = () => {
+        setDisplayLimit(prevLimit => prevLimit + 10); // Tăng số lượng mục đang hiển thị lên 10
     };
 
     return (
@@ -111,11 +123,10 @@ export default function SearchDialog() {
                             <SearchIcon />
                         </SearchIconWrapper>
                         <StyledInputBase
-                            placeholder="Tìm kiếm…"
+                            placeholder="Tìm kiếm …"
                             value={val}
                             inputProps={{ 'aria-label': 'search' }}
                             onChange={({ currentTarget }) => {
-                                setIsTyping('Waiting for typing to stop...');
                                 setVal(currentTarget.value);
                             }}
                         />
@@ -123,17 +134,18 @@ export default function SearchDialog() {
                     <CloseIcon onClick={handleClose} className='cursor-pointer' />
                 </div>
                 <div className='container mx-auto xl:w-full lg:w-[90%] md:w-[90%]'>
-                    <h4 className='px-4 py-3 text-lg border-solid border-[#f44336] border-b-2 border-t-0 border-x-0'>Mã chứng khoán {dataSearch?.length > 0 ? (
-                        <span className='text-[#e70a0a] text-base'>({dataSearch?.length.toLocaleString('en-US', { maximumFractionDigits: 2 })})</span>
+                    <h4 className='px-4 py-3 text-lg border-solid border-[#f44336] border-b-2 border-t-0 border-x-0'>Mã chứng khoán {dataSearchLength?.length > 0 ? (
+                        <span className='text-[#e70a0a] text-base'>({dataSearchLength?.length.toLocaleString('en-US', { maximumFractionDigits: 2 })})</span>
                     ) : (
                         <span className='text-[#e70a0a] text-base'>(-)</span>
                     )}
                     </h4>
                     {dataSearch?.map((item, index) => {
+                        const characters = item.code.split('');
                         return (
                             <div key={index}>
                                 <NavLink to={`/co-phieu/${item.code}`}
-                                    className='flex no-underline p-3 border-solid border-[#d7d7d7] border-b-[1px] border-t-0 border-x-0 hover:bg-[#ffdead]'>
+                                    className='flex no-underline p-3 border-solid border-[#d7d7d7] border-b-[1px] border-t-0 border-x-0 hover:bg-[#ffdead] transition-all duration-300'>
                                     <div>
                                         <img className='object-contain w-[85px] h-[58px]' src={`${resourceURL}${item.image}`} onError={event => {
                                             event.target.src = `${resourceURL}/resources/stock/logo_default.jpeg`
@@ -142,7 +154,18 @@ export default function SearchDialog() {
                                     </div>
                                     <div className='flex flex-col justify-center pl-2'>
                                         <div>
-                                            <span className='font-semibold'>{item.code}</span>: {item.company_name}
+                                            <span className='font-semibold'>
+                                                {characters.map((character, charIndex) => {
+                                                    // Kiểm tra xem ký tự có trùng khớp với bất kỳ ký tự nào trong debouncedValue không
+                                                    const isHighlighted = debouncedValue.split('').some(debouncedChar => debouncedChar.toLowerCase() === character.toLowerCase());
+
+                                                    return (
+                                                        <span key={charIndex} style={{ color: isHighlighted ? 'red' : '' }}>
+                                                            {character}
+                                                        </span>
+                                                    );
+                                                })}
+                                            </span>: {item.company_name}
                                         </div>
                                         <div className='mt-1.5'>
                                             {item.short_name ? (item.short_name) : (item.code)} | {item.floor}
@@ -153,6 +176,12 @@ export default function SearchDialog() {
                         )
                     })}
                 </div>
+                <div className='grid place-items-center p-2'>
+                    {dataSearchLength?.length > 10 ? <Button variant="outlined" onClick={handleLoadMore}>
+                        Xem thêm <MoreHorizIcon />
+                    </Button> : <></>}
+                </div>
+
             </Dialog>
         </div>
     );
