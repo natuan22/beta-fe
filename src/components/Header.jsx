@@ -6,18 +6,11 @@ import { Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
 import Switcher from "../services/switcher";
+import { ImSearch } from "react-icons/im";
+import SearchDialog from "../features/Search/utils/UIcomponent/SearchDialog";
 const { Search } = Input;
 const apiUrl = process.env.REACT_APP_BASE_URL;
-const hashTbHeader = {
-  "Trang chủ": "/",
-  "Thị trường": "thi-truong",
-  "Ngành": "nganh",
-  "Cổ phiếu": "co-phieu",
-  "Vĩ mô": "vi-mo",
-  "Công cụ đầu tư": "cong-cu-dau-tu",
-  "Trung tâm tin tức": "trung-tam-tin-tuc"
 
-};
 
 const Header = () => {
   const isLogin = useSelector((state) => state.authen.userData);
@@ -31,9 +24,11 @@ const Header = () => {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <a href="http://www.bsi.com.vn"
+                  <a
+                    href="http://www.bsi.com.vn"
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                  >
                     <img
                       className="w-[87px] h-[33px]"
                       src={`${apiUrl}/resources/icons/logo-beta-color.png`}
@@ -45,7 +40,9 @@ const Header = () => {
                 <div className="xl:hidden w-max">
                   <div className="ml-4 flex items-baseline space-x-0">
                     <NavLink
-                      onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
+                      onClick={() => {
+                        if (isOpen) setIsOpen(!isOpen);
+                      }}
                       to="/"
                       className={({ isActive }) =>
                         isActive
@@ -58,12 +55,8 @@ const Header = () => {
                     <div className="xl:flex items-center flex xxs:translate-x-1 xs:translate-y-0 xs:translate-x-2 md:translate-y-[11%] md:translate-x-[55%] lg:translate-y-[11%] lg:translate-x-[124%]">
                       <div className="flex md:flex xs:hidden xxs:hidden">
                         <Switcher />
-                        <BellOutlined
-                          className="ml-2 mt-1 text-[20px] dark:text-white text-black"
-                        />
-                        <MessageOutlined
-                          className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black"
-                        />
+                        <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
+                        <MessageOutlined className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black" />
                       </div>
 
                       <Search
@@ -88,7 +81,6 @@ const Header = () => {
                     </NavLink>
                     <NavLink
                       to="/thi-truong"
-
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
@@ -99,19 +91,16 @@ const Header = () => {
                     </NavLink>
                     <NavLink
                       to="/nganh"
-
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
                           : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
-
                     >
                       Ngành
                     </NavLink>
                     <NavLink
                       to="/co-phieu"
-
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
@@ -122,7 +111,6 @@ const Header = () => {
                     </NavLink>
                     <NavLink
                       to="/vi-mo"
-
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
@@ -143,7 +131,6 @@ const Header = () => {
                     </NavLink>
                     <NavLink
                       to="/trung-tam-tin-tuc"
-
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
@@ -158,21 +145,13 @@ const Header = () => {
                 <div className="hidden xl:flex items-center ml-3 lg:ml-72 xl:ml-16">
                   <div className="flex">
                     <Switcher />
-                    <BellOutlined
-                      className="ml-2 mt-1 text-[20px] dark:text-white text-black"
-                    />
-                    <MessageOutlined
-                      className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black"
-                    />
+                    <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
+                    <MessageOutlined className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black" />
                   </div>
 
-                  <Search
-                    placeholder="Tìm mã chứng khoán"
-                    className=""
-                    style={{
-                      width: 200,
-                    }}
-                  />
+                  <span>
+                    <SearchDialog />
+                  </span>
                 </div>
                 <div className="hidden xl:block">
                   {isLogin?.data ? (
@@ -269,7 +248,9 @@ const Header = () => {
               <div className="xl:hidden" id="mobile-menu">
                 <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-2">
                   <NavLink
-                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
+                    onClick={() => {
+                      if (isOpen) setIsOpen(!isOpen);
+                    }}
                     to="/thi-truong"
                     className={({ isActive }) =>
                       isActive
@@ -281,7 +262,9 @@ const Header = () => {
                   </NavLink>
 
                   <NavLink
-                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
+                    onClick={() => {
+                      if (isOpen) setIsOpen(!isOpen);
+                    }}
                     to="/nganh"
                     className={({ isActive }) =>
                       isActive
@@ -293,7 +276,9 @@ const Header = () => {
                   </NavLink>
 
                   <NavLink
-                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
+                    onClick={() => {
+                      if (isOpen) setIsOpen(!isOpen);
+                    }}
                     to="/co-phieu"
                     className={({ isActive }) =>
                       isActive
@@ -305,7 +290,9 @@ const Header = () => {
                   </NavLink>
 
                   <NavLink
-                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
+                    onClick={() => {
+                      if (isOpen) setIsOpen(!isOpen);
+                    }}
                     to="/vi-mo"
                     className={({ isActive }) =>
                       isActive
@@ -317,7 +304,9 @@ const Header = () => {
                   </NavLink>
 
                   <NavLink
-                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
+                    onClick={() => {
+                      if (isOpen) setIsOpen(!isOpen);
+                    }}
                     to="/cong-cu-dau-tu"
                     className={({ isActive }) =>
                       isActive
@@ -329,7 +318,9 @@ const Header = () => {
                   </NavLink>
 
                   <NavLink
-                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
+                    onClick={() => {
+                      if (isOpen) setIsOpen(!isOpen);
+                    }}
                     to="/trung-tam-tin-tuc"
                     className={({ isActive }) =>
                       isActive
@@ -340,7 +331,9 @@ const Header = () => {
                     Trung tâm tin tức
                   </NavLink>
                   <NavLink
-                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
+                    onClick={() => {
+                      if (isOpen) setIsOpen(!isOpen);
+                    }}
                     to="/signin"
                     className={({ isActive }) =>
                       isActive
@@ -351,7 +344,9 @@ const Header = () => {
                     Sign in
                   </NavLink>
                   <NavLink
-                    onClick={() => { if (isOpen) setIsOpen(!isOpen) }}
+                    onClick={() => {
+                      if (isOpen) setIsOpen(!isOpen);
+                    }}
                     to="/signup"
                     className={({ isActive }) =>
                       isActive
@@ -363,12 +358,8 @@ const Header = () => {
                   </NavLink>
                   <div className="flex md:hidden xs:flex">
                     <Switcher />
-                    <BellOutlined
-                      className="ml-2 mt-1 text-[20px] dark:text-white text-black"
-                    />
-                    <MessageOutlined
-                      className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black"
-                    />
+                    <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
+                    <MessageOutlined className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black" />
                   </div>
                   <Search
                     placeholder="Tìm mã chứng khoán"
