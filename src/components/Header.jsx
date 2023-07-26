@@ -38,7 +38,7 @@ const Header = () => {
                 </div>
                 {/* phone */}
                 <div className="xl:hidden w-max">
-                  <div className="ml-4 flex items-baseline space-x-0">
+                  <div className="ml-4 flex items-center space-x-0">
                     <NavLink
                       onClick={() => {
                         if (isOpen) setIsOpen(!isOpen);
@@ -52,17 +52,15 @@ const Header = () => {
                     >
                       Trang chủ
                     </NavLink>
-                    <div className="xl:flex items-center flex xxs:translate-x-1 xs:translate-y-0 xs:translate-x-2 md:translate-y-[11%] md:translate-x-[55%] lg:translate-y-[11%] lg:translate-x-[124%]">
-                      <div className="flex md:flex xs:hidden xxs:hidden">
+                    <div className="xl:flex items-center flex xxs:translate-x-1 xs:translate-x-7 md:translate-x-[330%] lg:translate-x-[520%]">
+                      <div className="flex sm:flex xs:hidden xxs:hidden">
                         <Switcher />
                         <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
                         <MessageOutlined className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black" />
+                        <span className="grid place-items-center">
+                          <SearchDialog />
+                        </span>
                       </div>
-
-                      <Search
-                        placeholder="Tìm mã chứng khoán"
-                        className="xxs:hidden xs:block xs:w-[100px] sm:w-[150px] md:w-[200px] lg:w-[200px]"
-                      />
                     </div>
                   </div>
                 </div>
@@ -356,15 +354,14 @@ const Header = () => {
                   >
                     Sign up
                   </NavLink>
-                  <div className="flex md:hidden xs:flex">
+                  <div className="flex sm:hidden xs:flex xxs:flex px-2 py-2">
                     <Switcher />
                     <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
                     <MessageOutlined className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black" />
+                    <span className="grid place-items-center">
+                      <SearchDialog />
+                    </span>
                   </div>
-                  <Search
-                    placeholder="Tìm mã chứng khoán"
-                    className="xxs:block xs:hidden"
-                  />
                 </div>
               </div>
             )}

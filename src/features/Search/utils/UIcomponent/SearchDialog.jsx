@@ -8,6 +8,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useDebounce } from 'react-use';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleDebounceSearch } from '../../thunk';
+import { NavLink } from 'react-router-dom';
+import { ImSearch } from "react-icons/im";
+import CloseIcon from '@mui/icons-material/Close';
 const resourceURL = process.env.REACT_APP_RESOURCE_URL
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -95,9 +98,7 @@ export default function SearchDialog() {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Open full-screen dialog
-            </Button>
+            <ImSearch onClick={handleClickOpen} className='cursor-pointer dark:text-white text-black text-[19px] ml-0.5 hover:dark:text-blue-400 hover:text-blue-400 transition-all duration-200' />
             <Dialog
                 fullScreen
                 open={open}
@@ -119,24 +120,35 @@ export default function SearchDialog() {
                             }}
                         />
                     </Search>
-                    <Button autoFocus color="inherit" onClick={handleClose}>
-                        Close
-                    </Button>
+                    <CloseIcon onClick={handleClose} className='cursor-pointer' />
                 </div>
-
-                <div>
+                <div className='container mx-auto xl:w-full lg:w-[90%] md:w-[90%]'>
+                    <h4 className='px-4 py-3 text-lg border-solid border-[#f44336] border-b-2 border-t-0 border-x-0'>Mã chứng khoán {dataSearch?.length > 0 ? (
+                        <span className='text-[#e70a0a] text-base'>({dataSearch?.length.toLocaleString('en-US', { maximumFractionDigits: 2 })})</span>
+                    ) : (
+                        <span className='text-[#e70a0a] text-base'>(-)</span>
+                    )}
+                    </h4>
                     {dataSearch?.map((item, index) => {
                         return (
                             <div key={index}>
-                                <img width={125} height={80} src={`${resourceURL}${item.image}`} onError={event => {
-                                    event.target.src = "https://default-image-link-goes-here"
-                                    event.onerror = null
-                                }} alt="companyImg" />
-                                <div>
-                                    <span>
-                                        {item.company_name}
-                                    </span>
-                                </div>
+                                <NavLink to={`/co-phieu/${item.code}`}
+                                    className='flex no-underline p-3 border-solid border-[#d7d7d7] border-b-[1px] border-t-0 border-x-0 hover:bg-[#ffdead]'>
+                                    <div>
+                                        <img className='object-contain w-[85px] h-[58px]' src={`${resourceURL}${item.image}`} onError={event => {
+                                            event.target.src = `${resourceURL}/resources/stock/logo_default.jpeg`
+                                            event.onerror = null
+                                        }} alt="companyImg" />
+                                    </div>
+                                    <div className='flex flex-col justify-center pl-2'>
+                                        <div>
+                                            <span className='font-semibold'>{item.code}</span>: {item.company_name}
+                                        </div>
+                                        <div className='mt-1.5'>
+                                            {item.short_name ? (item.short_name) : (item.code)} | {item.floor}
+                                        </div>
+                                    </div>
+                                </NavLink>
                             </div>
                         )
                     })}
