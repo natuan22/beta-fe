@@ -4,13 +4,11 @@ import MacroTabs from './utils/MacroTabs';
 import { Outlet, useLocation } from 'react-router-dom';
 import InternationalIndex from '../Chart/components/InternationalIndex';
 import News from '../Chart/components/News';
-import { fetchDataInternationalIndex, fetchDataNews } from '../Chart/thunk';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Footer from "../../components/Footer";
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Macro = () => {
-    const dispatch = useDispatch()
     const location = useLocation()
     const color = useSelector((state) => state.color.colorTheme);
 

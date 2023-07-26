@@ -25,13 +25,14 @@ import NewsFilterTool from "../features/NewsCenter/tabs/NewsFilterTool";
 import EnterpriseNews from "../features/NewsCenter/tabs/EnterpriseNews";
 import AnalyzeReport from "../features/NewsCenter/tabs/AnalyzeReport";
 import MacroNews from "../features/NewsCenter/tabs/MacroNews";
+import Stock from "../features/Stock/Stock";
+import StockDetail from "../features/Stock/StockDetail";
 
 export const routes = [
   { path: "/", component: Home },
 
   // navigation tab
   { path: "/nganh", component: Nav1 },
-  { path: "/co-phieu", component: Nav2 },
   { path: "/vi-mo", component: Macro },
   { path: "/cong-cu-dau-tu", component: Nav4 },
 
@@ -40,6 +41,8 @@ export const routes = [
   { path: "/signin", component: Signin },
   { path: "/signup", component: Signup },
 ];
+
+
 
 export const marketRoute = [
   // market
@@ -116,3 +119,12 @@ export const newsCenterRoutes = [
 ]
 
 
+export const stockRoutes = [
+  {
+    path: "/co-phieu", component: Stock,
+  },
+  {
+    path: "/co-phieu/:code", component: StockDetail
+  },
+
+]
