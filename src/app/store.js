@@ -7,6 +7,7 @@ import macroReducer from '../features/Macro/macroSlice'
 import newsCenterReducer from '../features/NewsCenter/newsCenterSlice'
 import rootColor from '../services/servicesSlice'
 import searchReducer from '../features/Search/searchSlice'
+import stockReducer from '../features/Stock/stockSlice'
 const reducer = combineReducers({
   chart: chartReducer,
   authen: authenReducer,
@@ -14,8 +15,8 @@ const reducer = combineReducers({
   macro: macroReducer,
   newsCenter: newsCenterReducer,
   color: rootColor,
-  search: searchReducer
-
+  search: searchReducer,
+  stock: stockReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

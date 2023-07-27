@@ -21,7 +21,7 @@ const Header = () => {
       <div className=" relative">
         <nav className="dark:bg-black bg-white shadow-md mb-1">
           <div className="max-w-[85rem] mx-auto px-4 xl:px-7 lg:px-8">
-            <div className="flex items-center justify-between h-16">
+            <div className="flex items-center justify-between w-full h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <a
@@ -38,7 +38,7 @@ const Header = () => {
                 </div>
                 {/* phone */}
                 <div className="xl:hidden w-max">
-                  <div className="ml-4 flex items-center space-x-0">
+                  <div className="ml-4 flex items-center justify-between lg:w-[800px] md:w-[575px] sm:w-[227px] space-x-0">
                     <NavLink
                       onClick={() => {
                         if (isOpen) setIsOpen(!isOpen);
@@ -52,7 +52,7 @@ const Header = () => {
                     >
                       Trang chủ
                     </NavLink>
-                    <div className="xl:flex items-center flex xxs:translate-x-1 xs:translate-x-7 md:translate-x-[330%] lg:translate-x-[520%]">
+                    <div className="xl:flex items-center flex">
                       <div className="flex sm:flex xs:hidden xxs:hidden">
                         <Switcher />
                         <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
@@ -140,7 +140,7 @@ const Header = () => {
                   </div>
                   {/* login */}
                 </div>
-                <div className="hidden xl:flex items-center ml-3 lg:ml-72 xl:ml-16">
+                <div className="hidden xl:flex items-center ml-3 xl:ml-[250px]">
                   <div className="flex">
                     <Switcher />
                     <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
@@ -170,7 +170,7 @@ const Header = () => {
                             : "ml-2 no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                         }
                       >
-                        Sign in
+                        Đăng nhập
                       </NavLink>
                       <NavLink
                         to="/signup"
@@ -180,7 +180,7 @@ const Header = () => {
                             : "ml-2 no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                         }
                       >
-                        Sign up
+                        Đăng ký
                       </NavLink>
                     </div>
                   )}
@@ -339,7 +339,7 @@ const Header = () => {
                         : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
-                    Sign in
+                    Đăng nhập
                   </NavLink>
                   <NavLink
                     onClick={() => {
@@ -352,7 +352,7 @@ const Header = () => {
                         : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
-                    Sign up
+                    Đăng ký
                   </NavLink>
                   <div className="flex sm:hidden xs:flex xxs:flex px-2 py-2">
                     <Switcher />
