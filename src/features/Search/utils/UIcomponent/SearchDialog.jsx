@@ -144,7 +144,9 @@ export default function SearchDialog() {
                         const characters = item.code.split('');
                         return (
                             <div key={index}>
-                                <NavLink to={`/co-phieu/${item.code}`}
+                                <NavLink
+                                    onClick={handleClose}
+                                    to={`/co-phieu/${item.code}`}
                                     className='flex no-underline p-3 border-solid border-[#d7d7d7] border-b-[1px] border-t-0 border-x-0 hover:bg-[#ffdead] transition-all duration-300'>
                                     <div>
                                         <img className='object-contain w-[85px] h-[58px]' src={`${resourceURL}${item.image}`} onError={event => {

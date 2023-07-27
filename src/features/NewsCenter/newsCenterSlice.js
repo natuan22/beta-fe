@@ -15,7 +15,6 @@ const reducer = (state = initialState, { type, payload }) => {
     if (type === newsCenterType.FETCH_DATA_TABLE_EVENTS) {
       draft.dataTableEvents = payload
     }
-
     if (type === newsCenterType.FETCH_NEWS_TOOL) {
       draft.newsTool = payload
     }
