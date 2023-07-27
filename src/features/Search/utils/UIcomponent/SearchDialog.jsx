@@ -146,7 +146,7 @@ export default function SearchDialog() {
                             <div key={index}>
                                 <NavLink
                                     onClick={handleClose}
-                                    to={`/co-phieu/${item.code}`}
+                                    to={`/co-phieu/${item.code}-${item.type}`}
                                     className='flex no-underline p-3 border-solid border-[#d7d7d7] border-b-[1px] border-t-0 border-x-0 hover:bg-[#ffdead] transition-all duration-300'>
                                     <div>
                                         <img className='object-contain w-[85px] h-[58px]' src={`${resourceURL}${item.image}`} onError={event => {

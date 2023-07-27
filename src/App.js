@@ -21,6 +21,7 @@ function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     // data local để giữ trạng thái user để call api ở chỉ số thị trường
+    localStorage.setItem('userTabStockDetail', 1)
     localStorage.setItem('userTabCurrent', 0)
     localStorage.setItem('userNewsCenterMacroTabCurrent', 0)
     localStorage.setItem('userAnalyzeReportTabCurrent', 0)

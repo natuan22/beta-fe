@@ -50,8 +50,6 @@ function DomesticMacro() {
         }
     }, [activeTab]);
 
-
-
     return (
         <div className='tab container mx-auto'>
             <Box sx={{ width: '100%', typography: 'body1', bgcolor: 'transparent' }} className='pt-1' id='domesticMacro'>
