@@ -58,6 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             },
         },
     },
+    boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
 }));
 export default function SearchDialog() {
     const dispatch = useDispatch()
@@ -68,7 +69,6 @@ export default function SearchDialog() {
     const [debouncedValue, setDebouncedValue] = useState('');
     const [open, setOpen] = useState(false);
     const [displayLimit, setDisplayLimit] = useState(10);
-
     useEffect(() => {
         if (debouncedValue === '') {
             setDataSearch([]);
@@ -117,13 +117,14 @@ export default function SearchDialog() {
                 onClose={handleClose}
                 TransitionComponent={Transition}
             >
-                <div className='flex justify-around items-center bg-slate-500' >
+                <div className='flex justify-around items-center bg-slate-500 p-5' >
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder="Tìm kiếm …"
+                            autoFocus={true}
                             value={val}
                             inputProps={{ 'aria-label': 'search' }}
                             onChange={({ currentTarget }) => {

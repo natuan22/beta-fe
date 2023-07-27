@@ -7,7 +7,7 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
     return produce(state, (draft) => {
         if (type === stockType.FETCH_DATA_INFO_HEADER) {
-            draft.dataTableEvents = payload
+            draft.dataInfoHeader = payload
         }
     });
 };
