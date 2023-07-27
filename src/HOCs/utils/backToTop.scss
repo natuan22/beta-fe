@@ -1,0 +1,50 @@
+.btnBackToTop-container {
+  .icon-container {
+    .icon-1 {
+      transform: translateY(20);
+      transition: all 0.5s;
+      z-index: -1;
+    }
+    .icon-2 {
+      transform: translateY(0);
+      transition: all 0.5s;
+      z-index: -1;
+    }
+    .icon-3 {
+      transform: translateY(-20);
+      transition: all 0.5s;
+      z-index: -1;
+    }
+  }
+  &:hover {
+    .icon-1 {
+      transform: translateY(-35px);
+      transition: all 0.5s;
+      animation: color_anim 1s infinite 0.2s;
+    }
+    .icon-2 {
+      transform: translateY(-45px);
+      transition: all 0.5s;
+      animation: color_anim 1s infinite 0.4s;
+    }
+    .icon-3 {
+      transform: translateY(-55px);
+      transition: all 0.5s;
+      animation: color_anim 1s infinite 0.6s;
+    }
+  }
+}
+
+@keyframes color_anim {
+  0% {
+    color: white;
+  }
+
+  50% {
+    color: black;
+  }
+
+  100% {
+    color: white;
+  }
+}
