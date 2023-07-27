@@ -1,20 +1,16 @@
 import React, { useEffect } from 'react'
 import { getColor } from '../../Chart/utils/utils'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import { fetchDataInfoHeader } from '../thunk'
 const resourceURL = process.env.REACT_APP_RESOURCE_URL
 
-const StockInfo = () => {
+const StockInfo = (props) => {
     const dispatch = useDispatch()
-    const { code } = useParams()
     const { dataInfoHeader } = useSelector((state) => state.stock);
 
     useEffect(() => {
-        if (code) {
-            dispatch(fetchDataInfoHeader(code));
-        }
-    }, [dispatch, code]);
+        dispatch(fetchDataInfoHeader(props.codeSearch));
+    }, [dispatch]);
 
     return (
         <div>

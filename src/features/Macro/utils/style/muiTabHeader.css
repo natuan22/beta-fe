@@ -21,9 +21,10 @@
   background-color: #35adf2 !important;
   border-radius: 1.5rem !important;
 } */
-.MuiTouchRipple-root {
+#domesticMacro .MuiTouchRipple-root {
   border-radius: 1.5rem !important;
 }
+
 #domesticMacro .MuiButtonBase-root {
   color: white !important;
   margin-left: 3px !important;
