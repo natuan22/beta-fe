@@ -9,8 +9,8 @@ const StockInfo = (props) => {
     const { dataInfoHeader } = useSelector((state) => state.stock);
 
     useEffect(() => {
-        dispatch(fetchDataInfoHeader(props.codeSearch));
-    }, [dispatch]);
+        dispatch(fetchDataInfoHeader(props.codeSearch.split('-')[0]));
+    }, [dispatch, props]);
 
     return (
         <div>
