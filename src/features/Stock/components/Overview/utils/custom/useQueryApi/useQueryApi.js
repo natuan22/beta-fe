@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 const useQueryApi = (codeUrl) => {
   const [queryApi, setQueryApi] = useState({
@@ -21,7 +21,6 @@ const useQueryApi = (codeUrl) => {
   };
 
   useEffect(() => {
-    // Cập nhật lại props cho các component con khi codeUrl thay đổi
     setQueryApi({
       stock: codeUrl.split('-')[0],
       type: codeUrl.split('-')[1],
@@ -33,15 +32,7 @@ const useQueryApi = (codeUrl) => {
     });
   }, [codeUrl]);
 
-  // Sử dụng useMemo để lưu giá trị và hàm của custom hook
-  const memoizedHook = useMemo(() => ({
-    queryApi,
-    queryApiSameIndustry,
-    handleQueryApiOrder,
-    handleQueryApiExchange
-  }), [queryApi, queryApiSameIndustry, handleQueryApiOrder, handleQueryApiExchange]);
-
-  return memoizedHook;
+  return { queryApi, queryApiSameIndustry, handleQueryApiOrder, handleQueryApiExchange };
 };
 
 export default useQueryApi;

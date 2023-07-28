@@ -8,8 +8,9 @@ import CashFlow from '../components/Overview/CashFlow';
 import FinancialIndicators from '../components/Overview/FinancialIndicators';
 import SameIndustry from '../components/Overview/SameIndustry';
 import Events from '../components/Overview/Events';
-import { Popover } from 'antd';
+import Loading from '../../Chart/utils/Loading';
 import useQueryApi from '../components/Overview/utils/custom/useQueryApi/useQueryApi';
+import { Popover } from 'antd';
 const contentTransactionStatistics = (
   <div>
     <span className='text-black font-medium rounded-lg text-sm bg-white p-2 '>
@@ -25,7 +26,17 @@ const contentNewsAndEvent = (
   </div>
 );
 const Overview = ({ handleTabClick, codeUrl }) => {
+  const [isLoading, setIsLoading] = useState(false)
+
+
+
   const { queryApi, queryApiSameIndustry, handleQueryApiOrder, handleQueryApiExchange } = useQueryApi(codeUrl);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(true)
+    }, 700)
+  }, [])
   const handleGoToTransactionStatistics = () => {
     handleTabClick('2')
   }
@@ -33,81 +44,15 @@ const Overview = ({ handleTabClick, codeUrl }) => {
     handleTabClick('4')
   }
   return (
-    <div className='pt-4'>
-      <div>
-        <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-          <span className='dark:text-white text-black font-semibold uppercase'>Thống kê giao dịch</span>
-          <Popover content={contentTransactionStatistics} >
-            <span className='ml-52 text-[#E4E81D] cursor-pointer ' onClick={handleGoToTransactionStatistics}><DoubleRightOutlined /></span>
-          </Popover>
-        </span>
-        <TableTransactionStatistics codeSearch={queryApi.stock} />
-      </div>
-      <div className='grid grid-cols-2 mt-8'>
-        <div>
-          <div className='flex'>
-            <div className='w-[115px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold uppercase'>Tài chính</span>
-            </div>
-            <button className="custom-btn btn-2 ml-7" onClick={() => handleQueryApiOrder(0)}>Theo quý</button>
-            <button className="custom-btn btn-2 ml-5" onClick={() => handleQueryApiOrder(1)}>Theo năm</button>
-          </div>
-          <div className='h-[300px] dark:text-white text-black'>
-            <BusinessResults queryApi={queryApi} />
-          </div>
-          <div className='h-[300px] dark:text-white text-black'>
-            <BalanceSheet />
-          </div>
-          <div className='h-[300px] dark:text-white text-black'>
-            <CashFlow />
-          </div>
-          <div className='h-[300px] dark:text-white text-black'>
-            <FinancialIndicators codeUrl={queryApi.stock} />
-
-const Overview = ({ handleTabClick, codeUrl }) => {
-  const [isLoading, setIsLoading] = useState(false)
-
-  const handleClickToTransactionStatistics = () => {
-    handleTabClick('2')
-  }
-
-  const handleClickToEvents = () => {
-    handleTabClick('4')
-  }
-
-  const [queryApi, setQueryApi] = useState({
-    stock: codeUrl.split('-')[0],
-    type: codeUrl.split('-')[1],
-    order: 0
-  })
-
-  const [queryApiSameIndustry, setQueryApiSameIndustry] = useState({
-    stock: codeUrl.split('-')[0],
-    exchange: 'hose'
-  })
-
-  const handleQueryApiOrder = (order) => {
-    setQueryApi((prev) => ({ ...prev, order }));
-  };
-
-  const handleQueryApiExchange = (exchange) => {
-    setQueryApiSameIndustry((prev) => ({ ...prev, exchange }));
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(true)
-    }, 700)
-  }, [])
-
-  return (
     <div>
       {isLoading ? (
         <div className='mt-4'>
           <div>
             <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold uppercase'>Thống kê giao dịch</span>
-              <span className='ml-52 text-[#E4E81D] cursor-pointer' onClick={handleClickToTransactionStatistics}><DoubleRightOutlined /></span>
+              <Popover content={contentTransactionStatistics} >
+                <span className='ml-52 text-[#E4E81D] cursor-pointer ' onClick={handleGoToTransactionStatistics}><DoubleRightOutlined /></span>
+              </Popover>
             </span>
             <TableTransactionStatistics codeSearch={queryApi.stock} />
           </div>
@@ -156,7 +101,9 @@ const Overview = ({ handleTabClick, codeUrl }) => {
               <div className='mt-6'>
                 <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                   <span className='dark:text-white text-black font-semibold uppercase'>Lịch sự kiện</span>
-                  <span className='ml-52 text-[#E4E81D] cursor-pointer' onClick={handleClickToEvents}><DoubleRightOutlined /></span>
+                  <Popover content={contentNewsAndEvent}>
+                    <span className='ml-52 text-[#E4E81D] cursor-pointer' onClick={handleGoToNewsAndEvent}><DoubleRightOutlined /></span>
+                  </Popover>
                 </span>
                 <div>
                   <Events codeSearch={queryApi.stock} />
@@ -166,10 +113,6 @@ const Overview = ({ handleTabClick, codeUrl }) => {
           </div>
           <div>
             <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-              <span className='dark:text-white text-black font-semibold uppercase'>Lịch sự kiện</span>
-              <Popover content={contentNewsAndEvent}>
-                <span className='ml-52 text-[#E4E81D] cursor-pointer' onClick={handleGoToNewsAndEvent}><DoubleRightOutlined /></span>
-              </Popover>
               <span className='dark:text-white text-black font-semibold uppercase'>Hồ sơ doanh nghiệp</span>
             </span>
             <div className='h-[344px] bg-[#78898B] mt-4'></div>
