@@ -69,7 +69,6 @@ export default function SearchDialog() {
     const [debouncedValue, setDebouncedValue] = useState('');
     const [open, setOpen] = useState(false);
     const [displayLimit, setDisplayLimit] = useState(10);
-    const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         if (debouncedValue === '') {
             setDataSearch([]);
@@ -90,7 +89,6 @@ export default function SearchDialog() {
     const [, cancel] = useDebounce(
         () => {
             // console.log("do sth")
-            setIsLoading(true)
             setDebouncedValue(val);
         },
         500,
