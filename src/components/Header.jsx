@@ -98,7 +98,7 @@ const Header = () => {
                       Ngành
                     </NavLink>
                     <NavLink
-                      to="/co-phieu"
+                      to="/co-phieu/HPG-CTCP"
                       className={({ isActive }) =>
                         isActive
                           ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"

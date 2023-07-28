@@ -69,6 +69,7 @@ export default function SearchDialog() {
     const [debouncedValue, setDebouncedValue] = useState('');
     const [open, setOpen] = useState(false);
     const [displayLimit, setDisplayLimit] = useState(10);
+    const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         if (debouncedValue === '') {
             setDataSearch([]);
@@ -88,6 +89,8 @@ export default function SearchDialog() {
     // debounce
     const [, cancel] = useDebounce(
         () => {
+            console.log("do sth")
+            setIsLoading(true)
             setDebouncedValue(val);
         },
         500,
@@ -184,7 +187,7 @@ export default function SearchDialog() {
                         Xem thêm <MoreHorizIcon />
                     </Button> : <></>}
                 </div>
-
+                {dataSearchLength?.length < 0 ? <div><Loading /></div> : <></>}
             </Dialog>
         </div>
     );
