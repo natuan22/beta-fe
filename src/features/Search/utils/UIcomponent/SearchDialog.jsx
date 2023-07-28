@@ -89,7 +89,7 @@ export default function SearchDialog() {
     // debounce
     const [, cancel] = useDebounce(
         () => {
-            console.log("do sth")
+            // console.log("do sth")
             setIsLoading(true)
             setDebouncedValue(val);
         },
