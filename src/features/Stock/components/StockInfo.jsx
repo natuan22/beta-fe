@@ -10,7 +10,7 @@ const StockInfo = (props) => {
 
     useEffect(() => {
         dispatch(fetchDataInfoHeader(props.codeSearch));
-    }, [dispatch]);
+    }, [dispatch, props]);
 
     return (
         <div>
@@ -74,7 +74,7 @@ const StockInfo = (props) => {
             </div>
             <hr className="h-px my-7 bg-[#34A3F3] border-0"></hr>
             <div className='flex mb-7'>
-                <div className='bg-[#E4E81D] px-9 py-2 rounded-xl font-semibold'>{dataInfoHeader.code}</div>
+                <div className={` bg-[#E4E81D] px-9 py-2 rounded-xl font-semibold`}>{dataInfoHeader.code}</div>
                 <div className='bg-[#E4E81D] ml-4 px-24 py-2 rounded-xl font-semibold'>{dataInfoHeader.industry}</div>
             </div>
             <div className='grid grid-cols-12 gap-3'>

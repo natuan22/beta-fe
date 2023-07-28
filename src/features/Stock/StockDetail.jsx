@@ -36,7 +36,6 @@ const StockDetail = () => {
         setActiveTab(value);
         localStorage.setItem('userTabStockDetail', value)
     };
-
     useEffect(() => {
         const activeButton = tabsRef.current[activeTab];
         const movingBackground = document.querySelector('.moving-background');
@@ -69,11 +68,11 @@ const StockDetail = () => {
                                 </TabList>
                             </Box>
 
-                            <TabPanel value="0"><QuickAnalysis /></TabPanel>
-                            <TabPanel value="1"><Overview /></TabPanel>
+                            <TabPanel value="0"> <QuickAnalysis /></TabPanel>
+                            <TabPanel value="1"> <Overview /></TabPanel>
                             <TabPanel value="2"><TransactionStatistics /></TabPanel>
-                            <TabPanel value="3"><BusinessFinance /></TabPanel>
-                            <TabPanel value="4"><NewsAndEvent /></TabPanel>
+                            <TabPanel value="3"> <BusinessFinance /></TabPanel>
+                            <TabPanel value="4"> <NewsAndEvent /></TabPanel>
                         </TabContext>
                     </Box>
                 </div>
