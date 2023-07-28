@@ -68,7 +68,7 @@ const StockInfo = (props) => {
                                 <p className={`${getColor(dataInfoHeader.p_month)}`}>{dataInfoHeader.p_month && dataInfoHeader.p_month.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
                             </td>
                             <td className='dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid font-bold'>
-                                <p className={`${getColor(dataInfoHeader.p_year)}`}>{dataInfoHeader.p_year && dataInfoHeader.p_year.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+                                <p className={`${getColor(dataInfoHeader.p_year)}`}>{dataInfoHeader.p_year && dataInfoHeader.p_year.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 3 })}%</p>
                             </td>
                         </tr>
                     </tbody>

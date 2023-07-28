@@ -15,6 +15,49 @@ export const stockService = {
             }
         })
     },
+    fetchDataBusinessResults: (stock, order, type) => {
+        return https.get('api/v1/shares/ket-qua-kinh-doanh', {
+            params: {
+                stock,
+                order,
+                type
+            }
+        })
+    },
+    fetchDataBalanceSheet: (stock, order, type) => {
+        return https.get('api/v1/shares/can-doi-ke-toan', {
+            params: {
+                stock,
+                order,
+                type
+            }
+        })
+    },
+    fetchDataCashFlow: (stock, order, type) => {
+        return https.get('api/v1/shares/can-doi-ke-toan', {
+            params: {
+                stock,
+                order,
+                type
+            }
+        })
+    },
+    fetchDataSameIndustry: (stock, exchange) => {
+        return https.get('api/v1/shares/doanh-nghiep-cung-nganh', {
+            params: {
+                stock,
+                exchange
+            }
+        })
+    },
+    fetchDataEvents: (stock) => {
+        return https.get('api/v1/shares/lich-su-kien', {
+
+            params: {
+                stock
+            }
+        })
+    },
     fetchDataFinancialIndicators: (stock) => {
         return https.get('/api/v1/shares/chi-so-tai-chinh', {
             params: {

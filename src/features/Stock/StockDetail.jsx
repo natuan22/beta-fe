@@ -13,6 +13,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import './utils/style/muiTabHeader.css'
 import { useParams } from 'react-router-dom'
+import Footer from '../../components/Footer'
 export const hashTb = {
     'PHÂN TÍCH NHANH': '0',
     'TỔNG QUAN': '1',
@@ -24,6 +25,7 @@ export const hashTb = {
 const StockDetail = () => {
     const { code } = useParams()
     const [codeVal, setCodeVal] = useState(code)
+
     const [activeTab, setActiveTab] = useState(localStorage.getItem('userTabStockDetail'));
     const tabsRef = useRef([]);
     useEffect(() => {
@@ -70,6 +72,7 @@ const StockDetail = () => {
                         </TabContext>
                     </Box>
                 </div>
+                <Footer />
             </div>
         </LayOut>
     )
