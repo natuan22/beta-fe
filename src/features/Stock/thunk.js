@@ -25,6 +25,18 @@ export const fetchDataTableTransactionStatistics = (stock) => async (dispatch) =
     }
 }
 
+export const fetchDataFinancialIndicators = (stock) => async dispatch => {
+    try {
+        const res = await stockService.fetchDataFinancialIndicators(stock)
+        console.log(res)
+        dispatch({
+            type: stockType.FETCH_DATA_FINANCIAL_INDICATORS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
 export const fetchDataBusinessResults = (stock, order, type) => async (dispatch) => {
     try {
         const res = await stockService.fetchDataBusinessResults(stock, order, type)

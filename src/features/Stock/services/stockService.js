@@ -52,9 +52,17 @@ export const stockService = {
     },
     fetchDataEvents: (stock) => {
         return https.get('api/v1/shares/lich-su-kien', {
+
             params: {
                 stock
             }
         })
     },
+    fetchDataFinancialIndicators: (stock) => {
+        return https.get('/api/v1/shares/chi-so-tai-chinh', {
+            params: {
+                stock
+            }
+        })
+    }
 }
