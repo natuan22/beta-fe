@@ -55,7 +55,7 @@ const TableTransactionStatistics = ({ codeSearch }) => {
             dataIndex: 'klgd',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.klgd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.klgd.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
             },
         },
         {
@@ -102,6 +102,7 @@ const TableTransactionStatistics = ({ codeSearch }) => {
                         columns={columns}
                         dataSource={data}
                         pagination={false}
+                        className='table-stock-detail'
                     />
                 </div>
             ) : (

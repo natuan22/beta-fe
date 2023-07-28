@@ -1,0 +1,72 @@
+.table-stock-detail .ant-table-thead .ant-table-cell {
+  background-color: #0055B6 !important;
+  color: white !important;
+  padding: 19.5px 19.5px !important;
+}
+
+.table-stock-detail .ant-table-row .ant-table-cell {
+  padding: 16.6px 16.6px !important;
+}
+
+.table-stock-detail .ant-table-wrapper .ant-table {
+  background-color: transparent !important;
+}
+
+.table-stock-detail .ant-table-column-sort {
+  background-color: transparent !important;
+}
+
+.table-stock-detail .ant-table-cell-row:hover {
+  background-color: transparent !important;
+}
+
+.table-stock-detail .ant-table-tbody .ant-table-row {
+  background-color: transparent !important;
+}
+
+.table-stock-detail .ant-dropdown-trigger {
+  color: white !important;
+}
+
+.table-stock-detail .ant-table-column-title {
+  color: white;
+}
+
+.table-stock-detail .ant-pagination {
+  background-color: #0055B6 !important;
+  margin: 0px !important;
+  padding: 10px;
+  color: white !important;
+  border-radius: 0px 0px 8px 8px;
+}
+
+.table-stock-detail .ant-pagination-item-active {
+  border-color: white !important;
+}
+
+.table-stock-detail .ant-pagination-item-link-icon {
+  color: white !important;
+}
+
+.table-stock-detail .ant-pagination-prev>button {
+  background-color: #0055B6 !important;
+  color: white !important;
+}
+
+.table-stock-detail .ant-pagination-next>button {
+  background-color: #0055B6 !important;
+  color: white !important;
+}
+
+.table-stock-detail .ant-pagination-item-ellipsis {
+  color: white !important;
+}
+
+.table-stock-detail .ant-pagination-item>a {
+  background-color: #0055B6 !important;
+  color: white !important;
+}
+
+.table-stock-detail .pointer-events-none {
+  pointer-events: none;
+}

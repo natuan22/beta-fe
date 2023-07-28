@@ -13,6 +13,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import './utils/style/muiTabHeader.css'
 import { useParams } from 'react-router-dom'
+import Footer from '../../components/Footer'
 export const hashTb = {
     'PHÂN TÍCH NHANH': '0',
     'TỔNG QUAN': '1',
@@ -24,7 +25,7 @@ export const hashTb = {
 const StockDetail = () => {
     const [value, setValue] = useState(localStorage.getItem('userTabStockDetail'));
     const { code } = useParams()
-    
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
         localStorage.setItem('userTabStockDetail', newValue)
@@ -51,7 +52,7 @@ const StockDetail = () => {
                 <StockInfo codeSearch={code} />
                 <div className='pt-4'>
                     <Box sx={{ width: '100%', typography: 'body1', bgcolor: 'transparent' }} className='pt-1' id='stockDetail'>
-                        <TabContext value={value}>
+                        <TabContext value={activeTab}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <TabList
                                     onChange={handleChange}
@@ -67,7 +68,7 @@ const StockDetail = () => {
                                     ))}
                                 </TabList>
                             </Box>
-                           <TabPanel value="0"><QuickAnalysis /></TabPanel>
+                            <TabPanel value="0"><QuickAnalysis /></TabPanel>
                             <TabPanel value="1"><Overview codeUrl={code} handleTabClick={handleTabClick} /></TabPanel>
                             <TabPanel value="2"><TransactionStatistics /></TabPanel>
                             <TabPanel value="3"> <BusinessFinance /></TabPanel>
@@ -75,6 +76,7 @@ const StockDetail = () => {
                         </TabContext>
                     </Box>
                 </div>
+                <Footer />
             </div>
         </LayOut>
     )
