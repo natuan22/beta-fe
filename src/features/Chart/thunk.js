@@ -265,7 +265,7 @@ export const fetchDataLineChartHomePage = (index) => async (dispatch) => {
       payload: res.data
     })
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 

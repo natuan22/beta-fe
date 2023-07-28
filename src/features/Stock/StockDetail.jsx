@@ -24,7 +24,7 @@ export const hashTb = {
 const StockDetail = () => {
     const [value, setValue] = useState(localStorage.getItem('userTabStockDetail'));
     const { code } = useParams()
-
+    
     const handleChange = (event, newValue) => {
         setValue(newValue);
         localStorage.setItem('userTabStockDetail', newValue)
@@ -48,7 +48,7 @@ const StockDetail = () => {
     return (
         <LayOut>
             <div className="container mx-auto">
-                <StockInfo codeSearch={code.split('-')[0]} />
+                <StockInfo codeSearch={code} />
                 <div className='pt-4'>
                     <Box sx={{ width: '100%', typography: 'body1', bgcolor: 'transparent' }} className='pt-1' id='stockDetail'>
                         <TabContext value={value}>
@@ -67,9 +67,8 @@ const StockDetail = () => {
                                     ))}
                                 </TabList>
                             </Box>
-
-                            <TabPanel value="0"> <QuickAnalysis /></TabPanel>
-                            <TabPanel value="1"> <Overview /></TabPanel>
+                           <TabPanel value="0"><QuickAnalysis /></TabPanel>
+                            <TabPanel value="1"><Overview codeUrl={code} handleTabClick={handleTabClick} /></TabPanel>
                             <TabPanel value="2"><TransactionStatistics /></TabPanel>
                             <TabPanel value="3"> <BusinessFinance /></TabPanel>
                             <TabPanel value="4"> <NewsAndEvent /></TabPanel>

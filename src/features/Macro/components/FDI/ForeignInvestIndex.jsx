@@ -15,7 +15,6 @@ const ForeignInvestIndex = () => {
         type: 2,
     });
 
-
     useEffect(() => {
         dispatch(fetchDataForeignInvestIndex(queryApi.order, queryApi.type));
     }, [dispatch, queryApi]);
@@ -192,7 +191,6 @@ const ForeignInvestIndex = () => {
             ) : (
                 <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
-
         </>
     )
 }
