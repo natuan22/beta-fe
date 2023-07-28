@@ -2,7 +2,7 @@
     width: 94px;
     height: 37px;
     color: black;
-    border-radius: 5px;
+    border-radius: 10px;
     font-weight: 600;
     background: transparent;
     cursor: pointer;
@@ -28,8 +28,7 @@
 }
 
 .btn-2:hover {
-    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
-        -4px -4px 6px 0 rgba(116, 125, 136, .5),
+    box-shadow: 
         inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
         inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
