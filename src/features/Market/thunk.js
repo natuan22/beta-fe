@@ -511,6 +511,6 @@ export const fetchDataChartAverageDebitIndustry = (exchange, type, order) => asy
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
