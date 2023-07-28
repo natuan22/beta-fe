@@ -34,7 +34,8 @@ const LayOut = (props) => {
       {showScrollButton && (
         <div className="btnBackToTop-container fixed bottom-[10%] right-[2%] z-30 xxs:right-[50%] xxs:bottom-[-4%] xxs:translate-x-[50%] xxs:hover:translate-y-[-20px] opacity-80 transition-all duration-500 hover:opacity-100 ">
           <button
-            className=" bg-orange-400 cursor-pointer text-xl text-white rounded-full border-0 z-30 px-2 py-1 bg-transparent  "
+            style={{ backgroundColor: 'orange' }}
+            className=" cursor-pointer text-xl text-white rounded-full border-0 z-30 px-2 py-1 bg-transparent  "
             onClick={handleScrollToTop} >
             <FaArrowUp />
           </button>

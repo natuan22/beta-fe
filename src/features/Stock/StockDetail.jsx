@@ -22,19 +22,16 @@ export const hashTb = {
 }
 
 const StockDetail = () => {
-    const [value, setValue] = useState(localStorage.getItem('userTabStockDetail'));
     const { code } = useParams()
-    
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-        localStorage.setItem('userTabStockDetail', newValue)
-    };
+    const [codeVal, setCodeVal] = useState(code)
     const [activeTab, setActiveTab] = useState(localStorage.getItem('userTabStockDetail'));
     const tabsRef = useRef([]);
-
+    useEffect(() => {
+        setCodeVal(code)
+    }, [code])
     const handleTabClick = (value) => {
         setActiveTab(value);
-        localStorage.setItem('userTabStockDetail', value)
+
     };
     useEffect(() => {
         const activeButton = tabsRef.current[activeTab];
@@ -44,17 +41,15 @@ const StockDetail = () => {
             movingBackground.style.width = `${activeButton.offsetWidth}px`;
         }
     }, [activeTab]);
-
     return (
         <LayOut>
             <div className="container mx-auto">
                 <StockInfo codeSearch={code} />
                 <div className='pt-4'>
                     <Box sx={{ width: '100%', typography: 'body1', bgcolor: 'transparent' }} className='pt-1' id='stockDetail'>
-                        <TabContext value={value}>
+                        <TabContext value={activeTab}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <TabList
-                                    onChange={handleChange}
                                     variant="scrollable"
                                     scrollButtons
                                     allowScrollButtonsMobile
@@ -67,8 +62,8 @@ const StockDetail = () => {
                                     ))}
                                 </TabList>
                             </Box>
-                           <TabPanel value="0"><QuickAnalysis /></TabPanel>
-                            <TabPanel value="1"><Overview codeUrl={code} handleTabClick={handleTabClick} /></TabPanel>
+                            <TabPanel value="0"><QuickAnalysis /></TabPanel>
+                            <TabPanel value="1"><Overview codeUrl={codeVal} handleTabClick={handleTabClick} /></TabPanel>
                             <TabPanel value="2"><TransactionStatistics /></TabPanel>
                             <TabPanel value="3"> <BusinessFinance /></TabPanel>
                             <TabPanel value="4"> <NewsAndEvent /></TabPanel>
