@@ -32,6 +32,7 @@ const SameIndustry = ({ queryApi }) => {
             render: (_, record) => {
                 return <p className={`dark:text-white text-black text-center font-semibold`}>{record.code}</p>;
             },
+
         },
         {
             title: 'Giá',
