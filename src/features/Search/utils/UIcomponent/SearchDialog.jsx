@@ -123,7 +123,7 @@ export default function SearchDialog() {
         ...item,
         matchedCount: countMatchedCharacters(debouncedValue, item.code),
     })).sort((a, b) => b.matchedCount - a.matchedCount);
-    console.log(sortedData)
+    // console.log(sortedData)
     return (
         <div>
             <ImSearch onClick={handleClickOpen} className='cursor-pointer dark:text-white text-black text-[19px] ml-0.5 hover:dark:text-blue-400 hover:text-blue-400 transition-all duration-200' />
