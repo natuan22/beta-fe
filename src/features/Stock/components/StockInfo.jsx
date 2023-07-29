@@ -76,24 +76,24 @@ const StockInfo = (props) => {
             </div>
             <hr className="h-px my-7 bg-[#34A3F3] border-0"></hr>
             <div className='flex mb-7'>
-                <div className={` bg-[#E4E81D] px-9 py-2 rounded-xl font-semibold`}>{dataInfoHeader.code}</div>
-                <div className='bg-[#E4E81D] ml-4 px-24 py-2 rounded-xl font-semibold'>{dataInfoHeader.industry}</div>
+                <div className={`bg-[#E4E81D] xxs:px-4 xs:px-4 sm:px-9 py-2 rounded-xl font-semibold`}>{dataInfoHeader.code}</div>
+                <div className='bg-[#E4E81D] ml-4 xxs:px-4 xs:px-4 sm:px-24 py-2 rounded-xl font-semibold'>{dataInfoHeader.industry}</div>
             </div>
-            <div className='grid grid-cols-12 gap-3'>
-                <div className='col-span-3'>
+            <div className='grid lg:grid-cols-12 md:grid-cols-none gap-3'>
+                <div className='lg:col-span-3 md:col-span-full'>
                     <span className='text-[#8BFF62] uppercase font-semibold'>{dataInfoHeader.company}</span>
-                    <div className='p-4'>
+                    <div className='p-4 flex justify-center'>
                         <img className='object-contain w-[262px] h-[145px]' src={`${resourceURL}${dataInfoHeader.image}`} onError={event => {
                             event.target.src = `${resourceURL}/resources/stock/logo_default.jpeg`
                             event.onerror = null
                         }} alt="companyImg" />
                     </div>
                 </div>
-                <div className='col-span-5'>
+                <div className='lg:col-span-5 md:col-span-full'>
                     <span className='text-[#8BFF62]'>Tên tiếng anh: {dataInfoHeader.company_eng}</span>
                     <p className='dark:text-white text-black text-justify pt-4'>{dataInfoHeader.summary}</p>
                 </div>
-                <div className='col-span-4'></div>
+                <div className='lg:col-span-4 md:col-span-full'></div>
             </div>
         </div>
     )

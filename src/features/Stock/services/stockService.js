@@ -52,7 +52,6 @@ export const stockService = {
     },
     fetchDataEvents: (stock) => {
         return https.get('api/v1/shares/lich-su-kien', {
-
             params: {
                 stock
             }

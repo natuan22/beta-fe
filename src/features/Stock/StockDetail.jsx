@@ -45,7 +45,7 @@ const StockDetail = () => {
     }, [activeTab]);
     return (
         <LayOut>
-            <div className="container mx-auto">
+            <div className="tab container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%]">
                 <StockInfo codeSearch={code} />
                 <div className='pt-4'>
                     <Box sx={{ width: '100%', typography: 'body1', bgcolor: 'transparent' }} className='pt-1' id='stockDetail'>
