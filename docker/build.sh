@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-VERSION="0.1.0"
+VERSION="0.0.1"
 
-docker build -t ngthminhdev/b-info-frontend:${VERSION} .
-docker push ngthminhdev/b-info-frontend:${VERSION}
+sudo docker build -t chauminh1212/beta-fe:${VERSION} .
+sudo docker push chauminh1212/beta-fe:${VERSION}
