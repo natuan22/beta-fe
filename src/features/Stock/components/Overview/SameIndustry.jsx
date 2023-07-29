@@ -24,11 +24,19 @@ const SameIndustry = ({ queryApi }) => {
         }
     }, [dataSameIndustry]);
 
+    const mappedData = Array.isArray(dataSameIndustry) && dataSameIndustry?.map(item => ({
+        text: item.code,
+        value: item.code,
+    }));
+
     const columns = [
         {
             title: 'Mã CK',
             dataIndex: 'code',
             align: 'center',
+            filters: mappedData,
+            filterSearch: true,
+            onFilter: (value, record) => record.code.includes(value),
             render: (_, record) => {
                 return <p className={`dark:text-white text-black text-center font-semibold`}>{record.code}</p>;
             },
@@ -80,13 +88,14 @@ const SameIndustry = ({ queryApi }) => {
             sorter: (a, b) => a.vh - b.vh,
         }
     ]
+
     return (
         <div>
             {Array.isArray(data) ? (
-                <div className='mt-4'>
+                <div className='mt-4 md:h-[620px] sm:h-[670px] xs:h-[670px] xxs:h-[670px]'>
                     <Table
                         scroll={{ x: 400 }}
-                        rowClassName="pointer-events-none"
+                        rowClassName="pointer-events-none "
                         bordered={false}
                         columns={columns}
                         dataSource={data}
@@ -95,7 +104,7 @@ const SameIndustry = ({ queryApi }) => {
                     />
                 </div>
             ) : (
-                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
+                <div className="h-[620px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )

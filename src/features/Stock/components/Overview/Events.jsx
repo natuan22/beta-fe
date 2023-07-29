@@ -39,7 +39,7 @@ const Events = ({ codeSearch }) => {
             dataIndex: 'content',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-left font-semibold`}>{record.content}</p>;
+                return <p className={`dark:text-white text-black text-left text-sm font-semibold`}>{record.content}</p>;
             },
         },
     ]
@@ -47,7 +47,7 @@ const Events = ({ codeSearch }) => {
     return (
         <div>
             {Array.isArray(data) ? (
-                <div className='mt-4'>
+                <div className='mt-4 md:h-[620px] sm:h-[770px] xs:h-[780px] xxs:h-[780px]'>
                     <Table
                         scroll={{ x: 400 }}
                         rowClassName="pointer-events-none"
@@ -59,7 +59,7 @@ const Events = ({ codeSearch }) => {
                     />
                 </div>
             ) : (
-                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
+                <div className="h-[613px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )

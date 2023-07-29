@@ -52,15 +52,15 @@ const BalanceSheet = ({ queryApi }) => {
       <section className="pt-4">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block bg-transparent">
-              <table className="items-center w-full border-collapse bg-transparent">
+            <div className="block bg-transparent xxs:w-[317px] xs:w-[373px] sm:w-[423px] md:w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent md:overflow-hidden sm:overflow-x-scroll xs:overflow-x-scroll xxs:overflow-x-scroll">
+              <table className="items-center w-full border-collapse bg-transparent h-[294px]">
                 <thead className="bg-[#0055B6]">
                   <tr>
-                    <th className="bg-[#C3FFB4] text-center uppercase align-middle px-[27px] py-[19px] whitespace-nowrap font-extrabold text-black">
+                    <th className="bg-[#C3FFB4] text-center uppercase align-middle px-[27px] py-[15px] whitespace-nowrap font-extrabold text-black">
                       Cân đối kế toán
                     </th>
                     {Array.isArray(dates) && dates?.map(item => (
-                      <th key={item} className="text-center align-middle px-3 py-[19px] text-xs font-semibold text-white">
+                      <th key={item} className="text-center align-middle px-3 py-[15px] text-xs font-semibold text-white">
                         {item}
                       </th>
                     ))}

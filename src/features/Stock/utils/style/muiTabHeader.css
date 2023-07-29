@@ -2,9 +2,14 @@
   border-bottom: 1px solid #34A3F3;
 }
 
-#stockDetail .MuiTabs-flexContainer {
-  justify-content: space-around;
+#stockDetail .MuiTabs-scroller {
+  display: grid !important;
+  place-items: center;
 }
+
+/* #stockDetail .MuiTabs-flexContainer {
+  justify-content: space-evenly;
+} */
 
 #stockDetail .MuiTabPanel-root {
   padding: 0px !important;
