@@ -1,0 +1,32 @@
+#stockDetail .MuiTabs-root {
+  border-bottom: 1px solid #34A3F3;
+}
+
+#stockDetail .MuiTabs-scroller {
+  display: grid !important;
+  place-items: center;
+}
+
+/* #stockDetail .MuiTabs-flexContainer {
+  justify-content: space-evenly;
+} */
+
+#stockDetail .MuiTabPanel-root {
+  padding: 0px !important;
+}
+
+
+#stockDetail .MuiBox-root {
+  margin-bottom: 8px;
+  border-bottom: none !important;
+}
+
+#stockDetail .MuiButtonBase-root {
+  color: white !important;
+  margin-left: 3px !important;
+  margin-right: 3px !important;
+}
+
+#stockDetail .MuiTabs-indicator {
+  display: none !important;
+}

@@ -9,6 +9,6 @@ export const handleDebounceSearch = (key_search) => async dispatch => {
             payload: res.data.data
         })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }

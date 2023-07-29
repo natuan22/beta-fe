@@ -46,7 +46,7 @@ const ChartAverageDebtRatio = () => {
                 }
             });
 
-            console.log(resultMap)
+            // console.log(resultMap)
             // Chuyển đổi dữ liệu từ Map về mảng kết quả
             const result = [...resultMap.values()];
             // Kết quả đã được tối ưu hóa và lưu trong mảng result
