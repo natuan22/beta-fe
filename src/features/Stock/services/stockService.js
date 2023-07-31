@@ -73,4 +73,42 @@ export const stockService = {
             }
         })
     },
+    fetchDataTradingPriceFluctuations: (stock) => {
+        return https.get('api/v1/shares/bien-dong-gia-giao-dich', {
+            params: {
+                stock,
+            }
+        })
+    },
+    fetchDataAverageTradingVolume: (stock) => {
+        return https.get('api/v1/shares/khoi-luong-giao-dich-binh-quan-ngay', {
+            params: {
+                stock,
+            }
+        })
+    },
+    fetchDataStatisticsByMonth: (stock) => {
+        return https.get('api/v1/shares/thong-ke-theo-cac-thang-quy-nam', {
+            params: {
+                stock,
+                order: 2
+            }
+        })
+    },
+    fetchDataStatisticsByQuarter: (stock) => {
+        return https.get('api/v1/shares/thong-ke-theo-cac-thang-quy-nam', {
+            params: {
+                stock,
+                order: 0
+            }
+        })
+    },
+    fetchDataStatisticsByYear: (stock) => {
+        return https.get('api/v1/shares/thong-ke-theo-cac-thang-quy-nam', {
+            params: {
+                stock,
+                order: 1
+            }
+        })
+    },
 }

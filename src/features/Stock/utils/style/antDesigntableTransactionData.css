@@ -1,0 +1,77 @@
+.table-transaction-data .ant-table-thead .ant-table-cell {
+    background-color: #0055B6 !important;
+    color: white !important;
+    padding: 5px 5px !important;
+    border: solid black 1px !important;
+}
+
+.table-transaction-data .ant-table-thead .ant-table-cell::before {
+    background-color: #0055B6 !important;
+}
+
+.table-transaction-data .ant-table-row .ant-table-cell {
+    padding: 16.6px 16.6px !important;
+}
+
+.table-transaction-data .ant-table-wrapper .ant-table {
+    background-color: transparent !important;
+}
+
+.table-transaction-data .ant-table-column-sort {
+    background-color: transparent !important;
+}
+
+.table-transaction-data .ant-table-cell-row:hover {
+    background-color: transparent !important;
+}
+
+.table-transaction-data .ant-table-tbody .ant-table-row {
+    background-color: transparent !important;
+}
+
+.table-transaction-data .ant-dropdown-trigger {
+    color: white !important;
+}
+
+.table-transaction-data .ant-table-column-title {
+    color: white;
+}
+
+.table-transaction-data .ant-pagination {
+    background-color: #0055B6 !important;
+    margin: 0px !important;
+    padding: 10px;
+    color: white !important;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.table-transaction-data .ant-pagination-item-active {
+    border-color: white !important;
+}
+
+.table-transaction-data .ant-pagination-item-link-icon {
+    color: white !important;
+}
+
+.table-transaction-data .ant-pagination-prev>button {
+    background-color: #0055B6 !important;
+    color: white !important;
+}
+
+.table-transaction-data .ant-pagination-next>button {
+    background-color: #0055B6 !important;
+    color: white !important;
+}
+
+.table-transaction-data .ant-pagination-item-ellipsis {
+    color: white !important;
+}
+
+.table-transaction-data .ant-pagination-item>a {
+    background-color: #0055B6 !important;
+    color: white !important;
+}
+
+.table-transaction-data .pointer-events-none {
+    pointer-events: none;
+}
