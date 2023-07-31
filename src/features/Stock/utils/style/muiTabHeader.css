@@ -28,12 +28,3 @@
 #stockDetail .MuiTabs-indicator {
   display: none !important;
 }
-
-.label-dark {
-  color: white; /* Màu label trong dark mode */
-}
-
-/* Chế độ light mode */
-.label-light {
-  color: black; /* Màu label trong light mode */
-}
