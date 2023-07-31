@@ -58,10 +58,19 @@ export const stockService = {
         })
     },
     fetchDataFinancialIndicators: (stock) => {
-        return https.get('/api/v1/shares/chi-so-tai-chinh', {
+        return https.get('api/v1/shares/chi-so-tai-chinh', {
             params: {
                 stock
             }
         })
-    }
+    },
+    fetchDataTransactionData: (stock, from, to) => {
+        return https.get('api/v1/shares/du-lieu-giao-dich', {
+            params: {
+                stock,
+                from,
+                to
+            }
+        })
+    },
 }

@@ -8,8 +8,8 @@ const initialState = {
     dataBalanceSheet: {},
     dataCashFlow: {},
     dataSameIndustry: {},
-    dataEvents: {}
-
+    dataEvents: {},
+    dataTransactionData: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -37,6 +37,9 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_EVENTS) {
             draft.dataEvents = payload
+        }
+        if (type === stockType.FETCH_DATA_TRANSACTION_DATA) {
+            draft.dataTransactionData = payload
         }
     });
 };
