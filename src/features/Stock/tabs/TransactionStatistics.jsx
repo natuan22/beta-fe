@@ -10,6 +10,14 @@ import dayjs from 'dayjs';
 import TransactionData from '../components/TransactionStatistics/TransactionData';
 import TotalMatchingVolume from '../components/TransactionStatistics/TotalMatchingVolume';
 import { useSelector } from 'react-redux';
+import useQueryApi from '../components/Overview/utils/custom/useQueryApi/useQueryApi';
+import TradingPriceFluctuations from '../components/TransactionStatistics/TradingPriceFluctuations';
+import AverageTradingVolume from '../components/TransactionStatistics/AverageTradingVolume';
+import StatisticsByMonth from '../components/TransactionStatistics/StatisticsByMonth';
+import StatisticsByQuarter from '../components/TransactionStatistics/StatisticsByQuarter';
+import StatisticsByYear from '../components/TransactionStatistics/StatisticsByYear';
+import TradingInvestors from '../components/TransactionStatistics/TradingInvestors';
+
 
 const contentTotalMatchingVolume = (
   <div>
@@ -27,13 +35,14 @@ const contentTransactionData = (
   </div>
 );
 
-const TransactionStatistics = () => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme'))
+const TransactionStatistics = ({ codeUrl }) => {
+
+   const [theme, setTheme] = useState(localStorage.getItem('theme'))
   const color = useSelector((state) => state.color.colorTheme);
-
-
   const [isLoading, setIsLoading] = useState(false)
   const [isChart, setIsChart] = useState(false)
+  const { queryApi } = useQueryApi(codeUrl);
+
   const [fromDate, setFromDate] = useState(dayjs().subtract(7, 'day'))
   const [toDate, setToDate] = useState(dayjs())
 
@@ -86,7 +95,9 @@ const TransactionStatistics = () => {
                     }}
                     disableFuture
                     formatDate={(date) => moment(date).format('DD/MM/YYYY')}
-                    value={fromDate} onChange={(newValue) => { setFromDate(newValue); }} />
+                    value={fromDate} onChange={(newValue) => {
+                      setFromDate(newValue)
+                    }} />
                 </div>
                 <div className='ml-16 flex items-center'>
                   <span className='dark:text-white text-black mr-4'>Đến ngày</span>
@@ -100,12 +111,58 @@ const TransactionStatistics = () => {
                     }}
                     disableFuture
                     formatDate={(date) => moment(date).format('DD/MM/YYYY')}
-                    value={toDate} onChange={(newValue) => { setToDate(newValue); }} />
+                    value={toDate} onChange={(newValue) => { setToDate(newValue) }} />
                 </div>
               </div>
             </div>
-            {!isChart ? (<TransactionData />) : (<TotalMatchingVolume />)}
+            {!isChart ? (
+              <TransactionData stock={queryApi.stock} from={fromDate} to={toDate} />
+            ) : (
+              <TotalMatchingVolume />
+            )}
+          </div>
 
+          <div className='grid grid-cols-2 gap-3'>
+            <div>
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold uppercase'>Biến động giá giao dịch</span>
+              </div>
+              <TradingPriceFluctuations />
+            </div>
+            <div>
+              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold uppercase'>Khối lượng giao dịch bình quân/ngày</span>
+              </div>
+              <AverageTradingVolume />
+            </div>
+          </div>
+
+          <div className='grid grid-cols-3 gap-3'>
+            <div>
+              <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các tháng</span>
+              </span>
+              <StatisticsByMonth />
+            </div>
+            <div>
+              <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các quý</span>
+              </span>
+              <StatisticsByQuarter />
+            </div>
+            <div>
+              <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các năm</span>
+              </span>
+              <StatisticsByYear />
+            </div>
+          </div>
+
+          <div>
+            <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+              <span className='dark:text-white text-black font-semibold uppercase'>Giao dịch các nhóm nhà đầu tư</span>
+            </span>
+            <TradingInvestors />
           </div>
         </div>
       ) : (

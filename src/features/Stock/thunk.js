@@ -96,3 +96,15 @@ export const fetchDataEvents = (stock) => async (dispatch) => {
     }
 }
 
+export const fetchDataTransactionData = (stock, from, to) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataTransactionData(stock, from, to)
+        dispatch({
+            type: stockType.FETCH_DATA_TRANSACTION_DATA,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
