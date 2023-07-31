@@ -64,7 +64,7 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                   <div className='w-[115px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <span className='dark:text-white text-black font-semibold uppercase'>Tài chính</span>
                   </div>
-                  <button className="custom-btn btn-2 ml-7" onClick={() => handleQueryApiOrder(0)}>Theo quý</button>
+                  <button className="custom-btn btn-2 ml-5" onClick={() => handleQueryApiOrder(0)}>Theo quý</button>
                   <button className="custom-btn btn-2 ml-5" onClick={() => handleQueryApiOrder(1)}>Theo năm</button>
                 </div>
 

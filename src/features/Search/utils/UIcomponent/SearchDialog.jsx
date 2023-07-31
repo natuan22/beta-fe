@@ -76,7 +76,7 @@ export default function SearchDialog() {
             return
         }
         dispatch(handleDebounceSearch(debouncedValue))
-    }, [debouncedValue])
+    }, [dispatch, debouncedValue])
     useEffect(() => {
         if (searchResult) {
             setDataSearchLength(searchResult)

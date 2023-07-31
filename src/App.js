@@ -8,6 +8,9 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { autoLoginWithToken } from "./features/Auth/thunk";
 import { generateMAC } from "./utils/generateMac";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
 function App() {
 
   useEffect(() => {
@@ -76,17 +79,20 @@ function App() {
     </Route>
   })
   return (
-    <BrowserRouter>
-      <Routes>
-        {routes.map(({ path, component: Component }) => {
-          return <Route key={path} path={path} element={<Component />}></Route>;
-        })}
-        {mapMarketRoute}
-        {mapMacroRoute}
-        {mapNewsCenterRoute}
-        {mapStockRoute}
-      </Routes>
-    </BrowserRouter>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <BrowserRouter>
+        <Routes>
+          {routes.map(({ path, component: Component }) => {
+            return <Route key={path} path={path} element={<Component />}></Route>;
+          })}
+          {mapMarketRoute}
+          {mapMacroRoute}
+          {mapNewsCenterRoute}
+          {mapStockRoute}
+        </Routes>
+      </BrowserRouter>
+    </LocalizationProvider>
+
   );
 }
 

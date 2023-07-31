@@ -16,6 +16,7 @@ code {
 }
 
 * {
+  /* border: solid 1px red; */
   margin: 0;
   padding: 0;
 }
