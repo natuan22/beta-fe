@@ -7,6 +7,8 @@ import '../utils/style/datePickerStyle.css'
 import { Popover } from 'antd';
 import moment from 'moment';
 import dayjs from 'dayjs';
+import TransactionData from '../components/TransactionStatistics/TransactionData';
+import TotalMatchingVolume from '../components/TransactionStatistics/TotalMatchingVolume';
 
 const contentTotalMatchingVolume = (
   <div>
@@ -87,6 +89,7 @@ const TransactionStatistics = () => {
                 </div>
               </div>
             </div>
+            {!isChart ? (<TransactionData />) : (<TotalMatchingVolume />)}
 
           </div>
         </div>
