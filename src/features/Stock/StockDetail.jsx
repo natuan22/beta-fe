@@ -102,7 +102,7 @@ const StockDetail = () => {
                                 <Overview codeUrl={codeVal} handleTabClick={handleTabClick} />
                             </TabPanel>
                             <TabPanel value="2">
-                                <TransactionStatistics />
+                                <TransactionStatistics codeUrl={codeVal} />
                             </TabPanel>
                             <TabPanel value="3">
                                 {" "}
