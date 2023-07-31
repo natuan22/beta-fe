@@ -34,7 +34,6 @@ const StockDetail = () => {
         setTheme(color);
     }, [color]);
 
-    console.log(theme)
 
 
 
@@ -73,12 +72,7 @@ const StockDetail = () => {
                                     scrollButtons
                                     allowScrollButtonsMobile
                                     sx={{
-
-                                        '& .MuiTab-root': { color: (theme === 'dark' ? '#fff' : '#000') },
-
-                                       
-
-                                        '& .Mui-selected': { color: '#fff' },
+                                        '& .MuiTab-root': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                     }}
                                 >
                                     <div className="moving-background absolute h-full top-0 bg-[#0055B6] transition-all duration-500"></div>
@@ -90,7 +84,6 @@ const StockDetail = () => {
                                             key={value}
                                             label={label}
                                             value={value}
-
                                         />
                                     ))}
                                 </TabList>
