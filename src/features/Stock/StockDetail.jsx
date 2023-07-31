@@ -15,6 +15,7 @@ import "./utils/style/muiTabHeader.css";
 import { useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { useSelector } from "react-redux";
+
 export const hashTb = {
     "PHÂN TÍCH NHANH": "0",
     "TỔNG QUAN": "1",
@@ -28,14 +29,10 @@ const StockDetail = () => {
     const [codeVal, setCodeVal] = useState(code);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const color = useSelector((state) => state.color.colorTheme);
+
     useEffect(() => {
         setTheme(color);
     }, [color]);
-    console.log(theme)
-    const [activeTab, setActiveTab] = useState(
-        localStorage.getItem("userTabStockDetail")
-    );
-
 
     const [activeTab, setActiveTab] = useState('1');
 
@@ -73,7 +70,7 @@ const StockDetail = () => {
                                     allowScrollButtonsMobile
                                     sx={{
                                         '& .MuiTabs-indicator': { backgroundColor: '#ff0000' },
-                                        '& .MuiTab-root': { color: (theme === 'dark' ? '#fff' : '#000') },
+                                        '& .MuiTab-root': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                         '& .Mui-selected': { color: '#fff' },
                                     }}
                                 >
