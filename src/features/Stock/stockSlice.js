@@ -10,6 +10,11 @@ const initialState = {
     dataSameIndustry: {},
     dataEvents: {},
     dataTransactionData: {},
+    dataTradingPriceFluctuations: {},
+    dataAverageTradingVolume: {},
+    dataStatisticsByMonth: {},
+    dataStatisticsByQuarter: {},
+    dataStatisticsByYear: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -40,6 +45,21 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_TRANSACTION_DATA) {
             draft.dataTransactionData = payload
+        }
+        if (type === stockType.FETCH_DATA_TRADING_PRICE_FLUCTUATIONS) {
+            draft.dataTradingPriceFluctuations = payload
+        }
+        if (type === stockType.FETCH_DATA_AVERAGE_TRADING_VOLUME) {
+            draft.dataAverageTradingVolume = payload
+        }
+        if (type === stockType.FETCH_DATA_STATISTICS_BY_MONTH) {
+            draft.dataStatisticsByMonth = payload
+        }
+        if (type === stockType.FETCH_DATA_STATISTICS_BY_QUARTER) {
+            draft.dataStatisticsByQuarter = payload
+        }
+        if (type === stockType.FETCH_DATA_STATISTICS_BY_YEAR) {
+            draft.dataStatisticsByYear = payload
         }
     });
 };

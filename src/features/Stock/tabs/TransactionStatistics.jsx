@@ -37,7 +37,7 @@ const contentTransactionData = (
 
 const TransactionStatistics = ({ codeUrl }) => {
 
-   const [theme, setTheme] = useState(localStorage.getItem('theme'))
+  const [theme, setTheme] = useState(localStorage.getItem('theme'))
   const color = useSelector((state) => state.color.colorTheme);
   const [isLoading, setIsLoading] = useState(false)
   const [isChart, setIsChart] = useState(false)
@@ -69,7 +69,7 @@ const TransactionStatistics = ({ codeUrl }) => {
                   <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <span className='dark:text-white text-black font-semibold uppercase'>Dữ liệu giao dịch</span>
                     <Popover content={contentTotalMatchingVolume} >
-                      <span className='ml-[6.6rem] text-[#C3A9A9] cursor-pointer text-[22px]' onClick={handleChangeChart}><IoBarChartSharp /></span>
+                      <span className='ml-[12.4rem] text-[#C3A9A9] cursor-pointer text-[22px]' onClick={handleChangeChart}><IoBarChartSharp /></span>
                     </Popover>
                   </span>
                 ) : (
@@ -116,49 +116,53 @@ const TransactionStatistics = ({ codeUrl }) => {
               </div>
             </div>
             {!isChart ? (
-              <TransactionData stock={queryApi.stock} from={fromDate} to={toDate} />
+              <div className='h-[460px]'>
+                <TransactionData stock={queryApi.stock} from={fromDate} to={toDate} />
+              </div>
             ) : (
-              <TotalMatchingVolume />
+              <div className='h-[460px]'>
+                <TotalMatchingVolume stock={queryApi.stock} from={fromDate} to={toDate} />
+              </div>
             )}
           </div>
 
-          <div className='grid grid-cols-2 gap-3'>
+          <div className='grid grid-cols-2 gap-40 mt-8'>
             <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+              <div className='w-[362px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold uppercase'>Biến động giá giao dịch</span>
               </div>
-              <TradingPriceFluctuations />
+              <TradingPriceFluctuations stock={queryApi.stock} />
             </div>
             <div>
-              <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+              <div className='w-[362px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold uppercase'>Khối lượng giao dịch bình quân/ngày</span>
               </div>
-              <AverageTradingVolume />
+              <AverageTradingVolume stock={queryApi.stock} />
             </div>
           </div>
 
-          <div className='grid grid-cols-3 gap-3'>
+          <div className='grid grid-cols-3 gap-3 mt-8'>
             <div>
               <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các tháng</span>
               </span>
-              <StatisticsByMonth />
+              <StatisticsByMonth stock={queryApi.stock} />
             </div>
             <div>
               <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các quý</span>
               </span>
-              <StatisticsByQuarter />
+              <StatisticsByQuarter stock={queryApi.stock} />
             </div>
             <div>
               <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các năm</span>
               </span>
-              <StatisticsByYear />
+              <StatisticsByYear stock={queryApi.stock} />
             </div>
           </div>
 
-          <div>
+          <div className='mt-8'>
             <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold uppercase'>Giao dịch các nhóm nhà đầu tư</span>
             </span>
