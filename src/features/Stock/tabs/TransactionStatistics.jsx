@@ -9,6 +9,7 @@ import moment from 'moment';
 import dayjs from 'dayjs';
 import TransactionData from '../components/TransactionStatistics/TransactionData';
 import TotalMatchingVolume from '../components/TransactionStatistics/TotalMatchingVolume';
+import { useSelector } from 'react-redux';
 
 const contentTotalMatchingVolume = (
   <div>
@@ -27,6 +28,10 @@ const contentTransactionData = (
 );
 
 const TransactionStatistics = () => {
+  const [theme, setTheme] = useState(localStorage.getItem('theme'))
+  const color = useSelector((state) => state.color.colorTheme);
+
+
   const [isLoading, setIsLoading] = useState(false)
   const [isChart, setIsChart] = useState(false)
   const [fromDate, setFromDate] = useState(dayjs().subtract(7, 'day'))
@@ -35,7 +40,9 @@ const TransactionStatistics = () => {
   const handleChangeChart = () => {
     setIsChart(!isChart)
   }
-
+  useEffect(() => {
+    setTheme(color);
+  }, [color]);
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(true)
@@ -66,13 +73,17 @@ const TransactionStatistics = () => {
                 )}
 
               </div>
-              <div className='flex input'>
+              <div className='flex input' id='datePicker'>
                 <div className='flex items-center'>
                   <span className='dark:text-white text-black mr-4'>Từ ngày</span>
                   <DatePicker
                     openTo="year"
                     format="DD/MM/YYYY"
                     margin="normal"
+                    sx={{
+                      '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
+                      '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
+                    }}
                     disableFuture
                     formatDate={(date) => moment(date).format('DD/MM/YYYY')}
                     value={fromDate} onChange={(newValue) => { setFromDate(newValue); }} />
@@ -83,6 +94,10 @@ const TransactionStatistics = () => {
                     openTo="year"
                     format="DD/MM/YYYY"
                     margin="normal"
+                    sx={{
+                      '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
+                      '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
+                    }}
                     disableFuture
                     formatDate={(date) => moment(date).format('DD/MM/YYYY')}
                     value={toDate} onChange={(newValue) => { setToDate(newValue); }} />
