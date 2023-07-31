@@ -26,7 +26,7 @@ const StockDetail = () => {
     const { code } = useParams()
     const [codeVal, setCodeVal] = useState(code)
 
-    const [activeTab, setActiveTab] = useState(localStorage.getItem('userTabStockDetail'));
+    const [activeTab, setActiveTab] = useState('1');
     const tabsRef = useRef([]);
     useEffect(() => {
         setCodeVal(code)
