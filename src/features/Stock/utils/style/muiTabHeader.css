@@ -1,5 +1,5 @@
 #stockDetail .MuiTabs-root {
-  border-bottom: 1px solid #34A3F3;
+  border-bottom: 1px solid #34a3f3;
 }
 
 #stockDetail .MuiTabs-scroller {
@@ -15,18 +15,25 @@
   padding: 0px !important;
 }
 
-
 #stockDetail .MuiBox-root {
   margin-bottom: 8px;
   border-bottom: none !important;
 }
 
 #stockDetail .MuiButtonBase-root {
-  color: white !important;
   margin-left: 3px !important;
   margin-right: 3px !important;
 }
 
 #stockDetail .MuiTabs-indicator {
   display: none !important;
+}
+
+.label-dark {
+  color: white; /* Màu label trong dark mode */
+}
+
+/* Chế độ light mode */
+.label-light {
+  color: black; /* Màu label trong light mode */
 }
