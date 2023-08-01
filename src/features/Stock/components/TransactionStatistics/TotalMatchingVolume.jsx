@@ -13,64 +13,58 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
     const [timeLine, setTimeLine] = useState()
     const { dataTransactionData } = useSelector(state => state.stock)
 
+    const processData = (data) => {
+        const omVolData = [];
+        const closePriceData = [];
+
+        data.forEach(item => {
+            omVolData.push(item.omVol);
+            closePriceData.push(item.closePrice);
+        });
+
+        return [
+            {
+                type: 'column',
+                data: omVolData,
+                name: 'KLGD khớp lệnh',
+                yAxis: 0,
+                color: { // Thêm thuộc tính color ở đây
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1,
+                    },
+                    stops: [
+                        [0, 'rgba(57,234,202,1)'],
+                        [0.2, 'rgba(44,185,185,1)'],
+                        [0.4, 'rgba(48,153,198,1)'],
+                        [0.61, 'rgba(54,90,185,1)'],
+                        [0.78, 'rgba(49,23,201,1)'],
+                    ],
+                }
+            },
+            {
+                type: 'spline',
+                data: closePriceData,
+                name: 'Giá',
+                yAxis: 1,
+                color: '#37FF05'
+            }
+        ];
+    };
+
     useEffect(() => {
         dispatch(fetchDataTransactionData(stock, dayjs(from).format('YYYY-MM-DD'), dayjs(to).format('YYYY-MM-DD')));
     }, [dispatch, stock, from, to]);
 
     useEffect(() => {
         if (dataTransactionData?.length > 0) {
-            const result = [];
             const uniqueDates = [...new Set(dataTransactionData?.map(item => moment(item.date).format('DD/MM/YYYY')))];
             setTimeLine(uniqueDates)
-            dataTransactionData?.forEach(item => {
-                const name = item.name;
-                const omVol = item.omVol;
-                const price = item.closePrice;
-
-                const existingObj = result.find(obj => obj.name === name);
-
-                if (existingObj) {
-                    existingObj.data.push(omVol);
-                } else {
-                    result.push({
-                        type: 'column',
-                        data: [omVol],
-                        yAxis: 0,
-                        color: { // Thêm thuộc tính color ở đây
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1,
-                            },
-                            stops: [
-                                [0, 'rgba(57,234,202,1)'],
-                                [0.2, 'rgba(44,185,185,1)'],
-                                [0.4, 'rgba(48,153,198,1)'],
-                                [0.61, 'rgba(54,90,185,1)'],
-                                [0.78, 'rgba(49,23,201,1)'],
-                            ],
-                        }
-                    });
-                }
-                const existingLineObj = result.find(obj => obj.type === 'spline' && obj.name === name);
-
-                if (existingLineObj) {
-                    existingLineObj.data.push(price);
-                } else {
-                    result.push({
-                        type: 'spline',
-                        color: '#37FF05',
-                        data: [price],
-                        yAxis: 1,
-                    });
-                }
-            })
-
-            setData(result)
+            setData(processData(dataTransactionData))
         }
     }, [dataTransactionData, stock, from, to])
-    console.log(data)
 
     const options = {
         chart: {
@@ -137,12 +131,6 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
                     radius: 2, // Giá trị bán kính marker
                 },
             },
-            spline: {
-                name: 'Giá', // Đặt tên cho chuỗi dạng spline ở đây
-            },
-            column: {
-                name: 'KLGD khớp lệnh',
-            }
         },
         legend: {
             enabled: true,
@@ -164,7 +152,8 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
                 </>
             ) : (
                 <div className="h-[460px] flex items-center justify-center"><Loading /></div>
-            )}</div>
+            )}
+        </div>
     )
 }
 
