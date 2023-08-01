@@ -111,4 +111,26 @@ export const stockService = {
             }
         })
     },
+    fetchDataTradingInvestors: (stock) => {
+        return https.get('api/v1/shares/giao-dich-cac-nhom-nha-dau-tu', {
+            params: {
+                stock
+            }
+        })
+    },
+    fetchDataNewsAndEvents: (stock, type) => {
+        return https.get('api/v1/shares/chi-tiet-lich-su-kien', {
+            params: {
+                stock,
+                type
+            }
+        })
+    },
+    fetchDataNews: (stock) => {
+        return https.get('api/v1/shares/tin-tuc', {
+            params: {
+                stock
+            }
+        })
+    },
 }

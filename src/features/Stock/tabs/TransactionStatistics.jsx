@@ -18,7 +18,6 @@ import StatisticsByQuarter from '../components/TransactionStatistics/StatisticsB
 import StatisticsByYear from '../components/TransactionStatistics/StatisticsByYear';
 import TradingInvestors from '../components/TransactionStatistics/TradingInvestors';
 
-
 const contentTotalMatchingVolume = (
   <div>
     <span className='text-black font-medium rounded-lg text-sm bg-white p-2 '>
@@ -36,7 +35,6 @@ const contentTransactionData = (
 );
 
 const TransactionStatistics = ({ codeUrl }) => {
-
   const [theme, setTheme] = useState(localStorage.getItem('theme'))
   const color = useSelector((state) => state.color.colorTheme);
   const [isLoading, setIsLoading] = useState(false)
@@ -52,6 +50,7 @@ const TransactionStatistics = ({ codeUrl }) => {
   useEffect(() => {
     setTheme(color);
   }, [color]);
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(true)
@@ -59,7 +58,7 @@ const TransactionStatistics = ({ codeUrl }) => {
   }, [])
 
   return (
-    <div className='container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%]'>
+    <div className='container mx-auto'>
       {isLoading ? (
         <div className='mt-4'>
           <div>
@@ -86,7 +85,6 @@ const TransactionStatistics = ({ codeUrl }) => {
                 <div className='flex items-center'>
                   <span className='dark:text-white text-black mr-4'>Từ ngày</span>
                   <DatePicker
-                    openTo="year"
                     format="DD/MM/YYYY"
                     margin="normal"
                     sx={{
@@ -102,7 +100,6 @@ const TransactionStatistics = ({ codeUrl }) => {
                 <div className='ml-16 flex items-center'>
                   <span className='dark:text-white text-black mr-4'>Đến ngày</span>
                   <DatePicker
-                    openTo="year"
                     format="DD/MM/YYYY"
                     margin="normal"
                     sx={{
@@ -166,7 +163,7 @@ const TransactionStatistics = ({ codeUrl }) => {
             <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold uppercase'>Giao dịch các nhóm nhà đầu tư</span>
             </span>
-            <TradingInvestors />
+            <TradingInvestors stock={queryApi.stock} />
           </div>
         </div>
       ) : (

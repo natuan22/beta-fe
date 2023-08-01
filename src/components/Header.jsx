@@ -20,7 +20,7 @@ const Header = () => {
     <>
       <div className=" relative">
         <nav className="dark:bg-black bg-white shadow-md mb-1">
-          <div className="max-w-[85rem] mx-auto px-4 xl:px-7 lg:px-8">
+          <div className="max-w-[85.5rem] mx-auto px-4 xl:px-7 lg:px-8">
             <div className="flex items-center justify-between w-full h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">

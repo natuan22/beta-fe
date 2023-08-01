@@ -45,7 +45,7 @@ const Overview = ({ handleTabClick, codeUrl }) => {
     handleTabClick('4')
   }
   return (
-    <div className='container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%]'>
+    <div className='container mx-auto'>
       {isLoading ? (
         <div className='mt-4'>
           <div>

@@ -32,11 +32,11 @@ const TradingPriceFluctuations = ({ stock }) => {
       </div>
       <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
         <div className='dark:text-white text-black'>Cao nhất 52 tuần</div>
-        <span className='dark:text-white text-black'>{dataTradingPriceFluctuations.max_price && dataTradingPriceFluctuations.max_price.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+        <span className='dark:text-white text-black'>{dataTradingPriceFluctuations.max_price && (dataTradingPriceFluctuations.max_price * 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
       </div>
       <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
         <div className='dark:text-white text-black'>Thấp nhất 52 tuần</div>
-        <span className='dark:text-white text-black'>{dataTradingPriceFluctuations.min_price && dataTradingPriceFluctuations.min_price.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+        <span className='dark:text-white text-black'>{dataTradingPriceFluctuations.min_price && (dataTradingPriceFluctuations.min_price * 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
       </div>
     </div>
   )
