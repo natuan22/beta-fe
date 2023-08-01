@@ -167,7 +167,7 @@ const TradingInvestors = ({ stock }) => {
     plotOptions: {
       series: {
         marker: {
-          radius: 2, // Giá trị bán kính marker
+          radius: 3, // Giá trị bán kính marker
         },
       },
     },

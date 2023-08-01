@@ -23,6 +23,10 @@ const Events = ({ queryApiEvents }) => {
         }
     }, [dataNewsAndEvents]);
 
+    const uniqueDates = Array.isArray(dataNewsAndEvents) && [...new Set(dataNewsAndEvents?.map(item => item.type))];
+
+    const mappedData = Array.isArray(uniqueDates) && uniqueDates?.map(item => ({ text: item, value: item }));
+
     const columns = [
         {
             title: 'Mã chứng khoán',
@@ -37,23 +41,25 @@ const Events = ({ queryApiEvents }) => {
             dataIndex: 'date_gdkhq',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.date_gdkhq}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.date_gdkhq}</p>;
             },
+            sorter: (a, b) => Date.parse(a.date_gdkhq) - Date.parse(b.date_gdkhq),
         },
         {
             title: 'Ngày ĐKCC',
             dataIndex: 'date_dkcc',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.date_dkcc}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.date_dkcc}</p>;
             },
+            sorter: (a, b) => Date.parse(a.date_dkcc) - Date.parse(b.date_dkcc),
         },
         {
             title: 'Ngày thực hiện',
             dataIndex: 'date',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.date}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.date}</p>;
             },
         },
         {
@@ -61,15 +67,18 @@ const Events = ({ queryApiEvents }) => {
             dataIndex: 'content',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-left font-semibold`}>{record.content}</p>;
+                return <p className={`dark:text-white text-black text-left font-semibold whitespace-nowrap`}>{record.content}</p>;
             },
         },
         {
             title: 'Loại sự kiện',
             dataIndex: 'type',
             align: 'center',
+            filters: mappedData,
+            filterSearch: true,
+            onFilter: (value, record) => record.type.includes(value),
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.type}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.type}</p>;
             },
         },
     ]
@@ -77,7 +86,7 @@ const Events = ({ queryApiEvents }) => {
     return (
         <div>
             {Array.isArray(data) ? (
-                <div className='mt-4 h-[670px]'>
+                <div className='mt-4 xl:h-[670px] lg:h-[715px] md:h-[715px] sm:h-[715px] xs:h-[715px] xxs:h-[715px]'>
                     <Table
                         scroll={{ x: 400 }}
                         rowClassName="pointer-events-none "

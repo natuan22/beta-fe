@@ -47,3 +47,21 @@
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
+
+.active-btn {
+  background: #DDDEB7;
+  background: linear-gradient(0deg, #DDDEB7 0%, #DDDEB7 100%);
+  border: none;
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+.active-btn:before {
+  height: 0%;
+  width: 2px;
+}
+
+.active-btn:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}

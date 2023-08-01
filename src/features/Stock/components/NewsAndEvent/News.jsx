@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 import { fetchDataNews } from '../../thunk';
-import '../../utils/style/verticalLine.css'
 
 const News = ({ stock }) => {
     const dispatch = useDispatch();
@@ -54,18 +53,18 @@ const News = ({ stock }) => {
                         )
                     })) : (<div className='h-[800px] flex items-center justify-center'><Loading /></div>)}
             </div>
-            <div className='verticalLine'>
+            <div className='h-[800px] border-solid xl:border-l-[1px] lg:border-l-0 md:border-l-0 sm:border-l-0 xs:border-l-0 xxs:border-l-0 border-r-0 xl:border-t-0 lg:border-t-[1px] md:border-t-[1px] sm:border-t-[1px] xs:border-t-[1px] xxs:border-t-[1px] border-b-0 border-[#D9D9D9]'>
                 {selectedItem ? (
                     <div className='relative'>
                         <div class="close cursor-pointer md:block sm:hidden xs:hidden xxs:hidden" onClick={handleCloseIframe} />
                         <iframe
                             src={selectedItem.href}
                             title={selectedItem.title}
-                            className='2xl:w-[704px] xl:w-[632px] lg:w-[890px] md:w-[660px] sm:w-[393px] xs:w-[343px] xxs:w-[290px] h-[796px]'
+                            className='2xl:w-[704px] xl:w-[632px] lg:w-[1014px] md:w-[758px] sm:w-[415px] xs:w-[365px] xxs:w-[310px] h-[796px]'
                         />
                     </div>
                 ) : (
-                    <div className='h-[800px] flex items-center justify-center dark:text-white text-black uppercase font-bold'>Chọn tin để đọc</div>
+                    <div className='h-[800px] flex items-center justify-center dark:text-white text-black uppercase font-bold'>Chọn bài bạn muốn đọc</div>
                 )}
             </div>
         </div>
