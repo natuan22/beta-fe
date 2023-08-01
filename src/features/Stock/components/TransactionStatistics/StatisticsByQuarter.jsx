@@ -17,7 +17,7 @@ const StatisticsByMonth = ({ stock }) => {
     const [currentMonthIndex, setCurrentMonthIndex] = useState(0); // Tháng hiện tại đang hiển thị
     const [currentDate, setCurrentDate] = useState(''); // Ngày hiện tại đang hiển thị
 
-    console.log(dataStatisticsByQuarter);
+    // console.log(dataStatisticsByQuarter);
 
     useEffect(() => {
         dispatch(fetchDataStatisticsByQuarter(stock));

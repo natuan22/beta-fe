@@ -15,7 +15,7 @@ const TableDetail = () => {
 
   useEffect(() => {
     socket.on("listen-domestic-index", (newData) => {
-      console.log(newData)
+      // console.log(newData)
       const sortedData = newData.slice().sort((a, b) => a.code.localeCompare(b.code)).reverse();
       setData(sortedData)
     });
