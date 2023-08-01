@@ -12,6 +12,7 @@ RUN tar -xzf SERVICE.tgz --directory /SERVICE && rm SERVICE.tgz
 
 ENV REACT_APP_BASE_URL=https://binfo.bsi.com.vn
 ENV REACT_APP_SOCKET_URL=https://binfo.bsi.com.vn/socket
+ENV REACT_APP_RESOURCE_URL=http://192.168.13.24:9000
 
 RUN chmod -R 775 /SERVICE
 
