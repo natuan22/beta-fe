@@ -17,7 +17,7 @@ const StatisticsByMonth = ({ stock }) => {
     const [currentMonthIndex, setCurrentMonthIndex] = useState(0); // Tháng hiện tại đang hiển thị
     const [currentDate, setCurrentDate] = useState(''); // Ngày hiện tại đang hiển thị
 
-    console.log(dataStatisticsByQuarter);
+    // console.log(dataStatisticsByQuarter);
 
     useEffect(() => {
         dispatch(fetchDataStatisticsByQuarter(stock));
@@ -45,36 +45,38 @@ const StatisticsByMonth = ({ stock }) => {
     const currentMonthData = dataStatisticsByQuarter[currentMonthIndex];
 
     return (
-        <div>
+        <div className='flex justify-center'>
             {dataStatisticsByQuarter?.length > 0 ?
-                <div className='dark:text-white text-black uppercase'>
-                    <div className='w-[411px] '>
-                        <div className='bg-[#0055B6] w-full h-[44px] flex justify-evenly items-center'>
-                            <BiSolidLeftArrow onClick={handlePreMonth} className='cursor-pointer' />
-                            <span className='date'> {currentDate}</span>
-                            <BiSolidRightArrow onClick={handleNextMonth} className='cursor-pointer' />
+                <div className='mt-4 xl:w-full lg:w-[411px] md:w-full sm:w-full xs:w-full xxs:w-full'>
+                    <div className='bg-[#0055B6] w-full h-[44px] flex justify-evenly items-center'>
+                        <button className='bg-transparent border-0 text-xl text-white'>
+                            <BiSolidLeftArrow onClick={handlePreMonth} />
+                        </button>
+                        <span className='date text-white'> {currentDate}</span>
+                        <button className='bg-transparent border-0 text-xl text-white'>
+                            <BiSolidRightArrow onClick={handleNextMonth} />
+                        </button>
+                    </div>
+                    <div className='dark:text-white text-black xl:text-base lg:text-sm md:text-base xs:text-base xxs:text-sm'>
+                        <div className='total flex justify-between mt-4'>
+                            <span>Tổng số phiên</span>
+                            <span>{currentMonthData.total.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
                         </div>
-                        <div className='w-[90%] '>
-                            <div className='total flex justify-between '>
-                                <span>Tổng số phiên</span>
-                                <span>{currentMonthData.total}</span>
-                            </div>
-                            <div className='omVol flex justify-between '>
-                                <span>Tổng KL khớp lệnh</span>
-                                <span>{currentMonthData.omVol}</span>
-                            </div>
-                            <div className=' omVal  flex justify-between '>
-                                <span>Tổng GT khớp lệnh</span>
-                                <span>{currentMonthData.omVal}</span>
-                            </div>
-                            <div className='ptVol flex justify-between '>
-                                <span>Tổng KL thỏa thuận</span>
-                                <span>{currentMonthData.ptVol}</span>
-                            </div>
-                            <div className='flex ptVal justify-between '>
-                                <span>Tổng GT thỏa thuận</span>
-                                <span>{currentMonthData.ptVal}</span>
-                            </div>
+                        <div className='omVol flex justify-between mt-4'>
+                            <span>Tổng KL khớp lệnh</span>
+                            <span>{currentMonthData.omVol.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+                        </div>
+                        <div className=' omVal  flex justify-between mt-4'>
+                            <span>Tổng GT khớp lệnh</span>
+                            <span>{currentMonthData.omVal.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+                        </div>
+                        <div className='ptVol flex justify-between mt-4'>
+                            <span>Tổng KL thỏa thuận</span>
+                            <span>{currentMonthData.ptVol.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+                        </div>
+                        <div className='flex ptVal justify-between mt-4'>
+                            <span>Tổng GT thỏa thuận</span>
+                            <span>{currentMonthData.ptVal.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
                         </div>
                     </div>
                 </div>

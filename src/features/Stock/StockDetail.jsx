@@ -88,23 +88,11 @@ const StockDetail = () => {
                                     ))}
                                 </TabList>
                             </Box>
-                            <TabPanel value="0">
-                                <QuickAnalysis />
-                            </TabPanel>
-                            <TabPanel value="1">
-                                <Overview codeUrl={codeVal} handleTabClick={handleTabClick} />
-                            </TabPanel>
-                            <TabPanel value="2">
-                                <TransactionStatistics codeUrl={codeVal} />
-                            </TabPanel>
-                            <TabPanel value="3">
-                                {" "}
-                                <BusinessFinance />
-                            </TabPanel>
-                            <TabPanel value="4">
-                                {" "}
-                                <NewsAndEvent />
-                            </TabPanel>
+                            <TabPanel value="0"><QuickAnalysis /></TabPanel>
+                            <TabPanel value="1"><Overview codeUrl={codeVal} handleTabClick={handleTabClick} /></TabPanel>
+                            <TabPanel value="2"><TransactionStatistics codeUrl={codeVal} /></TabPanel>
+                            <TabPanel value="3"><BusinessFinance /></TabPanel>
+                            <TabPanel value="4"><NewsAndEvent codeUrl={codeVal} /></TabPanel>
                         </TabContext>
                     </Box>
                 </div>

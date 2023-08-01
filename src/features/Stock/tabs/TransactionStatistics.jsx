@@ -18,7 +18,6 @@ import StatisticsByQuarter from '../components/TransactionStatistics/StatisticsB
 import StatisticsByYear from '../components/TransactionStatistics/StatisticsByYear';
 import TradingInvestors from '../components/TransactionStatistics/TradingInvestors';
 
-
 const contentTotalMatchingVolume = (
   <div>
     <span className='text-black font-medium rounded-lg text-sm bg-white p-2 '>
@@ -36,7 +35,6 @@ const contentTransactionData = (
 );
 
 const TransactionStatistics = ({ codeUrl }) => {
-
   const [theme, setTheme] = useState(localStorage.getItem('theme'))
   const color = useSelector((state) => state.color.colorTheme);
   const [isLoading, setIsLoading] = useState(false)
@@ -52,6 +50,7 @@ const TransactionStatistics = ({ codeUrl }) => {
   useEffect(() => {
     setTheme(color);
   }, [color]);
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(true)
@@ -59,59 +58,61 @@ const TransactionStatistics = ({ codeUrl }) => {
   }, [])
 
   return (
-    <div className='container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%]'>
+    <div className='container mx-auto'>
       {isLoading ? (
         <div className='mt-4'>
           <div>
-            <div className='flex justify-between items-center'>
+            <div className='lg:flex md:block justify-between items-center'>
               <div>
                 {!isChart ? (
                   <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <span className='dark:text-white text-black font-semibold uppercase'>Dữ liệu giao dịch</span>
                     <Popover content={contentTotalMatchingVolume} >
-                      <span className='ml-[12.4rem] text-[#C3A9A9] cursor-pointer text-[22px]' onClick={handleChangeChart}><IoBarChartSharp /></span>
+                      <span className='xs:ml-[12.4rem] xxs:ml-36 text-[#C3A9A9] cursor-pointer text-[22px]' onClick={handleChangeChart}><IoBarChartSharp /></span>
                     </Popover>
                   </span>
                 ) : (
                   <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <span className='dark:text-white text-black font-semibold uppercase'>Tổng khối lượng khớp lệnh</span>
                     <Popover content={contentTransactionData} >
-                      <span className='ml-[6.6rem] text-[#0055B6] cursor-pointer text-[22px]' onClick={handleChangeChart}><ImTable2 /></span>
+                      <span className='xs:ml-[6.6rem] xxs:ml-12 text-[#0055B6] cursor-pointer text-[22px]' onClick={handleChangeChart}><ImTable2 /></span>
                     </Popover>
                   </span>
                 )}
 
               </div>
-              <div className='flex input' id='datePicker'>
+              <div className='flex md:flex-row sm:flex-col xs:flex-col xxs:flex-col justify-center items-center lg:mt-0 md:mt-3 sm:mt-3 xs:mt-3 xxs:mt-3 input' id='datePicker'>
                 <div className='flex items-center'>
-                  <span className='dark:text-white text-black mr-4'>Từ ngày</span>
-                  <DatePicker
-                    openTo="year"
-                    format="DD/MM/YYYY"
-                    margin="normal"
-                    sx={{
-                      '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
-                      '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
-                    }}
-                    disableFuture
-                    formatDate={(date) => moment(date).format('DD/MM/YYYY')}
-                    value={fromDate} onChange={(newValue) => {
-                      setFromDate(newValue)
-                    }} />
+                  <span className='dark:text-white text-black w-[67.16px]'>Từ ngày</span>
+                  <div className='ml-4'>
+                    <DatePicker
+                      format="DD/MM/YYYY"
+                      margin="normal"
+                      sx={{
+                        '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
+                        '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
+                      }}
+                      disableFuture
+                      formatDate={(date) => moment(date).format('DD/MM/YYYY')}
+                      value={fromDate} onChange={(newValue) => {
+                        setFromDate(newValue)
+                      }} />
+                  </div>
                 </div>
-                <div className='ml-16 flex items-center'>
-                  <span className='dark:text-white text-black mr-4'>Đến ngày</span>
-                  <DatePicker
-                    openTo="year"
-                    format="DD/MM/YYYY"
-                    margin="normal"
-                    sx={{
-                      '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
-                      '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
-                    }}
-                    disableFuture
-                    formatDate={(date) => moment(date).format('DD/MM/YYYY')}
-                    value={toDate} onChange={(newValue) => { setToDate(newValue) }} />
+                <div className='md:ml-16 sm:ml-0 flex items-center md:mt-0 sm:mt-2 xs:mt-2 xxs:mt-2'>
+                  <span className='dark:text-white text-black'>Đến ngày</span>
+                  <div className='ml-4'>
+                    <DatePicker
+                      format="DD/MM/YYYY"
+                      margin="normal"
+                      sx={{
+                        '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
+                        '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
+                      }}
+                      disableFuture
+                      formatDate={(date) => moment(date).format('DD/MM/YYYY')}
+                      value={toDate} onChange={(newValue) => { setToDate(newValue) }} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -126,38 +127,44 @@ const TransactionStatistics = ({ codeUrl }) => {
             )}
           </div>
 
-          <div className='grid grid-cols-2 gap-40 mt-8'>
+          <div className='grid lg:grid-cols-2 md:grid-cols-none lg:gap-40 md:gap-8 sm:gap-8 xs:gap-8 xxs:gap-8 mt-8'>
             <div>
-              <div className='w-[362px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+              <div className='xs:w-[362px] xxs:w-full border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold uppercase'>Biến động giá giao dịch</span>
               </div>
               <TradingPriceFluctuations stock={queryApi.stock} />
             </div>
             <div>
-              <div className='w-[362px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+              <div className='xs:w-[362px] xxs:w-full border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold uppercase'>Khối lượng giao dịch bình quân/ngày</span>
               </div>
               <AverageTradingVolume stock={queryApi.stock} />
             </div>
           </div>
 
-          <div className='grid grid-cols-3 gap-3 mt-8'>
+          <div className='grid lg:grid-cols-3 md:grid-cols-none xl:gap-32 lg:gap-4 md:gap-4 sm:gap-4 xs:gap-4 xxs:gap-4 mt-10'>
             <div>
-              <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các tháng</span>
-              </span>
+              <div className='flex justify-center'>
+                <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các tháng</span>
+                </span>
+              </div>
               <StatisticsByMonth stock={queryApi.stock} />
             </div>
             <div>
-              <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các quý</span>
-              </span>
+              <div className='flex justify-center'>
+                <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các quý</span>
+                </span>
+              </div>
               <StatisticsByQuarter stock={queryApi.stock} />
             </div>
             <div>
-              <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các năm</span>
-              </span>
+              <div className='flex justify-center'>
+                <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các năm</span>
+                </span>
+              </div>
               <StatisticsByYear stock={queryApi.stock} />
             </div>
           </div>
@@ -166,7 +173,7 @@ const TransactionStatistics = ({ codeUrl }) => {
             <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold uppercase'>Giao dịch các nhóm nhà đầu tư</span>
             </span>
-            <TradingInvestors />
+            <TradingInvestors stock={queryApi.stock} />
           </div>
         </div>
       ) : (

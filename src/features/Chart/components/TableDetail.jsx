@@ -16,7 +16,8 @@ const TableDetail = () => {
   useEffect(() => {
     socket.on("listen-domestic-index", (newData) => {
       // console.log(newData)
-      setData(newData)
+      const sortedData = newData.slice().sort((a, b) => a.code.localeCompare(b.code)).reverse();
+      setData(sortedData)
     });
   }, [])
 
@@ -47,20 +48,20 @@ const TableDetail = () => {
                 <tbody>
                   {data?.length > 0 ? (Array.isArray(data) &&
                     data?.map((item, index) => {
-                      let color = getColor(item.percentIndexChange)
+                      let color = getColor(item.change)
                       return (
                         <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
                           <th className="text-left px-5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
-                            {item.comGroupCode}
+                            {item.code}
                           </th>
                           <td className={`text-center px-5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {item.indexValue && item.indexValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            {item.highPrice && item.highPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                           </td>
                           <td className={`text-center px-5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {item.indexChange && item.indexChange.toFixed(2)}
+                            {item.change && item.change.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                           </td>
                           <td className={`text-center px-5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                            {item.percentIndexChange && (item.percentIndexChange).toFixed(2)}%
+                            {item.perChange && (item.perChange).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                           </td>
                         </tr>
                       )
