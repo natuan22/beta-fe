@@ -30,16 +30,17 @@ const Events = ({ codeSearch }) => {
             dataIndex: 'date',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{moment(record.date).format('DD/MM/YYYY')}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{moment(record.date).format('DD/MM/YYYY')}</p>;
             },
             sorter: (a, b) => Date.parse(a.date) - Date.parse(b.date),
+            defaultSortOrder: 'descend',
         },
         {
             title: 'Nội dung sự kiện',
             dataIndex: 'content',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-left text-sm font-semibold`}>{record.content}</p>;
+                return <p className={`dark:text-white text-black text-left text-sm font-semibold whitespace-nowrap`}>{record.content}</p>;
             },
         },
     ]
@@ -47,7 +48,7 @@ const Events = ({ codeSearch }) => {
     return (
         <div>
             {Array.isArray(data) ? (
-                <div className='mt-4 md:h-[620px] sm:h-[770px] xs:h-[780px] xxs:h-[780px]'>
+                <div className='mt-4 md:h-[620px] sm:h-[615px] xs:h-[615px] xxs:h-[615px]'>
                     <Table
                         scroll={{ x: 400 }}
                         rowClassName="pointer-events-none"

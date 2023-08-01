@@ -224,7 +224,7 @@ const ChartInfo = () => {
                                     <tbody>
                                         {!loading ? (Array.isArray(dataTableDomestic) &&
                                             dataTableDomestic.map((item, index) => {
-                                                let color = getColor(item.percentIndexChange)
+                                                let color = getColor(item.change)
                                                 return (
                                                     <tr onClick={() => {
                                                         if (!localStorage.getItem('typeApi')) {
@@ -236,19 +236,19 @@ const ChartInfo = () => {
                                                         dispatch(fetchDataBienDongThiTruong(item.comGroupCode))
                                                     }} key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500 cursor-pointer'>
                                                         <th className="text-left px-3 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
-                                                            {item.comGroupCode}
+                                                            {item.code}
                                                         </th>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {item.indexValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                            {item.highPrice && item.highPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {(item.percentIndexChange).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
+                                                            {item.perChange && (item.perChange).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {(item.totalMatchVolume / 1000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                            {item.totalVol && (item.totalVol / 1000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {(item.totalMatchValue / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                            {item.totalVal && (item.totalVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                         </td>
 
                                                     </tr>
