@@ -9,7 +9,7 @@ const Footer = () => {
         <>
             <footer className='relative z-10 bg-footerBackground pt-10 pb-10 px-10 my-2.5 bg-cover xl:h-[275px] lg:h-[290px]'>
                 <div className="container mx-auto">
-                    <div className="mb-1 xl:translate-x-28 lg:translate-x-16 md:translate-x-8 sm:translate-x-20 xs:translate-x-16 xxs:translate-x-12">
+                    <div className="mb-1 w-[130px] xl:translate-x-28 lg:translate-x-16 md:translate-x-8 sm:translate-x-20 xs:translate-x-16 xxs:translate-x-12">
                         <a href="http://www.bsi.com.vn"
                             target="_blank"
                             rel="noopener noreferrer">

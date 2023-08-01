@@ -31,6 +31,8 @@ const contentNewsAndEvent = (
 const Overview = ({ handleTabClick, codeUrl }) => {
   const [isLoading, setIsLoading] = useState(false)
   const { queryApi, queryApiSameIndustry, handleQueryApiOrder, handleQueryApiExchange } = useQueryApi(codeUrl);
+  const [activeBtn, setActiveBtn] = useState(0);
+  const [activeBtnExchange, setActiveBtnExchange] = useState('HOSE');
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,15 +46,16 @@ const Overview = ({ handleTabClick, codeUrl }) => {
   const handleGoToNewsAndEvent = () => {
     handleTabClick('4')
   }
+
   return (
-    <div className='container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%]'>
+    <div className='container mx-auto'>
       {isLoading ? (
         <div className='mt-4'>
           <div>
             <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold uppercase'>Thống kê giao dịch</span>
               <Popover content={contentTransactionStatistics} >
-                <span className='ml-52 text-[#E4E81D] cursor-pointer ' onClick={handleGoToTransactionStatistics}><DoubleRightOutlined /></span>
+                <span className='sm:ml-52 xs:ml-28 xxs:ml-28 text-[#E4E81D] cursor-pointer ' onClick={handleGoToTransactionStatistics}><DoubleRightOutlined /></span>
               </Popover>
             </span>
             <TableTransactionStatistics codeSearch={queryApi.stock} />
@@ -64,8 +67,18 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                   <div className='w-[115px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <span className='dark:text-white text-black font-semibold uppercase'>Tài chính</span>
                   </div>
-                  <button className="custom-btn btn-2 ml-7" onClick={() => handleQueryApiOrder(0)}>Theo quý</button>
-                  <button className="custom-btn btn-2 ml-5" onClick={() => handleQueryApiOrder(1)}>Theo năm</button>
+                  <button className={`custom-btn ml-5 ${activeBtn === 0 ? 'active-btn' : 'btn-2'}`}
+                    onClick={() => {
+                      setActiveBtn(0)
+                      handleQueryApiOrder(0)
+                    }}
+                  >Theo quý</button>
+                  <button className={`custom-btn ml-5 ${activeBtn === 1 ? 'active-btn' : 'btn-2'}`}
+                    onClick={() => {
+                      setActiveBtn(1)
+                      handleQueryApiOrder(1)
+                    }}
+                  >Theo năm</button>
                 </div>
 
                 <div>
@@ -92,9 +105,27 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                       <span className='dark:text-white text-black font-semibold uppercase'>Doanh nghiệp cùng ngành</span>
                     </div>
                     <div className='flex md:mt-0 sm:mt-4 xs:mt-4 xxs:mt-4 sm:justify-center xs:justify-center xxs:justify-center'>
-                      <button className="custom-btn btn-2 ml-7" onClick={() => handleQueryApiExchange('HOSE')}>HOSE</button>
-                      <button className="custom-btn btn-2 ml-5" onClick={() => handleQueryApiExchange('HNX')}>HNX</button>
-                      <button className="custom-btn btn-2 ml-5" onClick={() => handleQueryApiExchange('UPCOM')}>UPCOM</button>
+                      <button
+                        className={`custom-btn ml-7 ${activeBtnExchange === 'HOSE' ? 'active-btn' : 'btn-2'}`}
+                        onClick={() => {
+                          setActiveBtnExchange('HOSE')
+                          handleQueryApiExchange('HOSE')
+                        }}
+                      >HOSE</button>
+                      <button
+                        className={`custom-btn ml-5 ${activeBtnExchange === 'HNX' ? 'active-btn' : 'btn-2'}`}
+                        onClick={() => {
+                          setActiveBtnExchange('HNX')
+                          handleQueryApiExchange('HNX')
+                        }}
+                      >HNX</button>
+                      <button
+                        className={`custom-btn ml-5 ${activeBtnExchange === 'UPCOM' ? 'active-btn' : 'btn-2'}`}
+                        onClick={() => {
+                          setActiveBtnExchange('UPCOM')
+                          handleQueryApiExchange('UPCOM')
+                        }}
+                      >UPCOM</button>
                     </div>
                   </div>
                   <div className='xxs:w-[317px] xs:w-[373px] sm:w-[423px] md:w-full'>
@@ -106,7 +137,7 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                   <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <span className='dark:text-white text-black font-semibold uppercase'>Lịch sự kiện</span>
                     <Popover content={contentNewsAndEvent}>
-                      <span className='ml-52 text-[#E4E81D] cursor-pointer' onClick={handleGoToNewsAndEvent}><DoubleRightOutlined /></span>
+                      <span className='xs:ml-52 xxs:ml-28 text-[#E4E81D] cursor-pointer' onClick={handleGoToNewsAndEvent}><DoubleRightOutlined /></span>
                     </Popover>
                   </span>
                   <div className='xxs:w-[317px] xs:w-[373px] sm:w-[423px] md:w-full'>

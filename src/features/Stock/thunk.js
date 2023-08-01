@@ -96,3 +96,111 @@ export const fetchDataEvents = (stock) => async (dispatch) => {
     }
 }
 
+export const fetchDataTransactionData = (stock, from, to) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataTransactionData(stock, from, to)
+        dispatch({
+            type: stockType.FETCH_DATA_TRANSACTION_DATA,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataTradingPriceFluctuations = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataTradingPriceFluctuations(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_TRADING_PRICE_FLUCTUATIONS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataAverageTradingVolume = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataAverageTradingVolume(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_AVERAGE_TRADING_VOLUME,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataStatisticsByMonth = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataStatisticsByMonth(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_STATISTICS_BY_MONTH,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataStatisticsByQuarter = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataStatisticsByQuarter(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_STATISTICS_BY_QUARTER,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataStatisticsByYear = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataStatisticsByYear(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_STATISTICS_BY_YEAR,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataTradingInvestors = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataTradingInvestors(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_TRADING_INVESTORS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataNewsAndEvents = (stock,type) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataNewsAndEvents(stock,type)
+        dispatch({
+            type: stockType.FETCH_DATA_NEWS_AND_EVENTS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataNews = (stock,type) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataNews(stock,type)
+        dispatch({
+            type: stockType.FETCH_DATA_NEWS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
