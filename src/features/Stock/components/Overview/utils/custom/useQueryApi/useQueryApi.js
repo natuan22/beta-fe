@@ -12,12 +12,21 @@ const useQueryApi = (codeUrl) => {
     exchange: 'hose'
   });
 
+  const [queryApiEvents, setQueryApiEvents] = useState({
+    stock: codeUrl.split('-')[0],
+    type: 0
+  });
+
   const handleQueryApiOrder = (order) => {
     setQueryApi((prev) => ({ ...prev, order }));
   };
 
   const handleQueryApiExchange = (exchange) => {
     setQueryApiSameIndustry((prev) => ({ ...prev, exchange }));
+  };
+
+  const handleQueryApiEvents = (type) => {
+    setQueryApiEvents((prev) => ({ ...prev, type }));
   };
 
   useEffect(() => {
@@ -30,9 +39,13 @@ const useQueryApi = (codeUrl) => {
       stock: codeUrl.split('-')[0],
       exchange: 'hose'
     });
+    setQueryApiEvents({
+      stock: codeUrl.split('-')[0],
+      type: 0
+    });
   }, [codeUrl]);
 
-  return { queryApi, queryApiSameIndustry, handleQueryApiOrder, handleQueryApiExchange };
+  return { queryApi, queryApiSameIndustry, queryApiEvents, handleQueryApiOrder, handleQueryApiExchange, handleQueryApiEvents };
 };
 
 export default useQueryApi;

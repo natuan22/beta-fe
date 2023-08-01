@@ -9,10 +9,8 @@ const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const NewsCenter = () => {
     const location = useLocation()
-    const [theme, setTheme] = useState(localStorage.getItem('theme'))
-    const color = useSelector((state) => state.color.colorTheme);
-
     const [bannerDisplay, setBannerDisplay] = useState(false)
+
     useEffect(() => {
         if (location.pathname === "/trung-tam-tin-tuc") {
             setBannerDisplay(true);
@@ -20,10 +18,6 @@ const NewsCenter = () => {
             setBannerDisplay(false);
         }
     }, [location]);
-
-    useEffect(() => {
-        setTheme(color);
-    }, [color]);
 
     return (
         <LayOut>

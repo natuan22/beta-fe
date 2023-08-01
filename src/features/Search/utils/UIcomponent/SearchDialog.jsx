@@ -76,14 +76,13 @@ export default function SearchDialog() {
             return
         }
         dispatch(handleDebounceSearch(debouncedValue))
-    }, [debouncedValue])
+    }, [dispatch, debouncedValue])
     useEffect(() => {
         if (searchResult) {
             setDataSearchLength(searchResult)
             setDataSearch(Array.isArray(searchResult) && searchResult?.slice(0, displayLimit));
         }
     }, [searchResult, displayLimit])
-
     // debounce
     const [, cancel] = useDebounce(
         () => {
@@ -93,7 +92,6 @@ export default function SearchDialog() {
         500,
         [val]
     );
-
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -123,7 +121,6 @@ export default function SearchDialog() {
         ...item,
         matchedCount: countMatchedCharacters(debouncedValue, item.code),
     })).sort((a, b) => b.matchedCount - a.matchedCount);
-    // console.log(sortedData)
     return (
         <div>
             <ImSearch onClick={handleClickOpen} className='cursor-pointer dark:text-white text-black text-[19px] ml-0.5 hover:dark:text-blue-400 hover:text-blue-400 transition-all duration-200' />
@@ -164,7 +161,6 @@ export default function SearchDialog() {
                                     debouncedValue,
                                     item.code
                                 );
-
                                 return { ...item, matchedCount }; // Thêm thuộc tính matchedCount vào mỗi item
                             })
                             .sort((a, b) => b.matchedCount - a.matchedCount) // Sắp xếp các item theo số lượng ký tự trùng khớp giảm dần
@@ -204,7 +200,6 @@ export default function SearchDialog() {
                                     </div>
                                 );
                             })}
-
                 </div>
                 <div className='grid place-items-center p-2'>
                     {dataSearchLength?.length > 10 ? <Button variant="outlined" onClick={handleLoadMore}>
