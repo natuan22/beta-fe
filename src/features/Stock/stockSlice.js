@@ -20,7 +20,8 @@ const initialState = {
     dataNews: {},
     dataTableStatementsCashFlows: {},
     dataChartStatementsCashFlows: {},
-    dataCandleChart: {}
+    dataCandleChart: {},
+    dataInfoHeaderStatus: null
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -84,6 +85,9 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_CANDLE_CHART) {
             draft.dataCandleChart = payload
+        }
+        if (type === stockType.FETCH_DATA_INFO_HEADER_STATUS) {
+            draft.dataInfoHeaderStatus = payload
         }
     });
 };

@@ -10,7 +10,7 @@ import ChartNH from './ChartStatementsCashFlows/ChartNH';
 const ChartStatementsCashFlows = ({ queryApiBusinessFinance }) => {
     const dispatch = useDispatch()
     const { dataChartStatementsCashFlows } = useSelector(state => state.stock)
-    
+
     useEffect(() => {
         dispatch(fetchDataChartStatementsCashFlows(queryApiBusinessFinance.stock, queryApiBusinessFinance.order));
     }, [dispatch, queryApiBusinessFinance]);

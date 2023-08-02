@@ -1,10 +1,11 @@
 import { https } from "../../../services/config"
 
 export const stockService = {
-    fetchDataInfoHeader: (stock) => {
+    fetchDataInfoHeader: (stock, type) => {
         return https.get('api/v1/shares/header', {
             params: {
-                stock
+                stock,
+                type
             }
         })
     },
