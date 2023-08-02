@@ -2,15 +2,18 @@ import React, { useEffect } from 'react'
 import { getColor } from '../../Chart/utils/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataInfoHeader } from '../thunk'
-const resourceURL = process.env.REACT_APP_RESOURCE_URL
+import CandleChart from './CandleChart'
 
-const StockInfo = (props) => {
+const resourceURL = process.env.REACT_APP_RESOURCE_URL
+const StockInfo = ({ codeSearch }) => {
     const dispatch = useDispatch()
+    const code = codeSearch.split('-')[0]
     const { dataInfoHeader } = useSelector((state) => state.stock);
 
     useEffect(() => {
-        dispatch(fetchDataInfoHeader(props.codeSearch.split('-')[0]));
-    }, [dispatch, props]);
+        dispatch(fetchDataInfoHeader(code));
+    }, [dispatch, code]);
+
 
     return (
         <div>
@@ -91,7 +94,9 @@ const StockInfo = (props) => {
                     <span className='text-[#8BFF62]'>Tên tiếng anh: {dataInfoHeader.company_eng}</span>
                     <p className='dark:text-white text-black text-justify pt-4'>{dataInfoHeader.summary}</p>
                 </div>
-                <div className='lg:col-span-4 md:col-span-full'></div>
+                <div className='lg:col-span-4 md:col-span-full'>
+                    {/* <CandleChart code={code} /> */}
+                </div>
             </div>
         </div>
     )
