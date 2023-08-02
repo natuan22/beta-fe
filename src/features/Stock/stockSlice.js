@@ -17,7 +17,8 @@ const initialState = {
     dataStatisticsByYear: {},
     dataTradingInvestors: {},
     dataNewsAndEvents: {},
-    dataNews: {}
+    dataNews: {},
+    dataCandleChart: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -72,6 +73,9 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_NEWS) {
             draft.dataNews = payload
+        }
+        if (type === stockType.FETCH_DATA_CANDLE_CHART) {
+            draft.dataCandleChart = payload
         }
     });
 };

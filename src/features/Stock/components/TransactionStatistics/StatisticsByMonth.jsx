@@ -49,11 +49,11 @@ const StatisticsByMonth = ({ stock }) => {
             {dataStatisticsByMonth?.length > 0 ?
                 <div className='mt-4 xl:w-full lg:w-[411px] md:w-full sm:w-full xs:w-full xxs:w-full'>
                     <div className='bg-[#0055B6] w-full h-[44px] flex justify-evenly items-center'>
-                        <button className='bg-transparent border-0 text-xl text-white'>
+                        <button className={` ${currentMonthIndex === dataStatisticsByMonth.length - 1 ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'} bg-transparent border-0 text-xl text-white `}>
                             <BiSolidLeftArrow onClick={handlePreMonth} />
                         </button>
                         <span className='date text-white'> {currentDate}</span>
-                        <button className='bg-transparent border-0 text-xl text-white'>
+                        <button className={` ${currentMonthIndex === 0 ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'} bg-transparent border-0 text-xl text-white `}>
                             <BiSolidRightArrow onClick={handleNextMonth} />
                         </button>
                     </div>

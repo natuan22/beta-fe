@@ -133,4 +133,11 @@ export const stockService = {
             }
         })
     },
+    fetchDataCandleChart: (stock) => {
+        return https.get('api/v1/shares/chart-nen', {
+            params: {
+                stock
+            }
+        })
+    }
 }
