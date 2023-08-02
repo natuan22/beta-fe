@@ -127,10 +127,11 @@ export const stockService = {
             }
         })
     },
-    fetchDataNews: (stock) => {
+    fetchDataNews: (stock, type) => {
         return https.get('api/v1/shares/tin-tuc', {
             params: {
-                stock
+                stock, 
+                type
             }
         })
     },

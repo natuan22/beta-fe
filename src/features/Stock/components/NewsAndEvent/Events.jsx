@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 import { fetchDataNewsAndEvents } from '../../thunk';
 
-const Events = ({ queryApiEvents }) => {
+const Events = ({ queryApiNewsEvents }) => {
     const dispatch = useDispatch();
     const [data, setData] = useState([])
     const { dataNewsAndEvents } = useSelector(state => state.stock)
 
     useEffect(() => {
-        dispatch(fetchDataNewsAndEvents(queryApiEvents.stock, queryApiEvents.type));
-    }, [dispatch, queryApiEvents]);
+        dispatch(fetchDataNewsAndEvents(queryApiNewsEvents.stock, queryApiNewsEvents.type));
+    }, [dispatch, queryApiNewsEvents]);
 
     useEffect(() => {
         if (dataNewsAndEvents) {
