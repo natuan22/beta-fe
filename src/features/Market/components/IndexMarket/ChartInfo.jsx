@@ -19,7 +19,6 @@ const ChartInfo = () => {
 
     const { lineChartMarketData } = useSelector(state => state.market)
     const { dataBienDongThiTruong } = useSelector(state => state.market)
-
     const [data, setData] = useState([])
     const [dataInfo, setDataInfo] = useState([])
     const [dataChart, setDataChart] = useState()
