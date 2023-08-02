@@ -17,6 +17,13 @@ const useQueryApi = (codeUrl) => {
     type: 0
   });
 
+  const [queryApiBusinessFinance, setQueryApiBusinessFinance] = useState({
+    stock: codeUrl.split('-')[0],
+    type: codeUrl.split('-')[1],
+    order: '0',
+    unit: 1000000000
+  });
+
   const handleQueryApiOrder = (order) => {
     setQueryApi((prev) => ({ ...prev, order }));
   };
@@ -27,6 +34,14 @@ const useQueryApi = (codeUrl) => {
 
   const handleQueryApiEvents = (type) => {
     setQueryApiEvents((prev) => ({ ...prev, type }));
+  };
+
+  const handleQueryApiBusinessFinanceOrder = (order) => {
+    setQueryApiBusinessFinance((prev) => ({ ...prev, order }));
+  };
+
+  const handleQueryApiBusinessFinanceUnit = (unit) => {
+    setQueryApiBusinessFinance((prev) => ({ ...prev, unit }));
   };
 
   useEffect(() => {
@@ -43,9 +58,15 @@ const useQueryApi = (codeUrl) => {
       stock: codeUrl.split('-')[0],
       type: 0
     });
+    setQueryApiBusinessFinance({
+      stock: codeUrl.split('-')[0],
+      type: codeUrl.split('-')[1],
+      order: '0',
+      unit: 1000000000
+    });
   }, [codeUrl]);
 
-  return { queryApi, queryApiSameIndustry, queryApiEvents, handleQueryApiOrder, handleQueryApiExchange, handleQueryApiEvents };
+  return { queryApi, queryApiSameIndustry, queryApiEvents, queryApiBusinessFinance, handleQueryApiBusinessFinanceOrder, handleQueryApiBusinessFinanceUnit, handleQueryApiOrder, handleQueryApiExchange, handleQueryApiEvents };
 };
 
 export default useQueryApi;

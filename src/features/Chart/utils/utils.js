@@ -9,6 +9,14 @@ export function getColor(item) {
     return color;
 }
 
+export function getColorText(item) {
+    let color = "";
+    if (item === item.toUpperCase()) color = "text-[#13CCC1]";
+    else color = "dark:text-white text-black";
+
+    return color;
+}
+
 export function getColorWithValueReference(referenceIndex, item) {
     let color = "";
     if (item === referenceIndex) color = "text-yellow-500";

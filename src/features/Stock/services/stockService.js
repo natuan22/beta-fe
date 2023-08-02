@@ -133,4 +133,22 @@ export const stockService = {
             }
         })
     },
+    fetchDataTableStatementsCashFlows: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-luu-chuyen-tien-te', {
+            params: {
+                stock,
+                order,
+                is_chart: 0
+            }
+        })
+    },
+    fetchDataChartStatementsCashFlows: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-luu-chuyen-tien-te', {
+            params: {
+                stock,
+                order,
+                is_chart: 1
+            }
+        })
+    },
 }

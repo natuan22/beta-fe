@@ -17,7 +17,9 @@ const initialState = {
     dataStatisticsByYear: {},
     dataTradingInvestors: {},
     dataNewsAndEvents: {},
-    dataNews: {}
+    dataNews: {},
+    dataTableStatementsCashFlows: {},
+    dataChartStatementsCashFlows: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -72,6 +74,12 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_NEWS) {
             draft.dataNews = payload
+        }
+        if (type === stockType.FETCH_DATA_TABLE_STATEMENTS_CASH_FLOWS) {
+            draft.dataTableStatementsCashFlows = payload
+        }
+        if (type === stockType.FETCH_DATA_CHART_STATEMENTS_CASH_FLOWS) {
+            draft.dataChartStatementsCashFlows = payload
         }
     });
 };
