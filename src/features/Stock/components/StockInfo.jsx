@@ -103,7 +103,7 @@ const StockInfo = ({ codeSearch }) => {
                     <p className='dark:text-white text-black text-justify pt-4'>{dataInfoHeader.summary}</p>
                 </div>
                 <div className='lg:col-span-4 md:col-span-full'>
-                    {/* <CandleChart code={code} /> */}
+                    <CandleChart code={code} />
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ const LineChart = () => {
   useEffect(() => {
     setColorText(color);
   }, [color]);
-
+  console.log({ dataRealTime })
   useEffect(() => {
     if (dataLineChartHomePage?.data?.length) {
       setDataRealTime(dataLineChartHomePage.data)
@@ -33,7 +33,6 @@ const LineChart = () => {
     }
   }, [dataLineChartHomePage.data])
   const data = dataRealTime?.map(item => {
-    console.log(item.tradingDate)
     return [item.tradingDate, item.indexValue]
   })
   // Thiết lập các tùy chọn của biểu đồ
