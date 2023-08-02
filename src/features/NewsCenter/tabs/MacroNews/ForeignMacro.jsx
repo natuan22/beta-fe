@@ -106,6 +106,7 @@ const ForeignMacro = () => {
                                                             <div className='font-semibold line-clamp-2 px-2 text-[0.8rem] dark:text-white text-black text-justify items-center justify-center mt-1.5'>
                                                                 {item.title}
                                                             </div>
+                                                            <div className='line-clamp-3 px-2 text-[0.7rem] dark:text-white text-black text-justify items-center justify-center mt-1.5'>{item.sub_title}</div>
                                                             <div className='text-[#FFD300] text-[0.8rem] text-right absolute bottom-0 right-0'>
                                                                 {moment(item.date).format('DD.MM.YYYY')}
                                                             </div>
@@ -124,11 +125,14 @@ const ForeignMacro = () => {
                                             <div key={index} className='mr-2 mb-3 dark:hover:bg-gray-800 hover:bg-gray-300' >
                                                 <a href={item.href} className='no-underline' target="_blank" rel="noopener noreferrer">
                                                     <div className='flex'>
-                                                        <img src={item.img} alt={item.title} className='bg-cover bg-center w-[150px] h-[100px]' />
+                                                        <div>
+                                                            <img src={item.img} alt={item.title} className='bg-cover bg-center w-[150px] h-[100px]' />
+                                                        </div>
                                                         <div className='relative w-full'>
                                                             <div className='font-semibold line-clamp-2 px-2 text-[0.8rem] dark:text-white text-black text-justify items-center justify-center mt-1.5'>
                                                                 {item.title}
                                                             </div>
+                                                            <div className='line-clamp-3 px-2 text-[0.7rem] dark:text-white text-black text-justify items-center justify-center mt-1.5'>{item.sub_title}</div>
                                                             <div className='text-[#FFD300] text-[0.8rem] text-right absolute bottom-0 right-0'>
                                                                 {moment(item.date).format('DD.MM.YYYY')}
                                                             </div>

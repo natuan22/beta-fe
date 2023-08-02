@@ -1,15 +1,7 @@
-#stockDetail .MuiTabs-root {
-  border-bottom: 1px solid #34a3f3;
-}
-
 #stockDetail .MuiTabs-scroller {
   display: grid !important;
   place-items: center;
 }
-
-/* #stockDetail .MuiTabs-flexContainer {
-  justify-content: space-evenly;
-} */
 
 #stockDetail .MuiTabPanel-root {
   padding: 0px !important;
@@ -24,9 +16,14 @@
   margin-left: 3px !important;
   margin-right: 3px !important;
 }
+
 #stockDetail .Mui-selected {
   color: white !important;
 }
+
 #stockDetail .MuiTabs-indicator {
-  display: none !important;
+  display: block !important;
+  background-color: #0055B6;
+  height: 200px;
+  z-index: -1;
 }

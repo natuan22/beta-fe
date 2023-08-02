@@ -204,11 +204,35 @@ export const fetchDataNews = (stock, type) => async (dispatch) => {
     }
 }
 
+export const fetchDataTableStatementsCashFlows = (stock, order) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataTableStatementsCashFlows(stock, order)
+        dispatch({
+            type: stockType.FETCH_DATA_TABLE_STATEMENTS_CASH_FLOWS,
+       payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
 export const fetchDataCandleChart = stock => async dispatch => {
     try {
         const res = await stockService.fetchDataCandleChart(stock)
         dispatch({
             type: stockType.FETCH_DATA_CANDLE_CHART,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataChartStatementsCashFlows = (stock, order) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataChartStatementsCashFlows(stock, order)
+        dispatch({
+            type: stockType.FETCH_DATA_CHART_STATEMENTS_CASH_FLOWS,
             payload: res.data.data
         })
     } catch (err) {

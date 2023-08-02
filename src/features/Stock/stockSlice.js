@@ -18,6 +18,8 @@ const initialState = {
     dataTradingInvestors: {},
     dataNewsAndEvents: {},
     dataNews: {},
+    dataTableStatementsCashFlows: {},
+    dataChartStatementsCashFlows: {},
     dataCandleChart: {}
 };
 
@@ -73,6 +75,12 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_NEWS) {
             draft.dataNews = payload
+        }
+        if (type === stockType.FETCH_DATA_TABLE_STATEMENTS_CASH_FLOWS) {
+            draft.dataTableStatementsCashFlows = payload
+        }
+        if (type === stockType.FETCH_DATA_CHART_STATEMENTS_CASH_FLOWS) {
+            draft.dataChartStatementsCashFlows = payload
         }
         if (type === stockType.FETCH_DATA_CANDLE_CHART) {
             draft.dataCandleChart = payload

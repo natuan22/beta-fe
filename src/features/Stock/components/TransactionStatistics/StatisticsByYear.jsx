@@ -80,7 +80,7 @@ const StatisticsByYear = ({ stock }) => {
           </div>
         </div>
       ) : (
-        <div><Loading /></div>
+        <div className='h-[244px] flex items-center justify-center'><Loading /></div>
       )}
     </div>
   )

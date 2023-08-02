@@ -46,7 +46,7 @@ const StatisticsByMonth = ({ stock }) => {
 
     return (
         <div className='flex justify-center'>
-            {dataStatisticsByQuarter?.length > 0 ?
+            {dataStatisticsByQuarter?.length > 0 ? (
                 <div className='mt-4 xl:w-full lg:w-[411px] md:w-full sm:w-full xs:w-full xxs:w-full'>
                     <div className='bg-[#0055B6] w-full h-[44px] flex justify-evenly items-center'>
                         <button className={` ${currentQuarterIndex === dataStatisticsByQuarter.length - 1 ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'} bg-transparent border-0 text-xl text-white `}>
@@ -80,7 +80,9 @@ const StatisticsByMonth = ({ stock }) => {
                         </div>
                     </div>
                 </div>
-                : <div><Loading /></div>}
+            ) : (
+                <div className='h-[244px] flex items-center justify-center'><Loading /></div>
+            )}
         </div>
     )
 }
