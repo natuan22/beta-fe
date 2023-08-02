@@ -1,14 +1,18 @@
 import { stockService } from "./services/stockService"
 import { stockType } from "./utils/constant"
 
-export const fetchDataInfoHeader = (stock) => async (dispatch) => {
+export const fetchDataInfoHeader = (stock, type) => async (dispatch) => {
     try {
-        const res = await stockService.fetchDataInfoHeader(stock)
+        const res = await stockService.fetchDataInfoHeader(stock, type)
         dispatch({
             type: stockType.FETCH_DATA_INFO_HEADER,
             payload: res.data.data
         })
     } catch (err) {
+        dispatch({
+            type: stockType.FETCH_DATA_INFO_HEADER_STATUS,
+            payload: err.response.data.status
+        })
         console.error(err)
     }
 }
@@ -209,7 +213,7 @@ export const fetchDataTableStatementsCashFlows = (stock, order) => async (dispat
         const res = await stockService.fetchDataTableStatementsCashFlows(stock, order)
         dispatch({
             type: stockType.FETCH_DATA_TABLE_STATEMENTS_CASH_FLOWS,
-       payload: res.data.data
+            payload: res.data.data
         })
     } catch (err) {
         console.error(err)

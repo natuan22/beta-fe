@@ -1,19 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import { getColor } from '../../Chart/utils/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataInfoHeader } from '../thunk'
 import CandleChart from './CandleChart'
+import { useNavigate } from 'react-router-dom'
 
 const resourceURL = process.env.REACT_APP_RESOURCE_URL
 const StockInfo = ({ codeSearch }) => {
     const dispatch = useDispatch()
     const code = codeSearch.split('-')[0]
-    const { dataInfoHeader } = useSelector((state) => state.stock);
+    const type = codeSearch.split('-')[1]
+    const { dataInfoHeader, dataInfoHeaderStatus } = useSelector((state) => state.stock);
+    const nav = useNavigate()
 
     useEffect(() => {
-        dispatch(fetchDataInfoHeader(code));
+        dispatch(fetchDataInfoHeader(code, type));
     }, [dispatch, code]);
 
+    useLayoutEffect(() => {
+        if (dataInfoHeaderStatus === 400) {
+            nav('/trang-khong-ton-tai')
+        }
+    }, [dataInfoHeaderStatus])
 
     return (
         <div>
