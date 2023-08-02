@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 import { fetchDataSameIndustry } from '../../thunk';
 import '../../utils/style/antDesignTableStock.css'
-
 const SameIndustry = ({ queryApi }) => {
     const dispatch = useDispatch();
     const [data, setData] = useState([])
@@ -95,12 +94,12 @@ const SameIndustry = ({ queryApi }) => {
                 <div className='mt-4 md:h-[620px] sm:h-[670px] xs:h-[670px] xxs:h-[670px]'>
                     <Table
                         scroll={{ x: 400 }}
-                        rowClassName="pointer-events-none "
+                        rowClassName="pointer-events-none"
                         bordered={false}
                         columns={columns}
                         dataSource={data}
+                        className='table-stock-detail table-stock-sameIndustry'
                         pagination={{ defaultPageSize: 9, showSizeChanger: false }}
-                        className='table-stock-detail'
                     />
                 </div>
             ) : (

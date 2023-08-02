@@ -16,7 +16,6 @@ const StatisticsByYear = ({ stock }) => {
   const { dataStatisticsByYear } = useSelector(state => state.stock);
   const [currentYearIndex, setCurrentYearIndex] = useState(0); // Tháng hiện tại đang hiển thị
   const [currentDate, setCurrentDate] = useState(''); // Ngày hiện tại đang hiển thị
-  console.log(dataStatisticsByYear);
   useEffect(() => {
     dispatch(fetchDataStatisticsByYear(stock));
   }, [dispatch, stock]);

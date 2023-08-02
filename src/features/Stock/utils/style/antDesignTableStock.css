@@ -71,6 +71,10 @@
   pointer-events: none;
 }
 
-/* .ant-table {
+.table-stock-sameIndustry .ant-table {
   min-height: 560px;
-} */
+}
+
+.table-stock-event .ant-table {
+  min-height: 560px;
+}
