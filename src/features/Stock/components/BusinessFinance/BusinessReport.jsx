@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import '../../utils/style/styleButton.css'
 import useQueryApi from '../Overview/utils/custom/useQueryApi/useQueryApi';
-import ChartStatementsCashFlows from './StatementsCashFlows/ChartStatementsCashFlows';
-import TableStatementsCashFlows from './StatementsCashFlows/TableStatementsCashFlows';
+import ChartBusinessReport from './BusinessReport/ChartBusinessReport';
+import TableBusinessReport from './BusinessReport/TableBusinessReport';
 
-const StatementsCashFlows = ({ codeUrl }) => {
+const BusinessReport = ({ codeUrl }) => {
     const [activeBtn, setActiveBtn] = useState(0);
     const { queryApiBusinessFinance, handleQueryApiBusinessFinanceOrder, handleQueryApiBusinessFinanceUnit } = useQueryApi(codeUrl);
 
@@ -55,11 +55,11 @@ const StatementsCashFlows = ({ codeUrl }) => {
                 </div>
                 {activeBtn === 0 ? (
                     <div>
-                        <TableStatementsCashFlows queryApiBusinessFinance={queryApiBusinessFinance} />
+                        <TableBusinessReport queryApiBusinessFinance={queryApiBusinessFinance} />
                     </div>
                 ) : (
                     <div>
-                        <ChartStatementsCashFlows queryApiBusinessFinance={queryApiBusinessFinance} />
+                        <ChartBusinessReport queryApiBusinessFinance={queryApiBusinessFinance} />
                     </div>
                 )}
             </div>
@@ -67,4 +67,4 @@ const StatementsCashFlows = ({ codeUrl }) => {
     )
 }
 
-export default StatementsCashFlows
+export default BusinessReport

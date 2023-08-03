@@ -1,7 +1,7 @@
-#stockDetail .MuiTabs-scroller {
+/* #stockDetail .MuiTabs-scroller {
   display: grid !important;
   place-items: center;
-}
+} */
 
 #stockDetail .MuiTabPanel-root {
   padding: 0px !important;

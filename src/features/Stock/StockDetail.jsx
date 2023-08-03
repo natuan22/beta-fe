@@ -23,7 +23,7 @@ const StockDetail = () => {
     const [codeVal, setCodeVal] = useState(code);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const color = useSelector((state) => state.color.colorTheme);
-    const [activeTab, setActiveTab] = useState('3');
+    const [activeTab, setActiveTab] = useState('1');
 
     useEffect(() => {
         setTheme(color);
@@ -103,13 +103,13 @@ const StockDetail = () => {
                                     <Tab onClick={() => handleTabClick('1')} label='TỔNG QUAN' value='1' />
                                     <Tab onClick={() => handleTabClick('2')} label='THỐNG KÊ GIAO DỊCH' value='2' />
                                     <Tab onClick={() => handleTabClick('3')} label='TÀI CHÍNH DOANH NGHIỆP' value='3' />
-                                    <Tab onClick={() => handleTabClick('4')} label='TIN TỨC VÀ SỰ KIỆN' value='4' s />
+                                    <Tab onClick={() => handleTabClick('4')} label='TIN TỨC VÀ SỰ KIỆN' value='4' />
                                 </TabList>
                             </Box>
                             <TabPanel value="0"><QuickAnalysis /></TabPanel>
                             <TabPanel value="1"><Overview codeUrl={codeVal} handleTabClick={handleTabClick} /></TabPanel>
                             <TabPanel value="2"><TransactionStatistics codeUrl={codeVal} /></TabPanel>
-                            <TabPanel value="3"><BusinessFinance codeUrl={codeVal}/></TabPanel>
+                            <TabPanel value="3"><BusinessFinance codeUrl={codeVal} /></TabPanel>
                             <TabPanel value="4"><NewsAndEvent codeUrl={codeVal} /></TabPanel>
                         </TabContext>
                     </Box>

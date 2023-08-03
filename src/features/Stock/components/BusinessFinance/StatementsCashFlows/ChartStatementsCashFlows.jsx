@@ -1,5 +1,5 @@
 import React from 'react'
-import Error404 from '../../../Navigation/Error404';
+import Error404 from '../../../../Navigation/Error404';
 import ChartBH from './ChartStatementsCashFlows/ChartBH';
 import ChartCK from './ChartStatementsCashFlows/ChartCK';
 import ChartCTCP from './ChartStatementsCashFlows/ChartCTCP';

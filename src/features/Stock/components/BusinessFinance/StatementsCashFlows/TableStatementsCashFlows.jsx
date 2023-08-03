@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Loading from '../../../Chart/utils/Loading'
-import { getColorText } from '../../../Chart/utils/utils'
-import { fetchDataTableStatementsCashFlows } from '../../thunk'
+import Loading from '../../../../Chart/utils/Loading'
+import { getColorText } from '../../../../Chart/utils/utils'
+import { fetchDataTableStatementsCashFlows } from '../../../thunk'
 
 const TableStatementsCashFlows = ({ queryApiBusinessFinance }) => {
     const dispatch = useDispatch()
@@ -51,11 +51,11 @@ const TableStatementsCashFlows = ({ queryApiBusinessFinance }) => {
             <section className="py-4">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-                        <div className="block bg-transparent scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent">
+                        <div className="block bg-transparent scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent 2xl:overflow-x-hidden xl:overflow-x-scroll lg:overflow-x-scroll md:overflow-x-scroll sm:overflow-x-scroll xs:overflow-x-scroll xxs:overflow-x-scroll">
                             <table className="items-center border-collapse bg-transparent w-full h-[294px]">
                                 <thead className="bg-[#0055B6]">
                                     <tr>
-                                        <th className="text-left align-middle px-3 py-[15px] whitespace-nowrap font-extrabold text-white">
+                                        <th className="sticky left-0 z-10 bg-[#0055B6] text-left align-middle lg:px-3 md:px-36 sm:px-20 xs:px-10 xxs:px-10 py-[15px] whitespace-nowrap font-extrabold text-white">
                                             Chỉ tiêu
                                         </th>
                                         {Array.isArray(dates) && dates?.map(item => (
@@ -69,7 +69,7 @@ const TableStatementsCashFlows = ({ queryApiBusinessFinance }) => {
                                 <tbody>
                                     {!loading ? (Array.isArray(dataTb) && dataTb.map(item => (
                                         <tr key={item.name} className={`dark:hover:bg-gray-800 hover:bg-gray-300 duration-500 ${getColorText(item.name)} border-solid border-b-[1px] border-x-0 border-t-0 border-[#D9D9D9] border-opacity-40`}>
-                                            <th className={`text-left align-middle whitespace-nowrap px-1 pt-[15px] pb-[2px] text-sm`}>
+                                            <th className={`sticky left-0 z-10 dark:bg-black bg-white dark:hover:bg-gray-800 hover:bg-gray-300 duration-500 text-left align-middle lg:whitespace-nowrap md:whitespace-normal  px-1 pt-[15px] pb-[2px] text-sm`}>
                                                 {item.name}
                                             </th>
                                             {item.values.map((value, index) => {
