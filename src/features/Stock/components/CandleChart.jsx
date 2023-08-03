@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataCandleChart } from '../thunk';
 import Loading from '../../Chart/utils/Loading';
 import { timeLineChart9h00, timeLineChart15h00 } from '../../../helper/dateTime.helper'
+
 stockModule(Highcharts); // Kích hoạt module "stock"
+
 const CandleChart = ({ code }) => {
     const dispatch = useDispatch()
     const { dataCandleChart } = useSelector(state => state.stock)
     const [price, setPrice] = useState()
-    console.log({ dataCandleChart })
-    console.log(timeLineChart9h00, timeLineChart15h00)
+
     useEffect(() => {
         dispatch(fetchDataCandleChart(code))
     }, [dispatch, code])
@@ -106,7 +107,13 @@ const CandleChart = ({ code }) => {
 
     return (
         <div>
-            {dataCandleChart?.length > 0 ? <HighchartsReact highcharts={Highcharts} options={options} /> : <div><Loading /></div>}
+            {dataCandleChart?.length > 0 ? (
+                <div className='h-[300px]'>
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                </div>
+            ) : (
+                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
+            )}
         </div>
     )
 };

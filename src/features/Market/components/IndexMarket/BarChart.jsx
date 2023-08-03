@@ -234,7 +234,7 @@ const BarChart = () => {
                             handleQueryApiType(e.target.value);
                             setHandleQueryType(e.target.value)
                         }}
-                        className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0 md:inline sm:hidden xs:hidden xxs:hidden`}>
+                        className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-[2px] text-[#0097B2] border-0 md:inline sm:hidden xs:hidden xxs:hidden`}>
                         <option value="0">Cổ phiếu</option>
                         <option value="1">Ngành LV1</option>
                         <option value="2">Ngành LV2</option>

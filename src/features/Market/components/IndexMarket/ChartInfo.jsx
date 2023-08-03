@@ -45,7 +45,8 @@ const ChartInfo = () => {
     useEffect(() => {
         if (dataTable.data) {
             socket.on("listen-domestic-index", (newData) => {
-                setDataTableDomestic(newData)
+                const sortedData = newData.slice().sort((a, b) => a.code.localeCompare(b.code)).reverse();
+                setDataTableDomestic(sortedData)
             });
         }
     }, [dataTableDomestic])
@@ -83,6 +84,7 @@ const ChartInfo = () => {
         socket.on(`listen-chi-so-${key}`, (newData) => {
             setDataInfo((prevData) => [...prevData, ...newData]);
             setDataChart((prevData) => [...prevData, ...newData]);
+            console.log(newData)
         });
     }
 
@@ -91,7 +93,6 @@ const ChartInfo = () => {
             setDataInfo((prevData) => [...prevData, ...newData]);
         });
     }
-
     const options = {
         accessibility: {
             enabled: false,
@@ -144,9 +145,6 @@ const ChartInfo = () => {
 
     const vnindexData = dataInfo && dataInfo[dataInfo.length - 1]
     const colorChange = vnindexData && getColor(vnindexData.percentIndexChange)
-    const openColor = vnindexData && getColorWithValueReference(vnindexData.referenceIndex, vnindexData.openIndex)
-    const lowestColor = vnindexData && getColorWithValueReference(vnindexData.referenceIndex, vnindexData.lowestIndex)
-    const highestColor = vnindexData && getColorWithValueReference(vnindexData.referenceIndex, vnindexData.highestIndex)
 
     return (
         <>
@@ -154,7 +152,7 @@ const ChartInfo = () => {
                 <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                     <div className='w-[345px]'>
                         <span className='dark:text-white text-black xxs:text-[12px] xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]'>{vnindexData && vnindexData.comGroupCode}</span>
-                        <span className={`${colorChange} text-white xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px] xxs:pl-[10px]`}>{vnindexData && vnindexData.indexValue}</span>
+                        <span className={`${colorChange} text-white xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px] xxs:pl-[10px]`}>{vnindexData && vnindexData.indexValue.toFixed(2)}</span>
                         <span className={`${colorChange} xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[25px] xs:pl-[15px] xxs:pl-[5px]`}>{vnindexData && vnindexData.indexChange.toFixed(2)}/ {vnindexData && (vnindexData.percentIndexChange).toFixed(2)}%</span>
                     </div>
                     <div>
@@ -181,10 +179,9 @@ const ChartInfo = () => {
             </div>
             <hr />
             <div className='flex justify-around dark:text-white text-black text-xs mt-2'>
-                <span className='xs:text-[10px] sm:text-[12px]'>Tham chiếu: <span className='text-yellow-500'>{vnindexData && vnindexData.referenceIndex}</span></span>
-                <span className='xs:text-[10px] sm:text-[12px]'>Mở cửa: <span className={`${openColor}`}>{vnindexData && vnindexData.openIndex}</span></span>
-                <span className='xs:text-[10px] sm:text-[12px]'>Thấp nhất: <span className={`${lowestColor}`}>{vnindexData && vnindexData.lowestIndex}</span></span>
-                <span className='xs:text-[10px] sm:text-[12px]'>Cao nhất: <span className={`${highestColor}`}>{vnindexData && vnindexData.highestIndex}</span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Mở cửa: <span >{vnindexData && vnindexData.openIndex}</span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Thấp nhất: <span>{vnindexData && vnindexData.lowestIndex}</span></span>
+                <span className='xs:text-[10px] sm:text-[12px]'>Cao nhất: <span>{vnindexData && vnindexData.highestIndex}</span></span>
             </div>
             <div className='flex justify-around text-xs mt-1'>
                 <span className='text-[#5CE1E6] xs:text-[11px] sm:text-[12px]'>Sàn: <span className='dark:text-white text-black'>{data && data.low}</span></span>
@@ -227,18 +224,18 @@ const ChartInfo = () => {
                                                 return (
                                                     <tr onClick={() => {
                                                         if (!localStorage.getItem('typeApi')) {
-                                                            dispatch(fetchDataLineChartMarket(`${item.comGroupCode}`, '0'))
+                                                            dispatch(fetchDataLineChartMarket(`${item.code}`, '0'))
                                                         } else {
-                                                            dispatch(fetchDataLineChartMarket(`${item.comGroupCode}`, localStorage.getItem('typeApi')))
+                                                            dispatch(fetchDataLineChartMarket(`${item.code}`, localStorage.getItem('typeApi')))
                                                         }
-                                                        setExchange(item.comGroupCode)
-                                                        dispatch(fetchDataBienDongThiTruong(item.comGroupCode))
+                                                        setExchange(item.code)
+                                                        dispatch(fetchDataBienDongThiTruong(item.code))
                                                     }} key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500 cursor-pointer'>
                                                         <th className="text-left px-3 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-[13px] whitespace-nowrap p-3.5 dark:text-white text-black">
                                                             {item.code}
                                                         </th>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
-                                                            {item.highPrice && item.highPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                            {item.closePrice && item.closePrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                         </td>
                                                         <td className={`text-center px-1.5 align-middle xxs:text-[10px] xs:text-xs md:text-sm lg:text-sm xl:text-sm whitespace-nowrap p-3.5 font-semibold ${color}`}>
                                                             {item.perChange && (item.perChange).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%

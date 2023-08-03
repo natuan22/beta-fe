@@ -1,10 +1,10 @@
-import Highcharts from "highcharts";
-import HighchartsReact from 'highcharts-react-official'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import Loading from '../../../../../Chart/utils/Loading'
+import Loading from '../../../../../../Chart/utils/Loading';
+import Highcharts from "highcharts";
+import HighchartsReact from 'highcharts-react-official'
 
-const NetCashFlow = ({ queryApiBusinessFinance }) => {
+const InterestIncomeReceived = ({ queryApiBusinessFinance }) => {
     const { dataChartStatementsCashFlows } = useSelector(state => state.stock)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
@@ -15,7 +15,7 @@ const NetCashFlow = ({ queryApiBusinessFinance }) => {
 
             if (queryApiBusinessFinance.order === '0') {
                 modifiedArray = dataChartStatementsCashFlows.map(item => {
-                    const modifiedName = `${item.name.toLowerCase().replace('lưu chuyển tiền thuần t', 'T').replace('tiền ', 'Tiền và ')}`;
+                    const modifiedName = `${item.name.toLowerCase().replace('thu nhập lãi và các khoản thu nhập tương tự nhận được', 'Thu nhập lãi và thu nhập tương tự')}`;
                     const year = item.date.slice(0, 4);
                     const quarter = item.date.slice(4);
 
@@ -23,7 +23,7 @@ const NetCashFlow = ({ queryApiBusinessFinance }) => {
                 });
             } else {
                 modifiedArray = dataChartStatementsCashFlows.map(item => {
-                    const modifiedName = `${item.name.toLowerCase().replace('lưu chuyển tiền thuần t', 'T').replace('tiền ', 'Tiền và ')}`;
+                    const modifiedName = `${item.name.toLowerCase().replace('thu nhập lãi và các khoản thu nhập tương tự nhận được', 'Thu nhập lãi và thu nhập tương tự')}`;
                     return { ...item, name: modifiedName, date: `Năm ${item.date}` };
                 });
             }
@@ -114,6 +114,7 @@ const NetCashFlow = ({ queryApiBusinessFinance }) => {
 
         ],
         legend: {
+            enabled: false,
             align: 'center',
             itemStyle: {
                 fontSize: '10px',
@@ -121,20 +122,20 @@ const NetCashFlow = ({ queryApiBusinessFinance }) => {
             }
         },
 
-        series: Array.isArray(data) && data.slice(0, 3),
+        series: Array.isArray(data) && data.slice(0, 1),
     };
+
     return (
         <div>
             {dataChartStatementsCashFlows?.length > 0 ? (
-                <div className='h-[515px]'>
+                <div className='h-[321px]'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="h-[515px] flex items-center justify-center"><Loading /></div>
+                <div className="h-[321px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
-
     )
 }
 
-export default NetCashFlow
+export default InterestIncomeReceived

@@ -5,9 +5,10 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import StatementsCashFlows from '../components/BusinessFinance/StatementsCashFlows';
+import BusinessReport from '../components/BusinessFinance/BusinessReport';
 
 const BusinessFinance = ({ codeUrl }) => {
-  const [activeTab, setActiveTab] = useState('2');
+  const [activeTab, setActiveTab] = useState('0');
 
   const handleTabClick = (value) => {
     setActiveTab(value);
@@ -38,7 +39,7 @@ const BusinessFinance = ({ codeUrl }) => {
               </TabList>
             </Box>
             <TabPanel value="0"><div className='dark:text-white text-black'>Bảng cân đối kế toán</div></TabPanel>
-            <TabPanel value="1"><div className='dark:text-white text-black'>Báo cáo kết quả kinh doanh</div></TabPanel>
+            <TabPanel value="1"><BusinessReport codeUrl={codeUrl} /></TabPanel>
             <TabPanel value="2"><StatementsCashFlows codeUrl={codeUrl} /></TabPanel>
             <TabPanel value="3"><div className='dark:text-white text-black'>Chỉ số tài chính</div></TabPanel>
           </TabContext>

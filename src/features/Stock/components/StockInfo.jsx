@@ -32,7 +32,7 @@ const StockInfo = ({ codeSearch }) => {
                             <td className='dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid' rowSpan={3}>
                                 <div>
                                     <p className='font-semibold'>GIÁ</p>
-                                    <p className={`lg:text-2xl md:text-base lg:leading-[53px] md:leading-10 ${getColor(dataInfoHeader.perChange)}`}>{dataInfoHeader.price}</p>
+                                    <p className={`lg:text-2xl md:text-base lg:leading-[53px] md:leading-10 ${getColor(dataInfoHeader.perChange)}`}>{dataInfoHeader.closePrice}</p>
                                     <p className={`font-bold ${getColor(dataInfoHeader.perChange)}`}>{dataInfoHeader.change && dataInfoHeader.change.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}/({dataInfoHeader.perChange && dataInfoHeader.perChange.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%)</p>
                                 </div>
                             </td>
@@ -98,11 +98,11 @@ const StockInfo = ({ codeSearch }) => {
                         }} alt="companyImg" />
                     </div>
                 </div>
-                <div className='lg:col-span-5 md:col-span-full'>
+                <div className='lg:col-span-4 md:col-span-full'>
                     <span className='text-[#8BFF62]'>Tên tiếng anh: {dataInfoHeader.company_eng}</span>
                     <p className='dark:text-white text-black text-justify pt-4'>{dataInfoHeader.summary}</p>
                 </div>
-                <div className='lg:col-span-4 md:col-span-full'>
+                <div className='lg:col-span-5 md:col-span-full'>
                     <CandleChart code={code} />
                 </div>
             </div>
