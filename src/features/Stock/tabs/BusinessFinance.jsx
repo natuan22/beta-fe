@@ -28,8 +28,14 @@ const BusinessFinance = ({ codeUrl }) => {
                 scrollButtons
                 allowScrollButtonsMobile
                 sx={{
-                  '& .MuiTab-root': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
-                  '& .MuiSvgIcon-root': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') }
+
+                  '& .MuiTabs-indicator': {
+                    backgroundColor: '#FFF7D4', height: '200px', zIndex: '-1', boxShadow: `inset -4px -4px 6px 0 rgba(0, 0, 0, 0.2),
+                  inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4)`},
+                  '& .MuiButtonBase-root .MuiTouchRipple-root': { backgroundColor: '#E4E81D', height: '200px', zIndex: '-1' },
+                  '& .MuiTab-root': { color: '#000', textTransform: 'none' },
+                  '& .MuiTab-root .MuiTabs-scroller': { transform: 'translateX(50px)' },
+                  '&  .MuiTouchRipple-root': { backgroundColor: `rgba(255, 255, 255, 0.4)` },
                 }}
               >
                 <Tab onClick={() => handleTabClick('0')} label='Bảng cân đối kế toán' value='0' />

@@ -88,11 +88,18 @@ const StockDetail = () => {
                                         '& .MuiTab-root': {
                                             color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000'),
                                         },
+                                        '& .MuiTab-root .Mui-selected': {
+                                            color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000'),
+                                        },
+                                        '& .MuiTabs-indicator': {
+                                            backgroundColor: '#0055b6', height: '200px', zIndex: '-1',
+
+                                        },
                                         '& .MuiTabs-flexContainer': {
                                             width: width,
                                             flex: 1,  /* Chia chiều rộng đều cho các tab */
                                             display: 'flex', /* Sử dụng flexbox để canh đều các tab */
-                                            justifyContent: 'space-evenly', /* Canh giữa các tab với khoảng trống giữa chúng */
+                                            justifyContent: 'space-evenly',
                                         },
                                         '& .MuiSvgIcon-root': {
                                             color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000'),

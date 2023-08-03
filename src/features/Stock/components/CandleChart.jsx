@@ -1,32 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import Highcharts from 'highcharts/highstock'; // Import highstock module
+import Highcharts from 'highcharts'; // Import highstock module
 import HighchartsReact from 'highcharts-react-official';
-import stockModule from 'highcharts/modules/stock'; // Import module "stock"
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataCandleChart } from '../thunk';
 import Loading from '../../Chart/utils/Loading';
 import { timeLineChart9h00, timeLineChart15h00 } from '../../../helper/dateTime.helper'
-
-stockModule(Highcharts); // Kích hoạt module "stock"
-
-const CandleChart = ({ code }) => {
+const CandleChart = ({ code, dataChart }) => {
     const dispatch = useDispatch()
     const { dataCandleChart } = useSelector(state => state.stock)
-    const [price, setPrice] = useState()
-
+    const [data, setData] = useState([])
     useEffect(() => {
         dispatch(fetchDataCandleChart(code))
     }, [dispatch, code])
 
     useEffect(() => {
         if (dataCandleChart?.length > 0) {
-            const priceArray = dataCandleChart.map(item => {
-                return [item.time, item.closePrice]
-            })
-            setPrice(priceArray)
+            const mappedData = dataCandleChart.map(item => ([item.time, item.closePrice]))
+            setData(mappedData)
         }
     }, [dataCandleChart])
-
+    useEffect(() => {
+        if (dataChart?.length > 0) {
+            setData((preData) => ([...preData, dataChart]))
+        }
+    }, [dataChart]);
 
     const options = {
         accessibility: {
@@ -57,7 +54,7 @@ const CandleChart = ({ code }) => {
             {
                 type: 'spline', // Loại biểu đồ nến
                 name: 'Giá cổ phiếu',
-                data: price,
+                data: data,
                 color: '#7cb5ec'
             },
 
@@ -80,7 +77,7 @@ const CandleChart = ({ code }) => {
         },
         xAxis: {
             type: "datetime",
-            tickInterval: 30 * 60 * 1000,
+            tickInterval: 60 * 60 * 1000,
             min: timeLineChart9h00,
             max: timeLineChart15h00,
             title: {
@@ -107,13 +104,7 @@ const CandleChart = ({ code }) => {
 
     return (
         <div>
-            {dataCandleChart?.length > 0 ? (
-                <div className='h-[300px]'>
-                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                </div>
-            ) : (
-                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
-            )}
+            {dataCandleChart?.length > 0 ? <HighchartsReact highcharts={Highcharts} options={options} /> : <div><Loading /></div>}
         </div>
     )
 };
