@@ -42,7 +42,9 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
                         [0.61, 'rgba(54,90,185,1)'],
                         [0.78, 'rgba(49,23,201,1)'],
                     ],
-                }
+                },
+
+
             },
             {
                 type: 'spline',
@@ -93,7 +95,8 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
                 style: {
                     color: localStorage.getItem('color') // màu cho tiêu đề trục x
                 }
-            }
+            },
+            gridLineWidth: 0,
         },
         yAxis: [
             {
@@ -109,6 +112,7 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
                     },
                 },
                 gridLineWidth: 0.5,
+
             },
             {
                 title: {
@@ -122,8 +126,9 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
                         color: localStorage.getItem('color') // màu cho các nhãn trục y
                     }
                 },
-                gridLineWidth: 0.5,
                 opposite: true,
+                gridLineWidth: 0.5,
+
             },
 
         ],
@@ -143,6 +148,7 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
         },
         series: data,
     };
+
     return (
         <div>
             {dataTransactionData?.length > 0 ? (

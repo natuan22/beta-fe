@@ -97,7 +97,25 @@ const NetCashFlow = ({ queryApiBusinessFinance }) => {
                     },
                 },
                 gridLineWidth: 0.5,
+
             },
+            {
+                title: {
+                    text: "",
+                    style: {
+                        color: localStorage.getItem('color'),
+                    },
+                },
+                labels: {
+                    style: {
+                        color: localStorage.getItem('color') // màu cho các nhãn trục y
+                    }
+                },
+                opposite: true,
+                gridLineWidth: 0.5,
+
+            },
+
         ],
         legend: {
             align: 'center',

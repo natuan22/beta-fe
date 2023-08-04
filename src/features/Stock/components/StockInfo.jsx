@@ -35,6 +35,7 @@ const StockInfo = ({ codeSearch }) => {
 
     useEffect(() => {
         socket.on(`listen-co-phieu-${code}`, (newData) => {
+            console.log({ newData })
             setDataChart([newData.time, newData.closePrice])
             setData(prevData => ({
                 ...prevData,
@@ -42,7 +43,6 @@ const StockInfo = ({ codeSearch }) => {
             }));
         })
     }, [])
-
     return (
         <div>
             {dataInfoHeader && data ?

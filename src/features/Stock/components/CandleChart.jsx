@@ -4,7 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataCandleChart } from '../thunk';
 import Loading from '../../Chart/utils/Loading';
-import { timeLineChart9h00, timeLineChart15h00 } from '../../../helper/dateTime.helper'
+import { timeLineChart9h00, timeLineChart15h00, timeCandleChart9h, timeCandleChart15h } from '../../../helper/dateTime.helper'
 const CandleChart = ({ code, dataChart }) => {
     const dispatch = useDispatch()
     const { dataCandleChart } = useSelector(state => state.stock)
@@ -22,9 +22,11 @@ const CandleChart = ({ code, dataChart }) => {
     useEffect(() => {
         if (dataChart?.length > 0) {
             setData((preData) => ([...preData, dataChart]))
+            console.log('do sth')
         }
     }, [dataChart]);
-
+    console.log({ dataChart })
+    console.log({ data })
     const options = {
         accessibility: {
             enabled: false,
@@ -73,7 +75,6 @@ const CandleChart = ({ code, dataChart }) => {
 
             },
             gridLineWidth: 0.5,
-
         },
         xAxis: {
             type: "datetime",
