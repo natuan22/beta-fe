@@ -10,7 +10,7 @@ const StatementsCashFlows = ({ codeUrl }) => {
 
     return (
         <div className='container mx-auto'>
-            <div className='mt-4'>
+            <div className='mt-8'>
                 <div className='md:flex sm:block justify-between'>
                     <div>
                         <button className={`statementsCashFlows-btn ml-[54px]  ${activeBtn === 0 ? 'statementsCashFlows-active-btn' : 'statementsCashFlows-btn-2'}`}

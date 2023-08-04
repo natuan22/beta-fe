@@ -72,7 +72,7 @@ const ChartInfo = () => {
                 localStorage.setItem('typeTime', "DD/MM")
             }
         }
-    }, [query, exchange])
+    }, [query, exchange, lineChartMarketData])
 
     const disconnectSocket = (key) => {
         if (socket.active) {
