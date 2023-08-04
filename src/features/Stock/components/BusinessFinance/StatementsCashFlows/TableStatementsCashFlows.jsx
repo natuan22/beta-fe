@@ -48,7 +48,7 @@ const TableStatementsCashFlows = ({ queryApiBusinessFinance }) => {
 
     return (
         <div>
-            <section className="py-4">
+            <section className="pt-8 pb-4">
                 <div className="w-full">
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
                         <div className="block bg-transparent scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent 2xl:overflow-x-hidden xl:overflow-x-scroll lg:overflow-x-scroll md:overflow-x-scroll sm:overflow-x-scroll xs:overflow-x-scroll xxs:overflow-x-scroll">

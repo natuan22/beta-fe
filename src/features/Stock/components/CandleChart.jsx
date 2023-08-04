@@ -22,11 +22,8 @@ const CandleChart = ({ code, dataChart }) => {
     useEffect(() => {
         if (dataChart?.length > 0) {
             setData((preData) => ([...preData, dataChart]))
-            console.log('do sth')
         }
     }, [dataChart]);
-    console.log({ dataChart })
-    console.log({ data })
     const options = {
         accessibility: {
             enabled: false,
