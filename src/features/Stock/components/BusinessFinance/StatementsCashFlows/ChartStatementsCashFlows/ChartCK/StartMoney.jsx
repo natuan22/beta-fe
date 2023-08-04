@@ -95,23 +95,9 @@ const StartMoney = ({ queryApiBusinessFinance }) => {
                     style: {
                         color: localStorage.getItem('color') // màu cho các nhãn trục y
                     },
-                }
-            },
-            {
-                title: {
-                    text: "",
-                    style: {
-                        color: localStorage.getItem('color'),
-                    },
                 },
-                labels: {
-                    style: {
-                        color: localStorage.getItem('color') // màu cho các nhãn trục y
-                    }
-                },
-                opposite: true,
+                gridLineWidth: 0.5,
             },
-
         ],
         legend: {
             enabled: false,

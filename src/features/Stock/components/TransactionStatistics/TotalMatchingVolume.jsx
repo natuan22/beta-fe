@@ -107,7 +107,8 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
                     style: {
                         color: localStorage.getItem('color') // màu cho các nhãn trục y
                     },
-                }
+                },
+                gridLineWidth: 0.5,
             },
             {
                 title: {
@@ -121,6 +122,7 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
                         color: localStorage.getItem('color') // màu cho các nhãn trục y
                     }
                 },
+                gridLineWidth: 0.5,
                 opposite: true,
             },
 
@@ -141,7 +143,6 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
         },
         series: data,
     };
-
     return (
         <div>
             {dataTransactionData?.length > 0 ? (

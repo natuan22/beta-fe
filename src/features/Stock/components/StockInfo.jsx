@@ -120,11 +120,11 @@ const StockInfo = ({ codeSearch }) => {
                                 }} alt="companyImg" />
                             </div>
                         </div>
-                        <div className='lg:col-span-5 md:col-span-full'>
+                        <div className='lg:col-span-4 md:col-span-full'>
                             <span className='text-[#8BFF62]'>Tên tiếng anh: {data.company_eng}</span>
                             <p className='dark:text-white text-black text-justify pt-4'>{data.summary}</p>
                         </div>
-                        <div className='lg:col-span-4 md:col-span-full'>
+                        <div className='lg:col-span-5 md:col-span-full'>
                             <CandleChart code={code} dataChart={dataChart} />
                         </div>
                     </div>

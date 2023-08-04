@@ -6,7 +6,7 @@ import socket from '../../../Chart/utils/socket'
 import moment from 'moment';
 import { fetchDataBienDongThiTruong, fetchDataLineChartMarket } from '../../thunk';
 import Loading from '../../../Chart/utils/Loading';
-import { getColor, getColorWithValueReference } from '../../../Chart/utils/utils';
+import { getColor } from '../../../Chart/utils/utils';
 
 const ChartInfo = () => {
     const dispatch = useDispatch()
@@ -84,7 +84,6 @@ const ChartInfo = () => {
         socket.on(`listen-chi-so-${key}`, (newData) => {
             setDataInfo((prevData) => [...prevData, ...newData]);
             setDataChart((prevData) => [...prevData, ...newData]);
-            console.log(newData)
         });
     }
 
