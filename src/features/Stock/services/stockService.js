@@ -130,7 +130,7 @@ export const stockService = {
     fetchDataNews: (stock, type) => {
         return https.get('api/v1/shares/tin-tuc', {
             params: {
-                stock, 
+                stock,
                 type
             }
         })
@@ -159,5 +159,23 @@ export const stockService = {
                 stock
             }
         })
-    }
+    },
+    fetchDataTableBusinessReport: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-ket-qua-kinh-doanh', {
+            params: {
+                stock,
+                order,
+                is_chart: 0
+            }
+        })
+    },
+    fetchDataChartBusinessReport: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-ket-qua-kinh-doanh', {
+            params: {
+                stock,
+                order,
+                is_chart: 1
+            }
+        })
+    },
 }

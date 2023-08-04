@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import TabContext from "@mui/lab/TabContext";
@@ -8,7 +8,7 @@ import StatementsCashFlows from '../components/BusinessFinance/StatementsCashFlo
 import BusinessReport from '../components/BusinessFinance/BusinessReport';
 
 const BusinessFinance = ({ codeUrl }) => {
-  const [activeTab, setActiveTab] = useState('0');
+  const [activeTab, setActiveTab] = useState('1');
 
   const handleTabClick = (value) => {
     setActiveTab(value);
