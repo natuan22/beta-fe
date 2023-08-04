@@ -65,3 +65,55 @@
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
+
+/* statementsCashFlows */
+.statementsCashFlows-btn {
+  width: 132px;
+  height: 41px;
+  border-radius: 10px;
+  font-weight: 600;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
+  font-size: 14px;
+}
+
+.statementsCashFlows-btn-2 {
+  background: #FFF7D4;
+  background: linear-gradient(0deg, #FFF7D4 0%, #FFF7D4 100%);
+  border: solid 5px #0E79F5;
+}
+
+.btn-2:before {
+  height: 0%;
+  width: 2px;
+}
+
+.statementsCashFlows-btn-2:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+.statementsCashFlows-active-btn {
+  background: #000000;
+  color: white;
+  background: linear-gradient(0deg, #000000 0%, #000000 100%);
+  border: solid 5px #0E79F5;
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+.statementsCashFlows-active-btn:before {
+  height: 0%;
+  width: 2px;
+}
+
+.statementsCashFlows-active-btn:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}

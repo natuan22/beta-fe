@@ -17,7 +17,13 @@ const initialState = {
     dataStatisticsByYear: {},
     dataTradingInvestors: {},
     dataNewsAndEvents: {},
-    dataNews: {}
+    dataNews: {},
+    dataTableStatementsCashFlows: {},
+    dataChartStatementsCashFlows: {},
+    dataCandleChart: {},
+    dataInfoHeaderStatus: null,
+    dataTableBusinessReport: {},
+    dataChartBusinessReport: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -72,6 +78,24 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_NEWS) {
             draft.dataNews = payload
+        }
+        if (type === stockType.FETCH_DATA_TABLE_STATEMENTS_CASH_FLOWS) {
+            draft.dataTableStatementsCashFlows = payload
+        }
+        if (type === stockType.FETCH_DATA_CHART_STATEMENTS_CASH_FLOWS) {
+            draft.dataChartStatementsCashFlows = payload
+        }
+        if (type === stockType.FETCH_DATA_CANDLE_CHART) {
+            draft.dataCandleChart = payload
+        }
+        if (type === stockType.FETCH_DATA_INFO_HEADER_STATUS) {
+            draft.dataInfoHeaderStatus = payload
+        }
+        if (type === stockType.FETCH_DATA_TABLE_BUSINESS_REPORT) {
+            draft.dataTableBusinessReport = payload
+        }
+        if (type === stockType.FETCH_DATA_CHART_BUSINESS_REPORT) {
+            draft.dataChartBusinessReport = payload
         }
     });
 };

@@ -6,7 +6,7 @@ import useQueryApi from '../components/Overview/utils/custom/useQueryApi/useQuer
 import '../utils/style/styleButton.css'
 const NewsAndEvent = ({ codeUrl }) => {
   const [isLoading, setIsLoading] = useState(false)
-  const { queryApiEvents, handleQueryApiEvents } = useQueryApi(codeUrl);
+  const { queryApiNewsEvents, handleQueryApiNewsEvents } = useQueryApi(codeUrl);
   const [activeBtn, setActiveBtn] = useState(0);
 
   useEffect(() => {
@@ -28,30 +28,30 @@ const NewsAndEvent = ({ codeUrl }) => {
                 <button className={`custom-btn sm:ml-7 xs:ml-0 ${activeBtn === 0 ? 'active-btn' : 'btn-2'}`}
                   onClick={() => {
                     setActiveBtn(0)
-                    handleQueryApiEvents(0)
+                    handleQueryApiNewsEvents(0)
                   }}
-                >{queryApiEvents.stock}</button>
+                >{queryApiNewsEvents.stock}</button>
                 <button className={`custom-btn ml-5 ${activeBtn === 1 ? 'active-btn' : 'btn-2'}`}
                   onClick={() => {
                     setActiveBtn(1)
-                    handleQueryApiEvents(1)
+                    handleQueryApiNewsEvents(1)
                   }}
                 >Ngành</button>
                 <button className={`all-market ml-5 ${activeBtn === 2 ? 'active-btn' : 'btn-2'}`}
                   onClick={() => {
                     setActiveBtn(2)
-                    handleQueryApiEvents(2)
+                    handleQueryApiNewsEvents(2)
                   }}
                 >Toàn thị trường</button>
               </div>
             </div>
-            <Events queryApiEvents={queryApiEvents} />
+            <Events queryApiNewsEvents={queryApiNewsEvents} />
           </div>
           <div className='mt-4'>
             <div className='w-[150px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold uppercase'>Tin tức</span>
             </div>
-            <News stock={queryApiEvents.stock} />
+            <News queryApiNewsEvents={queryApiNewsEvents} />
           </div>
         </div>
       ) : (

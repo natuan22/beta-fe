@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../../../Chart/utils/Loading';
 import { getColor } from '../../../Chart/utils/utils';
 import { fetchDataTradingPriceFluctuations } from '../../thunk';
 
 const TradingPriceFluctuations = ({ stock }) => {
   const dispatch = useDispatch();
-  const [data, setData] = useState([])
   const { dataTradingPriceFluctuations } = useSelector(state => state.stock)
 
   useEffect(() => {
@@ -14,29 +14,31 @@ const TradingPriceFluctuations = ({ stock }) => {
 
   return (
     <div className='mt-4'>
-      <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50'>
-        <span className='dark:text-white text-black xs:text-base xxs:text-xs'>+/- Qua 1 tuần</span>
-        <span className={`${getColor(dataTradingPriceFluctuations.p_week)} xs:text-base xxs:text-xs`}>{dataTradingPriceFluctuations.p_week && dataTradingPriceFluctuations.p_week.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</span>
-      </div>
-      <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
-        <div className='dark:text-white text-black xs:text-base xxs:text-xs'>+/- Qua 1 tháng</div>
-        <span className={`${getColor(dataTradingPriceFluctuations.p_month)} xs:text-base xxs:text-xs`}>{dataTradingPriceFluctuations.p_month && dataTradingPriceFluctuations.p_month.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</span>
-      </div>
-      <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
-        <div className='dark:text-white text-black xs:text-base xxs:text-xs'>+/- Qua 1 quý</div>
-        <span className={`${getColor(dataTradingPriceFluctuations.p_quarter)} xs:text-base xxs:text-xs`}>{dataTradingPriceFluctuations.p_quarter && dataTradingPriceFluctuations.p_quarter.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</span>
-      </div>
-      <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
-        <div className='dark:text-white text-black xs:text-base xxs:text-xs'>+/- Qua 1 năm</div>
-        <span className={`${getColor(dataTradingPriceFluctuations.p_year)} xs:text-base xxs:text-xs`}>{dataTradingPriceFluctuations.p_year && dataTradingPriceFluctuations.p_year.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</span>
-      </div>
-      <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
-        <div className='dark:text-white text-black xs:text-base xxs:text-xs'>Cao nhất 52 tuần</div>
-        <span className='dark:text-white text-black xs:text-base xxs:text-xs'>{dataTradingPriceFluctuations.max_price && (dataTradingPriceFluctuations.max_price * 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
-      </div>
-      <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
-        <div className='dark:text-white text-black xs:text-base xxs:text-xs'>Thấp nhất 52 tuần</div>
-        <span className='dark:text-white text-black xs:text-base xxs:text-xs'>{dataTradingPriceFluctuations.min_price && (dataTradingPriceFluctuations.min_price * 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+      <div>
+        <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50'>
+          <span className='dark:text-white text-black xs:text-base xxs:text-xs'>+/- Qua 1 tuần</span>
+          <span className={`${getColor(dataTradingPriceFluctuations.p_week)} xs:text-base xxs:text-xs`}>{dataTradingPriceFluctuations.p_week && dataTradingPriceFluctuations.p_week.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</span>
+        </div>
+        <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
+          <div className='dark:text-white text-black xs:text-base xxs:text-xs'>+/- Qua 1 tháng</div>
+          <span className={`${getColor(dataTradingPriceFluctuations.p_month)} xs:text-base xxs:text-xs`}>{dataTradingPriceFluctuations.p_month && dataTradingPriceFluctuations.p_month.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</span>
+        </div>
+        <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
+          <div className='dark:text-white text-black xs:text-base xxs:text-xs'>+/- Qua 1 quý</div>
+          <span className={`${getColor(dataTradingPriceFluctuations.p_quarter)} xs:text-base xxs:text-xs`}>{dataTradingPriceFluctuations.p_quarter && dataTradingPriceFluctuations.p_quarter.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</span>
+        </div>
+        <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
+          <div className='dark:text-white text-black xs:text-base xxs:text-xs'>+/- Qua 1 năm</div>
+          <span className={`${getColor(dataTradingPriceFluctuations.p_year)} xs:text-base xxs:text-xs`}>{dataTradingPriceFluctuations.p_year && dataTradingPriceFluctuations.p_year.toLocaleString('en-US', { maximumFractionDigits: 2 })}%</span>
+        </div>
+        <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
+          <div className='dark:text-white text-black xs:text-base xxs:text-xs'>Cao nhất 52 tuần</div>
+          <span className='dark:text-white text-black xs:text-base xxs:text-xs'>{dataTradingPriceFluctuations.max_price && (dataTradingPriceFluctuations.max_price * 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+        </div>
+        <div className='flex items-center justify-between border-solid border-[#D9D9D9] border-b-2 border-t-0 border-x-0 border-opacity-50 mt-4'>
+          <div className='dark:text-white text-black xs:text-base xxs:text-xs'>Thấp nhất 52 tuần</div>
+          <span className='dark:text-white text-black xs:text-base xxs:text-xs'>{dataTradingPriceFluctuations.min_price && (dataTradingPriceFluctuations.min_price * 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+        </div>
       </div>
     </div>
   )

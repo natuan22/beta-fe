@@ -35,6 +35,7 @@ export const routes = [
   { path: "/nganh", component: Nav1 },
   { path: "/vi-mo", component: Macro },
   { path: "/cong-cu-dau-tu", component: Nav4 },
+  { path: "/trang-khong-ton-tai", component: Nav4 },
 
 
   // authen

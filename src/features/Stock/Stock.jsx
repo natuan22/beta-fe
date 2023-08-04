@@ -1,11 +1,9 @@
 import React from 'react'
-import LayOut from '../../HOCs/Layout'
+import StockDetail from './StockDetail'
 
 const Stock = () => {
     return (
-        <LayOut>
-
-        </LayOut>
+        <StockDetail />
     )
 }
 

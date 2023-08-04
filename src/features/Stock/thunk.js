@@ -1,14 +1,18 @@
 import { stockService } from "./services/stockService"
 import { stockType } from "./utils/constant"
 
-export const fetchDataInfoHeader = (stock) => async (dispatch) => {
+export const fetchDataInfoHeader = (stock, type) => async (dispatch) => {
     try {
-        const res = await stockService.fetchDataInfoHeader(stock)
+        const res = await stockService.fetchDataInfoHeader(stock, type)
         dispatch({
             type: stockType.FETCH_DATA_INFO_HEADER,
             payload: res.data.data
         })
     } catch (err) {
+        dispatch({
+            type: stockType.FETCH_DATA_INFO_HEADER_STATUS,
+            payload: err.response.data.status
+        })
         console.error(err)
     }
 }
@@ -180,9 +184,9 @@ export const fetchDataTradingInvestors = (stock) => async (dispatch) => {
     }
 }
 
-export const fetchDataNewsAndEvents = (stock,type) => async (dispatch) => {
+export const fetchDataNewsAndEvents = (stock, type) => async (dispatch) => {
     try {
-        const res = await stockService.fetchDataNewsAndEvents(stock,type)
+        const res = await stockService.fetchDataNewsAndEvents(stock, type)
         dispatch({
             type: stockType.FETCH_DATA_NEWS_AND_EVENTS,
             payload: res.data.data
@@ -192,11 +196,71 @@ export const fetchDataNewsAndEvents = (stock,type) => async (dispatch) => {
     }
 }
 
-export const fetchDataNews = (stock,type) => async (dispatch) => {
+export const fetchDataNews = (stock, type) => async (dispatch) => {
     try {
-        const res = await stockService.fetchDataNews(stock,type)
+        const res = await stockService.fetchDataNews(stock, type)
         dispatch({
             type: stockType.FETCH_DATA_NEWS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataTableStatementsCashFlows = (stock, order) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataTableStatementsCashFlows(stock, order)
+        dispatch({
+            type: stockType.FETCH_DATA_TABLE_STATEMENTS_CASH_FLOWS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataChartStatementsCashFlows = (stock, order) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataChartStatementsCashFlows(stock, order)
+        dispatch({
+            type: stockType.FETCH_DATA_CHART_STATEMENTS_CASH_FLOWS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataCandleChart = stock => async dispatch => {
+    try {
+        const res = await stockService.fetchDataCandleChart(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_CANDLE_CHART,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataTableBusinessReport = (stock, order) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataTableBusinessReport(stock, order)
+        dispatch({
+            type: stockType.FETCH_DATA_TABLE_BUSINESS_REPORT,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataChartBusinessReport = (stock, order) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataChartBusinessReport(stock, order)
+        dispatch({
+            type: stockType.FETCH_DATA_CHART_BUSINESS_REPORT,
             payload: res.data.data
         })
     } catch (err) {

@@ -16,9 +16,6 @@ const StatisticsByYear = ({ stock }) => {
   const { dataStatisticsByYear } = useSelector(state => state.stock);
   const [currentYearIndex, setCurrentYearIndex] = useState(0); // Tháng hiện tại đang hiển thị
   const [currentDate, setCurrentDate] = useState(''); // Ngày hiện tại đang hiển thị
-
-  // console.log(dataStatisticsByYear);
-
   useEffect(() => {
     dispatch(fetchDataStatisticsByYear(stock));
   }, [dispatch, stock]);
@@ -50,11 +47,11 @@ const StatisticsByYear = ({ stock }) => {
       {dataStatisticsByYear?.length > 0 ? (
         <div className='mt-4 xl:w-full lg:w-[411px] md:w-full sm:w-full xs:w-full xxs:w-full'>
           <div className='bg-[#0055B6] w-full h-[44px] flex justify-evenly items-center'>
-            <button className='bg-transparent border-0 text-xl text-white'>
+            <button className={` ${currentYearIndex === dataStatisticsByYear.length - 1 ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'} bg-transparent border-0 text-xl text-white `}>
               <BiSolidLeftArrow onClick={handlePreYear} />
             </button>
             <span className='date text-white'>{currentDate}</span>
-            <button className='bg-transparent border-0 text-xl text-white'>
+            <button className={` ${currentYearIndex === 0 ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'} bg-transparent border-0 text-xl text-white `}>
               <BiSolidRightArrow onClick={handleNextYear} />
             </button>
           </div>
@@ -82,7 +79,7 @@ const StatisticsByYear = ({ stock }) => {
           </div>
         </div>
       ) : (
-        <div><Loading /></div>
+        <div className='h-[244px] flex items-center justify-center'><Loading /></div>
       )}
     </div>
   )

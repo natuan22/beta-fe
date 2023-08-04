@@ -56,7 +56,7 @@ const Events = ({ codeSearch }) => {
                         columns={columns}
                         dataSource={data}
                         pagination={{ defaultPageSize: 9, showSizeChanger: false }}
-                        className='table-stock-detail'
+                        className='table-stock-detail table-stock-event '
                     />
                 </div>
             ) : (

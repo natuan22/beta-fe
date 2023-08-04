@@ -1,10 +1,11 @@
 import { https } from "../../../services/config"
 
 export const stockService = {
-    fetchDataInfoHeader: (stock) => {
+    fetchDataInfoHeader: (stock, type) => {
         return https.get('api/v1/shares/header', {
             params: {
-                stock
+                stock,
+                type
             }
         })
     },
@@ -126,10 +127,54 @@ export const stockService = {
             }
         })
     },
-    fetchDataNews: (stock) => {
+    fetchDataNews: (stock, type) => {
         return https.get('api/v1/shares/tin-tuc', {
             params: {
+                stock,
+                type
+            }
+        })
+    },
+    fetchDataTableStatementsCashFlows: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-luu-chuyen-tien-te', {
+            params: {
+                stock,
+                order,
+                is_chart: 0
+            }
+        })
+    },
+    fetchDataChartStatementsCashFlows: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-luu-chuyen-tien-te', {
+            params: {
+                stock,
+                order,
+                is_chart: 1
+            }
+        })
+    },
+    fetchDataCandleChart: (stock) => {
+        return https.get('api/v1/shares/chart-nen', {
+            params: {
                 stock
+            }
+        })
+    },
+    fetchDataTableBusinessReport: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-ket-qua-kinh-doanh', {
+            params: {
+                stock,
+                order,
+                is_chart: 0
+            }
+        })
+    },
+    fetchDataChartBusinessReport: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-ket-qua-kinh-doanh', {
+            params: {
+                stock,
+                order,
+                is_chart: 1
             }
         })
     },

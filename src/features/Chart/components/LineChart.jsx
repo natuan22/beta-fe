@@ -19,7 +19,7 @@ const LineChart = () => {
   useEffect(() => {
     setColorText(color);
   }, [color]);
-
+  // console.log({ dataRealTime })
   useEffect(() => {
     if (dataLineChartHomePage?.data?.length) {
       setDataRealTime(dataLineChartHomePage.data)
@@ -27,7 +27,6 @@ const LineChart = () => {
 
     if (dataLineChartHomePage?.data?.length) {
       socket.on("listen-chi-so-VNINDEX", (newData) => {
-
         setDataRealTime((prevData) => [...prevData, ...newData]);
       });
     }
@@ -102,7 +101,6 @@ const LineChart = () => {
       }
     }
   };
-
   const currentTime = new Date();
 
   // Lấy giờ và phút từ currentTime

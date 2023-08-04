@@ -14,7 +14,7 @@ const formatDateToQuarter = (dateString) => {
 const StatisticsByMonth = ({ stock }) => {
     const dispatch = useDispatch();
     const { dataStatisticsByQuarter } = useSelector(state => state.stock);
-    const [currentMonthIndex, setCurrentMonthIndex] = useState(0); // Tháng hiện tại đang hiển thị
+    const [currentQuarterIndex, setCurrentQuaterIndex] = useState(0); // Tháng hiện tại đang hiển thị
     const [currentDate, setCurrentDate] = useState(''); // Ngày hiện tại đang hiển thị
 
     // console.log(dataStatisticsByQuarter);
@@ -25,35 +25,35 @@ const StatisticsByMonth = ({ stock }) => {
 
     useEffect(() => {
         if (dataStatisticsByQuarter.length > 0) {
-            setCurrentDate(formatDateToQuarter(dataStatisticsByQuarter[currentMonthIndex].date));
+            setCurrentDate(formatDateToQuarter(dataStatisticsByQuarter[currentQuarterIndex].date));
         }
-    }, [dataStatisticsByQuarter, currentMonthIndex]);
+    }, [dataStatisticsByQuarter, currentQuarterIndex]);
 
     const handleNextMonth = () => {
-        if (currentMonthIndex > 0) {
-            setCurrentMonthIndex(currentMonthIndex - 1);
+        if (currentQuarterIndex > 0) {
+            setCurrentQuaterIndex(currentQuarterIndex - 1);
         }
     };
 
     const handlePreMonth = () => {
-        if (currentMonthIndex < dataStatisticsByQuarter.length - 1) {
-            setCurrentMonthIndex(currentMonthIndex + 1);
+        if (currentQuarterIndex < dataStatisticsByQuarter.length - 1) {
+            setCurrentQuaterIndex(currentQuarterIndex + 1);
         }
     };
 
     // Lấy thông tin tháng hiện tại từ mảng dữ liệu
-    const currentMonthData = dataStatisticsByQuarter[currentMonthIndex];
+    const currentMonthData = dataStatisticsByQuarter[currentQuarterIndex];
 
     return (
         <div className='flex justify-center'>
-            {dataStatisticsByQuarter?.length > 0 ?
+            {dataStatisticsByQuarter?.length > 0 ? (
                 <div className='mt-4 xl:w-full lg:w-[411px] md:w-full sm:w-full xs:w-full xxs:w-full'>
                     <div className='bg-[#0055B6] w-full h-[44px] flex justify-evenly items-center'>
-                        <button className='bg-transparent border-0 text-xl text-white'>
+                        <button className={` ${currentQuarterIndex === dataStatisticsByQuarter.length - 1 ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'} bg-transparent border-0 text-xl text-white `}>
                             <BiSolidLeftArrow onClick={handlePreMonth} />
                         </button>
                         <span className='date text-white'> {currentDate}</span>
-                        <button className='bg-transparent border-0 text-xl text-white'>
+                        <button className={` ${currentQuarterIndex === 0 ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'} bg-transparent border-0 text-xl text-white `}>
                             <BiSolidRightArrow onClick={handleNextMonth} />
                         </button>
                     </div>
@@ -80,7 +80,9 @@ const StatisticsByMonth = ({ stock }) => {
                         </div>
                     </div>
                 </div>
-                : <div><Loading /></div>}
+            ) : (
+                <div className='h-[244px] flex items-center justify-center'><Loading /></div>
+            )}
         </div>
     )
 }
