@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ChartColumn from './components/ChartColumn'
 import ChartColumnLine from './components/ChartColumnLine'
 
-const ChartCK = () => {
+const ChartCK = ({ queryApiBusinessFinance }) => {
+
+
   return (
     <div>
       <div>

@@ -146,6 +146,9 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
                 color: localStorage.getItem('color')
             }
         },
+        tooltip: {
+            split: true
+        },
         series: data,
     };
 
