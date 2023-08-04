@@ -9,17 +9,17 @@ import { useState } from 'react'
 import Loading from '../../Chart/utils/Loading'
 const resourceURL = process.env.REACT_APP_RESOURCE_URL
 
-const StockInfo = ({ codeSearch }) => {
+const StockInfo = ({ codeUrl }) => {
     const dispatch = useDispatch()
-    const code = codeSearch.split('-')[0]
-    const type = codeSearch.split('-')[1]
+    const code = codeUrl.split('-')[0]
+    const type = codeUrl.split('-')[1]
     const { dataInfoHeader, dataInfoHeaderStatus } = useSelector((state) => state.stock);
     const [data, setData] = useState()
     const [dataChart, setDataChart] = useState([])
     const nav = useNavigate()
     useEffect(() => {
         dispatch(fetchDataInfoHeader(code, type));
-    }, [dispatch, code]);
+    }, [dispatch, code, type]);
 
     useLayoutEffect(() => {
         if (dataInfoHeaderStatus === 400) {
@@ -41,7 +41,8 @@ const StockInfo = ({ codeSearch }) => {
                 ...newData
             }));
         })
-    }, [])
+    }, [code])
+
     return (
         <div>
             {dataInfoHeader && data ?

@@ -49,7 +49,7 @@ const ChartInfo = () => {
                 setDataTableDomestic(sortedData)
             });
         }
-    }, [dataTableDomestic])
+    }, [dataTableDomestic, dataTable])
 
     useEffect(() => {
         if (lineChartMarketData?.length > 0) {
