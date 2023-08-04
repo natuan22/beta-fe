@@ -13,7 +13,7 @@ const BusinessReport = ({ codeUrl }) => {
             <div className='mt-4'>
                 <div className='md:flex sm:block justify-between'>
                     <div>
-                        <button className={`statementsCashFlows-btn ml-5  ${activeBtn === 0 ? 'statementsCashFlows-active-btn' : 'statementsCashFlows-btn-2'}`}
+                        <button className={`statementsCashFlows-btn ml-[48px]  ${activeBtn === 0 ? 'statementsCashFlows-active-btn' : 'statementsCashFlows-btn-2'}`}
                             onClick={() => {
                                 setActiveBtn(0)
                             }}>
