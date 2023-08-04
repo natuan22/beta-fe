@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import LayOut from "../../HOCs/Layout";
 import StockInfo from "./components/StockInfo";
 import BusinessFinance from "./tabs/BusinessFinance";
@@ -23,7 +23,7 @@ const StockDetail = () => {
     const [codeVal, setCodeVal] = useState(code);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const color = useSelector((state) => state.color.colorTheme);
-    const [activeTab, setActiveTab] = useState('1');
+    const [activeTab, setActiveTab] = useState('3');
 
     useEffect(() => {
         setTheme(color);

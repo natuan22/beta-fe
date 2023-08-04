@@ -184,7 +184,6 @@ const AccumulatedAndTotalInvestment = () => {
 
         series: data,
     };
-
     return (
         <>
             <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>

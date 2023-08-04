@@ -101,7 +101,6 @@ const LineChart = () => {
       }
     }
   };
-
   const currentTime = new Date();
 
   // Lấy giờ và phút từ currentTime
