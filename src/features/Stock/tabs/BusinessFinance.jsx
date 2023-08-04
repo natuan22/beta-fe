@@ -8,7 +8,7 @@ import StatementsCashFlows from '../components/BusinessFinance/StatementsCashFlo
 import BusinessReport from '../components/BusinessFinance/BusinessReport';
 
 const BusinessFinance = ({ codeUrl }) => {
-  const [activeTab, setActiveTab] = useState('1');
+  const [activeTab, setActiveTab] = useState('0');
 
   const handleTabClick = (value) => {
     setActiveTab(value);

@@ -18,20 +18,25 @@ import { useSelector } from "react-redux";
 import test from './utils/style/muiTabHeader.module.css'
 
 const StockDetail = () => {
+    const defaultStock = 'HPG-CTCP'
     const { code } = useParams();
     const [width, setWidth] = useState();
-    const [codeVal, setCodeVal] = useState(code);
+    const [codeVal, setCodeVal] = useState(code || defaultStock);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const color = useSelector((state) => state.color.colorTheme);
-    const [activeTab, setActiveTab] = useState('3');
+    const [activeTab, setActiveTab] = useState('1');
 
     useEffect(() => {
         setTheme(color);
     }, [color]);
 
     useEffect(() => {
-        setCodeVal(code);
-    }, [code]);
+        if (code) {
+            setCodeVal(code);
+        } else {
+            setCodeVal(defaultStock)
+        }
+    }, [code, defaultStock]);
 
     const handleTabClick = (value) => {
         setActiveTab(value);
@@ -68,7 +73,7 @@ const StockDetail = () => {
     return (
         <LayOut>
             <div className="tab container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%]">
-                <StockInfo codeSearch={code} />
+                <StockInfo codeUrl={codeVal} />
                 <div className="pt-4">
                     <Box
                         sx={{ width: "100%", typography: "body1", bgcolor: "transparent" }}

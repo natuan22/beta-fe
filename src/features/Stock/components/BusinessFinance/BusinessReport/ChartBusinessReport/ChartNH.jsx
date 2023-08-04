@@ -60,7 +60,7 @@ const ChartNH = ({ queryApiBusinessFinance }) => {
 
             result.forEach(item => {
                 let newDataItem = { name: item.name, data: item.data, color: item.color, type: 'column', yAxis: 0 };
-                let newPerDataItem = { name: item.name, data: item.perData, color: item.color, type: 'spline', yAxis: 1, color: '#F0CA00' };
+                let newPerDataItem = { name: item.name, data: item.perData, type: 'spline', yAxis: 1, color: '#F0CA00' };
 
                 modifiedData.push(newDataItem);
                 modifiedData.push(newPerDataItem);
