@@ -25,7 +25,7 @@ const StockInfo = ({ codeSearch }) => {
         if (dataInfoHeaderStatus === 400) {
             nav('/trang-khong-ton-tai')
         }
-    }, [dataInfoHeaderStatus])
+    }, [dataInfoHeaderStatus, nav])
 
     useEffect(() => {
         if (dataInfoHeader) {

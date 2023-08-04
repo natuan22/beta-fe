@@ -33,7 +33,7 @@ const CandleChart = ({ code, dataChart }) => {
             backgroundColor: 'transparent'
         },
         title: {
-            text: 'Diễn biến giao dịch',
+            text: 'Diễn biến giao dịch trong ngày',
             style: {
                 color: 'white',
                 fontSize: '13px'
