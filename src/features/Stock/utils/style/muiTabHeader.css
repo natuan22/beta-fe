@@ -1,8 +1,3 @@
-/* #stockDetail .MuiTabs-scroller {
-  display: grid !important;
-  place-items: center;
-} */
-
 #stockDetail .MuiTabPanel-root {
   padding: 0px !important;
 }
@@ -16,14 +11,3 @@
   margin-left: 3px !important;
   margin-right: 3px !important;
 }
-
-/* #stockDetail .Mui-selected {
-  color: white !important;
-}
-
-#stockDetail .MuiTabs-indicator {
-  display: block !important;
-  background-color: #0055B6;
-  height: 200px;
-  z-index: -1;
-} */
