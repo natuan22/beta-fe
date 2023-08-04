@@ -25,7 +25,7 @@ const StockInfo = ({ codeSearch }) => {
         if (dataInfoHeaderStatus === 400) {
             nav('/trang-khong-ton-tai')
         }
-    }, [dataInfoHeaderStatus])
+    }, [dataInfoHeaderStatus, nav])
 
     useEffect(() => {
         if (dataInfoHeader) {
@@ -35,7 +35,6 @@ const StockInfo = ({ codeSearch }) => {
 
     useEffect(() => {
         socket.on(`listen-co-phieu-${code}`, (newData) => {
-            console.log({ newData })
             setDataChart([newData.time, newData.closePrice])
             setData(prevData => ({
                 ...prevData,
