@@ -45,7 +45,6 @@ const TableFinancialIndicators = ({ queryApiBusinessFinance }) => {
             setDataTb(Object.entries(newData).map(([name, values]) => ({ name, values })));
         }
     }, [dataTableFinancialIndicators, queryApiBusinessFinance])
-    console.log(dataTb)
     return (
         <div>
             <section className="pt-8 pb-4">
