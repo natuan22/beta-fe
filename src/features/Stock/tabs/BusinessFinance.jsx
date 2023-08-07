@@ -7,6 +7,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import StatementsCashFlows from '../components/BusinessFinance/StatementsCashFlows';
 import BusinessReport from '../components/BusinessFinance/BusinessReport';
 import BalanceSheet from '../components/BusinessFinance/BalanceSheet';
+import FinancialIndicators from '../components/BusinessFinance/FinancialIndicators';
 
 const BusinessFinance = ({ codeUrl }) => {
   const [activeTab, setActiveTab] = useState('0');
@@ -48,7 +49,7 @@ const BusinessFinance = ({ codeUrl }) => {
             <TabPanel value="0"><BalanceSheet codeUrl={codeUrl} /></TabPanel>
             <TabPanel value="1"><BusinessReport codeUrl={codeUrl} /></TabPanel>
             <TabPanel value="2"><StatementsCashFlows codeUrl={codeUrl} /></TabPanel>
-            <TabPanel value="3"><div className='dark:text-white text-black'>Chỉ số tài chính</div></TabPanel>
+            <TabPanel value="3"><FinancialIndicators codeUrl={codeUrl}/></TabPanel>
           </TabContext>
         </Box>
       </div>

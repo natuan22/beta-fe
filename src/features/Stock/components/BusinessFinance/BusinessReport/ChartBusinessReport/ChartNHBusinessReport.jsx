@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataChartBusinessReport } from '../../../../thunk'
 import ChartColumnLine from '../../components/ChartColumnLine'
 
-const ChartNH = ({ queryApiBusinessFinance }) => {
+const ChartNHBusinessReport = ({ queryApiBusinessFinance }) => {
     const dispatch = useDispatch()
     const { dataChartBusinessReport } = useSelector(state => state.stock)
     const [timeLine, setTimeLine] = useState()
@@ -111,4 +111,4 @@ const ChartNH = ({ queryApiBusinessFinance }) => {
     )
 }
 
-export default ChartNH
+export default ChartNHBusinessReport

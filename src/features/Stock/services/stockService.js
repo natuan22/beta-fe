@@ -204,4 +204,22 @@ export const stockService = {
             }
         })
     },
+    fetchDataTableFinancialIndicators: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-chi-so-tai-chinh', {
+            params: {
+                stock,
+                order,
+                is_chart: 0
+            }
+        })
+    },
+    fetchDataChartFinancialIndicators: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-chi-so-tai-chinh', {
+            params: {
+                stock,
+                order,
+                is_chart: 1
+            }
+        })
+    },
 }
