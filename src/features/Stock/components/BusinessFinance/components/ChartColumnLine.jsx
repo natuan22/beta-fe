@@ -1,59 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import Loading from '../../../../../../Chart/utils/Loading';
+import React from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official'
+import Loading from '../../../../Chart/utils/Loading';
 
-const CashFlowPeriod = ({ queryApiBusinessFinance }) => {
-    const { dataChartStatementsCashFlows } = useSelector(state => state.stock)
-    const [timeLine, setTimeLine] = useState()
-    const [data, setData] = useState()
-
-    useEffect(() => {
-        if (dataChartStatementsCashFlows?.length > 0) {
-            let modifiedArray;
-
-            if (queryApiBusinessFinance.order === '0') {
-                modifiedArray = dataChartStatementsCashFlows.map(item => {
-                    const modifiedName = `${item.name.toLowerCase().replace('lưu chuyển tiền thuần trong kỳ', 'Trong kỳ')}`;
-                    const year = item.date.slice(0, 4);
-                    const quarter = item.date.slice(4);
-
-                    return { ...item, name: modifiedName, date: `Quý ${quarter}/${year}` };
-                });
-            } else {
-                modifiedArray = dataChartStatementsCashFlows.map(item => {
-                    const modifiedName = `${item.name.toLowerCase().replace('lưu chuyển tiền thuần trong kỳ', 'Trong kỳ')}`;
-                    return { ...item, name: modifiedName, date: `Năm ${item.date}` };
-                });
-            }
-
-            const uniqueDates = [...new Set(modifiedArray?.map(item => item.date))];
-            setTimeLine(uniqueDates)
-
-            const result = [];
-
-            modifiedArray?.forEach(item => {
-                const name = item.name;
-                const value = +(item.value / queryApiBusinessFinance.unit).toFixed(2);
-                const color = item.color;
-
-                const existingObj = result.find(obj => obj.name === name);
-
-                if (existingObj) {
-                    existingObj.data.push(value);
-                } else {
-                    result.push({
-                        name: name,
-                        data: [value],
-                        color
-                    });
-                }
-            })
-            setData(result)
-        }
-    }, [dataChartStatementsCashFlows, queryApiBusinessFinance])
-
+const ChartColumnLine = ({ data, timeLine }) => {
     const options = {
         chart: {
             backgroundColor: "transparent", // màu nền của biểu đồ
@@ -97,7 +47,6 @@ const CashFlowPeriod = ({ queryApiBusinessFinance }) => {
                     },
                 },
                 gridLineWidth: 0.5,
-
             },
             {
                 title: {
@@ -113,12 +62,10 @@ const CashFlowPeriod = ({ queryApiBusinessFinance }) => {
                 },
                 opposite: true,
                 gridLineWidth: 0.5,
-
             },
-
         ],
         legend: {
-            enabled: false,
+            enabled: true,
             align: 'center',
             itemStyle: {
                 fontSize: '10px',
@@ -126,12 +73,11 @@ const CashFlowPeriod = ({ queryApiBusinessFinance }) => {
             }
         },
 
-        series: Array.isArray(data) && data.slice(3, 4),
+        series: data,
     };
-
     return (
         <div>
-            {dataChartStatementsCashFlows?.length > 0 ? (
+            {data?.length > 0 ? (
                 <div className='h-[321px]'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
@@ -142,4 +88,4 @@ const CashFlowPeriod = ({ queryApiBusinessFinance }) => {
     )
 }
 
-export default CashFlowPeriod
+export default ChartColumnLine
