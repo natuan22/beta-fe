@@ -196,4 +196,12 @@ export const stockService = {
             }
         })
     },
+    fetchDataChartPieBalanceSheet: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-can-doi-ke-toan-chart-tron', {
+            params: {
+                stock,
+                order,
+            }
+        })
+    },
 }

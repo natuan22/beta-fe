@@ -45,7 +45,7 @@ const BusinessFinance = ({ codeUrl }) => {
                 <Tab onClick={() => handleTabClick('3')} label='Chỉ số tài chính' value='3' />
               </TabList>
             </Box>
-            <TabPanel value="0"><BalanceSheet codeUrl={codeUrl}/></TabPanel>
+            <TabPanel value="0"><BalanceSheet codeUrl={codeUrl} /></TabPanel>
             <TabPanel value="1"><BusinessReport codeUrl={codeUrl} /></TabPanel>
             <TabPanel value="2"><StatementsCashFlows codeUrl={codeUrl} /></TabPanel>
             <TabPanel value="3"><div className='dark:text-white text-black'>Chỉ số tài chính</div></TabPanel>

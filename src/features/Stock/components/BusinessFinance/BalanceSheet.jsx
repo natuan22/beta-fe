@@ -12,7 +12,7 @@ const BalanceSheet = ({ codeUrl }) => {
             <div className='mt-8'>
                 <div className='md:flex sm:block justify-between'>
                     <div>
-                        <button className={`statementsCashFlows-btn xs:ml-[54px] xxs:ml-5  ${activeBtn === 0 ? 'statementsCashFlows-active-btn' : 'statementsCashFlows-btn-2'}`}
+                        <button className={`statementsCashFlows-btn lg:ml-[54px] md:ml-5 sm:ml-[54px] xs:ml-[54px] xxs:ml-5  ${activeBtn === 0 ? 'statementsCashFlows-active-btn' : 'statementsCashFlows-btn-2'}`}
                             onClick={() => {
                                 setActiveBtn(0)
                             }}>

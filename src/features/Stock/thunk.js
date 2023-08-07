@@ -292,3 +292,15 @@ export const fetchDataChartBalanceSheet = (stock, order) => async (dispatch) => 
     }
 }
 
+export const fetchDataChartPieBalanceSheet = (stock, order) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataChartPieBalanceSheet(stock, order)
+        dispatch({
+            type: stockType.FETCH_DATA_CHART_PIE_BALANCE_SHEET,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+

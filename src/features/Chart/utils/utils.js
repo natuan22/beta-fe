@@ -55,3 +55,7 @@ export function getTextSellBuy(item) {
     return text;
 }
 
+export function getColorByIndex(index) {
+    const colors = ['#65FFFF', '#F9F01B']; // xanh và vàng
+    return colors[index % colors.length];
+}
