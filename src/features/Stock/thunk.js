@@ -304,3 +304,27 @@ export const fetchDataChartPieBalanceSheet = (stock, order) => async (dispatch) 
     }
 }
 
+export const fetchDataTableFinancialIndicators = (stock, order) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataTableFinancialIndicators(stock, order)
+        dispatch({
+            type: stockType.FETCH_DATA_TABLE_FINANCIAL_INDICATORS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataChartFinancialIndicators = (stock, order) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataChartFinancialIndicators(stock, order)
+        dispatch({
+            type: stockType.FETCH_DATA_CHART_FINANCIAL_INDICATORS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataChartBalanceSheet } from '../../../../thunk'
 import ChartColumn from '../../components/ChartColumn'
 
-const ChartBH = ({ queryApiBusinessFinance }) => {
+const ChartBHBalanceSheet = ({ queryApiBusinessFinance }) => {
     const dispatch = useDispatch()
     const { dataChartBalanceSheet } = useSelector(state => state.stock)
     const [timeLine, setTimeLine] = useState()
@@ -88,4 +88,4 @@ const ChartBH = ({ queryApiBusinessFinance }) => {
     )
 }
 
-export default ChartBH
+export default ChartBHBalanceSheet

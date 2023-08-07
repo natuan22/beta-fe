@@ -5,7 +5,7 @@ import { fetchDataChartBalanceSheet, fetchDataChartPieBalanceSheet } from '../..
 import ChartColumn from '../../components/ChartColumn'
 import ChartPie from '../../components/ChartPie'
 
-const ChartCK = ({ queryApiBusinessFinance }) => {
+const ChartCKBalanceSheet = ({ queryApiBusinessFinance }) => {
   const dispatch = useDispatch()
   const { dataChartBalanceSheet, dataChartPieBalanceSheet } = useSelector(state => state.stock)
   const [timeLine, setTimeLine] = useState()
@@ -117,4 +117,4 @@ const ChartCK = ({ queryApiBusinessFinance }) => {
   )
 }
 
-export default ChartCK
+export default ChartCKBalanceSheet

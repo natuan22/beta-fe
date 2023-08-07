@@ -1,32 +1,34 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchDataChartBalanceSheet } from '../../../../thunk'
-import ChartColumn from '../../components/ChartColumn'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDataChartStatementsCashFlows } from '../../../../thunk';
+import ChartColumn from '../../components/ChartColumn';
 
-const ChartNH = ({ queryApiBusinessFinance }) => {
+const ChartBHStatementsCashFlows = ({ queryApiBusinessFinance }) => {
     const dispatch = useDispatch()
-    const { dataChartBalanceSheet } = useSelector(state => state.stock)
+    const { dataChartStatementsCashFlows } = useSelector(state => state.stock)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
 
     useEffect(() => {
-        dispatch(fetchDataChartBalanceSheet(queryApiBusinessFinance.stock, queryApiBusinessFinance.order))
+        dispatch(fetchDataChartStatementsCashFlows(queryApiBusinessFinance.stock, queryApiBusinessFinance.order))
     }, [dispatch, queryApiBusinessFinance])
 
     useEffect(() => {
-        if (dataChartBalanceSheet?.length > 0) {
+        if (dataChartStatementsCashFlows?.length > 0) {
             let modifiedArray;
 
             if (queryApiBusinessFinance.order === '0') {
-                modifiedArray = dataChartBalanceSheet.map(item => {
+                modifiedArray = dataChartStatementsCashFlows.map(item => {
+                    const modifiedName = `${item.name.trim().charAt(0).toUpperCase() + item.name.slice(1).toLowerCase()}`;
                     const year = item.date.slice(0, 4);
                     const quarter = item.date.slice(4);
 
-                    return { ...item, date: `Quý ${quarter}/${year}` };
+                    return { ...item, name: modifiedName, date: `Quý ${quarter}/${year}` };
                 });
             } else {
-                modifiedArray = dataChartBalanceSheet.map(item => {
-                    return { ...item, date: `Năm ${item.date}` };
+                modifiedArray = dataChartStatementsCashFlows.map(item => {
+                    const modifiedName = `${item.name.trim().charAt(0).toUpperCase() + item.name.slice(1).toLowerCase()}`;
+                    return { ...item, name: modifiedName, date: `Năm ${item.date}` };
                 });
             }
 
@@ -54,33 +56,33 @@ const ChartNH = ({ queryApiBusinessFinance }) => {
             })
             setData(result)
         }
-    }, [dataChartBalanceSheet, queryApiBusinessFinance])
+    }, [dataChartStatementsCashFlows, queryApiBusinessFinance])
 
     return (
         <div>
-            <div className='grid xl:grid-cols-3 lg:grid-cols-none gap-3'>
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
                 <div>
-                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Tiền gửi tại NHNN</div>
+                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Lưu chuyển tiền thuần từ hoạt động kinh doanh</div>
                     <ChartColumn data={Array.isArray(data) && data.slice(0, 1)} timeLine={timeLine} />
                 </div>
                 <div>
-                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Chứng khoán đầu tư</div>
+                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Lưu chuyển tiền thuần từ hoạt động đầu tư</div>
                     <ChartColumn data={Array.isArray(data) && data.slice(1, 2)} timeLine={timeLine} />
                 </div>
                 <div>
-                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Tổng cộng tài sản</div>
+                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Lưu chuyển tiền thuần từ hoạt động tài chính</div>
                     <ChartColumn data={Array.isArray(data) && data.slice(2, 3)} timeLine={timeLine} />
                 </div>
                 <div>
-                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Tiền gửi và cho vay các TCTD khác</div>
+                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Lưu chuyển tiền thuần trong kỳ</div>
                     <ChartColumn data={Array.isArray(data) && data.slice(3, 4)} timeLine={timeLine} />
                 </div>
                 <div>
-                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Tiền gửi khách hàng</div>
+                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Tiền và tương đương tiền đầu kỳ</div>
                     <ChartColumn data={Array.isArray(data) && data.slice(4, 5)} timeLine={timeLine} />
                 </div>
                 <div>
-                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Vốn chủ sở hữu</div>
+                    <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Tiền và tương đương tiền cuối kỳ</div>
                     <ChartColumn data={Array.isArray(data) && data.slice(5, 6)} timeLine={timeLine} />
                 </div>
             </div>
@@ -88,4 +90,4 @@ const ChartNH = ({ queryApiBusinessFinance }) => {
     )
 }
 
-export default ChartNH
+export default ChartBHStatementsCashFlows
