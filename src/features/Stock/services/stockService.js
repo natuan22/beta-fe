@@ -178,4 +178,22 @@ export const stockService = {
             }
         })
     },
+    fetchDataTableBalanceSheet: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-can-doi-ke-toan', {
+            params: {
+                stock,
+                order,
+                is_chart: 0
+            }
+        })
+    },
+    fetchDataChartBalanceSheet: (stock, order) => {
+        return https.get('api/v1/shares/chi-tiet-can-doi-ke-toan', {
+            params: {
+                stock,
+                order,
+                is_chart: 1
+            }
+        })
+    },
 }
