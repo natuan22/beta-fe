@@ -1,16 +1,16 @@
 import React from 'react'
 import Error404 from '../../../../Navigation/Error404';
-import ChartBH from './ChartBalanceSheet/ChartBH';
-import ChartCK from './ChartBalanceSheet/ChartCK';
-import ChartCTCP from './ChartBalanceSheet/ChartCTCP';
-import ChartNH from './ChartBalanceSheet/ChartNH';
+import ChartBHBalanceSheet from './ChartBalanceSheet/ChartBHBalanceSheet';
+import ChartCKBalanceSheet from './ChartBalanceSheet/ChartCKBalanceSheet';
+import ChartCTCPBalanceSheet from './ChartBalanceSheet/ChartCTCPBalanceSheet';
+import ChartNHBalanceSheet from './ChartBalanceSheet/ChartNHBalanceSheet';
 
 const ChartBalanceSheet = ({ queryApiBusinessFinance }) => {
     const typeComponentMap = {
-        'BH': ChartBH,
-        'CTCP': ChartCTCP,
-        'CK': ChartCK,
-        'NH': ChartNH,
+        'BH': ChartBHBalanceSheet,
+        'CTCP': ChartCTCPBalanceSheet,
+        'CK': ChartCKBalanceSheet,
+        'NH': ChartNHBalanceSheet,
     };
 
     const ChartComponent = typeComponentMap[queryApiBusinessFinance.type] || Error404;

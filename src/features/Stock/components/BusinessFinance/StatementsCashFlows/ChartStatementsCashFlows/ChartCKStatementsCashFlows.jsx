@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataChartStatementsCashFlows } from '../../../../thunk';
 import ChartColumn from '../../components/ChartColumn';
 
-const ChartCK = ({ queryApiBusinessFinance }) => {
+const ChartCKStatementsCashFlows = ({ queryApiBusinessFinance }) => {
     const dispatch = useDispatch()
     const { dataChartStatementsCashFlows } = useSelector(state => state.stock)
     const [timeLine, setTimeLine] = useState()
@@ -78,4 +78,4 @@ const ChartCK = ({ queryApiBusinessFinance }) => {
     )
 }
 
-export default ChartCK
+export default ChartCKStatementsCashFlows

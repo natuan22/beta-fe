@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Input } from "antd";
 import { BellOutlined, MessageOutlined } from "@ant-design/icons";
 import { Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
 import Switcher from "../services/switcher";
-import { ImSearch } from "react-icons/im";
 import SearchDialog from "../features/Search/utils/UIcomponent/SearchDialog";
-const { Search } = Input;
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 

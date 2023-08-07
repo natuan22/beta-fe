@@ -4,7 +4,7 @@ import { fetchDataChartBusinessReport } from '../../../../thunk'
 import ChartColumn from '../../components/ChartColumn'
 import ChartColumnLine from '../../components/ChartColumnLine'
 
-const ChartCTCP = ({ queryApiBusinessFinance }) => {
+const ChartCKBusinessReport = ({ queryApiBusinessFinance }) => {
   const dispatch = useDispatch()
   const { dataChartBusinessReport } = useSelector(state => state.stock)
   const [timeLine, setTimeLine] = useState()
@@ -23,6 +23,7 @@ const ChartCTCP = ({ queryApiBusinessFinance }) => {
           const modifiedName = `${item.name.trim().charAt(0).toUpperCase() + item.name.slice(1).toLowerCase()}`;
           const year = item.date.slice(0, 4);
           const quarter = item.date.slice(4);
+          // chuoi.charAt(0).toUpperCase() + chuoi.slice(1)
           return { ...item, name: modifiedName, date: `Quý ${quarter}/${year}` };
         });
       } else {
@@ -68,10 +69,10 @@ const ChartCTCP = ({ queryApiBusinessFinance }) => {
         modifiedData.push(newPerDataItem);
       });
       modifiedData = modifiedData.map(item => {
-        if (item.name === 'Lợi nhuận gộp' && item.type === 'spline') {
-          return { ...item, color: '#FE0211', name: 'Biên lợi nhuận gộp' };
-        } else if (item.name === 'Lợi nhuận sau thuế thu nhập doanh nghiệp' && item.type === 'spline') {
-          return { ...item, color: '#0BFF23', name: 'Biên lợi nhuận sau thuế (%)' };
+        if (item.name === 'Doanh thu hoạt động' && item.type === 'spline') {
+          return { ...item, color: '#FE0211', name: 'Tăng trưởng lợi nhuận hoạt động' };
+        } else if (item.name === 'Doanh thu hoạt động tài chính' && item.type === 'spline') {
+          return { ...item, color: '#0BFF23', name: 'Tăng trưởng lợi nhuận tài chính' };
         }
         return item;
       });
@@ -81,26 +82,26 @@ const ChartCTCP = ({ queryApiBusinessFinance }) => {
 
   return (
     <div>
+      <div>
+        <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Lợi nhuận hoạt động</div>
+        <ChartColumnLine data={Array.isArray(data) && data.slice(0, 3)} timeLine={timeLine} />
+      </div>
+      <div>
+        <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Lợi nhuận tài chính</div>
+        <ChartColumnLine data={Array.isArray(data) && data.slice(4, 7)} timeLine={timeLine} />
+      </div>
       <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
         <div>
-          <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Doanh thu thuần</div>
-          <ChartColumn data={Array.isArray(data) && data.slice(0, 1)} timeLine={timeLine} />
+          <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Lợi nhuận kế toán trước thuế</div>
+          <ChartColumn data={Array.isArray(data) && data.slice(8, 9)} timeLine={timeLine} />
         </div>
         <div>
-          <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Tổng lợi nhuận kế toán trước thuế</div>
-          <ChartColumn data={Array.isArray(data) && data.slice(2, 3)} timeLine={timeLine} />
+          <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Lợi nhuận kế toán sau thuế</div>
+          <ChartColumn data={Array.isArray(data) && data.slice(10, 11)} timeLine={timeLine} />
         </div>
-      </div>
-      <div>
-        <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Lợi nhuận gộp</div>
-        <ChartColumnLine data={Array.isArray(data) && data.slice(4, 6)} timeLine={timeLine} />
-      </div>
-      <div>
-        <div className='dark:text-white text-black font-semibold uppercase mt-10 mb-5 mx-5'>Lợi nhuận sau thuế</div>
-        <ChartColumnLine data={Array.isArray(data) && data.slice(6, 8)} timeLine={timeLine} />
       </div>
     </div>
   )
 }
 
-export default ChartCTCP
+export default ChartCKBusinessReport
