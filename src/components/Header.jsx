@@ -314,7 +314,6 @@ const Header = () => {
                   >
                     Công cụ đầu tư
                   </NavLink>
-
                   <NavLink
                     onClick={() => {
                       if (isOpen) setIsOpen(!isOpen);
