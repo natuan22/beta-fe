@@ -90,6 +90,8 @@ const LiquidityGrowth = () => {
                     fontSize: '9px',
                 },
             },
+            crosshair: false
+
         }],
         yAxis: {
             title: {
@@ -100,6 +102,8 @@ const LiquidityGrowth = () => {
                     color: localStorage.getItem('color'),
                 },
             },
+            gridLineWidth: 0.5,
+            crosshair: false
         },
         plotOptions: {
             series: {
@@ -107,6 +111,9 @@ const LiquidityGrowth = () => {
                     radius: 2, // Giá trị bán kính marker
                 },
             }
+        },
+        tooltip: {
+            split: true
         },
         series: [{
             name: 'UPCOM',
