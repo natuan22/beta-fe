@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchDataChartBusinessReport } from '../../../../thunk'
-import ChartColumn from './components/ChartColumn'
-import ChartColumnLine from './components/ChartColumnLine'
+import ChartColumn from '../../components/ChartColumn'
+import ChartColumnLine from '../../components/ChartColumnLine'
 
 const ChartCK = ({ queryApiBusinessFinance }) => {
   const dispatch = useDispatch()
