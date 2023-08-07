@@ -25,7 +25,8 @@ const initialState = {
     dataTableBusinessReport: {},
     dataChartBusinessReport: {},
     dataTableBalanceSheet: {},
-    dataChartBalanceSheet: {}
+    dataChartBalanceSheet: {},
+    dataChartPieBalanceSheet: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -104,6 +105,9 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_CHART_BALANCE_SHEET) {
             draft.dataChartBalanceSheet = payload
+        }
+        if (type === stockType.FETCH_DATA_CHART_PIE_BALANCE_SHEET) {
+            draft.dataChartPieBalanceSheet = payload
         }
     });
 };
