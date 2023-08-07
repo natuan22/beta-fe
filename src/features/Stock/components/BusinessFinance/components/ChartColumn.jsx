@@ -3,7 +3,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official'
 import Loading from '../../../../Chart/utils/Loading';
 
-const ChartColumn = ({ data, timeLine }) => {
+const ChartColumn = ({ data, timeLine, name }) => {
     const options = {
         chart: {
             backgroundColor: "transparent", // màu nền của biểu đồ
@@ -14,7 +14,7 @@ const ChartColumn = ({ data, timeLine }) => {
         },
         credits: false,
         title: {
-            text: "",
+            text: name,
             style: {
                 color: 'white'
             }
