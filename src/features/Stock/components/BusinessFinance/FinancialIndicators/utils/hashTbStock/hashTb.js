@@ -8,30 +8,12 @@ import SlideAsset from "../components/SlideComponent/SlideAsset";
 
 export const hashTb_CTCP_BH_CK = [
     {
-        component: SlideProfit,
+        component: SlideValuation,
         labels: [
-            "Tỷ suất lợi nhuận gộp biên",
-            "Tỷ suất lợi nhuận ròng",
-            "Tỷ suất sinh lợi trên vốn chủ sở hữu (ROE)",
-            "Tỷ suất sinh lợi trên tổng tài sản (ROA)",
-        ],
-    },
-    {
-        component: SlideLiquidity,
-        labels: [
-            "Tỷ số thanh toán hiện hành",
-            "Tỷ số thanh toán nhanh",
-            "Tỷ số thanh toán tiền mặt",
-            "Khả năng thanh toán lãi vay",
-        ],
-    },
-    {
-        component: SlideAbilityToPay,
-        labels: [
-            "Chỉ số khả năng trả nợ (DSCR)",
-            "Tỷ lệ Nợ hiện tại/TTS",
-            "Tỷ lệ Nợ hiện tại/VCSH",
-            "Tỷ lệ đảm bảo trả nợ bằng tài sản",
+            "P/E cổ phiếu",
+            "P/B cổ phiếu",
+            "Thu nhập trên mỗi cổ phần (EPS)",
+            "Giá trị sổ sách mỗi cổ phiếu (BVPS)",
         ],
     },
     {
@@ -44,14 +26,33 @@ export const hashTb_CTCP_BH_CK = [
         ],
     },
     {
-        component: SlideValuation,
+        component: SlideAbilityToPay,
         labels: [
-            "P/E cổ phiếu",
-            "P/B cổ phiếu",
-            "Thu nhập trên mỗi cổ phần (EPS)",
-            "Giá trị sổ sách mỗi cổ phiếu (BVPS)",
+            "Chỉ số khả năng trả nợ (DSCR)",
+            "Tỷ lệ Nợ hiện tại/TTS",
+            "Tỷ lệ Nợ hiện tại/VCSH",
+            "Tỷ lệ đảm bảo trả nợ bằng tài sản",
         ],
     },
+    {
+        component: SlideLiquidity,
+        labels: [
+            "Tỷ số thanh toán hiện hành",
+            "Tỷ số thanh toán nhanh",
+            "Tỷ số thanh toán tiền mặt",
+            "Khả năng thanh toán lãi vay",
+        ],
+    },
+
+    {
+        component: SlideProfit,
+        labels: [
+            "Tỷ suất lợi nhuận gộp biên",
+            "Tỷ suất lợi nhuận ròng",
+            "Tỷ suất sinh lợi trên vốn chủ sở hữu (ROE)",
+            "Tỷ suất sinh lợi trên tổng tài sản (ROA)",
+        ],
+    }
 ];
 
 export const hashTbNH = [
