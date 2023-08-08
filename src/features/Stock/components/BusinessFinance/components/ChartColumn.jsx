@@ -16,7 +16,10 @@ const ChartColumn = ({ data, timeLine, name }) => {
         title: {
             text: name,
             style: {
-                color: 'white'
+                color: localStorage.getItem('color'),
+                fontFamily: 'Roboto', // Sử dụng font chữ "Inter"
+                fontWeight: '700',   // Trọng lượng font chữ 700 (Bold)
+                fontSize: '14px',    // Kích thước font chữ 13px
             }
         },
         xAxis: {

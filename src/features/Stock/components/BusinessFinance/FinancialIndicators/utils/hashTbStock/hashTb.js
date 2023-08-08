@@ -84,30 +84,12 @@ export const hashTb_CTCP_BH_CK = [
 
 export const hashTbNH = [
     {
-        component: SlideCreditQuality,
+        component: SlideValuation,
         labels: [
-            "Tỷ lệ nợ xấu",
-            "Tỷ lệ xóa nợ",
-            "Dự phòng/Nợ xấu",
-            "Nợ xấu/Tổng tài sản",
-        ],
-    },
-    {
-        component: SlideLiquidity,
-        labels: [
-            "Dư nợ cho vay khách hàng/Tổng vốn huy động",
-            "Dư nợ cho vay khách hàng/Tổng tài sản",
-            "Vốn chủ sở hữu/Tổng tài sản",
-            "Tài sản thanh khoản/Nợ phải trả",
-        ],
-    },
-    {
-        component: SlideAsset,
-        labels: [
-            "Cho vay/Tài sản sinh lãi",
-            "Cho vay/Tổng tài sản",
-            "Tiền gửi khách hàng/Tài sản sinh lãi",
-            "Cho vay/Tiền gửi khách hàng",
+            "P/E cổ phiếu",
+            "P/B cổ phiếu",
+            "Thu nhập trên mỗi cổ phần (EPS)",
+            "Giá trị sổ sách mỗi cổ phiếu (BVPS)",
         ],
     },
     {
@@ -120,12 +102,30 @@ export const hashTbNH = [
         ],
     },
     {
-        component: SlideValuation,
+        component: SlideAsset,
         labels: [
-            "P/E cổ phiếu",
-            "P/B cổ phiếu",
-            "Thu nhập trên mỗi cổ phần (EPS)",
-            "Giá trị sổ sách mỗi cổ phiếu (BVPS)",
+            "Cho vay/Tài sản sinh lãi",
+            "Cho vay/Tổng tài sản",
+            "Tiền gửi khách hàng/Tài sản sinh lãi",
+            "Cho vay/Tiền gửi khách hàng",
+        ],
+    },
+    {
+        component: SlideLiquidity,
+        labels: [
+            "Dư nợ cho vay khách hàng/Tổng vốn huy động",
+            "Dư nợ cho vay khách hàng/Tổng tài sản",
+            "Vốn chủ sở hữu/Tổng tài sản",
+            "Tài sản thanh khoản/Nợ phải trả",
+        ],
+    },
+    {
+        component: SlideCreditQuality,
+        labels: [
+            "Tỷ lệ nợ xấu",
+            "Tỷ lệ xóa nợ",
+            "Dự phòng/Nợ xấu",
+            "Nợ xấu/Tổng tài sản",
         ],
     },
 ];
