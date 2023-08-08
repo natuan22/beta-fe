@@ -1,6 +1,7 @@
 import React from 'react'
 
-const SlideEfficiency = () => {
+const SlideEfficiency = ({ data, labels }) => {
+    console.log(labels)
     return (
         <div>SlideEfficiency</div>
     )

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { hashTb_CTCP_BH_CK } from '../utils/hashTbStock/hashTb';
+import { hashTb_CTCP_BH_CK, hashTbToFilterData } from '../utils/hashTbStock/hashTb';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataChartFinancialIndicators } from '../../../../thunk';
+import Loading from '../../../../../Chart/utils/Loading';
 
 const ChartCTCPFinancialIndicators = ({ queryApiBusinessFinance }) => {
   const dispatch = useDispatch()
@@ -59,27 +60,32 @@ const ChartCTCPFinancialIndicators = ({ queryApiBusinessFinance }) => {
       setData(result)
     }
   }, [dataChartFinancialIndicators, queryApiBusinessFinance])
+  console.log(data)
 
   return (
     <div>
       <div className='text-white mt-8'>
-        <Swiper
-          slidesPerView={2}
-          navigation={true}
-          modules={[Navigation]}
-        >
-          {hashTb_CTCP_BH_CK.map((slideObj, index) => {
+        {
+          data?.length > 0 ?
+            <Swiper
+              slidesPerView={2}
+              navigation={true}
+              modules={[Navigation]}
+            >
+              {hashTb_CTCP_BH_CK.map((slideObj, index) => {
+                const Component = slideObj.component;
+                const componentLabels = slideObj.labels;
+                const filteredData = data?.filter(item => componentLabels.includes(hashTbToFilterData[item.name]));
+                return (
+                  <SwiperSlide key={index}>
+                    <Component key={index} time={timeLine} data={filteredData} labels={componentLabels} />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            : <div><Loading /></div>
+        }
 
-            const Component = slideObj.component; // Lấy tên component từ slideObj
-            const componentLabels = slideObj.labels;
-
-            return (
-              <SwiperSlide key={index}>
-                <Component key={index} data={data} labels={componentLabels} />
-              </SwiperSlide>
-            )
-          })}
-        </Swiper>
       </div>
     </div>
   );

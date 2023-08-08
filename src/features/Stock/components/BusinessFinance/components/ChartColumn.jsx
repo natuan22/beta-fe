@@ -4,6 +4,7 @@ import HighchartsReact from 'highcharts-react-official'
 import Loading from '../../../../Chart/utils/Loading';
 
 const ChartColumn = ({ data, timeLine, name }) => {
+    console.log(data)
     const options = {
         chart: {
             backgroundColor: "transparent", // màu nền của biểu đồ
@@ -80,7 +81,7 @@ const ChartColumn = ({ data, timeLine, name }) => {
     };
     return (
         <div>
-            {data?.length > 0 ? (
+            {data?.length > 0 || data ? (
                 <div className='h-[321px]'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
