@@ -69,6 +69,7 @@ const ChartCTCPFinancialIndicators = ({ queryApiBusinessFinance }) => {
           modules={[Navigation]}
         >
           {hashTb_CTCP_BH_CK.map((slideObj, index) => {
+
             const Component = slideObj.component; // Lấy tên component từ slideObj
             const componentLabels = slideObj.labels;
 

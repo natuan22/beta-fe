@@ -45,12 +45,12 @@ export const hashTb_CTCP_BH_CK = [
     },
 
     {
-        component: SlideProfit,
+        component: SlideValuation,
         labels: [
-            "Tỷ suất lợi nhuận gộp biên",
-            "Tỷ suất lợi nhuận ròng",
-            "Tỷ suất sinh lợi trên vốn chủ sở hữu (ROE)",
-            "Tỷ suất sinh lợi trên tổng tài sản (ROA)",
+            "P/E cổ phiếu",
+            "P/B cổ phiếu",
+            "Thu nhập trên mỗi cổ phần (EPS)",
+            "Giá trị sổ sách mỗi cổ phiếu (BVPS)",
         ],
     }
 ];
@@ -66,12 +66,13 @@ export const hashTbNH = [
         ],
     },
     {
-        component: SlideLiquidity,
+        component: SlideEfficiency,
         labels: [
             "Dư nợ cho vay khách hàng/Tổng vốn huy động",
             "Dư nợ cho vay khách hàng/Tổng tài sản",
             "Vốn chủ sở hữu/Tổng tài sản",
             "Tài sản thanh khoản/Nợ phải trả",
+
         ],
     },
     {
@@ -84,21 +85,22 @@ export const hashTbNH = [
         ],
     },
     {
-        component: SlideEfficiency,
+        component: SlideLiquidity,
         labels: [
-            "Vòng quay tài sản cố định",
-            "Vòng quay tổng tài sản",
-            "Vòng quay tiền",
-            "Vòng quay VCSH",
+            "Tỷ số thanh toán hiện hành",
+            "Tỷ số thanh toán nhanh",
+            "Tỷ số thanh toán tiền mặt",
+            "Khả năng thanh toán lãi vay",
         ],
     },
+
     {
-        component: SlideValuation,
+        component: SlideProfit,
         labels: [
-            "P/E cổ phiếu",
-            "P/B cổ phiếu",
-            "Thu nhập trên mỗi cổ phần (EPS)",
-            "Giá trị sổ sách mỗi cổ phiếu (BVPS)",
+            "Tỷ suất lợi nhuận gộp biên",
+            "Tỷ suất lợi nhuận ròng",
+            "Tỷ suất sinh lợi trên vốn chủ sở hữu (ROE)",
+            "Tỷ suất sinh lợi trên tổng tài sản (ROA)",
         ],
-    },
+    }
 ];
