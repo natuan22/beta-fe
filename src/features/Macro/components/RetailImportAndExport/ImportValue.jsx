@@ -115,6 +115,7 @@ const ImportValue = () => {
                     color: localStorage.getItem('color'),
                 },
             },
+            gridLineWidth: 0.5,
         },
         legend: {
             verticalAlign: 'top',

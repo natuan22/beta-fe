@@ -115,6 +115,7 @@ const ExportValue = () => {
                     color: localStorage.getItem('color'),
                 },
             },
+            gridLineWidth: 0.5,
         },
         legend: {
             verticalAlign: 'top',
@@ -140,15 +141,15 @@ const ExportValue = () => {
             <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold sm:text-base xs:text-sm xxs:text-xs'>Giá trị xuất khẩu các loại mặt hàng chính</span>
                 <div>
-                <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
-                    onChange={(event) => {
-                        setOrder(event.target.value)
-                        dispatch(fetchDataExportValue(event.target.value))
-                    }}>
-                    <option value='2'>Tháng</option>
-                    <option value='0'>Quý</option>
-                    <option value='1'>Năm</option>
-                </select>
+                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                        onChange={(event) => {
+                            setOrder(event.target.value)
+                            dispatch(fetchDataExportValue(event.target.value))
+                        }}>
+                        <option value='2'>Tháng</option>
+                        <option value='0'>Quý</option>
+                        <option value='1'>Năm</option>
+                    </select>
                 </div>
             </div>
             {dataExportValue?.length > 0 ? (

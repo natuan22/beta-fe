@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Loading from '../../../Chart/utils/Loading'
 import Error404 from '../../../Navigation/Error404'
+import CentralRate from '../../components/RateAndInterestRate/CentralRate'
+import ExchangeRateIndex from '../../components/RateAndInterestRate/ExchangeRateIndex'
+import InterestRate from '../../components/RateAndInterestRate/InterestRate'
 
 const RateAndInterestRate = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -15,10 +18,40 @@ const RateAndInterestRate = () => {
         <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">
             {isLoading ? (
                 <>
-                    {/* <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
-
-                    </div> */}
-                    <Error404 />
+                    <div className='mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md'>
+                        <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
+                            <div>
+                                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                    <span className='dark:text-white text-black font-semibold'>Tỷ giá trung tâm USD/VND</span>
+                                </div>
+                                <CentralRate />
+                            </div>
+                            <div>
+                                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                    <span className='dark:text-white text-black font-semibold'>Bảng chỉ số tỷ giá</span>
+                                </div>
+                                <ExchangeRateIndex />
+                            </div>
+                        </div>
+                        <div className='mt-2'>
+                            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                <span className='dark:text-white text-black font-semibold'>Biến động tỷ giá & lãi suất thị trường</span>
+                                <div>
+                                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                                        onChange={(event) => {
+                                        }}>
+                                        <option value='0'>Ngày</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                                <span className='dark:text-white text-black font-semibold'>Lãi suất (%)</span>
+                            </div>
+                            <InterestRate />
+                        </div>
+                    </div>
                 </>
             ) : (
                 <div className='h-[300px] flex items-center justify-center'><Loading /></div>

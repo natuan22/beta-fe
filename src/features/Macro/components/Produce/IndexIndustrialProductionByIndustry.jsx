@@ -12,7 +12,12 @@ const IndexIndustrialProductionByIndustry = () => {
     const { dataIndexIndustrialProductionByIndustry } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
+    const [colorText, setColorText] = useState(localStorage.getItem('color'));
+    const color = useSelector((state) => state.color.colorText);
 
+    useEffect(() => {
+        setColorText(color);
+    }, [color])
     useEffect(() => {
         dispatch(fetchDataIndexIndustrialProductionByIndustry('cheBienGo'))
     }, [dispatch]);
@@ -87,7 +92,8 @@ const IndexIndustrialProductionByIndustry = () => {
                     style: {
                         color: localStorage.getItem('color') // màu cho các nhãn trục y
                     },
-                }
+                },
+                gridLineWidth: 0.5,
             },
             {
                 title: {
@@ -102,6 +108,7 @@ const IndexIndustrialProductionByIndustry = () => {
                     }
                 },
                 opposite: true,
+                gridLineWidth: 0.5,
             },
 
         ],
