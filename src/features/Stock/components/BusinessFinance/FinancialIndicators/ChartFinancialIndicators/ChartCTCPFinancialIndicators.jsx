@@ -60,33 +60,29 @@ const ChartCTCPFinancialIndicators = ({ queryApiBusinessFinance }) => {
       setData(result)
     }
   }, [dataChartFinancialIndicators, queryApiBusinessFinance])
-  console.log(data)
 
   return (
     <div>
-      <div className='text-white mt-8'>
-        {
-          data?.length > 0 ?
-            <Swiper
-              slidesPerView={2}
-              navigation={true}
-              modules={[Navigation]}
-            >
-              {hashTb_CTCP_BH_CK.map((slideObj, index) => {
-                const Component = slideObj.component;
-                const componentLabels = slideObj.labels;
-                const filteredData = data?.filter(item => componentLabels.includes(hashTbToFilterData[item.name]));
-                return (
-                  <SwiperSlide key={index}>
-                    <Component key={index} time={timeLine} data={filteredData} labels={componentLabels} />
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-            : <div><Loading /></div>
-        }
-
-      </div>
+      {data?.length > 0 ? (
+        <Swiper
+          slidesPerView={1}
+          navigation={true}
+          modules={[Navigation]}
+        >
+          {hashTb_CTCP_BH_CK.map((slideObj, index) => {
+            const Component = slideObj.component;
+            const componentLabels = slideObj.labels;
+            const filteredData = data?.filter(item => componentLabels.includes(hashTbToFilterData[item.name]));
+            return (
+              <SwiperSlide key={index}>
+                <Component key={index} time={timeLine} data={filteredData} labels={componentLabels} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      ) : (
+        <div className='h-[300px] flex items-center justify-center'><Loading /></div>
+      )}
     </div>
   );
 };
