@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { hashTbCTCP } from '../utils/hashTbStock/hashTb';
+import { hashTb_CTCP_BH_CK } from '../utils/hashTbStock/hashTb';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -68,7 +68,8 @@ const ChartCTCPFinancialIndicators = ({ queryApiBusinessFinance }) => {
           navigation={true}
           modules={[Navigation]}
         >
-          {hashTbCTCP.map((slideObj, index) => {
+          {hashTb_CTCP_BH_CK.map((slideObj, index) => {
+
             const Component = slideObj.component; // Lấy tên component từ slideObj
             const componentLabels = slideObj.labels;
 
