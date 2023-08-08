@@ -2,25 +2,24 @@ import React from 'react'
 import ChartColumn from '../../../../components/ChartColumn'
 
 const SlideValuation = ({ data, labels, time }) => {
-    const [PE, PB, EPS, BVPS] = data
-    console.log(time)
-    const [PELabel, PBLabel, EPSLabel, BVPSLabel] = labels
+    const [Arr1, Arr2, Arr3, Arr4] = data
+    const [Label1, Label2, Label3, Label4] = labels
     return (
         <div>
             <div>Chỉ số định giá</div>
             <hr />
             <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
                 <div className='PE'>
-                    <ChartColumn data={PE} timeLine={time} name={PELabel} />
+                    <ChartColumn data={[Arr1]} timeLine={time} name={Label1} />
                 </div>
                 <div className='PB'>
-                    <ChartColumn data={PB} timeLine={time} name={PBLabel} />
+                    <ChartColumn data={[Arr2]} timeLine={time} name={Label2} />
                 </div>
                 <div className='EPS'>
-                    <ChartColumn data={EPS} timeLine={time} name={EPSLabel} />
+                    <ChartColumn data={[Arr3]} timeLine={time} name={Label3} />
                 </div>
                 <div className='BVPS'>
-                    <ChartColumn data={BVPS} timeLine={time} name={BVPSLabel} />
+                    <ChartColumn data={[Arr4]} timeLine={time} name={Label4} />
                 </div>
             </div>
         </div>

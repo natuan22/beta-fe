@@ -1,8 +1,29 @@
 import React from 'react'
+import ChartColumn from '../../../../components/ChartColumn'
 
-const SlideAbilityToPay = () => {
+const SlideAbilityToPay = ({ data, labels, time }) => {
+    const [Arr1, Arr2, Arr3, Arr4] = data
+    const [Label1, Label2, Label3, Label4] = labels
+    console.log(data)
     return (
-        <div>SlideAbilityToPay</div>
+        <div>
+            <div>Khả năng thanh toán</div>
+            <hr />
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-3'>
+                <div className='ratePay'>
+                    <ChartColumn data={[Arr1]} timeLine={time} name={Label1} />
+                </div>
+                <div className='rateFastPay'>
+                    <ChartColumn data={[Arr2]} timeLine={time} name={Label2} />
+                </div>
+                <div className='rateCashPay'>
+                    <ChartColumn data={[Arr3]} timeLine={time} name={Label3} />
+                </div>
+                <div className='rateDebitPay'>
+                    <ChartColumn data={[Arr4]} timeLine={time} name={Label4} />
+                </div>
+            </div>
+        </div>
     )
 }
 

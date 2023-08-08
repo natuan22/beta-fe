@@ -14,15 +14,18 @@ export const hashTbToFilterData = {
     "Vòng quay tài sản cố định": "Vòng quay tài sản cố định",
     "Vòng quay tổng tài sản": "Vòng quay tổng tài sản",
     "Vòng quay tiền": "Vòng quay tiền",
-    "Vòng quay VCSH": "Vòng quay VCSH",
-    "Chỉ số khả năng trả nợ (DSCR)": "Chỉ số khả năng trả nợ (DSCR)",
-    "Tỷ lệ Nợ hiện tại/TTS": "Tỷ lệ Nợ hiện tại/TTS",
-    "Tỷ lệ Nợ hiện tại/VCSH": "Tỷ lệ Nợ hiện tại/VCSH",
+    "Vòng quay vốn chủ sở hữu": "Vòng quay VCSH",
+
+    "Chỉ số khả năng trả nợ": "Chỉ số khả năng trả nợ (DSCR)",
+    "Tỷ lệ nợ hiện tại trên tổng tài sản": "Tỷ lệ Nợ hiện tại/TTS",
+    "Tỷ lệ nợ trên vốn chủ sở hữu": "Tỷ lệ Nợ hiện tại/VCSH",
     "Tỷ lệ đảm bảo trả nợ bằng tài sản": "Tỷ lệ đảm bảo trả nợ bằng tài sản",
+
     "Tỷ số thanh toán hiện hành": "Tỷ số thanh toán hiện hành",
     "Tỷ số thanh toán nhanh": "Tỷ số thanh toán nhanh",
     "Tỷ số thanh toán tiền mặt": "Tỷ số thanh toán tiền mặt",
     "Khả năng thanh toán lãi vay": "Khả năng thanh toán lãi vay",
+
     "Tỷ suất lợi nhuận gộp biên": "Tỷ suất lợi nhuận gộp biên",
     "Tỷ suất lợi nhuận ròng": "Tỷ suất lợi nhuận ròng",
     "ROE": "Tỷ suất sinh lợi trên vốn chủ sở hữu (ROE)",
