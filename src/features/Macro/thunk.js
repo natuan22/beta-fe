@@ -565,3 +565,39 @@ export const fetchDataProportionOutstandingLoans = async (dispatch) => {
         console.error(err)
     }
 }
+
+export const fetchDataCentralRate = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataCentralRate()
+        dispatch({
+            type: macroType.FETCH_DATA_CENTRAL_RATE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataExchangeRateIndex = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataExchangeRateIndex()
+        dispatch({
+            type: macroType.FETCH_DATA_EXCHANGE_RATE_INDEX,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataInterestRate = async (dispatch) => {
+    try {
+        const res = await macroServices.fetchDataInterestRate()
+        dispatch({
+            type: macroType.FETCH_DATA_INTEREST_RATE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}

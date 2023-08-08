@@ -130,6 +130,7 @@ const IndexIndustrialProduction = () => {
                     color: localStorage.getItem('color'),
                 },
             },
+            gridLineWidth: 0.5,
         },
         legend: {
             enabled: false,

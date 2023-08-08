@@ -1,14 +1,14 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
-import Loading from '../../../Chart/utils/Loading';
-import { fetchDataBondsIssued } from '../../thunk';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDataInterestRate } from '../../thunk';
+import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
-import HighchartsReact from 'highcharts-react-official';
+import Loading from '../../../Chart/utils/Loading';
 
-const BondsIssued = () => {
-    const dispatch = useDispatch()
-    const { dataBondsIssued } = useSelector(state => state.macro)
+const InterestRate = () => {
+    const dispatch = useDispatch();
+    const { dataInterestRate } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
@@ -19,42 +19,37 @@ const BondsIssued = () => {
     }, [color])
 
     useEffect(() => {
-        dispatch(fetchDataBondsIssued)
+        dispatch(fetchDataInterestRate)
     }, [dispatch]);
 
     useEffect(() => {
-        if (dataBondsIssued?.length > 0) {
-            const modifiedArray = dataBondsIssued.map(item => {
-                const month = moment(item.date, 'YYYY/MM/DD').month() + 1 // Lấy tên tháng từ ngày
-                const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
-
-                return { ...item, date: `Tháng ${month}/${year}` };
-            });
-            const uniqueDates = [...new Set(modifiedArray?.map(item => item.date))];
+        if (dataInterestRate?.length > 0) {
+            const uniqueDates = [...new Set(dataInterestRate?.map(item => moment(item.date).format('DD/MM/YYYY')))];
             setTimeLine(uniqueDates)
 
             const result = [];
 
-            modifiedArray?.forEach(item => {
+            dataInterestRate?.forEach(item => {
                 const name = item.name;
-                const value = +(item.value / 1000000000).toFixed(2);
-                const color = item.color
+                const value = item.value;
+                const colorArr = ['#49C3FB', '#9B57CC', '#7E80E7', '#65A6FA', '#00CADC'];
 
                 const existingObj = result.find(obj => obj.name === name);
 
                 if (existingObj) {
                     existingObj.data.push(value);
                 } else {
+                    const uniqueColorIndex = result.length % colorArr.length; // Lấy chỉ mục màu duy nhất
                     result.push({
                         name: name,
                         data: [value],
-                        color
+                        color: colorArr[uniqueColorIndex] // Lấy màu từ mảng colorArr bằng chỉ mục màu duy nhất
                     });
                 }
             })
             setData(result)
         }
-    }, [dataBondsIssued])
+    }, [dataInterestRate])
 
     const options = {
         accessibility: {
@@ -62,7 +57,7 @@ const BondsIssued = () => {
         },
         credits: false,
         chart: {
-            type: 'column',
+            type: 'spline',
             backgroundColor: 'transparent',
         },
         title: {
@@ -95,35 +90,36 @@ const BondsIssued = () => {
             gridLineWidth: 0.5,
         },
         legend: {
-            enabled: true,
             align: 'center',
             verticalAlign: 'top',
+            enabled: true,
             itemStyle: {
-                fontSize: '10px',
-                color: localStorage.getItem('color')
-            }
+                color: localStorage.getItem('color'),
+                fontWeight: 'bold'
+            },
+
         },
         plotOptions: {
-            column: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled: false,
+            series: {
+                marker: {
+                    radius: 2, // Giá trị bán kính marker
                 },
             },
         },
         series: data,
     };
+
     return (
-        <>
-            {dataBondsIssued?.length > 0 ? (
+        <div>
+            {dataInterestRate?.length > 0 ? (
                 <div className='h-[300px]'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
                 <div className="h-[300px] flex items-center justify-center"><Loading /></div>
             )}
-        </>
+        </div>
     )
 }
 
-export default BondsIssued
+export default InterestRate
