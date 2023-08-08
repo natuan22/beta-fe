@@ -122,6 +122,9 @@ const QuickPayoutRatio = () => {
     const handleSelectedNamesChange = (selectedNames) => {
         setIndustryQuery(selectedNames)
     };
+    console.log(dataChartPayoutRatio)
+    console.log({ category })
+    console.log({ data })
     return (
         <div>
             <div className='lg:flex md:block sm:flex xs:flex xxs:flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>

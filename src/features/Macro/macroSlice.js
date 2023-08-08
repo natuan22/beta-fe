@@ -51,6 +51,7 @@ const initialState = {
     dataCentralRate: {},
     dataExchangeRateIndex: {},
     dataInterestRate: {},
+    dataExchangeRateFluctuations: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -204,6 +205,9 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === macroType.FETCH_DATA_INTEREST_RATE) {
             draft.dataInterestRate = payload
+        }
+        if (type === macroType.FETCH_DATA_EXCHANGE_RATE_FLUCTUATIONS) {
+            draft.dataExchangeRateFluctuations = payload
         }
     });
 };

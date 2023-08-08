@@ -601,3 +601,15 @@ export const fetchDataInterestRate = async (dispatch) => {
         console.error(err)
     }
 }
+
+export const fetchDataExchangeRateFluctuations = (type) => async dispatch => {
+    try {
+        const res = await macroServices.fetchDataExchangeRateFluctuations(type)
+        dispatch({
+            type: macroType.FETCH_DATA_EXCHANGE_RATE_FLUCTUATIONS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}

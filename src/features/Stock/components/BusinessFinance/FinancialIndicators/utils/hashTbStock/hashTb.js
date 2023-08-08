@@ -11,6 +11,7 @@ export const hashTbToFilterData = {
     "P/B": "P/B cổ phiếu",
     "EPS": "Thu nhập trên mỗi cổ phần (EPS)",
     "Giá trị sổ sách của cổ phiếu (BVPS)": "Giá trị sổ sách mỗi cổ phiếu (BVPS)",
+
     "Vòng quay tài sản cố định": "Vòng quay tài sản cố định",
     "Vòng quay tổng tài sản": "Vòng quay tổng tài sản",
     "Vòng quay tiền": "Vòng quay tiền",
@@ -30,6 +31,33 @@ export const hashTbToFilterData = {
     "Tỷ suất lợi nhuận ròng": "Tỷ suất lợi nhuận ròng",
     "ROE": "Tỷ suất sinh lợi trên vốn chủ sở hữu (ROE)",
     "ROA": "Tỷ suất sinh lợi trên tổng tài sản (ROA)",
+};
+
+export const hashTbToFilterDataNH = {
+    "P/E": "P/E cổ phiếu",
+    "P/B": "P/B cổ phiếu",
+    "EPS": "Thu nhập trên mỗi cổ phần (EPS)",
+    "Giá trị sổ sách của cổ phiếu (BVPS)": "Giá trị sổ sách mỗi cổ phiếu (BVPS)",
+
+    "ROE": "Tỷ suất sinh lợi trên VCSH (ROE)",
+    "ROA": "Tỷ suất sinh lợi trên Tổng tài sản (ROA)",
+    "Tỷ lệ thu nhập lãi thuần (NIM)": "Tỷ lệ thu nhập lãi thuần (NIM)",
+    "Tỷ suất sinh lợi của tài sản có sinh lãi": "Tỷ suất sinh lợi của tài sản có sinh lãi",
+
+    "Cho vay/Tài sản sinh lãi": "Cho vay/Tài sản sinh lãi",
+    "Cho vay/Tổng tài sản": "Cho vay/Tổng tài sản",
+    "Tiền gửi khách hàng/Tài sản sinh lãi": "Tiền gửi khách hàng/Tài sản sinh lãi",
+    "Cho vay/Tiền gửi khách hàng": "Cho vay/Tiền gửi khách hàng",
+
+    "Dư nợ cho vay khách hàng/Tổng vốn huy động": "Dư nợ cho vay khách hàng/Tổng vốn huy động",
+    "Dư nợ cho vay khách hàng/Tổng tài sản": "Dư nợ cho vay khách hàng/Tổng tài sản",
+    "Vốn chủ sở hữu/Tổng tài sản": "Vốn chủ sở hữu/Tổng tài sản",
+    "Tài sản thanh khoản/Nợ phải trả": "Tài sản thanh khoản/Nợ phải trả",
+
+    "Tỷ lệ nợ xấu": "Tỷ lệ nợ xấu",
+    "Tỷ lệ xóa nợ": "Tỷ lệ xóa nợ",
+    "Dự phòng/Nợ xấu": "Dự phòng/Nợ xấu",
+    "Nợ xấu/Tổng tài sản": "Nợ xấu/Tổng tài sản",
 };
 
 
