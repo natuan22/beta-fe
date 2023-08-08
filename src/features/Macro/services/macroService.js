@@ -251,4 +251,11 @@ export const macroServices = {
         return https.get('api/v1/macro/lai-suat', {
         })
     },
+    fetchDataExchangeRateFluctuations: (type) => {
+        return https.get('api/v1/macro/bien-dong-ty-gia-lai-suat-voi-thi-truong', {
+            params: {
+                type
+            }
+        })
+    },
 }

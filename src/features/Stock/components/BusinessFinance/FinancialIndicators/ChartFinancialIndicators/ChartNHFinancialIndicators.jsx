@@ -5,7 +5,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { fetchDataChartFinancialIndicators } from '../../../../thunk'
-import { hashTbNH, hashTbToFilterData } from '../utils/hashTbStock/hashTb'
+import { hashTbNH, hashTbToFilterDataNH } from '../utils/hashTbStock/hashTb'
 import Loading from '../../../../../Chart/utils/Loading';
 
 const ChartNHFinancialIndicators = ({ queryApiBusinessFinance }) => {
@@ -72,7 +72,7 @@ const ChartNHFinancialIndicators = ({ queryApiBusinessFinance }) => {
           {hashTbNH.map((slideObj, index) => {
             const Component = slideObj.component;
             const componentLabels = slideObj.labels;
-            const filteredData = data?.filter(item => componentLabels.includes(hashTbToFilterData[item.name]));
+            const filteredData = data?.filter(item => componentLabels.includes(hashTbToFilterDataNH[item.name]));
             return (
               <SwiperSlide key={index}>
                 <Component key={index} time={timeLine} data={filteredData} labels={componentLabels} />

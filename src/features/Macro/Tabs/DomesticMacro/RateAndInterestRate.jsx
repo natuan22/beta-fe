@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Loading from '../../../Chart/utils/Loading'
 import Error404 from '../../../Navigation/Error404'
 import CentralRate from '../../components/RateAndInterestRate/CentralRate'
+import ExchangeRateFluctuations from '../../components/RateAndInterestRate/ExchangeRateFluctuations'
 import ExchangeRateIndex from '../../components/RateAndInterestRate/ExchangeRateIndex'
 import InterestRate from '../../components/RateAndInterestRate/InterestRate'
 
@@ -34,16 +35,7 @@ const RateAndInterestRate = () => {
                             </div>
                         </div>
                         <div className='mt-2'>
-                            <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                                <span className='dark:text-white text-black font-semibold'>Biến động tỷ giá & lãi suất thị trường</span>
-                                <div>
-                                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
-                                        onChange={(event) => {
-                                        }}>
-                                        <option value='0'>Ngày</option>
-                                    </select>
-                                </div>
-                            </div>
+                            <ExchangeRateFluctuations />
                         </div>
                         <div>
                             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
