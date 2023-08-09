@@ -23,7 +23,8 @@ const EquityTurnover = () => {
         if (dataChartAssetTurnoverRatio?.length > 0) {
             const transformedData = dataChartAssetTurnoverRatio?.map(item => {
                 const year = item.date.slice(0, 4);
-                const transformedDate = `${year}`;
+                const quarter = item.date.slice(4);
+                const transformedDate = `Q${quarter} ${year}`;
                 return { ...item, date: transformedDate };
             });
 

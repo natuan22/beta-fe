@@ -68,7 +68,7 @@ const TableFinancialIndicators = ({ queryApiBusinessFinance }) => {
                                 <tbody>
                                     {!loading ? (Array.isArray(dataTb) && dataTb.map(item => (
                                         <tr key={item.name} className={`dark:hover:bg-gray-800 hover:bg-gray-300 duration-500 ${getColorText(item.name)} border-solid border-b-[1px] border-x-0 border-t-0 border-[#D9D9D9] border-opacity-40`}>
-                                            <th className={`sticky left-0 z-10 dark:bg-black bg-white dark:hover:bg-gray-800 hover:bg-gray-300 duration-500 text-left align-middle lg:whitespace-nowrap md:whitespace-normal  px-1 pt-[15px] pb-[2px] text-sm`}>
+                                            <th className={`sticky left-0 z-10 dark:bg-black bg-white text-left align-middle lg:whitespace-nowrap md:whitespace-normal  px-1 pt-[15px] pb-[2px] text-sm`}>
                                                 {item.name}
                                             </th>
                                             {item.values.map((value, index) => {

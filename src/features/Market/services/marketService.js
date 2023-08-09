@@ -338,8 +338,17 @@ export const marketServices = {
             }
         })
     },
-    fetchDataAverageDebitIndustry: (exchange, type, order) => {
-        return https.get('/api/v1/finance-health/lai-suat-vay-no-cac-nhom-nganh', {
+    fetchDataChartAverageDebitIndustry: (exchange, type, order) => {
+        return https.get('api/v1/finance-health/lai-suat-vay-no-cac-nhom-nganh', {
+            params: {
+                exchange,
+                type,
+                order
+            }
+        })
+    },
+    fetchDataChartNetProfitMargin: (exchange, type, order) => {
+        return https.get('api/v1/finance-health/ty-suat-loi-nhuan-rong-cac-nganh', {
             params: {
                 exchange,
                 type,

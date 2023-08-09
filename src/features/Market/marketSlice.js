@@ -43,7 +43,8 @@ const initialState = {
   dataTableAverageDebtRatio: {},
   dataChartMiningProfitMargin: {},
   dataChartInterestCoverageRatio: {},
-  dataChartAverageDebitIndustry: {}
+  dataChartAverageDebitIndustry: {},
+  dataChartNetProfitMargin: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -179,6 +180,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === marketType.FETCH_DATA_CHART_AVERAGE_DEBIT_INDUSTRY) {
       draft.dataChartAverageDebitIndustry = payload
+    }
+    if (type === marketType.FETCH_DATA_CHART_NET_PROFIT_MARGIN) {
+      draft.dataChartNetProfitMargin = payload
     }
   });
 };
