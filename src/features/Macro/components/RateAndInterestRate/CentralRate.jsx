@@ -36,7 +36,7 @@ const CentralRate = () => {
     },
     credits: false,
     chart: {
-      type: "area",
+      type: "spline",
       backgroundColor: "transparent",
     },
     title: {
@@ -81,10 +81,6 @@ const CentralRate = () => {
       {
         name: "Tỷ giá",
         data: data,
-        color: "#0285A1",
-        opacity: "0.9",
-        lineColor: "#0285A1",
-        lineWidth: 2,
         marker: {
           enabled: false,
         },
