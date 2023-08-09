@@ -355,5 +355,13 @@ export const marketServices = {
                 order
             }
         })
-    }
+    },
+    fetchDataTableMiningProfitMargin: (exchange, order) => {
+        return https.get('api/v1/finance-health/ty-suat-loi-nhuan-cac-nhom-nganh-table', {
+            params: {
+                exchange,
+                order
+            }
+        })
+    },
 }

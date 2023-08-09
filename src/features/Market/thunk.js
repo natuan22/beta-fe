@@ -526,3 +526,15 @@ export const fetchDataChartNetProfitMargin = (exchange, type, order) => async di
         console.error(err)
     }
 }
+
+export const fetchDataTableMiningProfitMargin = (exchange, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableMiningProfitMargin(exchange, order)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_MINING_PROFIT_MARGIN,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}

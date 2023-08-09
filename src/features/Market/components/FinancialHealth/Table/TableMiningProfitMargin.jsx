@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
 import { getColor } from '../../../../Chart/utils/utils';
-import { fetchDataTableChangesPrice } from '../../../thunk';
 
-const TableMiningProfitMargin = (props) => {
-    // const dispatch = useDispatch()
-    // const { dataTableChangesPrice } = useSelector((state) => state.market);
-    // const [loading, setLoading] = useState(true);
-    // const [data, setData] = useState([]);
+const TableMiningProfitMargin = () => {
+    const { dataTableMiningProfitMargin } = useSelector((state) => state.market);
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
 
-    // useEffect(() => {
-    //     dispatch(fetchDataTableChangesPrice(props.exchange, props.industryQuery));
-    // }, [dispatch, props]);
-
-    // useEffect(() => {
-    //     if (dataTableChangesPrice) {
-    //         setLoading(false);
-    //         setData(dataTableChangesPrice)
-    //     }
-    // }, [dataTableChangesPrice])
-
+    useEffect(() => {
+        if (dataTableMiningProfitMargin) {
+            setLoading(false);
+            setData(dataTableMiningProfitMargin)
+        }
+    }, [dataTableMiningProfitMargin])
+    // console.log(dataTableMiningProfitMargin)
     return (
         <section className="bg-blueGray-50 pt-1.5">
             <div className="w-full">
@@ -48,37 +42,32 @@ const TableMiningProfitMargin = (props) => {
                             </thead>
 
                             <tbody>
-                                {/* {!loading ? (
+                                {!loading ? (
                                     Array.isArray(data) &&
                                     data.map((item, index) => {
-                                        let colorFive = getColor(item.perFive);
-                                        let colorQuarter = getColor(item.perQuarter);
-                                        let colorYtd = getColor(item.perYtd);
-                                        let colorYtY = getColor(item.perYtY);
-
                                         return (
                                             <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                                <th className={`text-center align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
-                                                    {item.code}
+                                                <th className={`text-left align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                    {item.industry}
                                                 </th>
-                                                <td className={`${colorFive} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
-                                                    {item.perFive.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={`${getColor(item.gpm)} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                    {item.gpm.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`${colorQuarter} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
-                                                    {item.perQuarter.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={`${getColor(item.npm)} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                    {item.npm.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`${colorYtd} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
-                                                    {item.perYtd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={`${getColor(item.roa)} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                    {item.roa.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
-                                                <td className={`${colorYtY} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
-                                                    {item.perYtY.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                <td className={`${getColor(item.roe)} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                    {item.roe.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                                 </td>
                                             </tr>
                                         )
                                     })
-                                ) : ( */}
-                                <tr><td colSpan={5}><div className="mt-16"><Loading /></div></td></tr>
-                                {/* )} */}
+                                ) : (
+                                    <tr><td colSpan={5}><div className="mt-16"><Loading /></div></td></tr>
+                                )}
                             </tbody>
                         </table>
                     </div>

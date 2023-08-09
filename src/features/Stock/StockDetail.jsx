@@ -107,6 +107,9 @@ const StockDetail = () => {
                                         },
                                         '& .MuiSvgIcon-root': {
                                             color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000'),
+                                        },
+                                        '& .Mui-selected': {
+                                            color: 'white'
                                         }
                                     }}
                                 >

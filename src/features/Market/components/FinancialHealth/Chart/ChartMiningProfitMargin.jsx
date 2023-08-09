@@ -3,8 +3,8 @@ import HighchartsReact from 'highcharts-react-official';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Loading from '../../../../Chart/utils/Loading';
-import { hashTb } from "../../FinancialHealth/Chart/utils/hashTb";
 import FilterIndusty from "../../../utils/components/FilterIndusty";
+import TableMiningProfitMargin from "../Table/TableMiningProfitMargin";
 
 const ChartMiningProfitMargin = () => {
     const { dataChartMiningProfitMargin } = useSelector(state => state.market)
@@ -13,7 +13,6 @@ const ChartMiningProfitMargin = () => {
     const [industryQuery, setIndustryQuery] = useState([])
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
-
 
     useEffect(() => {
         setColorText(color);
@@ -121,6 +120,8 @@ const ChartMiningProfitMargin = () => {
             ) : (
                 <div className="h-[450px] flex items-center justify-center"><Loading /></div>
             )}
+            <hr />
+            <div><TableMiningProfitMargin /></div>
         </div>
     )
 }

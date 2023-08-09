@@ -15,7 +15,6 @@ import NetProfitMargin from '../../components/FinancialHealth/Chart/NetProfitMar
 import QuickPayoutRatio from '../../components/FinancialHealth/Chart/QuickPayoutRatio';
 import TotalAssetTurnover from '../../components/FinancialHealth/Chart/TotalAssetTurnover';
 import FinancialHealthOverview from '../../components/FinancialHealth/Table/FinancialHealthOverview';
-import TableMiningProfitMargin from '../../components/FinancialHealth/Table/TableMiningProfitMargin';
 import Checkbox from '../../HOCs/Checkbox';
 import {
   fetchDataChartAssetTurnoverRatio,
@@ -28,6 +27,7 @@ import {
   fetchDataChartNetProfitMargin,
   fetchDataChartPayoutRatio,
   fetchDataTableAverageDebtRatio,
+  fetchDataTableMiningProfitMargin,
 } from '../../thunk';
 
 const FinancialHealth = () => {
@@ -60,6 +60,7 @@ const FinancialHealth = () => {
     dispatch(fetchDataChartCashPayoutRatio(exchange, order))
     dispatch(fetchDataChartAssetTurnoverRatio(exchange, order))
     dispatch(fetchDataTableAverageDebtRatio(exchange, order))
+    dispatch(fetchDataTableMiningProfitMargin(exchange, order))
     dispatch(fetchDataChartMiningProfitMargin(exchange, type, order))
     dispatch(fetchDataChartInterestCoverageRatio(exchange, type, order))
     dispatch(fetchDataChartAverageDebitIndustry(exchange, type, order))
@@ -146,10 +147,6 @@ const FinancialHealth = () => {
               <div>
                 <div>
                   <ChartMiningProfitMargin />
-                </div>
-                <hr />
-                <div className='h-[300px]'>
-                  <TableMiningProfitMargin exchange={exchange} />
                 </div>
               </div>
               <div>
