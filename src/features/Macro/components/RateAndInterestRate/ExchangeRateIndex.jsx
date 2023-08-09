@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 import { getColor } from '../../../Chart/utils/utils';
 import { fetchDataExchangeRateIndex } from '../../thunk';
-
+import '../../utils/style/antDesTable.css'
 const ExchangeRateIndex = () => {
   const dispatch = useDispatch();
   const { dataExchangeRateIndex } = useSelector(state => state.macro)
@@ -83,6 +83,7 @@ const ExchangeRateIndex = () => {
             columns={columns}
             dataSource={data}
             pagination={{ defaultPageSize: 5, showSizeChanger: false }}
+            className='tableIndex'
           />
         </div>
       ) : (

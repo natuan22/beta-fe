@@ -146,7 +146,6 @@ const NetVolumeTrade = () => {
               setTitle(event.target.value)
             }}>
             <option value="VNINDEX">VNINDEX</option>
-            <option value="UPINDEX">UPINDEX</option>
             <option value="HNX30">HNX30</option>
             <option value="VN30">VN30</option>
           </select>
