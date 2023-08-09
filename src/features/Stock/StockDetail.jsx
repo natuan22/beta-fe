@@ -98,7 +98,6 @@ const StockDetail = () => {
                                         },
                                         '& .MuiTabs-indicator': {
                                             backgroundColor: '#0055b6', height: '200px', zIndex: '-1',
-
                                         },
                                         '& .MuiTabs-flexContainer': {
                                             width: width,
@@ -108,6 +107,9 @@ const StockDetail = () => {
                                         },
                                         '& .MuiSvgIcon-root': {
                                             color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000'),
+                                        },
+                                        '& .Mui-selected': {
+                                            color: 'white'
                                         }
                                     }}
                                 >

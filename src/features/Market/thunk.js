@@ -505,9 +505,33 @@ export const fetchDataChartInterestCoverageRatio = (exchange, type, order) => as
 
 export const fetchDataChartAverageDebitIndustry = (exchange, type, order) => async dispatch => {
     try {
-        const res = await marketServices.fetchDataAverageDebitIndustry(exchange, type, order)
+        const res = await marketServices.fetchDataChartAverageDebitIndustry(exchange, type, order)
         dispatch({
             type: marketType.FETCH_DATA_CHART_AVERAGE_DEBIT_INDUSTRY,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataChartNetProfitMargin = (exchange, type, order) => async dispatch => {
+    try {
+        const res = await marketServices.fetchDataChartNetProfitMargin(exchange, type, order)
+        dispatch({
+            type: marketType.FETCH_DATA_CHART_NET_PROFIT_MARGIN,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataTableMiningProfitMargin = (exchange, order) => async (dispatch) => {
+    try {
+        const res = await marketServices.fetchDataTableMiningProfitMargin(exchange, order)
+        dispatch({
+            type: marketType.FETCH_DATA_TABLE_MINING_PROFIT_MARGIN,
             payload: res.data.data
         })
     } catch (err) {

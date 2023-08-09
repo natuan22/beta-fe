@@ -15,10 +15,6 @@ import NetProfitMargin from '../../components/FinancialHealth/Chart/NetProfitMar
 import QuickPayoutRatio from '../../components/FinancialHealth/Chart/QuickPayoutRatio';
 import TotalAssetTurnover from '../../components/FinancialHealth/Chart/TotalAssetTurnover';
 import FinancialHealthOverview from '../../components/FinancialHealth/Table/FinancialHealthOverview';
-import TableAverageDebtRatio from '../../components/FinancialHealth/Table/TableAverageDebtRatio';
-import TableAveragePB from '../../components/FinancialHealth/Table/TableAveragePB';
-import TableAveragePE from '../../components/FinancialHealth/Table/TableAveragePE';
-import TableMiningProfitMargin from '../../components/FinancialHealth/Table/TableMiningProfitMargin';
 import Checkbox from '../../HOCs/Checkbox';
 import {
   fetchDataChartAssetTurnoverRatio,
@@ -28,8 +24,10 @@ import {
   fetchDataChartCashPayoutRatio,
   fetchDataChartInterestCoverageRatio,
   fetchDataChartMiningProfitMargin,
+  fetchDataChartNetProfitMargin,
   fetchDataChartPayoutRatio,
   fetchDataTableAverageDebtRatio,
+  fetchDataTableMiningProfitMargin,
 } from '../../thunk';
 
 const FinancialHealth = () => {
@@ -62,9 +60,11 @@ const FinancialHealth = () => {
     dispatch(fetchDataChartCashPayoutRatio(exchange, order))
     dispatch(fetchDataChartAssetTurnoverRatio(exchange, order))
     dispatch(fetchDataTableAverageDebtRatio(exchange, order))
+    dispatch(fetchDataTableMiningProfitMargin(exchange, order))
     dispatch(fetchDataChartMiningProfitMargin(exchange, type, order))
     dispatch(fetchDataChartInterestCoverageRatio(exchange, type, order))
     dispatch(fetchDataChartAverageDebitIndustry(exchange, type, order))
+    dispatch(fetchDataChartNetProfitMargin(exchange, type, order))
   }, [dispatch, exchange, type, order])
 
 
@@ -148,15 +148,8 @@ const FinancialHealth = () => {
                 <div>
                   <ChartMiningProfitMargin />
                 </div>
-                <hr />
-                <div className='h-[300px]'>
-                  <TableMiningProfitMargin exchange={exchange} />
-                </div>
               </div>
               <div>
-                <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                  <span className='dark:text-white text-black font-semibold'>Tỷ suất lợi nhuận ròng các ngành (%)</span>
-                </div>
                 <NetProfitMargin />
               </div>
             </div>

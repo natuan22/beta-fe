@@ -11,7 +11,9 @@ export function getColor(item) {
 
 export function getColorText(item) {
     let color = "";
-    if (item === item.toUpperCase()) color = "text-[#13CCC1]";
+    let nameArr = ['P/E', 'P/B', 'EPS', 'ROE', 'ROA']
+
+    if (item === item.toUpperCase() && !nameArr.includes(item)) color = "text-[#13CCC1]";
     else color = "dark:text-white text-black";
 
     return color;
@@ -55,3 +57,7 @@ export function getTextSellBuy(item) {
     return text;
 }
 
+export function getColorByIndex(index) {
+    const colors = ['#65FFFF', '#F9F01B']; // xanh và vàng
+    return colors[index % colors.length];
+}

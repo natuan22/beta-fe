@@ -1,8 +1,9 @@
 import React from 'react'
+import Error404 from '../../Navigation/Error404'
 
 const QuickAnalysis = () => {
   return (
-    <div>QuickAnalysis</div>
+    <div><Error404 /></div>
   )
 }
 

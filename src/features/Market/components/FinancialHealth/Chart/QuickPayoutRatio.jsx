@@ -3,7 +3,6 @@ import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { hashTb } from './utils/hashTb';
 import Loading from '../../../../Chart/utils/Loading';
 import FilterIndusty from '../../../utils/components/FilterIndusty';
 
@@ -23,7 +22,11 @@ const QuickPayoutRatio = () => {
     useEffect(() => {
         if (dataChartPayoutRatio?.length > 0) {
             const transformedData = dataChartPayoutRatio?.map(item => {
-                return { ...item, date: moment(item.date).format('YYYY') };
+                const quarter = moment(item.date, 'YYYY/MM/DD').quarter(); // Lấy quý từ ngày
+                const year = moment(item.date, 'YYYY/MM/DD').year(); // Lấy năm từ ngày
+
+                const transformedDate = `Q${quarter} ${year}`;
+                return { ...item, date: transformedDate };
             });
 
             const uniqueIndustry = [...new Set(transformedData.filter(item => industryQuery.includes(item.industry)).map(item => item.industry))];

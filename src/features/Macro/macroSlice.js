@@ -48,6 +48,10 @@ const initialState = {
     dataListOverdueBondObligation: {},
     dataDebtBalanceStructure: {},
     dataProportionOutstandingLoans: {},
+    dataCentralRate: {},
+    dataExchangeRateIndex: {},
+    dataInterestRate: {},
+    dataExchangeRateFluctuations: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -192,6 +196,18 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === macroType.FETCH_DATA_PROPORTION_OUTSTANDING_LOANS) {
             draft.dataProportionOutstandingLoans = payload
+        }
+        if (type === macroType.FETCH_DATA_CENTRAL_RATE) {
+            draft.dataCentralRate = payload
+        }
+        if (type === macroType.FETCH_DATA_EXCHANGE_RATE_INDEX) {
+            draft.dataExchangeRateIndex = payload
+        }
+        if (type === macroType.FETCH_DATA_INTEREST_RATE) {
+            draft.dataInterestRate = payload
+        }
+        if (type === macroType.FETCH_DATA_EXCHANGE_RATE_FLUCTUATIONS) {
+            draft.dataExchangeRateFluctuations = payload
         }
     });
 };
