@@ -47,7 +47,7 @@ const TableMiningProfitMargin = () => {
                                     data.map((item, index) => {
                                         return (
                                             <tr key={index} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                                                <th className={`text-left align-middle whitespace-nowrap px-1 py-2.5 dark:text-white text-black md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
+                                                <th className={`text-left align-middle px-1 py-2.5 dark:text-white text-black md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
                                                     {item.industry}
                                                 </th>
                                                 <td className={`${getColor(item.gpm)} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}>
