@@ -76,6 +76,7 @@ const BondInterestRate = () => {
                     fontSize: '9px',
                 },
             },
+            crosshair: false
         },
         yAxis: {
             title: {
@@ -106,9 +107,12 @@ const BondInterestRate = () => {
         plotOptions: {
             series: {
                 marker: {
-                    radius: 2, // Giá trị bán kính marker
-                },
+                    radius: 1
+                }
             },
+        },
+        tooltip: {
+            split: true
         },
         series: data,
     };
