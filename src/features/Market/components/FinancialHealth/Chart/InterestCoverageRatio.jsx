@@ -1,4 +1,3 @@
-import moment from 'moment';
 import Highcharts from "highcharts";
 import HighchartsReact from 'highcharts-react-official';
 import React, { useEffect, useState } from 'react'
