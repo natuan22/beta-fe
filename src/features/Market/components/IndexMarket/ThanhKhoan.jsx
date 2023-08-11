@@ -65,8 +65,8 @@ function ThanhKhoan() {
                     color: localStorage.getItem('color'),
                 },
             },
+            gridLineWidth: 0.5,
         },
-
         legend: {
             itemStyle: {
                 color: localStorage.getItem('color'),

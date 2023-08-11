@@ -3,7 +3,6 @@ import { Outlet, useLocation } from 'react-router-dom';
 import LayOut from '../../HOCs/Layout'
 import NewsCenterNavTab from './utils/component/NewsCenterNavTab'
 import InternationalIndex from '../Chart/components/InternationalIndex';
-import { useSelector } from 'react-redux';
 import Footer from "../../components/Footer";
 const apiUrl = process.env.REACT_APP_BASE_URL;
 

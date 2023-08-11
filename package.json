@@ -25,7 +25,6 @@
     "formik": "^2.2.9",
     "highcharts": "^10.3.3",
     "highcharts-react-official": "^3.1.0",
-    "i": "^0.3.7",
     "immer": "^9.0.19",
     "moment": "^2.29.4",
     "npm": "^9.8.0",

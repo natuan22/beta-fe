@@ -77,7 +77,8 @@ const NetVolumeTrade = () => {
           style: {
             color: localStorage.getItem('color') // màu cho các nhãn trục y
           }
-        }
+        },
+        gridLineWidth: 0.5,
       },
       {
         title: {
@@ -92,6 +93,7 @@ const NetVolumeTrade = () => {
           }
         },
         opposite: true,
+        gridLineWidth: 0.5,
       },
 
     ],
