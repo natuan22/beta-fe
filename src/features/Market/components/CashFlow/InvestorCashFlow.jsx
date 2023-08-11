@@ -223,6 +223,7 @@ const InvestorCashFlow = () => {
                     color: localStorage.getItem('color'),
                 },
             },
+            gridLineWidth: 0.5,
         },
         legend: {
             enabled: false,
@@ -291,6 +292,7 @@ const InvestorCashFlow = () => {
                     return this.value + "%";
                 },
             },
+            gridLineWidth: 0.5,
         },
         plotOptions: {
             area: {

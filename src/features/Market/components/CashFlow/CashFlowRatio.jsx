@@ -129,6 +129,7 @@ const CashFlowRatio = () => {
                     return this.value + "%";
                 },
             },
+            gridLineWidth: 0.5,
         },
         legend: {
             itemStyle: {

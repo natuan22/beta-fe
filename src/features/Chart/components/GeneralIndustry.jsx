@@ -29,23 +29,23 @@ const GeneralIndustry = () => {
 
   useEffect(() => {
     if (dataGeneral?.data) {
-      const oldData = dataGeneral?.data.data
+      // const oldData = dataGeneral?.data.data
 
       socket.on("listen-phan-nganh-ALL", (newData) => {
-        const newDataWithChanges = oldData.map(oldItem => {
-          const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
-          if (matchingItem) {
-            return {
-              ...oldItem,
-              day_change_percent: matchingItem.day_change_percent,
-              month_change_percent: matchingItem.month_change_percent,
-              week_change_percent: matchingItem.week_change_percent
-            }
-          } else {
-            return oldItem
-          }
-        })
-        setData(newDataWithChanges)
+        // const newDataWithChanges = oldData.map(oldItem => {
+        //   const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
+        //   if (matchingItem) {
+        //     return {
+        //       ...oldItem,
+        //       day_change_percent: matchingItem.day_change_percent,
+        //       month_change_percent: matchingItem.month_change_percent,
+        //       week_change_percent: matchingItem.week_change_percent
+        //     }
+        //   } else {
+        //     return oldItem
+        //   }
+        // })
+        setData(newData.data)
       });
     }
   }, [dataGeneral]);
@@ -131,7 +131,7 @@ const GeneralIndustry = () => {
                               onMouseOut={handleMouseOut}
                             >
                               {hoveredIndex === index && (
-                                <div className="bg-white text-black text-xs font-medium p-1 rounded-md absolute top-0 translate-x-[-60%] translate-y-[-110%] z-40 ease-in-out duration-500">
+                                <div className="bg-white text-black text-xs font-medium p-1 rounded-md absolute top-0 translate-x-[-65%] translate-y-[-110%] z-40 ease-in-out duration-500">
                                   <span>Trần: {item.high}</span>
                                   <span className="ml-2">
                                     Tăng: {item.increase}

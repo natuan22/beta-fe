@@ -92,7 +92,8 @@ const NetProfitMargin = () => {
                     style: {
                         color: localStorage.getItem('color') // màu cho các nhãn trục y
                     },
-                }
+                },
+                gridLineWidth: 0.5,
             },
             {
                 title: {
@@ -107,6 +108,7 @@ const NetProfitMargin = () => {
                     }
                 },
                 opposite: true,
+                gridLineWidth: 0.5,
             },
 
         ],

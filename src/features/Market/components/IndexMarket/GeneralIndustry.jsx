@@ -44,7 +44,7 @@ const GeneralIndustry = () => {
         setActiveButton(button);
     }
 
-    const oldData = dataGeneral?.data?.data
+    // const oldData = dataGeneral?.data?.data
     const [query, setQuery] = useState('ALL')
     const [socketOld, setSocketOld] = useState('')
 
@@ -53,7 +53,7 @@ const GeneralIndustry = () => {
             conSocket(query)
             setSocketOld(query)
         }
-    }, [query]);
+    }, [query, dataGeneral?.data]);
 
     const disconnectSocket = (socketOld) => {
         // console.log('disconnect', socketOld);
@@ -64,22 +64,24 @@ const GeneralIndustry = () => {
 
     const conSocket = (key) => {
         socket.on(`listen-phan-nganh-${key}`, (newData) => {
-            // console.log(newData)
-            const newDataWithChanges = oldData?.map(oldItem => {
-                const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
-                if (matchingItem) {
-                    return {
-                        ...oldItem,
-                        day_change_percent: matchingItem.day_change_percent,
-                        month_change_percent: matchingItem.month_change_percent,
-                        week_change_percent: matchingItem.week_change_percent,
-                        ytd: matchingItem.ytd
-                    }
-                } else {
-                    return oldItem
-                }
-            })
-            setData(newDataWithChanges)
+            // console.log(`listen-phan-nganh-${key}`)
+            // console.log({ newData })
+            // const newDataWithChanges = oldData?.map(oldItem => {
+            //     const matchingItem = newData.find(newItem => newItem.industry === oldItem.industry)
+            //     if (matchingItem) {
+            //         return {
+            //             ...oldItem,
+            //             day_change_percent: matchingItem.day_change_percent,
+            //             month_change_percent: matchingItem.month_change_percent,
+            //             week_change_percent: matchingItem.week_change_percent,
+            //             ytd: matchingItem.ytd
+            //         }
+            //     } else {
+            //         return oldItem
+            //     }
+            // })
+            setData(newData.data)
+            setBuySellData(newData.buySellData)
         });
     }
 
@@ -231,7 +233,7 @@ const GeneralIndustry = () => {
                                                             onMouseOut={handleMouseOut}
                                                         >
                                                             {hoveredIndex === index && (
-                                                                <div className="bg-white text-black text-xs font-medium p-1 rounded-md absolute top-0 translate-x-[-60%] translate-y-[-110%] z-40 ease-in-out duration-500">
+                                                                <div className="bg-white text-black text-xs font-medium p-1 rounded-md absolute top-0 translate-x-[-65%] translate-y-[-110%] z-40 ease-in-out duration-500">
                                                                     <span>Trần: {item.high}</span>
                                                                     <span className="ml-2">
                                                                         Tăng: {item.increase}

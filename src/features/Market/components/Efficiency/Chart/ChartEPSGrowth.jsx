@@ -95,7 +95,8 @@ const ChartEPSGrowth = (props) => {
                     formatter: function () {
                         return this.value + "%";
                     },
-                }
+                },
+                gridLineWidth: 0.5,
             },
             {
                 title: {
@@ -110,6 +111,7 @@ const ChartEPSGrowth = (props) => {
                     }
                 },
                 opposite: true,
+                gridLineWidth: 0.5,
             },
 
         ],

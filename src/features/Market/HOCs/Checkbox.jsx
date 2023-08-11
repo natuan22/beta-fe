@@ -203,10 +203,10 @@ const Checkbox = ({ children }) => {
 
                     <div className='xl:w-[35%]'>
                         <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                            <div class="drop-shadow rounded-md sm:block md:hidden">
-                                <details class="duration-300">
-                                    <summary class="dark:text-white text-black font-semibold border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">Các chỉ số đánh giá hiệu suất là gì?</summary>
-                                    <div className='ml-5'>
+                            <div className="drop-shadow rounded-md sm:block md:hidden">
+                                <details className="duration-300">
+                                    <summary className="dark:text-white text-black font-semibold border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">Các chỉ số đánh giá hiệu suất là gì?</summary>
+                                    <div className='ml-5 mr-3'>
                                         <ul className='text-justify dark:text-white text-black mt-2'>
                                             <li>Chỉ báo ROC (The Rate of Change) hay còn gọi là tỷ lệ thay đổi, là công cụ dựa vào giá nhằm đo lường tốc độ biến thiên giá cả trong hai thời điểm khác nhau. Chỉ báo này đồng thời được tính toán thông qua việc so sánh sự biến đổi giá tại giai đoạn đó.</li>
                                             <li className='mt-[2px]'>EBITDA được viết tắt theo cụm từ Earning Before Interest, Taxes, Depreciation and Amortization, có nghĩa là lợi nhuận trước thuế, khấu hao và lãi vay. Đây là thuật ngữ dùng để lợi nhuận trước thuế của một doanh nghiệp, tổ chức nào đó. Phần lợi nhuận này vẫn bao gồm thuế, các khoản vay và chưa trừ khấu hao.</li>
@@ -222,7 +222,7 @@ const Checkbox = ({ children }) => {
                                     <span className='dark:text-white text-black font-semibold'>Các chỉ số đánh giá hiệu suất là gì?</span>
                                 </div>
                                 <div className="overflow-auto xl:h-[240px] lg:h-auto">
-                                    <div className='ml-5'>
+                                    <div className='ml-5 mr-3'>
                                         <ul className='text-justify dark:text-white text-black mt-2'>
                                             <li>Chỉ báo ROC (The Rate of Change) hay còn gọi là tỷ lệ thay đổi, là công cụ dựa vào giá nhằm đo lường tốc độ biến thiên giá cả trong hai thời điểm khác nhau. Chỉ báo này đồng thời được tính toán thông qua việc so sánh sự biến đổi giá tại giai đoạn đó.</li>
                                             <li className='mt-[2px]'>EBITDA được viết tắt theo cụm từ Earning Before Interest, Taxes, Depreciation and Amortization, có nghĩa là lợi nhuận trước thuế, khấu hao và lãi vay. Đây là thuật ngữ dùng để lợi nhuận trước thuế của một doanh nghiệp, tổ chức nào đó. Phần lợi nhuận này vẫn bao gồm thuế, các khoản vay và chưa trừ khấu hao.</li>
