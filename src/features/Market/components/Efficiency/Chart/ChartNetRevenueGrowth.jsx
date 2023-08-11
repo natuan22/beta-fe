@@ -99,7 +99,8 @@ const ChartNetRevenueGrowth = (props) => {
                     formatter: function () {
                         return this.value + "%";
                     },
-                }
+                },
+                gridLineWidth: 0.5,
             },
             {
                 title: {
@@ -114,6 +115,7 @@ const ChartNetRevenueGrowth = (props) => {
                     }
                 },
                 opposite: true,
+                gridLineWidth: 0.5,
             },
 
         ],

@@ -74,10 +74,10 @@ const TableFinancialIndicators = ({ queryApiBusinessFinance }) => {
                                             {item.values.map((value, index) => {
                                                 return (
                                                     <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 pt-[15px] pb-[2px] font-semibold`}>
-                                                        {value.toLocaleString('en-US', { maximumFractionDigits: 2 }) === '0' || value.toLocaleString('en-US', { maximumFractionDigits: 2 }) === '-0' ? (
+                                                        {value.toLocaleString('en-US', { maximumFractionDigits: 3 }) === '0' || value.toLocaleString('en-US', { maximumFractionDigits: 3 }) === '-0' ? (
                                                             <span>-</span>
                                                         ) : (
-                                                            value.toLocaleString('en-US', { maximumFractionDigits: 2 })
+                                                            value.toLocaleString('en-US', { maximumFractionDigits: 3 })
                                                         )}
                                                     </td>)
                                             })}
