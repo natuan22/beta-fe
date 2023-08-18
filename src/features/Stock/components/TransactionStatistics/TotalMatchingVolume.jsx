@@ -25,7 +25,7 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
         return [
             {
                 type: 'column',
-                data: omVolData,
+                data: omVolData.reverse(),
                 name: 'KLGD khớp lệnh',
                 yAxis: 0,
                 color: { // Thêm thuộc tính color ở đây
@@ -48,7 +48,7 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
             },
             {
                 type: 'spline',
-                data: closePriceData,
+                data: closePriceData.reverse(),
                 name: 'Giá',
                 yAxis: 1,
                 color: '#37FF05'
@@ -63,7 +63,7 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
     useEffect(() => {
         if (dataTransactionData?.length > 0) {
             const uniqueDates = [...new Set(dataTransactionData?.map(item => moment(item.date).format('DD/MM/YYYY')))];
-            setTimeLine(uniqueDates)
+            setTimeLine(uniqueDates.reverse())
             setData(processData(dataTransactionData))
         }
     }, [dataTransactionData, stock, from, to])

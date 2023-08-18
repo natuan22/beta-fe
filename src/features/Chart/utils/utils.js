@@ -57,6 +57,37 @@ export function getTextSellBuy(item) {
     return text;
 }
 
+export function getTextColorRating(item) {
+    let text = <span></span>;
+    let color = ''
+
+    switch (item) {
+        case '1':
+            text = <span className='text-[#FF0000]'>Rất tệ</span>;
+            color = 'text-[#FF0000]'
+            break;
+        case '2':
+            text = <span className='text-[#FF0000]'>Tệ</span>;
+            color = 'text-[#FF0000]'
+            break;
+        case '3':
+            text = <span className='text-[#FCFF71]'>Khá</span>;
+            color = 'text-[#FCFF71]'
+            break;
+        case '4':
+            text = <span className='text-[#05FF00]'>Tốt</span>;
+            color = 'text-[#05FF00]'
+            break;
+        case '5':
+            text = <span className='text-[#05FF00]'>Rất tốt</span>;
+            color = 'text-[#05FF00]'
+            break;
+        default:
+            break;
+    }
+    return { text, color };
+}
+
 export function getColorByIndex(index) {
     const colors = ['#65FFFF', '#F9F01B']; // xanh và vàng
     return colors[index % colors.length];

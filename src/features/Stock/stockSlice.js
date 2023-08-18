@@ -29,6 +29,7 @@ const initialState = {
     dataChartPieBalanceSheet: {},
     dataTableFinancialIndicators: {},
     dataChartFinancialIndicators: {},
+    dataBasicPrice: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -116,6 +117,9 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_CHART_FINANCIAL_INDICATORS) {
             draft.dataChartFinancialIndicators = payload
+        }
+        if (type === stockType.FETCH_DATA_BASIC_PRICE) {
+            draft.dataBasicPrice = payload
         }
     });
 };
