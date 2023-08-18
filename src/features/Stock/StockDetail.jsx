@@ -24,7 +24,7 @@ const StockDetail = () => {
     const [codeVal, setCodeVal] = useState(code || defaultStock);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const color = useSelector((state) => state.color.colorTheme);
-    const [activeTab, setActiveTab] = useState('0');
+    const [activeTab, setActiveTab] = useState('1');
 
     useEffect(() => {
         setTheme(color);
