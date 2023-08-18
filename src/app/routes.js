@@ -27,6 +27,7 @@ import AnalyzeReport from "../features/NewsCenter/tabs/AnalyzeReport";
 import MacroNews from "../features/NewsCenter/tabs/MacroNews";
 import Stock from "../features/Stock/Stock";
 import StockDetail from "../features/Stock/StockDetail";
+import AuthComponent from "../features/Auth/AuthComponent";
 
 export const routes = [
   { path: "/", component: Home },
@@ -41,6 +42,7 @@ export const routes = [
   // authen
   { path: "/signin", component: Signin },
   { path: "/signup", component: Signup },
+  { path: "/auth", component: AuthComponent },
 ];
 
 

@@ -120,7 +120,7 @@ const StockDetail = () => {
                                     <Tab onClick={() => handleTabClick('4')} label='TIN TỨC VÀ SỰ KIỆN' value='4' />
                                 </TabList>
                             </Box>
-                            <TabPanel value="0"><QuickAnalysis /></TabPanel>
+                            <TabPanel value="0"><QuickAnalysis codeUrl={codeVal}/></TabPanel>
                             <TabPanel value="1"><Overview codeUrl={codeVal} handleTabClick={handleTabClick} /></TabPanel>
                             <TabPanel value="2"><TransactionStatistics codeUrl={codeVal} /></TabPanel>
                             <TabPanel value="3"><BusinessFinance codeUrl={codeVal} /></TabPanel>

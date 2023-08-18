@@ -1,9 +1,62 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Loading from '../../Chart/utils/Loading'
 import Error404 from '../../Navigation/Error404'
+import useQueryApi from '../components/Overview/utils/custom/useQueryApi/useQueryApi'
+import BasicPrice from '../components/QuickAnalysis/BasicPrice'
+import BusinessPosition from '../components/QuickAnalysis/BusinessPosition'
+import BussinessAnalysis from '../components/QuickAnalysis/BussinessAnalysis'
+import FinancialHealthAnalysis from '../components/QuickAnalysis/FinancialHealthAnalysis'
+import IndividualInvestorBenefits from '../components/QuickAnalysis/IndividualInvestorBenefits'
+import TechnicalAnalysis from '../components/QuickAnalysis/TechnicalAnalysis'
 
-const QuickAnalysis = () => {
+const QuickAnalysis = ({ codeUrl }) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const { queryApi } = useQueryApi(codeUrl);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(true)
+    }, 700)
+  }, [])
+
   return (
-    <div><Error404 /></div>
+    <div className='container mx-auto'>
+      {isLoading ? (
+        <>
+          {/* <div>
+            <div className='flex'>
+              <div className='w-[40%] h-[200px]'>
+
+              </div>
+
+              <div className='w-[60%] h-[200px]'>
+                <div className='grid grid-cols-2 gap-3'>
+                  <div>
+
+                  </div>
+
+                  <div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='grid xl:grid-cols-3 lg:grid-cols-none gap-5'>
+              <div><FinancialHealthAnalysis /></div>
+              <div><BussinessAnalysis /></div>
+              <div><BusinessPosition /></div>
+              <div><BasicPrice queryApi={queryApi} /></div>
+              <div><TechnicalAnalysis /></div>
+              <div><IndividualInvestorBenefits /></div>
+            </div>
+          </div> */}
+          <Error404 />
+        </>
+      ) : (
+        <div className='h-[300px] flex items-center justify-center'><Loading /></div>
+      )}
+    </div>
   )
 }
 

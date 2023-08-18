@@ -1,8 +1,11 @@
 import React from 'react'
+import Error404 from '../../Navigation/Error404'
 
 const ForeignMacro = () => {
     return (
-        <div>ForeignMacro</div>
+        <div>ForeignMacro
+            <Error404 />
+        </div>
     )
 }
 

@@ -52,13 +52,11 @@ const MarketMap = () => {
             const resultMap = {};
             dataMarketMap.forEach((item) => {
                 const { LV2, color, ticker, value } = item;
-                let modifiedValue = value;
-
-                // Kiểm tra giá trị của queryApi
-                if (queryApi.order !== 2) {
-                    modifiedValue /= 1000000000;
+                let modifiedValue = value
+                if (queryApi.order === '2') {
+                    modifiedValue /= 1000000;
                 } else {
-                    modifiedValue = value / 1000000
+                    modifiedValue /= 1000000000;
                 }
                 // Nếu chưa tồn tại thuộc tính LV2 trong đối tượng kết quả, tạo mới
                 if (!resultMap.hasOwnProperty(LV2)) {
