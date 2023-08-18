@@ -328,3 +328,15 @@ export const fetchDataChartFinancialIndicators = (stock, order) => async (dispat
     }
 }
 
+export const fetchDataBasicPrice = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataBasicPrice(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_BASIC_PRICE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+

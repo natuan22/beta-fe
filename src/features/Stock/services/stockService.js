@@ -222,4 +222,11 @@ export const stockService = {
             }
         })
     },
+    fetchDataBasicPrice: (stock) => {
+        return https.get('api/v1/shares/rating-dinh-gia', {
+            params: {
+                stock,
+            }
+        })
+    },
 }
