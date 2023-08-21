@@ -42,11 +42,12 @@ export const routes = [
   // authen
   { path: "/signin", component: Signin },
   { path: "/signup", component: Signup },
-  { path: "/auth", component: AuthComponent },
 ];
 
 
-
+export const authenRoute = [
+  { path: "/auth", component: AuthComponent },
+]
 export const marketRoute = [
   // market
   {

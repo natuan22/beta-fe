@@ -3,7 +3,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { macroRoutes, marketRoute, newsCenterRoutes, routes, stockRoutes } from "./app/routes";
+import { authenRoute, macroRoutes, marketRoute, newsCenterRoutes, routes, stockRoutes } from "./app/routes";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { autoLoginWithToken } from "./features/Auth/thunk";
@@ -78,6 +78,9 @@ function App() {
       })}
     </Route>
   })
+  const mapAuthenRoute = authenRoute.map(({ path, component: Component }) => {
+    return <Route key={path} path={path} element={<Component />}></Route>;
+  })
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <BrowserRouter>
@@ -89,6 +92,7 @@ function App() {
           {mapMacroRoute}
           {mapNewsCenterRoute}
           {mapStockRoute}
+          {mapAuthenRoute}
         </Routes>
       </BrowserRouter>
     </LocalizationProvider>
