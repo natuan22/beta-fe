@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaAngleDoubleRight } from "react-icons/fa";
+import SignUp1 from "./SignUp1";
 
 
 
@@ -49,15 +50,18 @@ const AuthComponent = () => {
                             src={`${apiUrl}/resources/images/img6.png`}
                             alt="imgSignin"
                             width='90%'
-                            height='80%'
+                            height='70%'
 
                         />
                     </div>
 
                 </div>
-                <div className="body__right">
-                    {/* component here */}
+                <div className="body__right mt-20 relative">
+                    <SignUp1 />
                 </div>
+            </div>
+            <div className="btn__swap">
+
             </div>
         </div>
     );
