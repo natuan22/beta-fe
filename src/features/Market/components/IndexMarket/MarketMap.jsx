@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import HighchartsReact from "highcharts-react-official";
@@ -9,23 +9,12 @@ import { fetchDataMarketMap } from "../../thunk";
 
 treemap(Highcharts);
 
-const ENUM = {
-    vonhoa: '0',
-    gtGD: '1',
-    klGD: '2',
-    gtNNGD: '3',
-}
-const buttonStyle = {
-    backgroundColor: 'transparent',
-    color: '#fff',
-    border: 'none',
-    cursor: 'pointer',
-    padding: '0.375rem 0.5rem'
-}
-const activeButtonStyle = {
-    backgroundColor: '#275F88',
-    color: '#fff',
-}
+const hashTb = {
+    "Vốn hoá": "Vốn hoá",
+    "Giá trị GD": "Giá trị GD",
+    "Khối lượng GD": "Khối lượng GD",
+    "Giá trị NN GD": "Giá trị NN GD",
+};
 
 const MarketMap = () => {
     const { dataMarketMap } = useSelector(state => state.market)
@@ -36,16 +25,30 @@ const MarketMap = () => {
 
     const dispatch = useDispatch()
     const [activeButton, setActiveButton] = useState('all')
-    const [activeButton2, setActiveButton2] = useState(ENUM.vonhoa)
+    const [activeButton2, setActiveButton2] = useState('0')
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
-
-
     const [data, setData] = useState([]);
     const [dataTreeMap, setDataTreeMap] = useState([])
+    const buttonRef2 = useRef([]);
+
+    const handleActiveButton = (index) => {
+        setActiveButton2(index);
+    };
+
+    useEffect(() => {
+        const activeBtn = buttonRef2.current[activeButton2]
+        const movingBackground = document.querySelector('.moving-background2')
+        if (activeBtn && movingBackground) {
+            movingBackground.style.left = `${activeBtn.offsetLeft}px`;
+            movingBackground.style.width = `${activeBtn.offsetWidth}px`;
+        }
+    }, [activeButton2])
+
     useEffect(() => {
         dispatch(fetchDataMarketMap(queryApi.exchange, queryApi.order))
     }, [dispatch, queryApi])
+
     useEffect(() => {
         if (dataMarketMap?.length > 0) {
             setData(dataMarketMap)
@@ -248,40 +251,22 @@ const MarketMap = () => {
                     </span>
                 </div>
                 <div>
-                    <div className="dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-2">
-                        <button
-                            style={activeButton2 === ENUM.vonhoa ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                            onClick={() => {
-                                handleClick2(ENUM.vonhoa)
-                                localStorage.setItem('nameMarketMap', 'Vốn hóa')
-
-                                setQueryApi({ ...queryApi, order: ENUM.vonhoa })
-                            }}
-                            className='rounded-tl-xl rounded-bl-xl md:text-[0.8rem] lg:text-[0.9rem]'>Vốn hoá</button>
-                        <button
-                            style={activeButton2 === ENUM.gtGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                            onClick={() => {
-                                localStorage.setItem('nameMarketMap', 'Giá trị GD')
-                                handleClick2(ENUM.gtGD)
-                                setQueryApi({ ...queryApi, order: ENUM.gtGD })
-                            }}
-                            className='md:text-[0.8rem] lg:text-[0.9rem]'>Giá trị GD</button>
-                        <button
-                            style={activeButton2 === ENUM.klGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                            onClick={() => {
-                                handleClick2(ENUM.klGD)
-                                localStorage.setItem('nameMarketMap', 'Khối lượng GD')
-                                setQueryApi({ ...queryApi, order: ENUM.klGD })
-                            }}
-                            className='md:text-[0.8rem] lg:text-[0.9rem]'>Khối lượng GD</button>
-                        <button
-                            style={activeButton2 === ENUM.gtNNGD ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                            onClick={() => {
-                                localStorage.setItem('nameMarketMap', 'Giá trị NN GD')
-                                handleClick2(ENUM.gtNNGD)
-                                setQueryApi({ ...queryApi, order: ENUM.gtNNGD })
-                            }}
-                            className='rounded-tr-xl rounded-br-xl md:text-[0.8rem] lg:text-[0.9rem]'>Giá trị NN GD</button>
+                    <div className="relative dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-2">
+                        <div className="moving-background2 absolute h-full top-0 bg-[#275F88] transition-all duration-500 rounded-full z-0"></div>
+                        {Object.entries(hashTb).map(([label], index) => (
+                            <button
+                                ref={el => buttonRef2.current[index] = el}
+                                key={index}
+                                onClick={() => {
+                                    handleActiveButton(index)
+                                    localStorage.setItem('nameMarketMap', label)
+                                    setQueryApi({ ...queryApi, order: index })
+                                }}
+                                className="md:text-[0.8rem] lg:text-[0.9rem] z-10 bg-transparent text-white border-none px-[0.85rem] py-[0.5rem] cursor-pointer"
+                            >
+                                {label}
+                            </button>
+                        ))}
                     </div>
                 </div>
             </div>

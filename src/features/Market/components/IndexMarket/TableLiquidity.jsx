@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { getColor } from "../../../Chart/utils/utils";
 import { fecthDataTableThanhKhoan } from "../../thunk";
 
+const hashTb = {
+  "1 ngày": "1 ngày",
+  "5 ngày": "5 ngày",
+  "1 tháng": "1 tháng",
+  "YtD": "YtD",
+};
+
 const TableLiquidity = () => {
   const dispatch = useDispatch();
   const { tableThanhKhoanData } = useSelector((state) => state.market);
-  const [activeButton, setActiveButton] = useState("1day");
+  const [activeButton, setActiveButton] = useState('0');
   const [queryApi, setQueryApi] = useState({
     exchange: "ALL",
     type: 0,
@@ -26,22 +33,7 @@ const TableLiquidity = () => {
       fecthDataTableThanhKhoan(queryApi.exchange, queryApi.type, queryApi.order)
     );
   }, [dispatch, queryApi]);
-  const handleClick = (button) => {
-    setActiveButton(button);
-  };
-  const buttonStyle = {
-    backgroundColor: "transparent",
-    color: "#fff",
-    border: "none",
-    cursor: "pointer",
-    fontSize: "0.9rem",
-    padding: "0.375rem 0.5rem",
-  };
 
-  const activeButtonStyle = {
-    backgroundColor: "#275F88",
-    color: "#fff",
-  };
   const handleQueryApiOrder = (order) => {
     setQueryApi((prev) => ({ ...prev, order }));
   };
@@ -51,67 +43,39 @@ const TableLiquidity = () => {
   const handleQueryApiExchange = (exchange) => {
     setQueryApi((prev) => ({ ...prev, exchange }));
   };
+  const buttonRef = useRef([]);
 
+  const handleActiveButton = (index) => {
+    setActiveButton(index);
+  };
+
+  useEffect(() => {
+    const activeBtn = buttonRef.current[activeButton]
+    const movingBackground = document.querySelector('.moving-background')
+    if (activeBtn && movingBackground) {
+      movingBackground.style.left = `${activeBtn.offsetLeft}px`;
+      movingBackground.style.width = `${activeBtn.offsetWidth}px`;
+    }
+  }, [activeButton])
   return (
     <>
-      <div className="dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-2">
-        <button
-          style={
-            activeButton === "1day"
-              ? { ...buttonStyle, ...activeButtonStyle }
-              : buttonStyle
-          }
-          onClick={() => {
-            handleClick("1day");
-            handleQueryApiOrder(0);
-          }}
-          className="uppercase"
-        >
-          1 ngày
-        </button>
-        <button
-          style={
-            activeButton === "5days"
-              ? { ...buttonStyle, ...activeButtonStyle }
-              : buttonStyle
-          }
-          onClick={() => {
-            handleClick("5days");
-            handleQueryApiOrder(1);
-          }}
-          className="uppercase"
-        >
-          5 ngày
-        </button>
-        <button
-          style={
-            activeButton === "1month"
-              ? { ...buttonStyle, ...activeButtonStyle }
-              : buttonStyle
-          }
-          onClick={() => {
-            handleClick("1month");
-            handleQueryApiOrder(2);
-          }}
-          className="uppercase"
-        >
-          1 tháng
-        </button>
-        <button
-          style={
-            activeButton === "YtD"
-              ? { ...buttonStyle, ...activeButtonStyle }
-              : buttonStyle
-          }
-          onClick={() => {
-            handleClick("YtD");
-            handleQueryApiOrder(3);
-          }}
-          className=""
-        >
-          YtD
-        </button>
+      <div className="relative dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-2">
+        <div className="moving-background absolute h-full top-0 bg-[#275F88] transition-all duration-500 z-0"></div>
+        {Object.entries(hashTb).map(([label], index) => (
+          <button
+            ref={el => buttonRef.current[index] = el}
+            key={index}
+            onClick={() => {
+              handleActiveButton(index)
+              handleQueryApiOrder(index);
+            }}
+            className="uppercase z-10 bg-transparent text-white border-none px-[0.375rem] py-[0.5rem] cursor-pointer"
+          >
+            {label}
+          </button>
+        ))}
       </div>
+
       <div>
         <span className="dark:text-white text-black text-[0.9rem] pl-[2px] font-semibold">Top đóng góp thanh khoản theo: </span>
         <div className="md:inline lg:block xl:inline 2xl:inline text-center">
