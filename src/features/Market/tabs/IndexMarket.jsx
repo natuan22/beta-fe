@@ -59,7 +59,7 @@ const IndexMarket = () => {
             </div>
           </div>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className="pt-2">
+            <div className="pt-[4px]">
               <TableLiquidity />
             </div>
             <hr />
