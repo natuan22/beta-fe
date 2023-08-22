@@ -27,7 +27,6 @@ const MarketMap = () => {
     const [activeButton, setActiveButton] = useState('all')
     const [activeButton2, setActiveButton2] = useState('0')
     const handleClick = (button) => { setActiveButton(button) }
-    const handleClick2 = (button) => { setActiveButton2(button) }
     const [data, setData] = useState([]);
     const [dataTreeMap, setDataTreeMap] = useState([])
     const buttonRef2 = useRef([]);

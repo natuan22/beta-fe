@@ -6,7 +6,6 @@ import MarketForeign from "../features/Market/tabs/MarketForeign";
 import TechAndValuation from "../features/Market/tabs/TechAndValuation";
 import Market from "../features/Market/Market";
 import Nav1 from "../features/Navigation/Nav1";
-import Nav2 from "../features/Navigation/Nav2";
 import Nav4 from "../features/Navigation/Nav4";
 import IndexMarket from "../features/Market/tabs/IndexMarket";
 import NonIdentifyCash from "../features/Market/tabs/CashFlow/NonIdentifyCash";
