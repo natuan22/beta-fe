@@ -13,7 +13,7 @@ const ExchangeRateFluctuations = () => {
     const [data, setData] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
-    console.log({ dataExchangeRateFluctuations })
+
     useEffect(() => {
         setColorText(color);
     }, [color])
