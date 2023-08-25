@@ -31,7 +31,7 @@ const IndividualInvestorBenefits = ({ queryApi }) => {
     return (
         <div>
             <div className='border-solid dark:border-white border-b-[1px] border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold w-[45%] flex justify-between'>Quyền lợi NĐT cá nhân
+                <span className='dark:text-white text-black font-semibold xl:w-[50%] lg:w-[35%] md:w-[40%] sm:w-[45%] flex justify-between'>Quyền lợi NĐT cá nhân
                     <Popover content={contentFinancialHealthAnalysis} >
                         <span className='dark:text-white text-black'><BsInfoCircleFill /></span>
                     </Popover>
@@ -39,13 +39,13 @@ const IndividualInvestorBenefits = ({ queryApi }) => {
             </div>
             {dataIndividualInvestorBenefits ? (
                 <div>
-                    <div className='grid grid-cols-2 items-center'>
+                    <div className='grid sm:grid-cols-2 xs:grid-cols-none items-center'>
                         <ChartGauge data={dataIndividualInvestorBenefits.totalStar} />
                         <div className='dark:text-white text-black text-justify'>Từ những dữ liệu được ghi nhận chúng tôi đánh giá Cổ phiếu {queryApi.stock} có sức khỏe tài chính {getTextColorRating(dataIndividualInvestorBenefits.totalStar).text} với mức điểm số <span className={getTextColorRating(dataIndividualInvestorBenefits.totalStar).color}>{dataIndividualInvestorBenefits.totalStar}/5</span>.</div>
                     </div>
 
                     <div>
-                        <ul className='ml-[40px]'>
+                        <ul className='ml-[40px] mt-1'>
                             {Array.isArray(dataIndividualInvestorBenefits.data) && dataIndividualInvestorBenefits.data?.map((item, index) => {
                                 const contentChild = (
                                     <div>
@@ -57,7 +57,7 @@ const IndividualInvestorBenefits = ({ queryApi }) => {
                                 return (
                                     <li key={index} className='dark:text-white text-black mb-2'>
                                         <span className='items-center flex justify-between'>
-                                            <span className='w-[60%] flex justify-between'>
+                                            <span className='sm:w-[60%] xs:w-[50%] xxs:w-[49%] items-center flex justify-between sm:text-base xs:text-sm xxs:text-xs'>
                                                 {item.name}
                                                 <Popover content={contentChild} onClick={() => toggleChildVisibility(index)}>
                                                     <span className='dark:text-white text-black cursor-pointer'><BsInfoCircleFill /></span>

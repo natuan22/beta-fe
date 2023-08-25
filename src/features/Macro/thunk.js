@@ -613,3 +613,15 @@ export const fetchDataExchangeRateFluctuations = (type) => async dispatch => {
         console.error(err)
     }
 }
+
+export const fetchDataInterestRateVolatility = (type) => async dispatch => {
+    try {
+        const res = await macroServices.fetchDataInterestRateVolatility(type)
+        dispatch({
+            type: macroType.FETCH_DATA_INTEREST_RATE_VOLATILITY,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}

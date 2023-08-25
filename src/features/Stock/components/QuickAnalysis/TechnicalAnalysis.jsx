@@ -31,7 +31,7 @@ const TechnicalAnalysis = ({ queryApi }) => {
     return (
         <div>
             <div className='border-solid dark:border-white border-b-[1px] border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold w-[45%] flex justify-between'>Phân tích kỹ thuật
+                <span className='dark:text-white text-black font-semibold xl:w-[50%] lg:w-[35%] md:w-[40%] sm:w-[45%] flex justify-between'>Phân tích kỹ thuật
                     <Popover content={contentFinancialHealthAnalysis} >
                         <span className='dark:text-white text-black'><BsInfoCircleFill /></span>
                     </Popover>
@@ -39,13 +39,13 @@ const TechnicalAnalysis = ({ queryApi }) => {
             </div>
             {dataTechnicalAnalysis ? (
                 <div>
-                    <div className='grid grid-cols-2 items-center'>
+                    <div className='grid sm:grid-cols-2 xs:grid-cols-none items-center'>
                         <ChartGauge data={dataTechnicalAnalysis.totalStar} />
                         <div className='dark:text-white text-black text-justify'>Với những yếu tố đánh giá về Phân tích kỹ thuật cho thấy {queryApi.stock} đang có tính hiệu {getTextColorRating(dataTechnicalAnalysis.totalStar).text} với mức điểm số <span className={getTextColorRating(dataTechnicalAnalysis.totalStar).color}>{dataTechnicalAnalysis.totalStar}/5</span>.</div>
                     </div>
 
                     <div>
-                        <ul className='ml-[40px]'>
+                        <ul className='ml-[40px] mt-1'>
                             {Array.isArray(dataTechnicalAnalysis.data) && dataTechnicalAnalysis.data?.map((item, index) => {
                                 const contentChild = (
                                     <div>
@@ -57,7 +57,7 @@ const TechnicalAnalysis = ({ queryApi }) => {
                                 return (
                                     <li key={index} className='dark:text-white text-black mb-2'>
                                         <span className='items-center flex justify-between'>
-                                            <span className='w-[60%] flex justify-between'>
+                                            <span className='sm:w-[60%] xs:w-[50%] xxs:w-[48%] items-center flex justify-between sm:text-base xs:text-sm xxs:text-xs'>
                                                 {item.name}
                                                 <Popover content={contentChild} onClick={() => toggleChildVisibility(index)}>
                                                     <span className='dark:text-white text-black cursor-pointer'><BsInfoCircleFill /></span>
