@@ -17,7 +17,6 @@ const CentralRate = () => {
   useEffect(() => {
     setColorText(color);
   }, [color])
-
   useEffect(() => {
     dispatch(fetchDataCentralRate)
   }, [dispatch]);

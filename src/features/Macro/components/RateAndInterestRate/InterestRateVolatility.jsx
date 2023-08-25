@@ -13,14 +13,16 @@ const InterestRateVolatility = () => {
     const [data, setData] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
+    const [query, setQuery] = useState(0)
+
 
     useEffect(() => {
         setColorText(color);
     }, [color])
 
     useEffect(() => {
-        dispatch(fetchDataInterestRateVolatility(0))
-    }, [dispatch]);
+        dispatch(fetchDataInterestRateVolatility(query))
+    }, [dispatch, query]);
 
     useEffect(() => {
         if (dataInterestRateVolatility?.length > 0) {
@@ -56,7 +58,6 @@ const InterestRateVolatility = () => {
             setData(updatedData)
         }
     }, [dataInterestRateVolatility])
-
     const options = {
         accessibility: {
             enabled: false,
@@ -92,6 +93,7 @@ const InterestRateVolatility = () => {
                     },
                 },
                 gridLineWidth: 0.5,
+
             },
             {
                 title: {
@@ -128,15 +130,15 @@ const InterestRateVolatility = () => {
         },
         series: data,
     };
-    
+    console.log('lai suat', data)
     return (
         <div>
             <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold'>Biến động lãi suất với thị trường</span>
                 <div>
-                    <select className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+                    <select value={query} className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
                         onChange={(event) => {
-                            dispatch(fetchDataInterestRateVolatility(event.target.value))
+                            setQuery(event.target.value)
                         }}>
                         <option value='0'>Chỉ số VN-INDEX</option>
                         <option value='1'>% VN-INDEX</option>
