@@ -76,7 +76,6 @@ const TechnicalAnalysis = ({ queryApi }) => {
                                         </span>
                                         {showChildStates[index] && (
                                             <div>
-
                                                 <ul className='ml-[40px] mt-1'>
                                                     {item.child.map((itemChild, index) => {
                                                         const contentItemChild = (
@@ -89,11 +88,9 @@ const TechnicalAnalysis = ({ queryApi }) => {
                                                         return (
                                                             <li key={index}>
                                                                 <span className='items-center flex justify-between'>
-
                                                                     <span className='w-[56%] flex justify-between'>
                                                                         <span className='text-sm'>
                                                                             {itemChild.name}
-
                                                                         </span>
                                                                         <Popover content={contentItemChild} onClick={() => setShowChild(!showChild)}>
                                                                             <span className='dark:text-white text-black cursor-pointer'><BsInfoCircleFill /></span>

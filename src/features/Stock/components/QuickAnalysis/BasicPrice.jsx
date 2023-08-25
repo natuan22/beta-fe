@@ -4,7 +4,7 @@ import { Popover } from 'antd';
 import ChartGauge from './components/ChartGauge';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataBasicPrice } from '../../thunk';
-import { Rating } from '@mui/material';
+import { Collapse, Rating } from '@mui/material';
 import Loading from '../../../Chart/utils/Loading';
 import { getTextColorRating } from '../../../Chart/utils/utils';
 
@@ -20,17 +20,18 @@ const BasicPrice = ({ queryApi }) => {
     const dispatch = useDispatch()
     const { dataBasicPrice } = useSelector(state => state.stock)
     const [showChild, setShowChild] = useState(false);
-    const [showChildStates, setShowChildStates] = useState([]);
+    const [showChildState, setShowChildState] = useState(null);
     useEffect(() => {
         dispatch(fetchDataBasicPrice(queryApi.stock));
     }, [dispatch, queryApi]);
 
     const toggleChildVisibility = (index) => {
-        const updatedStates = [...showChildStates];
-        updatedStates[index] = !updatedStates[index];
-        setShowChildStates(updatedStates);
+        if (showChildState === index) {
+            setShowChildState(null);
+        } else {
+            setShowChildState(index);
+        }
     };
-
     return (
         <div>
             <div className='border-solid dark:border-white border-b-[1px] border-t-0 border-x-0'>
@@ -77,54 +78,52 @@ const BasicPrice = ({ queryApi }) => {
                                                     value={item.value} readOnly />
                                             </span>
                                         </span>
-                                        {showChildStates[index] && (
-                                            <div>
 
-                                                <ul className='ml-[40px] mt-1'>
-                                                    {item.child.map((itemChild, index) => {
-                                                        const contentItemChild = (
-                                                            <div>
-                                                                <span className='text-black font-medium rounded-lg text-sm bg-white p-2'>
-                                                                    {itemChild.name}
-                                                                </span>
-                                                            </div>
-                                                        );
-                                                        return (
-                                                            <li key={index}>
-                                                                <span className='items-center flex justify-between'>
+                                        {showChildState === index && (
+                                            <ul className='ml-[40px] mt-1'>
+                                                {item.child.map((itemChild, index) => {
+                                                    const contentItemChild = (
+                                                        <div>
+                                                            <span className='text-black font-medium rounded-lg text-sm bg-white p-2'>
+                                                                {itemChild.name}
+                                                            </span>
+                                                        </div>
+                                                    );
+                                                    return (
+                                                        <li key={index}>
+                                                            <span className='items-center flex justify-between'>
 
-                                                                    <span className='w-[56%] flex justify-between'>
-                                                                        <span className='text-sm'>
-                                                                            {itemChild.name}
+                                                                <span className='w-[56%] flex justify-between'>
+                                                                    <span className='text-sm'>
+                                                                        {itemChild.name}
 
-                                                                        </span>
-                                                                        <Popover content={contentItemChild} onClick={() => setShowChild(!showChild)}>
-                                                                            <span className='dark:text-white text-black cursor-pointer'><BsInfoCircleFill /></span>
-                                                                        </Popover>
                                                                     </span>
-                                                                    <span className='flex justify-between items-center'>
-                                                                        <p className='text-[15px] mr-2'>
-                                                                            {itemChild.value}
-                                                                        </p>
-                                                                        <Rating
-                                                                            sx={{
-                                                                                '& .MuiRating-iconEmpty': {
-                                                                                    color: '#faaf00',
-                                                                                    fontSize: '20px'
-                                                                                },
-                                                                                '& .MuiRating-iconFilled ': {
-                                                                                    fontSize: '20px'
-
-                                                                                }
-                                                                            }}
-                                                                            value={itemChild.value} readOnly />
-                                                                    </span>
+                                                                    <Popover content={contentItemChild} onClick={() => setShowChild(!showChild)}>
+                                                                        <span className='dark:text-white text-black cursor-pointer'><BsInfoCircleFill /></span>
+                                                                    </Popover>
                                                                 </span>
-                                                            </li>
-                                                        )
-                                                    })}
-                                                </ul>
-                                            </div>
+                                                                <span className='flex justify-between items-center'>
+                                                                    <p className='text-[15px] mr-2'>
+                                                                        {itemChild.value}
+                                                                    </p>
+                                                                    <Rating
+                                                                        sx={{
+                                                                            '& .MuiRating-iconEmpty': {
+                                                                                color: '#faaf00',
+                                                                                fontSize: '20px'
+                                                                            },
+                                                                            '& .MuiRating-iconFilled ': {
+                                                                                fontSize: '20px'
+
+                                                                            }
+                                                                        }}
+                                                                        value={itemChild.value} readOnly />
+                                                                </span>
+                                                            </span>
+                                                        </li>
+                                                    )
+                                                })}
+                                            </ul>
                                         )}
                                     </li>
                                 )
