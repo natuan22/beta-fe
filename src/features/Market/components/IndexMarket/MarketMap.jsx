@@ -89,7 +89,7 @@ const MarketMap = () => {
             dataLabels: {
                 enabled: true,
                 style: {
-                    fontSize: "12px",
+                    fontSize: "13px",
                     fontWeight: "bold",
                     color: "black",
                 },
@@ -112,10 +112,7 @@ const MarketMap = () => {
                     style: {
                         fontSize: "11px",
                         fontWeight: "semibold",
-                        color: "  white",
-                        style: {
-                            textOutline: "none",
-                        },
+                        color: "white",
                     },
                     align: "center",
                 },
@@ -254,7 +251,6 @@ const MarketMap = () => {
                             onClick={() => {
                                 handleClick2(ENUM.vonhoa)
                                 localStorage.setItem('nameMarketMap', 'Vốn hóa')
-
                                 setQueryApi({ ...queryApi, order: ENUM.vonhoa })
                             }}
                             className='rounded-tl-xl rounded-bl-xl md:text-[0.8rem] lg:text-[0.9rem]'>Vốn hoá</button>
