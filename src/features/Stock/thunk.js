@@ -328,11 +328,72 @@ export const fetchDataChartFinancialIndicators = (stock, order) => async (dispat
     }
 }
 
+
+export const fetchDataFinancialHealthAnalysis = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataFinancialHealthAnalysis(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_FINANCIAL_HEALTH_ANALYSIS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataBussinessAnalysis = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataBussinessAnalysis(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_BUSSINESS_ANALYSIS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataBusinessPosition = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataBusinessPosition(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_BUSSINESS_POSITION,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
 export const fetchDataBasicPrice = (stock) => async (dispatch) => {
     try {
         const res = await stockService.fetchDataBasicPrice(stock)
         dispatch({
             type: stockType.FETCH_DATA_BASIC_PRICE,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataTechnicalAnalysis = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataTechnicalAnalysis(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_TECHNICAL_ANALYSIS,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataIndividualInvestorBenefits = (stock) => async (dispatch) => {
+    try {
+        const res = await stockService.fetchDataIndividualInvestorBenefits(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_INDIVIDUAL_INVESTOR_BENEFITS,
             payload: res.data.data
         })
     } catch (err) {

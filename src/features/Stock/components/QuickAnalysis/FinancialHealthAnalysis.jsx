@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Popover } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDataFinancialHealthAnalysis } from '../../thunk';
 
 const contentFinancialHealthAnalysis = (
     <div>
@@ -10,7 +12,14 @@ const contentFinancialHealthAnalysis = (
     </div>
 );
 
-const FinancialHealthAnalysis = () => {
+const FinancialHealthAnalysis = ({ queryApi }) => {
+    const dispatch = useDispatch()
+    const { dataFinancialHealthAnalysis } = useSelector(state => state.stock)
+
+    useEffect(() => {
+        dispatch(fetchDataFinancialHealthAnalysis(queryApi.stock));
+    }, [dispatch, queryApi]);
+
     return (
         <div>
             <div className='border-solid dark:border-white border-b-[1px] border-t-0 border-x-0'>

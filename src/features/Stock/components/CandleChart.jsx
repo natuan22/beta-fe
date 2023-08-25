@@ -102,7 +102,13 @@ const CandleChart = ({ code, dataChart }) => {
 
     return (
         <div>
-            {dataCandleChart?.length > 0 ? <HighchartsReact highcharts={Highcharts} options={options} /> : <div><Loading /></div>}
+            {dataCandleChart?.length > 0 ? (
+                <div className='h-[330px]'>
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                </div>
+            ) : (
+                <div><Loading /></div>
+            )}
         </div>
     )
 };

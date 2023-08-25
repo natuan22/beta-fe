@@ -26,11 +26,6 @@ const BasicPrice = ({ queryApi }) => {
         dispatch(fetchDataBasicPrice(queryApi.stock));
     }, [dispatch, queryApi]);
 
-    const totalValue = Array.isArray(dataBasicPrice) && dataBasicPrice?.reduce((sum, item) => sum + item.value, 0);
-
-    // Calculate the average value
-    const averageValue = totalValue / dataBasicPrice?.length;
-
     const toggleChildVisibility = (index) => {
         const updatedStates = [...showChildStates];
         updatedStates[index] = !updatedStates[index];
@@ -46,16 +41,16 @@ const BasicPrice = ({ queryApi }) => {
                     </Popover>
                 </span>
             </div>
-            {dataBasicPrice.length > 0 ? (
+            {dataBasicPrice ? (
                 <div>
                     <div className='grid grid-cols-2 items-center'>
-                        <ChartGauge data={+averageValue.toFixed()} />
-                        <div className='dark:text-white text-black text-justify'>Từ những dữ liệu được ghi nhận chúng tôi đánh giá Cổ phiếu {queryApi.stock} có sức khỏe tài chính {getTextColorRating(averageValue.toFixed()).text} với mức điểm số <span className={getTextColorRating(averageValue.toFixed()).color}>{averageValue.toFixed()}/5</span>.</div>
+                        <ChartGauge data={dataBasicPrice.totalStar} />
+                        <div className='dark:text-white text-black text-justify'>Từ những dữ liệu được ghi nhận chúng tôi đánh giá Cổ phiếu {queryApi.stock} có sức khỏe tài chính {getTextColorRating(dataBasicPrice.totalStar).text} với mức điểm số <span className={getTextColorRating(dataBasicPrice.totalStar).color}>{dataBasicPrice.totalStar}/5</span>.</div>
                     </div>
 
                     <div>
                         <ul className='ml-[40px]'>
-                            {Array.isArray(dataBasicPrice) && dataBasicPrice?.map((item, index) => {
+                            {Array.isArray(dataBasicPrice.data) && dataBasicPrice.data?.map((item, index) => {
                                 return (
                                     <li key={index} className='dark:text-white text-black'>
                                         <span className='items-center flex justify-between'>
