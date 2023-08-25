@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Loading from '../../../Chart/utils/Loading'
-import Error404 from '../../../Navigation/Error404'
 import CentralRate from '../../components/RateAndInterestRate/CentralRate'
 import ExchangeRateFluctuations from '../../components/RateAndInterestRate/ExchangeRateFluctuations'
+import InterestRateVolatility from '../../components/RateAndInterestRate/InterestRateVolatility'
 import ExchangeRateIndex from '../../components/RateAndInterestRate/ExchangeRateIndex'
 import InterestRate from '../../components/RateAndInterestRate/InterestRate'
 
@@ -36,6 +36,9 @@ const RateAndInterestRate = () => {
                         </div>
                         <div className='mt-2'>
                             <ExchangeRateFluctuations />
+                        </div>
+                        <div className='mt-2'>
+                            <InterestRateVolatility />
                         </div>
                         <div>
                             <div className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>

@@ -1,34 +1,37 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataExchangeRateFluctuations } from '../../thunk';
+import { fetchDataInterestRateVolatility } from '../../thunk';
 import HighchartsReact from 'highcharts-react-official'
 import Highcharts from "highcharts";
 import Loading from '../../../Chart/utils/Loading';
 
-const ExchangeRateFluctuations = () => {
+const InterestRateVolatility = () => {
     const dispatch = useDispatch();
-    const { dataExchangeRateFluctuations } = useSelector(state => state.macro)
+    const { dataInterestRateVolatility } = useSelector(state => state.macro)
     const [timeLine, setTimeLine] = useState()
     const [data, setData] = useState()
     const [colorText, setColorText] = useState(localStorage.getItem('color'));
     const color = useSelector((state) => state.color.colorText);
     const [query, setQuery] = useState(0)
 
+
     useEffect(() => {
         setColorText(color);
     }, [color])
 
     useEffect(() => {
-        dispatch(fetchDataExchangeRateFluctuations(query))
+        dispatch(fetchDataInterestRateVolatility(query))
     }, [dispatch, query]);
 
     useEffect(() => {
-        if (dataExchangeRateFluctuations?.length > 0) {
-            const uniqueDates = [...new Set(dataExchangeRateFluctuations?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+        if (dataInterestRateVolatility?.length > 0) {
+            const uniqueDates = [...new Set(dataInterestRateVolatility?.map(item => moment(item.date).format('DD/MM/YYYY')))];
             setTimeLine(uniqueDates)
+
             const result = [];
-            dataExchangeRateFluctuations?.forEach(item => {
+
+            dataInterestRateVolatility?.forEach(item => {
                 const name = item.name;
                 const value = +item.value.toFixed(2);
                 const color = item.color;
@@ -54,7 +57,7 @@ const ExchangeRateFluctuations = () => {
             });
             setData(updatedData)
         }
-    }, [dataExchangeRateFluctuations])
+    }, [dataInterestRateVolatility])
     const options = {
         accessibility: {
             enabled: false,
@@ -90,6 +93,7 @@ const ExchangeRateFluctuations = () => {
                     },
                 },
                 gridLineWidth: 0.5,
+
             },
             {
                 title: {
@@ -126,12 +130,11 @@ const ExchangeRateFluctuations = () => {
         },
         series: data,
     };
-    // console.log('ty gia', data)
-
+    // console.log('lai suat', data)
     return (
         <div>
             <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                <span className='dark:text-white text-black font-semibold'>Biến động tỷ giá với thị trường</span>
+                <span className='dark:text-white text-black font-semibold'>Biến động lãi suất với thị trường</span>
                 <div>
                     <select value={query} className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
                         onChange={(event) => {
@@ -142,7 +145,7 @@ const ExchangeRateFluctuations = () => {
                     </select>
                 </div>
             </div>
-            {dataExchangeRateFluctuations?.length > 0 ? (
+            {dataInterestRateVolatility?.length > 0 ? (
                 <div className='h-[300px]'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
@@ -153,4 +156,4 @@ const ExchangeRateFluctuations = () => {
     )
 }
 
-export default ExchangeRateFluctuations
+export default InterestRateVolatility

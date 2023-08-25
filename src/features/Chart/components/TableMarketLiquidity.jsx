@@ -1,33 +1,37 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Loading from "../utils/Loading";
 import { fetchDataTableMarketLiquidity } from "../thunk";
 import { getColor } from "../utils/utils";
 
+const hashTb = {
+    "Tăng mạnh nhất": "Tăng mạnh nhất",
+    "Giảm mạnh nhất": "Giảm mạnh nhất",
+    "Đóng góp cao nhất": "Đóng góp cao nhất",
+    "Đóng góp thấp nhất": "Đóng góp thấp nhất",
+};
+
 const TableMarketLiquidity = () => {
     const dispatch = useDispatch();
     const dataMarketLiquidity = useSelector(state => state.chart.dataTableMarketLiquidity);
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
-    const [activeButton, setActiveButton] = useState('increase');
+    const [activeButton, setActiveButton] = useState('0');
+    const buttonRef = useRef([]);
 
-    const handleClick = (button) => {
-        setActiveButton(button);
-    }
+    const handleActiveButton = (index) => {
+        setActiveButton(index);
+    };
 
-    const buttonStyle = {
-        backgroundColor: 'transparent',
-        color: '#fff',
-        border: 'none',
-        cursor: 'pointer',
-        padding: '0.375rem 0.5rem'
-    }
-
-    const activeButtonStyle = {
-        backgroundColor: '#275F88',
-        color: '#fff',
-    }
+    useEffect(() => {
+        const activeBtn = buttonRef.current[activeButton]
+        const movingBackground = document.querySelector('.moving-background')
+        if (activeBtn && movingBackground) {
+            movingBackground.style.left = `${activeBtn.offsetLeft}px`;
+            movingBackground.style.width = `${activeBtn.offsetWidth}px`;
+        }
+    }, [activeButton])
 
     useEffect(() => {
         if (dataMarketLiquidity.data) {
@@ -38,35 +42,21 @@ const TableMarketLiquidity = () => {
 
     return (
         <>
-            <div className="dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-3">
-                <button
-                    style={activeButton === 'increase' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                    onClick={() => {
-                        handleClick('increase')
-                        dispatch(dispatch(fetchDataTableMarketLiquidity("0")))
-                    }}
-                    className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px] rounded-tl-lg rounded-bl-lg'>Tăng mạnh nhất</button>
-                <button
-                    style={activeButton === 'decrease' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                    onClick={() => {
-                        handleClick('decrease')
-                        dispatch(dispatch(fetchDataTableMarketLiquidity("1")))
-                    }}
-                    className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px]'>Giảm mạnh nhất</button>
-                <button
-                    style={activeButton === 'highest' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                    onClick={() => {
-                        handleClick('highest')
-                        dispatch(dispatch(fetchDataTableMarketLiquidity("2")))
-                    }}
-                    className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px]'>Đóng góp cao nhất</button>
-                <button
-                    style={activeButton === 'lowest' ? { ...buttonStyle, ...activeButtonStyle } : buttonStyle}
-                    onClick={() => {
-                        handleClick('lowest')
-                        dispatch(dispatch(fetchDataTableMarketLiquidity("3")))
-                    }}
-                    className='2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px] rounded-tr-lg rounded-br-lg'>Đóng góp thấp nhất</button>
+            <div className="relative dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-3">
+                <div className="moving-background absolute h-full top-0 bg-[#275F88] transition-all duration-500 rounded-full z-0"></div>
+                {Object.entries(hashTb).map(([label], index) => (
+                    <button
+                        ref={el => buttonRef.current[index] = el}
+                        key={index}
+                        onClick={() => {
+                            handleActiveButton(index)
+                            dispatch(dispatch(fetchDataTableMarketLiquidity(index)))
+                        }}
+                        className="2xl:text-[11.5px] xl:text-[10.6px] lg:text-[14px] md:text-[14px] xs:text-[12px] z-10 bg-transparent text-white border-none px-[0.9rem] py-[0.5rem] cursor-pointer"
+                    >
+                        {label}
+                    </button>
+                ))}
             </div>
 
             <section className="bg-blueGray-50">

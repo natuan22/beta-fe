@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import socket from '../../Chart/utils/socket'
 import { useState } from 'react'
 import Loading from '../../Chart/utils/Loading'
+import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
 const resourceURL = process.env.REACT_APP_RESOURCE_URL
 
 const StockInfo = ({ codeUrl }) => {
@@ -41,7 +42,33 @@ const StockInfo = ({ codeUrl }) => {
                 ...newData
             }));
         })
+
+        return () => {
+            socket.off(`listen-co-phieu-${code}`);
+        };
     }, [code])
+
+
+    const [showFullSummary, setShowFullSummary] = useState(false);
+    const [showCollapsedSummary, setShowCollapsedSummary] = useState(true);
+
+    const toggleSummary = () => {
+        setShowFullSummary(!showFullSummary);
+        setShowCollapsedSummary(false);
+    };
+
+    const collapseSummary = () => {
+        setShowFullSummary(false);
+        setShowCollapsedSummary(true);
+    };
+
+    const countWords = (text) => {
+        return text?.trim().split(/\s+/).length + text?.trim().split(/\s+/).length - 1;
+    };
+
+    useEffect(() => {
+        setShowFullSummary(countWords(dataInfoHeader?.summary) <= 459);
+    }, [dataInfoHeader]);
 
     return (
         <div>
@@ -114,15 +141,31 @@ const StockInfo = ({ codeUrl }) => {
                         <div className='lg:col-span-3 md:col-span-full'>
                             <span className='text-[#8BFF62] uppercase font-semibold'>{data.company}</span>
                             <div className='p-4 flex justify-center'>
-                                <img className='object-contain w-[262px] h-[145px]' src={`${resourceURL}${data.image}`} onError={event => {
+                                <img className='object-contain xl:w-[262px] lg:w-[222px] md:w-[262px] sm:w-[262px] xs:w-[262px] xxs:w-[262px] h-[145px]' src={`${resourceURL}${data.image}`} onError={event => {
                                     event.target.src = `${resourceURL}/resources/stock/logo_default.jpeg`
                                     event.onerror = null
                                 }} alt="companyImg" />
                             </div>
                         </div>
-                        <div className='lg:col-span-4 md:col-span-full'>
-                            <span className='text-[#8BFF62]'>Tên tiếng anh: {data.company_eng}</span>
-                            <p className='dark:text-white text-black text-justify pt-4'>{data.summary}</p>
+                        <div className={`lg:col-span-4 md:col-span-full`}>
+                            <div className='flex justify-between'>
+                                <span className='text-[#8BFF62]'>Tên tiếng anh: {data.company_eng} </span>
+                                {showCollapsedSummary && countWords(dataInfoHeader?.summary) > 459 && (
+                                    <span onClick={toggleSummary} className="text-[#8BFF62] hover:text-blue-500 hover:underline duration-500 cursor-pointer" >
+                                        <BsCaretDownFill />
+                                    </span>
+                                )}
+                                {showFullSummary && countWords(dataInfoHeader?.summary) > 459 && (
+                                    <span onClick={collapseSummary} className="text-[#8BFF62] hover:text-blue-500 hover:underline duration-500 cursor-pointer" >
+                                        <BsCaretUpFill />
+                                    </span>
+                                )}
+                            </div>
+                            <div className={`${showFullSummary && countWords(dataInfoHeader?.summary) > 459 ? 'overflow-y-scroll h-[310px]' : ''}`}>
+                                <p className={`dark:text-white text-black text-justify pt-2 text-sm pr-[5px] ${showFullSummary ? '' : 'line-clamp-15'}`}>
+                                    {dataInfoHeader.summary}
+                                </p>
+                            </div>
                         </div>
                         <div className='lg:col-span-5 md:col-span-full'>
                             <CandleChart code={code} dataChart={dataChart} />

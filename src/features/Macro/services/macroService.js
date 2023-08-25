@@ -254,7 +254,16 @@ export const macroServices = {
     fetchDataExchangeRateFluctuations: (type) => {
         return https.get('api/v1/macro/bien-dong-ty-gia-lai-suat-voi-thi-truong', {
             params: {
-                type
+                type,
+                category: 0
+            }
+        })
+    },
+    fetchDataInterestRateVolatility: (type) => {
+        return https.get('api/v1/macro/bien-dong-ty-gia-lai-suat-voi-thi-truong', {
+            params: {
+                type,
+                category: 1
             }
         })
     },
