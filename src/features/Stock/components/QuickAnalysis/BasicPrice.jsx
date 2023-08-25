@@ -21,7 +21,6 @@ const BasicPrice = ({ queryApi }) => {
     const { dataBasicPrice } = useSelector(state => state.stock)
     const [showChild, setShowChild] = useState(false);
     const [showChildStates, setShowChildStates] = useState([]);
-
     useEffect(() => {
         dispatch(fetchDataBasicPrice(queryApi.stock));
     }, [dispatch, queryApi]);
@@ -51,16 +50,24 @@ const BasicPrice = ({ queryApi }) => {
                     <div>
                         <ul className='ml-[40px]'>
                             {Array.isArray(dataBasicPrice.data) && dataBasicPrice.data?.map((item, index) => {
+                                const contentBasicPriceChild = (
+                                    <div>
+                                        <span className='text-black font-medium rounded-lg text-sm bg-white p-2'>
+                                            {item.name}
+                                        </span>
+                                    </div>
+                                );
                                 return (
-                                    <li key={index} className='dark:text-white text-black'>
+                                    <li key={index} className='dark:text-white text-black mb-2'>
                                         <span className='items-center flex justify-between'>
-                                            <span className='w-[65%] flex justify-between'>
+                                            <span className='w-[60%] flex justify-between'>
                                                 {item.name}
-                                                <Popover content={contentBasicPrice} onClick={() => toggleChildVisibility(index)}>
+                                                <Popover content={contentBasicPriceChild} onClick={() => toggleChildVisibility(index)}>
                                                     <span className='dark:text-white text-black cursor-pointer'><BsInfoCircleFill /></span>
                                                 </Popover>
                                             </span>
-                                            <span>
+                                            <span className='flex justify-between items-center text-base'>
+                                                <p className='mr-2'>{item.value}</p>
                                                 <Rating
                                                     sx={{
                                                         '& .MuiRating-iconEmpty': {
@@ -71,31 +78,53 @@ const BasicPrice = ({ queryApi }) => {
                                             </span>
                                         </span>
                                         {showChildStates[index] && (
-                                            <ul className='ml-[40px]'>
-                                                {item.child.map((items, index) => {
-                                                    return (
-                                                        <li key={index}>
-                                                            <span className='items-center flex justify-between'>
-                                                                <span className='w-[62%] flex justify-between'>
-                                                                    {items.name}
-                                                                    <Popover content={contentBasicPrice} onClick={() => setShowChild(!showChild)}>
-                                                                        <span className='dark:text-white text-black cursor-pointer'><BsInfoCircleFill /></span>
-                                                                    </Popover>
+                                            <div>
+
+                                                <ul className='ml-[40px] mt-1'>
+                                                    {item.child.map((itemChild, index) => {
+                                                        const contentItemChild = (
+                                                            <div>
+                                                                <span className='text-black font-medium rounded-lg text-sm bg-white p-2'>
+                                                                    {itemChild.name}
                                                                 </span>
-                                                                <span>
-                                                                    <Rating
-                                                                        sx={{
-                                                                            '& .MuiRating-iconEmpty': {
-                                                                                color: '#faaf00'
-                                                                            }
-                                                                        }}
-                                                                        value={items.value} readOnly />
+                                                            </div>
+                                                        );
+                                                        return (
+                                                            <li key={index}>
+                                                                <span className='items-center flex justify-between'>
+
+                                                                    <span className='w-[56%] flex justify-between'>
+                                                                        <span className='text-sm'>
+                                                                            {itemChild.name}
+
+                                                                        </span>
+                                                                        <Popover content={contentItemChild} onClick={() => setShowChild(!showChild)}>
+                                                                            <span className='dark:text-white text-black cursor-pointer'><BsInfoCircleFill /></span>
+                                                                        </Popover>
+                                                                    </span>
+                                                                    <span className='flex justify-between items-center'>
+                                                                        <p className='text-[15px] mr-2'>
+                                                                            {itemChild.value}
+                                                                        </p>
+                                                                        <Rating
+                                                                            sx={{
+                                                                                '& .MuiRating-iconEmpty': {
+                                                                                    color: '#faaf00',
+                                                                                    fontSize: '20px'
+                                                                                },
+                                                                                '& .MuiRating-iconFilled ': {
+                                                                                    fontSize: '20px'
+
+                                                                                }
+                                                                            }}
+                                                                            value={itemChild.value} readOnly />
+                                                                    </span>
                                                                 </span>
-                                                            </span>
-                                                        </li>
-                                                    )
-                                                })}
-                                            </ul>
+                                                            </li>
+                                                        )
+                                                    })}
+                                                </ul>
+                                            </div>
                                         )}
                                     </li>
                                 )
