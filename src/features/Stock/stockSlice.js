@@ -29,7 +29,12 @@ const initialState = {
     dataChartPieBalanceSheet: {},
     dataTableFinancialIndicators: {},
     dataChartFinancialIndicators: {},
-    dataBasicPrice: {}
+    dataFinancialHealthAnalysis: {},
+    dataBussinessAnalysis: {},
+    dataBusinessPosition: {},
+    dataBasicPrice: {},
+    dataTechnicalAnalysis: {},
+    dataIndividualInvestorBenefits: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -118,8 +123,23 @@ const reducer = (state = initialState, { type, payload }) => {
         if (type === stockType.FETCH_DATA_CHART_FINANCIAL_INDICATORS) {
             draft.dataChartFinancialIndicators = payload
         }
+        if (type === stockType.FETCH_DATA_FINANCIAL_HEALTH_ANALYSIS) {
+            draft.dataFinancialHealthAnalysis = payload
+        }
+        if (type === stockType.FETCH_DATA_BUSSINESS_ANALYSIS) {
+            draft.dataBussinessAnalysis = payload
+        }
+        if (type === stockType.FETCH_DATA_BUSSINESS_POSITION) {
+            draft.dataBusinessPosition = payload
+        }
         if (type === stockType.FETCH_DATA_BASIC_PRICE) {
             draft.dataBasicPrice = payload
+        }
+        if (type === stockType.FETCH_DATA_TECHNICAL_ANALYSIS) {
+            draft.dataTechnicalAnalysis = payload
+        }
+        if (type === stockType.FETCH_DATA_INDIVIDUAL_INVESTOR_BENEFITS) {
+            draft.dataIndividualInvestorBenefits = payload
         }
     });
 };

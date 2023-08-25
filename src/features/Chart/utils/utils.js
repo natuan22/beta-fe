@@ -62,23 +62,23 @@ export function getTextColorRating(item) {
     let color = ''
 
     switch (item) {
-        case '1':
+        case 1:
             text = <span className='text-[#FF0000]'>Rất tệ</span>;
             color = 'text-[#FF0000]'
             break;
-        case '2':
+        case 2:
             text = <span className='text-[#FF0000]'>Tệ</span>;
             color = 'text-[#FF0000]'
             break;
-        case '3':
+        case 3:
             text = <span className='text-[#FCFF71]'>Khá</span>;
             color = 'text-[#FCFF71]'
             break;
-        case '4':
+        case 4:
             text = <span className='text-[#05FF00]'>Tốt</span>;
             color = 'text-[#05FF00]'
             break;
-        case '5':
+        case 5:
             text = <span className='text-[#05FF00]'>Rất tốt</span>;
             color = 'text-[#05FF00]'
             break;

@@ -222,8 +222,43 @@ export const stockService = {
             }
         })
     },
+    fetchDataFinancialHealthAnalysis: (stock) => {
+        return https.get('api/v1/shares/rating-suc-khoe-tai-chinh', {
+            params: {
+                stock,
+            }
+        })
+    },
+    fetchDataBussinessAnalysis: (stock) => {
+        return https.get('api/v1/shares/rating-nganh-nghe-kinh-doanh', {
+            params: {
+                stock,
+            }
+        })
+    },
+    fetchDataBusinessPosition: (stock) => {
+        return https.get('api/v1/shares/rating-vi-the-doanh-nghiep', {
+            params: {
+                stock,
+            }
+        })
+    },
     fetchDataBasicPrice: (stock) => {
         return https.get('api/v1/shares/rating-dinh-gia', {
+            params: {
+                stock,
+            }
+        })
+    },
+    fetchDataTechnicalAnalysis: (stock) => {
+        return https.get('api/v1/shares/rating-ky-thuat', {
+            params: {
+                stock,
+            }
+        })
+    },
+    fetchDataIndividualInvestorBenefits: (stock) => {
+        return https.get('api/v1/shares/rating-quyen-loi-ndt-ca-nhan', {
             params: {
                 stock,
             }

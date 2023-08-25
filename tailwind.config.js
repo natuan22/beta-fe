@@ -47,7 +47,10 @@ module.exports = {
       },
       with: {
         101: '1000px'
-      }
+      },
+      lineClamp: {
+        15: '15',
+      },
     },
   },
   plugins: [

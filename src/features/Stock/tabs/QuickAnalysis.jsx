@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Loading from '../../Chart/utils/Loading'
-import Error404 from '../../Navigation/Error404'
 import useQueryApi from '../components/Overview/utils/custom/useQueryApi/useQueryApi'
 import BasicPrice from '../components/QuickAnalysis/BasicPrice'
 import BusinessPosition from '../components/QuickAnalysis/BusinessPosition'
@@ -23,7 +22,7 @@ const QuickAnalysis = ({ codeUrl }) => {
     <div className='container mx-auto'>
       {isLoading ? (
         <>
-          {/* <div>
+          <div>
             <div className='flex'>
               <div className='w-[40%] h-[200px]'>
 
@@ -43,15 +42,14 @@ const QuickAnalysis = ({ codeUrl }) => {
             </div>
 
             <div className='grid xl:grid-cols-3 lg:grid-cols-none gap-5'>
-              <div><FinancialHealthAnalysis /></div>
-              <div><BussinessAnalysis /></div>
-              <div><BusinessPosition /></div>
+              <div><FinancialHealthAnalysis queryApi={queryApi} /></div>
+              <div><BussinessAnalysis queryApi={queryApi} /></div>
+              <div><BusinessPosition queryApi={queryApi} /></div>
               <div><BasicPrice queryApi={queryApi} /></div>
-              <div><TechnicalAnalysis /></div>
-              <div><IndividualInvestorBenefits /></div>
+              <div><TechnicalAnalysis queryApi={queryApi} /></div>
+              <div><IndividualInvestorBenefits queryApi={queryApi} /></div>
             </div>
-          </div> */}
-          <Error404 />
+          </div>
         </>
       ) : (
         <div className='h-[300px] flex items-center justify-center'><Loading /></div>
