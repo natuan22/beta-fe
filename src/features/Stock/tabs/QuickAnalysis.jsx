@@ -6,9 +6,13 @@ import BusinessPosition from '../components/QuickAnalysis/BusinessPosition'
 import BussinessAnalysis from '../components/QuickAnalysis/BussinessAnalysis'
 import FinancialHealthAnalysis from '../components/QuickAnalysis/FinancialHealthAnalysis'
 import IndividualInvestorBenefits from '../components/QuickAnalysis/IndividualInvestorBenefits'
+import SpiderWebChart from '../components/QuickAnalysis/SpiderWebChart'
 import TechnicalAnalysis from '../components/QuickAnalysis/TechnicalAnalysis'
+import { fetchDataBasicPrice, fetchDataBusinessPosition, fetchDataBussinessAnalysis, fetchDataFinancialHealthAnalysis, fetchDataIndividualInvestorBenefits, fetchDataTechnicalAnalysis, gatherTotalStars } from '../thunk'
+import { useDispatch } from "react-redux";
 
 const QuickAnalysis = ({ codeUrl }) => {
+  const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(false)
   const { queryApi } = useQueryApi(codeUrl);
 
@@ -18,14 +22,24 @@ const QuickAnalysis = ({ codeUrl }) => {
     }, 700)
   }, [])
 
+  useEffect(() => {
+    dispatch(fetchDataFinancialHealthAnalysis(queryApi.stock));
+    dispatch(fetchDataBussinessAnalysis(queryApi.stock));
+    dispatch(fetchDataBusinessPosition(queryApi.stock));
+    dispatch(fetchDataBasicPrice(queryApi.stock));
+    dispatch(fetchDataTechnicalAnalysis(queryApi.stock));
+    dispatch(fetchDataIndividualInvestorBenefits(queryApi.stock));
+    dispatch(gatherTotalStars());
+  }, [dispatch, queryApi]);
+
   return (
     <div className='container mx-auto'>
       {isLoading ? (
         <>
           <div>
             <div className='flex'>
-              <div className='w-[40%] h-[200px]'>
-
+              <div className='w-[40%]'>
+                <SpiderWebChart queryApi={queryApi} />
               </div>
 
               <div className='w-[60%] h-[200px]'>

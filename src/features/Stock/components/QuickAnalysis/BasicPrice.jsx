@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Popover } from 'antd';
 import ChartGauge from './components/ChartGauge';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataBasicPrice } from '../../thunk';
-import { Collapse, Rating } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { Rating } from '@mui/material';
 import Loading from '../../../Chart/utils/Loading';
 import { getTextColorRating } from '../../../Chart/utils/utils';
 
@@ -17,13 +16,9 @@ const contentBasicPrice = (
 );
 
 const BasicPrice = ({ queryApi }) => {
-    const dispatch = useDispatch()
     const { dataBasicPrice } = useSelector(state => state.stock)
     const [showChild, setShowChild] = useState(false);
     const [showChildState, setShowChildState] = useState(null);
-    useEffect(() => {
-        dispatch(fetchDataBasicPrice(queryApi.stock));
-    }, [dispatch, queryApi]);
 
     const toggleChildVisibility = (index) => {
         if (showChildState === index) {
