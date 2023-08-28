@@ -412,6 +412,7 @@ export const fetchDataIndividualInvestorBenefits = (stock) => async (dispatch, g
 export const gatherTotalStars = () => (dispatch, getState) => {
     try {
         const { stock } = getState();
+
         const gatheredTotalStars = [
             {
                 name: 'Financial Health Analysis',
@@ -448,3 +449,4 @@ export const gatherTotalStars = () => (dispatch, getState) => {
         console.error(err);
     }
 };
+

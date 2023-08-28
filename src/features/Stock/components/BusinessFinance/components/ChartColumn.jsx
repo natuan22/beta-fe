@@ -17,7 +17,7 @@ const ChartColumn = ({ data, timeLine, name }) => {
             text: name,
             style: {
                 color: localStorage.getItem('color'),
-                fontFamily: 'Roboto', // Sử dụng font chữ "Inter"
+                fontFamily: 'Roboto', // Sử dụng font chữ "Roboto"
                 fontWeight: '700',   // Trọng lượng font chữ 700 (Bold)
                 fontSize: '14px',    // Kích thước font chữ 13px
             }

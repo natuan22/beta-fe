@@ -130,7 +130,7 @@ const InterestRateVolatility = () => {
         },
         series: data,
     };
-    console.log('lai suat', data)
+    // console.log('lai suat', data)
     return (
         <div>
             <div className='flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
