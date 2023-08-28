@@ -35,6 +35,7 @@ const initialState = {
     dataBasicPrice: {},
     dataTechnicalAnalysis: {},
     dataIndividualInvestorBenefits: {},
+    dataTotalStar: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -140,6 +141,9 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_INDIVIDUAL_INVESTOR_BENEFITS) {
             draft.dataIndividualInvestorBenefits = payload
+        }
+        if (type === stockType.FETCH_DATA_TOTAL_STAR) {
+            draft.dataTotalStar = payload
         }
     });
 };

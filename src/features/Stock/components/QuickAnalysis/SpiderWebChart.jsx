@@ -1,0 +1,105 @@
+import React from 'react'
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import { useSelector } from 'react-redux';
+import Loading from '../../../Chart/utils/Loading';
+
+const SpiderWebChart = ({ queryApi }) => {
+    const { dataTotalStar, dataFinancialHealthAnalysis, dataBussinessAnalysis, dataBusinessPosition, dataBasicPrice, dataTechnicalAnalysis, dataIndividualInvestorBenefits } = useSelector(state => state.stock)
+    console.log(dataTotalStar)
+    const allDataAvailable =
+        dataFinancialHealthAnalysis &&
+        dataBussinessAnalysis &&
+        dataBusinessPosition &&
+        dataBasicPrice &&
+        dataTechnicalAnalysis &&
+        dataIndividualInvestorBenefits;
+
+    const data =
+        [{
+            name: 'Sức khoẻ tài chính',
+            value: dataFinancialHealthAnalysis.totalStar
+        },
+        {
+            name: 'Vị thế doanh nghiệp',
+            value: dataBusinessPosition.totalStar
+        },
+        {
+            name: 'Định giá cơ bản',
+            value: dataBasicPrice.totalStar
+        },
+        {
+            name: 'Ngành nghề kinh doanh',
+            value: dataBussinessAnalysis.totalStar
+        },
+        {
+            name: 'Quyền lợi NĐT cá nhân',
+            value: dataIndividualInvestorBenefits.totalStar
+        },
+        {
+            name: 'Phân tích kỹ thuật',
+            value: dataTechnicalAnalysis.totalStar
+        }]
+
+    const options = {
+        accessibility: {
+            enabled: false,
+        },
+        credits: false,
+        chart: {
+            polar: true,
+            type: 'area',
+            backgroundColor: "transparent", // màu nền của biểu đồ
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: data.map(item => item.name),
+            tickmarkPlacement: 'on',
+            lineWidth: 0,
+            labels: {
+                style: {
+                    color: localStorage.getItem('color'), // màu cho các nhãn trục x
+                    fontFamily: 'Roboto', // Sử dụng font chữ "Roboto"
+                }
+            },
+        },
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0,
+            labels: {
+                enabled: false
+            },
+        },
+        legend: {
+            enabled: false,
+            align: 'right',
+            verticalAlign: 'middle',
+            layout: 'vertical'
+        },
+        series: [{
+            name: queryApi.stock,
+            data: data.map(item => item.value),
+            pointPlacement: 'on',
+            fillColor: 'rgba(255, 211, 54, 0.3)', // Màu với độ mờ
+            lineWidth: 2, // Độ dày của dòng
+            color: '#FFD336', // Màu của dòng
+        }],
+    }
+
+    return (
+        <div>
+            <div>
+                {allDataAvailable ? (
+                    <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+                ) : (
+                    <div className='h-[300px] flex items-center justify-center'><Loading /></div>
+                )}
+            </div>
+        </div>
+    )
+}
+
+export default SpiderWebChart

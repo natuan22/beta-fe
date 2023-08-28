@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Popover } from 'antd';
 import ChartGauge from './components/ChartGauge';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataBusinessPosition } from '../../thunk';
+import { useSelector } from 'react-redux';
 import { Rating } from '@mui/material';
 import Loading from '../../../Chart/utils/Loading';
 import { getTextColorRating } from '../../../Chart/utils/utils';
@@ -16,13 +15,10 @@ const contentFinancialHealthAnalysis = (
 );
 
 const BusinessPosition = ({ queryApi }) => {
-    const dispatch = useDispatch()
     const { dataBusinessPosition } = useSelector(state => state.stock)
     const [showChild, setShowChild] = useState(false);
     const [showChildStates, setShowChildStates] = useState([]);
-    useEffect(() => {
-        dispatch(fetchDataBusinessPosition(queryApi.stock));
-    }, [dispatch, queryApi]);
+
     const toggleChildVisibility = (index) => {
         const updatedStates = [...showChildStates];
         updatedStates[index] = !updatedStates[index];
