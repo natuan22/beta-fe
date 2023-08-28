@@ -31,7 +31,6 @@ const QuickAnalysis = ({ codeUrl }) => {
     dispatch(fetchDataIndividualInvestorBenefits(queryApi.stock));
   }, [dispatch, queryApi.stock]);
 
-
   return (
     <div className='container mx-auto'>
       {isLoading ? (

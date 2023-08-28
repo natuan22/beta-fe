@@ -7,14 +7,11 @@ import { gatherTotalStars } from '../../thunk';
 
 const SpiderWebChart = ({ queryApi }) => {
     const dispatch = useDispatch()
-    const { dataTotalStar, dataFinancialHealthAnalysis, dataBussinessAnalysis, dataBusinessPosition, dataBasicPrice, dataTechnicalAnalysis, dataIndividualInvestorBenefits } = useSelector(state => state.stock)
-    console.log(dataTotalStar)
-
+    const { dataTotalStar } = useSelector(state => state.stock)
 
     useEffect(() => {
         dispatch(gatherTotalStars())
     }, [dispatch])
-
 
     const options = {
         accessibility: {
