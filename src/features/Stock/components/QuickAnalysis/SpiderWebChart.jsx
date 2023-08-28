@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 
 const SpiderWebChart = ({ queryApi }) => {
-    const { dataTotalStar, dataFinancialHealthAnalysis, dataBussinessAnalysis, dataBusinessPosition, dataBasicPrice, dataTechnicalAnalysis, dataIndividualInvestorBenefits } = useSelector(state => state.stock)
-    console.log(dataTotalStar)
+    const { dataFinancialHealthAnalysis, dataBussinessAnalysis, dataBusinessPosition, dataBasicPrice, dataTechnicalAnalysis, dataIndividualInvestorBenefits } = useSelector(state => state.stock)
+
     const allDataAvailable =
         dataFinancialHealthAnalysis &&
         dataBussinessAnalysis &&
@@ -18,27 +18,27 @@ const SpiderWebChart = ({ queryApi }) => {
     const data =
         [{
             name: 'Sức khoẻ tài chính',
-            value: dataFinancialHealthAnalysis.totalStar
+            value: dataFinancialHealthAnalysis.totalStar || 0
         },
         {
             name: 'Vị thế doanh nghiệp',
-            value: dataBusinessPosition.totalStar
+            value: dataBusinessPosition.totalStar || 0
         },
         {
             name: 'Định giá cơ bản',
-            value: dataBasicPrice.totalStar
+            value: dataBasicPrice.totalStar || 0
         },
         {
             name: 'Ngành nghề kinh doanh',
-            value: dataBussinessAnalysis.totalStar
+            value: dataBussinessAnalysis.totalStar || 0
         },
         {
             name: 'Quyền lợi NĐT cá nhân',
-            value: dataIndividualInvestorBenefits.totalStar
+            value: dataIndividualInvestorBenefits.totalStar || 0
         },
         {
             name: 'Phân tích kỹ thuật',
-            value: dataTechnicalAnalysis.totalStar
+            value: dataTechnicalAnalysis.totalStar || 0
         }]
 
     const options = {
