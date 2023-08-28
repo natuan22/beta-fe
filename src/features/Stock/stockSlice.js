@@ -35,10 +35,14 @@ const initialState = {
     dataBasicPrice: {},
     dataTechnicalAnalysis: {},
     dataIndividualInvestorBenefits: {},
+    dataTotalStar: []
 };
 
 const reducer = (state = initialState, { type, payload }) => {
     return produce(state, (draft) => {
+        if (type === stockType.FETCH_DATA_TOTAL_STAR) {
+            draft.dataTotalStar = payload
+        }
         if (type === stockType.FETCH_DATA_INFO_HEADER) {
             draft.dataInfoHeader = payload
         }
@@ -125,21 +129,27 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === stockType.FETCH_DATA_FINANCIAL_HEALTH_ANALYSIS) {
             draft.dataFinancialHealthAnalysis = payload
+            draft.dataFinancialHealthAnalysis.totalStar = payload.totalStar
         }
         if (type === stockType.FETCH_DATA_BUSSINESS_ANALYSIS) {
             draft.dataBussinessAnalysis = payload
+            draft.dataBussinessAnalysis.totalStar = payload.totalStar
         }
         if (type === stockType.FETCH_DATA_BUSSINESS_POSITION) {
             draft.dataBusinessPosition = payload
+            draft.dataBusinessPosition.totalStar = payload.totalStar
         }
         if (type === stockType.FETCH_DATA_BASIC_PRICE) {
             draft.dataBasicPrice = payload
+            draft.dataBasicPrice.totalStar = payload.totalStar
         }
         if (type === stockType.FETCH_DATA_TECHNICAL_ANALYSIS) {
             draft.dataTechnicalAnalysis = payload
+            draft.dataTechnicalAnalysis.totalStar = payload.totalStar
         }
         if (type === stockType.FETCH_DATA_INDIVIDUAL_INVESTOR_BENEFITS) {
             draft.dataIndividualInvestorBenefits = payload
+            draft.dataIndividualInvestorBenefits.totalStar = payload.totalStar
         }
     });
 };

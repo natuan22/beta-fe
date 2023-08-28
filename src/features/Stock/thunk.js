@@ -329,13 +329,16 @@ export const fetchDataChartFinancialIndicators = (stock, order) => async (dispat
 }
 
 
-export const fetchDataFinancialHealthAnalysis = (stock) => async (dispatch) => {
+
+
+export const fetchDataFinancialHealthAnalysis = (stock) => async (dispatch,) => {
     try {
         const res = await stockService.fetchDataFinancialHealthAnalysis(stock)
         dispatch({
             type: stockType.FETCH_DATA_FINANCIAL_HEALTH_ANALYSIS,
             payload: res.data.data
         })
+
     } catch (err) {
         console.error(err)
     }
@@ -348,6 +351,7 @@ export const fetchDataBussinessAnalysis = (stock) => async (dispatch) => {
             type: stockType.FETCH_DATA_BUSSINESS_ANALYSIS,
             payload: res.data.data
         })
+
     } catch (err) {
         console.error(err)
     }
@@ -360,6 +364,7 @@ export const fetchDataBusinessPosition = (stock) => async (dispatch) => {
             type: stockType.FETCH_DATA_BUSSINESS_POSITION,
             payload: res.data.data
         })
+
     } catch (err) {
         console.error(err)
     }
@@ -372,6 +377,7 @@ export const fetchDataBasicPrice = (stock) => async (dispatch) => {
             type: stockType.FETCH_DATA_BASIC_PRICE,
             payload: res.data.data
         })
+
     } catch (err) {
         console.error(err)
     }
@@ -384,21 +390,60 @@ export const fetchDataTechnicalAnalysis = (stock) => async (dispatch) => {
             type: stockType.FETCH_DATA_TECHNICAL_ANALYSIS,
             payload: res.data.data
         })
+
     } catch (err) {
         console.error(err)
     }
 }
 
-export const fetchDataIndividualInvestorBenefits = (stock) => async (dispatch) => {
+export const fetchDataIndividualInvestorBenefits = (stock) => async (dispatch, getState) => {
     try {
         const res = await stockService.fetchDataIndividualInvestorBenefits(stock)
         dispatch({
             type: stockType.FETCH_DATA_INDIVIDUAL_INVESTOR_BENEFITS,
             payload: res.data.data
         })
+
     } catch (err) {
         console.error(err)
     }
 }
 
+export const gatherTotalStars = () => (dispatch, getState) => {
+    try {
+        const { stock } = getState();
+        const gatheredTotalStars = [{
+            name: 'Sức khoẻ tài chính',
+            value: stock.dataFinancialHealthAnalysis.totalStar
+        },
+        {
+            name: 'Vị thế doanh nghiệp',
+            value: stock.dataBusinessPosition.totalStar
+        },
+        {
+            name: 'Định giá cơ bản',
+            value: stock.dataBasicPrice.totalStar
+        },
+        {
+            name: 'Ngành nghề kinh doanh',
+            value: stock.dataBussinessAnalysis.totalStar
+        },
+        {
+            name: 'Quyền lợi NĐT cá nhân',
+            value: stock.dataIndividualInvestorBenefits.totalStar
+        },
+        {
+            name: 'Phân tích kỹ thuật',
+            value: stock.dataTechnicalAnalysis.totalStar
+        }]
+
+        dispatch({
+            type: stockType.FETCH_DATA_TOTAL_STAR,
+            payload: gatheredTotalStars
+        });
+
+    } catch (err) {
+        console.error(err);
+    }
+};
 

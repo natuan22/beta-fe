@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Popover } from 'antd';
 import ChartGauge from './components/ChartGauge';
-import { useSelector } from 'react-redux';
 import { Rating } from '@mui/material';
 import Loading from '../../../Chart/utils/Loading';
 import { getTextColorRating } from '../../../Chart/utils/utils';
+import { useSelector } from 'react-redux';
 
 const contentBasicPrice = (
     <div>
@@ -16,6 +16,7 @@ const contentBasicPrice = (
 );
 
 const BasicPrice = ({ queryApi }) => {
+
     const { dataBasicPrice } = useSelector(state => state.stock)
     const [showChild, setShowChild] = useState(false);
     const [showChildState, setShowChildState] = useState(null);
