@@ -1,45 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
+import { gatherTotalStars } from '../../thunk';
 
 const SpiderWebChart = ({ queryApi }) => {
+    const dispatch = useDispatch()
     const { dataTotalStar, dataFinancialHealthAnalysis, dataBussinessAnalysis, dataBusinessPosition, dataBasicPrice, dataTechnicalAnalysis, dataIndividualInvestorBenefits } = useSelector(state => state.stock)
     console.log(dataTotalStar)
-    const allDataAvailable =
-        dataFinancialHealthAnalysis &&
-        dataBussinessAnalysis &&
-        dataBusinessPosition &&
-        dataBasicPrice &&
-        dataTechnicalAnalysis &&
-        dataIndividualInvestorBenefits;
 
-    const data =
-        [{
-            name: 'Sức khoẻ tài chính',
-            value: dataFinancialHealthAnalysis.totalStar
-        },
-        {
-            name: 'Vị thế doanh nghiệp',
-            value: dataBusinessPosition.totalStar
-        },
-        {
-            name: 'Định giá cơ bản',
-            value: dataBasicPrice.totalStar
-        },
-        {
-            name: 'Ngành nghề kinh doanh',
-            value: dataBussinessAnalysis.totalStar
-        },
-        {
-            name: 'Quyền lợi NĐT cá nhân',
-            value: dataIndividualInvestorBenefits.totalStar
-        },
-        {
-            name: 'Phân tích kỹ thuật',
-            value: dataTechnicalAnalysis.totalStar
-        }]
+
+    useEffect(() => {
+        dispatch(gatherTotalStars())
+    }, [dispatch])
+
 
     const options = {
         accessibility: {
@@ -55,7 +30,7 @@ const SpiderWebChart = ({ queryApi }) => {
             text: ''
         },
         xAxis: {
-            categories: data.map(item => item.name),
+            categories: dataTotalStar?.map(item => item.name),
             tickmarkPlacement: 'on',
             lineWidth: 0,
             labels: {
@@ -81,7 +56,7 @@ const SpiderWebChart = ({ queryApi }) => {
         },
         series: [{
             name: queryApi.stock,
-            data: data.map(item => item.value),
+            data: dataTotalStar?.map(item => item.value),
             pointPlacement: 'on',
             fillColor: 'rgba(255, 211, 54, 0.3)', // Màu với độ mờ
             lineWidth: 2, // Độ dày của dòng
@@ -92,7 +67,7 @@ const SpiderWebChart = ({ queryApi }) => {
     return (
         <div>
             <div>
-                {allDataAvailable ? (
+                {dataTotalStar?.length ? (
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 ) : (
                     <div className='h-[300px] flex items-center justify-center'><Loading /></div>
