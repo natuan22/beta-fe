@@ -412,33 +412,30 @@ export const fetchDataIndividualInvestorBenefits = (stock) => async (dispatch, g
 export const gatherTotalStars = () => (dispatch, getState) => {
     try {
         const { stock } = getState();
-
-        const gatheredTotalStars = [
-            {
-                name: 'Financial Health Analysis',
-                value: stock.dataFinancialHealthAnalysis.totalStar
-            },
-            {
-                name: 'Business Analysis',
-                value: stock.dataBussinessAnalysis.totalStar
-            },
-            {
-                name: 'Business Position',
-                value: stock.dataBusinessPosition.totalStar
-            },
-            {
-                name: 'Basic Price',
-                value: stock.dataBasicPrice.totalStar
-            },
-            {
-                name: 'Technical Analysis',
-                value: stock.dataTechnicalAnalysis.totalStar
-            },
-            {
-                name: 'Individual Investor Benefits',
-                value: stock.dataIndividualInvestorBenefits.totalStar
-            }
-        ];
+        const gatheredTotalStars = [{
+            name: 'Sức khoẻ tài chính',
+            value: stock.dataFinancialHealthAnalysis.totalStar
+        },
+        {
+            name: 'Vị thế doanh nghiệp',
+            value: stock.dataBusinessPosition.totalStar
+        },
+        {
+            name: 'Định giá cơ bản',
+            value: stock.dataBasicPrice.totalStar
+        },
+        {
+            name: 'Ngành nghề kinh doanh',
+            value: stock.dataBussinessAnalysis.totalStar
+        },
+        {
+            name: 'Quyền lợi NĐT cá nhân',
+            value: stock.dataIndividualInvestorBenefits.totalStar
+        },
+        {
+            name: 'Phân tích kỹ thuật',
+            value: stock.dataTechnicalAnalysis.totalStar
+        }]
 
         dispatch({
             type: stockType.FETCH_DATA_TOTAL_STAR,

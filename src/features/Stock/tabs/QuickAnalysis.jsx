@@ -29,8 +29,8 @@ const QuickAnalysis = ({ codeUrl }) => {
     dispatch(fetchDataBasicPrice(queryApi.stock));
     dispatch(fetchDataTechnicalAnalysis(queryApi.stock));
     dispatch(fetchDataIndividualInvestorBenefits(queryApi.stock));
-    dispatch(gatherTotalStars());
-  }, [dispatch, queryApi]);
+  }, [dispatch, queryApi.stock]);
+
 
   return (
     <div className='container mx-auto'>
