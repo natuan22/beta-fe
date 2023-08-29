@@ -13,8 +13,8 @@ import { useDispatch } from "react-redux";
 
 const QuickAnalysis = ({ codeUrl }) => {
   const dispatch = useDispatch()
-  const [isLoading, setIsLoading] = useState(false)
   const { queryApi } = useQueryApi(codeUrl);
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {

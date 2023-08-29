@@ -8,6 +8,7 @@ import socket from '../../Chart/utils/socket'
 import { useState } from 'react'
 import Loading from '../../Chart/utils/Loading'
 import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
+import { Skeleton } from '@mui/material'
 const resourceURL = process.env.REACT_APP_RESOURCE_URL
 
 const StockInfo = ({ codeUrl }) => {
@@ -18,6 +19,8 @@ const StockInfo = ({ codeUrl }) => {
     const [data, setData] = useState()
     const [dataChart, setDataChart] = useState([])
     const nav = useNavigate()
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         dispatch(fetchDataInfoHeader(code, type));
     }, [dispatch, code, type]);
@@ -30,6 +33,7 @@ const StockInfo = ({ codeUrl }) => {
 
     useEffect(() => {
         if (dataInfoHeader) {
+            setLoading(false);
             setData(dataInfoHeader)
         }
     }, [dataInfoHeader])
@@ -47,7 +51,6 @@ const StockInfo = ({ codeUrl }) => {
             socket.off(`listen-co-phieu-${code}`);
         };
     }, [code])
-
 
     const [showFullSummary, setShowFullSummary] = useState(false);
     const [showCollapsedSummary, setShowCollapsedSummary] = useState(true);
@@ -72,7 +75,7 @@ const StockInfo = ({ codeUrl }) => {
 
     return (
         <div>
-            {dataInfoHeader && data ?
+            {!loading ? (
                 <div>
                     <div className='px-[20px] pt-[30px] overflow-y-auto'>
                         <table className='border border-[#34A3F3] border-solid border-collapse w-full'>
@@ -172,8 +175,37 @@ const StockInfo = ({ codeUrl }) => {
                         </div>
                     </div>
                 </div>
-                : <div><Loading /></div>}
-        </div>
+            ) : (
+                <div>
+                    <Skeleton variant="rectangular" height={100} sx={{ bgcolor: 'grey.900' }} className='mx-[20px] mt-[30px]' />
+                    <hr className="h-px my-7 bg-[#34A3F3] border-0"></hr>
+                    <div className='flex mb-7'>
+                        <Skeleton variant="rounded" width={105} height={30} sx={{ bgcolor: 'grey.900' }} />
+                        <Skeleton variant="rounded" width={269} height={30} sx={{ bgcolor: 'grey.900' }} className='ml-4' />
+                    </div>
+                    <div className='grid lg:grid-cols-12 md:grid-cols-none gap-3'>
+                        <div className='lg:col-span-3 md:col-span-full'>
+                            <Skeleton variant="text" sx={{ fontSize: '1rem', bgcolor: 'grey.900' }} />
+
+                            <div className='p-4 flex justify-center'>
+                                <Skeleton variant="rounded" height={145} sx={{ bgcolor: 'grey.900' }} className='xl:w-[262px] lg:w-[222px] md:w-[262px] sm:w-[262px] xs:w-[262px] xxs:w-[262px]' />
+                            </div>
+                        </div>
+                        <div className='lg:col-span-4 md:col-span-full'>
+                            <div className='flex justify-between'>
+                                <Skeleton variant="text" width={333} sx={{ fontSize: '1rem', bgcolor: 'grey.900' }} />
+                            </div>
+                            <div className='mt-2'>
+                                <Skeleton variant="text" sx={{ fontSize: '3rem', bgcolor: 'grey.900' }} />
+                            </div>
+                        </div>
+                        <div className='lg:col-span-5 md:col-span-full'>
+                            <Skeleton variant="rounded" height={200} sx={{ bgcolor: 'grey.900' }} />
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div >
 
     )
 }

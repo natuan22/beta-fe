@@ -1,17 +1,36 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
-import { gatherTotalStars } from '../../thunk';
 
 const SpiderWebChart = ({ queryApi }) => {
-    const dispatch = useDispatch()
-    const { dataTotalStar } = useSelector(state => state.stock)
+    const { dataFinancialHealthAnalysis, dataBusinessPosition, dataBasicPrice, dataBussinessAnalysis, dataIndividualInvestorBenefits, dataTechnicalAnalysis } = useSelector(state => state.stock)
 
-    useEffect(() => {
-        dispatch(gatherTotalStars())
-    }, [dispatch])
+    const dataTotalStar = [{
+        name: 'Sức khoẻ tài chính',
+        value: dataFinancialHealthAnalysis.totalStar || 0
+    },
+    {
+        name: 'Vị thế doanh nghiệp',
+        value: dataBusinessPosition.totalStar || 0
+    },
+    {
+        name: 'Định giá cơ bản',
+        value: dataBasicPrice.totalStar || 0
+    },
+    {
+        name: 'Ngành nghề kinh doanh',
+        value: dataBussinessAnalysis.totalStar || 0
+    },
+    {
+        name: 'Quyền lợi NĐT cá nhân',
+        value: dataIndividualInvestorBenefits.totalStar || 0
+    },
+    {
+        name: 'Phân tích kỹ thuật',
+        value: dataTechnicalAnalysis.totalStar || 0
+    }]
 
     const options = {
         accessibility: {
@@ -46,10 +65,13 @@ const SpiderWebChart = ({ queryApi }) => {
             },
         },
         legend: {
-            enabled: false,
-            align: 'right',
+            align: 'left',
             verticalAlign: 'middle',
-            layout: 'vertical'
+            layout: 'vertical',
+            itemStyle: {
+                color: localStorage.getItem('color'),
+                fontWeight: 'bold'
+            }
         },
         series: [{
             name: queryApi.stock,
@@ -64,7 +86,7 @@ const SpiderWebChart = ({ queryApi }) => {
     return (
         <div>
             <div>
-                {dataTotalStar?.length ? (
+                {dataTotalStar?.length > 0 ? (
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 ) : (
                     <div className='h-[300px] flex items-center justify-center'><Loading /></div>
