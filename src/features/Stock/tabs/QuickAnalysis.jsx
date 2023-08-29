@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 const QuickAnalysis = ({ codeUrl }) => {
   const dispatch = useDispatch()
   const { queryApi } = useQueryApi(codeUrl);
-
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -30,7 +29,6 @@ const QuickAnalysis = ({ codeUrl }) => {
     dispatch(fetchDataBasicPrice(queryApi.stock));
     dispatch(fetchDataTechnicalAnalysis(queryApi.stock));
     dispatch(fetchDataIndividualInvestorBenefits(queryApi.stock));
-
   }, [dispatch, queryApi.stock]);
 
   return (

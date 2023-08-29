@@ -338,8 +338,11 @@ export const fetchDataFinancialHealthAnalysis = (stock) => async (dispatch, getS
             type: stockType.FETCH_DATA_FINANCIAL_HEALTH_ANALYSIS,
             payload: res.data.data
         })
-            ;
     } catch (err) {
+        dispatch({
+            type: stockType.FETCH_DATA_FINANCIAL_HEALTH_ANALYSIS_STATUS,
+            payload: err.response.data.status
+        })
         console.error(err)
     }
 }
@@ -351,8 +354,11 @@ export const fetchDataBussinessAnalysis = (stock) => async (dispatch) => {
             type: stockType.FETCH_DATA_BUSSINESS_ANALYSIS,
             payload: res.data.data
         })
-
     } catch (err) {
+        dispatch({
+            type: stockType.FETCH_DATA_BUSSINESS_ANALYSIS_STATUS,
+            payload: err.response.data.status
+        })
         console.error(err)
     }
 }
@@ -364,8 +370,11 @@ export const fetchDataBusinessPosition = (stock) => async (dispatch) => {
             type: stockType.FETCH_DATA_BUSSINESS_POSITION,
             payload: res.data.data
         })
-
     } catch (err) {
+        dispatch({
+            type: stockType.FETCH_DATA_BUSSINESS_POSITION_STATUS,
+            payload: err.response.data.status
+        })
         console.error(err)
     }
 }
@@ -377,9 +386,11 @@ export const fetchDataBasicPrice = (stock) => async (dispatch) => {
             type: stockType.FETCH_DATA_BASIC_PRICE,
             payload: res.data.data
         })
-
-
     } catch (err) {
+        dispatch({
+            type: stockType.FETCH_DATA_BASIC_PRICE_STATUS,
+            payload: err.response.data.status
+        })
         console.error(err)
     }
 }
@@ -391,8 +402,11 @@ export const fetchDataTechnicalAnalysis = (stock) => async (dispatch) => {
             type: stockType.FETCH_DATA_TECHNICAL_ANALYSIS,
             payload: res.data.data
         })
-
     } catch (err) {
+        dispatch({
+            type: stockType.FETCH_DATA_TECHNICAL_ANALYSIS_STATUS,
+            payload: err.response.data.status
+        })
         console.error(err)
     }
 }
@@ -404,8 +418,11 @@ export const fetchDataIndividualInvestorBenefits = (stock) => async (dispatch,) 
             type: stockType.FETCH_DATA_INDIVIDUAL_INVESTOR_BENEFITS,
             payload: res.data.data
         })
-
     } catch (err) {
+        dispatch({
+            type: stockType.FETCH_DATA_INDIVIDUAL_INVESTOR_BENEFITS_STATUS,
+            payload: err.response.data.status
+        })
         console.error(err)
     }
 }

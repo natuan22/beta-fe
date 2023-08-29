@@ -15,7 +15,7 @@ const contentFinancialHealthAnalysis = (
 );
 
 const TechnicalAnalysis = ({ queryApi }) => {
-    const { dataTechnicalAnalysis, } = useSelector(state => state.stock)
+    const { dataTechnicalAnalysis, dataTechnicalAnalysisStatus } = useSelector(state => state.stock)
     const [showChild, setShowChild] = useState(false);
     const [showChildStates, setShowChildStates] = useState([]);
 
@@ -24,6 +24,22 @@ const TechnicalAnalysis = ({ queryApi }) => {
         updatedStates[index] = !updatedStates[index];
         setShowChildStates(updatedStates);
     };
+
+    if (dataTechnicalAnalysisStatus === 400 || dataTechnicalAnalysis.length === 0) {
+        return (
+            <>
+                <div className='border-solid dark:border-white border-b-[1px] border-t-0 border-x-0'>
+                    <span className='dark:text-white text-black font-semibold xl:w-[50%] lg:w-[35%] md:w-[40%] sm:w-[45%] flex justify-between'>Phân tích kỹ thuật
+                        <Popover content={contentFinancialHealthAnalysis} >
+                            <span className='dark:text-white text-black'><BsInfoCircleFill /></span>
+                        </Popover>
+                    </span>
+                </div>
+                <div className='dark:text-white text-black h-[300px] flex items-center justify-center'>Dữ liệu đang được cập nhật</div>
+            </>
+        )
+    }
+
     return (
         <div>
             <div className='border-solid dark:border-white border-b-[1px] border-t-0 border-x-0'>
