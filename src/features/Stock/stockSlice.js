@@ -29,6 +29,7 @@ const initialState = {
     dataChartPieBalanceSheet: {},
     dataTableFinancialIndicators: {},
     dataChartFinancialIndicators: {},
+
     dataFinancialHealthAnalysis: {},
     dataBussinessAnalysis: {},
     dataBusinessPosition: {},
@@ -123,6 +124,8 @@ const reducer = (state = initialState, { type, payload }) => {
         if (type === stockType.FETCH_DATA_CHART_FINANCIAL_INDICATORS) {
             draft.dataChartFinancialIndicators = payload
         }
+
+
         if (type === stockType.FETCH_DATA_FINANCIAL_HEALTH_ANALYSIS) {
             draft.dataFinancialHealthAnalysis = payload
         }

@@ -8,12 +8,13 @@ import FinancialHealthAnalysis from '../components/QuickAnalysis/FinancialHealth
 import IndividualInvestorBenefits from '../components/QuickAnalysis/IndividualInvestorBenefits'
 import SpiderWebChart from '../components/QuickAnalysis/SpiderWebChart'
 import TechnicalAnalysis from '../components/QuickAnalysis/TechnicalAnalysis'
-import { fetchDataBasicPrice, fetchDataBusinessPosition, fetchDataBussinessAnalysis, fetchDataFinancialHealthAnalysis, fetchDataIndividualInvestorBenefits, fetchDataTechnicalAnalysis, gatherTotalStars } from '../thunk'
-import { useDispatch } from "react-redux";
+import { fetchDataBasicPrice, fetchDataBusinessPosition, fetchDataBussinessAnalysis, fetchDataFinancialHealthAnalysis, fetchDataIndividualInvestorBenefits, fetchDataTechnicalAnalysis, } from '../thunk'
+import { useDispatch, useSelector } from "react-redux";
 
 const QuickAnalysis = ({ codeUrl }) => {
   const dispatch = useDispatch()
   const { queryApi } = useQueryApi(codeUrl);
+
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const QuickAnalysis = ({ codeUrl }) => {
     dispatch(fetchDataBasicPrice(queryApi.stock));
     dispatch(fetchDataTechnicalAnalysis(queryApi.stock));
     dispatch(fetchDataIndividualInvestorBenefits(queryApi.stock));
+
   }, [dispatch, queryApi.stock]);
 
   return (
@@ -38,7 +40,7 @@ const QuickAnalysis = ({ codeUrl }) => {
           <div>
             <div className='flex'>
               <div className='w-[40%]'>
-                <SpiderWebChart queryApi={queryApi} />
+                {/* <SpiderWebChart queryApi={queryApi} /> */}
               </div>
 
               <div className='w-[60%] h-[200px]'>

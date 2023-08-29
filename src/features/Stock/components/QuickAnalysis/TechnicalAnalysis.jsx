@@ -15,7 +15,7 @@ const contentFinancialHealthAnalysis = (
 );
 
 const TechnicalAnalysis = ({ queryApi }) => {
-    const { dataTechnicalAnalysis } = useSelector(state => state.stock)
+    const { dataTechnicalAnalysis, } = useSelector(state => state.stock)
     const [showChild, setShowChild] = useState(false);
     const [showChildStates, setShowChildStates] = useState([]);
 

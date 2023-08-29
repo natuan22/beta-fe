@@ -331,14 +331,14 @@ export const fetchDataChartFinancialIndicators = (stock, order) => async (dispat
 
 
 
-export const fetchDataFinancialHealthAnalysis = (stock) => async (dispatch,) => {
+export const fetchDataFinancialHealthAnalysis = (stock) => async (dispatch, getState) => {
     try {
         const res = await stockService.fetchDataFinancialHealthAnalysis(stock)
         dispatch({
             type: stockType.FETCH_DATA_FINANCIAL_HEALTH_ANALYSIS,
             payload: res.data.data
         })
-
+            ;
     } catch (err) {
         console.error(err)
     }
@@ -378,6 +378,7 @@ export const fetchDataBasicPrice = (stock) => async (dispatch) => {
             payload: res.data.data
         })
 
+
     } catch (err) {
         console.error(err)
     }
@@ -396,7 +397,7 @@ export const fetchDataTechnicalAnalysis = (stock) => async (dispatch) => {
     }
 }
 
-export const fetchDataIndividualInvestorBenefits = (stock) => async (dispatch, getState) => {
+export const fetchDataIndividualInvestorBenefits = (stock) => async (dispatch,) => {
     try {
         const res = await stockService.fetchDataIndividualInvestorBenefits(stock)
         dispatch({
@@ -408,3 +409,4 @@ export const fetchDataIndividualInvestorBenefits = (stock) => async (dispatch, g
         console.error(err)
     }
 }
+

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 
 const SpiderWebChart = ({ queryApi }) => {
+
     const { dataFinancialHealthAnalysis, dataBusinessPosition, dataBasicPrice, dataBussinessAnalysis, dataIndividualInvestorBenefits, dataTechnicalAnalysis } = useSelector(state => state.stock)
 
     const dataTotalStar = [{
@@ -32,6 +33,7 @@ const SpiderWebChart = ({ queryApi }) => {
         value: dataTechnicalAnalysis.totalStar || 0
     }]
 
+    console.log(dataTotalStar)
     const options = {
         accessibility: {
             enabled: false,
