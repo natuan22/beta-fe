@@ -40,7 +40,7 @@ const QuickAnalysis = ({ codeUrl }) => {
           <div>
             <div className='flex'>
               <div className='w-[40%]'>
-                {/* <SpiderWebChart queryApi={queryApi} /> */}
+                <SpiderWebChart queryApi={queryApi} />
               </div>
 
               <div className='w-[60%] h-[200px]'>
