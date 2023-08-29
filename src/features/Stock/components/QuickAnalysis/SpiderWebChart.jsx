@@ -1,21 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
-import { gatherTotalStars } from '../../thunk';
 
 const SpiderWebChart = ({ queryApi }) => {
-    const dispatch = useDispatch()
-    const { dataTotalStar, dataFinancialHealthAnalysis, dataBussinessAnalysis, dataBusinessPosition, dataBasicPrice, dataTechnicalAnalysis, dataIndividualInvestorBenefits } = useSelector(state => state.stock)
+    const { dataTotalStar } = useSelector(state => state.stock)
+
     console.log(dataTotalStar)
-
-
-    useEffect(() => {
-        dispatch(gatherTotalStars())
-    }, [dispatch])
-
-
     const options = {
         accessibility: {
             enabled: false,
@@ -67,7 +59,7 @@ const SpiderWebChart = ({ queryApi }) => {
     return (
         <div>
             <div>
-                {dataTotalStar?.length ? (
+                {dataTotalStar?.length > 0 ? (
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 ) : (
                     <div className='h-[300px] flex items-center justify-center'><Loading /></div>
