@@ -29,13 +29,18 @@ const initialState = {
     dataChartPieBalanceSheet: {},
     dataTableFinancialIndicators: {},
     dataChartFinancialIndicators: {},
-
     dataFinancialHealthAnalysis: {},
+    dataFinancialHealthAnalysisStatus: {},
     dataBussinessAnalysis: {},
+    dataBussinessAnalysisStatus: {},
     dataBusinessPosition: {},
+    dataBusinessPositionStatus: {},
     dataBasicPrice: {},
+    dataBasicPriceStatus: {},
     dataTechnicalAnalysis: {},
+    dataTechnicalAnalysisStatus: {},
     dataIndividualInvestorBenefits: {},
+    dataIndividualInvestorBenefitsStatus: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -124,25 +129,41 @@ const reducer = (state = initialState, { type, payload }) => {
         if (type === stockType.FETCH_DATA_CHART_FINANCIAL_INDICATORS) {
             draft.dataChartFinancialIndicators = payload
         }
-
-
         if (type === stockType.FETCH_DATA_FINANCIAL_HEALTH_ANALYSIS) {
             draft.dataFinancialHealthAnalysis = payload
+        }
+        if (type === stockType.FETCH_DATA_FINANCIAL_HEALTH_ANALYSIS_STATUS) {
+            draft.dataFinancialHealthAnalysisStatus = payload
         }
         if (type === stockType.FETCH_DATA_BUSSINESS_ANALYSIS) {
             draft.dataBussinessAnalysis = payload
         }
+        if (type === stockType.FETCH_DATA_BUSSINESS_ANALYSIS_STATUS) {
+            draft.dataBussinessAnalysisStatus = payload
+        }
         if (type === stockType.FETCH_DATA_BUSSINESS_POSITION) {
             draft.dataBusinessPosition = payload
+        }
+        if (type === stockType.FETCH_DATA_BUSSINESS_POSITION_STATUS) {
+            draft.dataBusinessPositionStatus = payload
         }
         if (type === stockType.FETCH_DATA_BASIC_PRICE) {
             draft.dataBasicPrice = payload
         }
+        if (type === stockType.FETCH_DATA_BASIC_PRICE_STATUS) {
+            draft.dataBasicPriceStatus = payload
+        }
         if (type === stockType.FETCH_DATA_TECHNICAL_ANALYSIS) {
             draft.dataTechnicalAnalysis = payload
         }
+        if (type === stockType.FETCH_DATA_TECHNICAL_ANALYSIS_STATUS) {
+            draft.dataTechnicalAnalysisStatus = payload
+        }
         if (type === stockType.FETCH_DATA_INDIVIDUAL_INVESTOR_BENEFITS) {
             draft.dataIndividualInvestorBenefits = payload
+        }
+        if (type === stockType.FETCH_DATA_INDIVIDUAL_INVESTOR_BENEFITS_STATUS) {
+            draft.dataIndividualInvestorBenefitsStatus = payload
         }
     });
 };
