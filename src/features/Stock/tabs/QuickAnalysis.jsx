@@ -13,10 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 const QuickAnalysis = ({ codeUrl }) => {
   const dispatch = useDispatch()
-  const [isLoading, setIsLoading] = useState(false)
   const { queryApi } = useQueryApi(codeUrl);
-  const { dataTotalStar } = useSelector(state => state.stock)
-  console.log(dataTotalStar)
+
+  const [isLoading, setIsLoading] = useState(false)
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(true)
@@ -32,7 +32,6 @@ const QuickAnalysis = ({ codeUrl }) => {
     dispatch(fetchDataIndividualInvestorBenefits(queryApi.stock));
 
   }, [dispatch, queryApi.stock]);
-
 
   return (
     <div className='container mx-auto'>

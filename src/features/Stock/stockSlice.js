@@ -36,14 +36,10 @@ const initialState = {
     dataBasicPrice: {},
     dataTechnicalAnalysis: {},
     dataIndividualInvestorBenefits: {},
-    dataTotalStar: []
 };
 
 const reducer = (state = initialState, { type, payload }) => {
     return produce(state, (draft) => {
-        if (type === stockType.FETCH_DATA_TOTAL_STAR) {
-            draft.dataTotalStar = payload
-        }
         if (type === stockType.FETCH_DATA_INFO_HEADER) {
             draft.dataInfoHeader = payload
         }

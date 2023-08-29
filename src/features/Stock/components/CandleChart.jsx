@@ -36,7 +36,8 @@ const CandleChart = ({ code, dataChart }) => {
             text: 'Diễn biến giao dịch trong ngày',
             style: {
                 color: 'white',
-                fontSize: '13px'
+                fontSize: '13px',
+                fontFamily: 'Roboto'
             }
         },
         rangeSelector: {

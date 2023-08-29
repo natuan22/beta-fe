@@ -5,7 +5,33 @@ import { useSelector } from 'react-redux';
 import Loading from '../../../Chart/utils/Loading';
 
 const SpiderWebChart = ({ queryApi }) => {
-    const { dataTotalStar } = useSelector(state => state.stock)
+
+    const { dataFinancialHealthAnalysis, dataBusinessPosition, dataBasicPrice, dataBussinessAnalysis, dataIndividualInvestorBenefits, dataTechnicalAnalysis } = useSelector(state => state.stock)
+
+    const dataTotalStar = [{
+        name: 'Sức khoẻ tài chính',
+        value: dataFinancialHealthAnalysis.totalStar || 0
+    },
+    {
+        name: 'Vị thế doanh nghiệp',
+        value: dataBusinessPosition.totalStar || 0
+    },
+    {
+        name: 'Định giá cơ bản',
+        value: dataBasicPrice.totalStar || 0
+    },
+    {
+        name: 'Ngành nghề kinh doanh',
+        value: dataBussinessAnalysis.totalStar || 0
+    },
+    {
+        name: 'Quyền lợi NĐT cá nhân',
+        value: dataIndividualInvestorBenefits.totalStar || 0
+    },
+    {
+        name: 'Phân tích kỹ thuật',
+        value: dataTechnicalAnalysis.totalStar || 0
+    }]
 
     console.log(dataTotalStar)
     const options = {
@@ -41,10 +67,13 @@ const SpiderWebChart = ({ queryApi }) => {
             },
         },
         legend: {
-            enabled: false,
-            align: 'right',
+            align: 'left',
             verticalAlign: 'middle',
-            layout: 'vertical'
+            layout: 'vertical',
+            itemStyle: {
+                color: localStorage.getItem('color'),
+                fontWeight: 'bold'
+            }
         },
         series: [{
             name: queryApi.stock,
