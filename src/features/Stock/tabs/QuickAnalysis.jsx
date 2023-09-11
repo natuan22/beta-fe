@@ -9,7 +9,7 @@ import IndividualInvestorBenefits from '../components/QuickAnalysis/IndividualIn
 import SpiderWebChart from '../components/QuickAnalysis/SpiderWebChart'
 import TechnicalAnalysis from '../components/QuickAnalysis/TechnicalAnalysis'
 import { fetchDataBasicPrice, fetchDataBusinessPosition, fetchDataBussinessAnalysis, fetchDataFinancialHealthAnalysis, fetchDataIndividualInvestorBenefits, fetchDataTechnicalAnalysis, } from '../thunk'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const QuickAnalysis = ({ codeUrl }) => {
   const dispatch = useDispatch()

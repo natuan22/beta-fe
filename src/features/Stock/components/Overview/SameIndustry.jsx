@@ -46,7 +46,7 @@ const SameIndustry = ({ queryApi }) => {
             dataIndex: 'closePrice',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{(record.closePrice * 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.closePrice === 0 ? '-' : (record.closePrice * 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
             },
             sorter: (a, b) => a.closePrice - b.closePrice,
         },
@@ -55,7 +55,7 @@ const SameIndustry = ({ queryApi }) => {
             dataIndex: 'kl',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.kl.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.kl === 0 ? '-' : record.kl.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
             },
             sorter: (a, b) => a.kl - b.kl,
         },
@@ -64,7 +64,7 @@ const SameIndustry = ({ queryApi }) => {
             dataIndex: 'pe',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.pe.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.pe === 0 ? '-' : record.pe.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
             },
             sorter: (a, b) => a.pe - b.pe,
         },
@@ -73,7 +73,7 @@ const SameIndustry = ({ queryApi }) => {
             dataIndex: 'pb',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.pb.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.pb === 0 ? '-' : record.pb.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
             },
             sorter: (a, b) => a.pb - b.pb,
         },
@@ -82,7 +82,7 @@ const SameIndustry = ({ queryApi }) => {
             dataIndex: 'vh',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{(record.vh / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.vh === 0 ? '-' : (record.vh / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
             },
             sorter: (a, b) => a.vh - b.vh,
         }
