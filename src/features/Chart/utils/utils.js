@@ -92,3 +92,22 @@ export function getColorByIndex(index) {
     const colors = ['#65FFFF', '#F9F01B']; // xanh và vàng
     return colors[index % colors.length];
 }
+
+export function getColorForHeaderRating(item) {
+    let color = ''
+
+    switch (item) {
+        case 'Đạt':
+            color = 'text-[#05FF00]'
+            break;
+        case 'Không đạt':
+            color = 'text-[#FF0000]'
+            break;
+        case 'Bình thường':
+            color = 'text-[#FCFF71]'
+            break;
+        default:
+            break;
+    }
+    return color
+}
