@@ -427,3 +427,31 @@ export const fetchDataIndividualInvestorBenefits = (stock) => async (dispatch,) 
     }
 }
 
+
+
+// rating header
+
+export const fetchDataRatingHeader = (stock) => async dispacth => {
+    try {
+        const res = await stockService.fetchDataRatingHeader(stock)
+        dispacth({
+            type: stockType.FETCH_DATA_RATING_HEADER,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+
+export const fetchDataFilterCanslim = stock => async dispatch => {
+    try {
+        const res = await stockService.fetchDataFilterCanslim(stock)
+        dispatch({
+            type: stockType.FETCH_DATA_FILTER_CANSLIM,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}

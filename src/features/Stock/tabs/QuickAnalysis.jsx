@@ -10,12 +10,13 @@ import SpiderWebChart from '../components/QuickAnalysis/SpiderWebChart'
 import TechnicalAnalysis from '../components/QuickAnalysis/TechnicalAnalysis'
 import { fetchDataBasicPrice, fetchDataBusinessPosition, fetchDataBussinessAnalysis, fetchDataFinancialHealthAnalysis, fetchDataIndividualInvestorBenefits, fetchDataTechnicalAnalysis, } from '../thunk'
 import { useDispatch } from "react-redux";
+import RatingHeader from '../components/QuickAnalysis/RatingHeader'
+import FilterCanslim from '../components/QuickAnalysis/FilterCanslim'
 
 const QuickAnalysis = ({ codeUrl }) => {
   const dispatch = useDispatch()
   const { queryApi } = useQueryApi(codeUrl);
   const [isLoading, setIsLoading] = useState(false)
-
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(true)
@@ -44,11 +45,11 @@ const QuickAnalysis = ({ codeUrl }) => {
               <div className='w-[60%] h-[200px]'>
                 <div className='grid grid-cols-2 gap-3'>
                   <div>
-
+                    <RatingHeader queryApi={queryApi} />
                   </div>
 
                   <div>
-
+                    <FilterCanslim queryApi={queryApi} />
                   </div>
                 </div>
               </div>

@@ -41,6 +41,8 @@ const initialState = {
     dataTechnicalAnalysisStatus: {},
     dataIndividualInvestorBenefits: {},
     dataIndividualInvestorBenefitsStatus: {},
+    dataRatingHeader: {},
+    dataFilterCanslim: {}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -165,6 +167,13 @@ const reducer = (state = initialState, { type, payload }) => {
         if (type === stockType.FETCH_DATA_INDIVIDUAL_INVESTOR_BENEFITS_STATUS) {
             draft.dataIndividualInvestorBenefitsStatus = payload
         }
+        if (type === stockType.FETCH_DATA_RATING_HEADER) {
+            draft.dataRatingHeader = payload
+        }
+        if (type === stockType.FETCH_DATA_FILTER_CANSLIM) {
+            draft.dataFilterCanslim = payload
+        }
+
     });
 };
 
