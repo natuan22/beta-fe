@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BsInfoCircleFill } from "react-icons/bs";
 import { Popover } from 'antd';
 import ChartGauge from './components/ChartGauge';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataBasicPrice } from '../../thunk';
-import { Collapse, Rating } from '@mui/material';
+import { Rating } from '@mui/material';
 import Loading from '../../../Chart/utils/Loading';
 import { getTextColorRating } from '../../../Chart/utils/utils';
+import { useSelector } from 'react-redux';
 
 const contentBasicPrice = (
     <div>
@@ -17,13 +16,9 @@ const contentBasicPrice = (
 );
 
 const BasicPrice = ({ queryApi }) => {
-    const dispatch = useDispatch()
-    const { dataBasicPrice } = useSelector(state => state.stock)
+    const { dataBasicPrice, dataBasicPriceStatus } = useSelector(state => state.stock)
     const [showChild, setShowChild] = useState(false);
     const [showChildState, setShowChildState] = useState(null);
-    useEffect(() => {
-        dispatch(fetchDataBasicPrice(queryApi.stock));
-    }, [dispatch, queryApi]);
 
     const toggleChildVisibility = (index) => {
         if (showChildState === index) {
@@ -32,6 +27,22 @@ const BasicPrice = ({ queryApi }) => {
             setShowChildState(index);
         }
     };
+
+    if (dataBasicPriceStatus === 400 || dataBasicPrice.length === 0) {
+        return (
+            <>
+                <div className='border-solid dark:border-white border-b-[1px] border-t-0 border-x-0'>
+                    <span className='dark:text-white text-black font-semibold xl:w-[50%] lg:w-[35%] md:w-[40%] sm:w-[45%] flex justify-between'>Định giá cơ bản
+                        <Popover content={contentBasicPrice} >
+                            <span className='dark:text-white text-black'><BsInfoCircleFill /></span>
+                        </Popover>
+                    </span>
+                </div>
+                <div className='dark:text-white text-black h-[300px] flex items-center justify-center'>Dữ liệu đang được cập nhật</div>
+            </>
+        )
+    }
+
     return (
         <div>
             <div className='border-solid dark:border-white border-b-[1px] border-t-0 border-x-0'>

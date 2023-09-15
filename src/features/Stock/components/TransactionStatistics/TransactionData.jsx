@@ -62,7 +62,7 @@ const TransactionData = ({ stock, from, to }) => {
             dataIndex: 'closePrice',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.closePrice}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.closePrice === 0 ? '-' : record.closePrice}</p>;
             },
         },
         {
@@ -70,7 +70,7 @@ const TransactionData = ({ stock, from, to }) => {
             dataIndex: 'totalVol',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.totalVol.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.totalVol === 0 ? '-' : record.totalVol.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
             },
         },
         {
@@ -78,7 +78,7 @@ const TransactionData = ({ stock, from, to }) => {
             dataIndex: 'totalVal',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{(record.totalVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.totalVal === 0 ? '-' : (record.totalVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
             },
         },
         {
@@ -86,7 +86,7 @@ const TransactionData = ({ stock, from, to }) => {
             dataIndex: 'vh',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{(record.vh / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.vh === 0 ? '-' : (record.vh / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
             },
         },
         {
@@ -97,7 +97,7 @@ const TransactionData = ({ stock, from, to }) => {
                     dataIndex: 'omVol',
                     align: 'center',
                     render: (_, record) => {
-                        return <p className={`dark:text-white text-black text-center font-semibold`}>{record.omVol.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
+                        return <p className={`dark:text-white text-black text-center font-semibold`}>{record.omVol === 0 ? '-' : record.omVol.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
                     },
                 },
                 {
@@ -105,7 +105,7 @@ const TransactionData = ({ stock, from, to }) => {
                     dataIndex: 'omVal',
                     align: 'center',
                     render: (_, record) => {
-                        return <p className={`dark:text-white text-black text-center font-semibold`}>{(record.omVal / 1000000000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
+                        return <p className={`dark:text-white text-black text-center font-semibold`}>{record.omVal === 0 ? '-' : (record.omVal / 1000000000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
                     },
                 },
             ],
@@ -115,7 +115,7 @@ const TransactionData = ({ stock, from, to }) => {
             dataIndex: 'highPrice',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.highPrice}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.highPrice === 0 ? '-' : record.highPrice}</p>;
             },
         },
         {
@@ -123,7 +123,7 @@ const TransactionData = ({ stock, from, to }) => {
             dataIndex: 'lowPrice',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.lowPrice}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold`}>{record.lowPrice === 0 ? '-' : record.lowPrice}</p>;
             },
         },
     ]

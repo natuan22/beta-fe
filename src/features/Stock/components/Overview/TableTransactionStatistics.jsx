@@ -39,7 +39,7 @@ const TableTransactionStatistics = ({ codeSearch }) => {
             dataIndex: 'closePrice',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{(record.closePrice * 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.closePrice === 0 ? '-' : (record.closePrice * 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
             },
         },
         {
@@ -55,7 +55,7 @@ const TableTransactionStatistics = ({ codeSearch }) => {
             dataIndex: 'klgd',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.klgd.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.klgd === 0 ? '-' : record.klgd.toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>;
             },
         },
         {
@@ -63,7 +63,7 @@ const TableTransactionStatistics = ({ codeSearch }) => {
             dataIndex: 'gtdd',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{(record.gtdd / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.gtdd === 0 ? '-' : (record.gtdd / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
             },
         },
         {
@@ -71,7 +71,7 @@ const TableTransactionStatistics = ({ codeSearch }) => {
             dataIndex: 'vh',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{(record.vh / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.vh === 0 ? '-' : (record.vh / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
             },
         },
         {
@@ -79,7 +79,7 @@ const TableTransactionStatistics = ({ codeSearch }) => {
             dataIndex: 'nn_mua',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{(record.nn_mua / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.nn_mua === 0 ? '-' : (record.nn_mua / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
             },
         },
         {
@@ -87,7 +87,7 @@ const TableTransactionStatistics = ({ codeSearch }) => {
             dataIndex: 'nn_ban',
             align: 'center',
             render: (_, record) => {
-                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{(record.nn_ban / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
+                return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.nn_ban === 0 ? '-' : (record.nn_ban / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>;
             },
         },
     ]
