@@ -58,7 +58,7 @@ const RatingHeader = ({ queryApi }) => {
                         </thead>
                         <tbody>
                             {dataBasicPrice?.map((item, index) => (
-                                <tr key={index} className={``}>
+                                <tr key={index}>
                                     <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold' : ''} p-2`}>{item.name}</td>
                                     <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold border border-solid border-white border-t-2 border-b-0 border-x-0' : ''} p-2 text-center`}>{(item.value).toFixed(2)}</td>
                                     <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold border border-solid border-white border-t-2 border-b-0 border-x-0' : ''} p-2 text-center`}>{(item.value_industry).toFixed(2)}</td>
@@ -67,7 +67,7 @@ const RatingHeader = ({ queryApi }) => {
                         </tbody>
                     </table>
                 ) : (
-                    <table className='w-full'>
+                    <table className='w-full border-collapse'>
                         <thead>
                             <tr>
                                 <th className='p-2 text-left'>Chỉ tiêu</th>
@@ -78,7 +78,7 @@ const RatingHeader = ({ queryApi }) => {
                             {dataTechnical?.map((item, index) => (
                                 <tr key={index}>
                                     <td className='p-2'>{item.name}</td>
-                                    <td className='p-2 text-center'>  {typeof (item.value) === 'number' ? (item.value).toFixed(2) : item.value}</td>
+                                    <td className={`p-2 text-center ${index === dataTechnical.length - 1 ? 'border border-solid border-white border-b-2 border-t-0 border-x-0' : ''}`}>  {typeof (item.value) === 'number' ? (item.value).toFixed(2) : item.value}</td>
                                 </tr>
                             ))}
                         </tbody>
