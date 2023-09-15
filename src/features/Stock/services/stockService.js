@@ -264,4 +264,18 @@ export const stockService = {
             }
         })
     },
+    fetchDataRatingHeader: (stock) => {
+        return https.get('api/v1/shares/rating-header', {
+            params: {
+                stock
+            }
+        })
+    },
+    fetchDataFilterCanslim: stock => {
+        return https.get('api/v1/shares/chuan-loc-canslim', {
+            params: {
+                stock
+            }
+        })
+    }
 }
