@@ -137,12 +137,12 @@ const StockInfo = ({ codeUrl }) => {
                     </div>
                     <hr className="h-px my-7 bg-[#34A3F3] border-0"></hr>
                     <div className='flex mb-7'>
-                        <div className={`bg-[#E4E81D] xxs:px-4 xs:px-4 sm:px-9 py-2 rounded-xl font-semibold`}>{data.code}</div>
-                        <div className='bg-[#E4E81D] ml-4 xxs:px-4 xs:px-4 sm:px-24 py-2 rounded-xl font-semibold'>{data.industry}</div>
+                        <div className={`bg-[#004FA9] text-white xxs:px-4 xs:px-4 sm:px-9 py-2 rounded-xl font-semibold`}>{data.code}</div>
+                        <div className='bg-[#004FA9] text-white ml-4 xxs:px-4 xs:px-4 sm:px-24 py-2 rounded-xl font-semibold'>{data.industry}</div>
                     </div>
                     <div className='grid lg:grid-cols-12 md:grid-cols-none gap-3'>
                         <div className='lg:col-span-3 md:col-span-full'>
-                            <span className='text-[#8BFF62] uppercase font-semibold'>{data.company}</span>
+                            <span className='dark:text-white text-black uppercase font-bold'>{data.company}</span>
                             <div className='p-4 flex justify-center'>
                                 <img className='object-contain xl:w-[262px] lg:w-[222px] md:w-[262px] sm:w-[262px] xs:w-[262px] xxs:w-[262px] h-[145px]' src={`${resourceURL}${data.image}`} onError={event => {
                                     event.target.src = `${resourceURL}/resources/stock/logo_default.jpeg`
@@ -152,7 +152,7 @@ const StockInfo = ({ codeUrl }) => {
                         </div>
                         <div className={`lg:col-span-4 md:col-span-full`}>
                             <div className='flex justify-between'>
-                                <span className='text-[#8BFF62]'>Tên tiếng anh: {data.company_eng} </span>
+                                <span className='dark:text-white text-black font-semibold'>Tên tiếng anh: {data.company_eng} </span>
                                 {showCollapsedSummary && countWords(dataInfoHeader?.summary) > 459 && (
                                     <span onClick={toggleSummary} className="text-[#8BFF62] hover:text-blue-500 hover:underline duration-500 cursor-pointer" >
                                         <BsCaretDownFill />

@@ -1,5 +1,5 @@
 .table-stock-detail .ant-table-thead .ant-table-cell {
-  background-color: #0055b6 !important;
+  background-color: #1D5F8D !important;
   color: white !important;
   padding: 16px 16px !important;
 }
@@ -33,7 +33,7 @@
 }
 
 .table-stock-detail .ant-pagination {
-  background-color: #0055b6 !important;
+  background-color: #1D5F8D !important;
   margin: 0px !important;
   padding: 10px;
   color: white !important;
@@ -49,12 +49,12 @@
 }
 
 .table-stock-detail .ant-pagination-prev > button {
-  background-color: #0055b6 !important;
+  background-color: #1D5F8D !important;
   color: white !important;
 }
 
 .table-stock-detail .ant-pagination-next > button {
-  background-color: #0055b6 !important;
+  background-color: #1D5F8D !important;
   color: white !important;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .table-stock-detail .ant-pagination-item > a {
-  background-color: #0055b6 !important;
+  background-color: #1D5F8D !important;
   color: white !important;
 }
 

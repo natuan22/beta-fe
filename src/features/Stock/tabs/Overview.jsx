@@ -52,10 +52,10 @@ const Overview = ({ handleTabClick, codeUrl }) => {
       {isLoading ? (
         <div className='mt-4'>
           <div>
-            <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <span className='border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold uppercase'>Thống kê giao dịch</span>
               <Popover content={contentTransactionStatistics} >
-                <span className='sm:ml-52 xs:ml-28 xxs:ml-28 text-[#E4E81D] cursor-pointer ' onClick={handleGoToTransactionStatistics}><DoubleRightOutlined /></span>
+                <span className='sm:ml-52 xs:ml-28 xxs:ml-28 text-[#FF7317] cursor-pointer ' onClick={handleGoToTransactionStatistics}><DoubleRightOutlined /></span>
               </Popover>
             </span>
             <TableTransactionStatistics codeSearch={queryApi.stock} />
@@ -64,7 +64,7 @@ const Overview = ({ handleTabClick, codeUrl }) => {
             <div className='grid xl:grid-cols-2 lg:grid-cols-none mt-8 gap-10'>
               <div>
                 <div className='flex'>
-                  <div className='w-[115px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <div className='w-[115px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                     <span className='dark:text-white text-black font-semibold uppercase'>Tài chính</span>
                   </div>
                   <button className={`custom-btn ml-5 ${activeBtn === 0 ? 'active-btn' : 'btn-2'}`}
@@ -101,7 +101,7 @@ const Overview = ({ handleTabClick, codeUrl }) => {
               <div>
                 <div>
                   <div className='md:flex sm:block'>
-                    <div className='w-[317px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                    <div className='w-[317px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                       <span className='dark:text-white text-black font-semibold uppercase'>Doanh nghiệp cùng ngành</span>
                     </div>
                     <div className='flex md:mt-0 sm:mt-4 xs:mt-4 xxs:mt-4 sm:justify-center xs:justify-center xxs:justify-center'>
@@ -134,10 +134,10 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                 </div>
 
                 <div className='xl:mt-6 lg:mt-4'>
-                  <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                     <span className='dark:text-white text-black font-semibold uppercase'>Lịch sự kiện</span>
                     <Popover content={contentNewsAndEvent}>
-                      <span className='xs:ml-52 xxs:ml-28 text-[#E4E81D] cursor-pointer' onClick={handleGoToNewsAndEvent}><DoubleRightOutlined /></span>
+                      <span className='xs:ml-52 xxs:ml-28 text-[#FF7317] cursor-pointer' onClick={handleGoToNewsAndEvent}><DoubleRightOutlined /></span>
                     </Popover>
                   </span>
                   <div className='xxs:w-[317px] xs:w-[373px] sm:w-[423px] md:w-full'>
@@ -148,7 +148,7 @@ const Overview = ({ handleTabClick, codeUrl }) => {
             </div>
           </div>
           <div className='mt-4'>
-            <div className='sm:w-[373px] xs:w-[200px] xxs:w-[200px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='sm:w-[373px] xs:w-[200px] xxs:w-[200px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold uppercase'>Hồ sơ doanh nghiệp</span>
             </div>
             <div className='h-[344px] bg-[#78898B] mt-4'></div>
