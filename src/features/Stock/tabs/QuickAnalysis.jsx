@@ -37,13 +37,13 @@ const QuickAnalysis = ({ codeUrl }) => {
       {isLoading ? (
         <>
           <div>
-            <div className='flex'>
-              <div className='w-[40%]'>
+            <div className='xl:flex lg:block py-2'>
+              <div className='xl:w-[40%] lg:w-full'>
                 <SpiderWebChart queryApi={queryApi} />
               </div>
 
-              <div className='w-[60%] h-[200px]'>
-                <div className='grid grid-cols-2 gap-3'>
+              <div className='xl:w-[60%] lg:w-full'>
+                <div className='grid md:grid-cols-2 sm:grid-cols-none gap-10'>
                   <div>
                     <RatingHeader queryApi={queryApi} />
                   </div>
