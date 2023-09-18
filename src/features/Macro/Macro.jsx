@@ -6,6 +6,7 @@ import InternationalIndex from '../Chart/components/InternationalIndex';
 import News from '../Chart/components/News';
 import { useSelector } from 'react-redux';
 import Footer from "../../components/Footer";
+import Banner from '../Chart/components/Banner';
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Macro = () => {
@@ -27,6 +28,7 @@ const Macro = () => {
                 <InternationalIndex />
                 <News />
             </div>
+            <Banner />
             <div className="container mx-auto">
                 <div>
                     <div className="px-11">

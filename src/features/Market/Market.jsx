@@ -10,8 +10,8 @@ const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Market = () => {
   const location = useLocation()
-
   const [bannerDisplay, setBannerDisplay] = useState(false)
+
   useEffect(() => {
     if (location.pathname === "/thi-truong" || location.pathname === '/thi-truong/dong-tien-thi-truong' || location.pathname === '/thi-truong/hieu-suat-va-dinh-gia' || location.pathname === '/thi-truong/thi-truong-quoc-te') {
       setBannerDisplay(true);
