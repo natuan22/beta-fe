@@ -46,7 +46,7 @@ const StockFilter = () => {
                 <div>
                     <div className='pb-2'>
                         <div className='grid grid-cols-4 gap-2'>
-                            <button className='bg-[#2790BD] text-white font-bold flex items-center justify-evenly px-2 py-1 rounded-lg btnInfoFilter active:bg-[#154162]'>
+                            <button className='bg-[#2790BD] border-none text-white font-bold flex items-center justify-evenly px-2 py-1 rounded-lg btnInfoFilter active:bg-[#154162]'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
                                     <path d="M1.00879 13.8333V2.16667C1.00879 1.24619 1.75498 0.5 2.67546 0.5H11.9851C12.4271 0.5 12.851 0.675592 13.1636 0.988158L15.5206 3.34517C15.8332 3.65774 16.0088 4.08166 16.0088 4.52369V13.8333C16.0088 14.7538 15.2626 15.5 14.3421 15.5H2.67546C1.75498 15.5 1.00879 14.7538 1.00879 13.8333Z" stroke="white" />
                                     <path d="M5.67548 5.5H11.3421C11.6183 5.5 11.8421 5.27614 11.8421 5V1C11.8421 0.723858 11.6183 0.5 11.3421 0.5H5.67548C5.39933 0.5 5.17548 0.723858 5.17548 1V5C5.17548 5.27614 5.39933 5.5 5.67548 5.5Z" stroke="white" />
@@ -54,7 +54,7 @@ const StockFilter = () => {
                                 </svg>
                                 <span>Lưu bộ lọc</span>
                             </button>
-                            <button className='bg-[#2790BD] text-white font-bold flex items-center justify-evenly px-2 py-1 rounded-lg btnInfoFilter active:bg-[#154162]'>
+                            <button className='bg-[#2790BD] border-none text-white font-bold flex items-center justify-evenly px-2 py-1 rounded-lg btnInfoFilter active:bg-[#154162]'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
                                     <path d="M1.57841 2.64286H16.0088L13.7303 11.2143H3.85689L1.57841 2.64286ZM1.57841 2.64286L1.00879 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
                                     <path d="M6.88892 6.92856H8.40791M8.40791 6.92856H9.9269M8.40791 6.92856V5.21428M8.40791 6.92856V8.64285" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
@@ -161,7 +161,7 @@ const StockFilter = () => {
                                 </Button>
                             </Popover>
 
-                            <button className='bg-[#2790BD] text-white font-bold flex items-center justify-evenly px-2 py-1 rounded-lg btnInfoFilter active:bg-[#154162]'>
+                            <button className='bg-[#2790BD] border-none text-white font-bold flex items-center justify-evenly px-2 py-1 rounded-lg btnInfoFilter active:bg-[#154162]'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
                                     <path d="M10.0088 14.7105H2.50879C1.68036 14.7105 1.00879 14.0036 1.00879 13.1316V2.07895C1.00879 1.20692 1.68036 0.5 2.50879 0.5H14.5088C15.3372 0.5 16.0088 1.20692 16.0088 2.07895V9.18421" stroke="white" stroke-linecap="round" />
                                     <path d="M1.00879 3.6579H16.0088" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
@@ -172,7 +172,7 @@ const StockFilter = () => {
                                 </svg>
                                 <span>Tải xuống<br /> kết quả</span>
                             </button>
-                            <button className='bg-[#2790BD] text-white font-bold flex items-center justify-evenly px-2 py-1 rounded-lg btnInfoFilter active:bg-[#154162]'>
+                            <button className='bg-[#2790BD] border-none text-white font-bold flex items-center justify-evenly px-2 py-1 rounded-lg btnInfoFilter active:bg-[#154162]'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
                                     <path d="M15.3832 5C14.2229 2.35114 11.5733 0.5 8.49017 0.5C4.59158 0.5 1.38601 3.46001 1.00879 7.25" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
                                     <path d="M12.2494 5H15.5575C15.8067 5 16.0087 4.79853 16.0087 4.55V1.25" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
