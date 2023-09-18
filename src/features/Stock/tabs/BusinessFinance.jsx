@@ -30,14 +30,14 @@ const BusinessFinance = ({ codeUrl }) => {
                 scrollButtons
                 allowScrollButtonsMobile
                 sx={{
-
                   '& .MuiTabs-indicator': {
-                    backgroundColor: '#FFF7D4', height: '200px', zIndex: '-1', boxShadow: `inset -4px -4px 6px 0 rgba(0, 0, 0, 0.2),
-                  inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4)`},
-                  '& .MuiButtonBase-root .MuiTouchRipple-root': { backgroundColor: '#E4E81D', height: '200px', zIndex: '-1' },
-                  '& .MuiTab-root': { color: '#000', textTransform: 'none' },
+                    backgroundColor: '#FF7317', height: '48px', zIndex: '-1', boxShadow: `inset -4px -4px 6px 0 rgba(0, 0, 0, 0.2),
+                  inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4)`, borderRadius: '10px',
+                  },
+                  '& .MuiButtonBase-root .MuiTouchRipple-root': { backgroundColor: '#1D5F8D', height: '200px', zIndex: '-1' },
+                  '& .MuiTab-root': { color: '#fff', textTransform: 'none' },
                   '& .MuiTab-root .MuiTabs-scroller': { transform: 'translateX(50px)' },
-                  '&  .MuiButtonBase-root ': { marginRight: '15px', },
+                  '& .MuiButtonBase-root ': { marginRight: '15px', borderRadius: '10px', },
                 }}
               >
                 <Tab onClick={() => handleTabClick('0')} label='Bảng cân đối kế toán' value='0' />
@@ -49,7 +49,7 @@ const BusinessFinance = ({ codeUrl }) => {
             <TabPanel value="0"><BalanceSheet codeUrl={codeUrl} /></TabPanel>
             <TabPanel value="1"><BusinessReport codeUrl={codeUrl} /></TabPanel>
             <TabPanel value="2"><StatementsCashFlows codeUrl={codeUrl} /></TabPanel>
-            <TabPanel value="3"><FinancialIndicators codeUrl={codeUrl}/></TabPanel>
+            <TabPanel value="3"><FinancialIndicators codeUrl={codeUrl} /></TabPanel>
           </TabContext>
         </Box>
       </div>
