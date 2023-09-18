@@ -60,8 +60,8 @@ const RatingHeader = ({ queryApi }) => {
                             {dataBasicPrice?.map((item, index) => (
                                 <tr key={index}>
                                     <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold' : ''} p-2`}>{item.name}</td>
-                                    <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold border border-solid border-white border-t-2 border-b-0 border-x-0' : ''} p-2 text-center`}>{(item.value).toFixed(2)}</td>
-                                    <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold border border-solid border-white border-t-2 border-b-0 border-x-0' : ''} p-2 text-center`}>{(item.value_industry).toFixed(2)}</td>
+                                    <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold border border-solid border-white border-t-2 border-b-0 border-x-0' : ''} p-2 text-center`}>{(item.value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                                    <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold border border-solid border-white border-t-2 border-b-0 border-x-0' : ''} p-2 text-center`}>{(item.value_industry).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                                 </tr>
                             ))}
                         </tbody>
