@@ -27,6 +27,12 @@ import MacroNews from "../features/NewsCenter/tabs/MacroNews";
 import Stock from "../features/Stock/Stock";
 import StockDetail from "../features/Stock/StockDetail";
 import AuthComponent from "../features/Auth/AuthComponent";
+import InvestTool from "../features/InvestTool/InvestTool";
+import StockFilter from "../features/InvestTool/tabs/StockFilter";
+import InvestSimulation from "../features/InvestTool/tabs/InvestSimulation";
+import InvestRecommen from "../features/InvestTool/tabs/InvestRecommen";
+import InvestKnowledge from "../features/InvestTool/tabs/InvestKnowledge";
+import InvestAlgorithm from "../features/InvestTool/tabs/InvestAlgorithm";
 
 export const routes = [
   { path: "/", component: Home },
@@ -34,26 +40,34 @@ export const routes = [
   // navigation tab
   { path: "/nganh", component: Nav1 },
   { path: "/vi-mo", component: Macro },
-  { path: "/cong-cu-dau-tu", component: Nav4 },
   { path: "/trang-khong-ton-tai", component: Nav4 },
-
 
   // authen
   { path: "/signin", component: Signin },
   { path: "/signup", component: Signup },
 ];
 
+export const investToolRoutes = [
+  {
+    path: "/cong-cu-dau-tu",
+    component: InvestTool,
+    children: [
+      { path: "bo-loc-co-phieu", component: StockFilter },
+      { path: "gia-lap-dau-tu", component: InvestSimulation },
+      { path: "khuyen-nghi-dau-tu", component: InvestRecommen },
+      { path: "kien-thuc-dau-tu", component: InvestKnowledge },
+      { path: "thuat-toan-giao-dich", component: InvestAlgorithm },
+    ],
+  },
+];
 
-export const authenRoute = [
-  { path: "/auth", component: AuthComponent },
-]
+export const authenRoute = [{ path: "/auth", component: AuthComponent }];
 export const marketRoute = [
   // market
   {
     path: "thi-truong",
     component: Market,
     children: [
-
       { path: "chi-so-thi-truong", component: IndexMarket },
       {
         path: "dong-tien-thi-truong",
@@ -91,14 +105,16 @@ export const macroRoutes = [
     component: Macro,
     children: [
       {
-        path: "vi-mo-trong-nuoc", component: DomesticMacro
+        path: "vi-mo-trong-nuoc",
+        component: DomesticMacro,
       },
       {
-        path: "vi-mo-quoc-te", component: ForeignMacro
-      }
-    ]
-  }
-]
+        path: "vi-mo-quoc-te",
+        component: ForeignMacro,
+      },
+    ],
+  },
+];
 
 export const newsCenterRoutes = [
   {
@@ -106,28 +122,32 @@ export const newsCenterRoutes = [
     component: NewsCenter,
     children: [
       {
-        path: "bao-cao-phan-tich", component: AnalyzeReport
+        path: "bao-cao-phan-tich",
+        component: AnalyzeReport,
       },
       {
-        path: "bo-loc-tin-tuc", component: NewsFilterTool
+        path: "bo-loc-tin-tuc",
+        component: NewsFilterTool,
       },
       {
-        path: "tin-doanh-nghiep", component: EnterpriseNews
+        path: "tin-doanh-nghiep",
+        component: EnterpriseNews,
       },
       {
-        path: "tin-tuc-vi-mo", component: MacroNews
-      }
-    ]
-  }
-]
-
+        path: "tin-tuc-vi-mo",
+        component: MacroNews,
+      },
+    ],
+  },
+];
 
 export const stockRoutes = [
   {
-    path: "/co-phieu", component: Stock,
+    path: "/co-phieu",
+    component: Stock,
   },
   {
-    path: "/co-phieu/:code", component: StockDetail
+    path: "/co-phieu/:code",
+    component: StockDetail,
   },
-
-]
+];
