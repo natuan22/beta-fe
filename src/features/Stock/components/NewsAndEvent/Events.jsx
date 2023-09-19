@@ -43,7 +43,7 @@ const Events = ({ queryApiNewsEvents }) => {
             render: (_, record) => {
                 return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.date_gdkhq}</p>;
             },
-            sorter: (a, b) => Date.parse(a.date_gdkhq) - Date.parse(b.date_gdkhq),
+            // sorter: (a, b) => Date.parse(a.date_gdkhq) - Date.parse(b.date_gdkhq),
         },
         {
             title: 'Ngày ĐKCC',
@@ -52,7 +52,7 @@ const Events = ({ queryApiNewsEvents }) => {
             render: (_, record) => {
                 return <p className={`dark:text-white text-black text-center font-semibold whitespace-nowrap`}>{record.date_dkcc}</p>;
             },
-            sorter: (a, b) => Date.parse(a.date_dkcc) - Date.parse(b.date_dkcc),
+            // sorter: (a, b) => Date.parse(a.date_dkcc) - Date.parse(b.date_dkcc),
         },
         {
             title: 'Ngày thực hiện',
