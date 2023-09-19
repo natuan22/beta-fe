@@ -21,8 +21,24 @@ const StockFilter = () => {
     const { dataRangeMinMax } = useSelector((state) => state.investTool);
     const [selectedKey, setSelectedKey] = useState(null);
     const [arrSliderInput, setArrSliderInput] = useState([]);
-    const [arrToCallApi, setArrToCallApi] = useState([])
-    const [isChecked, setIsChecked] = useState(true)
+    const [arrSliderCheckbox, setArrSliderCheckbox] = useState([]);
+    const [formData, setFormData] = useState({
+        'filter': [
+            {
+                'key': 'string',
+                "from": 0,
+                "to": 0
+            }
+        ],
+        "exchange": "HNX, UPCOM, HOSE",
+        "industry": "banLe,baoHiem,batDongSan,nganHang, ..."
+    })
+
+
+    console.log({ arrSliderInput })
+    console.log({ arrSliderCheckbox })
+
+
 
     const onClickValueYourFilter = (newValue) => {
         setValueYourFilter(newValue.target.innerHTML)
@@ -34,18 +50,25 @@ const StockFilter = () => {
         setOpenSampleFilter(false);
     }
 
-
     const handleElementClick = (key) => {
         setSelectedKey(key);
     };
+
+
     useEffect(() => {
         dispatch(fetchRangeMinMax());
     }, [dispatch]);
+
+
+
+
     const handleCriteriaClick = (key) => {
         // Kiểm tra xem key đã tồn tại trong mảng arrSliderInput chưa
         if (!arrSliderInput.includes(key)) {
             // Nếu chưa tồn tại, thêm key vào mảng
             setArrSliderInput([...arrSliderInput, key]);
+            setArrSliderCheckbox([...arrSliderCheckbox, key])
+
         }
     };
     const getMinMaxByKey = (key) => {
@@ -63,9 +86,17 @@ const StockFilter = () => {
         setArrSliderInput(updatedArr);
     };
 
-    const handleCheckboxChange = () => {
-        setIsChecked(!isChecked);
+    const toggleKeyInArray = (key) => {
+        if (arrSliderCheckbox.includes(key)) {
+            // Nếu key đã tồn tại trong mảng, xóa nó ra khỏi mảng
+            const updatedArr = arrSliderCheckbox.filter((item) => item !== key);
+            setArrSliderCheckbox(updatedArr);
+        } else {
+            // Nếu key chưa tồn tại trong mảng, thêm nó vào
+            setArrSliderCheckbox([...arrSliderCheckbox, key]);
+        }
     };
+
     return (
         <div>
             <div className='grid grid-cols-2 gap-4 pt-2'>
@@ -341,8 +372,8 @@ const StockFilter = () => {
                         {arrSliderInput.map((key, index) => {
                             const minMax = getMinMaxByKey(key);
                             const name = Object.values(hashTbStockFilter)
-                                .flatMap(items => items)
-                                .find(item => item.key === key)?.name;
+                                .flatMap((items) => items)
+                                .find((item) => item.key === key)?.name;
                             if (minMax && name) {
                                 return (
                                     <div
@@ -352,7 +383,12 @@ const StockFilter = () => {
                                         <div className="w-[30%] flex items-center  justify-around">
                                             <span>{name}</span>
                                             <label className="material-checkbox py-2 px-2 text-white">
-                                                <input onChange={() => handleCheckboxChange(key)} checked={isChecked} type="checkbox" name="exchange" />
+                                                <input
+                                                    checked={arrSliderCheckbox?.includes(key)}
+                                                    type="checkbox"
+                                                    name="exchange"
+                                                    onChange={() => toggleKeyInArray(key)}
+                                                />
                                                 <span className="checkmark"></span>
                                             </label>
                                         </div>
@@ -362,13 +398,16 @@ const StockFilter = () => {
                                                 max={Math.ceil(minMax.max)}
                                             />
                                         </div>
-                                        <button onClick={() => handleDelElement(key)} class="btn btn-del">
+                                        <button
+                                            onClick={() => handleDelElement(key)}
+                                            className="btn btn-del"
+                                        >
                                             <svg
                                                 viewBox="0 0 15 17.5"
                                                 height="17.5"
                                                 width="15"
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                class="icon"
+                                                className="icon"
                                                 fill="white"
                                             >
                                                 <path
