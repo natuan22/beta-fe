@@ -97,7 +97,7 @@ const StockDetail = () => {
                                             color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000'),
                                         },
                                         '& .MuiTabs-indicator': {
-                                            backgroundColor: '#0055b6', height: '200px', zIndex: '-1',
+                                            backgroundColor: '#1D5F8D', height: '48px', zIndex: '-1',
                                         },
                                         '& .MuiTabs-flexContainer': {
                                             width: width,

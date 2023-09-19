@@ -1,7 +1,7 @@
 .all-market {
   width: 145px;
   height: 30px;
-  color: black;
+  color: white;
   border-radius: 10px;
   font-weight: 600;
   background: transparent;
@@ -18,7 +18,7 @@
 .custom-btn {
   width: 80px;
   height: 30px;
-  color: black;
+  color: white;
   border-radius: 10px;
   font-weight: 600;
   background: transparent;
@@ -33,9 +33,10 @@
 }
 
 .btn-2 {
-  background: #e4e81d;
-  background: linear-gradient(0deg, #e4e81d 0%, #e4e81d 100%);
-  border: none;
+  border-radius: 10px;
+  border: 1.65px solid #000;
+  background: #004A9E;
+  box-shadow: 0px 6.60156px 6.60156px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
 .btn-2:before {
@@ -49,11 +50,10 @@
 }
 
 .active-btn {
-  background: #DDDEB7;
-  background: linear-gradient(0deg, #DDDEB7 0%, #DDDEB7 100%);
-  border: none;
-  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  border: 1.65px solid #000;
+  background: #FF7317;
+  box-shadow: 0px 6.60156px 6.60156px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
 .active-btn:before {
