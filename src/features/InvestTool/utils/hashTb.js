@@ -83,3 +83,9 @@ export const hashTbIndustry = {
     'Tài nguyên cơ bản': 'taiNguyen',
     'Y tế': 'yTe',
 }
+
+export const hashTbExchange = {
+    'HOSE': 'HOSE',
+    'HNX': 'HNX',
+    'UPCOM': 'UPCOM',
+}
