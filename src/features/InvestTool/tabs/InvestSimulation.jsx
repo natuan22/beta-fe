@@ -7,13 +7,13 @@ import { FormControl, Input, MenuItem, Select, TextField } from '@mui/material';
 const InvestSimulation = () => {
     const color = useSelector((state) => state.color.colorTheme);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
-    const [initialCapital, setInitialCapital] = useState('1000'); //Vốn đầu tư ban đầu
-    const [period, setPeriod] = useState('3'); //Khoảng thời gian giả lập
-    const [periodicInvestment, setPeriodicInvestment] = useState(true); //Đầu tư định kỳ
+    const [initialCapital, setInitialCapital] = useState('1000'); // Vốn đầu tư ban đầu
+    const [period, setPeriod] = useState('3'); // Khoảng thời gian giả lập
+    const [fromMonth, setFromMonth] = useState(dayjs().subtract(13, 'month')) // Từ tháng
+    const [toMonth, setToMonth] = useState(dayjs().subtract(1, 'month')) // Đến tháng
     const [readOnlyDateTimePicker, setReadOnlyDateTimePicker] = useState(false);
-
-    const [fromMonth, setFromMonth] = useState(dayjs().subtract(13, 'month'))
-    const [toMonth, setToMonth] = useState(dayjs().subtract(1, 'month'))
+    const [periodicInvestment, setPeriodicInvestment] = useState(true); // Đầu tư định kỳ
+    const [addPeriodically, setAddPeriodically] = useState('10'); // Thêm định kỳ
 
     useEffect(() => {
         setTheme(color);
@@ -51,6 +51,10 @@ const InvestSimulation = () => {
 
     const handleChangeInitialCapital = (event) => {
         setInitialCapital(event.target.value);
+    };
+
+    const handleChangeAddPeriodically = (event) => {
+        setAddPeriodically(event.target.value);
     };
 
     return (
@@ -193,7 +197,8 @@ const InvestSimulation = () => {
                                     <span>Thêm định kỳ (Tr):</span>
                                     <TextField
                                         type='number'
-                                        defaultValue={'10'}
+                                        defaultValue={addPeriodically}
+                                        onChange={handleChangeAddPeriodically}
                                         sx={{
                                             '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                             '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
