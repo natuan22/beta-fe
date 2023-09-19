@@ -1,3 +1,62 @@
 export const hashTbStockFilter = {
+    "Thông tin doanh nghiệp": [
+        { name: "Vốn hóa (tỷ VNĐ)", key: "MARKETCAP" },
+        { name: "Thị giá", key: "closePrice" },
+        { name: "KL cổ phiếu lưu hành (triệu CP)", key: "SHAREOUT" },
+        ,
+    ],
+    "Dữ liệu giao dich": [
+        { name: "Tổng KLGD trong phiên", key: "totalVol" },
+        { name: "KLGD trung bình 5 phiên", key: "totalVol_AVG_5" },
+        { name: "KLGD trung bình 10 phiên", key: "totalVol_AVG_10" },
+        { name: "KLGD thấp nhất 5 phiên", key: "totalVol_MIN_5" },
+        { name: "KLGD thấp nhất 10 phiên", key: "totalVol_MIN_10" },
+        { name: "KLGD cao nhất 5 phiên", key: "totalVol_MAX_5" },
+        { name: "KLGD cao nhất 10 phiên", key: "totalVol_MAX_10" },
+    ],
 
-}
+    "Kết quả kinh doanh": [
+        {
+            name: "Tăng trưởng Doanh thu (Quý gần nhất so với cùng kỳ) ",
+            key: "growthRevenueSamePeriod",
+        },
+        {
+            name: "Tăng trưởng Doanh thu (Quý gần nhất so kỳ liền kề) ",
+            key: "growthRevenue",
+        },
+        {
+            name: "Tăng trưởng LNST (Quý gần nhất so với cùng kỳ) ",
+            key: "growthProfitBeforeRevenueSamePeriod",
+        },
+        {
+            name: "Tăng trưởng LNST (Quý gần nhất so kỳ liền kề) ",
+            key: "growthProfitBeforeRevenue",
+        },
+        {
+            name: "Tăng trưởng EPS (Quý gần nhất so với cùng kỳ) ",
+            key: "growthEPSSamePeriod",
+        },
+        {
+            name: "Tăng trưởng EPS (Quý gần nhất so kỳ liền kề) ",
+            key: "growthEPS",
+        },
+    ],
+
+    "Các đường xu hướng": [{ name: "Swing high", key: "" }],
+    "Chỉ số tài chính": [
+        { name: "P/E", key: "PE" },
+        { name: "P/B", key: "PB" },
+        { name: "EPS", key: "EPS" },
+        { name: "BVPS", key: "BVPS" },
+        { name: "Lợi nhuận trên tài sản (ROA)", key: "ROA" },
+        { name: "Lợi nhuận trên vốn chủ sở hữu (ROE)", key: "ROE" },
+    ],
+
+    "Chỉ báo kỹ thuật": [
+        { name: "MA5", key: "ma5" },
+        { name: "MA10", key: "ma10" },
+        { name: "EMA5", key: "ema5" },
+        { name: "EMA10", key: "ema10" },
+        { name: "RSI(14)", key: "rsi" },
+    ],
+};

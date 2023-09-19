@@ -26,7 +26,6 @@ const InvestTool = () => {
                 <InternationalIndex />
                 <News />
             </div>
-            <Banner />
             <div className='nav_bar container mx-auto'>
                 <div>
                     <div className="px-11">
