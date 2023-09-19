@@ -60,3 +60,26 @@ export const hashTbStockFilter = {
         { name: "RSI(14)", key: "rsi" },
     ],
 };
+
+
+
+export const hashTbIndustry = {
+    'Bảo hiểm': 'baoHiem',
+    'Bất động sản': 'batDongSan',
+    'Công nghệ': 'congNghe',
+    'Dầu khí': 'dauKhi',
+    'Dịch vụ bán lẻ': 'banLe',
+    'Dịch vụ tiện ích': 'tienIch',
+    'Đồ dùng cá nhân & gia dụng': 'doGiaDung',
+    'Du lịch và giải trí': 'duLich',
+    'Hàng hóa & DV Công nghiệp': 'hangHoa',
+    'Hóa chất': 'hoaChat',
+    'Ngân hàng': 'nganHang',
+    'Ô tô & linh kiện ô tô': 'oto',
+    'Phương tiện truyền thông': 'truyenThong',
+    'Thực phẩm và đồ uống': 'thucPham',
+    'Viễn thông': 'vienThong',
+    'Xây dựng & VLXD': 'xayDung',
+    'Tài nguyên cơ bản': 'taiNguyen',
+    'Y tế': 'yTe',
+}
