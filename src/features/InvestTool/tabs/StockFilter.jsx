@@ -21,8 +21,24 @@ const StockFilter = () => {
     const { dataRangeMinMax } = useSelector((state) => state.investTool);
     const [selectedKey, setSelectedKey] = useState(null);
     const [arrSliderInput, setArrSliderInput] = useState([]);
-    const [arrToCallApi, setArrToCallApi] = useState([])
-    const [isChecked, setIsChecked] = useState(true)
+    const [arrSliderCheckbox, setArrSliderCheckbox] = useState([]);
+    const [formData, setFormData] = useState({
+        'filter': [
+            {
+                'key': 'string',
+                "from": 0,
+                "to": 0
+            }
+        ],
+        "exchange": "HNX, UPCOM, HOSE",
+        "industry": "banLe,baoHiem,batDongSan,nganHang, ..."
+    })
+
+
+    console.log({ arrSliderInput })
+    console.log({ arrSliderCheckbox })
+
+
     const [selectedExchange, setSelectedExchange] = useState(['HOSE', 'HNX', 'UPCOM']);
     const [selectedIndustry, setSelectedIndustry] = useState(['Bảo hiểm', 'Bất động sản', 'Công nghệ', 'Dầu khí', 'Dịch vụ bán lẻ', 'Dịch vụ tiện ích', 'Đồ dùng cá nhân & gia dụng', 'Du lịch và giải trí', 'Hàng hóa & DV Công nghiệp', 'Hóa chất', 'Ngân hàng', 'Ô tô & linh kiện ô tô', 'Phương tiện truyền thông', 'Thực phẩm và đồ uống', 'Viễn thông', 'Xây dựng & VLXD', 'Tài nguyên cơ bản', 'Y tế']);
 
@@ -54,18 +70,25 @@ const StockFilter = () => {
         setOpenSampleFilter(false);
     }
 
-
     const handleElementClick = (key) => {
         setSelectedKey(key);
     };
+
+
     useEffect(() => {
         dispatch(fetchRangeMinMax());
     }, [dispatch]);
+
+
+
+
     const handleCriteriaClick = (key) => {
         // Kiểm tra xem key đã tồn tại trong mảng arrSliderInput chưa
         if (!arrSliderInput.includes(key)) {
             // Nếu chưa tồn tại, thêm key vào mảng
             setArrSliderInput([...arrSliderInput, key]);
+            setArrSliderCheckbox([...arrSliderCheckbox, key])
+
         }
     };
     const getMinMaxByKey = (key) => {
@@ -83,9 +106,17 @@ const StockFilter = () => {
         setArrSliderInput(updatedArr);
     };
 
-    const handleCheckboxChange = () => {
-        setIsChecked(!isChecked);
+    const toggleKeyInArray = (key) => {
+        if (arrSliderCheckbox.includes(key)) {
+            // Nếu key đã tồn tại trong mảng, xóa nó ra khỏi mảng
+            const updatedArr = arrSliderCheckbox.filter((item) => item !== key);
+            setArrSliderCheckbox(updatedArr);
+        } else {
+            // Nếu key chưa tồn tại trong mảng, thêm nó vào
+            setArrSliderCheckbox([...arrSliderCheckbox, key]);
+        }
     };
+
     return (
         <div>
             <div className='grid grid-cols-2 gap-4 pt-2'>
@@ -353,16 +384,20 @@ const StockFilter = () => {
                         {arrSliderInput.map((key, index) => {
                             const minMax = getMinMaxByKey(key);
                             const name = Object.values(hashTbStockFilter)
-                                .flatMap(items => items)
-                                .find(item => item.key === key)?.name;
+                                .flatMap((items) => items)
+                                .find((item) => item.key === key)?.name;
                             if (minMax && name) {
                                 return (
+
                                     <div key={index} className="flex justify-between items-center my-1 mx-2" >
                                         <div className="w-[95%] flex items-center justify-between">
                                             <div className='w-[30%] flex items-center justify-between'>
                                                 <div className='text-xs'>{name}</div>
                                                 <label className="material-checkbox py-2 px-2 text-white">
-                                                    <input onChange={() => handleCheckboxChange(key)} checked={isChecked} type="checkbox" name="targets" />
+                                                    <input checked={arrSliderCheckbox?.includes(key)}
+                                                    type="checkbox"
+                                                    name="exchange"
+                                                    onChange={() => toggleKeyInArray(key)}  />
                                                     <span className="checkmark"></span>
                                                 </label>
                                             </div>
@@ -391,6 +426,26 @@ const StockFilter = () => {
                                                 </svg>
                                             </button>
                                         </div>
+                                        <button
+                                            onClick={() => handleDelElement(key)}
+                                            className="btn btn-del"
+                                        >
+                                            <svg
+                                                viewBox="0 0 15 17.5"
+                                                height="17.5"
+                                                width="15"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="icon"
+                                                fill="white"
+                                            >
+                                                <path
+                                                    transform="translate(-2.5 -1.25)"
+                                                    d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+                                                    id="Fill"
+                                                ></path>
+                                            </svg>
+                                        </button>
+
                                     </div>
                                 );
                             }
