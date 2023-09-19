@@ -25,8 +25,8 @@ const RatingHeader = ({ queryApi }) => {
 
     return (
         <div>
-            <div className='flex w-full border-solid border-white border-b-2 border-t-0 border-x-0 pb-1' >
-                <div className='text-white flex items-center justify-center'>
+            <div className='flex w-full border-solid dark:border-white border-black border-b-2 border-t-0 border-x-0 pb-1' >
+                <div className='dark:text-white text-black flex items-center justify-center'>
                     <div className='icon_left cursor-pointer mr-2'
                         onClick={() => {
                             setIsBasicPrice(!isBasicPrice)
@@ -46,7 +46,7 @@ const RatingHeader = ({ queryApi }) => {
                     </div>
                 </div>
             </div>
-            <div className='text-white'>
+            <div className='dark:text-white text-black'>
                 {isBasicPrice ? (
                     <table className='w-full border-collapse'>
                         <thead>
@@ -60,8 +60,8 @@ const RatingHeader = ({ queryApi }) => {
                             {dataBasicPrice?.map((item, index) => (
                                 <tr key={index}>
                                     <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold' : ''} p-2`}>{item.name}</td>
-                                    <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold border border-solid border-white border-t-2 border-b-0 border-x-0' : ''} p-2 text-center`}>{item.value == 0 ? '-' : Math.floor(item.value).toLocaleString('en-US')}</td>
-                                    <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold border border-solid border-white border-t-2 border-b-0 border-x-0' : ''} p-2 text-center`}>{item.value_industry == 0 ? '-' : Math.floor(item.value_industry).toLocaleString('en-US')}</td>
+                                    <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold border border-solid dark:border-white border-black border-t-2 border-b-0 border-x-0' : ''} p-2 text-center`}>{item.value == 0 ? '-' : Math.floor(item.value).toLocaleString('en-US')}</td>
+                                    <td className={`${item.name === 'Tổng hợp định giá' ? 'font-bold border border-solid dark:border-white border-black border-t-2 border-b-0 border-x-0' : ''} p-2 text-center`}>{item.value_industry == 0 ? '-' : Math.floor(item.value_industry).toLocaleString('en-US')}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -78,7 +78,7 @@ const RatingHeader = ({ queryApi }) => {
                             {dataTechnical?.map((item, index) => (
                                 <tr key={index}>
                                     <td className='p-2'>{item.name}</td>
-                                    <td className={`p-2 text-center ${index === dataTechnical.length - 1 ? 'border border-solid border-white border-b-2 border-t-0 border-x-0' : ''}`}>  {typeof (item.value) === 'number' ? (item.value).toFixed(2) : item.value}</td>
+                                    <td className={`p-2 text-center ${index === dataTechnical.length - 1 ? 'border border-solid dark:border-white border-black border-b-2 border-t-0 border-x-0' : ''}`}>  {typeof (item.value) === 'number' ? (item.value).toFixed(2) : item.value}</td>
                                 </tr>
                             ))}
                         </tbody>

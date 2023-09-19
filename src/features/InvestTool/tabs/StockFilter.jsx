@@ -227,7 +227,7 @@ const StockFilter = () => {
                                             <label key={index} className="material-checkbox py-2 px-2 text-white">
                                                 <input
                                                     type="checkbox"
-                                                    name="exchange"
+                                                    name="industry"
                                                 />
                                                 <span className="checkmark"></span>
                                                 <span className='text-xs text-left'>{industry}</span>
@@ -277,7 +277,6 @@ const StockFilter = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

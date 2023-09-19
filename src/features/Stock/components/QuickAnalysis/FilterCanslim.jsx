@@ -14,8 +14,8 @@ const FilterCanslim = ({ queryApi }) => {
 
     return (
         <>
-            <div className='flex w-full border-solid border-white border-b-2 border-t-0 border-x-0 pb-1' >
-                <div className='text-white flex items-center justify-center'>
+            <div className='flex w-full border-solid dark:border-white border-black border-b-2 border-t-0 border-x-0 pb-1' >
+                <div className='dark:text-white text-black flex items-center justify-center'>
                     <div className='icon_left cursor-pointer mr-2' >
                         <BiSolidLeftArrow className='text-base' />
                     </div>
@@ -27,7 +27,7 @@ const FilterCanslim = ({ queryApi }) => {
                     </div>
                 </div>
             </div>
-            <div className='text-white'>
+            <div className='dark:text-white text-black'>
                 <table className='w-full'>
                     <thead>
                         <tr>
@@ -39,7 +39,7 @@ const FilterCanslim = ({ queryApi }) => {
                         {Array.isArray(dataFilterCanslim) && dataFilterCanslim?.map((item, index) => (
                             <tr key={index}>
                                 <td className={`${item.name === 'Tổng hợp chỉ tiêu' ? 'font-bold' : ''} p-2`}>{item.name}</td>
-                                <td className={`${item.name === 'Tổng hợp chỉ tiêu' ? 'font-bold border border-solid border-white border-t-2 border-b-0 border-x-0' : ''} p-2 text-center ${getColorForHeaderRating(item.value)}`}>
+                                <td className={`${item.name === 'Tổng hợp chỉ tiêu' ? 'font-bold border border-solid dark:border-white border-black border-t-2 border-b-0 border-x-0' : ''} p-2 text-center ${getColorForHeaderRating(item.value)}`}>
                                     {item.name === 'Tổng hợp chỉ tiêu' ? item.value + '/5' : item.value}
                                 </td>
                             </tr>
