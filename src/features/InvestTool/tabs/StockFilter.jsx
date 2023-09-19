@@ -4,7 +4,7 @@ import '../utils/styles/btnFilterStyle.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchRangeMinMax } from "../thunk";
-import { hashTbStockFilter, hashTbIndustry } from "../utils/hashTb";
+import { hashTbStockFilter, hashTbIndustry, hashTbExchange } from "../utils/hashTb";
 import SliderInput from "../utils/SliderInput";
 import "../utils/styles/btnDel.css";
 
@@ -23,6 +23,26 @@ const StockFilter = () => {
     const [arrSliderInput, setArrSliderInput] = useState([]);
     const [arrToCallApi, setArrToCallApi] = useState([])
     const [isChecked, setIsChecked] = useState(true)
+    const [selectedExchange, setSelectedExchange] = useState(['HOSE', 'HNX', 'UPCOM']);
+    const [selectedIndustry, setSelectedIndustry] = useState(['Bảo hiểm', 'Bất động sản', 'Công nghệ', 'Dầu khí', 'Dịch vụ bán lẻ', 'Dịch vụ tiện ích', 'Đồ dùng cá nhân & gia dụng', 'Du lịch và giải trí', 'Hàng hóa & DV Công nghiệp', 'Hóa chất', 'Ngân hàng', 'Ô tô & linh kiện ô tô', 'Phương tiện truyền thông', 'Thực phẩm và đồ uống', 'Viễn thông', 'Xây dựng & VLXD', 'Tài nguyên cơ bản', 'Y tế']);
+
+    const handleSelectedIndustry = (name) => {
+        // Xử lý khi người dùng chọn một mục
+        if (selectedIndustry.includes(name)) {
+            setSelectedIndustry(selectedIndustry.filter(item => item !== name));
+        } else {
+            setSelectedIndustry([...selectedIndustry, name]);
+        }
+    };
+
+    const handleSelectedExchange = (name) => {
+        // Xử lý khi người dùng chọn một mục
+        if (selectedExchange.includes(name)) {
+            setSelectedExchange(selectedExchange.filter(item => item !== name));
+        } else {
+            setSelectedExchange([...selectedExchange, name]);
+        }
+    };
 
     const onClickValueYourFilter = (newValue) => {
         setValueYourFilter(newValue.target.innerHTML)
@@ -70,7 +90,7 @@ const StockFilter = () => {
         <div>
             <div className='grid grid-cols-2 gap-4 pt-2'>
                 <div>
-                    <div className='pb-2'>
+                    <div className='pb-3'>
                         <div className='grid grid-cols-4 gap-2'>
                             <button className='bg-[#2790BD] border-none text-white font-bold flex items-center justify-evenly px-2 py-1 rounded-lg btnInfoFilter active:bg-[#154162]'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
@@ -131,30 +151,20 @@ const StockFilter = () => {
                             <Popover
                                 content={
                                     <div className='bg-[#034460] text-white overflow-auto border text-center'>
-                                        <label className="material-checkbox py-2 px-2 text-white">
-                                            <input
-                                                type="checkbox"
-                                                name="exchange"
-                                            />
-                                            <span className="checkmark"></span>
-                                            <span className='text-sm'>HOSE</span>
-                                        </label>
-                                        <label className="material-checkbox py-2 px-2 text-white">
-                                            <input
-                                                type="checkbox"
-                                                name="exchange"
-                                            />
-                                            <span className="checkmark"></span>
-                                            <span className='text-sm'>HNX</span>
-                                        </label>
-                                        <label className="material-checkbox py-2 px-2 text-white">
-                                            <input
-                                                type="checkbox"
-                                                name="exchange"
-                                            />
-                                            <span className="checkmark"></span>
-                                            <span className='text-sm'>UPCOM</span>
-                                        </label>
+                                        {Object.keys(hashTbExchange).map((exchange, index) => (
+                                            <label key={index} className="material-checkbox py-2 px-2 text-white">
+                                                <input
+                                                    type="checkbox"
+                                                    name="exchange"
+                                                    value={exchange}
+                                                    id={exchange}
+                                                    checked={selectedExchange.includes(exchange)}
+                                                    onChange={() => handleSelectedExchange(exchange)}
+                                                />
+                                                <span className="checkmark"></span>
+                                                <span className='text-sm'>{exchange}</span>
+                                            </label>
+                                        ))}
                                     </div>
                                 }
                                 placement="bottom"
@@ -254,6 +264,10 @@ const StockFilter = () => {
                                                 <input
                                                     type="checkbox"
                                                     name="industry"
+                                                    value={industry}
+                                                    id={industry}
+                                                    checked={selectedIndustry.includes(industry)}
+                                                    onChange={() => handleSelectedIndustry(industry)}
                                                 />
                                                 <span className="checkmark"></span>
                                                 <span className='text-xs text-left'>{industry}</span>
@@ -290,17 +304,17 @@ const StockFilter = () => {
                         </div>
                     </div>
                     <hr />
-                    <div className="text-white flex justify-between items-center">
-                        <div className="w-[30%] h-[350px]  ">
-                            <span> Yếu tố cần lọc</span>
-                            <div className="bg-[#2b2b2b] h-full p-2">
-                                <div className="bg-[#2b2b2b] flex flex-col justify-evenly h-[60%]">
-                                    {Object.keys(hashTbStockFilter).map((key) => {
+                    <div className="text-white grid grid-cols-12 gap-3 pt-3">
+                        <div className="col-span-4">
+                            <div className='text-center border border-solid border-t-2 border-b-0 border-x-0 border-[#2790BD] bg-[#154162] p-1'>Yếu tố cần lọc</div>
+                            <div className="bg-[#2b2b2b] h-[350px] p-2 border border-solid border-b-0 border-t-2 border-x-0">
+                                <div className="bg-[#2b2b2b] flex flex-col">
+                                    {Object.keys(hashTbStockFilter).map((key, index) => {
                                         return (
                                             <span
-                                                key={key}
+                                                key={index}
                                                 onClick={() => handleElementClick(key)}
-                                                className={`cursor-pointer ${selectedKey === key ? "bg-gray-500" : ""
+                                                className={`hover:bg-[#477386] rounded-md my-1 cursor-pointer px-1 py-2 ${selectedKey === key ? "bg-gray-500" : ""
                                                     }`}
                                             >
                                                 {key}
@@ -310,31 +324,29 @@ const StockFilter = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-[70%]  ml-2 h-[350px] ">
-                            <span>Lựa chọn các tiêu chí lọc</span>
-                            <div className="bg-[#2b2b2b] h-[350px] p-2">
-                                <div className=" h-full ">
-                                    <div className="h-[80%] flex flex-col justify-evenly">
-                                        {selectedKey &&
-                                            hashTbStockFilter[selectedKey].map((item) => {
-                                                return (
-                                                    <span
-                                                        onClick={() => handleCriteriaClick(item.key)}
-                                                        className="cursor-pointer"
-                                                        key={item.key}
-                                                    >
-                                                        {item.name}
-                                                    </span>
-                                                );
-                                            })}
-                                    </div>
+                        <div className="col-span-8">
+                            <div className='text-center border border-solid border-t-2 border-b-0 border-x-0 border-[#2790BD] bg-[#154162] p-1'>Lựa chọn các tiêu chí lọc</div>
+                            <div className="bg-[#2b2b2b] h-[350px] p-2 border border-solid border-b-0 border-t-2 border-x-0">
+                                <div className="flex flex-col">
+                                    {selectedKey &&
+                                        hashTbStockFilter[selectedKey].map((item, index) => {
+                                            return (
+                                                <span
+                                                    onClick={() => handleCriteriaClick(item.key)}
+                                                    className="hover:bg-[#477386] rounded-md my-1 cursor-pointer px-1 py-2"
+                                                    key={index}
+                                                >
+                                                    {item.name}
+                                                </span>
+                                            );
+                                        })}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="text-white border border-white border-solid">
-                    <div className="bg-[#154162] text-center font-semibold border border-white border-solid">
+                <div className="text-white border border-white border-solid h-[512px] overflow-y-scroll">
+                    <div className="bg-[#154162] p-1 text-center font-semibold border border-white border-solid">
                         Tương tác các chỉ tiêu đã chọn
                     </div>
                     <div>
@@ -345,39 +357,40 @@ const StockFilter = () => {
                                 .find(item => item.key === key)?.name;
                             if (minMax && name) {
                                 return (
-                                    <div
-                                        key={index}
-                                        className="flex w-full justify-around items-center mb-2 mt-2"
-                                    >
-                                        <div className="w-[30%] flex items-center  justify-around">
-                                            <span>{name}</span>
-                                            <label className="material-checkbox py-2 px-2 text-white">
-                                                <input onChange={() => handleCheckboxChange(key)} checked={isChecked} type="checkbox" name="exchange" />
-                                                <span className="checkmark"></span>
-                                            </label>
+                                    <div key={index} className="flex justify-between items-center my-1 mx-2" >
+                                        <div className="w-[95%] flex items-center justify-between">
+                                            <div className='w-[30%] flex items-center justify-between'>
+                                                <div className='text-xs'>{name}</div>
+                                                <label className="material-checkbox py-2 px-2 text-white">
+                                                    <input onChange={() => handleCheckboxChange(key)} checked={isChecked} type="checkbox" name="targets" />
+                                                    <span className="checkmark"></span>
+                                                </label>
+                                            </div>
+                                            <div className="w-[70%]">
+                                                <SliderInput
+                                                    min={Math.floor(minMax.min)}
+                                                    max={Math.ceil(minMax.max)}
+                                                />
+                                            </div>
                                         </div>
-                                        <div className="w-[40%]">
-                                            <SliderInput
-                                                min={Math.floor(minMax.min)}
-                                                max={Math.ceil(minMax.max)}
-                                            />
+                                        <div className='w-[3%]'>
+                                            <button onClick={() => handleDelElement(key)} class="btn btn-del">
+                                                <svg
+                                                    viewBox="0 0 15 17.5"
+                                                    height="17.5"
+                                                    width="15"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon"
+                                                    fill="white"
+                                                >
+                                                    <path
+                                                        transform="translate(-2.5 -1.25)"
+                                                        d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+                                                        id="Fill"
+                                                    ></path>
+                                                </svg>
+                                            </button>
                                         </div>
-                                        <button onClick={() => handleDelElement(key)} class="btn btn-del">
-                                            <svg
-                                                viewBox="0 0 15 17.5"
-                                                height="17.5"
-                                                width="15"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="icon"
-                                                fill="white"
-                                            >
-                                                <path
-                                                    transform="translate(-2.5 -1.25)"
-                                                    d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
-                                                    id="Fill"
-                                                ></path>
-                                            </svg>
-                                        </button>
                                     </div>
                                 );
                             }
