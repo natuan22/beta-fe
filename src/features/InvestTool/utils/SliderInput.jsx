@@ -58,11 +58,11 @@ const SliderInput = ({ min, max }) => {
     }
 
     return (
-        <div className='flex justify-between items-center w-full' >
-            <div className='text-white text-base w-[20%] mr-5 '>
+        <div className='flex justify-between items-center w-[400px] rounded-md' >
+            <div className='text-white w-[5%] mr-5'>
                 {value[0]}
             </div>
-            <div className='w-[60%]'>
+            <div className='w-[65%]'>
                 <AirbnbSlider
                     slots={{ thumb: AirbnbThumbComponent }}
                     onChange={handleChange}
@@ -87,7 +87,7 @@ const SliderInput = ({ min, max }) => {
                     }}
                 />
             </div>
-            <div className='text-white text-base w-[20%] ml-5'>
+            <div className='text-white w-[5%] ml-5'>
                 {value[1]}
             </div>
         </div>
