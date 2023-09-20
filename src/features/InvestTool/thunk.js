@@ -18,7 +18,11 @@ export const fetchRangeMinMax = () => async dispatch => {
 export const fetchDataStockFilter = (formData) => async dispatch => {
     try {
         const res = await investToolService.fetchDataStockFilter(formData)
-        console.log(res)
+        console.log(res.data.data)
+        dispatch({
+            type: investToolType.FETCH_DATA_STOCK_FILTER,
+            payload: res.data.data
+        })
     } catch (err) {
         console.error(err)
     }
