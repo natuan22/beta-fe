@@ -69,9 +69,9 @@ const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }
 
     // Hàm để tính giá trị nhân dựa vào sliderKey
     const calculateMultiplier = (sliderKey) => {
-        if (sliderKey.includes('MARKETCAP')) {
+        if (sliderKey.includes('marketCap')) {
             return 1000000000;
-        } else if (sliderKey.includes('SHAREOUT')) {
+        } else if (sliderKey.includes('shareout')) {
             return 1000000;
         } else if (sliderKey.includes('totalVol')) {
             return 1000000;

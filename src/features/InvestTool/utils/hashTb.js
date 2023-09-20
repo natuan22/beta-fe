@@ -1,8 +1,8 @@
 export const hashTbStockFilter = {
     "Thông tin doanh nghiệp": [
-        { name: "Vốn hóa (tỷ VNĐ)", key: "MARKETCAP" },
+        { name: "Vốn hóa (tỷ VNĐ)", key: "marketCap" },
         { name: "Thị giá", key: "closePrice" },
-        { name: "KL cổ phiếu lưu hành (triệu CP)", key: "SHAREOUT" },
+        { name: "KL cổ phiếu lưu hành (triệu CP)", key: "shareout" },
         ,
     ],
     "Dữ liệu giao dich": [
