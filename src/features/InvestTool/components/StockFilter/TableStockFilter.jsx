@@ -30,6 +30,7 @@ const TableStockFilter = ({ arrSliderCheckbox }) => {
     };
 
     return (
+
         <div>
             <div className='pt-3'>
                 {arrSliderCheckbox.length > 0 ? (

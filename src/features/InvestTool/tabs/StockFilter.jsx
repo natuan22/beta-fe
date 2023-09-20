@@ -113,7 +113,10 @@ const StockFilter = () => {
     };
     const handleDelElement = (keyToDelete) => {
         const updatedArr = arrSliderInput.filter((key) => key !== keyToDelete);
+        const updateArrCheckbox = arrSliderCheckbox.filter(key => key !== keyToDelete)
+        setArrSliderCheckbox(updateArrCheckbox)
         setArrSliderInput(updatedArr);
+
         // Xóa object tương ứng trong mảng filter của formData
         const updatedFilter = formData.filter.filter((filterItem) => filterItem.key !== keyToDelete);
 
@@ -393,7 +396,7 @@ const StockFilter = () => {
                         </div>
                     </div>
                 </div>
-                <div className="text-white border border-white border-solid h-[512px] overflow-y-scroll">
+                <div className="text-white border border-white border-solid h-[512px] overflow-y-auto">
                     <div className="bg-[#154162] p-1 text-center font-semibold border border-white border-solid">
                         Tương tác các chỉ tiêu đã chọn
                     </div>
