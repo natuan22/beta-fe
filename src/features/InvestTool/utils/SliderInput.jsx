@@ -53,11 +53,11 @@ function valuetext(value) {
 const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }) => {
 
     const [value, setValue] = useState([min, max])
-    console.log(arrCheckbox)
+    // console.log(arrCheckbox)
     const [isSliding, setIsSliding] = useState(false);
     const [pendingValue, setPendingValue] = useState(value);
 
-    console.log(formData)
+    // console.log(formData)
     const handleChange = (e, newVal) => {
         setValue(newVal);
         setIsSliding(true);
