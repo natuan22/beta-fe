@@ -373,13 +373,13 @@ const InvestSimulation = () => {
                                     <td className='border border-solid border-[#9E9E9E]'>
                                         <div className='flex justify-between p-2'>
                                             <span className='text-sm'>VIC - Tập đoàn VINGROUP - CTCP</span>
-                                            <button class="btn btn-del">
+                                            <button className="btn btn-del">
                                                 <svg
                                                     viewBox="0 0 15 17.5"
                                                     height="17.5"
                                                     width="15"
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon"
+                                                    className="icon"
                                                     fill="white"
                                                 >
                                                     <path
@@ -429,13 +429,13 @@ const InvestSimulation = () => {
                                     <td className='border border-solid border-[#9E9E9E]'>
                                         <div className='flex justify-between p-2'>
                                             <span className='text-sm'>VRE - Công ty Cổ phần Vincom Retail</span>
-                                            <button class="btn btn-del">
+                                            <button className="btn btn-del">
                                                 <svg
                                                     viewBox="0 0 15 17.5"
                                                     height="17.5"
                                                     width="15"
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon"
+                                                    className="icon"
                                                     fill="white"
                                                 >
                                                     <path
