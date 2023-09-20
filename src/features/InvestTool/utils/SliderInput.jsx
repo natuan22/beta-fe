@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider, { SliderThumb } from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 
@@ -50,12 +50,87 @@ function valuetext(value) {
     return `${value}`;
 }
 
-const SliderInput = ({ min, max }) => {
+const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }) => {
 
     const [value, setValue] = useState([min, max])
+    console.log(arrCheckbox)
+    const [isSliding, setIsSliding] = useState(false);
+    const [pendingValue, setPendingValue] = useState(value);
+
+    console.log(formData)
     const handleChange = (e, newVal) => {
-        setValue(newVal)
+        setValue(newVal);
+        setIsSliding(true);
+
+        // Cập nhật giá trị sau khi dừng kéo slider
+        setPendingValue(newVal);
     }
+
+
+    // Hàm để tính giá trị nhân dựa vào sliderKey
+    const calculateMultiplier = (sliderKey) => {
+        if (sliderKey.includes('MARKETCAP')) {
+            return 1000000000;
+        } else if (sliderKey.includes('SHAREOUT')) {
+            return 1000000;
+        } else if (sliderKey.includes('totalVol')) {
+            return 1000000;
+        } else if (sliderKey.includes('EBIT')) {
+            return 1000000000;
+        }
+        return 1; // Mặc định nếu không có điều kiện nào khớp
+    };
+
+    useEffect(() => {
+        // Nếu user ngừng kéo slider sau 0.3 giây, cập nhật giá trị value
+        const updateTimeout = setTimeout(() => {
+            if (!isSliding) {
+                // Tạo một bản sao mới của formData
+                const newFormData = { ...formData };
+                const multiplier = calculateMultiplier(sliderKey);
+                // Tạo một object mới cho mảng filter
+                const newFilterObject = {
+                    key: sliderKey,
+                    from: pendingValue[0] * multiplier, // Giá trị min sau khi ngừng kéo slider
+                    to: pendingValue[1] * multiplier,   // Giá trị max sau khi ngừng kéo slider
+                };
+
+                // Kiểm tra xem key có trong arrCheckbox không
+                const keyIsInCheckbox = arrCheckbox.includes(sliderKey);
+
+                if (keyIsInCheckbox) {
+                    // Nếu key có trong arrCheckbox, cập nhật hoặc thêm key vào formData
+                    const existingFilterIndex = newFormData.filter.findIndex(
+                        (filterItem) => filterItem.key === sliderKey
+                    );
+
+                    if (existingFilterIndex !== -1) {
+                        // Nếu key đã tồn tại, cập nhật giá trị của nó
+                        newFormData.filter[existingFilterIndex] = newFilterObject;
+                    } else {
+                        // Nếu key chưa tồn tại, thêm một object mới
+                        newFormData.filter.push(newFilterObject);
+                    }
+                } else {
+                    // Nếu key không có trong arrCheckbox, loại bỏ nó khỏi formData
+                    newFormData.filter = newFormData.filter.filter(
+                        (filterItem) => filterItem.key !== sliderKey
+                    );
+                }
+
+                // Cập nhật giá trị formData trong component cha
+                setFormData(newFormData);
+            }
+
+            setIsSliding(false);
+        }, 300); // Tăng thời gian delay lên 300ms cho 0.3 giây
+
+        // Xóa timeout khi component unmount hoặc khi sliderKey thay đổi
+        return () => {
+            clearTimeout(updateTimeout);
+        };
+    }, [sliderKey, value, pendingValue, isSliding, arrCheckbox]);
+
 
     return (
         <div className='flex justify-between items-center w-[400px] rounded-md' >
@@ -66,7 +141,7 @@ const SliderInput = ({ min, max }) => {
                 <AirbnbSlider
                     slots={{ thumb: AirbnbThumbComponent }}
                     onChange={handleChange}
-                    value={value}
+                    defaultValue={value}
                     getAriaValueText={valuetext}
                     min={min}
                     max={max}
