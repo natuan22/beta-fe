@@ -7,7 +7,7 @@ const TableStockFilter = ({ arrSliderCheckbox }) => {
     const { count, data } = dataStockFilter
 
     return (
-        <div>
+        <div className='mt-5'>
             <RenderTableStockFilter arrSliderCheckbox={arrSliderCheckbox} data={data} />
         </div>
     )
