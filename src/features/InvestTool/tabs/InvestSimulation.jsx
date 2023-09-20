@@ -2,7 +2,8 @@ import { DatePicker } from '@mui/x-date-pickers'
 import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
-import { FormControl, Input, MenuItem, Select, TextField } from '@mui/material';
+import { FormControl, MenuItem, Select, TextField } from '@mui/material';
+import { NumericFormat } from 'react-number-format';
 
 const InvestSimulation = () => {
     const color = useSelector((state) => state.color.colorTheme);
@@ -114,16 +115,18 @@ const InvestSimulation = () => {
                         {/* Vốn đầu tư ban đầu */}
                         <div className='py-3 flex items-center justify-between'>
                             <span>Vốn đầu tư ban đầu (Tr)</span>
-                            <TextField
-                                type='number'
-                                defaultValue={initialCapital}
+                            <NumericFormat
+                                value={initialCapital}
+                                customInput={TextField}
+                                onChange={handleChangeInitialCapital}
                                 sx={{
                                     '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                     '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                     '& .MuiInputBase-formControl': { backgroundColor: 'rgba(92, 92, 92, 0.50)' },
                                     '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '5.5px', paddingBottom: '5.5px', textAlign: 'right' },
                                 }}
-                                onChange={handleChangeInitialCapital} />
+                                thousandSeparator
+                            />
                         </div>
 
                         {/* Khoảng thời gian giả lập */}
@@ -254,16 +257,18 @@ const InvestSimulation = () => {
                                 {/* Thêm định kỳ (Tr): */}
                                 <div className='py-3 flex items-center justify-between'>
                                     <span>Thêm định kỳ (Tr):</span>
-                                    <TextField
-                                        type='number'
-                                        defaultValue={addPeriodically}
+                                    <NumericFormat
+                                        value={addPeriodically}
+                                        customInput={TextField}
                                         onChange={handleChangeAddPeriodically}
                                         sx={{
                                             '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                             '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                             '& .MuiInputBase-formControl': { backgroundColor: 'rgba(92, 92, 92, 0.50)' },
                                             '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '5.5px', paddingBottom: '5.5px', textAlign: 'right' },
-                                        }} />
+                                        }}
+                                        thousandSeparator
+                                    />
                                 </div>
                             </div>
                         ) : (
