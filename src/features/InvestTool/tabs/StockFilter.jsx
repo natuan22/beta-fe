@@ -399,7 +399,6 @@ const StockFilter = () => {
                     </div>
                     <div>
                         {arrSliderInput.map((key, index) => {
-                            console.log(key)
                             const minMax = getMinMaxByKey(key);
                             const name = Object.values(hashTbStockFilter)
                                 .flatMap((items) => items)
