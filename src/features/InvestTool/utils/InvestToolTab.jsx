@@ -41,7 +41,7 @@ const InvestToolTab = () => {
                         }}
                         to="/cong-cu-dau-tu/khuyen-nghi-dau-tu"
                     >
-                        Khuyến nghị đầu tư
+                        Theo dõi danh mục
                     </NavLink>
                     <NavLink
                         className={(params) => {
@@ -109,7 +109,7 @@ const InvestToolTab = () => {
                         }}
                         to="/cong-cu-dau-tu/khuyen-nghi-dau-tu"
                     >
-                        Khuyến nghị đầu tư
+                        Theo dõi danh mục
                     </NavLink>
                     <NavLink
                         className={(params) => {

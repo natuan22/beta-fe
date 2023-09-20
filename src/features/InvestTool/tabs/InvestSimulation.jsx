@@ -1,11 +1,16 @@
 import { DatePicker } from '@mui/x-date-pickers'
 import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs';
-import { useSelector } from 'react-redux';
 import { FormControl, MenuItem, Select, TextField } from '@mui/material';
 import { NumericFormat } from 'react-number-format';
+import { useDispatch, useSelector } from 'react-redux';
+import { useDebounce } from 'react-use';
+import { fetchStockList } from '../thunk';
 
 const InvestSimulation = () => {
+    const dispatch = useDispatch()
+    const { dataStockList } = useSelector(state => state.investTool)
+    console.log(dataStockList)
     const color = useSelector((state) => state.color.colorTheme);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const [initialCapital, setInitialCapital] = useState('1000'); // Vốn đầu tư ban đầu
@@ -15,6 +20,10 @@ const InvestSimulation = () => {
     const [readOnlyDateTimePicker, setReadOnlyDateTimePicker] = useState(false);
     const [periodicInvestment, setPeriodicInvestment] = useState(true); // Đầu tư định kỳ
     const [addPeriodically, setAddPeriodically] = useState('10'); // Thêm định kỳ
+    const [debouncedValue, setDebouncedValue] = useState('');
+    const [val, setVal] = useState('')
+    const [dataSearch, setDataSearch] = useState([])
+    const [arrCode, setArrCode] = useState([])
 
     useEffect(() => {
         setTheme(color);
@@ -25,6 +34,27 @@ const InvestSimulation = () => {
             setReadOnlyDateTimePicker(false)
         }
     }, [color, readOnlyDateTimePicker, period]);
+
+
+    useEffect(() => {
+        if (debouncedValue === '') {
+            setDataSearch([])
+            return
+        }
+        dispatch(fetchStockList(debouncedValue))
+    }, [dispatch, debouncedValue])
+    // debounce
+    const [, cancel] = useDebounce(
+        () => {
+            // console.log("do sth")
+            setDebouncedValue(val);
+        },
+        500,
+        [val]
+    );
+    useEffect(() => {
+        if (dataStockList) setDataSearch(dataStockList)
+    }, [dataStockList])
 
     const onPeriodicInvestmentChange = () => {
         setPeriodicInvestment(!periodicInvestment);
@@ -289,15 +319,34 @@ const InvestSimulation = () => {
                     </div>
                 </div>
                 <div className='col-span-8'>
-                    <div className='grid grid-cols-12 border-solid border-[#9E9E9E] border-b-2 border-t-0 border-x-0'>
+                    <div className='grid grid-cols-12 border-solid border-[#9E9E9E] border-b-2 border-t-0 border-x-0 relative'>
+                        {dataSearch?.length > 0 && <div className='absolute w-[400px] h-[200px] top-[40px] right-[230px] bg-[#2e2e2e] shadow-lg z-[30] rounded-xl p-3 overflow-y-auto'>
+                            {dataSearch?.map((item, index) => {
+                                return (
+                                    <div key={index} className='text-white flex justify-between items-center border-solid border border-b-2 border-t-0 border-x-0 border-white/50  p-2 hover:bg-gray-600 duration-500 cursor-cell'>
+                                        <span className='w-[20px]'>
+                                            {item.code}
+                                        </span>
+                                        <div className='w-[10px] h-[2px] bg-white'>
+
+                                        </div>
+                                        <span className='w-[300px] text-sm'>
+                                            {item.company_name}
+                                        </span>
+                                    </div>
+                                )
+
+                            })}
+                        </div>}
+
                         <span className='dark:text-white text-black font-semibold col-span-4 py-1 flex items-center'>Phân bổ danh mục</span>
                         <div className='dark:text-white text-black font-semibold col-span-8 py-1 flex items-center justify-between w-[400px]'>
                             <span>Chọn mã cổ phiếu</span>
                             <TextField
-                                inputProps={
-                                    { readOnly: true, }
-                                }
                                 placeholder='Thêm mã'
+                                onChange={({ currentTarget }) => {
+                                    setVal(currentTarget.value);
+                                }}
                                 sx={{
                                     '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                     '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },

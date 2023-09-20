@@ -27,3 +27,16 @@ export const fetchDataStockFilter = (formData) => async dispatch => {
         console.error(err)
     }
 }
+
+
+export const fetchStockList = (key_search) => async dispatch => {
+    try {
+        const res = await investToolService.fetchStockList(key_search)
+        dispatch({
+            type: investToolType.FETCH_DATA_STOCK_LIST,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
