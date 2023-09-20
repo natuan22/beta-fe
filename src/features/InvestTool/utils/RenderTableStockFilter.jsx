@@ -237,17 +237,12 @@ const RenderTableStockFilter = ({ data, arrSliderCheckbox, activeButton }) => {
             var columnsWithCode = [...columnCode, ...columns];
             setColumnsTable(columnsWithCode)
         }
-
     }, [arrSliderCheckbox, activeButton])
-
-
-
 
     return (
         <div>
             {data && columnsTable.length > 0 ? (
-
-                <div >
+                <div className='bg-black rounded-md'>
                     <ThemeProvider theme={theme}>
                         <DataGrid
                             localeText={customLocaleText}
@@ -258,6 +253,8 @@ const RenderTableStockFilter = ({ data, arrSliderCheckbox, activeButton }) => {
                                     paginationModel: { page: 0, pageSize: 10 },
                                 },
                             }}
+                            disableColumnSelector
+                            disableRowSelectionOnClick
                             pageSizeOptions={[10]}
                             sx={{
                                 '& .MuiDataGrid-root': {
@@ -285,7 +282,6 @@ const RenderTableStockFilter = ({ data, arrSliderCheckbox, activeButton }) => {
                             } // Áp dụng màu nền dựa trên index chẵn/lẻ của hàng
                         />
                     </ThemeProvider>
-
                 </div>
             ) : (
                 <div className="h-[300px] flex items-center justify-center"><Loading /></div>

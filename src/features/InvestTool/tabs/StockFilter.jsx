@@ -34,8 +34,6 @@ const StockFilter = () => {
             dispatch(fetchDataStockFilter(formData));
     }, [dispatch, formData])
 
-
-
     useEffect(() => {
         const exchangeValue = selectedExchange.map((exchange) => hashTbExchange[exchange]).join(',');
         setFormData((prevData) => ({
@@ -84,13 +82,9 @@ const StockFilter = () => {
         setSelectedKey(key);
     };
 
-
     useEffect(() => {
         dispatch(fetchRangeMinMax());
     }, [dispatch]);
-
-
-
 
     const handleCriteriaClick = (key) => {
         // Kiểm tra xem key đã tồn tại trong mảng arrSliderInput chưa
@@ -111,6 +105,7 @@ const StockFilter = () => {
         }
         return null;
     };
+
     const handleDelElement = (keyToDelete) => {
         const updatedArr = arrSliderInput.filter((key) => key !== keyToDelete);
         const updateArrCheckbox = arrSliderCheckbox.filter(key => key !== keyToDelete)
