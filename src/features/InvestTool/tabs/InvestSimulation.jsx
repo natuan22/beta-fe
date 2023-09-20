@@ -57,15 +57,61 @@ const InvestSimulation = () => {
         setAddPeriodically(event.target.value);
     };
 
+    // DANH MỤC 1
+    const [count, setCount] = useState(0);
+
+    const handleMinusClick = () => {
+        setCount((prevCount) => (prevCount > 1 ? prevCount - 1 : 0));
+    };
+
+    const handlePlusClick = () => {
+        setCount((prevCount) => prevCount + 1);
+    }
+
+    const handleChangeCount = (event) => {
+        setCount(+event.target.value);
+    }
+
+    // DANH MỤC 2
+    const [countCate2, setCountCate2] = useState(0);
+
+    const handleMinusClickCate2 = () => {
+        setCountCate2((prevCount) => (prevCount > 1 ? prevCount - 1 : 0));
+    };
+
+    const handlePlusClickCate2 = () => {
+        setCountCate2((prevCount) => prevCount + 1);
+    }
+
+    const handleChangeCountCate2 = (event) => {
+        setCountCate2(+event.target.value);
+    }
+
+    // DANH MỤC 3
+    const [countCate3, setCountCate3] = useState(0);
+
+    const handleMinusClickCate3 = () => {
+        setCountCate3((prevCount) => (prevCount > 1 ? prevCount - 1 : 0));
+    };
+
+    const handlePlusClickCate3 = () => {
+        setCountCate3((prevCount) => prevCount + 1);
+    }
+
+    const handleChangeCountCate3 = (event) => {
+        setCountCate3(+event.target.value);
+    }
+
     return (
         <div>
-            <div className='grid grid-cols-12 gap-8 pt-5'>
+            <div className='grid grid-cols-12 gap-8 pt-2'>
                 <div className='col-span-4'>
                     <div className='border-solid border-[#9E9E9E] border-b-2 border-t-0 border-x-0'>
-                        <span className='dark:text-white text-black font-semibold'>Thiết lập thông số</span>
+                        <div className='dark:text-white text-black font-semibold h-[42px] flex items-center'>Thiết lập thông số</div>
                     </div>
-                    {/* Vốn đầu tư ban đầu */}
-                    <div className='dark:text-white text-black'>
+
+                    <div className='dark:text-white text-black h-[503px]'>
+                        {/* Vốn đầu tư ban đầu */}
                         <div className='py-3 flex items-center justify-between'>
                             <span>Vốn đầu tư ban đầu (Tr)</span>
                             <TextField
@@ -75,16 +121,18 @@ const InvestSimulation = () => {
                                     '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                     '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                     '& .MuiInputBase-formControl': { backgroundColor: 'rgba(92, 92, 92, 0.50)' },
-                                    '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '6px', paddingBottom: '6px', textAlign: 'right' },
+                                    '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '5.5px', paddingBottom: '5.5px', textAlign: 'right' },
                                 }}
                                 onChange={handleChangeInitialCapital} />
                         </div>
+
+                        {/* Khoảng thời gian giả lập */}
                         <div className='py-3 flex items-center justify-between'>
                             <span>Khoảng thời gian giả lập</span>
                             <FormControl>
                                 <Select
                                     sx={{
-                                        '& .MuiSelect-select': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000'), width: '200px', textAlign: 'right', paddingTop: '6px', paddingBottom: '6px' },
+                                        '& .MuiSelect-select': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000'), width: '200px', textAlign: 'right', paddingTop: '5.5px', paddingBottom: '5.5px' },
                                         '& .MuiSvgIcon-root': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                         '& .MuiInputBase-input': { backgroundColor: 'rgba(92, 92, 92, 0.50)' },
                                     }}
@@ -99,6 +147,8 @@ const InvestSimulation = () => {
                                 </Select>
                             </FormControl>
                         </div>
+
+                        {/* Từ tháng */}
                         <div className='py-3 flex items-center justify-between'>
                             <span className='dark:text-white text-black'>Từ tháng</span>
                             <div className='ml-4'>
@@ -114,7 +164,7 @@ const InvestSimulation = () => {
                                         '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                         '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                         '& .MuiInputBase-formControl': { backgroundColor: 'rgba(92, 92, 92, 0.50)' },
-                                        '& .MuiInputBase-input': { padding: '6px 0px 6px 14px' },
+                                        '& .MuiInputBase-input': { padding: '5.5px 0px 5.5px 14px' },
                                         '& .MuiOutlinedInput-input': { textAlign: 'right' }
                                     }}
                                     disableFuture
@@ -124,6 +174,8 @@ const InvestSimulation = () => {
                                     }} />
                             </div>
                         </div>
+
+                        {/* Đến tháng */}
                         <div className='py-3 flex items-center justify-between'>
                             <span className='dark:text-white text-black'>Đến tháng</span>
                             <div className='ml-4'>
@@ -139,7 +191,7 @@ const InvestSimulation = () => {
                                         '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                         '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                         '& .MuiInputBase-formControl': { backgroundColor: 'rgba(92, 92, 92, 0.50)' },
-                                        '& .MuiInputBase-input': { padding: '6px 0px 6px 14px' },
+                                        '& .MuiInputBase-input': { padding: '5.5px 0px 5.5px 14px' },
                                         '& .MuiOutlinedInput-input': { textAlign: 'right' }
                                     }}
                                     disableFuture
@@ -149,6 +201,8 @@ const InvestSimulation = () => {
                                     }} />
                             </div>
                         </div>
+
+                        {/* Chỉ số tham chiếu */}
                         <div className='py-3 flex items-center justify-between'>
                             <span>Chỉ số tham chiếu</span>
                             <div>
@@ -161,10 +215,12 @@ const InvestSimulation = () => {
                                         '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                         '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                         '& .MuiInputBase-formControl': { backgroundColor: 'rgba(92, 92, 92, 0.50)' },
-                                        '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '6px', paddingBottom: '6px', textAlign: 'right' },
+                                        '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '5.5px', paddingBottom: '5.5px', textAlign: 'right' },
                                     }} />
                             </div>
                         </div>
+
+                        {/* Đầu tư định kỳ */}
                         <div className='py-3'>
                             <label className="material-checkbox text-white">
                                 <input
@@ -179,6 +235,7 @@ const InvestSimulation = () => {
                         </div>
                         {periodicInvestment ? (
                             <div>
+                                {/* Kỳ hạn: */}
                                 <div className='py-3 flex items-center justify-between'>
                                     <span>Kỳ hạn:</span>
                                     <TextField
@@ -190,9 +247,11 @@ const InvestSimulation = () => {
                                             '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                             '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                             '& .MuiInputBase-formControl': { backgroundColor: 'rgba(92, 92, 92, 0.50)' },
-                                            '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '6px', paddingBottom: '6px', textAlign: 'right' },
+                                            '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '5.5px', paddingBottom: '5.5px', textAlign: 'right' },
                                         }} />
                                 </div>
+
+                                {/* Thêm định kỳ (Tr): */}
                                 <div className='py-3 flex items-center justify-between'>
                                     <span>Thêm định kỳ (Tr):</span>
                                     <TextField
@@ -203,13 +262,15 @@ const InvestSimulation = () => {
                                             '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                             '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
                                             '& .MuiInputBase-formControl': { backgroundColor: 'rgba(92, 92, 92, 0.50)' },
-                                            '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '6px', paddingBottom: '6px', textAlign: 'right' },
+                                            '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '5.5px', paddingBottom: '5.5px', textAlign: 'right' },
                                         }} />
                                 </div>
                             </div>
                         ) : (
                             <div></div>
                         )}
+
+                        {/* Phân bổ đều */}
                         <div className='py-3'>
                             <label className="material-checkbox text-white">
                                 <input
@@ -222,7 +283,221 @@ const InvestSimulation = () => {
                         </div>
                     </div>
                 </div>
-                <div className='col-span-8'></div>
+                <div className='col-span-8'>
+                    <div className='grid grid-cols-12 border-solid border-[#9E9E9E] border-b-2 border-t-0 border-x-0'>
+                        <span className='dark:text-white text-black font-semibold col-span-4 py-1 flex items-center'>Phân bổ danh mục</span>
+                        <div className='dark:text-white text-black font-semibold col-span-8 py-1 flex items-center justify-between w-[400px]'>
+                            <span>Chọn mã cổ phiếu</span>
+                            <TextField
+                                inputProps={
+                                    { readOnly: true, }
+                                }
+                                placeholder='Thêm mã'
+                                sx={{
+                                    '& .MuiInputBase-root .MuiInputBase-input ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
+                                    '& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ': { color: (localStorage.getItem('theme') === 'dark' ? '#fff' : '#000') },
+                                    '& .MuiInputBase-formControl': { backgroundColor: 'rgba(92, 92, 92, 0.50)' },
+                                    '& .MuiOutlinedInput-input': { width: '218px', paddingTop: '5.5px', paddingBottom: '5.5px' },
+                                    '& .MuiInputBase-root': { borderRadius: '10px' }
+                                }} />
+                        </div>
+                    </div>
+                    <div className='pt-3'>
+                        <table className='w-full border-collapse text-white'>
+                            <thead className='bg-[#13476B]'>
+                                <tr>
+                                    <th className='px-3 py-2 text-center border border-solid border-[#9E9E9E] w-[357px]'>Mã</th>
+                                    <th className='px-3 py-2 text-center border border-solid border-[#9E9E9E]'>Danh mục 1</th>
+                                    <th className='px-3 py-2 text-center border border-solid border-[#9E9E9E]'>Danh mục 2</th>
+                                    <th className='px-3 py-2 text-center border border-solid border-[#9E9E9E]'>Danh mục 3</th>
+                                </tr>
+                            </thead>
+                            <tbody className='bg-[#5C5C5C]'>
+                                <tr>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className='flex justify-between p-2'>
+                                            <span className='text-sm'>HPG - Công ty Cổ phần Tập đoàn Hòa Phát</span>
+                                            <button class="btn btn-del">
+                                                <svg
+                                                    viewBox="0 0 15 17.5"
+                                                    height="17.5"
+                                                    width="15"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon"
+                                                    fill="white"
+                                                >
+                                                    <path
+                                                        transform="translate(-2.5 -1.25)"
+                                                        d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+                                                        id="Fill"
+                                                    ></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className="number flex justify-between p-2">
+                                            <span className="minus cursor-pointer bg-black/25 px-2" onClick={handleMinusClick}>
+                                                -
+                                            </span>
+                                            <input type="text" className='bg-transparent border-0 px-2 w-[50px] text-center' value={count} onChange={handleChangeCount} />
+                                            <span className="plus cursor-pointer bg-black/25 px-2" onClick={handlePlusClick}>
+                                                +
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className="number flex justify-between p-2">
+                                            <span className="minus cursor-pointer bg-black/25 px-2" onClick={handleMinusClickCate2}>
+                                                -
+                                            </span>
+                                            <input type="text" className='bg-transparent border-0 px-2 w-[50px] text-center' value={countCate2} onChange={handleChangeCountCate2} />
+                                            <span className="plus cursor-pointer bg-black/25 px-2" onClick={handlePlusClickCate2}>
+                                                +
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className="number flex justify-between p-2">
+                                            <span className="minus cursor-pointer bg-black/25 px-2" onClick={handleMinusClickCate3}>
+                                                -
+                                            </span>
+                                            <input type="text" className='bg-transparent border-0 px-2 w-[50px] text-center' value={countCate3} onChange={handleChangeCountCate3} />
+                                            <span className="plus cursor-pointer bg-black/25 px-2" onClick={handlePlusClickCate3}>
+                                                +
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className='flex justify-between p-2'>
+                                            <span className='text-sm'>VIC - Tập đoàn VINGROUP - CTCP</span>
+                                            <button class="btn btn-del">
+                                                <svg
+                                                    viewBox="0 0 15 17.5"
+                                                    height="17.5"
+                                                    width="15"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon"
+                                                    fill="white"
+                                                >
+                                                    <path
+                                                        transform="translate(-2.5 -1.25)"
+                                                        d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+                                                        id="Fill"
+                                                    ></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className="number flex justify-between p-2">
+                                            <span className="minus cursor-pointer bg-black/25 px-2" onClick={handleMinusClick}>
+                                                -
+                                            </span>
+                                            <input type="text" className='bg-transparent border-0 px-2 w-[50px] text-center' value={count} onChange={handleChangeCount} />
+                                            <span className="plus cursor-pointer bg-black/25 px-2" onClick={handlePlusClick}>
+                                                +
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className="number flex justify-between p-2">
+                                            <span className="minus cursor-pointer bg-black/25 px-2" onClick={handleMinusClickCate2}>
+                                                -
+                                            </span>
+                                            <input type="text" className='bg-transparent border-0 px-2 w-[50px] text-center' value={countCate2} onChange={handleChangeCountCate2} />
+                                            <span className="plus cursor-pointer bg-black/25 px-2" onClick={handlePlusClickCate2}>
+                                                +
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className="number flex justify-between p-2">
+                                            <span className="minus cursor-pointer bg-black/25 px-2" onClick={handleMinusClickCate3}>
+                                                -
+                                            </span>
+                                            <input type="text" className='bg-transparent border-0 px-2 w-[50px] text-center' value={countCate3} onChange={handleChangeCountCate3} />
+                                            <span className="plus cursor-pointer bg-black/25 px-2" onClick={handlePlusClickCate3}>
+                                                +
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className='flex justify-between p-2'>
+                                            <span className='text-sm'>VRE - Công ty Cổ phần Vincom Retail</span>
+                                            <button class="btn btn-del">
+                                                <svg
+                                                    viewBox="0 0 15 17.5"
+                                                    height="17.5"
+                                                    width="15"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon"
+                                                    fill="white"
+                                                >
+                                                    <path
+                                                        transform="translate(-2.5 -1.25)"
+                                                        d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+                                                        id="Fill"
+                                                    ></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className="number flex justify-between p-2">
+                                            <span className="minus cursor-pointer bg-black/25 px-2" onClick={handleMinusClick}>
+                                                -
+                                            </span>
+                                            <input type="text" className='bg-transparent border-0 px-2 w-[50px] text-center' value={count} onChange={handleChangeCount} />
+                                            <span className="plus cursor-pointer bg-black/25 px-2" onClick={handlePlusClick}>
+                                                +
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className="number flex justify-between p-2">
+                                            <span className="minus cursor-pointer bg-black/25 px-2" onClick={handleMinusClickCate2}>
+                                                -
+                                            </span>
+                                            <input type="text" className='bg-transparent border-0 px-2 w-[50px] text-center' value={countCate2} onChange={handleChangeCountCate2} />
+                                            <span className="plus cursor-pointer bg-black/25 px-2" onClick={handlePlusClickCate2}>
+                                                +
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td className='border border-solid border-[#9E9E9E]'>
+                                        <div className="number flex justify-between p-2">
+                                            <span className="minus cursor-pointer bg-black/25 px-2" onClick={handleMinusClickCate3}>
+                                                -
+                                            </span>
+                                            <input type="text" className='bg-transparent border-0 px-2 w-[50px] text-center' value={countCate3} onChange={handleChangeCountCate3} />
+                                            <span className="plus cursor-pointer bg-black/25 px-2" onClick={handlePlusClickCate3}>
+                                                +
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='border border-solid border-[#9E9E9E] text-right p-2 font-bold'>Tổng:</td>
+                                    <td className='border border-solid border-[#9E9E9E] text-center text-[#0BFFC4] p-2 font-bold'>100%</td>
+                                    <td className='border border-solid border-[#9E9E9E] text-center text-[#0BFFC4] p-2 font-bold'>100%</td>
+                                    <td className='border border-solid border-[#9E9E9E] text-center text-[#0BFFC4] p-2 font-bold'>100%</td>
+                                </tr>
+
+                                <tr>
+                                    <td className='border border-solid border-[#9E9E9E] h-[106px] text-center font-bold' colSpan={4}>Chưa có mã nào trong danh mục</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='grid place-items-center pt-5'>
+                        <button className='w-[188px] h-[32px] bg-[#9E9E9E] rounded-[10px] text-[15px] text-center uppercase font-bold grid place-items-center cursor-pointer'>Kiểm thử</button>
+                    </div>
+                </div>
             </div>
         </div>
     )
