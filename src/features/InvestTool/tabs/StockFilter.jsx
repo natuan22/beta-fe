@@ -6,8 +6,7 @@ import { fetchDataStockFilter, fetchRangeMinMax } from "../thunk";
 import { hashTbStockFilter, hashTbIndustry, hashTbExchange } from "../utils/hashTb";
 import SliderInput from "../utils/SliderInput";
 import "../utils/styles/btnDel.css";
-
-
+import TableStockFilter from '../components/StockFilter/TableStockFilter';
 
 const StockFilter = () => {
     const dispatch = useDispatch();
@@ -410,7 +409,7 @@ const StockFilter = () => {
                                     <div key={index} className="flex justify-between items-center my-1 mx-2" >
                                         <div className="w-[95%] flex items-center justify-between">
                                             <div className='w-[30%] flex items-center justify-between'>
-                                                <div className='text-xs'>{name}</div>
+                                                <div className='text-xs dark:text-white text-black'>{name}</div>
                                                 <label className="material-checkbox py-2 px-2 text-white">
                                                     <input checked={arrSliderCheckbox?.includes(key)}
                                                         type="checkbox"
@@ -438,7 +437,7 @@ const StockFilter = () => {
                                                     width="15"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     className="icon"
-                                                    fill="white"
+                                                    fill="gray"
                                                 >
                                                     <path
                                                         transform="translate(-2.5 -1.25)"
@@ -456,6 +455,7 @@ const StockFilter = () => {
                     </div>
                 </div>
             </div>
+            <TableStockFilter arrSliderCheckbox={arrSliderCheckbox} />
         </div>
     )
 }
