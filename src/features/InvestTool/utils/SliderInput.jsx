@@ -132,8 +132,8 @@ const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }
 
 
     return (
-        <div className='flex justify-between items-center w-[400px] rounded-md' >
-            <div className='text-white w-[5%] mr-5'>
+        <div className='flex justify-between items-center w-[400px] rounded-md ' >
+            <div className='dark:text-white text-black w-[5%] mr-5'>
                 {value[0]}
             </div>
             <div className='w-[65%]'>
@@ -161,7 +161,7 @@ const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }
                     }}
                 />
             </div>
-            <div className='text-white w-[5%] ml-5'>
+            <div className='dark:text-white text-black w-[5%] ml-5'>
                 {value[1]}
             </div>
         </div>
