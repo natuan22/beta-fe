@@ -1,21 +1,19 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import LayOut from '../../HOCs/Layout'
-import MacroTabs from './utils/MacroTabs';
-import { Outlet, useLocation } from 'react-router-dom';
-import InternationalIndex from '../Chart/components/InternationalIndex';
-import News from '../Chart/components/News';
-import { useSelector } from 'react-redux';
+import InternationalIndex from '../Chart/components/InternationalIndex'
+import News from '../Chart/components/News'
+import InvestToolTab from './utils/InvestToolTab'
+import { Outlet, useLocation } from 'react-router-dom'
+import Banner from "../Chart/components/Banner";
 import Footer from "../../components/Footer";
-import Banner from '../Chart/components/Banner';
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
-const Macro = () => {
+const InvestTool = () => {
     const location = useLocation()
-    const color = useSelector((state) => state.color.colorTheme);
-
     const [bannerDisplay, setBannerDisplay] = useState(false)
+
     useEffect(() => {
-        if (location.pathname === "/vi-mo") {
+        if (location.pathname === "/cong-cu-dau-tu") {
             setBannerDisplay(true);
         } else {
             setBannerDisplay(false);
@@ -28,11 +26,10 @@ const Macro = () => {
                 <InternationalIndex />
                 <News />
             </div>
-            <Banner />
-            <div className="container mx-auto">
+            <div className='nav_bar container mx-auto'>
                 <div>
                     <div className="px-11">
-                        <MacroTabs />
+                        <InvestToolTab />
                     </div>
 
                     <div>
@@ -41,7 +38,7 @@ const Macro = () => {
                 </div>
                 <div>
                     {bannerDisplay ? (
-                        <div className="h-auto pt-4 pb-2 flex justify-center ">
+                        <div className="h-auto pt-5 pb-2 flex justify-center ">
                             <div className="flex  md:flex-row md:justify-around sm:flex-col sm:items-center xs:flex-col xs:items-center xxs:flex-col xxs:items-center w-[50%]">
                                 <div className="px-2 relative">
                                     <a href="https://zalo.me/1623670409453822014" target="_blank" rel="noopener noreferrer">
@@ -68,4 +65,4 @@ const Macro = () => {
     )
 }
 
-export default Macro
+export default InvestTool

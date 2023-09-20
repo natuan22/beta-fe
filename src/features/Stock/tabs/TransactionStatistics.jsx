@@ -65,14 +65,14 @@ const TransactionStatistics = ({ codeUrl }) => {
             <div className='lg:flex md:block justify-between items-center'>
               <div>
                 {!isChart ? (
-                  <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                     <span className='dark:text-white text-black font-semibold uppercase'>Dữ liệu giao dịch</span>
                     <Popover content={contentTotalMatchingVolume} >
                       <span className='xs:ml-[12.4rem] xxs:ml-36 text-[#C3A9A9] cursor-pointer text-[22px]' onClick={handleChangeChart}><IoBarChartSharp /></span>
                     </Popover>
                   </span>
                 ) : (
-                  <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                  <span className='border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                     <span className='dark:text-white text-black font-semibold uppercase'>Tổng khối lượng khớp lệnh</span>
                     <Popover content={contentTransactionData} >
                       <span className='xs:ml-[6.6rem] xxs:ml-12 text-[#0055B6] cursor-pointer text-[22px]' onClick={handleChangeChart}><ImTable2 /></span>
@@ -129,13 +129,13 @@ const TransactionStatistics = ({ codeUrl }) => {
 
           <div className='grid lg:grid-cols-2 md:grid-cols-none lg:gap-40 md:gap-8 sm:gap-8 xs:gap-8 xxs:gap-8 mt-8'>
             <div>
-              <div className='xs:w-[362px] xxs:w-full border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+              <div className='xs:w-[362px] xxs:w-full border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold uppercase'>Biến động giá giao dịch</span>
               </div>
               <TradingPriceFluctuations stock={queryApi.stock} />
             </div>
             <div>
-              <div className='xs:w-[362px] xxs:w-full border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+              <div className='xs:w-[362px] xxs:w-full border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold uppercase'>Khối lượng giao dịch bình quân/ngày</span>
               </div>
               <AverageTradingVolume stock={queryApi.stock} />
@@ -145,7 +145,7 @@ const TransactionStatistics = ({ codeUrl }) => {
           <div className='grid lg:grid-cols-3 md:grid-cols-none xl:gap-32 lg:gap-4 md:gap-4 sm:gap-4 xs:gap-4 xxs:gap-4 mt-10'>
             <div>
               <div className='flex justify-center'>
-                <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                   <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các tháng</span>
                 </span>
               </div>
@@ -153,7 +153,7 @@ const TransactionStatistics = ({ codeUrl }) => {
             </div>
             <div>
               <div className='flex justify-center'>
-                <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                   <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các quý</span>
                 </span>
               </div>
@@ -161,7 +161,7 @@ const TransactionStatistics = ({ codeUrl }) => {
             </div>
             <div>
               <div className='flex justify-center'>
-                <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+                <span className='border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                   <span className='dark:text-white text-black font-semibold uppercase'>Thống kê theo các năm</span>
                 </span>
               </div>
@@ -170,7 +170,7 @@ const TransactionStatistics = ({ codeUrl }) => {
           </div>
 
           <div className='mt-8'>
-            <span className='border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <span className='border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold uppercase'>Giao dịch các nhóm nhà đầu tư</span>
             </span>
             <TradingInvestors stock={queryApi.stock} />

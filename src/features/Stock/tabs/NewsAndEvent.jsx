@@ -21,7 +21,7 @@ const NewsAndEvent = ({ codeUrl }) => {
         <div className='mt-4'>
           <div>
             <div className='md:flex sm:block'>
-              <div className='w-[150px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+              <div className='w-[150px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
                 <span className='dark:text-white text-black font-semibold uppercase'>Lịch sự kiện</span>
               </div>
               <div className='flex md:mt-0 sm:mt-4 xs:mt-4 xxs:mt-4 justify-center'>
@@ -48,7 +48,7 @@ const NewsAndEvent = ({ codeUrl }) => {
             <Events queryApiNewsEvents={queryApiNewsEvents} />
           </div>
           <div className='mt-4'>
-            <div className='w-[150px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
+            <div className='w-[150px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0'>
               <span className='dark:text-white text-black font-semibold uppercase'>Tin tức</span>
             </div>
             <News queryApiNewsEvents={queryApiNewsEvents} />

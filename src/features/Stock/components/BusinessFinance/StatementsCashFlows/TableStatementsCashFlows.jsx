@@ -53,9 +53,9 @@ const TableStatementsCashFlows = ({ queryApiBusinessFinance }) => {
                     <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
                         <div className="block bg-transparent scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent 2xl:overflow-x-hidden xl:overflow-x-scroll lg:overflow-x-scroll md:overflow-x-scroll sm:overflow-x-scroll xs:overflow-x-scroll xxs:overflow-x-scroll">
                             <table className="items-center border-collapse bg-transparent w-full">
-                                <thead className="bg-[#0055B6]">
+                                <thead className="bg-[#1D5F8D]">
                                     <tr>
-                                        <th className="sticky left-0 z-10 bg-[#0055B6] text-left align-middle lg:px-3 md:px-36 sm:px-20 xs:px-10 xxs:px-10 py-[15px] whitespace-nowrap font-extrabold text-white">
+                                        <th className="sticky left-0 z-10 bg-[#1D5F8D] text-left align-middle lg:px-3 md:px-36 sm:px-20 xs:px-10 xxs:px-10 py-[15px] whitespace-nowrap font-extrabold text-white">
                                             Chỉ tiêu
                                         </th>
                                         {Array.isArray(dates) && dates?.map(item => (

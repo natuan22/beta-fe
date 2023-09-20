@@ -8,6 +8,7 @@ import newsCenterReducer from '../features/NewsCenter/newsCenterSlice'
 import rootColor from '../services/servicesSlice'
 import searchReducer from '../features/Search/searchSlice'
 import stockReducer from '../features/Stock/stockSlice'
+import investToolReducer from '../features/InvestTool/investToolSlice'
 const reducer = combineReducers({
   chart: chartReducer,
   authen: authenReducer,
@@ -16,7 +17,8 @@ const reducer = combineReducers({
   newsCenter: newsCenterReducer,
   color: rootColor,
   search: searchReducer,
-  stock: stockReducer
+  stock: stockReducer,
+  investTool: investToolReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
