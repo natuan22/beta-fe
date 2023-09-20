@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     },
 });
 
-const RenderTableStockFilter = ({ data, arrSliderCheckbox }) => {
+const RenderTableStockFilter = ({ data, arrSliderCheckbox, activeButton }) => {
     const [columnsTable, setColumnsTable] = useState([])
     const [dataRender, setDataRender] = useState([])
     const classes = useStyles();
@@ -33,13 +33,12 @@ const RenderTableStockFilter = ({ data, arrSliderCheckbox }) => {
     }, [data]);
 
     useEffect(() => {
+        const columnCode = [{
+            field: 'code',
+            headerName: 'Mã cổ phiếu',
+            width: 150,
+        }]
         if (arrSliderCheckbox?.length > 0) {
-            const columnCode = [{
-                field: 'code',
-                headerName: 'Mã cổ phiếu',
-                width: 150,
-            }]
-
             const columns = arrSliderCheckbox?.map((key, index) => {
                 return (
                     {
@@ -55,15 +54,57 @@ const RenderTableStockFilter = ({ data, arrSliderCheckbox }) => {
             const columnsWithCode = [...columnCode, ...columns];
             setColumnsTable(columnsWithCode)
         }
-    }, [arrSliderCheckbox])
-
-    if (arrSliderCheckbox.length === 0) {
-        return (
-            <div className='h-[150px] dark:text-white text-black font-semibold items-center justify-center flex'>
-                Xin hãy chọn tiêu chí
-            </div>
-        )
-    }
+        // switch (activeButton) {
+        //     case 0:
+        //         if (arrSliderCheckbox?.length > 0) {
+        //             var columns = arrSliderCheckbox?.map((key, index) => {
+        //                 return (
+        //                     {
+        //                         field: key,
+        //                         width: 200,
+        //                         headerName: Object.values(hashTbStockFilter)
+        //                             .flatMap((items) => items)
+        //                             .find((item) => item.key === key)?.name,
+        //                         valueFormatter: (params) => params.value.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        //                     }
+        //                 )
+        //             })
+        //             var columnsWithCode = [...columnCode, ...columns];
+        //             setColumnsTable(columnsWithCode)
+        //         }
+        //         break;
+        //     case 1:
+        //         columns = [
+        //             {
+        //                 field: 'closePrice',
+        //                 headerName: 'Thị giá (x1000 vnđ)',
+        //                 width: 200,
+        //                 valueFormatter: (params) => params.value.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        //             },
+        //             {
+        //                 field: 'floor',
+        //                 headerName: 'Sàn',
+        //                 width: 150,
+        //             },
+        //             {
+        //                 field: 'LV2',
+        //                 headerName: 'Ngành cấp 2',
+        //                 width: 300,
+        //             },
+        //             {
+        //                 field: 'marketCap',
+        //                 headerName: 'Vốn hoá',
+        //                 width: 200,
+        //                 valueFormatter: (params) => params.value.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        //             },
+        //         ]
+        //         var columnsWithCode = [...columnCode, ...columns];
+        //         setColumnsTable(columnsWithCode)
+        //         break;
+        //     default:
+        //         break;
+        // }
+    }, [arrSliderCheckbox, activeButton])
 
     return (
         <div>
