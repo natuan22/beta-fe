@@ -5,7 +5,8 @@ import { investToolType } from "./utils/constant";
 const initialState = {
     dataRangeMinMax: {},
     dataStockFilter: {},
-    dataStockList: {}
+    dataStockList: {},
+    dataInvestSimulation: {}
 }
 
 
@@ -19,6 +20,9 @@ const reducer = (state = initialState, { type, payload }) => {
         }
         if (type === investToolType.FETCH_DATA_STOCK_LIST) {
             draft.dataStockList = payload
+        }
+        if (type === investToolType.FETCH_DATA_INVEST_SIMULATION) {
+            draft.dataInvestSimulation = payload
         }
     })
 }

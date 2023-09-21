@@ -5,7 +5,7 @@ import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "react-use";
-import { fetchStockList } from "../thunk";
+import { fetchDataInvestSimulation, fetchStockList } from "../thunk";
 import { Button, message, Space } from "antd";
 
 const InvestSimulation = () => {
@@ -15,29 +15,32 @@ const InvestSimulation = () => {
     const { dataStockList } = useSelector((state) => state.investTool);
     const color = useSelector((state) => state.color.colorTheme);
     const [theme, setTheme] = useState(localStorage.getItem("theme"));
-    const [initialCapital, setInitialCapital] = useState("1000"); // Vốn đầu tư ban đầu
+
+    const [initialCapital, setInitialCapital] = useState(1000); // Vốn đầu tư ban đầu
     const [period, setPeriod] = useState("3"); // Khoảng thời gian giả lập
     const [fromMonth, setFromMonth] = useState(dayjs().subtract(13, "month")); // Từ tháng
     const [toMonth, setToMonth] = useState(dayjs().subtract(1, "month")); // Đến tháng
     const [readOnlyDateTimePicker, setReadOnlyDateTimePicker] = useState(false);
-    const [periodicInvestment, setPeriodicInvestment] = useState(true); // Đầu tư định kỳ
-    const [addPeriodically, setAddPeriodically] = useState("10"); // Thêm định kỳ
+    const [periodicInvestment, setPeriodicInvestment] = useState(false); // Đầu tư định kỳ
+    const [addPeriodically, setAddPeriodically] = useState(10); // Thêm định kỳ
+    const [allocation, setAllocation] = useState(false) // Phân bổ đều
+
     const [debouncedValue, setDebouncedValue] = useState("");
     const [val, setVal] = useState("");
     const [dataSearch, setDataSearch] = useState([]);
     const [arrCode, setArrCode] = useState([]);
     const [isFocus, setIsFocus] = useState(false);
-    const [totalPerCate, setTotalPerCate] = useState(0)
-    const [valueCode, setValueCode] = useState({
-        category: [
-            {
-                code: "",
-                category_1: 0,
-                category_2: 0,
-                category_3: 0,
-            },
-        ],
+
+    const [formData, setFormData] = useState({
+        "value": 1000,
+        "from": dayjs().subtract(13, "month").format('MM/YYYY'),
+        "to": dayjs().subtract(1, "month").format('MM/YYYY'),
+        "isPeriodic": periodicInvestment ? 1 : 0,
+        "period": 1,
+        "value_period": 10,
+        "category": [],
     });
+
     const wrapperRef = useRef(null); // Ref cho phần div chứa dữ liệu
     useEffect(() => {
         function handleClickOutside(event) {
@@ -55,6 +58,24 @@ const InvestSimulation = () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
+    useEffect(() => {
+        if (arrCode.length > 0) {
+            const mappedArrCode = arrCode.map(item => {
+                return {
+                    'code': item.code,
+                    'category_1': item.category_1,
+                    'category_2': item.category_2,
+                    'category_3': item.category_3
+                }
+            })
+            setFormData((prevData) => ({
+                ...prevData,
+                'category': mappedArrCode,
+            }));
+        }
+    }, [arrCode])
+
     useEffect(() => {
         setTheme(color);
         if (period != 5) {
@@ -85,22 +106,27 @@ const InvestSimulation = () => {
 
     const onPeriodicInvestmentChange = () => {
         setPeriodicInvestment(!periodicInvestment);
+
+        setFormData((prevData) => ({
+            ...prevData,
+            'isPeriodic': !periodicInvestment ? 1 : 0,
+        }));
     };
 
     const handleChangePeriod = (event) => {
         setPeriod(event.target.value);
         switch (event.target.value) {
             case 1:
-                setFromMonth(toMonth.subtract(3, "month"));
+                setFromMonth(dayjs().subtract(3, "month"));
                 break;
             case 2:
-                setFromMonth(toMonth.subtract(6, "month"));
+                setFromMonth(dayjs().subtract(6, "month"));
                 break;
             case 3:
-                setFromMonth(toMonth.subtract(12, "month"));
+                setFromMonth(dayjs().subtract(13, "month"));
                 break;
             case 4:
-                setFromMonth(toMonth.subtract(36, "month"));
+                setFromMonth(dayjs().subtract(37, "month"));
                 break;
             default:
                 break;
@@ -108,16 +134,30 @@ const InvestSimulation = () => {
     };
 
     const handleChangeInitialCapital = (event) => {
-        setInitialCapital(event.target.value);
+        const formattedValue = event.target.value.replace(/,/g, ''); // Loại bỏ tất cả dấu phẩy
+        const numericValue = parseFloat(formattedValue); // Chuyển đổi thành số
+
+        setInitialCapital(numericValue);
+
+        setFormData((prevData) => ({
+            ...prevData,
+            'value': numericValue,
+        }));
     };
 
     const handleChangeAddPeriodically = (event) => {
-        setAddPeriodically(event.target.value);
+        const formattedValue = event.target.value.replace(/,/g, ''); // Loại bỏ tất cả dấu phẩy
+        const numericValue = parseFloat(formattedValue); // Chuyển đổi thành số
+
+        setAddPeriodically(numericValue);
+
+        setFormData((prevData) => ({
+            ...prevData,
+            'value_period': numericValue,
+        }));
     };
 
     // DANH MỤC 1
-
-
     const handleMinusClick = (text, index) => {
         const updatedArrCode = [...arrCode]; // Tạo một bản sao của mảng arrCode để cập nhật giá trị
 
@@ -191,6 +231,7 @@ const InvestSimulation = () => {
             content: value,
         });
     };
+
     const handleAddCode = (index) => {
         const newItem = dataSearch[index];
 
@@ -199,15 +240,36 @@ const InvestSimulation = () => {
 
         if (!isItemExist) {
             if (arrCode.length < 10) {
-                setArrCode((prevState) => [
-                    ...prevState,
+                // Thêm phần tử mới vào mảng arrCode
+                const updatedArrCode = [
+                    ...arrCode,
                     {
                         ...newItem,
                         category_1: 0,
                         category_2: 0,
                         category_3: 0,
                     },
-                ]);
+                ];
+
+                // Kiểm tra và cập nhật category nếu allocation là true
+                if (allocation) {
+                    const lengthArr = updatedArrCode.length;
+                    const baseValue = +(100 / lengthArr).toFixed(2);
+                    const remainingCategories = 100 - (baseValue * (lengthArr - 1));
+
+                    const updateCateValue = updatedArrCode.map((item, index) => {
+                        return {
+                            ...item,
+                            'category_1': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
+                            'category_2': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
+                            'category_3': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
+                        };
+                    });
+
+                    setArrCode(updateCateValue);
+                } else {
+                    setArrCode(updatedArrCode);
+                }
             } else {
                 warning(`Tối đa là 10 mã thôi nhé bae !!`);
             }
@@ -218,7 +280,55 @@ const InvestSimulation = () => {
 
     const handleDelArrCode = (code) => {
         const updatedArr = arrCode.filter((key) => key.code !== code);
-        setArrCode(updatedArr);
+
+        if (allocation) {
+            const lengthArr = updatedArr.length;
+            const baseValue = +(100 / lengthArr).toFixed(2);
+            const remainingCategories = 100 - (baseValue * (lengthArr - 1));
+
+            const updateCateValue = updatedArr.map((item, index) => {
+                return {
+                    ...item,
+                    'category_1': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
+                    'category_2': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
+                    'category_3': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
+                };
+            });
+            setArrCode(updateCateValue);
+        }
+    };
+
+    const callApi = () => {
+        dispatch(fetchDataInvestSimulation(formData))
+    }
+
+    const onAllocationChange = () => {
+        setAllocation(!allocation)
+
+        const lengthArr = arrCode.length
+
+        const updateCateValue = arrCode.map((item, index) => {
+            if (!allocation) {
+                const isLastItem = arrCode.length - 1 === index;
+                const baseValue = +(100 / lengthArr).toFixed(2);
+
+                return {
+                    ...item,
+                    'category_1': isLastItem ? +(100 - baseValue * (lengthArr - 1)).toFixed(2) : baseValue,
+                    'category_2': isLastItem ? +(100 - baseValue * (lengthArr - 1)).toFixed(2) : baseValue,
+                    'category_3': isLastItem ? +(100 - baseValue * (lengthArr - 1)).toFixed(2) : baseValue,
+                };
+            } else {
+                return {
+                    ...item,
+                    'category_1': 0,
+                    'category_2': 0,
+                    'category_3': 0,
+                };
+            }
+        });
+
+        setArrCode(updateCateValue);
     };
 
     console.log({ arrCode })
@@ -345,6 +455,10 @@ const InvestSimulation = () => {
                                     value={fromMonth}
                                     onChange={(newValue) => {
                                         setFromMonth(newValue);
+                                        setFormData((prevData) => ({
+                                            ...prevData,
+                                            'from': dayjs(newValue).format('MM/YYYY'),
+                                        }));
                                     }}
                                 />
                             </div>
@@ -388,6 +502,10 @@ const InvestSimulation = () => {
                                     value={toMonth}
                                     onChange={(newValue) => {
                                         setToMonth(newValue);
+                                        setFormData((prevData) => ({
+                                            ...prevData,
+                                            'to': dayjs(newValue).format('MM/YYYY'),
+                                        }));
                                     }}
                                 />
                             </div>
@@ -518,7 +636,13 @@ const InvestSimulation = () => {
                         {/* Phân bổ đều */}
                         <div className="py-3">
                             <label className="material-checkbox text-white">
-                                <input type="checkbox" name="allocation" />
+                                <input
+                                    type="checkbox"
+                                    name="allocation"
+                                    checked={allocation}
+                                    disabled={arrCode.length === 0 ? true : false}
+                                    onChange={onAllocationChange}
+                                />
                                 <span className="checkmark"></span>
                                 <span>Phân bổ đều</span>
                             </label>
@@ -738,13 +862,13 @@ const InvestSimulation = () => {
                                             <td className="border border-solid border-[#9E9E9E] text-right p-2 font-bold">
                                                 Tổng:
                                             </td>
-                                            <td className="border border-solid border-[#9E9E9E] text-center text-[#0BFFC4] p-2 font-bold">
+                                            <td className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_1 === 100 ? 'text-[#0BFFC4]' : 'text-red-500'} p-2 font-bold`}>
                                                 {totalCategory_1}%
                                             </td>
-                                            <td className="border border-solid border-[#9E9E9E] text-center text-[#0BFFC4] p-2 font-bold">
+                                            <td className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_2 === 100 ? 'text-[#0BFFC4]' : 'text-red-500'} p-2 font-bold`}>
                                                 {totalCategory_2}%
                                             </td>
-                                            <td className="border border-solid border-[#9E9E9E] text-center text-[#0BFFC4] p-2 font-bold">
+                                            <td className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_3 === 100 ? 'text-[#0BFFC4]' : 'text-red-500'} p-2 font-bold`}>
                                                 {totalCategory_3}%
                                             </td>
                                         </tr>
@@ -763,7 +887,8 @@ const InvestSimulation = () => {
                         </table>
                     </div>
                     <div className="grid place-items-center pt-5">
-                        <button className="w-[188px] h-[32px] bg-[#9E9E9E] rounded-[10px] text-[15px] text-center uppercase font-bold grid place-items-center cursor-pointer">
+                        <button className="w-[188px] h-[32px] bg-[#9E9E9E] rounded-[10px] text-[15px] text-center uppercase font-bold grid place-items-center cursor-pointer"
+                            onClick={callApi}>
                             Kiểm thử
                         </button>
                     </div>
