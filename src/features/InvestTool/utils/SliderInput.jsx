@@ -132,9 +132,9 @@ const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }
 
 
     return (
-        <div className='flex justify-between items-center w-[400px] rounded-md ' >
-            <div className='dark:text-white text-black w-[5%] mr-5'>
-                {value[0]}
+        <div className='flex justify-between items-center md:w-[460px] sm:w-[270px] rounded-md' >
+            <div className='dark:text-white text-black w-[55px] mr-3 text-sm'>
+                {value[0].toLocaleString('en-US', { maximumFractionDigits: 2 })}
             </div>
             <div className='w-[65%]'>
                 <AirbnbSlider
@@ -161,8 +161,8 @@ const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }
                     }}
                 />
             </div>
-            <div className='dark:text-white text-black w-[5%] ml-5'>
-                {value[1]}
+            <div className='dark:text-white text-black w-[55px] ml-3 text-sm'>
+                {value[1].toLocaleString('en-US', { maximumFractionDigits: 2 })}
             </div>
         </div>
     )

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { makeStyles } from '@mui/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 const customLocaleText = {
     noRowsLabel: 'Không có dữ liệu',
     columnMenuLabel: 'Menu cột',
@@ -265,7 +266,7 @@ const RenderTableStockFilter = ({ data, arrSliderCheckbox, activeButton }) => {
                                     borderBottom: '1px solid rgba(0, 0, 0, 0.12)', // Hiển thị border cho cột (column)
                                 },
                                 '& .MuiDataGrid-columnHeaders ': {
-                                    color: 'white', // Màu chữ cho tiêu đề cột
+                                    color: '#0BFFC4', // Màu chữ cho tiêu đề cột
                                 },
                                 '& .MuiTablePagination-root': {
                                     color: 'white'
@@ -274,8 +275,8 @@ const RenderTableStockFilter = ({ data, arrSliderCheckbox, activeButton }) => {
                                     border: 'none', // Tắt border cho hàng (row)
                                 },
                                 '& .MuiSvgIcon-root': {
-                                    color: 'white'
-                                },
+                                    color: 'white',
+                                }
                             }}
                             getRowClassName={(params) =>
                                 params.row.id % 2 === 0 ? classes.evenRow : classes.oddRow
@@ -291,3 +292,4 @@ const RenderTableStockFilter = ({ data, arrSliderCheckbox, activeButton }) => {
 }
 
 export default RenderTableStockFilter
+
