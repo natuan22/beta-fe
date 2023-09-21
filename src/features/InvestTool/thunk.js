@@ -40,3 +40,16 @@ export const fetchStockList = (stock) => async dispatch => {
         console.error(err)
     }
 }
+
+export const fetchDataInvestSimulation = (formData) => async dispatch => {
+    try {
+        const res = await investToolService.fetchDataInvestSimulation(formData)
+        // console.log(res.data.data)
+        dispatch({
+            type: investToolType.FETCH_DATA_INVEST_SIMULATION,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}

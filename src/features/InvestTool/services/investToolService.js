@@ -13,5 +13,8 @@ export const investToolService = {
                 stock
             }
         })
-    }
+    },
+    fetchDataInvestSimulation: (formData) => {
+        return https.post('/api/v1/investment/emulator', formData)
+    },
 }
