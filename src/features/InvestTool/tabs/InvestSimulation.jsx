@@ -25,8 +25,8 @@ const InvestSimulation = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
     const [initialCapital, setInitialCapital] = useState(1000); // Vốn đầu tư ban đầu
-    const [period, setPeriod] = useState("3"); // Khoảng thời gian giả lập
-    const [fromMonth, setFromMonth] = useState(dayjs().subtract(13, "month")); // Từ tháng
+    const [period, setPeriod] = useState("2"); // Khoảng thời gian giả lập
+    const [fromMonth, setFromMonth] = useState(dayjs().subtract(6, "month")); // Từ tháng
     const [toMonth, setToMonth] = useState(dayjs().subtract(1, "month")); // Đến tháng
     const [readOnlyDateTimePicker, setReadOnlyDateTimePicker] = useState(false);
     const [periodicInvestment, setPeriodicInvestment] = useState(false); // Đầu tư định kỳ
@@ -340,10 +340,10 @@ const InvestSimulation = () => {
                     setArrCode(updatedArrCode);
                 }
             } else {
-                warning(`Tối đa là 10 mã thôi nhé bae !!`);
+                warning(`Được chọn tối đa là 10 mã cổ phiếu !!`);
             }
         } else {
-            warning(`Mã này đã có trong danh sách rồi bạn nhé !!`);
+            warning(`Mã này đã có trong danh sách !!`);
         }
         setShowData(false)
     };
