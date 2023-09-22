@@ -20,7 +20,7 @@ const StockFilter = () => {
     const [selectedKey, setSelectedKey] = useState(null);
     const [arrSliderInput, setArrSliderInput] = useState([]);
     const [arrSliderCheckbox, setArrSliderCheckbox] = useState([]);
-
+    const [isCheckAllIndustry, setIsCheckAllIndustry] = useState(true)
     const [selectedExchange, setSelectedExchange] = useState(['HOSE', 'HNX', 'UPCOM']);
     const [selectedIndustry, setSelectedIndustry] = useState(['Bảo hiểm', 'Bất động sản', 'Công nghệ', 'Dầu khí', 'Dịch vụ bán lẻ', 'Dịch vụ tiện ích', 'Đồ dùng cá nhân & gia dụng', 'Du lịch và giải trí', 'Hàng hóa & DV Công nghiệp', 'Hóa chất', 'Ngân hàng', 'Ô tô & linh kiện ô tô', 'Phương tiện truyền thông', 'Thực phẩm và đồ uống', 'Viễn thông', 'Xây dựng & VLXD', 'Tài nguyên cơ bản', 'Y tế']);
     const [formData, setFormData] = useState({
@@ -52,11 +52,19 @@ const StockFilter = () => {
 
     const handleSelectedIndustry = (name) => {
         // Xử lý khi người dùng chọn một mục
+        let updatedSelectedIndustry;
         if (selectedIndustry.includes(name)) {
-            setSelectedIndustry(selectedIndustry.filter(item => item !== name));
+            updatedSelectedIndustry = selectedIndustry.filter(item => item !== name);
         } else {
-            setSelectedIndustry([...selectedIndustry, name]);
+            updatedSelectedIndustry = [...selectedIndustry, name];
         }
+
+        // Kiểm tra xem tất cả các ngành có được chọn không
+        const allSelected = Object.keys(hashTbIndustry).every(industry => updatedSelectedIndustry.includes(industry));
+
+        // Cập nhật trạng thái của nút "Chọn tất cả"
+        setIsCheckAllIndustry(allSelected);
+        setSelectedIndustry(updatedSelectedIndustry);
     };
 
     const handleSelectedExchange = (name) => {
@@ -132,7 +140,6 @@ const StockFilter = () => {
             setArrSliderCheckbox([...arrSliderCheckbox, key]);
         }
     };
-
     return (
         <div>
             <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-4 pt-2'>
@@ -307,6 +314,25 @@ const StockFilter = () => {
                                 <Popover
                                     content={
                                         <div className='bg-[#034460] text-white overflow-auto border text-center h-[120px]'>
+                                            <label className="material-checkbox py-2 px-2 text-white">
+                                                <input
+                                                    type="checkbox"
+                                                    name="industry"
+                                                    value={'all'}
+                                                    id={'all'}
+                                                    checked={isCheckAllIndustry}
+                                                    onChange={() => {
+                                                        if (isCheckAllIndustry) {
+                                                            setSelectedIndustry([]);
+                                                        } else {
+                                                            setSelectedIndustry(Object.keys(hashTbIndustry));
+                                                        }
+                                                        setIsCheckAllIndustry(!isCheckAllIndustry);
+                                                    }}
+                                                />
+                                                <span className="checkmark"></span>
+                                                <span className='text-xs text-left'>Chọn tất cả</span>
+                                            </label>
                                             {Object.keys(hashTbIndustry).map((industry, index) => (
                                                 <label key={index} className="material-checkbox py-2 px-2 text-white">
                                                     <input

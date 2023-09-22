@@ -6,6 +6,7 @@ import { NumericFormat } from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "react-use";
 import { fetchDataInvestSimulation, fetchStockList } from "../thunk";
+import { message } from "antd";
 import { Button, message, Space } from "antd";
 import TestResults from "../components/InvestSimulation/TestResults";
 import InvestEffectsCategory from "../components/InvestSimulation/InvestEffectsCategory";
@@ -30,6 +31,7 @@ const InvestSimulation = () => {
     const [readOnlyDateTimePicker, setReadOnlyDateTimePicker] = useState(false);
     const [periodicInvestment, setPeriodicInvestment] = useState(false); // Đầu tư định kỳ
     const [addPeriodically, setAddPeriodically] = useState(10); // Thêm định kỳ
+
     const [allocation, setAllocation] = useState(false) // Phân bổ đều
     const [sameMonthYear, setSameMonthYear] = useState(false) // Cùng tháng cùng năm
 
@@ -40,13 +42,13 @@ const InvestSimulation = () => {
     const [isFocus, setIsFocus] = useState(false);
 
     const [formData, setFormData] = useState({
-        "value": 1000,
-        "from": dayjs().subtract(13, "month").format('MM/YYYY'),
-        "to": dayjs().subtract(1, "month").format('MM/YYYY'),
-        "isPeriodic": periodicInvestment ? 1 : 0,
-        "period": 1,
-        "value_period": 10,
-        "category": [],
+        value: 1000,
+        from: dayjs().subtract(13, "month").format("MM/YYYY"),
+        to: dayjs().subtract(1, "month").format("MM/YYYY"),
+        isPeriodic: periodicInvestment ? 1 : 0,
+        period: 1,
+        value_period: 10,
+        category: [],
     });
 
     const wrapperRef = useRef(null); // Ref cho phần div chứa dữ liệu
@@ -69,20 +71,20 @@ const InvestSimulation = () => {
 
     useEffect(() => {
         if (arrCode.length > 0) {
-            const mappedArrCode = arrCode.map(item => {
+            const mappedArrCode = arrCode.map((item) => {
                 return {
-                    'code': item.code,
-                    'category_1': item.category_1,
-                    'category_2': item.category_2,
-                    'category_3': item.category_3
-                }
-            })
+                    code: item.code,
+                    category_1: item.category_1,
+                    category_2: item.category_2,
+                    category_3: item.category_3,
+                };
+            });
             setFormData((prevData) => ({
                 ...prevData,
-                'category': mappedArrCode,
+                category: mappedArrCode,
             }));
         }
-    }, [arrCode])
+    }, [arrCode]);
 
     useEffect(() => {
         setTheme(color);
@@ -131,7 +133,7 @@ const InvestSimulation = () => {
         setPeriodicInvestment(!periodicInvestment);
         setFormData((prevData) => ({
             ...prevData,
-            'isPeriodic': !periodicInvestment ? 1 : 0,
+            isPeriodic: !periodicInvestment ? 1 : 0,
         }));
     };
 
@@ -176,26 +178,26 @@ const InvestSimulation = () => {
     };
 
     const handleChangeInitialCapital = (event) => {
-        const formattedValue = event.target.value.replace(/,/g, ''); // Loại bỏ tất cả dấu phẩy
+        const formattedValue = event.target.value.replace(/,/g, ""); // Loại bỏ tất cả dấu phẩy
         const numericValue = parseFloat(formattedValue); // Chuyển đổi thành số
 
         setInitialCapital(numericValue);
 
         setFormData((prevData) => ({
             ...prevData,
-            'value': numericValue,
+            value: numericValue,
         }));
     };
 
     const handleChangeAddPeriodically = (event) => {
-        const formattedValue = event.target.value.replace(/,/g, ''); // Loại bỏ tất cả dấu phẩy
+        const formattedValue = event.target.value.replace(/,/g, ""); // Loại bỏ tất cả dấu phẩy
         const numericValue = parseFloat(formattedValue); // Chuyển đổi thành số
 
         setAddPeriodically(numericValue);
 
         setFormData((prevData) => ({
             ...prevData,
-            'value_period': numericValue,
+            value_period: numericValue,
         }));
     };
 
@@ -204,14 +206,23 @@ const InvestSimulation = () => {
         const updatedArrCode = [...arrCode]; // Tạo một bản sao của mảng arrCode để cập nhật giá trị
 
         switch (text) {
-            case 'category_1':
-                updatedArrCode[index].category_1 = updatedArrCode[index].category_1 > 1 ? updatedArrCode[index].category_1 - 1 : 0;
+            case "category_1":
+                updatedArrCode[index].category_1 =
+                    updatedArrCode[index].category_1 > 1
+                        ? updatedArrCode[index].category_1 - 1
+                        : 0;
                 break;
-            case 'category_2':
-                updatedArrCode[index].category_2 = updatedArrCode[index].category_2 > 1 ? updatedArrCode[index].category_2 - 1 : 0;
+            case "category_2":
+                updatedArrCode[index].category_2 =
+                    updatedArrCode[index].category_2 > 1
+                        ? updatedArrCode[index].category_2 - 1
+                        : 0;
                 break;
-            case 'category_3':
-                updatedArrCode[index].category_3 = updatedArrCode[index].category_3 > 1 ? updatedArrCode[index].category_3 - 1 : 0;
+            case "category_3":
+                updatedArrCode[index].category_3 =
+                    updatedArrCode[index].category_3 > 1
+                        ? updatedArrCode[index].category_3 - 1
+                        : 0;
                 break;
             default:
                 break;
@@ -225,14 +236,14 @@ const InvestSimulation = () => {
         const updatedArrCode = [...arrCode]; // Tạo một bản sao của mảng arrCode để cập nhật giá trị
 
         switch (text) {
-            case 'category_1':
-                updatedArrCode[index].category_1 = updatedArrCode[index].category_1 + 1
+            case "category_1":
+                updatedArrCode[index].category_1 = updatedArrCode[index].category_1 + 1;
                 break;
-            case 'category_2':
-                updatedArrCode[index].category_2 = updatedArrCode[index].category_2 + 1
+            case "category_2":
+                updatedArrCode[index].category_2 = updatedArrCode[index].category_2 + 1;
                 break;
-            case 'category_3':
-                updatedArrCode[index].category_3 = updatedArrCode[index].category_3 + 1
+            case "category_3":
+                updatedArrCode[index].category_3 = updatedArrCode[index].category_3 + 1;
                 break;
             default:
                 break;
@@ -244,16 +255,15 @@ const InvestSimulation = () => {
 
     const handleChangeCount = (event, text, index) => {
         const updatedArrCode = [...arrCode]; // Tạo một bản sao của mảng arrCode để cập nhật giá trị
-
         switch (text) {
-            case 'category_1':
-                updatedArrCode[index].category_1 = +event.target.value
+            case "category_1":
+                updatedArrCode[index].category_1 = +event.target.value;
                 break;
-            case 'category_2':
-                updatedArrCode[index].category_2 = +event.target.value
+            case "category_2":
+                updatedArrCode[index].category_2 = +event.target.value;
                 break;
-            case 'category_3':
-                updatedArrCode[index].category_3 = +event.target.value
+            case "category_3":
+                updatedArrCode[index].category_3 = +event.target.value;
 
                 break;
             default:
@@ -296,14 +306,23 @@ const InvestSimulation = () => {
                 if (allocation) {
                     const lengthArr = updatedArrCode.length;
                     const baseValue = +(100 / lengthArr).toFixed(2);
-                    const remainingCategories = 100 - (baseValue * (lengthArr - 1));
+                    const remainingCategories = 100 - baseValue * (lengthArr - 1);
 
                     const updateCateValue = updatedArrCode.map((item, index) => {
                         return {
                             ...item,
-                            'category_1': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
-                            'category_2': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
-                            'category_3': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
+                            category_1:
+                                index === lengthArr - 1
+                                    ? +remainingCategories.toFixed(2)
+                                    : baseValue,
+                            category_2:
+                                index === lengthArr - 1
+                                    ? +remainingCategories.toFixed(2)
+                                    : baseValue,
+                            category_3:
+                                index === lengthArr - 1
+                                    ? +remainingCategories.toFixed(2)
+                                    : baseValue,
                         };
                     });
 
@@ -325,14 +344,23 @@ const InvestSimulation = () => {
         if (allocation) {
             const lengthArr = updatedArr.length;
             const baseValue = +(100 / lengthArr).toFixed(2);
-            const remainingCategories = 100 - (baseValue * (lengthArr - 1));
+            const remainingCategories = 100 - baseValue * (lengthArr - 1);
 
             const updateCateValue = updatedArr.map((item, index) => {
                 return {
                     ...item,
-                    'category_1': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
-                    'category_2': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
-                    'category_3': index === lengthArr - 1 ? +(remainingCategories).toFixed(2) : baseValue,
+                    category_1:
+                        index === lengthArr - 1
+                            ? +remainingCategories.toFixed(2)
+                            : baseValue,
+                    category_2:
+                        index === lengthArr - 1
+                            ? +remainingCategories.toFixed(2)
+                            : baseValue,
+                    category_3:
+                        index === lengthArr - 1
+                            ? +remainingCategories.toFixed(2)
+                            : baseValue,
                 };
             });
             setArrCode(updateCateValue);
@@ -340,13 +368,13 @@ const InvestSimulation = () => {
     };
 
     const callApi = () => {
-        dispatch(fetchDataInvestSimulation(formData))
-    }
+        dispatch(fetchDataInvestSimulation(formData));
+    };
 
     const onAllocationChange = () => {
-        setAllocation(!allocation)
+        setAllocation(!allocation);
 
-        const lengthArr = arrCode.length
+        const lengthArr = arrCode.length;
 
         const updateCateValue = arrCode.map((item, index) => {
             if (!allocation) {
@@ -355,22 +383,29 @@ const InvestSimulation = () => {
 
                 return {
                     ...item,
-                    'category_1': isLastItem ? +(100 - baseValue * (lengthArr - 1)).toFixed(2) : baseValue,
-                    'category_2': isLastItem ? +(100 - baseValue * (lengthArr - 1)).toFixed(2) : baseValue,
-                    'category_3': isLastItem ? +(100 - baseValue * (lengthArr - 1)).toFixed(2) : baseValue,
+                    category_1: isLastItem
+                        ? +(100 - baseValue * (lengthArr - 1)).toFixed(2)
+                        : baseValue,
+                    category_2: isLastItem
+                        ? +(100 - baseValue * (lengthArr - 1)).toFixed(2)
+                        : baseValue,
+                    category_3: isLastItem
+                        ? +(100 - baseValue * (lengthArr - 1)).toFixed(2)
+                        : baseValue,
                 };
             } else {
                 return {
                     ...item,
-                    'category_1': 0,
-                    'category_2': 0,
-                    'category_3': 0,
+                    category_1: 0,
+                    category_2: 0,
+                    category_3: 0,
                 };
             }
         });
 
         setArrCode(updateCateValue);
     };
+
 
     return (
         <div>
@@ -498,7 +533,7 @@ const InvestSimulation = () => {
                                         setFromMonth(newValue);
                                         setFormData((prevData) => ({
                                             ...prevData,
-                                            'from': dayjs(newValue).format('MM/YYYY'),
+                                            from: dayjs(newValue).format("MM/YYYY"),
                                         }));
                                     }}
                                 />
@@ -546,7 +581,7 @@ const InvestSimulation = () => {
                                         setToMonth(newValue);
                                         setFormData((prevData) => ({
                                             ...prevData,
-                                            'to': dayjs(newValue).format('MM/YYYY'),
+                                            to: dayjs(newValue).format("MM/YYYY"),
                                         }));
                                     }}
                                 />
@@ -815,7 +850,7 @@ const InvestSimulation = () => {
                                                             <span
                                                                 className="minus cursor-pointer bg-black/25 px-2"
                                                                 onClick={() => {
-                                                                    handleMinusClick('category_1', index)
+                                                                    handleMinusClick("category_1", index);
                                                                 }}
                                                             >
                                                                 -
@@ -825,13 +860,13 @@ const InvestSimulation = () => {
                                                                 className="bg-transparent border-0 px-2 w-[50px] text-center"
                                                                 value={item.category_1}
                                                                 onChange={(event) => {
-                                                                    handleChangeCount(event, 'category_1', index)
+                                                                    handleChangeCount(event, "category_1", index);
                                                                 }}
                                                             />
                                                             <span
                                                                 className="plus cursor-pointer bg-black/25 px-2"
                                                                 onClick={() => {
-                                                                    handlePlusClick('category_1', index)
+                                                                    handlePlusClick("category_1", index);
                                                                 }}
                                                             >
                                                                 +
@@ -843,9 +878,8 @@ const InvestSimulation = () => {
                                                             <span
                                                                 className="minus cursor-pointer bg-black/25 px-2"
                                                                 onClick={() => {
-                                                                    handleMinusClick('category_2', index)
+                                                                    handleMinusClick("category_2", index);
                                                                 }}
-
                                                             >
                                                                 -
                                                             </span>
@@ -854,14 +888,13 @@ const InvestSimulation = () => {
                                                                 className="bg-transparent border-0 px-2 w-[50px] text-center"
                                                                 value={item.category_2}
                                                                 onChange={(event) => {
-                                                                    handleChangeCount(event, 'category_2', index)
+                                                                    handleChangeCount(event, "category_2", index);
                                                                 }}
-
                                                             />
                                                             <span
                                                                 className="plus cursor-pointer bg-black/25 px-2"
                                                                 onClick={() => {
-                                                                    handlePlusClick('category_2', index)
+                                                                    handlePlusClick("category_2", index);
                                                                 }}
                                                             >
                                                                 +
@@ -873,7 +906,7 @@ const InvestSimulation = () => {
                                                             <span
                                                                 className="minus cursor-pointer bg-black/25 px-2"
                                                                 onClick={() => {
-                                                                    handleMinusClick('category_3', index)
+                                                                    handleMinusClick("category_3", index);
                                                                 }}
                                                             >
                                                                 -
@@ -883,15 +916,13 @@ const InvestSimulation = () => {
                                                                 className="bg-transparent border-0 px-2 w-[50px] text-center"
                                                                 value={item.category_3}
                                                                 onChange={(event) => {
-                                                                    handleChangeCount(event, 'category_3', index)
+                                                                    handleChangeCount(event, "category_3", index);
                                                                 }}
-
-
                                                             />
                                                             <span
                                                                 className="plus cursor-pointer bg-black/25 px-2"
                                                                 onClick={() => {
-                                                                    handlePlusClick('category_3', index)
+                                                                    handlePlusClick("category_3", index);
                                                                 }}
                                                             >
                                                                 +
@@ -905,13 +936,28 @@ const InvestSimulation = () => {
                                             <td className="border border-solid border-[#9E9E9E] text-right p-2 font-bold">
                                                 Tổng:
                                             </td>
-                                            <td className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_1 === 100 ? 'text-[#0BFFC4]' : 'text-red-500'} p-2 font-bold`}>
+                                            <td
+                                                className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_1 === 100
+                                                    ? "text-[#0BFFC4]"
+                                                    : "text-red-500"
+                                                    } p-2 font-bold`}
+                                            >
                                                 {totalCategory_1}%
                                             </td>
-                                            <td className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_2 === 100 ? 'text-[#0BFFC4]' : 'text-red-500'} p-2 font-bold`}>
+                                            <td
+                                                className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_2 === 100
+                                                    ? "text-[#0BFFC4]"
+                                                    : "text-red-500"
+                                                    } p-2 font-bold`}
+                                            >
                                                 {totalCategory_2}%
                                             </td>
-                                            <td className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_3 === 100 ? 'text-[#0BFFC4]' : 'text-red-500'} p-2 font-bold`}>
+                                            <td
+                                                className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_3 === 100
+                                                    ? "text-[#0BFFC4]"
+                                                    : "text-red-500"
+                                                    } p-2 font-bold`}
+                                            >
                                                 {totalCategory_3}%
                                             </td>
                                         </tr>
@@ -930,8 +976,19 @@ const InvestSimulation = () => {
                         </table>
                     </div>
                     <div className="grid place-items-center pt-5">
-                        <button className="w-[188px] h-[32px] bg-[#9E9E9E] rounded-[10px] text-[15px] text-center uppercase font-bold grid place-items-center cursor-pointer"
-                            onClick={callApi}>
+                        <button
+                            disabled={
+                                totalCategory_1 === 100 &&
+                                    totalCategory_2 === 100 &&
+                                    totalCategory_3 === 100
+                                    ? false
+                                    : true
+                            }
+                            className={`${totalCategory_1 === 100 &&
+                                totalCategory_2 === 100 &&
+                                totalCategory_3 === 100 ? 'cursor-pointer' : 'cursor-not-allowed'} w-[188px] h-[32px] bg-[#9E9E9E] rounded-[10px] text-[15px] text-center uppercase font-bold grid place-items-center `}
+                            onClick={callApi}
+                        >
                             Kiểm thử
                         </button>
                     </div>
