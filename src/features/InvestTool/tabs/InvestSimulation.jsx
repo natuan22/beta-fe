@@ -11,6 +11,7 @@ import TestResults from "../components/InvestSimulation/TestResults";
 import InvestEffectsCategory from "../components/InvestSimulation/InvestEffectsCategory";
 import InvestEffectsStock from "../components/InvestSimulation/InvestEffectsStock";
 import ProfitChart from "../components/InvestSimulation/ProfitChart";
+import TestChart from "../components/InvestSimulation/TestChart";
 
 const InvestSimulation = () => {
     const [messageApi, contextHolder] = message.useMessage();

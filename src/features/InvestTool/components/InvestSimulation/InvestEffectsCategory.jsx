@@ -16,7 +16,7 @@ const InvestEffectsCategory = ({ data }) => {
             const result = [];
 
             data?.forEach(item => {
-                const colorArr = ['#fff', '#FFD300', '#0056FF', '#F60101'];
+                const colorArr = ['#fff', '#DFF300', '#0056FF', '#F60101'];
                 const name = item.name;
                 const value = +item.value.toFixed(2);
 
@@ -49,6 +49,7 @@ const InvestEffectsCategory = ({ data }) => {
         title: {
             text: '',
         },
+        // Trong phần tùy chỉnh biểu đồ (options)
         xAxis: {
             categories: timeLine,
             labels: {
@@ -58,6 +59,7 @@ const InvestEffectsCategory = ({ data }) => {
                 },
             },
         },
+
         yAxis: {
             title: {
                 text: null,
@@ -91,6 +93,7 @@ const InvestEffectsCategory = ({ data }) => {
                 },
             },
         },
+
 
         series: dataFormat,
     };
