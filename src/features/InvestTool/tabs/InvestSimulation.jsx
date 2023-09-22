@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "react-use";
 import { fetchDataInvestSimulation, fetchStockList } from "../thunk";
 import { message } from "antd";
-import { Button, message, Space } from "antd";
 import TestResults from "../components/InvestSimulation/TestResults";
 import InvestEffectsCategory from "../components/InvestSimulation/InvestEffectsCategory";
 import InvestEffectsStock from "../components/InvestSimulation/InvestEffectsStock";
 import ProfitChart from "../components/InvestSimulation/ProfitChart";
+import TestChart from "../components/InvestSimulation/TestChart";
 
 const InvestSimulation = () => {
     const [messageApi, contextHolder] = message.useMessage();
@@ -1000,6 +1000,7 @@ const InvestSimulation = () => {
                 <br />
                 <br />
                 <InvestEffectsCategory data={data_2} />
+                {/* <TestChart data={data_2} /> */}
                 <br />
                 <br />
                 <InvestEffectsStock data={data_3} />
