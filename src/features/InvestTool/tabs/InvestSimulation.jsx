@@ -374,6 +374,8 @@ const InvestSimulation = () => {
                 };
             });
             setArrCode(updateCateValue);
+        } else {
+            setArrCode(updatedArr)
         }
         setShowData(false)
     };
