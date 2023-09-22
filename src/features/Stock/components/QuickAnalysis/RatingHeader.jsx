@@ -23,6 +23,18 @@ const RatingHeader = ({ queryApi }) => {
         }
     }, [dataRatingHeader])
 
+    const checkFormatData = (value, name) => {
+        if (typeof (value) === 'number') {
+            if (name === 'Kháng cự' || name === 'Hỗ trợ') {
+                return value.toLocaleString('en-US')
+            } else {
+                return value.toFixed(2)
+            }
+        } else {
+            return value
+        }
+    }
+
     return (
         <div>
             <div className='flex w-full border-solid dark:border-white border-black border-b-2 border-t-0 border-x-0 pb-1' >
@@ -78,14 +90,12 @@ const RatingHeader = ({ queryApi }) => {
                             {dataTechnical?.map((item, index) => (
                                 <tr key={index}>
                                     <td className='p-2'>{item.name}</td>
-                                    <td className={`p-2 text-center ${index === dataTechnical.length - 1 ? 'border border-solid dark:border-white border-black border-b-2 border-t-0 border-x-0' : ''}`}>  {typeof (item.value) === 'number' ? (item.value).toFixed(2) : item.value}</td>
+                                    <td className={`p-2 text-center ${index === dataTechnical.length - 1 ? 'border border-solid dark:border-white border-black border-b-2 border-t-0 border-x-0' : ''}`}>  {checkFormatData(item.value, item.name)}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 )}
-
-
             </div>
         </div >
 

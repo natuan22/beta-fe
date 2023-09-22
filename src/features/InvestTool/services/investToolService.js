@@ -7,11 +7,14 @@ export const investToolService = {
     fetchDataStockFilter: (formData) => {
         return https.post('/api/v1/investment/filter', formData)
     },
-    fetchStockList: (key_search) => {
-        return https.get('/api/v1/shares/search', {
+    fetchStockList: (stock) => {
+        return https.get('/api/v1/investment/search', {
             params: {
-                key_search
+                stock
             }
         })
-    }
+    },
+    fetchDataInvestSimulation: (formData) => {
+        return https.post('/api/v1/investment/emulator', formData)
+    },
 }

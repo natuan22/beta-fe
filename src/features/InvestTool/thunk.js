@@ -29,11 +29,24 @@ export const fetchDataStockFilter = (formData) => async dispatch => {
 }
 
 
-export const fetchStockList = (key_search) => async dispatch => {
+export const fetchStockList = (stock) => async dispatch => {
     try {
-        const res = await investToolService.fetchStockList(key_search)
+        const res = await investToolService.fetchStockList(stock)
         dispatch({
             type: investToolType.FETCH_DATA_STOCK_LIST,
+            payload: res.data.data
+        })
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const fetchDataInvestSimulation = (formData) => async dispatch => {
+    try {
+        const res = await investToolService.fetchDataInvestSimulation(formData)
+        // console.log(res.data.data)
+        dispatch({
+            type: investToolType.FETCH_DATA_INVEST_SIMULATION,
             payload: res.data.data
         })
     } catch (err) {
