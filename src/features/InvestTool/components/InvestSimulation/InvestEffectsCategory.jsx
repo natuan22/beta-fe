@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Loading from '../../../Chart/utils/Loading';
 import HighchartsReact from 'highcharts-react-official'
-import Highcharts, { time } from "highcharts";
+import Highcharts from "highcharts";
 import moment from 'moment';
 
 const InvestEffectsCategory = ({ data }) => {
     const [timeLine, setTimeLine] = useState()
     const [dataFormat, setDataFormat] = useState()
 
-    console.log({ data })
-
     useEffect(() => {
         if (data?.length > 0) {
-            const uniqueDates = [...new Set(data?.map(item => item.date))];
-            setTimeLine(uniqueDates);
+            const uniqueDates = [...new Set(data?.map(item => moment(item.date).format('DD/MM/YYYY')))];
+            setTimeLine(uniqueDates)
+
             const result = [];
 
             data?.forEach(item => {
@@ -101,17 +100,17 @@ const InvestEffectsCategory = ({ data }) => {
 
     return (
         <div>
-            <div className="border-solid border-[#9E9E9E] border-b-2 border-t-0 border-x-0 w-[405px]">
+            <div className="border-solid border-[#9E9E9E] border-b-2 border-t-0 border-x-0 md:w-[405px] sm:w-[265px]">
                 <div className="dark:text-white text-black font-semibold flex items-center uppercase">
                     HIỆU QUẢ ĐẦU TƯ THEO DANH MỤC
                 </div>
             </div>
             {data?.length > 0 ? (
-                <div className='h-[300px] mt-2'>
+                <div className='h-[350px] mt-2'>
                     <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
                 </div>
             ) : (
-                <div className="h-[300px] flex items-center justify-center"><Loading /></div>
+                <div className="h-[350px] flex items-center justify-center"><Loading /></div>
             )}
         </div>
     )
