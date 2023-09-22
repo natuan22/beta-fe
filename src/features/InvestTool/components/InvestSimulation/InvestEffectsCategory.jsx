@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import Loading from '../../../Chart/utils/Loading';
 import HighchartsReact from 'highcharts-react-official'
-import Highcharts from "highcharts";
+import Highcharts, { time } from "highcharts";
+import moment from 'moment';
 
 const InvestEffectsCategory = ({ data }) => {
     const [timeLine, setTimeLine] = useState()
     const [dataFormat, setDataFormat] = useState()
 
+    console.log({ data })
+
     useEffect(() => {
         if (data?.length > 0) {
             const uniqueDates = [...new Set(data?.map(item => item.date))];
-            setTimeLine(uniqueDates)
-
+            setTimeLine(uniqueDates);
             const result = [];
 
             data?.forEach(item => {
-                const colorArr = ['#fff', '#FFD300', '#0056FF', '#F60101'];
+                const colorArr = ['#fff', '#DFF300', '#0056FF', '#F60101'];
                 const name = item.name;
                 const value = +item.value.toFixed(2);
 
@@ -48,6 +50,7 @@ const InvestEffectsCategory = ({ data }) => {
         title: {
             text: '',
         },
+        // Trong phần tùy chỉnh biểu đồ (options)
         xAxis: {
             categories: timeLine,
             labels: {
@@ -57,6 +60,7 @@ const InvestEffectsCategory = ({ data }) => {
                 },
             },
         },
+
         yAxis: {
             title: {
                 text: null,
@@ -90,6 +94,7 @@ const InvestEffectsCategory = ({ data }) => {
                 },
             },
         },
+
 
         series: dataFormat,
     };
