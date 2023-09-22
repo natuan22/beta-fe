@@ -7,12 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "react-use";
 import { fetchDataInvestSimulation, fetchStockList } from "../thunk";
 import { Button, message, Space } from "antd";
+import TestResults from "../components/InvestSimulation/TestResults";
+import InvestEffectsCategory from "../components/InvestSimulation/InvestEffectsCategory";
+import InvestEffectsStock from "../components/InvestSimulation/InvestEffectsStock";
+import ProfitChart from "../components/InvestSimulation/ProfitChart";
 
 const InvestSimulation = () => {
     const [messageApi, contextHolder] = message.useMessage();
 
     const dispatch = useDispatch();
     const { dataStockList } = useSelector((state) => state.investTool);
+    const { dataInvestSimulation } = useSelector((state) => state.investTool);
+    const { data_1, data_2, data_3, data_4 } = dataInvestSimulation
+
     const color = useSelector((state) => state.color.colorTheme);
     const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
@@ -24,6 +31,7 @@ const InvestSimulation = () => {
     const [periodicInvestment, setPeriodicInvestment] = useState(false); // Đầu tư định kỳ
     const [addPeriodically, setAddPeriodically] = useState(10); // Thêm định kỳ
     const [allocation, setAllocation] = useState(false) // Phân bổ đều
+    const [sameMonthYear, setSameMonthYear] = useState(false) // Cùng tháng cùng năm
 
     const [debouncedValue, setDebouncedValue] = useState("");
     const [val, setVal] = useState("");
@@ -100,13 +108,27 @@ const InvestSimulation = () => {
         500,
         [val]
     );
+
     useEffect(() => {
         if (dataStockList && debouncedValue) setDataSearch(dataStockList);
     }, [dataStockList]);
 
+    useEffect(() => {
+        if (fromMonth.month() === toMonth.month() && fromMonth.year() === toMonth.year()) {
+            setPeriodicInvestment(false)
+            setSameMonthYear(true)
+            setFormData((prevData) => ({
+                ...prevData,
+                'isPeriodic': 0,
+            }));
+        }
+        else {
+            setSameMonthYear(false)
+        }
+    }, [fromMonth, toMonth, sameMonthYear])
+
     const onPeriodicInvestmentChange = () => {
         setPeriodicInvestment(!periodicInvestment);
-
         setFormData((prevData) => ({
             ...prevData,
             'isPeriodic': !periodicInvestment ? 1 : 0,
@@ -118,15 +140,35 @@ const InvestSimulation = () => {
         switch (event.target.value) {
             case 1:
                 setFromMonth(dayjs().subtract(3, "month"));
+                setFormData((prevData) => ({
+                    ...prevData,
+                    'from': dayjs().subtract(3, "month").format('MM/YYYY'),
+                    'to': dayjs().subtract(1, "month").format('MM/YYYY'),
+                }))
                 break;
             case 2:
                 setFromMonth(dayjs().subtract(6, "month"));
+                setFormData((prevData) => ({
+                    ...prevData,
+                    'from': dayjs().subtract(6, "month").format('MM/YYYY'),
+                    'to': dayjs().subtract(1, "month").format('MM/YYYY'),
+                }))
                 break;
             case 3:
                 setFromMonth(dayjs().subtract(13, "month"));
+                setFormData((prevData) => ({
+                    ...prevData,
+                    'from': dayjs().subtract(13, "month").format('MM/YYYY'),
+                    'to': dayjs().subtract(1, "month").format('MM/YYYY'),
+                }))
                 break;
             case 4:
                 setFromMonth(dayjs().subtract(37, "month"));
+                setFormData((prevData) => ({
+                    ...prevData,
+                    'from': dayjs().subtract(37, "month").format('MM/YYYY'),
+                    'to': dayjs().subtract(1, "month").format('MM/YYYY'),
+                }))
                 break;
             default:
                 break;
@@ -179,7 +221,6 @@ const InvestSimulation = () => {
         setArrCode(updatedArrCode);
     };
 
-
     const handlePlusClick = (text, index) => {
         const updatedArrCode = [...arrCode]; // Tạo một bản sao của mảng arrCode để cập nhật giá trị
 
@@ -221,9 +262,9 @@ const InvestSimulation = () => {
         setArrCode(updatedArrCode);
     };
 
-    const totalCategory_1 = arrCode.reduce((total, item) => total + item.category_1, 0);
-    const totalCategory_2 = arrCode.reduce((total, item) => total + item.category_2, 0);
-    const totalCategory_3 = arrCode.reduce((total, item) => total + item.category_3, 0);
+    const totalCategory_1 = Math.ceil(arrCode.reduce((total, item) => total + item.category_1, 0));
+    const totalCategory_2 = Math.ceil(arrCode.reduce((total, item) => total + item.category_2, 0));
+    const totalCategory_3 = Math.ceil(arrCode.reduce((total, item) => total + item.category_3, 0));
 
     const warning = (value) => {
         messageApi.open({
@@ -331,14 +372,13 @@ const InvestSimulation = () => {
         setArrCode(updateCateValue);
     };
 
-    console.log({ arrCode })
     return (
         <div>
             {contextHolder}
             <div className="grid grid-cols-12 gap-8 pt-2">
                 <div className="col-span-4">
                     <div className="border-solid border-[#9E9E9E] border-b-2 border-t-0 border-x-0">
-                        <div className="dark:text-white text-black font-semibold h-[42px] flex items-center">
+                        <div className="dark:text-white text-black font-semibold h-[42px] flex items-center uppercase">
                             Thiết lập thông số
                         </div>
                     </div>
@@ -422,6 +462,7 @@ const InvestSimulation = () => {
                             <span className="dark:text-white text-black">Từ tháng</span>
                             <div className="ml-4">
                                 <DatePicker
+                                    maxDate={dayjs().subtract(1, 'month')}
                                     readOnly={readOnlyDateTimePicker}
                                     format="MM/YYYY"
                                     margin="normal"
@@ -469,6 +510,7 @@ const InvestSimulation = () => {
                             <span className="dark:text-white text-black">Đến tháng</span>
                             <div className="ml-4">
                                 <DatePicker
+                                    maxDate={dayjs().subtract(1, 'month')}
                                     readOnly={readOnlyDateTimePicker}
                                     format="MM/YYYY"
                                     margin="normal"
@@ -554,9 +596,10 @@ const InvestSimulation = () => {
                                     name="periodic-investment"
                                     checked={periodicInvestment}
                                     onChange={onPeriodicInvestmentChange}
+                                    disabled={sameMonthYear ? true : false}
                                 />
                                 <span className="checkmark"></span>
-                                <span>Đầu tư định kỳ</span>
+                                <span className={`${sameMonthYear ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}>Đầu tư định kỳ</span>
                             </label>
                         </div>
                         {periodicInvestment ? (
@@ -644,7 +687,7 @@ const InvestSimulation = () => {
                                     onChange={onAllocationChange}
                                 />
                                 <span className="checkmark"></span>
-                                <span>Phân bổ đều</span>
+                                <span className={`${arrCode.length === 0 ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}>Phân bổ đều</span>
                             </label>
                         </div>
                     </div>
@@ -675,16 +718,16 @@ const InvestSimulation = () => {
                                 })}
                             </div>
                         )}
-                        <span className="dark:text-white text-black font-semibold col-span-4 py-1 flex items-center">
+                        <span className="dark:text-white text-black font-semibold col-span-4 py-1 flex items-center uppercase">
                             Phân bổ danh mục
                         </span>
                         <div className="dark:text-white text-black font-semibold col-span-8 py-1 flex items-center justify-between w-[400px]">
                             <span>Chọn mã cổ phiếu</span>
                             <TextField
+                                placeholder="Thêm mã"
                                 onFocus={() => {
                                     setIsFocus(true);
                                 }}
-                                placeholder="Thêm mã"
                                 onChange={({ currentTarget }) => {
                                     setVal(currentTarget.value);
                                 }}
@@ -894,6 +937,20 @@ const InvestSimulation = () => {
                     </div>
                 </div>
             </div>
+
+            <div className="pt-2">
+                <TestResults data={data_1} />
+                <br />
+                <br />
+                <InvestEffectsCategory data={data_2} />
+                <br />
+                <br />
+                <InvestEffectsStock data={data_3} />
+                <br />
+                <br />
+                <ProfitChart data={data_4} />
+            </div>
+
         </div>
     );
 };
