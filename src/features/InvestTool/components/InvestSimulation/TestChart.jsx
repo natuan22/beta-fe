@@ -40,9 +40,9 @@ const TestChart = ({ data }) => {
         }
 
     }, [data])
-    console.log({ dataCate1 })
-    console.log('time1', dataCate1?.data[0][1])
-    console.log('time2', dataCate1?.data[dataCate1.data.length - 1][1])
+    // console.log({ dataCate1 })
+    // console.log('time1', dataCate1?.data[0][1])
+    // console.log('time2', dataCate1?.data[dataCate1.data.length - 1][1])
     const options = {
         accessibility: {
             enabled: false,

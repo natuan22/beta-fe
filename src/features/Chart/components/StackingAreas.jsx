@@ -222,7 +222,7 @@ const StackingAreas = () => {
       },
     ],
   };
-  console.log(dataDecr)
+  // console.log(dataDecr)
   const currentTime = new Date();
 
   // Lấy giờ và phút từ currentTime
