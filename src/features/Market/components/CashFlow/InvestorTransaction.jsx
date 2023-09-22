@@ -88,6 +88,9 @@ const InvestorTransaction = () => {
                                         <th className="text-center align-middle px-3 py-3 text-sm font-semibold text-white">
                                             Giá trị bán (tỷ VNĐ)
                                         </th>
+                                        <th className="text-center align-middle px-3 py-3 text-sm font-semibold text-white">
+                                            Giá trị ròng (tỷ VNĐ)
+                                        </th>
                                     </tr>
                                 </thead>
 
@@ -102,6 +105,7 @@ const InvestorTransaction = () => {
                                                     <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.buyVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                                                     <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold"> {(item.sellVol / 1000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} </td>
                                                     <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold"> {(item.sellVal / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} </td>
+                                                    <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold"> {((item.buyVal - item.sellVal) / 1000000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} </td>
                                                 </tr>
                                             );
                                         })
