@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "react-use";
 import { fetchDataInvestSimulation, fetchStockList } from "../thunk";
 import { message } from "antd";
-import { Button, message, Space } from "antd";
 import TestResults from "../components/InvestSimulation/TestResults";
 import InvestEffectsCategory from "../components/InvestSimulation/InvestEffectsCategory";
 import InvestEffectsStock from "../components/InvestSimulation/InvestEffectsStock";
@@ -123,6 +122,7 @@ const InvestSimulation = () => {
                 ...prevData,
                 'isPeriodic': 0,
             }));
+            setShowData(false)
         }
         else {
             setSameMonthYear(false)
@@ -135,6 +135,7 @@ const InvestSimulation = () => {
             ...prevData,
             isPeriodic: !periodicInvestment ? 1 : 0,
         }));
+        setShowData(false)
     };
 
     const handleChangePeriod = (event) => {
@@ -175,6 +176,7 @@ const InvestSimulation = () => {
             default:
                 break;
         }
+        setShowData(false)
     };
 
     const handleChangeInitialCapital = (event) => {
@@ -187,6 +189,8 @@ const InvestSimulation = () => {
             ...prevData,
             value: numericValue,
         }));
+
+        setShowData(false)
     };
 
     const handleChangeAddPeriodically = (event) => {
@@ -199,6 +203,7 @@ const InvestSimulation = () => {
             ...prevData,
             value_period: numericValue,
         }));
+        setShowData(false)
     };
 
     // DANH MỤC 1
@@ -230,6 +235,7 @@ const InvestSimulation = () => {
 
         // Cập nhật giá trị trong mảng arrCode và kích hoạt việc cập nhật giao diện
         setArrCode(updatedArrCode);
+        setShowData(false)
     };
 
     const handlePlusClick = (text, index) => {
@@ -251,6 +257,7 @@ const InvestSimulation = () => {
 
         // Cập nhật giá trị trong mảng arrCode và kích hoạt việc cập nhật giao diện
         setArrCode(updatedArrCode);
+        setShowData(false)
     };
 
     const handleChangeCount = (event, text, index) => {
@@ -270,6 +277,7 @@ const InvestSimulation = () => {
                 break;
         }
         setArrCode(updatedArrCode);
+        setShowData(false)
     };
 
     const totalCategory_1 = Math.ceil(arrCode.reduce((total, item) => total + item.category_1, 0));
@@ -336,6 +344,7 @@ const InvestSimulation = () => {
         } else {
             warning(`Mã này đã có trong danh sách rồi bạn nhé !!`);
         }
+        setShowData(false)
     };
 
     const handleDelArrCode = (code) => {
@@ -365,9 +374,13 @@ const InvestSimulation = () => {
             });
             setArrCode(updateCateValue);
         }
+        setShowData(false)
     };
 
+    const [showData, setShowData] = useState(false)
+
     const callApi = () => {
+        setShowData(true)
         dispatch(fetchDataInvestSimulation(formData));
     };
 
@@ -404,98 +417,103 @@ const InvestSimulation = () => {
         });
 
         setArrCode(updateCateValue);
+        setShowData(false)
     };
 
-
     return (
-        <div>
+        <div className="p-2">
             {contextHolder}
-            <div className="grid grid-cols-12 gap-8 pt-2">
-                <div className="col-span-4">
+            <div className="grid xl:grid-cols-12 lg:grid-cols-none gap-8 pt-2">
+                <div className="xl:col-span-4 lg:col-span-full">
                     <div className="border-solid border-[#9E9E9E] border-b-2 border-t-0 border-x-0">
                         <div className="dark:text-white text-black font-semibold h-[42px] flex items-center uppercase">
                             Thiết lập thông số
                         </div>
                     </div>
 
-                    <div className="dark:text-white text-black h-[503px]">
+                    <div className="dark:text-white text-black ">
                         {/* Vốn đầu tư ban đầu */}
-                        <div className="py-3 flex items-center justify-between">
+                        <div className="py-3 md:flex sm:block items-center justify-between">
                             <span>Vốn đầu tư ban đầu (Tr)</span>
-                            <NumericFormat
-                                value={initialCapital}
-                                customInput={TextField}
-                                onChange={handleChangeInitialCapital}
-                                sx={{
-                                    "& .MuiInputBase-root .MuiInputBase-input ": {
-                                        color:
-                                            localStorage.getItem("theme") === "dark"
-                                                ? "#fff"
-                                                : "#000",
-                                    },
-                                    "& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ":
-                                    {
-                                        color:
-                                            localStorage.getItem("theme") === "dark"
-                                                ? "#fff"
-                                                : "#000",
-                                    },
-                                    "& .MuiInputBase-formControl": {
-                                        backgroundColor: "rgba(92, 92, 92, 0.50)",
-                                    },
-                                    "& .MuiOutlinedInput-input": {
-                                        width: "218px",
-                                        paddingTop: "5.5px",
-                                        paddingBottom: "5.5px",
-                                        textAlign: "right",
-                                    },
-                                }}
-                                thousandSeparator
-                            />
+                            <div className="flex justify-center pt-2">
+                                <NumericFormat
+                                    value={initialCapital}
+                                    customInput={TextField}
+                                    onChange={handleChangeInitialCapital}
+                                    sx={{
+                                        "& .MuiInputBase-root .MuiInputBase-input ": {
+                                            color:
+                                                localStorage.getItem("theme") === "dark"
+                                                    ? "#fff"
+                                                    : "#000",
+                                        },
+                                        "& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ":
+                                        {
+                                            color:
+                                                localStorage.getItem("theme") === "dark"
+                                                    ? "#fff"
+                                                    : "#000",
+                                        },
+                                        "& .MuiInputBase-formControl": {
+                                            backgroundColor: "rgba(92, 92, 92, 0.50)",
+                                        },
+                                        "& .MuiOutlinedInput-input": {
+                                            width: "218px",
+                                            paddingTop: "5.5px",
+                                            paddingBottom: "5.5px",
+                                            textAlign: "right",
+                                        },
+                                    }}
+                                    thousandSeparator
+                                />
+                            </div>
                         </div>
 
                         {/* Khoảng thời gian giả lập */}
-                        <div className="py-3 flex items-center justify-between">
+                        <div className="py-3 md:flex sm:block items-center justify-between">
                             <span>Khoảng thời gian giả lập</span>
-                            <FormControl>
-                                <Select
-                                    sx={{
-                                        "& .MuiSelect-select": {
-                                            color:
-                                                localStorage.getItem("theme") === "dark"
-                                                    ? "#fff"
-                                                    : "#000",
-                                            width: "200px",
-                                            textAlign: "right",
-                                            paddingTop: "5.5px",
-                                            paddingBottom: "5.5px",
-                                        },
-                                        "& .MuiSvgIcon-root": {
-                                            color:
-                                                localStorage.getItem("theme") === "dark"
-                                                    ? "#fff"
-                                                    : "#000",
-                                        },
-                                        "& .MuiInputBase-input": {
-                                            backgroundColor: "rgba(92, 92, 92, 0.50)",
-                                        },
-                                    }}
-                                    value={period}
-                                    onChange={handleChangePeriod}
-                                >
-                                    <MenuItem value={1}>3 tháng</MenuItem>
-                                    <MenuItem value={2}>6 tháng</MenuItem>
-                                    <MenuItem value={3}>1 năm</MenuItem>
-                                    <MenuItem value={4}>3 năm</MenuItem>
-                                    <MenuItem value={5}>Tuỳ chọn</MenuItem>
-                                </Select>
-                            </FormControl>
+                            <div className="flex justify-center pt-2">
+                                <FormControl>
+                                    <Select
+                                        sx={{
+                                            "& .MuiSelect-select": {
+                                                color:
+                                                    localStorage.getItem("theme") === "dark"
+                                                        ? "#fff"
+                                                        : "#000",
+                                                width: "200px",
+                                                textAlign: "right",
+                                                paddingTop: "5.5px",
+                                                paddingBottom: "5.5px",
+                                            },
+                                            "& .MuiSvgIcon-root": {
+                                                color:
+                                                    localStorage.getItem("theme") === "dark"
+                                                        ? "#fff"
+                                                        : "#000",
+                                            },
+                                            "& .MuiInputBase-input": {
+                                                backgroundColor: "rgba(92, 92, 92, 0.50)",
+                                            },
+                                        }}
+                                        value={period}
+                                        onChange={handleChangePeriod}
+                                    >
+                                        <MenuItem value={1}>3 tháng</MenuItem>
+                                        <MenuItem value={2}>6 tháng</MenuItem>
+                                        <MenuItem value={3}>1 năm</MenuItem>
+                                        <MenuItem value={4}>3 năm</MenuItem>
+                                        <MenuItem value={5}>Tuỳ chọn</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </div>
                         </div>
 
+
                         {/* Từ tháng */}
-                        <div className="py-3 flex items-center justify-between">
+                        <div className="py-3 md:flex sm:block items-center justify-between">
                             <span className="dark:text-white text-black">Từ tháng</span>
-                            <div className="ml-4">
+                            <div className="ml-4 flex justify-center pt-2">
                                 <DatePicker
                                     maxDate={dayjs().subtract(1, 'month')}
                                     readOnly={readOnlyDateTimePicker}
@@ -535,15 +553,16 @@ const InvestSimulation = () => {
                                             ...prevData,
                                             from: dayjs(newValue).format("MM/YYYY"),
                                         }));
+                                        setShowData(false)
                                     }}
                                 />
                             </div>
                         </div>
 
                         {/* Đến tháng */}
-                        <div className="py-3 flex items-center justify-between">
+                        <div className="py-3 md:flex sm:block items-center justify-between">
                             <span className="dark:text-white text-black">Đến tháng</span>
-                            <div className="ml-4">
+                            <div className="ml-4 flex justify-center pt-2">
                                 <DatePicker
                                     maxDate={dayjs().subtract(1, 'month')}
                                     readOnly={readOnlyDateTimePicker}
@@ -583,15 +602,16 @@ const InvestSimulation = () => {
                                             ...prevData,
                                             to: dayjs(newValue).format("MM/YYYY"),
                                         }));
+                                        setShowData(false)
                                     }}
                                 />
                             </div>
                         </div>
 
                         {/* Chỉ số tham chiếu */}
-                        <div className="py-3 flex items-center justify-between">
+                        <div className="py-3 md:flex sm:block items-center justify-between">
                             <span>Chỉ số tham chiếu</span>
-                            <div>
+                            <div className="flex justify-center pt-2">
                                 <TextField
                                     inputProps={{ readOnly: true }}
                                     defaultValue={"VN-INDEX"}
@@ -640,71 +660,75 @@ const InvestSimulation = () => {
                         {periodicInvestment ? (
                             <div>
                                 {/* Kỳ hạn: */}
-                                <div className="py-3 flex items-center justify-between">
+                                <div className="py-3 md:flex sm:block items-center justify-between">
                                     <span>Kỳ hạn:</span>
-                                    <TextField
-                                        inputProps={{ readOnly: true }}
-                                        defaultValue={"Hằng tháng"}
-                                        sx={{
-                                            "& .MuiInputBase-root .MuiInputBase-input ": {
-                                                color:
-                                                    localStorage.getItem("theme") === "dark"
-                                                        ? "#fff"
-                                                        : "#000",
-                                            },
-                                            "& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ":
-                                            {
-                                                color:
-                                                    localStorage.getItem("theme") === "dark"
-                                                        ? "#fff"
-                                                        : "#000",
-                                            },
-                                            "& .MuiInputBase-formControl": {
-                                                backgroundColor: "rgba(92, 92, 92, 0.50)",
-                                            },
-                                            "& .MuiOutlinedInput-input": {
-                                                width: "218px",
-                                                paddingTop: "5.5px",
-                                                paddingBottom: "5.5px",
-                                                textAlign: "right",
-                                            },
-                                        }}
-                                    />
+                                    <div className="flex justify-center pt-2">
+                                        <TextField
+                                            inputProps={{ readOnly: true }}
+                                            defaultValue={"Hằng tháng"}
+                                            sx={{
+                                                "& .MuiInputBase-root .MuiInputBase-input ": {
+                                                    color:
+                                                        localStorage.getItem("theme") === "dark"
+                                                            ? "#fff"
+                                                            : "#000",
+                                                },
+                                                "& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ":
+                                                {
+                                                    color:
+                                                        localStorage.getItem("theme") === "dark"
+                                                            ? "#fff"
+                                                            : "#000",
+                                                },
+                                                "& .MuiInputBase-formControl": {
+                                                    backgroundColor: "rgba(92, 92, 92, 0.50)",
+                                                },
+                                                "& .MuiOutlinedInput-input": {
+                                                    width: "218px",
+                                                    paddingTop: "5.5px",
+                                                    paddingBottom: "5.5px",
+                                                    textAlign: "right",
+                                                },
+                                            }}
+                                        />
+                                    </div>
                                 </div>
 
                                 {/* Thêm định kỳ (Tr): */}
-                                <div className="py-3 flex items-center justify-between">
+                                <div className="py-3 md:flex sm:block items-center justify-between">
                                     <span>Thêm định kỳ (Tr):</span>
-                                    <NumericFormat
-                                        value={addPeriodically}
-                                        customInput={TextField}
-                                        onChange={handleChangeAddPeriodically}
-                                        sx={{
-                                            "& .MuiInputBase-root .MuiInputBase-input ": {
-                                                color:
-                                                    localStorage.getItem("theme") === "dark"
-                                                        ? "#fff"
-                                                        : "#000",
-                                            },
-                                            "& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ":
-                                            {
-                                                color:
-                                                    localStorage.getItem("theme") === "dark"
-                                                        ? "#fff"
-                                                        : "#000",
-                                            },
-                                            "& .MuiInputBase-formControl": {
-                                                backgroundColor: "rgba(92, 92, 92, 0.50)",
-                                            },
-                                            "& .MuiOutlinedInput-input": {
-                                                width: "218px",
-                                                paddingTop: "5.5px",
-                                                paddingBottom: "5.5px",
-                                                textAlign: "right",
-                                            },
-                                        }}
-                                        thousandSeparator
-                                    />
+                                    <div className="flex justify-center pt-2">
+                                        <NumericFormat
+                                            value={addPeriodically}
+                                            customInput={TextField}
+                                            onChange={handleChangeAddPeriodically}
+                                            sx={{
+                                                "& .MuiInputBase-root .MuiInputBase-input ": {
+                                                    color:
+                                                        localStorage.getItem("theme") === "dark"
+                                                            ? "#fff"
+                                                            : "#000",
+                                                },
+                                                "& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ":
+                                                {
+                                                    color:
+                                                        localStorage.getItem("theme") === "dark"
+                                                            ? "#fff"
+                                                            : "#000",
+                                                },
+                                                "& .MuiInputBase-formControl": {
+                                                    backgroundColor: "rgba(92, 92, 92, 0.50)",
+                                                },
+                                                "& .MuiOutlinedInput-input": {
+                                                    width: "218px",
+                                                    paddingTop: "5.5px",
+                                                    paddingBottom: "5.5px",
+                                                    textAlign: "right",
+                                                },
+                                            }}
+                                            thousandSeparator
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         ) : (
@@ -727,8 +751,8 @@ const InvestSimulation = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-8">
-                    <div className="grid grid-cols-12 border-solid border-[#9E9E9E] border-b-2 border-t-0 border-x-0 relative">
+                <div className="xl:col-span-8 lg:col-span-full">
+                    <div className="grid md:grid-cols-12 sm:grid-cols-none border-solid border-[#9E9E9E] border-b-2 border-t-0 border-x-0 relative">
                         {dataSearch?.length > 0 && isFocus && (
                             <div
                                 ref={wrapperRef}
@@ -756,224 +780,232 @@ const InvestSimulation = () => {
                         <span className="dark:text-white text-black font-semibold col-span-4 py-1 flex items-center uppercase">
                             Phân bổ danh mục
                         </span>
-                        <div className="dark:text-white text-black font-semibold col-span-8 py-1 flex items-center justify-between w-[400px]">
+                        <div className="dark:text-white text-black font-semibold col-span-8 py-1 sm:flex xs:block items-center justify-between sm:w-[400px] xs:w-full">
                             <span>Chọn mã cổ phiếu</span>
-                            <TextField
-                                placeholder="Thêm mã"
-                                onFocus={() => {
-                                    setIsFocus(true);
-                                }}
-                                onChange={({ currentTarget }) => {
-                                    setVal(currentTarget.value);
-                                }}
-                                sx={{
-                                    "& .MuiInputBase-root .MuiInputBase-input ": {
-                                        color:
-                                            localStorage.getItem("theme") === "dark"
-                                                ? "#fff"
-                                                : "#000",
-                                    },
-                                    "& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ":
-                                    {
-                                        color:
-                                            localStorage.getItem("theme") === "dark"
-                                                ? "#fff"
-                                                : "#000",
-                                    },
-                                    "& .MuiInputBase-formControl": {
-                                        backgroundColor: "rgba(92, 92, 92, 0.50)",
-                                    },
-                                    "& .MuiOutlinedInput-input": {
-                                        width: "218px",
-                                        paddingTop: "5.5px",
-                                        paddingBottom: "5.5px",
-                                    },
-                                    "& .MuiInputBase-root": { borderRadius: "10px" },
-                                }}
-                            />
+                            <div className="flex items-center justify-center pt-2">
+                                <TextField
+                                    placeholder="Thêm mã"
+                                    onFocus={() => {
+                                        setIsFocus(true);
+                                    }}
+                                    onChange={({ currentTarget }) => {
+                                        setVal(currentTarget.value);
+                                    }}
+                                    sx={{
+                                        "& .MuiInputBase-root .MuiInputBase-input ": {
+                                            color:
+                                                localStorage.getItem("theme") === "dark"
+                                                    ? "#fff"
+                                                    : "#000",
+                                        },
+                                        "& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ":
+                                        {
+                                            color:
+                                                localStorage.getItem("theme") === "dark"
+                                                    ? "#fff"
+                                                    : "#000",
+                                        },
+                                        "& .MuiInputBase-formControl": {
+                                            backgroundColor: "rgba(92, 92, 92, 0.50)",
+                                        },
+                                        "& .MuiOutlinedInput-input": {
+                                            width: "218px",
+                                            paddingTop: "5.5px",
+                                            paddingBottom: "5.5px",
+                                        },
+                                        "& .MuiInputBase-root": { borderRadius: "10px" },
+                                    }}
+                                />
+                            </div>
                         </div>
                     </div>
                     <div className="pt-3">
-                        <table className="w-full border-collapse text-white">
-                            <thead className="bg-[#13476B]">
-                                <tr>
-                                    <th className="px-3 py-2 text-center border border-solid border-[#9E9E9E] w-[357px]">
-                                        Mã
-                                    </th>
-                                    <th className="px-3 py-2 text-center border border-solid border-[#9E9E9E]">
-                                        Danh mục 1
-                                    </th>
-                                    <th className="px-3 py-2 text-center border border-solid border-[#9E9E9E]">
-                                        Danh mục 2
-                                    </th>
-                                    <th className="px-3 py-2 text-center border border-solid border-[#9E9E9E]">
-                                        Danh mục 3
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="bg-[#5C5C5C]">
-                                {arrCode?.length > 0 ? (
-                                    <>
-                                        {arrCode?.map((item, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <td className="border border-solid border-[#9E9E9E]">
-                                                        <div className="flex justify-between p-2">
-                                                            <span className="text-sm">
-                                                                {item.code} - {item.company_name}
-                                                            </span>
-                                                            <button
-                                                                onClick={() => {
-                                                                    handleDelArrCode(item.code);
-                                                                }}
-                                                                className="btn btn-del"
-                                                            >
-                                                                <svg
-                                                                    viewBox="0 0 15 17.5"
-                                                                    height="17.5"
-                                                                    width="15"
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    className="icon"
-                                                                    fill="white"
-                                                                >
-                                                                    <path
-                                                                        transform="translate(-2.5 -1.25)"
-                                                                        d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
-                                                                        id="Fill"
-                                                                    ></path>
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                    <td className="border border-solid border-[#9E9E9E]">
-                                                        <div className="number flex justify-between p-2">
-                                                            <span
-                                                                className="minus cursor-pointer bg-black/25 px-2"
-                                                                onClick={() => {
-                                                                    handleMinusClick("category_1", index);
-                                                                }}
-                                                            >
-                                                                -
-                                                            </span>
-                                                            <input
-                                                                type="text"
-                                                                className="bg-transparent border-0 px-2 w-[50px] text-center"
-                                                                value={item.category_1}
-                                                                onChange={(event) => {
-                                                                    handleChangeCount(event, "category_1", index);
-                                                                }}
-                                                            />
-                                                            <span
-                                                                className="plus cursor-pointer bg-black/25 px-2"
-                                                                onClick={() => {
-                                                                    handlePlusClick("category_1", index);
-                                                                }}
-                                                            >
-                                                                +
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td className="border border-solid border-[#9E9E9E]">
-                                                        <div className="number flex justify-between p-2">
-                                                            <span
-                                                                className="minus cursor-pointer bg-black/25 px-2"
-                                                                onClick={() => {
-                                                                    handleMinusClick("category_2", index);
-                                                                }}
-                                                            >
-                                                                -
-                                                            </span>
-                                                            <input
-                                                                type="text"
-                                                                className="bg-transparent border-0 px-2 w-[50px] text-center"
-                                                                value={item.category_2}
-                                                                onChange={(event) => {
-                                                                    handleChangeCount(event, "category_2", index);
-                                                                }}
-                                                            />
-                                                            <span
-                                                                className="plus cursor-pointer bg-black/25 px-2"
-                                                                onClick={() => {
-                                                                    handlePlusClick("category_2", index);
-                                                                }}
-                                                            >
-                                                                +
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td className="border border-solid border-[#9E9E9E]">
-                                                        <div className="number flex justify-between p-2">
-                                                            <span
-                                                                className="minus cursor-pointer bg-black/25 px-2"
-                                                                onClick={() => {
-                                                                    handleMinusClick("category_3", index);
-                                                                }}
-                                                            >
-                                                                -
-                                                            </span>
-                                                            <input
-                                                                type="text"
-                                                                className="bg-transparent border-0 px-2 w-[50px] text-center"
-                                                                value={item.category_3}
-                                                                onChange={(event) => {
-                                                                    handleChangeCount(event, "category_3", index);
-                                                                }}
-                                                            />
-                                                            <span
-                                                                className="plus cursor-pointer bg-black/25 px-2"
-                                                                onClick={() => {
-                                                                    handlePlusClick("category_3", index);
-                                                                }}
-                                                            >
-                                                                +
-                                                            </span>
-                                                        </div>
+                        <div className="w-full">
+                            <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
+                                <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent">
+                                    <table className="w-full border-collapse text-white">
+                                        <thead className="bg-[#13476B]">
+                                            <tr>
+                                                <th className="px-3 py-2 text-center border border-solid border-[#9E9E9E] w-[357px]">
+                                                    Mã
+                                                </th>
+                                                <th className="px-3 py-2 text-center border border-solid border-[#9E9E9E]">
+                                                    Danh mục 1
+                                                </th>
+                                                <th className="px-3 py-2 text-center border border-solid border-[#9E9E9E]">
+                                                    Danh mục 2
+                                                </th>
+                                                <th className="px-3 py-2 text-center border border-solid border-[#9E9E9E]">
+                                                    Danh mục 3
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="bg-[#5C5C5C]">
+                                            {arrCode?.length > 0 ? (
+                                                <>
+                                                    {arrCode?.map((item, index) => {
+                                                        return (
+                                                            <tr key={index}>
+                                                                <td className="border border-solid border-[#9E9E9E]">
+                                                                    <div className="flex justify-between p-2">
+                                                                        <span className="text-sm font-bold">
+                                                                            {item.code} - {item.company_name}
+                                                                        </span>
+                                                                        <button
+                                                                            onClick={() => {
+                                                                                handleDelArrCode(item.code);
+                                                                            }}
+                                                                            className="btn btn-del"
+                                                                        >
+                                                                            <svg
+                                                                                viewBox="0 0 15 17.5"
+                                                                                height="17.5"
+                                                                                width="15"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                className="icon"
+                                                                                fill="white"
+                                                                            >
+                                                                                <path
+                                                                                    transform="translate(-2.5 -1.25)"
+                                                                                    d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+                                                                                    id="Fill"
+                                                                                ></path>
+                                                                            </svg>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                                <td className="border border-solid border-[#9E9E9E]">
+                                                                    <div className="number flex justify-between p-2">
+                                                                        <span
+                                                                            className="minus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            onClick={() => {
+                                                                                handleMinusClick("category_1", index);
+                                                                            }}
+                                                                        >
+                                                                            -
+                                                                        </span>
+                                                                        <input
+                                                                            type="text"
+                                                                            className="bg-transparent border-0 px-2 w-[15px] text-center text-white"
+                                                                            value={item.category_1}
+                                                                            onChange={(event) => {
+                                                                                handleChangeCount(event, "category_1", index);
+                                                                            }}
+                                                                        />
+                                                                        <span
+                                                                            className="plus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            onClick={() => {
+                                                                                handlePlusClick("category_1", index);
+                                                                            }}
+                                                                        >
+                                                                            +
+                                                                        </span>
+                                                                    </div>
+                                                                </td>
+                                                                <td className="border border-solid border-[#9E9E9E]">
+                                                                    <div className="number flex justify-between p-2">
+                                                                        <span
+                                                                            className="minus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            onClick={() => {
+                                                                                handleMinusClick("category_2", index);
+                                                                            }}
+                                                                        >
+                                                                            -
+                                                                        </span>
+                                                                        <input
+                                                                            type="text"
+                                                                            className="bg-transparent border-0 px-2 w-[15px] text-center text-white"
+                                                                            value={item.category_2}
+                                                                            onChange={(event) => {
+                                                                                handleChangeCount(event, "category_2", index);
+                                                                            }}
+                                                                        />
+                                                                        <span
+                                                                            className="plus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            onClick={() => {
+                                                                                handlePlusClick("category_2", index);
+                                                                            }}
+                                                                        >
+                                                                            +
+                                                                        </span>
+                                                                    </div>
+                                                                </td>
+                                                                <td className="border border-solid border-[#9E9E9E]">
+                                                                    <div className="number flex justify-between p-2">
+                                                                        <span
+                                                                            className="minus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            onClick={() => {
+                                                                                handleMinusClick("category_3", index);
+                                                                            }}
+                                                                        >
+                                                                            -
+                                                                        </span>
+                                                                        <input
+                                                                            type="text"
+                                                                            className="bg-transparent border-0 px-2 w-[15px] text-center text-white"
+                                                                            value={item.category_3}
+                                                                            onChange={(event) => {
+                                                                                handleChangeCount(event, "category_3", index);
+                                                                            }}
+                                                                        />
+                                                                        <span
+                                                                            className="plus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            onClick={() => {
+                                                                                handlePlusClick("category_3", index);
+                                                                            }}
+                                                                        >
+                                                                            +
+                                                                        </span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        );
+                                                    })}
+                                                    <tr>
+                                                        <td className="border border-solid border-[#9E9E9E] text-right p-2 font-bold">
+                                                            Tổng:
+                                                        </td>
+                                                        <td
+                                                            className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_1 === 100
+                                                                ? "text-[#0BFFC4]"
+                                                                : "text-red-500"
+                                                                } p-2 font-bold`}
+                                                        >
+                                                            {totalCategory_1}%
+                                                        </td>
+                                                        <td
+                                                            className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_2 === 100
+                                                                ? "text-[#0BFFC4]"
+                                                                : "text-red-500"
+                                                                } p-2 font-bold`}
+                                                        >
+                                                            {totalCategory_2}%
+                                                        </td>
+                                                        <td
+                                                            className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_3 === 100
+                                                                ? "text-[#0BFFC4]"
+                                                                : "text-red-500"
+                                                                } p-2 font-bold`}
+                                                        >
+                                                            {totalCategory_3}%
+                                                        </td>
+                                                    </tr>
+                                                </>
+                                            ) : (
+                                                <tr>
+                                                    <td
+                                                        className="border border-solid border-[#9E9E9E] h-[106px] text-center font-bold"
+                                                        colSpan={4}
+                                                    >
+                                                        Chưa có mã nào trong danh mục
                                                     </td>
                                                 </tr>
-                                            );
-                                        })}
-                                        <tr>
-                                            <td className="border border-solid border-[#9E9E9E] text-right p-2 font-bold">
-                                                Tổng:
-                                            </td>
-                                            <td
-                                                className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_1 === 100
-                                                    ? "text-[#0BFFC4]"
-                                                    : "text-red-500"
-                                                    } p-2 font-bold`}
-                                            >
-                                                {totalCategory_1}%
-                                            </td>
-                                            <td
-                                                className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_2 === 100
-                                                    ? "text-[#0BFFC4]"
-                                                    : "text-red-500"
-                                                    } p-2 font-bold`}
-                                            >
-                                                {totalCategory_2}%
-                                            </td>
-                                            <td
-                                                className={`border border-solid border-[#9E9E9E] text-center ${totalCategory_3 === 100
-                                                    ? "text-[#0BFFC4]"
-                                                    : "text-red-500"
-                                                    } p-2 font-bold`}
-                                            >
-                                                {totalCategory_3}%
-                                            </td>
-                                        </tr>
-                                    </>
-                                ) : (
-                                    <tr>
-                                        <td
-                                            className="border border-solid border-[#9E9E9E] h-[106px] text-center font-bold"
-                                            colSpan={4}
-                                        >
-                                            Chưa có mã nào trong danh mục
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="grid place-items-center pt-5">
                         <button
@@ -994,20 +1026,22 @@ const InvestSimulation = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="pt-2">
-                <TestResults data={data_1} />
-                <br />
-                <br />
-                <InvestEffectsCategory data={data_2} />
-                <br />
-                <br />
-                <InvestEffectsStock data={data_3} />
-                <br />
-                <br />
-                <ProfitChart data={data_4} />
-            </div>
-
+            {showData ? (
+                <div className="pt-2">
+                    <TestResults data={data_1} />
+                    <br />
+                    <br />
+                    <InvestEffectsCategory data={data_2} />
+                    <br />
+                    <br />
+                    <InvestEffectsStock data={data_3} />
+                    <br />
+                    <br />
+                    <ProfitChart data={data_4} />
+                </div>
+            ) : (
+                <div></div>
+            )}
         </div>
     );
 };

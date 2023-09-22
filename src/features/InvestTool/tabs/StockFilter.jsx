@@ -141,8 +141,8 @@ const StockFilter = () => {
         }
     };
     return (
-        <div>
-            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-4 pt-2'>
+        <div className='p-2'>
+            <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-4'>
                 <div>
                     <div className='pb-3'>
                         <div className='grid md:grid-cols-2 sm:grid-cols-none gap-2'>
@@ -201,6 +201,7 @@ const StockFilter = () => {
                                     open={openYourFilter}
                                     onOpenChange={(visible) => setOpenYourFilter(visible)}
                                     showArrow={false}
+                                    overlayClassName="btnFilter"
                                 >
                                     <Button className='bg-[#2790BD] btnInfoFilter border-none items-center flex justify-evenly h-[41px] px-2 py-1'>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
@@ -249,6 +250,7 @@ const StockFilter = () => {
                                     open={openExchange}
                                     onOpenChange={(visible) => setExchange(visible)}
                                     showArrow={false}
+                                    overlayClassName="btnFilter"
                                 >
                                     <Button className='bg-[#2790BD] btnInfoFilter border-none items-center flex justify-evenly h-[41px] px-2 py-1'>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
@@ -289,6 +291,7 @@ const StockFilter = () => {
                                     open={openSampleFilter}
                                     onOpenChange={(visible) => setOpenSampleFilter(visible)}
                                     showArrow={false}
+                                    overlayClassName="btnFilter"
                                 >
                                     <Button className='bg-[#2790BD] btnInfoFilter border-none items-center flex justify-evenly h-[41px] px-2 py-1'>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
@@ -354,6 +357,7 @@ const StockFilter = () => {
                                     open={openIndustry}
                                     onOpenChange={(visible) => setIndustry(visible)}
                                     showArrow={false}
+                                    overlayClassName="btnFilter"
                                 >
                                     <Button className='bg-[#2790BD] btnInfoFilter border-none items-center flex justify-evenly h-[41px] px-2 py-1'>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
