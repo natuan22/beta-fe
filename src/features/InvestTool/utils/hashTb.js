@@ -27,11 +27,11 @@ export const hashTbStockFilter = {
         },
         {
             name: "Tăng trưởng LNST (Quý gần nhất so với cùng kỳ) ",
-            key: "growthProfitBeforeRevenueSamePeriod",
+            key: "growthProfitAfterRevenueSamePeriod",
         },
         {
             name: "Tăng trưởng LNST (Quý gần nhất so kỳ liền kề) ",
-            key: "growthProfitBeforeRevenue",
+            key: "growthProfitAfterRevenue",
         },
         {
             name: "Tăng trưởng EPS (Quý gần nhất so với cùng kỳ) ",
