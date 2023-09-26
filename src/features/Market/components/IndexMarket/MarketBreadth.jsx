@@ -260,11 +260,17 @@ const MarketBreadth = () => {
     const currentHour = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
 
-    // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
-    const shouldShowData = currentHour > 9 || (currentHour === 9 && currentMinute >= 15) || currentHour === 0
+    // Lấy ngày trong tuần (0: Chủ nhật, 1: Thứ 2, ..., 6: Thứ 7)
+    const currentDay = currentTime.getDay();
 
-    // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59, hiển thị dữ liệu
-    if (!shouldShowData) {
+    // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
+    const isWithinTimeRange = (currentHour > 9 || (currentHour === 9 && currentMinute >= 15) || currentHour === 0);
+
+    // Kiểm tra xem ngày là thứ 7 hoặc chủ nhật
+    const isWeekend = (currentDay === 0 || currentDay === 6);
+
+    // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59 hoặc là ngày thứ 7/chủ nhật, hiển thị dữ liệu
+    if (!isWithinTimeRange || isWeekend) {
         return <>
             <div className="xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[16px]">
                 <span className="dark:text-white text-black text-[0.9rem]">
