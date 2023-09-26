@@ -7,13 +7,13 @@ export const hashTbStockFilter = {
         ,
     ],
     "Dữ liệu giao dich": [
-        { name: "Tổng KLGD trong phiên", key: "totalVol" },
-        { name: "KLGD trung bình 5 phiên", key: "totalVol_AVG_5" },
-        { name: "KLGD trung bình 10 phiên", key: "totalVol_AVG_10" },
-        { name: "KLGD thấp nhất 5 phiên", key: "totalVol_MIN_5" },
-        { name: "KLGD thấp nhất 10 phiên", key: "totalVol_MIN_10" },
-        { name: "KLGD cao nhất 5 phiên", key: "totalVol_MAX_5" },
-        { name: "KLGD cao nhất 10 phiên", key: "totalVol_MAX_10" },
+        { name: "Tổng KLGD trong phiên (triệu)", key: "totalVol" },
+        { name: "KLGD trung bình 5 phiên (triệu)", key: "totalVol_AVG_5" },
+        { name: "KLGD trung bình 10 phiên (triệu)", key: "totalVol_AVG_10" },
+        { name: "KLGD thấp nhất 5 phiên (triệu)", key: "totalVol_MIN_5" },
+        { name: "KLGD thấp nhất 10 phiên (triệu)", key: "totalVol_MIN_10" },
+        { name: "KLGD cao nhất 5 phiên (triệu)", key: "totalVol_MAX_5" },
+        { name: "KLGD cao nhất 10 phiên (triệu)", key: "totalVol_MAX_10" },
     ],
 
     "Kết quả kinh doanh": [
@@ -61,8 +61,6 @@ export const hashTbStockFilter = {
         { name: "RSI(14)", key: "rsi" },
     ],
 };
-
-
 
 export const hashTbIndustry = {
     'Bảo hiểm': 'baoHiem',
