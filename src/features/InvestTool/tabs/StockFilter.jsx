@@ -22,7 +22,7 @@ const StockFilter = () => {
     const [arrSliderCheckbox, setArrSliderCheckbox] = useState([]);
     const [isCheckAllIndustry, setIsCheckAllIndustry] = useState(true)
     const [selectedExchange, setSelectedExchange] = useState(['HOSE', 'HNX', 'UPCOM']);
-    const [selectedIndustry, setSelectedIndustry] = useState(['Bảo hiểm', 'Bất động sản', 'Công nghệ', 'Dầu khí', 'Dịch vụ bán lẻ', 'Dịch vụ tiện ích', 'Đồ dùng cá nhân & gia dụng', 'Du lịch và giải trí', 'Hàng hóa & DV Công nghiệp', 'Hóa chất', 'Ngân hàng', 'Ô tô & linh kiện ô tô', 'Phương tiện truyền thông', 'Thực phẩm và đồ uống', 'Viễn thông', 'Xây dựng & VLXD', 'Tài nguyên cơ bản', 'Y tế']);
+    const [selectedIndustry, setSelectedIndustry] = useState(['Bảo hiểm', 'Bất động sản', 'Công nghệ', 'Dầu khí', 'Dịch vụ bán lẻ', 'Dịch vụ tài chính', 'Dịch vụ tiện ích', 'Đồ dùng cá nhân và đồ gia dụng', 'Du lịch & Giải trí', 'Hàng hóa và dịch vụ công nghiệp', 'Hóa chất', 'Ngân hàng', 'Ôtô & linh kiện phụ tùng ', 'Phương tiện truyền thông', 'Thực phẩm & Đồ uống', 'Viễn thông', 'Xây dựng & Vật liệu', 'Tài nguyên', 'Y tế']);
     const [formData, setFormData] = useState({
         'filter': [],
         'exchange': selectedExchange.map((exchange) => hashTbExchange[exchange]).join(','),
