@@ -1,19 +1,18 @@
 export const hashTbStockFilter = {
     "Thông tin doanh nghiệp": [
         { name: "Vốn hóa (tỷ VNĐ)", key: "marketCap" },
-
         { name: "Thị giá ( x1000 vnđ)", key: "closePrice" },
         { name: "KL cổ phiếu lưu hành (triệu CP)", key: "shareout" },
-        ,
+
     ],
     "Dữ liệu giao dich": [
-        { name: "Tổng KLGD trong phiên", key: "totalVol" },
-        { name: "KLGD trung bình 5 phiên", key: "totalVol_AVG_5" },
-        { name: "KLGD trung bình 10 phiên", key: "totalVol_AVG_10" },
-        { name: "KLGD thấp nhất 5 phiên", key: "totalVol_MIN_5" },
-        { name: "KLGD thấp nhất 10 phiên", key: "totalVol_MIN_10" },
-        { name: "KLGD cao nhất 5 phiên", key: "totalVol_MAX_5" },
-        { name: "KLGD cao nhất 10 phiên", key: "totalVol_MAX_10" },
+        { name: "Tổng KLGD trong phiên (triệu)", key: "totalVol" },
+        { name: "KLGD trung bình 5 phiên (triệu)", key: "totalVol_AVG_5" },
+        { name: "KLGD trung bình 10 phiên (triệu)", key: "totalVol_AVG_10" },
+        { name: "KLGD thấp nhất 5 phiên (triệu)", key: "totalVol_MIN_5" },
+        { name: "KLGD thấp nhất 10 phiên (triệu)", key: "totalVol_MIN_10" },
+        { name: "KLGD cao nhất 5 phiên (triệu)", key: "totalVol_MAX_5" },
+        { name: "KLGD cao nhất 10 phiên (triệu)", key: "totalVol_MAX_10" },
     ],
 
     "Kết quả kinh doanh": [
@@ -27,11 +26,11 @@ export const hashTbStockFilter = {
         },
         {
             name: "Tăng trưởng LNST (Quý gần nhất so với cùng kỳ) ",
-            key: "growthProfitBeforeRevenueSamePeriod",
+            key: "growthProfitAfterRevenueSamePeriod",
         },
         {
             name: "Tăng trưởng LNST (Quý gần nhất so kỳ liền kề) ",
-            key: "growthProfitBeforeRevenue",
+            key: "growthProfitAfterRevenue",
         },
         {
             name: "Tăng trưởng EPS (Quý gần nhất so với cùng kỳ) ",
@@ -62,26 +61,25 @@ export const hashTbStockFilter = {
     ],
 };
 
-
-
 export const hashTbIndustry = {
     'Bảo hiểm': 'baoHiem',
     'Bất động sản': 'batDongSan',
     'Công nghệ': 'congNghe',
     'Dầu khí': 'dauKhi',
     'Dịch vụ bán lẻ': 'banLe',
+    'Dịch vụ tài chính': 'taiChinh',
     'Dịch vụ tiện ích': 'tienIch',
-    'Đồ dùng cá nhân & gia dụng': 'doGiaDung',
-    'Du lịch và giải trí': 'duLich',
-    'Hàng hóa & DV Công nghiệp': 'hangHoa',
+    'Đồ dùng cá nhân và đồ gia dụng': 'doGiaDung',
+    'Du lịch & Giải trí': 'duLich',
+    'Hàng hóa và dịch vụ công nghiệp': 'hangHoa',
     'Hóa chất': 'hoaChat',
     'Ngân hàng': 'nganHang',
-    'Ô tô & linh kiện ô tô': 'oto',
+    'Ôtô & linh kiện phụ tùng ': 'oto',
     'Phương tiện truyền thông': 'truyenThong',
-    'Thực phẩm và đồ uống': 'thucPham',
+    'Thực phẩm & Đồ uống': 'thucPham',
     'Viễn thông': 'vienThong',
-    'Xây dựng & VLXD': 'xayDung',
-    'Tài nguyên cơ bản': 'taiNguyen',
+    'Xây dựng & Vật liệu': 'xayDung',
+    'Tài nguyên': 'taiNguyen',
     'Y tế': 'yTe',
 }
 

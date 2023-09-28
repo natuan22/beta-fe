@@ -880,7 +880,7 @@ const InvestSimulation = () => {
                                                                 <td className="border border-solid border-[#9E9E9E]">
                                                                     <div className="number flex justify-between p-2">
                                                                         <span
-                                                                            className="minus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            className="minus cursor-pointer bg-black/25 px-2 sm:block xs:hidden xxs:hidden"
                                                                             onClick={() => {
                                                                                 handleMinusClick("category_1", index);
                                                                             }}
@@ -889,14 +889,14 @@ const InvestSimulation = () => {
                                                                         </span>
                                                                         <input
                                                                             type="text"
-                                                                            className="bg-transparent border-0 px-2 w-[15px] text-center text-white"
+                                                                            className="bg-transparent border-0 w-[40px] text-center text-white"
                                                                             value={item.category_1}
                                                                             onChange={(event) => {
                                                                                 handleChangeCount(event, "category_1", index);
                                                                             }}
                                                                         />
                                                                         <span
-                                                                            className="plus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            className="plus cursor-pointer bg-black/25 px-2 sm:block xs:hidden xxs:hidden"
                                                                             onClick={() => {
                                                                                 handlePlusClick("category_1", index);
                                                                             }}
@@ -908,7 +908,7 @@ const InvestSimulation = () => {
                                                                 <td className="border border-solid border-[#9E9E9E]">
                                                                     <div className="number flex justify-between p-2">
                                                                         <span
-                                                                            className="minus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            className="minus cursor-pointer bg-black/25 px-2 sm:block xs:hidden xxs:hidden"
                                                                             onClick={() => {
                                                                                 handleMinusClick("category_2", index);
                                                                             }}
@@ -917,14 +917,14 @@ const InvestSimulation = () => {
                                                                         </span>
                                                                         <input
                                                                             type="text"
-                                                                            className="bg-transparent border-0 px-2 w-[15px] text-center text-white"
+                                                                            className="bg-transparent border-0 w-[40px] text-center text-white"
                                                                             value={item.category_2}
                                                                             onChange={(event) => {
                                                                                 handleChangeCount(event, "category_2", index);
                                                                             }}
                                                                         />
                                                                         <span
-                                                                            className="plus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            className="plus cursor-pointer bg-black/25 px-2 sm:block xs:hidden xxs:hidden"
                                                                             onClick={() => {
                                                                                 handlePlusClick("category_2", index);
                                                                             }}
@@ -936,7 +936,7 @@ const InvestSimulation = () => {
                                                                 <td className="border border-solid border-[#9E9E9E]">
                                                                     <div className="number flex justify-between p-2">
                                                                         <span
-                                                                            className="minus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            className="minus cursor-pointer bg-black/25 px-2 sm:block xs:hidden xxs:hidden"
                                                                             onClick={() => {
                                                                                 handleMinusClick("category_3", index);
                                                                             }}
@@ -945,14 +945,14 @@ const InvestSimulation = () => {
                                                                         </span>
                                                                         <input
                                                                             type="text"
-                                                                            className="bg-transparent border-0 px-2 w-[15px] text-center text-white"
+                                                                            className="bg-transparent border-0 w-[40px] text-center text-white"
                                                                             value={item.category_3}
                                                                             onChange={(event) => {
                                                                                 handleChangeCount(event, "category_3", index);
                                                                             }}
                                                                         />
                                                                         <span
-                                                                            className="plus cursor-pointer bg-black/25 px-2 xs:block xxs:hidden"
+                                                                            className="plus cursor-pointer bg-black/25 px-2 sm:block xs:hidden xxs:hidden"
                                                                             onClick={() => {
                                                                                 handlePlusClick("category_3", index);
                                                                             }}
