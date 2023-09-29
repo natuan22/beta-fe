@@ -37,16 +37,21 @@ const TestResults = ({ data }) => {
                                             Lợi nhuận
                                         </th>
                                         <th className="md:text-base sm:text-sm text-center align-middle px-3 py-5 font-semibold text-white border border-solid border-[#9E9E9E]">
-                                            Thời gian lãi<br /> thấp nhất
-                                        </th>
-                                        <th className="md:text-base sm:text-sm text-center align-middle px-3 py-5 font-semibold text-white border border-solid border-[#9E9E9E]">
                                             Thời gian lãi<br /> cao nhất
                                         </th>
                                         <th className="md:text-base sm:text-sm text-center align-middle px-3 py-5 font-semibold text-white border border-solid border-[#9E9E9E]">
-                                            Lãi suất TB
+
+                                            Giá trị lãi<br /> cao nhất
+                                        </th>
+
+                                        <th className="md:text-base sm:text-sm text-center align-middle px-3 py-5 font-semibold text-white border border-solid border-[#9E9E9E]">
+                                            Thời gian lỗ<br />cao nhất
                                         </th>
                                         <th className="md:text-base sm:text-sm text-center align-middle px-3 py-5 font-semibold text-white border border-solid border-[#9E9E9E]">
-                                            Thời gian lỗ<br /> cao nhất
+                                            Giá trị lỗ<br /> cao nhất
+                                        </th>
+                                        <th className="md:text-base sm:text-sm text-center align-middle px-3 py-5 font-semibold text-white border border-solid border-[#9E9E9E]">
+                                            Lãi suất TB
                                         </th>
                                         <th className="md:text-base sm:text-sm text-center align-middle px-3 py-5 font-semibold text-white border border-solid border-[#9E9E9E]">
                                             Chỉ số Sharpe
@@ -76,16 +81,20 @@ const TestResults = ({ data }) => {
                                                 {item.loi_nhuan.toLocaleString('en-US', { maximumFractionDigits: 2 })}%
                                             </td>
                                             <td className={`md:text-base sm:text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black border border-solid border-[#9E9E9E]`}>
-                                                {item.lai_thap_nhat.toLocaleString('en-US', { maximumFractionDigits: 2 })}%
+                                                {item.tg_lai_cao_nhat}
                                             </td>
                                             <td className={`md:text-base sm:text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black border border-solid border-[#9E9E9E]`}>
                                                 {item.lai_cao_nhat.toLocaleString('en-US', { maximumFractionDigits: 2 })}%
                                             </td>
+
                                             <td className={`md:text-base sm:text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black border border-solid border-[#9E9E9E]`}>
-                                                {item.lai_trung_binh.toLocaleString('en-US', { maximumFractionDigits: 2 })}%
+                                                {item.tg_lo_cao_nhat}
                                             </td>
                                             <td className={`md:text-base sm:text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black border border-solid border-[#9E9E9E]`}>
                                                 {item.lo_cao_nhat === null ? '-' : `${item.lo_cao_nhat.toLocaleString('en-US', { maximumFractionDigits: 2 })}%`}
+                                            </td>
+                                            <td className={`md:text-base sm:text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black border border-solid border-[#9E9E9E]`}>
+                                                {item.lai_trung_binh.toLocaleString('en-US', { maximumFractionDigits: 2 })}%
                                             </td>
                                             <td className={`md:text-base sm:text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black border border-solid border-[#9E9E9E]`}>
                                                 {item.sharpe.toLocaleString('en-US', { maximumFractionDigits: 2 })}
