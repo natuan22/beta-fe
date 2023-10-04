@@ -105,6 +105,7 @@ const ProfitChart = ({ data }) => {
             }
         },
 
+
         series: dataFormat,
     };
     return (

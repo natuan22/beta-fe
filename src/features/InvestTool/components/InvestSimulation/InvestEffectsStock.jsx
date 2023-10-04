@@ -99,7 +99,9 @@ const InvestEffectsStock = ({ data }) => {
                 },
             },
         },
-
+        tooltip: {
+            split: true
+        },
         series: dataFormat,
     };
 
