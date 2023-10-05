@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import Slider, { SliderThumb } from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 
@@ -12,32 +12,30 @@ const AirbnbSlider = styled(Slider)(({ theme }) => ({
         backgroundColor: "#fff",
         border: "1px solid currentColor",
         "&:hover": {
-            boxShadow: "0 0 0 8px rgba(58, 133, 137, 0.16)"
+            boxShadow: "0 0 0 8px rgba(58, 133, 137, 0.16)",
         },
         "& .airbnb-bar": {
             height: 9,
             width: 1,
             backgroundColor: "currentColor",
             marginLeft: 1,
-            marginRight: 1
-        }
+            marginRight: 1,
+        },
     },
     "& .MuiSlider-track": {
-        height: 3
+        height: 3,
     },
     "& .MuiSlider-rail": {
         color: theme.palette.mode === "dark" ? "#bfbfbf" : "#d8d8d8",
         opacity: theme.palette.mode === "dark" ? undefined : 1,
-        height: 3
-    }
+        height: 3,
+    },
 }));
 
 function AirbnbThumbComponent(props) {
     const { children, ...other } = props;
     return (
-        <SliderThumb
-            style={{ width: '12px', height: '12px' }}
-            {...other}>
+        <SliderThumb style={{ width: "12px", height: "12px" }} {...other}>
             {children}
             <span className="airbnb-bar " />
             <span className="airbnb-bar" />
@@ -49,32 +47,37 @@ function valuetext(value) {
     return `${value}`;
 }
 
-const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }) => {
-
-    const [value, setValue] = useState([min, max])
+const SliderInput = ({
+    sliderKey,
+    min,
+    max,
+    formData,
+    setFormData,
+    arrCheckbox,
+}) => {
+    const [value, setValue] = useState([min, max]);
     const [isSliding, setIsSliding] = useState(false);
     const [pendingValue, setPendingValue] = useState([min, max]);
-    const [minValue, setMinValue] = useState(min)
-    const [maxValue, setMaxValue] = useState(max)
+    const [minValue, setMinValue] = useState(min);
+    const [maxValue, setMaxValue] = useState(max);
     const handleChange = (e, newVal) => {
         setValue(newVal);
         setIsSliding(true);
-        setMinValue(newVal[0])
-        setMaxValue(newVal[1])
+        setMinValue(newVal[0]);
+        setMaxValue(newVal[1]);
         // Cập nhật giá trị sau khi dừng kéo slider
         setPendingValue(newVal);
-    }
-
+    };
 
     // Hàm để tính giá trị nhân dựa vào sliderKey
     const calculateMultiplier = (sliderKey) => {
-        if (sliderKey.includes('marketCap')) {
+        if (sliderKey.includes("marketCap")) {
             return 1000000000;
-        } else if (sliderKey.includes('shareout')) {
+        } else if (sliderKey.includes("shareout")) {
             return 1000000;
-        } else if (sliderKey.includes('totalVol')) {
+        } else if (sliderKey.includes("totalVol")) {
             return 1000000;
-        } else if (sliderKey.includes('EBIT')) {
+        } else if (sliderKey.includes("EBIT")) {
             return 1000000000;
         }
         return 1; // Mặc định nếu không có điều kiện nào khớp
@@ -101,7 +104,7 @@ const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }
                 const newFilterObject = {
                     key: sliderKey,
                     from: pendingValue[0] * multiplier, // Giá trị min sau khi ngừng kéo slider
-                    to: pendingValue[1] * multiplier,   // Giá trị max sau khi ngừng kéo slider
+                    to: pendingValue[1] * multiplier, // Giá trị max sau khi ngừng kéo slider
                 };
                 // Cập nhật hoặc thêm key vào formData
                 const existingFilterIndex = newFormData.filter.findIndex(
@@ -125,10 +128,9 @@ const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }
         return () => {
             clearTimeout(updateTimeout);
         };
-    }, [sliderKey, value, pendingValue, isSliding, arrCheckbox,]);
+    }, [sliderKey, value, pendingValue, isSliding, arrCheckbox]);
 
-
-    const handleChangeInputMin = e => {
+    const handleChangeInputMin = (e) => {
         const inputValue = e.target.value;
         const regex = /^[0-9]*$/; // Biểu thức chính quy cho số nguyên dương
 
@@ -141,7 +143,7 @@ const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }
         }
     };
 
-    const handleChangeInputMax = e => {
+    const handleChangeInputMax = (e) => {
         const inputValue = e.target.value;
         const regex = /^[0-9]*$/; // Biểu thức chính quy cho số nguyên dương
 
@@ -158,11 +160,19 @@ const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }
         setValue([minValue, maxValue]);
     }, [minValue, maxValue]);
     return (
-        <div className='flex justify-center items-center md:w-[460px] sm:w-[270px] rounded-md' >
-            <div className='dark:text-white text-black w-[55px] mr-[40px] text-sm'>
-                <input type='text' numberonly max={max} min={min} value={minValue} className='bg-[#2b2b2b]  w-[67px] text-white font-semibold border-0 p-2 rounded-lg focus:outline-0' onChange={handleChangeInputMin} />
+        <div className="flex justify-center items-center md:w-[460px] sm:w-[270px] rounded-md">
+            <div className="dark:text-white text-black w-[55px] mr-[40px] text-sm">
+                <input
+                    type="text"
+                    numberonly
+                    max={max}
+                    min={min}
+                    value={minValue}
+                    className="bg-[#2b2b2b]  w-[67px] text-white font-semibold border-0 p-2 rounded-lg focus:outline-0"
+                    onChange={handleChangeInputMin}
+                />
             </div>
-            <div className='w-[55%]'>
+            <div className="w-[55%]">
                 <AirbnbSlider
                     slots={{ thumb: AirbnbThumbComponent }}
                     onChange={handleChange}
@@ -171,26 +181,33 @@ const SliderInput = ({ sliderKey, min, max, formData, setFormData, arrCheckbox }
                     min={min}
                     max={max}
                     sx={{
-                        '& .MuiSlider-thumb': {
-                            width: '20px',
-                            height: '25px',
-                            borderRadius: '5px'
+                        "& .MuiSlider-thumb": {
+                            width: "20px",
+                            height: "25px",
+                            borderRadius: "5px",
                         },
-                        '& .MuiSlider-rail': {
-                            height: '15px'
+                        "& .MuiSlider-rail": {
+                            height: "15px",
                         },
-                        '& .MuiSlider-track': {
-                            height: '15px'
-                        }
+                        "& .MuiSlider-track": {
+                            height: "15px",
+                        },
                     }}
                 />
             </div>
-            <div className='dark:text-white text-black w-[55px] ml-3 text-sm'>
-
-                <input type='text' numberonly min={min} max={max} value={maxValue} className='bg-[#2b2b2b] w-[67px] text-white font-semibold border-0 p-2 rounded-lg focus:outline-0' onChange={handleChangeInputMax} />
+            <div className="dark:text-white text-black w-[55px] ml-3 text-sm">
+                <input
+                    type="text"
+                    numberonly
+                    min={min}
+                    max={max}
+                    value={maxValue}
+                    className="bg-[#2b2b2b] w-[67px] text-white font-semibold border-0 p-2 rounded-lg focus:outline-0"
+                    onChange={handleChangeInputMax}
+                />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default SliderInput
+export default SliderInput;
