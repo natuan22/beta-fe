@@ -94,7 +94,9 @@ const InvestEffectsCategory = ({ data }) => {
             },
         },
 
-
+        tooltip: {
+            split: true
+        },
         series: dataFormat,
     };
 
