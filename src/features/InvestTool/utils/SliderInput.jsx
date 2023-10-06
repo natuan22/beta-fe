@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Slider, { SliderThumb } from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
+import { NumericFormat } from "react-number-format";
+import { TextField } from "@mui/material";
 
 const AirbnbSlider = styled(Slider)(({ theme }) => ({
     color: "#3a8589",
@@ -131,7 +133,9 @@ const SliderInput = ({
     }, [sliderKey, value, pendingValue, isSliding, arrCheckbox]);
 
     const handleChangeInputMin = (e) => {
-        const inputValue = e.target.value;
+        const inputValue = e.target.value.replace(/,/g, "");
+        console.log(inputValue)
+        console.log(typeof (inputValue))
         const regex = /^[0-9]*$/; // Biểu thức chính quy cho số nguyên dương
 
         if (regex.test(inputValue)) {
@@ -144,7 +148,7 @@ const SliderInput = ({
     };
 
     const handleChangeInputMax = (e) => {
-        const inputValue = e.target.value;
+        const inputValue = e.target.value.replace(/,/g, "");
         const regex = /^[0-9]*$/; // Biểu thức chính quy cho số nguyên dương
 
         if (regex.test(inputValue)) {
@@ -159,10 +163,14 @@ const SliderInput = ({
     useEffect(() => {
         setValue([minValue, maxValue]);
     }, [minValue, maxValue]);
+    const formatNumber = (number) => {
+        // Định dạng số và loại bỏ dấu phẩy ngăn cách
+        return number.toLocaleString("vi-VN", { maximumFractionDigits: 0 });
+    };
     return (
-        <div className="flex justify-center items-center md:w-[460px] sm:w-[270px] rounded-md">
+        <div className="flex justify-evenly items-center md:w-[460px] sm:w-[270px] rounded-md">
             <div className="dark:text-white text-black w-[55px] mr-[40px] text-sm">
-                <input
+                {/* <input
                     type="text"
                     numberonly
                     max={max}
@@ -170,9 +178,41 @@ const SliderInput = ({
                     value={minValue}
                     className="bg-[#2b2b2b]  w-[67px] text-white font-semibold border-0 p-2 rounded-lg focus:outline-0"
                     onChange={handleChangeInputMin}
+                /> */}
+                <NumericFormat
+                    customInput={TextField}
+                    max={max}
+                    min={min}
+                    value={minValue}
+                    onChange={handleChangeInputMin}
+                    sx={{
+                        "& .MuiInputBase-root .MuiInputBase-input ": {
+                            color:
+                                localStorage.getItem("theme") === "dark"
+                                    ? "#fff"
+                                    : "#000",
+                        },
+                        "& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ":
+                        {
+                            color:
+                                localStorage.getItem("theme") === "dark"
+                                    ? "#fff"
+                                    : "#000",
+                        },
+                        "& .MuiInputBase-formControl": {
+                            backgroundColor: "rgba(92, 92, 92, 0.50)",
+                        },
+                        "& .MuiOutlinedInput-input": {
+                            width: "60px",
+                            paddingTop: "5.5px",
+                            paddingBottom: "5.5px",
+                            textAlign: "right",
+                        },
+                    }}
+                    thousandSeparator
                 />
             </div>
-            <div className="w-[55%]">
+            <div className="w-[50%]">
                 <AirbnbSlider
                     slots={{ thumb: AirbnbThumbComponent }}
                     onChange={handleChange}
@@ -196,7 +236,7 @@ const SliderInput = ({
                 />
             </div>
             <div className="dark:text-white text-black w-[55px] ml-3 text-sm">
-                <input
+                {/* <input
                     type="text"
                     numberonly
                     min={min}
@@ -204,6 +244,38 @@ const SliderInput = ({
                     value={maxValue}
                     className="bg-[#2b2b2b] w-[67px] text-white font-semibold border-0 p-2 rounded-lg focus:outline-0"
                     onChange={handleChangeInputMax}
+                /> */}
+                <NumericFormat
+                    customInput={TextField}
+                    min={min}
+                    max={max}
+                    value={maxValue}
+                    onChange={handleChangeInputMax}
+                    sx={{
+                        "& .MuiInputBase-root .MuiInputBase-input ": {
+                            color:
+                                localStorage.getItem("theme") === "dark"
+                                    ? "#fff"
+                                    : "#000",
+                        },
+                        "& .MuiInputBase-root .MuiInputAdornment-root .MuiButtonBase-root  ":
+                        {
+                            color:
+                                localStorage.getItem("theme") === "dark"
+                                    ? "#fff"
+                                    : "#000",
+                        },
+                        "& .MuiInputBase-formControl": {
+                            backgroundColor: "rgba(92, 92, 92, 0.50)",
+                        },
+                        "& .MuiOutlinedInput-input": {
+                            width: "60px",
+                            paddingTop: "5.5px",
+                            paddingBottom: "5.5px",
+                            textAlign: "right",
+                        },
+                    }}
+                    thousandSeparator
                 />
             </div>
         </div>

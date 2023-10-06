@@ -459,7 +459,7 @@ const StockFilter = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className='w-[3%]'>
+                                        <div className='w-[3%] ml-[55px] '>
                                             <button onClick={() => handleDelElement(key)} className="btn btn-del">
                                                 <svg
                                                     viewBox="0 0 15 17.5"
