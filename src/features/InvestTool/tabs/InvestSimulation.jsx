@@ -240,7 +240,6 @@ const InvestSimulation = () => {
 
     const handlePlusClick = (text, index) => {
         const updatedArrCode = [...arrCode]; // Tạo một bản sao của mảng arrCode để cập nhật giá trị
-
         switch (text) {
             case "category_1":
                 updatedArrCode[index].category_1 = updatedArrCode[index].category_1 + 1;
