@@ -136,7 +136,7 @@ const SliderInput = ({
         const inputValue = e.target.value.replace(/,/g, "");
         console.log(inputValue)
         console.log(typeof (inputValue))
-        const regex = /^[0-9]*$/; // Biểu thức chính quy cho số nguyên dương
+        const regex = /^-?\d*$/; // Biểu thức chính quy cho số nguyên
 
         if (regex.test(inputValue)) {
             // Nếu giá trị nhập vào là số, cập nhật state
@@ -149,7 +149,7 @@ const SliderInput = ({
 
     const handleChangeInputMax = (e) => {
         const inputValue = e.target.value.replace(/,/g, "");
-        const regex = /^[0-9]*$/; // Biểu thức chính quy cho số nguyên dương
+        const regex = /^-?\d*$/; // Biểu thức chính quy cho số nguyên
 
         if (regex.test(inputValue)) {
             // Nếu giá trị nhập vào là số, cập nhật state
