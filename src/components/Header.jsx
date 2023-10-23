@@ -2,17 +2,28 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BellOutlined, MessageOutlined } from "@ant-design/icons";
 import { Transition } from "@headlessui/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
 import Switcher from "../services/switcher";
 import SearchDialog from "../features/Search/utils/UIcomponent/SearchDialog";
+import { Popover } from 'antd';
+import { BiLogOut } from "react-icons/bi";
+import { userLogoutACtion } from "../features/Auth/thunk";
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 
 const Header = () => {
   const isLogin = useSelector((state) => state.authen.userData);
+  const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  const handleOpenChange = (newOpen) => {
+    setOpen(newOpen);
+  };
+  const handleUserLogout = () => {
+    dispatch(userLogoutACtion())
+  }
   return (
     <>
       <div className=" relative">
@@ -148,14 +159,29 @@ const Header = () => {
                     <SearchDialog />
                   </span>
                 </div>
-                <div className="hidden xl:block">
+                <div className="hidden xl:block cursor-pointer">
                   {isLogin?.data ? (
                     <div className="relative">
-                      <span className="text-white ml-2 text-sm flex items-center font-medium">
-                        <FaUserCircle className="text-white mr-2 text-xl" />
-                        {isLogin?.data?.name}
-                      </span>
-                      <div className="absolute w-2 h-2 rounded-full bg-green-400 bottom-0 left-[18%]"></div>
+                      <Popover
+                        content={
+                          <div className="flex flex-col justify-around h-[100px]">
+                            <button className="bg-transparent font-semibold border-0 cursor-pointer hover:text-blue-500 duration-500">Thông tin cá nhân</button>
+                            <span className="flex items-center justify-evenly hover:text-red-500 duration-500">
+                              <button onClick={handleUserLogout} className="bg-transparent border-0 cursor-pointer hover:text-red-500 duration-500  ">Đăng xuất </button>
+                              <BiLogOut />
+                            </span>
+                          </div>
+                        }
+                        trigger="click"
+                        open={open}
+                        onOpenChange={handleOpenChange}
+                      >
+                        <span className="text-white ml-2 text-sm flex items-center font-medium">
+                          <FaUserCircle className="text-white mr-2 text-xl" />
+                          {isLogin?.data?.name}
+                        </span>
+                        <div className="absolute w-2 h-2 rounded-full bg-green-400 bottom-0 left-[18%]"></div>
+                      </Popover>
                     </div>
                   ) : (
                     <div>

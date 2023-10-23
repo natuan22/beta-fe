@@ -74,7 +74,7 @@ const LineChart = () => {
     },
     xAxis: {
       type: "datetime",
-      tickInterval: 30 * 60 * 1000,
+      tickInterval: 60 * 60 * 1000,
       min: timeLineChart9h00,
       max: timeLineChart15h00,
       title: {
@@ -84,9 +84,10 @@ const LineChart = () => {
         },
       },
       labels: {
-        // rotation: -45,
+        rotation: 0,
         style: {
           color: localStorage.getItem('color'),
+          fontSize: '9px'
         },
       },
     },

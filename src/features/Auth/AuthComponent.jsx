@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaAngleDoubleRight } from "react-icons/fa";
-import SignUp1 from "./SignUp1";
 
 
 
@@ -39,7 +38,7 @@ const AuthComponent = () => {
                             </span>
                         </div>
                         <button className="bg-transparent border-none mr-2">
-                            <a href="bsi.com.vn" className="text-yellow-300 flex items-center">
+                            <a href="bsi.com.vn" className="tex t-yellow-300 flex items-center">
                                 Xem chi tiết
                                 <FaAngleDoubleRight className="text-yellow-300" />
                             </a>
@@ -51,17 +50,14 @@ const AuthComponent = () => {
                             alt="imgSignin"
                             width='90%'
                             height='70%'
-
                         />
                     </div>
 
                 </div>
                 <div className="body__right mt-20 relative">
-                    <SignUp1 />
                 </div>
             </div>
             <div className="btn__swap">
-
             </div>
         </div>
     );
