@@ -1,36 +1,35 @@
 import axios from "axios";
+import Cookies from 'js-cookie';
 const apiUrl = process.env.REACT_APP_BASE_URL;
+
 
 export const https = axios.create({
   baseURL: apiUrl,
   headers: {
     mac: localStorage.getItem('DeviceId')
   }
-}
-);
-
-
+});
 
 https.interceptors.request.use(config => {
-  const accessToken = localStorage.getItem('access_token')
+  const accessToken = Cookies.get('access_token')
   if (accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`
+    config.headers.Authorization = `Bearer ${accessToken}`;
   }
-  return config
-})
-
-
+  config.withCredentials = true;
+  return config;
+});
 
 https.interceptors.response.use(
-  respose => {
-    return respose
+  response => {
+    return response;
   },
   async error => {
-    if (error.response.status === 401) {
+    if (error.response && error.response.status === 401) {
       try {
         const response = await https.post('/refresh', {
           refreshToken: localStorage.getItem('access_token')
-        })
+        });
+        // Xử lý logic refresh token ở đây nếu cần
       } catch (refreshError) {
         // Xử lý lỗi khi cố gắng refresh token
         // Điều hướng người dùng đến trang đăng nhập hoặc hiển thị thông báo lỗi
@@ -41,5 +40,6 @@ https.interceptors.response.use(
     }
     return Promise.reject(error);
   }
+);
 
-)
+export default https;
