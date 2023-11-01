@@ -10,7 +10,9 @@ const TableTransactionStatistics = ({ codeSearch }) => {
     const dispatch = useDispatch();
     const [data, setData] = useState([])
     const { dataTableTransactionStatistics } = useSelector(state => state.stock)
-
+    console.log({
+        dataTableTransactionStatistics
+    })
     useEffect(() => {
         dispatch(fetchDataTableTransactionStatistics(codeSearch));
     }, [dispatch, codeSearch]);
