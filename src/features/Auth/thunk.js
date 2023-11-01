@@ -7,14 +7,13 @@ import Cookies from 'js-cookie';
 export const userLoginAction = (data) => async (dispatch) => {
   try {
     const res = await authenServices.userLogin(data)
-    console.log(res)
     dispatch({
       type: authenTypes.USER_LOGIN,
       payload: res.data,
     });
-    // Cookies.set('access_token', res.data.data.access_token, {});
-    // Cookies.set('refresh_token', res.data.data.refresh_token, {});
-    // console.log(Cookies.get('access_token'))
+    localStorage.setItem('user', JSON.stringify(res.data.data));
+    Cookies.set('at', res.data.data.access_token, {});
+    Cookies.set('rt', res.data.data.refresh_token, {});
   } catch (err) {
     dispatch({
       type: authenTypes.LOGIN_FAIL,
@@ -25,16 +24,16 @@ export const userLoginAction = (data) => async (dispatch) => {
 
 export const userRegisterAction = (formData) => async (dispatch) => {
   try {
+
     const res = await authenServices.userRegister(formData)
     console.log(res)
     dispatch({
       type: authenTypes.USER_REGISTER,
       payload: formData,
     });
-
+    return res
   } catch (err) {
-    alert('Tài khoản đã tồn tại')
-    // console.log(err);
+    return [err.response.data.status, err.response.data.message]
   }
 };
 
@@ -59,13 +58,16 @@ export const autoLoginWithToken = (token) => async (dispatch) => {
 }
 
 
-export const userLogoutACtion = () => async dispatch => {
+export const userLogoutAction = () => async dispatch => {
   try {
-    Cookies.remove('access_token')
-    Cookies.remove('refresh_token')
+    const res = await authenServices.userLogout()
+    Cookies.remove('at')
+    Cookies.remove('rt')
+    localStorage.removeItem('user')
     dispatch({
       type: authenTypes.USER_LOGOUT_ACTION
     })
+
   } catch (err) {
     console.error(err)
   }

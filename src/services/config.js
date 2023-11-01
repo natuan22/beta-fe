@@ -11,11 +11,11 @@ export const https = axios.create({
 });
 
 https.interceptors.request.use(config => {
-  const accessToken = Cookies.get('access_token')
+  const accessToken = Cookies.get('at')
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
-  config.withCredentials = true;
+  // config.withCredentials = true;
   return config;
 });
 

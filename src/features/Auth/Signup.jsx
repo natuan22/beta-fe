@@ -1,17 +1,21 @@
 import clsx from "clsx";
 import { useFormik } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
-import { object, string, ref } from "yup";
 import { useDispatch } from "react-redux";
-import "./utils/authen.css";
+import { NavLink } from "react-router-dom";
+import { object, ref, string } from "yup";
 import { userRegisterAction } from "./thunk";
 import PopUpOTP from "./utils/PopUpOTP";
+import { message } from "antd";
+import "./utils/authen.css";
+const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const Signup = () => {
-  const apiUrl = process.env.REACT_APP_BASE_URL;
   const dispatch = useDispatch();
+  const [messageApi, contextHolder] = message.useMessage();
+  const [openOTP, setOpenOTP] = useState(false)
+  const [userID, setUserID] = useState(null)
   const normalizePhone = (value) => {
     // Chuẩn hóa số điện thoại: thêm '84' nếu bắt đầu bằng '0'
     if (value.startsWith("0")) {
@@ -19,7 +23,7 @@ const Signup = () => {
     }
     return value;
   };
-
+  console.log({ openOTP })
   const userSchema = object({
     phone: string()
       .required("Vui lòng nhập số điện thoại")
@@ -43,6 +47,12 @@ const Signup = () => {
     last_name: string().required("Vui lòng nhập họ"),
   });
 
+  const warning = (value) => {
+    messageApi.open({
+      type: "warning",
+      content: value,
+    });
+  };
   const { handleChange, handleSubmit, handleBlur, errors, touched } = useFormik(
     {
       initialValues: {
@@ -52,13 +62,26 @@ const Signup = () => {
         first_name: "",
         last_name: "",
       },
-      onSubmit: (values) => {
+      onSubmit: async (values) => {
         // Chuẩn hóa số điện thoại trước khi gửi đi
         const normalizedValues = {
           ...values,
           phone: normalizePhone(values.phone),
         };
-        dispatch(userRegisterAction(normalizedValues));
+        try {
+          const response = await dispatch(userRegisterAction(normalizedValues));
+          console.log(response)
+          console.log(response?.data.data.user_id)
+          if (response.status === 201) {
+            setUserID(response?.data.data.user_id)
+            setOpenOTP(true)
+
+          } else if (response[0] === 400) {
+            warning(response[1])
+          }
+        } catch (err) {
+          console.error(err)
+        }
       },
       validationSchema: userSchema,
       validateOnBlur: false,
@@ -67,6 +90,8 @@ const Signup = () => {
   useEffect(() => { }, [touched]);
   return (
     <>
+      <PopUpOTP open={openOTP} userID={userID} />
+      {contextHolder}
       <div className="bg-signinBackground bg-no-repeat bg-cover">
         <div className="container mx-auto h-auto pt-[90px] pb-[136px] w-[80%] relative">
           <nav className="flex justify-around mb-[70px] xs:text-[10px] md:text-base lg:text-base xl:text-base ">
@@ -459,7 +484,6 @@ const Signup = () => {
                   alt="betaIcon"
                   className="w-8 h-8 mx-7"
                 />
-                <PopUpOTP />
               </div>
               <div className="absolute bottom-[5%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
                 <NavLink
