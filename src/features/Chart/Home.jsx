@@ -23,7 +23,6 @@ import TableMarketLiquidity from "./components/TableMarketLiquidity";
 import News from "./components/News";
 import TableMarketEvaluation from "./components/TableMarketEvaluation";
 import {
-  fetchDataInternationalIndex,
   fetchDataTableDetail,
   fetchDataBarChartRight,
   fetchDataBarChartLeft,
@@ -40,7 +39,6 @@ import {
   fetchDataWidthMarket,
   fetchDataTableMarketVolatility,
   fetchDataTableMarketLiquidity,
-  fetchDataNews,
   fetchDataMarketEvaluation,
   fetchDataLineChartHomePage,
   fetchDataCashFlowAllocation,
@@ -51,10 +49,10 @@ import CashFlowAllocation from "./components/CashFlowAllocation";
 import TreeMapSell from "./components/TreeMapSell";
 import TreeMapBuy from "./components/TreeMapBuy";
 import LazyLoad from "react-lazyload";
-import Test from "./components/Test";
 
 
 const Home = () => {
+
   const dispatch = useDispatch();
   const [shouldLoadApi, setShouldLoadApi] = useState(false);
   useEffect(() => {

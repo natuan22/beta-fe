@@ -134,8 +134,6 @@ const SliderInput = ({
 
     const handleChangeInputMin = (e) => {
         const inputValue = e.target.value.replace(/,/g, "");
-        console.log(inputValue)
-        console.log(typeof (inputValue))
         const regex = /^-?\d*$/; // Biểu thức chính quy cho số nguyên
 
         if (regex.test(inputValue)) {
@@ -163,10 +161,7 @@ const SliderInput = ({
     useEffect(() => {
         setValue([minValue, maxValue]);
     }, [minValue, maxValue]);
-    const formatNumber = (number) => {
-        // Định dạng số và loại bỏ dấu phẩy ngăn cách
-        return number.toLocaleString("vi-VN", { maximumFractionDigits: 0 });
-    };
+
     return (
         <div className="flex justify-evenly items-center md:w-[460px] sm:w-[270px] rounded-md">
             <div className="dark:text-white text-black w-[55px] mr-[40px] text-sm">

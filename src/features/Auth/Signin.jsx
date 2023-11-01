@@ -18,10 +18,17 @@ const Signin = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(userLoginAction(loginInfo)); // gửi thông tin đăng nhập
-    // console.log(loginInfo);
-    setLoginInfo({ phone: "", password: "" }); // clear form
+
+    // Thay thế số 0 đầu tiên thành 84 trong số điện thoại khi gửi yêu cầu API
+    const modifiedPhone = loginInfo.phone.replace(/^0/, '84');
+
+    // Gửi yêu cầu API với số điện thoại đã được sửa đổi
+    await dispatch(userLoginAction({ ...loginInfo, phone: modifiedPhone }));
+
+    // Clear form
+    setLoginInfo({ phone: "", password: "" });
   };
+
 
   const isLogin = useSelector((state) => state.authen.userData);
   const loginMessage = useSelector((state) => state.authen.loginMessage);
