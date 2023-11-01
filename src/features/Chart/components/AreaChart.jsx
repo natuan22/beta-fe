@@ -17,7 +17,7 @@ function AreaChart() {
   }, [color]);
 
   useEffect(() => {
-    if (!dataToday && !dataToday.length) return
+    if (!dataToday && !dataToday?.length) return
     if (dataToday) {
       setDataSocket(dataToday)
     }
@@ -81,7 +81,7 @@ function AreaChart() {
         name: "Phiên trước",
         data:
           dataPreviousDay &&
-          dataPreviousDay.length &&
+          dataPreviousDay?.length &&
           dataPreviousDay.map((item) => [item.time, +item.value.toFixed(2)]),
         color: "#ff0000",
         opacity: "0.9",
@@ -95,7 +95,7 @@ function AreaChart() {
         name: "Hôm nay",
         data:
           dataSocket &&
-          dataSocket.length &&
+          dataSocket?.length &&
           dataSocket.map((item) => [item.time, +item.value.toFixed(2)]),
         color: "#2AF371",
         opacity: "0.7",
