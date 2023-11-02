@@ -12,6 +12,7 @@ import { NavLink } from 'react-router-dom';
 import { ImSearch } from "react-icons/im";
 import CloseIcon from '@mui/icons-material/Close';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import imgDefault from '../image/default-image.jpg'
 const resourceURL = process.env.REACT_APP_RESOURCE_URL
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -174,7 +175,7 @@ export default function SearchDialog() {
                                             className='flex no-underline p-3 border-solid border-[#d7d7d7] border-b-[1px] border-t-0 border-x-0 hover:bg-[#ffdead] transition-all duration-300'>
                                             <div>
                                                 <img className='object-contain w-[85px] h-[58px]' src={`${resourceURL}${item.image}`} onError={event => {
-                                                    event.target.src = `${resourceURL}/resources/stock/logo_default.jpeg`
+                                                    event.target.src = imgDefault
                                                     event.onerror = null
                                                 }} alt="companyImg" />
                                             </div>
