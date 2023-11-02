@@ -12,8 +12,8 @@ export const userLoginAction = (data) => async (dispatch) => {
       payload: res.data,
     });
     localStorage.setItem('user', JSON.stringify(res.data.data));
-    Cookies.set('at', res.data.data.access_token, {});
-    Cookies.set('rt', res.data.data.refresh_token, {});
+    // Cookies.set('at', res.data.data.access_token, {});
+    // Cookies.set('rt', res.data.data.refresh_token, {});
   } catch (err) {
     dispatch({
       type: authenTypes.LOGIN_FAIL,
