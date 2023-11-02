@@ -32,8 +32,8 @@ const StockFilter = () => {
     useEffect(() => {
         if (formData.filter.length > 0)
             dispatch(fetchDataStockFilter(formData));
-    }, [dispatch, formData])
-
+    }, [dispatch, formData, formData.filter])
+    console.log({ formData })
     useEffect(() => {
         const exchangeValue = selectedExchange.map((exchange) => hashTbExchange[exchange]).join(',');
         setFormData((prevData) => ({

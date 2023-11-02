@@ -86,51 +86,56 @@ const SliderInput = ({
     };
 
     useEffect(() => {
-        // Kiểm tra xem key có trong arrCheckbox không
+        // Kiểm tra xem sliderKey có trong arrCheckbox không
         const keyIsInCheckbox = arrCheckbox.includes(sliderKey);
 
-        // Nếu key không nằm trong arrCheckbox, không gọi API
-        if (!keyIsInCheckbox) {
-            return;
-        }
+        let updateTimeout;
 
-        let updateTimeout; // Khai báo biến timeout ở ngoài để có thể xóa nó sau khi unmount
+        // Nếu sliderKey không nằm trong arrCheckbox, xóa nó ra khỏi mảng filter của formData
+        if (!keyIsInCheckbox) {
+            const newFormData = { ...formData };
+            const filteredFilter = newFormData.filter.filter((filterItem) => filterItem.key !== sliderKey);
+            newFormData.filter = filteredFilter;
+            setFormData(newFormData);
+            return; // Kết thúc useEffect nếu không có sliderKey trong arrCheckbox
+        }
 
         // Nếu user ngừng kéo slider sau 0.3 giây, cập nhật giá trị value
         updateTimeout = setTimeout(() => {
             if (!isSliding) {
-                // Tạo một bản sao mới của formData
                 const newFormData = { ...formData };
                 const multiplier = calculateMultiplier(sliderKey);
-                // Tạo một object mới cho mảng filter
                 const newFilterObject = {
                     key: sliderKey,
-                    from: pendingValue[0] * multiplier, // Giá trị min sau khi ngừng kéo slider
-                    to: pendingValue[1] * multiplier, // Giá trị max sau khi ngừng kéo slider
+                    from: pendingValue[0] * multiplier,
+                    to: pendingValue[1] * multiplier,
                 };
-                // Cập nhật hoặc thêm key vào formData
-                const existingFilterIndex = newFormData.filter.findIndex(
-                    (filterItem) => filterItem.key === sliderKey
-                );
+
+                const existingFilterIndex = newFormData.filter.findIndex((filterItem) => filterItem.key === sliderKey);
                 if (existingFilterIndex !== -1) {
-                    // Nếu key đã tồn tại, cập nhật giá trị của nó
                     newFormData.filter[existingFilterIndex] = newFilterObject;
                 } else {
-                    // Nếu key chưa tồn tại, thêm một object mới
                     newFormData.filter.push(newFilterObject);
                 }
-                // Cập nhật giá trị formData trong component cha
+
                 setFormData(newFormData);
             }
 
             setIsSliding(false);
-        }, 300); // Tăng thời gian delay lên 300ms cho 0.3 giây
+        }, 300);
 
-        // Xóa timeout khi component unmount hoặc khi sliderKey thay đổi
         return () => {
             clearTimeout(updateTimeout);
         };
     }, [sliderKey, value, pendingValue, isSliding, arrCheckbox]);
+
+
+
+
+
+
+
+
 
     const handleChangeInputMin = (e) => {
         const inputValue = e.target.value.replace(/,/g, "");
