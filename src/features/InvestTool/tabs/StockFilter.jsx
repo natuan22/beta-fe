@@ -130,15 +130,27 @@ const StockFilter = () => {
     };
 
     const toggleKeyInArray = (key) => {
+        let updatedArr;
         if (arrSliderCheckbox.includes(key)) {
-            // Nếu key đã tồn tại trong mảng, xóa nó ra khỏi mảng
-            const updatedArr = arrSliderCheckbox.filter((item) => item !== key);
-            setArrSliderCheckbox(updatedArr);
+            // Nếu key đã tồn tại trong mảng, xóa nó ra khỏi mảng arrSliderCheckbox
+            updatedArr = arrSliderCheckbox.filter((item) => item !== key);
         } else {
-            // Nếu key chưa tồn tại trong mảng, thêm nó vào
-            setArrSliderCheckbox([...arrSliderCheckbox, key]);
+            // Nếu key chưa tồn tại trong mảng, thêm nó vào arrSliderCheckbox
+            updatedArr = [...arrSliderCheckbox, key];
         }
+
+        // Cập nhật mảng arrSliderCheckbox
+        setArrSliderCheckbox(updatedArr);
+
+        // Cập nhật formData.filter dựa trên arrSliderCheckbox
+        const updatedFilter = formData.filter.filter((filterItem) => updatedArr.includes(filterItem.key));
+        setFormData({
+            ...formData,
+            filter: updatedFilter,
+        });
     };
+
+    console.log({ formData })
     return (
         <div className='p-2'>
             <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-4'>
@@ -435,15 +447,17 @@ const StockFilter = () => {
                                 .find((item) => item.key === key)?.name;
                             if (minMax && name) {
                                 return (
-                                    <div key={index} className="flex justify-between items-center my-1 mx-2" >
+                                    <div key={index} className="flex justify-between items-center my-1 mx-2">
                                         <div className="w-[95%] flex items-center justify-between">
                                             <div className='w-[30%] flex items-center justify-between'>
                                                 <div className='text-xs dark:text-white text-black'>{name}</div>
                                                 <label className="material-checkbox py-2 px-2 text-white">
-                                                    <input checked={arrSliderCheckbox?.includes(key)}
+                                                    <input
+                                                        checked={arrSliderCheckbox?.includes(key)}
                                                         type="checkbox"
                                                         name="exchange"
-                                                        onChange={() => toggleKeyInArray(key)} />
+                                                        onChange={() => toggleKeyInArray(key)}
+                                                    />
                                                     <span className="checkmark"></span>
                                                 </label>
                                             </div>
@@ -458,7 +472,7 @@ const StockFilter = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className='w-[3%] ml-[55px] '>
+                                        <div className='w-[3%] ml-[55px]'>
                                             <button onClick={() => handleDelElement(key)} className="btn btn-del">
                                                 <svg
                                                     viewBox="0 0 15 17.5"
