@@ -71,13 +71,11 @@ const Signup = () => {
         try {
           const response = await dispatch(userRegisterAction(normalizedValues));
           console.log(response)
-          console.log(response?.data.data.user_id)
           if (response.status === 201) {
             setUserID(response?.data.data.user_id)
             setOpenOTP(true)
-
-          } else if (response[0] === 400) {
-            warning(response[1])
+          } else if (response.response.data.status === 400) {
+            warning(response.response.data.message)
           }
         } catch (err) {
           console.error(err)
@@ -97,7 +95,7 @@ const Signup = () => {
           <nav className="flex justify-around mb-[70px] xs:text-[10px] md:text-base lg:text-base xl:text-base ">
             <NavLink to='/' className="text-white no-underline">Trang chủ</NavLink>
             <NavLink className="text-white no-underline">
-              Giới thiệu dịch vụ
+              {/* Giới thiệu dịch vụ */}
             </NavLink>
             <NavLink className="text-white no-underline">Liên hệ</NavLink>
             <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
