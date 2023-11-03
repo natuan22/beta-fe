@@ -33,7 +33,7 @@ export const userRegisterAction = (formData) => async (dispatch) => {
     });
     return res
   } catch (err) {
-    return [err.response.data.status, err.response.data.message]
+    return err
   }
 };
 
