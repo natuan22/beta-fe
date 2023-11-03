@@ -21,8 +21,11 @@ const Header = () => {
     setOpen(newOpen);
   };
   const handleUserLogout = () => {
-    setIsLogin(null)
-    dispatch(userLogoutAction())
+    if (isLogin) {
+      setIsLogin(null);
+      dispatch(userLogoutAction());
+      localStorage.removeItem('user');
+    }
   }
   return (
     <>
