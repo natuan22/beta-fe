@@ -279,7 +279,7 @@ const RenderTableStockFilter = ({ data, arrSliderCheckbox, activeButton }) => {
                                 }
                             }}
                             getRowClassName={(params) =>
-                                params.row.id % 2 === 0 ? classes.evenRow : classes.oddRow
+                                params.row.id % 2 === 0 ? classes.oddRow : classes.evenRow
                             } // Áp dụng màu nền dựa trên index chẵn/lẻ của hàng
                         />
                     </ThemeProvider>
