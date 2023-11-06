@@ -150,7 +150,6 @@ const StockFilter = () => {
         });
     };
 
-    console.log({ formData })
     return (
         <div className='p-2'>
             <div className='grid xl:grid-cols-2 lg:grid-cols-none gap-4'>
