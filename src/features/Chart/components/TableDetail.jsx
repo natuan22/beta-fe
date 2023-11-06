@@ -7,7 +7,6 @@ import { getColor } from "../utils/utils";
 const TableDetail = () => {
   const dataTable = useSelector((state) => state.chart.dataTableDetail);
   const [data, setData] = useState([]);
-  console.log({ data })
   useEffect(() => {
     if (dataTable.data) {
       setData(dataTable.data)

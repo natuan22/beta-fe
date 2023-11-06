@@ -44,11 +44,12 @@ const StackingAreas = () => {
       setDataNoCh(dataNoChange || []);
     }
   }, [dataStackingChart]);
-
   useEffect(() => {
     if (dataStackingChart && dataStackingChart.data?.length) {
       // Lắng nghe sự kiện từ socket
       socket.on("listen-do-rong-thi-truong", (newData) => {
+        console.log('do sth')
+        console.log(newData)
         let mapNewDataIncr = newData?.map((item) => [item.time, item.advance]);
         let mapNewDataDecr = newData?.map((item) => [item.time, item.decline]);
         let mapNewDataNoCh = newData?.map((item) => [item.time, item.noChange]);
