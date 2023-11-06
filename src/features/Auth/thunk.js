@@ -24,9 +24,7 @@ export const userLoginAction = (data) => async (dispatch) => {
 
 export const userRegisterAction = (formData) => async (dispatch) => {
   try {
-
     const res = await authenServices.userRegister(formData)
-    console.log(res)
     dispatch({
       type: authenTypes.USER_REGISTER,
       payload: formData,
