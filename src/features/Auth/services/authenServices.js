@@ -19,6 +19,7 @@ export const authenServices = {
         })
     },
     userLogout: () => {
+        console.log(Cookies.get('at'))
         return https.post('api/v1/auth/logout', {
             headers: {
                 Authorization: "Bearer " + Cookies.get('at')

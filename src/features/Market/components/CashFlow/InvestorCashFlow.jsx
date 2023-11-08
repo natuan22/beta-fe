@@ -54,12 +54,12 @@ const InvestorCashFlow = () => {
         const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
         return aIndex - bIndex;
     });
+    console.log({ sortedDataArray })
     const sortedDataAbsArray = dataAbs?.sort((a, b) => {
         const aIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === a.name);
         const bIndex = Object.keys(hashTb).findIndex((key) => hashTb[key] === b.name);
         return aIndex - bIndex;
     });
-    // console.log(sortedDataArray)
     useEffect(() => {
         if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
             setDataToMap(dataCashFlowInvestor)
@@ -175,8 +175,8 @@ const InvestorCashFlow = () => {
     const handleClick = (button) => { setActiveButton(button) }
     const handleClick2 = (button) => { setActiveButton2(button) }
     const handleClick3 = (button) => { setActiveButton3(button) }
-    // callback a huy đẹp trai dùng để render
-    const chartAreaRef = useRef(null)
+
+
     const callBackHighchart = (chart) => {
         setConfigChart(chart)
     };
