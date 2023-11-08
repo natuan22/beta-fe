@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import useLegendAllToggle from "../Custom/useLegendAllToggle";
 
 const LegendBtn = ({ chart, data }) => {
+    console.log({ chart })
+    console.log({ data })
     const [selectedLegend, setSelectedLegend] = useState([]);
     const [allLegends, setAllLegends] = useState(true);
     const { title, toggleLegend } = useLegendAllToggle(true)
