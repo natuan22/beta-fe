@@ -15,7 +15,7 @@ const Error404 = () => {
 
     return (
         <>
-            <div>
+            <div className="h-screen bg-black">
                 <div className="flex flex-col justify-center items-center">
                     <div>
                         <img

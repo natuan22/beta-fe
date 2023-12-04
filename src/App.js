@@ -10,6 +10,7 @@ import { autoLoginWithToken } from "./features/Auth/thunk";
 import { generateMAC } from "./utils/generateMac";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import Error404 from "./features/Navigation/Error404";
 
 function App() {
 
@@ -104,6 +105,8 @@ function App() {
           {mapStockRoute}
           {mapAuthenRoute}
           {mapInvestToolRoutes}
+
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
     </LocalizationProvider>
