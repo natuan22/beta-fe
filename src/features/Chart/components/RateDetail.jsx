@@ -19,9 +19,9 @@ const RateDetail = () => {
     <section className="bg-blueGray-50">
       <div className="w-full">
         <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
-          <div className="block w-full min-h-[380px] bg-transparent">
+          <div className="block w-full min-h-[380px] bg-transparent  overflow-y-scroll scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent h-[380px]">
             <table className="items-center  w-full border-collapse bg-transparent">
-              <thead className="bg-[#1E5D8B]">
+              <thead className="bg-[#1E5D8B] sticky top-0">
                 <tr>
                   <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                     Tỷ giá
