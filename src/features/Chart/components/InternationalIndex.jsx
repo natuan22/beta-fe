@@ -19,7 +19,7 @@ const InternationalIndex = () => {
             return (
               <div key={index} className="flex flex-col items-center ml-4 bg-gradient-to-b from-[#217EBE] to-black" style={{ padding: "5px" }}>
                 <span className="mx-2 text-sm font-semibold text-white">
-                  {item.ticker}: {item.diemso}
+                  {item.ticker}: {(item.diemso).toFixed(2)}
                 </span>
                 <p>
                   {item.percent_d < 0 ? (
@@ -32,7 +32,7 @@ const InternationalIndex = () => {
                     />
                   )}
                   <span className="ml-1.5 text-xs text-white">
-                    {(item.diemso - (item.diemso / (1 + item.percent_d / 100))).toFixed(2)} ({item.percent_d}%)
+                    {(item.diemso - (item.diemso / (1 + item.percent_d / 100))).toFixed(2)} ({(item.percent_d).toFixed(2)}%)
                   </span>
                 </p>
               </div>
