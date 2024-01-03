@@ -34,6 +34,7 @@ const LineChart = () => {
   const data = dataRealTime?.map(item => {
     return [item.tradingDate, item.indexValue]
   })
+  console.log(data)
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
     accessibility: {
