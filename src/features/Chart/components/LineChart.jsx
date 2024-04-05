@@ -10,10 +10,10 @@ import { useSelector } from "react-redux";
 import socket from "../utils/socket";
 
 const LineChart = () => {
-  const [dataRealTime, setDataRealTime] = useState([])
+  const [dataRealTime, setDataRealTime] = useState([]);
   const { dataLineChartHomePage } = useSelector((state) => state.chart);
 
-  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const [colorText, setColorText] = useState(localStorage.getItem("color"));
   const color = useSelector((state) => state.color.colorText);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const LineChart = () => {
   // console.log({ dataRealTime })
   useEffect(() => {
     if (dataLineChartHomePage?.data?.length) {
-      setDataRealTime(dataLineChartHomePage.data)
+      setDataRealTime(dataLineChartHomePage.data);
     }
 
     if (dataLineChartHomePage?.data?.length) {
@@ -30,11 +30,11 @@ const LineChart = () => {
         setDataRealTime((prevData) => [...prevData, ...newData]);
       });
     }
-  }, [dataLineChartHomePage.data])
-  const data = dataRealTime?.map(item => {
-    return [item.tradingDate, item.indexValue]
-  })
-  console.log(data)
+  }, [dataLineChartHomePage.data]);
+  const data = dataRealTime?.map((item) => {
+    return [item.tradingDate, item.indexValue];
+  });
+  // console.log(data)
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
     accessibility: {
@@ -63,12 +63,12 @@ const LineChart = () => {
       title: {
         text: "",
         style: {
-          color: localStorage.getItem('color'),
+          color: localStorage.getItem("color"),
         },
       },
       labels: {
         style: {
-          color: localStorage.getItem('color'),
+          color: localStorage.getItem("color"),
         },
       },
       gridLineWidth: 0.5,
@@ -81,14 +81,14 @@ const LineChart = () => {
       title: {
         text: null,
         style: {
-          color: localStorage.getItem('color'),
+          color: localStorage.getItem("color"),
         },
       },
       labels: {
         rotation: 0,
         style: {
-          color: localStorage.getItem('color'),
-          fontSize: '9px'
+          color: localStorage.getItem("color"),
+          fontSize: "9px",
         },
       },
     },
@@ -98,10 +98,10 @@ const LineChart = () => {
     plotOptions: {
       series: {
         marker: {
-          radius: 2
-        }
-      }
-    }
+          radius: 2,
+        },
+      },
+    },
   };
 
   const currentTime = new Date();
@@ -114,14 +114,21 @@ const LineChart = () => {
   const currentDay = currentTime.getDay();
 
   // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
-  const isWithinTimeRange = (currentHour > 9 || (currentHour === 9 && currentMinute >= 15) || currentHour === 0);
+  const isWithinTimeRange =
+    currentHour > 9 ||
+    (currentHour === 9 && currentMinute >= 15) ||
+    currentHour === 0;
 
   // Kiểm tra xem ngày là thứ 7 hoặc chủ nhật
-  const isWeekend = (currentDay === 0 || currentDay === 6);
+  const isWeekend = currentDay === 0 || currentDay === 6;
 
   // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59 hoặc là ngày thứ 7/chủ nhật, hiển thị dữ liệu
   if (!isWithinTimeRange || isWeekend) {
-    return <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu giao dịch</div>
+    return (
+      <div className="text-center mt-6 dark:text-white text-black">
+        Chưa có dữ liệu giao dịch
+      </div>
+    );
   }
 
   return (
@@ -133,7 +140,9 @@ const LineChart = () => {
           containerProps={{ style: { height: "100%", width: "100%" } }}
         />
       ) : (
-        <div className="mt-20"><Loading /></div>
+        <div className="mt-20">
+          <Loading />
+        </div>
       )}
     </div>
   );

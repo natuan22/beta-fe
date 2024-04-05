@@ -33,7 +33,6 @@ import InvestSimulation from "../features/InvestTool/tabs/InvestSimulation";
 import InvestRecommen from "../features/InvestTool/tabs/InvestRecommen";
 import InvestKnowledge from "../features/InvestTool/tabs/InvestKnowledge";
 import InvestAlgorithm from "../features/InvestTool/tabs/InvestAlgorithm";
-import Error404 from "../features/Navigation/Error404";
 
 export const routes = [
   { path: "/", component: Home },
@@ -46,8 +45,6 @@ export const routes = [
   // authen
   { path: "/signin", component: Signin },
   { path: "/signup", component: Signup },
-
-
 ];
 
 export const investToolRoutes = [

@@ -3,7 +3,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import treemap from "highcharts/modules/treemap";
 import { useDispatch, useSelector } from "react-redux";
-import '../utils/treemapStyleDrillBtn.css'
+import "../utils/treemapStyleDrillBtn.css";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
 import { fetchDataTreeMapBuy } from "../thunk";
@@ -12,26 +12,24 @@ import { fetchDataTreeMapBuy } from "../thunk";
 treemap(Highcharts);
 
 const TreeMapBuy = () => {
-  const dispatch = useDispatch()
-  const { dataTreemapBuy } = useSelector(state => state.chart);
+  const dispatch = useDispatch();
+  const { dataTreemapBuy } = useSelector((state) => state.chart);
   const [dataTreeMap, setDataTreeMap] = useState();
   const [dataSocket, setDataSocket] = useState([]);
-  const [socketChanel, setSocketChanel] = useState('hose');
-  const [socketOld, setSocketOld] = useState('');
+  const [socketChanel, setSocketChanel] = useState("hose");
+  const [socketOld, setSocketOld] = useState("");
 
   useEffect(() => {
-    if (dataTreemapBuy?.length > 0)
-      setDataSocket(dataTreemapBuy);
-
+    if (dataTreemapBuy?.length > 0) setDataSocket(dataTreemapBuy);
   }, [dataTreemapBuy]);
 
   useEffect(() => {
     socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
       setDataSocket(newData);
     });
-    setSocketOld(socketChanel)
+    setSocketOld(socketChanel);
     const resultMap = {};
-    dataSocket?.forEach(item => {
+    dataSocket?.forEach((item) => {
       const { LV2, ticker, total_value_buy, color } = item;
 
       if (!resultMap.hasOwnProperty(LV2)) {
@@ -75,7 +73,8 @@ const TreeMapBuy = () => {
     };
     let stockIndex = 0;
 
-    for (let stock in dataTreeMap[sector].data) { // Truy cập vào đối tượng data trong dataTreeMap
+    for (let stock in dataTreeMap[sector].data) {
+      // Truy cập vào đối tượng data trong dataTreeMap
       let stockPoint = {
         id: `${sectorPoint.id}_${stockIndex}`,
         name: stock,
@@ -84,7 +83,7 @@ const TreeMapBuy = () => {
         dataLabels: {
           enabled: true,
           formatter: function () {
-            return '<b>' + this.point.name + '</b>: ' + this.point.value;
+            return "<b>" + this.point.name + "</b>: " + this.point.value;
           },
           style: {
             fontSize: "11px",
@@ -128,16 +127,15 @@ const TreeMapBuy = () => {
     tooltip: {
       formatter: function () {
         return `<b>${this.point.name}</b>: ${this.point.value} (tỷ VNĐ)`;
-      }
+      },
     },
     chart: {
       type: "treemap",
       backgroundColor: "transparent",
-
     },
     title: {
       text: "",
-      align: "center"
+      align: "center",
     },
     series: [
       {
@@ -154,44 +152,44 @@ const TreeMapBuy = () => {
           {
             level: 1,
             dataLabels: {
-              enabled: true
+              enabled: true,
             },
-            borderWidth: 3
-          }
+            borderWidth: 3,
+          },
         ],
         data: points,
         drillUpButton: {
           events: {
             click: function () {
               socket.on(`listen-foreign-buy-${socketChanel}`, (newData) => {
-                setDataSocket(newData)
-              })
+                setDataSocket(newData);
+              });
             },
           },
           enabled: true,
-          relativeTo: 'spacingBox',
+          relativeTo: "spacingBox",
           position: {
             y: 10,
-            x: 5
+            x: 5,
           },
           theme: {
-            fill: 'red',
-            'stroke-width': 1,
-            stroke: 'blue',
+            fill: "red",
+            "stroke-width": 1,
+            stroke: "blue",
             r: 0,
             states: {
               hover: {
-                fill: 'yellow'
+                fill: "yellow",
               },
               select: {
-                stroke: '#039',
-                fill: '#a4edba'
-              }
-            }
+                stroke: "#039",
+                fill: "#a4edba",
+              },
+            },
           },
         },
-      }
-    ]
+      },
+    ],
   };
 
   const currentTime = new Date();
@@ -204,35 +202,42 @@ const TreeMapBuy = () => {
   const currentDay = currentTime.getDay();
 
   // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
-  const isWithinTimeRange = (currentHour > 9 || (currentHour === 9 && currentMinute >= 15) || currentHour === 0);
+  const isWithinTimeRange =
+    currentHour > 9 ||
+    (currentHour === 9 && currentMinute >= 15) ||
+    currentHour === 0;
 
   // Kiểm tra xem ngày là thứ 7 hoặc chủ nhật
-  const isWeekend = (currentDay === 0 || currentDay === 6);
+  const isWeekend = currentDay === 0 || currentDay === 6;
 
   // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59 hoặc là ngày thứ 7/chủ nhật, hiển thị dữ liệu
   if (!isWithinTimeRange || isWeekend) {
-    return <>
-      <div>
-        <div className="text-center py-2">
-          <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs">
-            Khối ngoại mua ròng sàn
-            <select
-              className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
-              onChange={(event) => {
-                disconnectSocket(socketOld);
-                setSocketChanel(event.target.value);
-                dispatch(fetchDataTreeMapBuy(event.target.value))
-              }}
-            >
-              <option value="hose">HSX</option>
-              <option value="hnx">HNX</option>
-              <option value="upcom">UPCOM</option>
-            </select>
-          </span>
+    return (
+      <>
+        <div>
+          <div className="text-center py-2">
+            <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs">
+              Khối ngoại mua ròng sàn
+              <select
+                className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                onChange={(event) => {
+                  disconnectSocket(socketOld);
+                  setSocketChanel(event.target.value);
+                  dispatch(fetchDataTreeMapBuy(event.target.value));
+                }}
+              >
+                <option value="hose">HSX</option>
+                <option value="hnx">HNX</option>
+                <option value="upcom">UPCOM</option>
+              </select>
+            </span>
+          </div>
         </div>
-      </div>
-      <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu giao dịch</div>
-    </>
+        <div className="text-center mt-6 dark:text-white text-black">
+          Chưa có dữ liệu giao dịch
+        </div>
+      </>
+    );
   }
 
   return (
@@ -246,7 +251,7 @@ const TreeMapBuy = () => {
               onChange={(event) => {
                 disconnectSocket(socketOld);
                 setSocketChanel(event.target.value);
-                dispatch(fetchDataTreeMapBuy(event.target.value))
+                dispatch(fetchDataTreeMapBuy(event.target.value));
               }}
             >
               <option value="hose">HSX</option>
@@ -258,9 +263,15 @@ const TreeMapBuy = () => {
       </div>
       <div>
         {dataTreemapBuy.length > 0 ? (
-          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '690px', width: '100%' } }} />
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
+            containerProps={{ style: { height: "690px", width: "100%" } }}
+          />
         ) : (
-          <div className="mt-6"><Loading /></div>
+          <div className="mt-6">
+            <Loading />
+          </div>
         )}
       </div>
     </>
@@ -268,4 +279,3 @@ const TreeMapBuy = () => {
 };
 
 export default TreeMapBuy;
-

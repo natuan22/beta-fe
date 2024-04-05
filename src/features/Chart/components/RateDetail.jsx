@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import Loading from '../utils/Loading';
-import { getColor } from '../utils/utils';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import Loading from "../utils/Loading";
+import { getColor } from "../utils/utils";
 
 const RateDetail = () => {
-  const dataRateDetail = useSelector(state => state.chart.dataRateDetail)
-  const [data, setData] = useState([])
+  const dataRateDetail = useSelector((state) => state.chart.dataRateDetail);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (dataRateDetail.data) {
-      setLoading(false)
-      setData(dataRateDetail.data)
+      setLoading(false);
+      setData(dataRateDetail.data);
     }
-  }, [dataRateDetail])
+  }, [dataRateDetail]);
 
   return (
     <section className="bg-blueGray-50">
@@ -36,33 +36,51 @@ const RateDetail = () => {
               </thead>
 
               <tbody>
-                {!loading ? (Array.isArray(data) &&
+                {!loading ? (
+                  Array.isArray(data) &&
                   data?.map((item, index) => {
-                    let color = getColor(item.Day)
+                    let color = getColor(item.Day);
 
                     return (
-                      <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                      <tr
+                        key={index}
+                        className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500"
+                      >
                         <th className="text-center align-middle xxs:text-[10px] text-sm whitespace-nowrap px-3 py-3.5 dark:text-white text-black">
                           {item.name}
                         </th>
-                        <td className={`text-center align-middle xxs:text-[10px] text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
-                          {item.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        <td
+                          className={`text-center align-middle xxs:text-[10px] text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}
+                        >
+                          {item.price.toLocaleString("vi-VN", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
                         </td>
-                        <td className={`text-center align-middle xxs:text-[10px] text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
+                        <td
+                          className={`text-center align-middle xxs:text-[10px] text-sm whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}
+                        >
                           {item.Day}
                         </td>
                       </tr>
-                    )
-                  })) : (<tr><td colSpan={3}><div className="mt-16"><Loading /></div></td></tr>)}
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td colSpan={3}>
+                      <div className="mt-16">
+                        <Loading />
+                      </div>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default RateDetail;
-
-

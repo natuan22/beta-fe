@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../../../utils/style/buttonStyle.css"
+import "../../../utils/style/buttonStyle.css";
 
 const MarketTab = () => {
   return (

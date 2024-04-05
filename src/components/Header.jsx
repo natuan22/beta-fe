@@ -6,17 +6,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
 import Switcher from "../services/switcher";
 import SearchDialog from "../features/Search/utils/UIcomponent/SearchDialog";
-import { Popover } from 'antd';
+import { Popover } from "antd";
 import { BiLogOut } from "react-icons/bi";
 import { userLogoutAction } from "../features/Auth/thunk";
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
-
 const Header = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(JSON.parse(localStorage.getItem('user')))
+  const [isLogin, setIsLogin] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
   const handleOpenChange = (newOpen) => {
     setOpen(newOpen);
   };
@@ -24,9 +25,9 @@ const Header = () => {
     if (isLogin) {
       setIsLogin(null);
       dispatch(userLogoutAction());
-      localStorage.removeItem('user');
+      localStorage.removeItem("user");
     }
-  }
+  };
   return (
     <>
       <div className=" relative">
@@ -168,9 +169,16 @@ const Header = () => {
                       <Popover
                         content={
                           <div className="flex flex-col justify-around h-[100px]">
-                            <button className="bg-transparent font-semibold border-0 cursor-pointer hover:text-blue-500 duration-500">Thông tin cá nhân</button>
+                            <button className="bg-transparent font-semibold border-0 cursor-pointer hover:text-blue-500 duration-500">
+                              Thông tin cá nhân
+                            </button>
                             <span className="flex items-center justify-evenly hover:text-red-500 duration-500">
-                              <button onClick={handleUserLogout} className="bg-transparent border-0 cursor-pointer hover:text-red-500 duration-500  ">Đăng xuất </button>
+                              <button
+                                onClick={handleUserLogout}
+                                className="bg-transparent border-0 cursor-pointer hover:text-red-500 duration-500  "
+                              >
+                                Đăng xuất{" "}
+                              </button>
                               <BiLogOut />
                             </span>
                           </div>
@@ -354,63 +362,65 @@ const Header = () => {
                     Trung tâm tin tức
                   </NavLink>
                   <div className="relative mb-5">
-                    {isLogin ?
-                      (
-                        <Popover
-                          className="absolute"
-                          placement="right"
-                          content={
-                            <div className="flex flex-col justify-around h-[100px]">
-                              <button className="bg-transparent font-semibold border-0 cursor-pointer hover:text-blue-500 duration-500">Thông tin cá nhân</button>
-                              <span className="flex items-center justify-evenly hover:text-red-500 duration-500">
-                                <button onClick={handleUserLogout} className="bg-transparent border-0 cursor-pointer hover:text-red-500 duration-500  ">Đăng xuất </button>
-                                <BiLogOut />
-                              </span>
-                            </div>
+                    {isLogin ? (
+                      <Popover
+                        className="absolute"
+                        placement="right"
+                        content={
+                          <div className="flex flex-col justify-around h-[100px]">
+                            <button className="bg-transparent font-semibold border-0 cursor-pointer hover:text-blue-500 duration-500">
+                              Thông tin cá nhân
+                            </button>
+                            <span className="flex items-center justify-evenly hover:text-red-500 duration-500">
+                              <button
+                                onClick={handleUserLogout}
+                                className="bg-transparent border-0 cursor-pointer hover:text-red-500 duration-500  "
+                              >
+                                Đăng xuất{" "}
+                              </button>
+                              <BiLogOut />
+                            </span>
+                          </div>
+                        }
+                        trigger="click"
+                        open={open}
+                        onOpenChange={handleOpenChange}
+                      >
+                        <span className="text-white ml-2 text-sm flex items-center font-medium">
+                          <FaUserCircle className="text-white mr-2 text-xl" />
+                          {isLogin.name}
+                        </span>
+                      </Popover>
+                    ) : (
+                      <>
+                        <NavLink
+                          onClick={() => {
+                            if (isOpen) setIsOpen(!isOpen);
+                          }}
+                          to="/signin"
+                          className={({ isActive }) =>
+                            isActive
+                              ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                              : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                           }
-                          trigger="click"
-                          open={open}
-                          onOpenChange={handleOpenChange}
                         >
-                          <span className="text-white ml-2 text-sm flex items-center font-medium">
-                            <FaUserCircle className="text-white mr-2 text-xl" />
-                            {isLogin.name}
-                          </span>
-                        </Popover>
-                      )
-                      :
-                      (
-                        <>
-                          <NavLink
-                            onClick={() => {
-                              if (isOpen) setIsOpen(!isOpen);
-                            }}
-                            to="/signin"
-                            className={({ isActive }) =>
-                              isActive
-                                ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                                : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                            }
-                          >
-                            Đăng nhập
-                          </NavLink>
-                          <NavLink
-                            onClick={() => {
-                              if (isOpen) setIsOpen(!isOpen);
-                            }}
-                            to="/signup"
-                            className={({ isActive }) =>
-                              isActive
-                                ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                                : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                            }
-                          >
-                            Đăng ký
-                          </NavLink>
-                        </>
-
-                      )
-                    }
+                          Đăng nhập
+                        </NavLink>
+                        <NavLink
+                          onClick={() => {
+                            if (isOpen) setIsOpen(!isOpen);
+                          }}
+                          to="/signup"
+                          className={({ isActive }) =>
+                            isActive
+                              ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                              : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          }
+                        >
+                          Đăng ký
+                        </NavLink>
+                      </>
+                    )}
                   </div>
 
                   <div className="flex sm:hidden xs:flex xxs:flex px-2 py-2">

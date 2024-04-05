@@ -6,27 +6,33 @@ const hashTbCashFlow = {
 };
 
 const CashFlow = () => {
-  const location = useLocation()
+  const location = useLocation();
   const [activeNavlink, setActiveNavlink] = useState();
   const navRef = useRef([]);
   const handleActiveNav = (index) => {
     setActiveNavlink(index);
   };
   useEffect(() => {
-    if (location.pathname === '/thi-truong/dong-tien-thi-truong/dong-tien-dinh-danh') {
-      setActiveNavlink(0)
-    } else if (location.pathname === '/thi-truong/dong-tien-thi-truong/dong-tien-phi-dinh-danh') {
-      setActiveNavlink(1)
+    if (
+      location.pathname ===
+      "/thi-truong/dong-tien-thi-truong/dong-tien-dinh-danh"
+    ) {
+      setActiveNavlink(0);
+    } else if (
+      location.pathname ===
+      "/thi-truong/dong-tien-thi-truong/dong-tien-phi-dinh-danh"
+    ) {
+      setActiveNavlink(1);
     }
-  }, [location.pathname])
+  }, [location.pathname]);
   useEffect(() => {
-    const activeNav = navRef.current[activeNavlink]
-    const movingBackground = document.querySelector('.moving-background')
+    const activeNav = navRef.current[activeNavlink];
+    const movingBackground = document.querySelector(".moving-background");
     if (activeNav && movingBackground) {
       movingBackground.style.left = `${activeNav.offsetLeft}px`;
       movingBackground.style.width = `${activeNav.offsetWidth}px`;
     }
-  }, [activeNavlink])
+  }, [activeNavlink]);
   return (
     <>
       <div className="container mx-auto">
@@ -34,7 +40,7 @@ const CashFlow = () => {
           <div className="moving-background absolute h-full top-0 bg-[#35adf2] transition-all duration-500 rounded-full z-0"></div>
           {Object.entries(hashTbCashFlow).map(([label, value], index) => (
             <NavLink
-              ref={el => navRef.current[index] = el}
+              ref={(el) => (navRef.current[index] = el)}
               to={value}
               key={index}
               onClick={() => handleActiveNav(index)}

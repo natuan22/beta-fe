@@ -44,15 +44,12 @@ import {
   fetchDataCashFlowAllocation,
 } from "./thunk";
 import LayOut from "../../HOCs/Layout";
-
 import CashFlowAllocation from "./components/CashFlowAllocation";
 import TreeMapSell from "./components/TreeMapSell";
 import TreeMapBuy from "./components/TreeMapBuy";
 import LazyLoad from "react-lazyload";
 
-
 const Home = () => {
-
   const dispatch = useDispatch();
   const [shouldLoadApi, setShouldLoadApi] = useState(false);
   useEffect(() => {
@@ -68,24 +65,23 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchDataTableDetail);
-    dispatch(fetchDataBarChartRight('hose'));
+    dispatch(fetchDataBarChartRight("hose"));
     dispatch(fetchDataBarChartLeft("hsx"));
-    dispatch(fetchDataGeneralIndustry('all'));
-
+    dispatch(fetchDataGeneralIndustry("all"));
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchDataAreaChart1);
     dispatch(fetchDataAreaChart2);
     dispatch(fetchDataWidthMarket("vnindex"));
-    dispatch(fetchDataLineChartHomePage('vnindex'))
-    dispatch(fetchDataCashFlowAllocation)
+    dispatch(fetchDataLineChartHomePage("vnindex"));
+    dispatch(fetchDataCashFlowAllocation);
   }, [dispatch]);
 
   useEffect(() => {
     const handleScroll = () => {
       const windowHeight = window.innerHeight;
-      const components = document.querySelectorAll('.treemap');
+      const components = document.querySelectorAll(".treemap");
       const scrollPosition = window.scrollY;
 
       components.forEach((component) => {
@@ -95,9 +91,9 @@ const Home = () => {
         }
       });
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -106,7 +102,7 @@ const Home = () => {
       dispatch(fetchDataTreeMapBuy("hose"));
       dispatch(fetchDataTreeMapSell("hose"));
     }
-  }, [shouldLoadApi, dispatch])
+  }, [shouldLoadApi, dispatch]);
 
   return (
     <LayOut>
@@ -129,12 +125,13 @@ const Home = () => {
                     </div>
 
                     <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] shadow-md bg-gray-100 xs:h-[352px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px]">
-                      <div className='text-center font-semibold uppercase text-sm dark:text-white text-black'>Diễn biến chỉ số VNINDEX trong phiên</div>
+                      <div className="text-center font-semibold uppercase text-sm dark:text-white text-black">
+                        Diễn biến chỉ số VNINDEX trong phiên
+                      </div>
                       <LineChart />
                     </div>
                     <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                       <div className="text-center dark:bg-[#151924] bg-gray-100">
-
                         <BarChartLeft />
                       </div>
                     </div>
@@ -184,12 +181,12 @@ const Home = () => {
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[725px]">
                     <div className="treemap grid grid-cols-2 gap-0.5">
                       <div>
-                        <LazyLoad >
+                        <LazyLoad>
                           <TreeMapBuy />
                         </LazyLoad>
                       </div>
-                      <div  >
-                        <LazyLoad >
+                      <div>
+                        <LazyLoad>
                           <TreeMapSell />
                         </LazyLoad>
                       </div>
@@ -236,12 +233,12 @@ const Home = () => {
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md xxs:h-[765px] xs:h-[745px] sm:h-[750px] md:h-[725px] lg:h-[725px]">
                     <div className="grid grid-cols-2 gap-0.5 treemap">
                       <div>
-                        <LazyLoad >
+                        <LazyLoad>
                           <TreeMapBuy />
                         </LazyLoad>
                       </div>
-                      <div  >
-                        <LazyLoad >
+                      <div>
+                        <LazyLoad>
                           <TreeMapSell />
                         </LazyLoad>
                       </div>
@@ -255,9 +252,11 @@ const Home = () => {
               <div className="lg:block xl:flex mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                 <div className="xl:w-[65%]">
                   <div className="text-center dark:text-white text-black">
-                    <h3 className="p-2 uppercase">Thanh khoản thị trường sàn HSX</h3>
+                    <h3 className="p-2 uppercase">
+                      Thanh khoản thị trường sàn HSX
+                    </h3>
                   </div>
-                  <div >
+                  <div>
                     <AreaChart />
                   </div>
                 </div>
@@ -289,7 +288,9 @@ const Home = () => {
                   </div>
                   <div>
                     <div className="text-center dark:text-white text-black">
-                      <h3 className="p-2 uppercase">Phân bổ dòng tiền (tỷ VNĐ)</h3>
+                      <h3 className="p-2 uppercase">
+                        Phân bổ dòng tiền (tỷ VNĐ)
+                      </h3>
                     </div>
                     <CashFlowAllocation />
                   </div>
@@ -301,11 +302,10 @@ const Home = () => {
                 <NetVolumeTrade />
               </div>
             </div>
-            {/* <TestChart /> */}
             <Footer />
           </div>
         </div>
-      </div >
+      </div>
     </LayOut>
   );
 };

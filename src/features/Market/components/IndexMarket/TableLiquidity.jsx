@@ -3,31 +3,32 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { getColor } from "../../../Chart/utils/utils";
 import { fecthDataTableThanhKhoan } from "../../thunk";
+import formatNumberCurrency from "../../../../helper/formatNumberCurrency";
 
 const hashTb = {
   "1 ngày": "1 ngày",
   "5 ngày": "5 ngày",
   "1 tháng": "1 tháng",
-  "YtD": "YtD",
+  YtD: "YtD",
 };
 
 const TableLiquidity = () => {
   const dispatch = useDispatch();
   const { tableThanhKhoanData } = useSelector((state) => state.market);
-  const [activeButton, setActiveButton] = useState('0');
+  const [activeButton, setActiveButton] = useState("0");
   const [queryApi, setQueryApi] = useState({
     exchange: "ALL",
     type: 0,
     order: 0,
   });
-  const [title, setTitle] = useState('Cổ phiếu')
+  const [title, setTitle] = useState("Cổ phiếu");
   useEffect(() => {
     if (queryApi.type !== 0) {
-      setTitle("Ngành")
+      setTitle("Ngành");
     } else {
-      setTitle('Cổ phiếu')
+      setTitle("Cổ phiếu");
     }
-  }, [queryApi.type])
+  }, [queryApi.type]);
   useEffect(() => {
     dispatch(
       fecthDataTableThanhKhoan(queryApi.exchange, queryApi.type, queryApi.order)
@@ -50,23 +51,23 @@ const TableLiquidity = () => {
   };
 
   useEffect(() => {
-    const activeBtn = buttonRef.current[activeButton]
-    const movingBackground = document.querySelector('.moving-background')
+    const activeBtn = buttonRef.current[activeButton];
+    const movingBackground = document.querySelector(".moving-background");
     if (activeBtn && movingBackground) {
       movingBackground.style.left = `${activeBtn.offsetLeft}px`;
       movingBackground.style.width = `${activeBtn.offsetWidth}px`;
     }
-  }, [activeButton])
+  }, [activeButton]);
   return (
     <>
       <div className="relative dark:bg-[#2D303A] bg-gray-400 flex justify-around items-center rounded-full mb-2">
         <div className="moving-background absolute h-full top-0 bg-[#275F88] transition-all duration-500 z-0"></div>
         {Object.entries(hashTb).map(([label], index) => (
           <button
-            ref={el => buttonRef.current[index] = el}
+            ref={(el) => (buttonRef.current[index] = el)}
             key={index}
             onClick={() => {
-              handleActiveButton(index)
+              handleActiveButton(index);
               handleQueryApiOrder(index);
             }}
             className="uppercase z-10 bg-transparent text-white border-none px-[0.375rem] py-[0.5rem] cursor-pointer"
@@ -77,7 +78,9 @@ const TableLiquidity = () => {
       </div>
 
       <div>
-        <span className="dark:text-white text-black text-[0.9rem] pl-[2px] font-semibold">Top đóng góp thanh khoản theo: </span>
+        <span className="dark:text-white text-black text-[0.9rem] pl-[2px] font-semibold">
+          Top đóng góp thanh khoản theo:{" "}
+        </span>
         <div className="md:inline lg:block xl:inline 2xl:inline text-center">
           <select
             onChange={(e) => {
@@ -90,7 +93,9 @@ const TableLiquidity = () => {
             <option value={2}>Ngành Lv2</option>
             <option value={3}>Ngành Lv3</option>
           </select>
-          <span className="dark:text-white text-black text-[0.9rem] ml-4">Sàn</span>
+          <span className="dark:text-white text-black text-[0.9rem] ml-4">
+            Sàn
+          </span>
           <select
             onChange={(e) => {
               handleQueryApiExchange(e.target.value);
@@ -135,26 +140,53 @@ const TableLiquidity = () => {
                 <tbody>
                   {tableThanhKhoanData?.length ? (
                     tableThanhKhoanData?.map((item, index) => {
-                      let color = getColor(item.supplyDemandVolumeGap)
-                      let color2 = getColor(item.supplyDemandValueGap)
+                      let color = getColor(item.supplyDemandVolumeGap);
+                      let color2 = getColor(item.supplyDemandValueGap);
 
                       return (
-                        <tr className="dark:text-white text-black text-center xxs:text-[10px] text-[13px] dark:hover:bg-gray-800 hover:bg-gray-300 duration-500" key={index}>
-                          <th className="text-left px-1.5 align-middle p-3.5" >{item.symbol}</th>
-                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{item.contribute.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</td>
-                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.totalValueMil / 1000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">{(item.totalVolume / 100000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                          <td className={`${color} text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold`}>
-                            {(item.supplyDemandVolumeGap / 1000000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        <tr
+                          className="dark:text-white text-black text-center xxs:text-[10px] text-[13px] dark:hover:bg-gray-800 hover:bg-gray-300 duration-500"
+                          key={index}
+                        >
+                          <th className="text-left px-1.5 align-middle p-3.5">
+                            {item.symbol}
+                          </th>
+                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">
+                            {formatNumberCurrency(item.contribute)}%
                           </td>
-                          <td className={`${color2} text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold`}>
-                            {(item.supplyDemandValueGap / 1000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">
+                            {formatNumberCurrency(
+                              item.totalValueMil / 1000000000
+                            )}
+                          </td>
+                          <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">
+                            {formatNumberCurrency(item.totalVolume / 100000)}
+                          </td>
+                          <td
+                            className={`${color} text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold`}
+                          >
+                            {formatNumberCurrency(
+                              item.supplyDemandVolumeGap / 1000000
+                            )}
+                          </td>
+                          <td
+                            className={`${color2} text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold`}
+                          >
+                            {formatNumberCurrency(
+                              item.supplyDemandValueGap / 1000
+                            )}
                           </td>
                         </tr>
                       );
                     })
                   ) : (
-                    <tr><td colSpan={6}><div className="mt-16 text-center"><Loading /></div></td></tr>
+                    <tr>
+                      <td colSpan={6}>
+                        <div className="mt-16 text-center">
+                          <Loading />
+                        </div>
+                      </td>
+                    </tr>
                   )}
                 </tbody>
               </table>

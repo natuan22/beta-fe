@@ -9,7 +9,7 @@ function AreaChart() {
   const dataPreviousDay = useSelector((state) => state.chart.dataChart2);
   const [dataSocket, setDataSocket] = useState([]);
 
-  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const [colorText, setColorText] = useState(localStorage.getItem("color"));
   const color = useSelector((state) => state.color.colorText);
 
   useEffect(() => {
@@ -17,9 +17,9 @@ function AreaChart() {
   }, [color]);
 
   useEffect(() => {
-    if (!dataToday && !dataToday?.length) return
+    if (!dataToday && !dataToday?.length) return;
     if (dataToday) {
-      setDataSocket(dataToday)
+      setDataSocket(dataToday);
     }
     if (dataToday) {
       socket.on("listen-thanh-khoan-phien-hien-tai", (newData) => {
@@ -27,7 +27,6 @@ function AreaChart() {
       });
     }
   }, [dataToday]);
-
 
   // Thiết lập cấu hình cho biểu đồ
   const options = {
@@ -47,12 +46,12 @@ function AreaChart() {
       title: {
         text: "Thời gian",
         style: {
-          color: localStorage.getItem('color'),
+          color: localStorage.getItem("color"),
         },
       },
       labels: {
         style: {
-          color: localStorage.getItem('color'),
+          color: localStorage.getItem("color"),
         },
       },
     },
@@ -60,12 +59,12 @@ function AreaChart() {
       title: {
         text: "Giá trị (tỷ VNĐ)",
         style: {
-          color: localStorage.getItem('color'),
+          color: localStorage.getItem("color"),
         },
       },
       labels: {
         style: {
-          color: localStorage.getItem('color'),
+          color: localStorage.getItem("color"),
         },
       },
       gridLineWidth: 0.5,
@@ -73,7 +72,7 @@ function AreaChart() {
 
     legend: {
       itemStyle: {
-        color: localStorage.getItem('color'),
+        color: localStorage.getItem("color"),
       },
     },
     series: [
@@ -118,24 +117,37 @@ function AreaChart() {
   const currentDay = currentTime.getDay();
 
   // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
-  const isWithinTimeRange = (currentHour > 9 || (currentHour === 9 && currentMinute >= 15) || currentHour === 0);
+  const isWithinTimeRange =
+    currentHour > 9 ||
+    (currentHour === 9 && currentMinute >= 15) ||
+    currentHour === 0;
 
   // Kiểm tra xem ngày là thứ 7 hoặc chủ nhật
-  const isWeekend = (currentDay === 0 || currentDay === 6);
+  const isWeekend = currentDay === 0 || currentDay === 6;
 
   // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59 hoặc là ngày thứ 7/chủ nhật, hiển thị dữ liệu
   if (!isWithinTimeRange || isWeekend) {
-    return <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu giao dịch</div>
+    return (
+      <div className="text-center mt-6 dark:text-white text-black">
+        Chưa có dữ liệu giao dịch
+      </div>
+    );
   }
 
   return (
     <>
       {dataPreviousDay.length && dataToday.length ? (
         <div className="2xl:h-[633px] xl:h-[683px] lg:h-[500px] md:h-[500px] xs:h-[500px]">
-          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
+            containerProps={{ style: { height: "100%", width: "100%" } }}
+          />
         </div>
       ) : (
-        <div className="mt-6"><Loading /></div>
+        <div className="mt-6">
+          <Loading />
+        </div>
       )}
     </>
   );

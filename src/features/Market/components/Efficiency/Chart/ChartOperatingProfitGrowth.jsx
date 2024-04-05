@@ -1,156 +1,194 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
-import HighchartsReact from 'highcharts-react-official';
-import { useSelector } from 'react-redux'
-import Loading from '../../../../Chart/utils/Loading';
-import { hashTb } from '../../FinancialHealth/Chart/utils/hashTb';
-import FilterIndusty from '../../../utils/components/FilterIndusty';
+import HighchartsReact from "highcharts-react-official";
+import { useSelector } from "react-redux";
+import Loading from "../../../../Chart/utils/Loading";
+import FilterIndusty from "../../../utils/components/FilterIndusty";
 
 const ChartOperatingProfitGrowth = (props) => {
-    const { dataChartOperatingProfitGrowth } = useSelector(state => state.market)
-    const [data, setData] = useState()
-    const [category, setCategory] = useState()
-    const [industryQuery, setIndustryQuery] = useState([])
-    const [colorText, setColorText] = useState(localStorage.getItem('color'));
-    const color = useSelector((state) => state.color.colorText);
+  const { dataChartOperatingProfitGrowth } = useSelector(
+    (state) => state.market
+  );
+  const [data, setData] = useState();
+  const [category, setCategory] = useState();
+  const [industryQuery, setIndustryQuery] = useState([]);
+  const [colorText, setColorText] = useState(localStorage.getItem("color"));
+  const color = useSelector((state) => state.color.colorText);
 
+  useEffect(() => {
+    setColorText(color);
+  }, [color]);
 
-    useEffect(() => {
-        setColorText(color);
-    }, [color])
+  useEffect(() => {
+    if (dataChartOperatingProfitGrowth?.length > 0) {
+      const transformedData = dataChartOperatingProfitGrowth?.map((item) => {
+        const year = item.date.slice(0, 4);
+        const quarter = item.date.slice(4);
+        const transformedDate = `Q${quarter} ${year}`;
+        return { ...item, date: transformedDate };
+      });
 
-    useEffect(() => {
-        if (dataChartOperatingProfitGrowth?.length > 0) {
-            const transformedData = dataChartOperatingProfitGrowth?.map(item => {
-                const year = item.date.slice(0, 4);
-                const quarter = item.date.slice(4);
-                const transformedDate = `Q${quarter} ${year}`;
-                return { ...item, date: transformedDate };
+      const uniqueIndustry = [
+        ...new Set(
+          transformedData
+            .filter((item) => industryQuery.includes(item.industry))
+            .map((item) => item.industry)
+        ),
+      ];
+      const mappedData = [];
+
+      transformedData?.forEach((item) => {
+        if (industryQuery.includes(item.industry)) {
+          const colorArr = [
+            "#D0DFFF",
+            "#044DED",
+            "#A8C2FB",
+            "#0F639A",
+            "#6893EF",
+            "#3D78E0",
+            "#1D63DC",
+            "#155AD1",
+            "#0B4DBD",
+            "#0F459F",
+            "#93D2FE",
+            "#78C5FD",
+            "#61BAFE",
+            "#3EADFF",
+            " #0E97FF",
+            "#005073",
+            "#117DAC",
+            "#189BD3",
+            "#1DBBD6",
+            " #72C7EC",
+          ];
+          const existingItem = mappedData.find(
+            (mappedItem) => mappedItem.name === item.date
+          );
+
+          if (existingItem) {
+            existingItem.data.push(+item.perChange.toFixed(2));
+          } else {
+            const uniqueColorIndex = mappedData.length % colorArr.length; // Lấy chỉ mục màu duy nhất
+            mappedData.push({
+              name: item.date,
+              data: [+item.perChange.toFixed(2)],
+              color: colorArr[uniqueColorIndex], // Lấy màu từ mảng colorArr bằng chỉ mục màu duy nhất
             });
-
-            const uniqueIndustry = [...new Set(transformedData.filter(item => industryQuery.includes(item.industry)).map(item => item.industry))];
-            const mappedData = [];
-
-            transformedData?.forEach(item => {
-                if (industryQuery.includes(item.industry)) {
-                    const colorArr = ['#D0DFFF', '#044DED', '#A8C2FB', '#0F639A', '#6893EF', '#3D78E0', '#1D63DC', '#155AD1', '#0B4DBD', '#0F459F', '#93D2FE', '#78C5FD', '#61BAFE', '#3EADFF', ' #0E97FF', '#005073', '#117DAC', '#189BD3', '#1DBBD6', ' #72C7EC'];
-                    const existingItem = mappedData.find(mappedItem => mappedItem.name === item.date);
-
-                    if (existingItem) {
-                        existingItem.data.push(+(item.perChange).toFixed(2));
-                    } else {
-                        const uniqueColorIndex = mappedData.length % colorArr.length; // Lấy chỉ mục màu duy nhất
-                        mappedData.push({
-                            name: item.date,
-                            data: [+(item.perChange).toFixed(2)],
-                            color: colorArr[uniqueColorIndex] // Lấy màu từ mảng colorArr bằng chỉ mục màu duy nhất
-                        });
-                    }
-                }
-            })
-            setCategory(uniqueIndustry)
-            setData(mappedData)
+          }
         }
-    }, [dataChartOperatingProfitGrowth, industryQuery])
+      });
+      setCategory(uniqueIndustry);
+      setData(mappedData);
+    }
+  }, [dataChartOperatingProfitGrowth, industryQuery]);
 
-    // config chart
-    const options = {
-        chart: {
-            backgroundColor: "transparent", // màu nền của biểu đồ
-            type: 'column'
+  // config chart
+  const options = {
+    chart: {
+      backgroundColor: "transparent", // màu nền của biểu đồ
+      type: "column",
+    },
+    accessibility: {
+      enabled: false,
+    },
+    credits: false,
+    title: {
+      text: "",
+      style: {
+        color: "white",
+      },
+    },
+    xAxis: {
+      categories: category,
+      labels: {
+        style: {
+          color: localStorage.getItem("color"), // màu cho các nhãn trục x
         },
-        accessibility: {
-            enabled: false
+      },
+      title: {
+        style: {
+          color: localStorage.getItem("color"), // màu cho tiêu đề trục x
         },
-        credits: false,
+      },
+    },
+    yAxis: [
+      {
         title: {
-            text: "",
-            style: {
-                color: 'white'
-            }
+          text: "",
+          style: {
+            color: localStorage.getItem("color"),
+          },
         },
-        xAxis: {
-            categories: category,
-            labels: {
-                style: {
-                    color: localStorage.getItem('color') // màu cho các nhãn trục x
-                }
-            },
-            title: {
-                style: {
-                    color: localStorage.getItem('color') // màu cho tiêu đề trục x
-                }
-            }
+        labels: {
+          style: {
+            color: localStorage.getItem("color"), // màu cho các nhãn trục y
+          },
+          formatter: function () {
+            return this.value + "%";
+          },
         },
-        yAxis: [
-            {
-                title: {
-                    text: "",
-                    style: {
-                        color: localStorage.getItem('color'),
-                    },
-                },
-                labels: {
-                    style: {
-                        color: localStorage.getItem('color') // màu cho các nhãn trục y
-                    },
-                    formatter: function () {
-                        return this.value + "%";
-                    },
-                },
-                gridLineWidth: 0.5,
-            },
-            {
-                title: {
-                    text: "",
-                    style: {
-                        color: localStorage.getItem('color'),
-                    },
-                },
-                labels: {
-                    style: {
-                        color: localStorage.getItem('color') // màu cho các nhãn trục y
-                    }
-                },
-                opposite: true,
-                gridLineWidth: 0.5,
-            },
+        gridLineWidth: 0.5,
+      },
+      {
+        title: {
+          text: "",
+          style: {
+            color: localStorage.getItem("color"),
+          },
+        },
+        labels: {
+          style: {
+            color: localStorage.getItem("color"), // màu cho các nhãn trục y
+          },
+        },
+        opposite: true,
+        gridLineWidth: 0.5,
+      },
+    ],
+    legend: {
+      align: "center",
+      itemStyle: {
+        fontSize: "10px",
+        color: localStorage.getItem("color"),
+      },
+    },
 
-        ],
-        legend: {
-            align: 'center',
-            itemStyle: {
-                fontSize: '10px',
-                color: localStorage.getItem('color')
-            }
-        },
-
-        series: data,
-    };
-    const handleSelectedNamesChange = (selectedNames) => {
-        setIndustryQuery(selectedNames)
-    };
-    return (
+    series: data,
+  };
+  const handleSelectedNamesChange = (selectedNames) => {
+    setIndustryQuery(selectedNames);
+  };
+  return (
+    <div>
+      {dataChartOperatingProfitGrowth.length ? (
         <div>
-            {dataChartOperatingProfitGrowth.length ? (
-                <div>
-                    <div className='md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0'>
-                        <span className='dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-[13px] xxs:text-[11px]'>Tăng trưởng lợi nhuận hoạt động các ngành qua từng kỳ (%)</span>
-                        <div className='flex items-center justify-center'>
-                            <FilterIndusty onSelectedNamesChange={handleSelectedNamesChange} />
-                        </div>
-                    </div>
-                    <div className="h-[450px] mt-3">
-                        <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
-                    </div>
-                </div>
-            ) : (
-                <div id="chart-container">
-                    <div className="mt-14 mb-[379px] flex flex-col justify-center"><Loading /></div>
-                </div>
-            )}
+          <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+            <span className="dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-[13px] xxs:text-[11px]">
+              Tăng trưởng lợi nhuận hoạt động các ngành qua từng kỳ (%)
+            </span>
+            <div className="flex items-center justify-center">
+              <FilterIndusty
+                onSelectedNamesChange={handleSelectedNamesChange}
+              />
+            </div>
+          </div>
+          <div className="h-[450px] mt-3">
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={options}
+              containerProps={{ style: { height: "100%", width: "100%" } }}
+            />
+          </div>
         </div>
-    )
-}
+      ) : (
+        <div id="chart-container">
+          <div className="mt-14 mb-[379px] flex flex-col justify-center">
+            <Loading />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default ChartOperatingProfitGrowth
+export default ChartOperatingProfitGrowth;

@@ -5,12 +5,12 @@ import DomesticMacro from "../tabs/MacroNews/DomesticMacro";
 import ForeignMacro from "../tabs/MacroNews/ForeignMacro";
 
 export const hashTbMarco = {
-    'Vĩ mô trong nước': DomesticMacro,
-    'Vĩ mô thế giới': ForeignMacro,
-}
+  "Vĩ mô trong nước": DomesticMacro,
+  "Vĩ mô thế giới": ForeignMacro,
+};
 
 export const hashTbAnalyzeReport = {
-    'Phân tích doanh nghiệp': BusinessAnalysis,
-    'Nhịp đập thị trường': MarketPulse,
-    'Phân tích ngành': IndustryAnalysis,
-}
+  "Phân tích doanh nghiệp": BusinessAnalysis,
+  "Nhịp đập thị trường": MarketPulse,
+  "Phân tích ngành": IndustryAnalysis,
+};

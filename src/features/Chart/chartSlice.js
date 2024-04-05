@@ -24,7 +24,7 @@ const initialState = {
   dataMarketEvaluation: {},
   dataMacroNews: {},
   dataLineChartHomePage: {},
-  dataCashFlowAllocation: {}
+  dataCashFlowAllocation: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -63,45 +63,45 @@ const reducer = (state = initialState, { type, payload }) => {
       draft.dataGeneral = payload;
     }
     if (type === actionType.UPDATE_DATA_TREEMAP_SELL) {
-      draft.dataTreemapSell = payload
+      draft.dataTreemapSell = payload;
     }
     if (type === actionType.UPDATE_DATA_TREEMAP_BUY) {
-      draft.dataTreemapBuy = payload
+      draft.dataTreemapBuy = payload;
     }
     if (type === actionType.UPDATE_DATA_AREACHART1) {
-      draft.dataChart1 = payload
+      draft.dataChart1 = payload;
     }
     if (type === actionType.UPDATE_DATA_AREACHART2) {
-      draft.dataChart2 = payload
+      draft.dataChart2 = payload;
     }
     if (type === actionType.UPDATE_DATA_STACKINGAREA) {
-      draft.dataStackingArea = payload
+      draft.dataStackingArea = payload;
     }
     if (type === actionType.UPDATE_DATA_TABLE_MARKET_VOLATILITY) {
-      draft.dataTableMarketVolatility = payload
+      draft.dataTableMarketVolatility = payload;
     }
     if (type === actionType.UPDATE_DATA_TABLE_MARKET_LIQUIDITY) {
-      draft.dataTableMarketLiquidity = payload
+      draft.dataTableMarketLiquidity = payload;
     }
     if (type === actionType.UPDATE_DATA_NET_VOLUME) {
-      draft.dataNetVolume = payload
+      draft.dataNetVolume = payload;
     }
     if (type === actionType.UPDATE_DATA_NEWS) {
-      draft.dataNews = payload
+      draft.dataNews = payload;
     }
     if (type === actionType.UPDATE_DATA_MARKET_EVALUATION) {
-      draft.dataMarketEvaluation = payload
+      draft.dataMarketEvaluation = payload;
     }
- 
+
     if (type === actionType.UPDATE_DATA_MACRO_NEWS) {
-      draft.dataMacroNews = payload
+      draft.dataMacroNews = payload;
     }
-   
+
     if (type === actionType.FETCH_DATA_LINECHART_HOMEPAGE) {
-      draft.dataLineChartHomePage = payload
+      draft.dataLineChartHomePage = payload;
     }
     if (type === actionType.UPDATE_DATA_CASH_FLOW_ALLOCATION) {
-      draft.dataCashFlowAllocation = payload
+      draft.dataCashFlowAllocation = payload;
     }
   });
 };

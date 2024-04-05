@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import Loading from '../../../Chart/utils/Loading';
-import { fetchDataBalanceSheet } from '../../thunk';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../../Chart/utils/Loading";
+import { fetchDataBalanceSheet } from "../../thunk";
+import formatNumberCurrency from "../../../../helper/formatNumberCurrency";
 
 const BalanceSheet = ({ queryApi }) => {
   const dispatch = useDispatch();
-  const { dataBalanceSheet } = useSelector(state => state.stock)
-  const [dates, setDates] = useState()
-  const [dataTb, setDataTb] = useState()
+  const { dataBalanceSheet } = useSelector((state) => state.stock);
+  const [dates, setDates] = useState();
+  const [dataTb, setDataTb] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchDataBalanceSheet(queryApi.stock, queryApi.order, queryApi.type));
+    dispatch(
+      fetchDataBalanceSheet(queryApi.stock, queryApi.order, queryApi.type)
+    );
   }, [dispatch, queryApi]);
 
   useEffect(() => {
@@ -20,32 +23,34 @@ const BalanceSheet = ({ queryApi }) => {
       let modifiedArray;
 
       if (queryApi.order === 0) {
-        modifiedArray = dataBalanceSheet.map(item => {
+        modifiedArray = dataBalanceSheet.map((item) => {
           const year = item.date.slice(0, 4);
           const quarter = item.date.slice(4);
 
           return { ...item, date: `Quý ${quarter}/${year}` };
         });
       } else {
-        modifiedArray = dataBalanceSheet.map(item => {
+        modifiedArray = dataBalanceSheet.map((item) => {
           const year = item.date.slice(0, 4);
 
           return { ...item, date: `Năm ${year}` };
         });
       }
 
-      const dates = [...new Set(modifiedArray?.map(item => item.date))];
+      const dates = [...new Set(modifiedArray?.map((item) => item.date))];
       setDates(dates);
       const newData = {};
-      modifiedArray.forEach(item => {
+      modifiedArray.forEach((item) => {
         if (!newData[item.name]) {
           newData[item.name] = [];
         }
         newData[item.name].push(item.value / 1000000000);
       });
-      setDataTb(Object.entries(newData).map(([name, values]) => ({ name, values })));
+      setDataTb(
+        Object.entries(newData).map(([name, values]) => ({ name, values }))
+      );
     }
-  }, [dataBalanceSheet, queryApi])
+  }, [dataBalanceSheet, queryApi]);
 
   return (
     <div>
@@ -59,27 +64,50 @@ const BalanceSheet = ({ queryApi }) => {
                     <th className="bg-[#34A3F3] text-center uppercase align-middle px-[27px] py-[15px] whitespace-nowrap font-extrabold text-black">
                       Cân đối kế toán
                     </th>
-                    {Array.isArray(dates) && dates?.map(item => (
-                      <th key={item} className="text-center align-middle px-3 py-[15px] text-xs font-semibold text-white">
-                        {item}
-                      </th>
-                    ))}
+                    {Array.isArray(dates) &&
+                      dates?.map((item) => (
+                        <th
+                          key={item}
+                          className="text-center align-middle px-3 py-[15px] text-xs font-semibold text-white"
+                        >
+                          {item}
+                        </th>
+                      ))}
                   </tr>
                 </thead>
 
                 <tbody>
-                  {!loading ? (Array.isArray(dataTb) && dataTb.map(item => (
-                    <tr key={item.name} className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500">
-                      <th className={`text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}>
-                        {item.name}
-                      </th>
-                      {item.values.map((value, index) => (
-                        <td key={index} className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}>
-                          {value.toLocaleString('en-US', { maximumFractionDigits: 2 })}
-                        </td>
-                      ))}
+                  {!loading ? (
+                    Array.isArray(dataTb) &&
+                    dataTb.map((item) => (
+                      <tr
+                        key={item.name}
+                        className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500"
+                      >
+                        <th
+                          className={`text-left align-middle whitespace-nowrap px-1 py-[14px] text-sm dark:text-white text-black`}
+                        >
+                          {item.name}
+                        </th>
+                        {item.values.map((value, index) => (
+                          <td
+                            key={index}
+                            className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}
+                          >
+                            {formatNumberCurrency(value)}
+                          </td>
+                        ))}
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td>
+                        <div>
+                          <Loading />
+                        </div>
+                      </td>
                     </tr>
-                  ))) : (<tr><td><div><Loading /></div></td></tr>)}
+                  )}
                 </tbody>
               </table>
             </div>
@@ -87,7 +115,7 @@ const BalanceSheet = ({ queryApi }) => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default BalanceSheet
+export default BalanceSheet;

@@ -14,8 +14,8 @@ const apiUrl = process.env.REACT_APP_BASE_URL;
 const Signup = () => {
   const dispatch = useDispatch();
   const [messageApi, contextHolder] = message.useMessage();
-  const [openOTP, setOpenOTP] = useState(false)
-  const [userID, setUserID] = useState(null)
+  const [openOTP, setOpenOTP] = useState(false);
+  const [userID, setUserID] = useState(null);
   const normalizePhone = (value) => {
     // Chuẩn hóa số điện thoại: thêm '84' nếu bắt đầu bằng '0'
     if (value.startsWith("0")) {
@@ -23,7 +23,7 @@ const Signup = () => {
     }
     return value;
   };
-  console.log({ openOTP })
+  // console.log({ openOTP })
   const userSchema = object({
     phone: string()
       .required("Vui lòng nhập số điện thoại")
@@ -70,22 +70,22 @@ const Signup = () => {
         };
         try {
           const response = await dispatch(userRegisterAction(normalizedValues));
-          console.log(response)
+          // console.log(response)
           if (response.status === 201) {
-            setUserID(response?.data.data.user_id)
-            setOpenOTP(true)
+            setUserID(response?.data.data.user_id);
+            setOpenOTP(true);
           } else if (response.response.data.status === 400) {
-            warning(response.response.data.message)
+            warning(response.response.data.message);
           }
         } catch (err) {
-          console.error(err)
+          console.error(err);
         }
       },
       validationSchema: userSchema,
       validateOnBlur: false,
     }
   );
-  useEffect(() => { }, [touched]);
+  useEffect(() => {}, [touched]);
   return (
     <>
       <PopUpOTP open={openOTP} userID={userID} />
@@ -93,7 +93,9 @@ const Signup = () => {
       <div className="bg-signinBackground bg-no-repeat bg-cover">
         <div className="container mx-auto h-auto pt-[90px] pb-[136px] w-[80%] relative">
           <nav className="flex justify-around mb-[70px] xs:text-[10px] md:text-base lg:text-base xl:text-base ">
-            <NavLink to='/' className="text-white no-underline">Trang chủ</NavLink>
+            <NavLink to="/" className="text-white no-underline">
+              Trang chủ
+            </NavLink>
             <NavLink className="text-white no-underline">
               {/* Giới thiệu dịch vụ */}
             </NavLink>
