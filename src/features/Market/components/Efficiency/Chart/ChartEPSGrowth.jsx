@@ -124,7 +124,7 @@ const ChartEPSGrowth = (props) => {
             return this.value + "%";
           },
         },
-        gridLineWidth: 0.5,
+        gridLineWidth: 0.2,
       },
       {
         title: {
@@ -139,7 +139,7 @@ const ChartEPSGrowth = (props) => {
           },
         },
         opposite: true,
-        gridLineWidth: 0.5,
+        gridLineWidth: 0.2,
       },
     ],
     legend: {

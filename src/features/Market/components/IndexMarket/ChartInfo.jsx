@@ -57,14 +57,14 @@ const ChartInfo = () => {
   }, [dataTableDomestic, dataTable]);
 
   useEffect(() => {
-    if (lineChartMarketData?.length > 0) {
-      setDataInfo(lineChartMarketData);
-      setDataChart(lineChartMarketData);
+    if (lineChartMarketData?.chart?.length > 0) {
+      setDataInfo(lineChartMarketData.chart);
+      setDataChart(lineChartMarketData.chart);
     }
   }, [lineChartMarketData]);
 
   useEffect(() => {
-    if (lineChartMarketData?.length > 0) {
+    if (lineChartMarketData?.chart?.length > 0) {
       if (query === "0") {
         disconnectSocket(localStorage.getItem("exchange"));
         conSocket(exchange);
@@ -113,6 +113,16 @@ const ChartInfo = () => {
       {
         name: "Điểm",
         data: dataChart?.map((item) => item.indexValue),
+        zoneAxis: "y",
+        zones: [
+          {
+            value: lineChartMarketData?.prevClosePrice, // Giá trị tách màu (nếu giá trị dưới 5 thì màu đỏ, còn trên 5 thì màu xanh)
+            color: "#ff0000",
+          },
+          {
+            color: "#15b313",
+          },
+        ],
       },
     ],
     yAxis: {
@@ -127,7 +137,16 @@ const ChartInfo = () => {
           color: localStorage.getItem("color"),
         },
       },
-      gridLineWidth: 0.5,
+      gridLineWidth: 0.2,
+      plotLines: [
+        {
+          value: lineChartMarketData?.prevClosePrice,
+          color: "gray",
+          dashStyle: "dot", // Kiểu đường line (có thể là 'dash', 'dot', hoặc 'solid')
+          width: 2,
+          zIndex: 2,
+        },
+      ],
     },
     xAxis: {
       title: {

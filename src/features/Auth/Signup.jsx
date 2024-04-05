@@ -97,7 +97,7 @@ const Signup = () => {
               Trang chủ
             </NavLink>
             <NavLink className="text-white no-underline">
-              {/* Giới thiệu dịch vụ */}
+              Giới thiệu dịch vụ
             </NavLink>
             <NavLink className="text-white no-underline">Liên hệ</NavLink>
             <NavLink className="text-white no-underline">Về chúng tôi</NavLink>

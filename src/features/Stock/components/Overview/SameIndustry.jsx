@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataSameIndustry } from "../../thunk";
 import "../../utils/style/antDesignTableStock.css";
+import formatNumberCurrency from "../../../../helper/formatNumberCurrency";
 const SameIndustry = ({ queryApi }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
@@ -72,9 +73,7 @@ const SameIndustry = ({ queryApi }) => {
       render: (_, record) => {
         return (
           <p className={`dark:text-white text-black text-center font-semibold`}>
-            {record.kl === 0
-              ? "-"
-              : record.kl.toLocaleString("vi-VN", { maximumFractionDigits: 2 })}
+            {record.kl === 0 ? "-" : formatNumberCurrency(record.kl)}
           </p>
         );
       },
@@ -125,10 +124,7 @@ const SameIndustry = ({ queryApi }) => {
           <p className={`dark:text-white text-black text-center font-semibold`}>
             {record.vh === 0
               ? "-"
-              : (record.vh / 1000000000).toLocaleString("vi-VN", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
+              : formatNumberCurrency(record.vh / 1000000000)}
           </p>
         );
       },

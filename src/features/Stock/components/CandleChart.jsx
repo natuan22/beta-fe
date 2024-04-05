@@ -12,24 +12,27 @@ const CandleChart = ({ code, dataChart }) => {
   const dispatch = useDispatch();
   const { dataCandleChart } = useSelector((state) => state.stock);
   const [data, setData] = useState([]);
+
   useEffect(() => {
     dispatch(fetchDataCandleChart(code));
   }, [dispatch, code]);
 
   useEffect(() => {
-    if (dataCandleChart?.length > 0) {
-      const mappedData = dataCandleChart.map((item) => [
+    if (dataCandleChart?.chart?.length > 0) {
+      const mappedData = dataCandleChart.chart.map((item) => [
         item.time,
         item.closePrice,
       ]);
       setData(mappedData);
     }
   }, [dataCandleChart]);
+
   useEffect(() => {
     if (dataChart?.length > 0) {
       setData((preData) => [...preData, dataChart]);
     }
   }, [dataChart]);
+
   const options = {
     accessibility: {
       enabled: false,
@@ -62,6 +65,16 @@ const CandleChart = ({ code, dataChart }) => {
         name: "Giá cổ phiếu",
         data: data,
         color: "#7cb5ec",
+        zoneAxis: "y",
+        zones: [
+          {
+            value: dataCandleChart?.prevClosePrice * 1000, // Giá trị tách màu (nếu giá trị dưới 5 thì màu đỏ, còn trên 5 thì màu xanh)
+            color: "red",
+          },
+          {
+            color: "green",
+          },
+        ],
       },
     ],
     yAxis: {
@@ -76,7 +89,16 @@ const CandleChart = ({ code, dataChart }) => {
           color: localStorage.getItem("color"),
         },
       },
-      gridLineWidth: 0.5,
+      gridLineWidth: 0.2,
+      plotLines: [
+        {
+          value: dataCandleChart?.prevClosePrice * 1000,
+          color: "gray",
+          dashStyle: "dot", // Kiểu đường line (có thể là 'dash', 'dot', hoặc 'solid')
+          width: 2,
+          zIndex: 2,
+        },
+      ],
     },
     xAxis: {
       type: "datetime",
@@ -107,7 +129,7 @@ const CandleChart = ({ code, dataChart }) => {
 
   return (
     <div>
-      {dataCandleChart?.length > 0 ? (
+      {dataCandleChart?.chart?.length > 0 ? (
         <div className="h-[330px]">
           <HighchartsReact
             highcharts={Highcharts}
