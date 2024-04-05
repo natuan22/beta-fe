@@ -20,7 +20,7 @@ const Signin = () => {
     e.preventDefault();
 
     // Thay thế số 0 đầu tiên thành 84 trong số điện thoại khi gửi yêu cầu API
-    const modifiedPhone = loginInfo.phone.replace(/^0/, '84');
+    const modifiedPhone = loginInfo.phone.replace(/^0/, "84");
 
     // Gửi yêu cầu API với số điện thoại đã được sửa đổi
     await dispatch(userLoginAction({ ...loginInfo, phone: modifiedPhone }));
@@ -28,7 +28,6 @@ const Signin = () => {
     // Clear form
     setLoginInfo({ phone: "", password: "" });
   };
-
 
   const isLogin = useSelector((state) => state.authen.userData);
   const loginMessage = useSelector((state) => state.authen.loginMessage);
@@ -38,10 +37,14 @@ const Signin = () => {
 
   return (
     <div className="bg-signinBackground bg-no-repeat bg-cover h-auto">
-      <div className="container mx-auto h-auto pt-[90px] pb-[136px] w-[80%] relative" >
+      <div className="container mx-auto h-auto pt-[90px] pb-[136px] w-[80%] relative">
         <nav className="flex justify-around mb-[70px] xs:text-[10px] md:text-base lg:text-base xl:text-base">
-          <NavLink to='/' className="text-white no-underline">Trang chủ</NavLink>
-          <NavLink className="text-white no-underline">Giới thiệu dịch vụ</NavLink>
+          <NavLink to="/" className="text-white no-underline">
+            Trang chủ
+          </NavLink>
+          <NavLink className="text-white no-underline">
+            Giới thiệu dịch vụ
+          </NavLink>
           <NavLink className="text-white no-underline">Liên hệ</NavLink>
           <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
           <NavLink className="text-white no-underline">Pháp lý</NavLink>
@@ -65,7 +68,7 @@ const Signin = () => {
               <input
                 type="tel"
                 id="floating_email"
-                name='phone'
+                name="phone"
                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 onChange={handleChange}
@@ -125,7 +128,12 @@ const Signin = () => {
               Đăng nhập
             </button>
           </form>
-          <a className="text-white xxs:mb-8 xs:mb-14 md:mb-6 " href="bsi.com.vn"><i>Quên mật khẩu ?</i></a>
+          <a
+            className="text-white xxs:mb-8 xs:mb-14 md:mb-6 "
+            href="bsi.com.vn"
+          >
+            <i>Quên mật khẩu ?</i>
+          </a>
           <div className="w-[50%] flex justify-around">
             <img
               src={`${apiUrl}/resources/images/google-logo.png`}
@@ -354,7 +362,7 @@ const Signin = () => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

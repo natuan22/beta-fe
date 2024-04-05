@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -8,16 +7,15 @@ import moment from "moment";
 import { fetchDataNetVolume } from "../thunk";
 import { useState } from "react";
 
-
 const NetVolumeTrade = () => {
   const dispatch = useDispatch();
   const dataNetVolume = useSelector((state) => state.chart.dataNetVolume);
-  const [title, setTitle] = useState('VNINDEX')
-  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const [title, setTitle] = useState("VNINDEX");
+  const [colorText, setColorText] = useState(localStorage.getItem("color"));
   const color = useSelector((state) => state.color.colorText);
 
   useEffect(() => {
-    dispatch(fetchDataNetVolume('vnindex'));
+    dispatch(fetchDataNetVolume("vnindex"));
     setColorText(color);
   }, [dispatch, color]);
 
@@ -39,44 +37,44 @@ const NetVolumeTrade = () => {
     chart: {
       backgroundColor: "transparent", // màu nền của biểu đồ
       style: {
-        fontFamily: 'Roboto'
-      }
+        fontFamily: "Roboto",
+      },
     },
     accessibility: {
-      enabled: false
+      enabled: false,
     },
     credits: false,
     title: {
       text: "",
       style: {
-        color: 'white'
-      }
+        color: "white",
+      },
     },
     xAxis: {
       categories: timeLine?.reverse(),
       labels: {
         style: {
-          color: localStorage.getItem('color') // màu cho các nhãn trục x
-        }
+          color: localStorage.getItem("color"), // màu cho các nhãn trục x
+        },
       },
       title: {
         style: {
-          color: localStorage.getItem('color') // màu cho tiêu đề trục x
-        }
-      }
+          color: localStorage.getItem("color"), // màu cho tiêu đề trục x
+        },
+      },
     },
     yAxis: [
       {
         title: {
           text: "Tỷ VNĐ",
           style: {
-            color: localStorage.getItem('color'),
+            color: localStorage.getItem("color"),
           },
         },
         labels: {
           style: {
-            color: localStorage.getItem('color') // màu cho các nhãn trục y
-          }
+            color: localStorage.getItem("color"), // màu cho các nhãn trục y
+          },
         },
         gridLineWidth: 0.5,
       },
@@ -84,24 +82,23 @@ const NetVolumeTrade = () => {
         title: {
           text: "",
           style: {
-            color: localStorage.getItem('color'),
+            color: localStorage.getItem("color"),
           },
         },
         labels: {
           style: {
-            color: localStorage.getItem('color') // màu cho các nhãn trục y
-          }
+            color: localStorage.getItem("color"), // màu cho các nhãn trục y
+          },
         },
         opposite: true,
         gridLineWidth: 0.5,
       },
-
     ],
     legend: {
-      align: 'center',
+      align: "center",
       itemStyle: {
-        color: localStorage.getItem('color')
-      }
+        color: localStorage.getItem("color"),
+      },
     },
     series: [
       {
@@ -109,28 +106,28 @@ const NetVolumeTrade = () => {
         name: "Khối Ngoại",
         data: dataForeign?.reverse(),
         yAxis: 0,
-        color: "#ff0000"
+        color: "#ff0000",
       },
       {
         type: "column",
         name: "Tự Doanh",
         data: dataProprietary?.reverse(),
         yAxis: 0,
-        color: '#0056FF'
+        color: "#0056FF",
       },
       {
         type: "column",
-        name: "Cá Nhân",
+        name: "Cá Nhân và Tổ Chức Trong Nước",
         data: dataRetail?.reverse(),
         yAxis: 0,
-        color: '#ffd300'
+        color: "#ffd300",
       },
       {
         type: "spline",
         name: title,
         data: dataExchange?.reverse(),
         yAxis: 1,
-        color: '#ff8700'
+        color: "#ff8700",
       },
     ],
   };
@@ -142,20 +139,28 @@ const NetVolumeTrade = () => {
           <span className="font-semibold text-base uppercase dark:text-white text-black">
             Giá trị giao dịch ròng
           </span>
-          <select className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          <select
+            className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
             onChange={(event) => {
               dispatch(fetchDataNetVolume(event.target.value));
-              setTitle(event.target.value)
-            }}>
+              setTitle(event.target.value);
+            }}
+          >
             <option value="VNINDEX">VNINDEX</option>
             <option value="HNX30">HNX30</option>
             <option value="VN30">VN30</option>
           </select>
         </div>
         {dataNetVolume.data || dataNetVolume.data?.length ? (
-          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
+            containerProps={{ style: { height: "100%", width: "100%" } }}
+          />
         ) : (
-          <div className="mt-6 mb-28"><Loading /></div>
+          <div className="mt-6 mb-28">
+            <Loading />
+          </div>
         )}
       </div>
     </>

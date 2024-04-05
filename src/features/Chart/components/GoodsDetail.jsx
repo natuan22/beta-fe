@@ -37,24 +37,44 @@ const GoodsDetail = () => {
               </thead>
 
               <tbody>
-                {!loading ? (Array.isArray(data) &&
+                {!loading ? (
+                  Array.isArray(data) &&
                   data.map((item, index) => {
-                    let color = getColor(item.Day)
+                    let color = getColor(item.Day);
 
                     return (
-                      <tr key={index} className='dark:hover:bg-gray-800 hover:bg-gray-300 duration-500'>
+                      <tr
+                        key={index}
+                        className="dark:hover:bg-gray-800 hover:bg-gray-300 duration-500"
+                      >
                         <th className="text-left align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 dark:text-white text-black">
                           {item.name} ({item.unit})
                         </th>
-                        <td className={`text-center align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
-                          {item.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        <td
+                          className={`text-center align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}
+                        >
+                          {item.price.toLocaleString("vi-VN", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
                         </td>
-                        <td className={`text-center align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}>
+                        <td
+                          className={`text-center align-middle xxs:text-[10px] md:text-sm xs:text-xs whitespace-nowrap px-3 py-3.5 font-semibold ${color}`}
+                        >
                           {item.Day}
                         </td>
                       </tr>
-                    )
-                  })) : (<tr><td colSpan={3}><div className="mt-16"><Loading /></div></td></tr>)}
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td colSpan={3}>
+                      <div className="mt-16">
+                        <Loading />
+                      </div>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -62,6 +82,6 @@ const GoodsDetail = () => {
       </div>
     </section>
   );
-}
+};
 
 export default GoodsDetail;

@@ -45,148 +45,148 @@ const initialState = {
   dataChartInterestCoverageRatio: {},
   dataChartAverageDebitIndustry: {},
   dataChartNetProfitMargin: {},
-  dataTableMiningProfitMargin: {}
+  dataTableMiningProfitMargin: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   return produce(state, (draft) => {
     if (type === marketType.FETCH_DATA_TABLE_THANH_KHOAN) {
-      draft.tableThanhKhoanData = payload
+      draft.tableThanhKhoanData = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_TICKER_CONTRIBUTE) {
-      draft.chartTickerContribute = payload
+      draft.chartTickerContribute = payload;
     }
     if (type === marketType.FETCH_DATA_LINE_CHART_MARKET) {
-      draft.lineChartMarketData = payload
+      draft.lineChartMarketData = payload;
     }
     if (type === marketType.FETCH_DATA_INVESTOR_TRANSACTION) {
-      draft.dataInvestorTransaction = payload
+      draft.dataInvestorTransaction = payload;
     }
     if (type === marketType.FETCH_DATA_CASH_VALUE) {
-      draft.topCashValue = payload
+      draft.topCashValue = payload;
     }
     if (type === marketType.FETCH_DATA_DO_RONG_THI_TRUONG) {
-      draft.dataDoRongThiTruong = payload
+      draft.dataDoRongThiTruong = payload;
     }
     if (type === marketType.FETCH_DATA_DIEN_DONG_THI_TRUONG) {
-      draft.dataBienDongThiTruong = payload
+      draft.dataBienDongThiTruong = payload;
     }
     if (type === marketType.FETCH_DATA_EXCHANGEABLE_VALUE) {
-      draft.dataExchangeableValue = payload
+      draft.dataExchangeableValue = payload;
     }
     if (type === marketType.FETCH_DATA_LIQUIDITY_GROWTH) {
-      draft.dataLiquidityGrowth = payload
+      draft.dataLiquidityGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_TRANSACTION_VALUE_RATIO) {
-      draft.dataTransactionValueRatio = payload
+      draft.dataTransactionValueRatio = payload;
     }
     if (type === marketType.FETCH_DATA_INDUSTRY_CASH_FLOW) {
-      draft.dataIndustryCashFlow = payload
+      draft.dataIndustryCashFlow = payload;
     }
     if (type === marketType.FETCH_DATA_RSI) {
-      draft.dataRSI = payload
+      draft.dataRSI = payload;
     }
     if (type === marketType.FETCH_DATA_TOP_NET_BUY_INDUSTRY) {
-      draft.dataTopNetBuyIndustry = payload
+      draft.dataTopNetBuyIndustry = payload;
     }
     if (type === marketType.FETCH_DATA_CASHFLOW_INVESTOR) {
-      draft.dataCashFlowInvestor = payload
+      draft.dataCashFlowInvestor = payload;
     }
     if (type === marketType.FETCH_DATA_TOTAL_MARKET) {
-      draft.dataTotalMarket = payload
+      draft.dataTotalMarket = payload;
     }
     if (type === marketType.FETCH_DATA_CASHFLOW_RATIO) {
-      draft.dataCashFlowRatio = payload
+      draft.dataCashFlowRatio = payload;
     }
     if (type === marketType.FETCH_DATA_MARKET_MAP) {
-      draft.dataMarketMap = payload
+      draft.dataMarketMap = payload;
     }
     if (type === marketType.FETCH_DATA_TABLE_CHANGES_PRICE) {
-      draft.dataTableChangesPrice = payload
+      draft.dataTableChangesPrice = payload;
     }
     if (type === marketType.FETCH_DATA_TABLE_LIQUIDITY_GROWTH) {
-      draft.dataTableLiquidityGrowth = payload
+      draft.dataTableLiquidityGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_CHANGES_PRICE) {
-      draft.dataChartChangesPrice = payload
+      draft.dataChartChangesPrice = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_LIQUIDITYGROWTH) {
-      draft.dataChartLiquidityGrowth = payload
+      draft.dataChartLiquidityGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_EQUITY_GROWTH) {
-      draft.dataChartEquityGrowth = payload
+      draft.dataChartEquityGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_LIABILITIES_GROWTH) {
-      draft.dataChartLiabilitiesGrowth = payload
+      draft.dataChartLiabilitiesGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_TABLE_EQUITY_GROWTH) {
-      draft.dataTableEquityGrowth = payload
+      draft.dataTableEquityGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_TABLE_LIABILITIES_GROWTH) {
-      draft.dataTableLiabilitiesGrowth = payload
+      draft.dataTableLiabilitiesGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_NET_REVENUE_GROWTH) {
-      draft.dataChartNetRevenueGrowth = payload
+      draft.dataChartNetRevenueGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_GROSS_PROFIT_GROWTH) {
-      draft.dataChartGrossProfitGrowth = payload
+      draft.dataChartGrossProfitGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_EBITDA_GROWTH) {
-      draft.dataChartEBITDAGrowth = payload
+      draft.dataChartEBITDAGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_EPS_GROWTH) {
-      draft.dataChartEPSGrowth = payload
+      draft.dataChartEPSGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_OPERATING_PROFIT_GROWTH) {
-      draft.dataChartOperatingProfitGrowth = payload
+      draft.dataChartOperatingProfitGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_CASH_DIVIDEND_GROWTH) {
-      draft.dataChartCashDividendGrowth = payload
+      draft.dataChartCashDividendGrowth = payload;
     }
     if (type === marketType.FETCH_DATA_HOT_INDUSTRY) {
-      draft.dataHotIndustry = payload
+      draft.dataHotIndustry = payload;
     }
-    if (type === 'QUERY') {
-      draft.dataQuery = payload
+    if (type === "QUERY") {
+      draft.dataQuery = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_AVERAGE_PE) {
-      draft.dataChartAveragePE = payload
+      draft.dataChartAveragePE = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_AVERAGE_PB) {
-      draft.dataChartAveragePB = payload
+      draft.dataChartAveragePB = payload;
     }
     if (type === marketType.FETCH_DATA_TABLE_AVERAGE_PE) {
-      draft.dataTableAveragePE = payload
+      draft.dataTableAveragePE = payload;
     }
     if (type === marketType.FETCH_DATA_TABLE_AVERAGE_PB) {
-      draft.dataTableAveragePB = payload
+      draft.dataTableAveragePB = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_PAYOUT_RATIO) {
-      draft.dataChartPayoutRatio = payload
+      draft.dataChartPayoutRatio = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_CASH_PAYOUT_RATIO) {
-      draft.dataChartCashPayoutRatio = payload
+      draft.dataChartCashPayoutRatio = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_ASSET_TURNOVER_RATIO) {
-      draft.dataChartAssetTurnoverRatio = payload
+      draft.dataChartAssetTurnoverRatio = payload;
     }
     if (type === marketType.FETCH_DATA_TABLE_AVERAGE_DEBT_RATIO) {
-      draft.dataTableAverageDebtRatio = payload
+      draft.dataTableAverageDebtRatio = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_MINING_PROFIT_MARGIN) {
-      draft.dataChartMiningProfitMargin = payload
+      draft.dataChartMiningProfitMargin = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_INTEREST_COVERAGE_RATIO) {
-      draft.dataChartInterestCoverageRatio = payload
+      draft.dataChartInterestCoverageRatio = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_AVERAGE_DEBIT_INDUSTRY) {
-      draft.dataChartAverageDebitIndustry = payload
+      draft.dataChartAverageDebitIndustry = payload;
     }
     if (type === marketType.FETCH_DATA_CHART_NET_PROFIT_MARGIN) {
-      draft.dataChartNetProfitMargin = payload
+      draft.dataChartNetProfitMargin = payload;
     }
     if (type === marketType.FETCH_DATA_TABLE_MINING_PROFIT_MARGIN) {
-      draft.dataTableMiningProfitMargin = payload
+      draft.dataTableMiningProfitMargin = payload;
     }
   });
 };

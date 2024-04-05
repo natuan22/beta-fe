@@ -7,43 +7,42 @@ import { fetchDataBarChartLeft } from "../thunk";
 import socket from "../utils/socket";
 
 const BarChartLeft = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const dataBarChartLeft = useSelector((state) => state.chart.dataBarChartLeft);
   const [data, setData] = useState(dataBarChartLeft?.data ?? []);
 
-  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const [colorText, setColorText] = useState(localStorage.getItem("color"));
   const color = useSelector((state) => state.color.colorText);
 
-  const [query, setQuery] = useState('hsx')
-  const [socketOld, setSocketOld] = useState('')
+  const [query, setQuery] = useState("hsx");
+  const [socketOld, setSocketOld] = useState("");
 
   useEffect(() => {
     setColorText(color);
   }, [color]);
 
   useEffect(() => {
-    if (dataBarChartLeft)
-      setData(dataBarChartLeft);
+    if (dataBarChartLeft) setData(dataBarChartLeft);
   }, [dataBarChartLeft]);
 
   useEffect(() => {
     if (dataBarChartLeft) {
-      conSocket(query)
-      setSocketOld(query)
+      conSocket(query);
+      setSocketOld(query);
     }
-  }, [query])
+  }, [query]);
 
   const disconnectSocket = (socketOld) => {
     if (socket.active) {
       socket.off(`listen-${socketOld}-ticker-contribute-0`);
     }
-  }
+  };
 
   const conSocket = (key) => {
     socket.on(`listen-${key}-ticker-contribute-0`, (newData) => {
-      setData(newData.sort((a, b) => b.contribute_price - a.contribute_price))
+      setData(newData.sort((a, b) => b.contribute_price - a.contribute_price));
     });
-  }
+  };
 
   const options = {
     accessibility: {
@@ -62,27 +61,29 @@ const BarChartLeft = () => {
       labels: {
         step: 1,
         rotation: -45,
-        align: 'center',
+        align: "center",
         style: {
-          color: localStorage.getItem('color'),
-          fontSize: 10
-        }
+          color: localStorage.getItem("color"),
+          fontSize: 10,
+        },
       },
-      crosshair: true
+      crosshair: true,
     },
     yAxis: {
+      visible: true,
       title: {
         text: "",
       },
       labels: {
+        enabled: false,
         style: {
-          color: localStorage.getItem('color')
-        }
+          color: localStorage.getItem("color"),
+        },
       },
       gridLineWidth: 0.5,
     },
     legend: {
-      enabled: false
+      enabled: false,
     },
     tooltip: {
       shared: true,
@@ -90,33 +91,51 @@ const BarChartLeft = () => {
       valueSuffix: " ",
       pointFormatter: function () {
         return (
-          '<span style="color:' + this.color + '">●</span>' + '<span>' + ' ' + this.name + ": <b>" + this.y + "</b></span>  <b>" + "</b><br/>"
+          '<span style="color:' +
+          this.color +
+          '">●</span>' +
+          "<span>" +
+          " " +
+          this.name +
+          ": <b>" +
+          this.y +
+          "</b></span>  <b>" +
+          "</b><br/>"
         );
       },
     },
     plotOptions: {
       column: {
+        dataLabels: {
+          enabled: true,
+          format: "{point.y:.1f}", // Hiển thị giá trị trên cột với 1 số thập phân
+          style: {
+            color: localStorage.getItem("color"),
+            fontSize: "7px",
+          },
+        },
         colorByPoint: true, // enable per-point coloring
         threshold: 0, // set the threshold at zero
-        borderWidth: 0
+        borderWidth: 0,
       },
       series: {
-        borderRadius: 2
-      }
+        borderRadius: 2,
+      },
     },
     series: [
       {
-        data: Array.isArray(data) && data?.map(item => {
-          return {
-            name: item.symbol,
-            y: +item.contribute_price.toFixed(2),
-            color: item.contribute_price > 0 ? "#15b313" : "#ff0000"
-          };
-        })
+        data:
+          Array.isArray(data) &&
+          data?.map((item) => {
+            return {
+              name: item.symbol,
+              y: +item.contribute_price.toFixed(2),
+              color: item.contribute_price > 0 ? "#15b313" : "#ff0000",
+            };
+          }),
       },
     ],
   };
-
 
   return (
     <>
@@ -128,9 +147,9 @@ const BarChartLeft = () => {
         <select
           className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
           onChange={(event) => {
-            disconnectSocket(socketOld)
-            setQuery(event.target.value)
-            dispatch(fetchDataBarChartLeft((event.target.value)))
+            disconnectSocket(socketOld);
+            setQuery(event.target.value);
+            dispatch(fetchDataBarChartLeft(event.target.value));
           }}
         >
           <option value="hsx">HSX</option>
@@ -141,12 +160,18 @@ const BarChartLeft = () => {
       <div id="chart-container">
         {dataBarChartLeft?.length ? (
           <div className="xl:h-[350px] 2xl:h-[350px]">
-            <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={options}
+              containerProps={{ style: { height: "100%", width: "100%" } }}
+            />
           </div>
         ) : (
-          <div className="mt-6 flex flex-col justify-center xl:h-[325px] 2xl:h-[325px]"><Loading /></div>
+          <div className="mt-6 flex flex-col justify-center xl:h-[325px] 2xl:h-[325px]">
+            <Loading />
+          </div>
         )}
-      </div >
+      </div>
     </>
   );
 };

@@ -1,10 +1,8 @@
-import React from 'react'
-import StockDetail from './StockDetail'
+import React from "react";
+import StockDetail from "./StockDetail";
 
 const Stock = () => {
-    return (
-        <StockDetail />
-    )
-}
+  return <StockDetail />;
+};
 
-export default Stock
+export default Stock;

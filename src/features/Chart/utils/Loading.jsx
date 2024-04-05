@@ -1,5 +1,5 @@
-import React from 'react';
-import './loading.css'
+import React from "react";
+import "./loading.css";
 const Loading = () => (
   <div className="loader relative pt-[100px]">
     <div className="square" id="sq1" />
@@ -12,7 +12,6 @@ const Loading = () => (
     <div className="square" id="sq8" />
     <div className="square" id="sq9" />
   </div>
-
 );
 
 export default Loading;

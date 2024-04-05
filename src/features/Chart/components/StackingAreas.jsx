@@ -4,10 +4,13 @@ import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
-import { timeStackingChart15h00, timeStackingChart9h15 } from "../../../helper/dateTime.helper";
+import {
+  timeStackingChart15h00,
+  timeStackingChart9h15,
+} from "../../../helper/dateTime.helper";
 
 const StackingAreas = () => {
-  const [colorText, setColorText] = useState(localStorage.getItem('color'));
+  const [colorText, setColorText] = useState(localStorage.getItem("color"));
   const color = useSelector((state) => state.color.colorText);
 
   useEffect(() => {
@@ -89,9 +92,9 @@ const StackingAreas = () => {
         //   return moment.utc(this.value).format("HH:mm");
         // },
         style: {
-          color: localStorage.getItem('color'),
+          color: localStorage.getItem("color"),
         },
-        rotation: -45
+        rotation: -45,
       },
       crosshair: {
         color: "red",
@@ -108,12 +111,12 @@ const StackingAreas = () => {
       title: {
         text: "",
         style: {
-          color: localStorage.getItem('color'),
+          color: localStorage.getItem("color"),
         },
       },
       labels: {
         style: {
-          color: localStorage.getItem('color'),
+          color: localStorage.getItem("color"),
         },
         formatter: function () {
           return this.value + "%";
@@ -123,7 +126,7 @@ const StackingAreas = () => {
     },
     legend: {
       itemStyle: {
-        color: localStorage.getItem('color'),
+        color: localStorage.getItem("color"),
       },
       enabled: true,
       labelFormatter: function () {
@@ -141,7 +144,14 @@ const StackingAreas = () => {
       backgroundColor: "#fff",
       pointFormatter: function () {
         return (
-          '<span style="color:' + this.series.color + '">' + this.series.name + ": <b>" + this.y + "</b></span>  <b>" + "</b><br/>"
+          '<span style="color:' +
+          this.series.color +
+          '">' +
+          this.series.name +
+          ": <b>" +
+          this.y +
+          "</b></span>  <b>" +
+          "</b><br/>"
         );
       },
     },
@@ -232,24 +242,37 @@ const StackingAreas = () => {
   const currentDay = currentTime.getDay();
 
   // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
-  const isWithinTimeRange = (currentHour > 9 || (currentHour === 9 && currentMinute >= 15) || currentHour === 0);
+  const isWithinTimeRange =
+    currentHour > 9 ||
+    (currentHour === 9 && currentMinute >= 15) ||
+    currentHour === 0;
 
   // Kiểm tra xem ngày là thứ 7 hoặc chủ nhật
-  const isWeekend = (currentDay === 0 || currentDay === 6);
+  const isWeekend = currentDay === 0 || currentDay === 6;
 
   // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59 hoặc là ngày thứ 7/chủ nhật, hiển thị dữ liệu
   if (!isWithinTimeRange || isWeekend) {
-    return <div className="text-center mt-6 dark:text-white text-black">Chưa có dữ liệu giao dịch</div>
+    return (
+      <div className="text-center mt-6 dark:text-white text-black">
+        Chưa có dữ liệu giao dịch
+      </div>
+    );
   }
 
   return (
     <>
       {dataStackingChart.data || dataStackingChart?.data?.length ? (
         <div className="2xl:h-[560px] xl:h-[560px]">
-          <HighchartsReact highcharts={Highcharts} options={options} containerProps={{ style: { height: '100%', width: '100%' } }} />
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
+            containerProps={{ style: { height: "100%", width: "100%" } }}
+          />
         </div>
       ) : (
-        <div className="mt-6"><Loading /></div>
+        <div className="mt-6">
+          <Loading />
+        </div>
       )}
     </>
   );

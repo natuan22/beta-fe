@@ -34,8 +34,8 @@ const IndexMarket = () => {
     dispatch(fetchDataWidthMarket("VNINDEX"));
     dispatch(fetchDataAreaChart1);
     dispatch(fetchDataAreaChart2);
-    dispatch(fetchDataLineChartMarket("VNINDEX", '0'))
-    dispatch(fetchDataBienDongThiTruong('VNINDEX'))
+    dispatch(fetchDataLineChartMarket("VNINDEX", "0"));
+    dispatch(fetchDataBienDongThiTruong("VNINDEX"));
   }, [dispatch]);
 
   return (

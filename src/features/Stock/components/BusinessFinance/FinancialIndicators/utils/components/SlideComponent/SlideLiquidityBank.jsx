@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const SlideLiquidityBank = () => {
-    return (
-        <div>SlideLiquidityBank</div>
-    )
-}
+  return <div>SlideLiquidityBank</div>;
+};
 
-export default SlideLiquidityBank
+export default SlideLiquidityBank;

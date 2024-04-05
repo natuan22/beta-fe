@@ -2,7 +2,7 @@ import produce from "immer";
 import * as authenTypes from "./utils/constant";
 const initialState = {
   userData: null,
-  loginMessage: '',
+  loginMessage: "",
   userRegister: {},
   registerStatus: [],
 };
@@ -10,19 +10,19 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
   return produce(state, (draft) => {
     if (type === authenTypes.USER_LOGIN) {
-      draft.userData = payload
+      draft.userData = payload;
     }
     if (type === authenTypes.LOGIN_FAIL) {
-      draft.loginMessage = payload
+      draft.loginMessage = payload;
     }
     if (type === authenTypes.USER_REGISTER) {
-      draft.userRegister = payload
+      draft.userRegister = payload;
     }
     if (type === authenTypes.ID_REGISTED) {
-      draft.registerStatus = payload
+      draft.registerStatus = payload;
     }
     if (type === authenTypes.USER_LOGOUT_ACTION) {
-      draft.userData = null
+      draft.userData = null;
     }
   });
 };
