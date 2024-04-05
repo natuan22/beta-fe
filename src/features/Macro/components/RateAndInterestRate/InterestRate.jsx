@@ -99,7 +99,7 @@ const InterestRate = () => {
           color: localStorage.getItem("color"),
         },
       },
-      gridLineWidth: 0.5,
+      gridLineWidth: 0.2,
     },
     legend: {
       align: "center",

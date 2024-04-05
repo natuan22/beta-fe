@@ -96,7 +96,7 @@ const JobFluctuations = () => {
             color: localStorage.getItem("color"), // màu cho các nhãn trục y
           },
         },
-        gridLineWidth: 0.5,
+        gridLineWidth: 0.2,
       },
       {
         title: {
@@ -111,7 +111,7 @@ const JobFluctuations = () => {
           },
         },
         opposite: true,
-        gridLineWidth: 0.5,
+        gridLineWidth: 0.2,
       },
     ],
     legend: {

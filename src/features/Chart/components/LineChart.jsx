@@ -21,11 +21,11 @@ const LineChart = () => {
   }, [color]);
   // console.log({ dataRealTime })
   useEffect(() => {
-    if (dataLineChartHomePage?.data?.length) {
-      setDataRealTime(dataLineChartHomePage.data);
+    if (dataLineChartHomePage?.data?.chart?.length) {
+      setDataRealTime(dataLineChartHomePage.data.chart);
     }
 
-    if (dataLineChartHomePage?.data?.length) {
+    if (dataLineChartHomePage?.data?.chart?.length) {
       socket.on("listen-chi-so-VNINDEX", (newData) => {
         setDataRealTime((prevData) => [...prevData, ...newData]);
       });
@@ -57,6 +57,16 @@ const LineChart = () => {
         name: "Điểm",
         data,
         lineWidth: 1.2,
+        zoneAxis: "y",
+        zones: [
+          {
+            value: dataLineChartHomePage?.data?.prevClosePrice, // Giá trị tách màu (nếu giá trị dưới 5 thì màu đỏ, còn trên 5 thì màu xanh)
+            color: "#ff0000",
+          },
+          {
+            color: "#15b313",
+          },
+        ],
       },
     ],
     yAxis: {
@@ -71,7 +81,16 @@ const LineChart = () => {
           color: localStorage.getItem("color"),
         },
       },
-      gridLineWidth: 0.5,
+      gridLineWidth: 0.2,
+      plotLines: [
+        {
+          value: dataLineChartHomePage?.data?.prevClosePrice,
+          color: "gray",
+          dashStyle: "dot", // Kiểu đường line (có thể là 'dash', 'dot', hoặc 'solid')
+          width: 2,
+          zIndex: 2,
+        },
+      ],
     },
     xAxis: {
       type: "datetime",
@@ -133,7 +152,7 @@ const LineChart = () => {
 
   return (
     <div id="chart-container" className="h-[340px]">
-      {dataLineChartHomePage?.data?.length ? (
+      {dataLineChartHomePage?.data?.chart.length ? (
         <HighchartsReact
           highcharts={Highcharts}
           options={options}

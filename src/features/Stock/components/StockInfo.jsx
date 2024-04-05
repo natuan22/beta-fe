@@ -9,6 +9,7 @@ import { useState } from "react";
 import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
 import { Skeleton } from "@mui/material";
 import imgDefault from "../utils/img/default-image.jpg";
+import formatNumberCurrency from "../../../helper/formatNumberCurrency";
 const resourceURL = process.env.REACT_APP_RESOURCE_URL;
 
 const StockInfo = ({ codeUrl }) => {
@@ -126,10 +127,7 @@ const StockInfo = ({ codeUrl }) => {
                   >
                     <p className="font-semibold">KLGD</p>
                     <p className="lg:text-2xl md:text-base lg:leading-[70px] md:leading-10">
-                      {data.kldg &&
-                        data.kldg.toLocaleString("vi-VN", {
-                          maximumFractionDigits: 2,
-                        })}
+                      {data.kldg && formatNumberCurrency(data.kldg)}
                     </p>
                   </td>
                   <td
@@ -164,11 +162,7 @@ const StockInfo = ({ codeUrl }) => {
                   >
                     <p className="font-semibold">VỐN HOÁ (TỶ)</p>
                     <p className="lg:text-2xl md:text-base lg:leading-[70px] md:leading-10">
-                      {data.vh &&
-                        (data.vh / 1000000000).toLocaleString("vi-VN", {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        })}
+                      {data.vh && formatNumberCurrency(data.vh / 1000000000)}
                     </p>
                   </td>
                   <td
@@ -235,7 +229,7 @@ const StockInfo = ({ codeUrl }) => {
                       {data.p_year &&
                         data.p_year.toLocaleString("vi-VN", {
                           minimumFractionDigits: 2,
-                          maximumFractionDigits: 3,
+                          maximumFractionDigits: 2,
                         })}
                       %
                     </p>

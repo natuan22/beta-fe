@@ -35,7 +35,7 @@ export const stockService = {
     });
   },
   fetchDataCashFlow: (stock, order, type) => {
-    return https.get("api/v1/shares/can-doi-ke-toan", {
+    return https.get("api/v1/shares/luu-chuyen-tien-te", {
       params: {
         stock,
         order,

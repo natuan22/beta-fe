@@ -122,7 +122,7 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
             color: localStorage.getItem("color"), // màu cho các nhãn trục y
           },
         },
-        gridLineWidth: 0.5,
+        gridLineWidth: 0.2,
       },
       {
         title: {
@@ -137,7 +137,7 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
           },
         },
         opposite: true,
-        gridLineWidth: 0.5,
+        gridLineWidth: 0.2,
       },
     ],
     plotOptions: {

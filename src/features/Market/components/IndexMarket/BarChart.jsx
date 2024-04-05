@@ -130,7 +130,7 @@ const BarChart = () => {
             color: localStorage.getItem("color"),
           },
         },
-        gridLineWidth: 0.5,
+        gridLineWidth: 0.2,
       },
       legend: {
         enabled: false,
@@ -214,7 +214,7 @@ const BarChart = () => {
             color: localStorage.getItem("color"),
           },
         },
-        gridLineWidth: 0.5,
+        gridLineWidth: 0.2,
       },
       legend: {
         enabled: false,
