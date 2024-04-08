@@ -30,9 +30,9 @@ export const fetchDataTableTransactionStatistics =
     }
   };
 
-export const fetchDataFinancialIndicators = (stock) => async (dispatch) => {
+export const fetchDataFinancialIndicators = (stock, order, type) => async (dispatch) => {
   try {
-    const res = await stockService.fetchDataFinancialIndicators(stock);
+    const res = await stockService.fetchDataFinancialIndicators(stock, order, type);
     dispatch({
       type: stockType.FETCH_DATA_FINANCIAL_INDICATORS,
       payload: res.data.data,

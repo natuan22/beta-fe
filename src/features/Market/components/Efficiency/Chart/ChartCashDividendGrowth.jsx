@@ -125,7 +125,7 @@ const ChartCashDividendGrowth = (props) => {
             return this.value + "%";
           },
         },
-        gridLineWidth: 0.2,
+        gridLineWidth: 0.1,
       },
       {
         title: {
@@ -140,7 +140,7 @@ const ChartCashDividendGrowth = (props) => {
           },
         },
         opposite: true,
-        gridLineWidth: 0.2,
+        gridLineWidth: 0.1,
       },
     ],
     legend: {

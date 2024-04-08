@@ -118,7 +118,7 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                 </div>
 
                 <div className="xl:mt-[9px] lg:mt-4">
-                  <FinancialIndicators codeSearch={queryApi.stock} />
+                  <FinancialIndicators queryApi={queryApi} />
                 </div>
               </div>
 

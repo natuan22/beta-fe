@@ -58,10 +58,12 @@ export const stockService = {
       },
     });
   },
-  fetchDataFinancialIndicators: (stock) => {
+  fetchDataFinancialIndicators: (stock, order, type) => {
     return https.get("api/v1/shares/chi-so-tai-chinh", {
       params: {
         stock,
+        order,
+        type,
       },
     });
   },

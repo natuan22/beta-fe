@@ -34,7 +34,13 @@ const LineChart = () => {
   const data = dataRealTime?.map((item) => {
     return [item.tradingDate, item.indexValue];
   });
-  // console.log(data)
+  // Lấy ngày hôm nay
+  const today = new Date();
+  today.setHours(9);
+  const newData = [[today.getTime(), dataRealTime[0]?.indexValue]];
+
+  const newDataArray = newData.concat(data);
+
   // Thiết lập các tùy chọn của biểu đồ
   const options = {
     accessibility: {
@@ -55,7 +61,7 @@ const LineChart = () => {
     series: [
       {
         name: "Điểm",
-        data,
+        data: newDataArray,
         lineWidth: 1.2,
         zoneAxis: "y",
         zones: [
@@ -81,7 +87,7 @@ const LineChart = () => {
           color: localStorage.getItem("color"),
         },
       },
-      gridLineWidth: 0.2,
+      gridLineWidth: 0.1,
       plotLines: [
         {
           value: dataLineChartHomePage?.data?.prevClosePrice,

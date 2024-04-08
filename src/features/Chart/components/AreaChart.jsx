@@ -67,7 +67,7 @@ function AreaChart() {
           color: localStorage.getItem("color"),
         },
       },
-      gridLineWidth: 0.2,
+      gridLineWidth: 0.1,
     },
 
     legend: {

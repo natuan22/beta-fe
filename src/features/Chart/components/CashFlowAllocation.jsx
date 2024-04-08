@@ -4,6 +4,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
+import formatNumberCurrency from "../../../helper/formatNumberCurrency";
 
 const CashFlowAllocation = () => {
   const dataCashFlowAllocation = useSelector(
@@ -61,7 +62,7 @@ const CashFlowAllocation = () => {
           color: localStorage.getItem("color"),
         },
       },
-      gridLineWidth: 0.2,
+      gridLineWidth: 0.1,
     },
     legend: {
       enabled: false,
@@ -73,7 +74,10 @@ const CashFlowAllocation = () => {
         borderWidth: 0,
         dataLabels: {
           enabled: true,
-          format: "{point.y:.1f}", // Hiển thị giá trị trên cột với 1 số thập phân
+          // format: "{point.y:.1f}", // Hiển thị giá trị trên cột với 1 số thập phân
+          formatter: function () {
+            return formatNumberCurrency(this.y); // Định dạng số với dấu phân cách hàng nghìn
+          },
           style: {
             color: localStorage.getItem("color"),
             fontSize: "11px",

@@ -23,7 +23,13 @@ const CandleChart = ({ code, dataChart }) => {
         item.time,
         item.closePrice,
       ]);
-      setData(mappedData);
+      // Lấy ngày hôm nay
+      const today = new Date();
+      today.setHours(9);
+      const newData = [[today.getTime(), dataCandleChart.chart[0]?.closePrice]];
+
+      const newDataArray = newData.concat(mappedData);
+      setData(newDataArray);
     }
   }, [dataCandleChart]);
 
@@ -61,7 +67,7 @@ const CandleChart = ({ code, dataChart }) => {
     },
     series: [
       {
-        type: "spline", // Loại biểu đồ nến
+        type: "line", // Loại biểu đồ nến
         name: "Giá cổ phiếu",
         data: data,
         color: "#7cb5ec",
@@ -89,7 +95,7 @@ const CandleChart = ({ code, dataChart }) => {
           color: localStorage.getItem("color"),
         },
       },
-      gridLineWidth: 0.2,
+      gridLineWidth: 0.1,
       plotLines: [
         {
           value: dataCandleChart?.prevClosePrice * 1000,
