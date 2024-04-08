@@ -4,7 +4,7 @@ import Loading from "../../../Chart/utils/Loading";
 import { fetchDataFinancialIndicators } from "../../thunk";
 import formatNumberCurrency from "../../../../helper/formatNumberCurrency";
 
-const FinancialIndicators = ({ codeSearch }) => {
+const FinancialIndicators = ({ queryApi }) => {
   const dispatch = useDispatch();
   const { dataFinancialIndicator } = useSelector((state) => state.stock);
   const [dates, setDates] = useState();
@@ -12,18 +12,28 @@ const FinancialIndicators = ({ codeSearch }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchDataFinancialIndicators(codeSearch));
-  }, [dispatch, codeSearch]);
+    dispatch(fetchDataFinancialIndicators(queryApi.stock, queryApi.order, queryApi.type));
+  }, [dispatch, queryApi]);
 
   useEffect(() => {
     if (dataFinancialIndicator?.length > 0) {
       setLoading(false);
-      const modifiedArray = dataFinancialIndicator.map((item) => {
-        const year = item.date.slice(0, 4);
-        const quarter = item.date.slice(4);
+      let modifiedArray;
 
-        return { ...item, date: `Quý ${quarter}/${year}` };
-      });
+      if (queryApi.order === 0) {
+        modifiedArray = dataFinancialIndicator.map((item) => {
+          const year = item.date.slice(0, 4);
+          const quarter = item.date.slice(4);
+
+          return { ...item, date: `Quý ${quarter}/${year}` };
+        });
+      } else {
+        modifiedArray = dataFinancialIndicator.map((item) => {
+          const year = item.date.slice(0, 4);
+
+          return { ...item, date: `Năm ${year}` };
+        });
+      }
 
       const dates = [...new Set(modifiedArray?.map((item) => item.date))];
       setDates(dates);
@@ -39,7 +49,7 @@ const FinancialIndicators = ({ codeSearch }) => {
       );
     }
   }, [dataFinancialIndicator]);
-
+console.log(dataFinancialIndicator)
   return (
     <div>
       <section className="pt-4">

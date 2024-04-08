@@ -172,10 +172,11 @@ const StockInfo = ({ codeUrl }) => {
                     <p className="font-semibold">ROAE</p>
                     <p className="lg:text-2xl md:text-base lg:leading-[70px] md:leading-10">
                       {data.roae &&
-                        data.roae.toLocaleString("vi-VN", {
+                        (data.roae * 100).toLocaleString("vi-VN", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                         })}
+                      %
                     </p>
                   </td>
                   <td
@@ -185,10 +186,11 @@ const StockInfo = ({ codeUrl }) => {
                     <p className="font-semibold">ROAA</p>
                     <p className="lg:text-2xl md:text-base lg:leading-[70px] md:leading-10">
                       {data.roaa &&
-                        data.roaa.toLocaleString("vi-VN", {
+                        (data.roaa * 100).toLocaleString("vi-VN", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                         })}
+                      %
                     </p>
                   </td>
                 </tr>

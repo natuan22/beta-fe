@@ -85,7 +85,7 @@ const BarChartRight = () => {
         ...data?.map((item) => item.net_value_foreign / 1000000000),
         0
       ),
-      gridLineWidth: 0.2,
+      gridLineWidth: 0.1,
     },
     legend: {
       enabled: false,
