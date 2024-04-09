@@ -55,8 +55,10 @@
 }
 
 .verifyButton {
-  width: 100%;
+  width: 150px;
   height: 30px;
+  padding-top: 8px;
+  padding-bottom: 10px;
   border: none;
   background-color: rgb(127, 129, 255);
   color: white;

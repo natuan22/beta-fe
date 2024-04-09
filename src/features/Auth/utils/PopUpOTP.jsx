@@ -4,6 +4,7 @@ import "./otpForm.css";
 import { useNavigate } from "react-router-dom";
 import { https } from "../../../services/config";
 import { message } from "antd";
+import OtpInput from "react-otp-input";
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
@@ -14,6 +15,7 @@ const PopUpOTP = ({ open, userID }) => {
   const [isOpen, setIsOpen] = useState(open);
   const inputs = useRef([]);
   const [countdown, setCountdown] = useState(300);
+  const [verifyOTP, setVerifyOTP] = useState("");
   const warning = (value) => {
     messageApi.open({
       type: "warning",
@@ -48,16 +50,6 @@ const PopUpOTP = ({ open, userID }) => {
   }, [isResendDisabled, countdown]);
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Ngăn chặn việc reload trang khi submit form
-    // Lấy giá trị từ các trường input và đặt vào biến OTPValue
-    const otpInput1 = document.getElementById("otp-input1").value;
-    const otpInput2 = document.getElementById("otp-input2").value;
-    const otpInput3 = document.getElementById("otp-input3").value;
-    const otpInput4 = document.getElementById("otp-input4").value;
-    const otpInput5 = document.getElementById("otp-input5").value;
-    const otpInput6 = document.getElementById("otp-input6").value;
-    const verifyOTP =
-      otpInput1 + otpInput2 + otpInput3 + otpInput4 + otpInput5 + otpInput6;
     try {
       const response = await https.post(
         `${apiUrl}/api/v1/auth/verify-otp/${userID}`,
@@ -87,14 +79,6 @@ const PopUpOTP = ({ open, userID }) => {
     }
   };
 
-  const handleInputChange = (index, event) => {
-    const value = event.target.value;
-    inputs.current[index] = value;
-    // Kiểm tra nếu giá trị đã đủ độ dài, chuyển focus đến input tiếp theo
-    if (value.length === 1 && index < inputs.current.length - 1) {
-      inputs.current[index + 1].focus();
-    }
-  };
   return (
     <>
       {contextHolder}
@@ -104,20 +88,15 @@ const PopUpOTP = ({ open, userID }) => {
           <p className="otpSubheading ">
             Chúng tôi đã gửi mã xác minh tới số điện thoại di động của bạn
           </p>
-          <div className="inputContainer">
-            {[...Array(6)].map((_, index) => (
-              <input
-                key={index}
-                ref={(input) => (inputs.current[index] = input)}
-                required="required"
-                maxLength={1}
-                type="text"
-                className="otp-input"
-                id={`otp-input${index + 1}`}
-                onChange={(e) => handleInputChange(index, e)}
-              />
-            ))}
-          </div>
+          <OtpInput
+            value={verifyOTP}
+            onChange={setVerifyOTP}
+            numInputs={6}
+            renderInput={(props) => <input type="number" {...props} />}
+            containerStyle={"flex w-[300px] justify-between"}
+            inputStyle={{ width: "30px", height: "30px" }}
+            inputType={"tel"}
+          />
           <button onClick={handleSubmit} className="verifyButton" type="submit">
             Xác nhận
           </button>
