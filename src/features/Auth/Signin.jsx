@@ -36,7 +36,12 @@ const Signin = () => {
   }, [isLogin, navigate]);
 
   return (
-    <div className="bg-signinBackground bg-no-repeat bg-cover h-auto">
+    <div
+      className="bg-no-repeat bg-cover h-auto"
+      style={{
+        backgroundImage: `url('${apiUrl}/resources/images/login-background.png')`,
+      }}
+    >
       <div className="container mx-auto h-auto pt-[90px] pb-[136px] w-[80%] relative">
         <nav className="flex justify-around mb-[70px] xs:text-[10px] md:text-base lg:text-base xl:text-base">
           <NavLink to="/" className="text-white no-underline">

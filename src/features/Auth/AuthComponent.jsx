@@ -5,7 +5,12 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 const apiUrl = process.env.REACT_APP_BASE_URL;
 const AuthComponent = () => {
   return (
-    <div className="bg-signinBackground h-screen   ">
+    <div
+      className="h-screen"
+      style={{
+        backgroundImage: `url('${apiUrl}/resources/images/login-background.png')`,
+      }}
+    >
       <div className="header container mx-auto   flex flex-col items-center  w-full">
         <header className=" container flex justify-around w-full py-10">
           <NavLink to="/" className="text-white no-underline">

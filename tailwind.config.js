@@ -32,8 +32,6 @@ module.exports = {
         marquee: 'marquee 30s linear infinite',
       },
       backgroundImage: {
-        "signinBackground": `url('${apiUrl}/resources/images/login-background.png')`,
-        "footerBackground": `url('${apiUrl}/resources/images/bg_footer.png')`,
         'bgMoving': 'linear-gradient(90deg, #7062DF 0%, #0D3D9B 100%)'
       },
       colors: {
