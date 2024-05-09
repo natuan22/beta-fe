@@ -12,7 +12,13 @@ const FinancialIndicators = ({ queryApi }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchDataFinancialIndicators(queryApi.stock, queryApi.order, queryApi.type));
+    dispatch(
+      fetchDataFinancialIndicators(
+        queryApi.stock,
+        queryApi.order,
+        queryApi.type
+      )
+    );
   }, [dispatch, queryApi]);
 
   useEffect(() => {
@@ -49,7 +55,7 @@ const FinancialIndicators = ({ queryApi }) => {
       );
     }
   }, [dataFinancialIndicator]);
-console.log(dataFinancialIndicator)
+  // console.log(dataFinancialIndicator)
   return (
     <div>
       <section className="pt-4">
@@ -93,7 +99,7 @@ console.log(dataFinancialIndicator)
                             className={`text-sm text-center align-middle whitespace-nowrap px-1 py-[14px] font-semibold dark:text-white text-black`}
                           >
                             {item.name === "ROE" || item.name === "ROA" ? (
-                              <span>{formatNumberCurrency(value * 100)}%</span>
+                              <span>{formatNumberCurrency(value)}%</span>
                             ) : (
                               formatNumberCurrency(value)
                             )}

@@ -43,7 +43,7 @@ const StockInfo = ({ codeUrl }) => {
 
   useEffect(() => {
     socket.on(`listen-co-phieu-${code}`, (newData) => {
-      setDataChart([newData.time, newData.closePrice]);
+      setDataChart([newData.time, newData.closePrice * 1000]);
       setData((prevData) => ({
         ...prevData,
         ...newData,
@@ -97,7 +97,7 @@ const StockInfo = ({ codeUrl }) => {
                           data.perChange
                         )}`}
                       >
-                        {data.closePrice}
+                        {formatNumberCurrency(data.closePrice * 1000)}
                       </p>
                       <p className={`font-bold ${getColor(data.perChange)}`}>
                         {data.change &&
@@ -172,7 +172,7 @@ const StockInfo = ({ codeUrl }) => {
                     <p className="font-semibold">ROAE</p>
                     <p className="lg:text-2xl md:text-base lg:leading-[70px] md:leading-10">
                       {data.roae &&
-                        (data.roae * 100).toLocaleString("vi-VN", {
+                        data.roae.toLocaleString("vi-VN", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                         })}
@@ -186,7 +186,7 @@ const StockInfo = ({ codeUrl }) => {
                     <p className="font-semibold">ROAA</p>
                     <p className="lg:text-2xl md:text-base lg:leading-[70px] md:leading-10">
                       {data.roaa &&
-                        (data.roaa * 100).toLocaleString("vi-VN", {
+                        data.roaa.toLocaleString("vi-VN", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                         })}

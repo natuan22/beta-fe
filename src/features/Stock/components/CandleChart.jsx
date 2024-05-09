@@ -35,7 +35,7 @@ const CandleChart = ({ code, dataChart }) => {
 
   useEffect(() => {
     if (dataChart?.length > 0) {
-      setData((preData) => [...preData, dataChart]);
+      setData((preData) => [...preData, ...[dataChart]]);
     }
   }, [dataChart]);
 
