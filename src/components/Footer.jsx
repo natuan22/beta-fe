@@ -15,7 +15,12 @@ const apiUrl = process.env.REACT_APP_BASE_URL;
 const Footer = () => {
   return (
     <>
-      <footer className="relative z-10 bg-footerBackground pt-10 pb-10 px-10 my-2.5 bg-cover xl:h-[275px] lg:h-[290px]">
+      <footer
+        className={`relative z-10 pt-10 pb-10 px-10 my-2.5 bg-cover xl:h-[275px] lg:h-[290px]`}
+        style={{
+          backgroundImage: `url('${apiUrl}/resources/images/bg_footer.png')`,
+        }}
+      >
         <div className="container mx-auto">
           <div className="mb-1 w-[130px] xl:translate-x-28 lg:translate-x-16 md:translate-x-8 sm:translate-x-20 xs:translate-x-16 xxs:translate-x-12">
             <a
