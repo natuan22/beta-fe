@@ -38,7 +38,7 @@ export const routes = [
   { path: "/", component: Home },
 
   // navigation tab
-  // { path: "/nganh", component: Nav1 },
+  { path: "/nganh", component: Nav1 },
   { path: "/vi-mo", component: Macro },
   { path: "/trang-khong-ton-tai", component: Nav4 },
 
@@ -99,22 +99,22 @@ export const marketRoute = [
   },
 ];
 
-// export const macroRoutes = [
-//   {
-//     path: "vi-mo",
-//     component: Macro,
-//     children: [
-//       {
-//         path: "vi-mo-trong-nuoc",
-//         component: DomesticMacro,
-//       },
-//       {
-//         path: "vi-mo-quoc-te",
-//         component: ForeignMacro,
-//       },
-//     ],
-//   },
-// ];
+export const macroRoutes = [
+  {
+    path: "vi-mo",
+    component: Macro,
+    children: [
+      {
+        path: "vi-mo-trong-nuoc",
+        component: DomesticMacro,
+      },
+      {
+        path: "vi-mo-quoc-te",
+        component: ForeignMacro,
+      },
+    ],
+  },
+];
 
 export const newsCenterRoutes = [
   {
