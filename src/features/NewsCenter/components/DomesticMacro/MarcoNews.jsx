@@ -92,7 +92,7 @@ const MarcoNews = () => {
                     width={150}
                     height={100}
                   />
-                  <div className="relative">
+                  <div className="relative w-full">
                     <div className="line-clamp-2 px-2 text-[0.8rem] dark:text-white text-black text-justify items-center justify-center mt-1.5">
                       {item.sub_title}
                     </div>

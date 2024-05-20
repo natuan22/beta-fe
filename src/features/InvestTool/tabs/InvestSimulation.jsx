@@ -833,6 +833,7 @@ const InvestSimulation = () => {
                     },
                     "& .MuiInputBase-root": { borderRadius: "10px" },
                   }}
+                  inputProps={{ maxLength: 3 }}
                 />
               </div>
             </div>

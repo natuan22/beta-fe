@@ -32,7 +32,8 @@ const Header = () => {
     <>
       <div className=" relative">
         <nav className="dark:bg-black bg-white shadow-md mb-1">
-          <div className="max-w-[85.5rem] mx-auto px-4 xl:px-7 lg:px-8">
+          {/* max-w-[85.5rem] */}
+          <div className="max-w-[76rem] mx-auto px-4 xl:px-7 lg:px-8">
             <div className="flex items-center justify-between w-full h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -99,7 +100,7 @@ const Header = () => {
                     >
                       Thị trường
                     </NavLink>
-                    <NavLink
+                    {/* <NavLink
                       to="/nganh"
                       className={({ isActive }) =>
                         isActive
@@ -108,7 +109,7 @@ const Header = () => {
                       }
                     >
                       Ngành
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink
                       to="/co-phieu"
                       className={({ isActive }) =>
@@ -119,7 +120,7 @@ const Header = () => {
                     >
                       Cổ phiếu
                     </NavLink>
-                    <NavLink
+                    {/* <NavLink
                       to="/vi-mo"
                       className={({ isActive }) =>
                         isActive
@@ -128,7 +129,7 @@ const Header = () => {
                       }
                     >
                       Vĩ mô
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink
                       to="/cong-cu-dau-tu"
                       className={({ isActive }) =>
@@ -293,7 +294,7 @@ const Header = () => {
                     Thị trường
                   </NavLink>
 
-                  <NavLink
+                  {/* <NavLink
                     onClick={() => {
                       if (isOpen) setIsOpen(!isOpen);
                     }}
@@ -305,7 +306,7 @@ const Header = () => {
                     }
                   >
                     Ngành
-                  </NavLink>
+                  </NavLink> */}
 
                   <NavLink
                     onClick={() => {
@@ -321,7 +322,7 @@ const Header = () => {
                     Cổ phiếu
                   </NavLink>
 
-                  <NavLink
+                  {/* <NavLink
                     onClick={() => {
                       if (isOpen) setIsOpen(!isOpen);
                     }}
@@ -333,7 +334,7 @@ const Header = () => {
                     }
                   >
                     Vĩ mô
-                  </NavLink>
+                  </NavLink> */}
 
                   <NavLink
                     onClick={() => {

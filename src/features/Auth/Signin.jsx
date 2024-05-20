@@ -311,18 +311,18 @@ const Signin = () => {
             <a className="text-white mb-6" href="bsi.com.vn">
               <i>Quên mật khẩu ?</i>
             </a>
-            <div className="w-[50%] flex justify-around ">
+            <div className="w-[60%] flex justify-around ">
               <img
                 src={`${apiUrl}/resources/images/google-logo.png`}
                 alt="logo"
-                className="w-8 h-8 mx-7"
+                className="w-8 h-8 mx-3"
               />
               <img
                 src={`${apiUrl}/resources/images/fb-logo.png`}
                 alt="logo"
-                className="w-8 h-8 mx-7"
+                className="w-8 h-8 mx-3"
               />
-              <span className="bg-white h-[28px] mx-7 rounded-t-md">
+              <span className="bg-white h-[28px] mx-3 rounded-t-md">
                 <img
                   src={`${apiUrl}/resources/images/zalo-logo.png`}
                   alt="zaloIcon"
@@ -333,7 +333,7 @@ const Signin = () => {
               <img
                 src={`${apiUrl}/resources/images/beta-logo.png`}
                 alt="betaIcon"
-                className="w-8 h-8 mx-7"
+                className="w-8 h-8 mx-3"
               />
             </div>
             <div className="absolute bottom-[4%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
