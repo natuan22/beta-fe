@@ -247,7 +247,7 @@ const Signup = () => {
                 Đăng ký
               </button>
             </form>
-            <div className="w-[50%] flex justify-around mt-5 absolute md:bottom-[15%] xs:bottom-[11%] xxs:bottom-[11%]">
+            <div className="w-[60%] flex justify-around mt-5 absolute md:bottom-[15%] xs:bottom-[11%] xxs:bottom-[11%]">
               <img
                 src={`${apiUrl}/resources/images/google-logo.png`}
                 className="w-8 h-8 xs:mx-2 xxs:mx-2"
@@ -468,15 +468,15 @@ const Signup = () => {
               <div className="w-[50%] flex justify-around">
                 <img
                   src={`${apiUrl}/resources/images/google-logo.png`}
-                  className="w-8 h-8 mx-7"
+                  className="w-8 h-8 mx-3"
                   alt="logo"
                 />
                 <img
                   src={`${apiUrl}/resources/images/fb-logo.png`}
-                  className="w-8 h-8 mx-7"
+                  className="w-8 h-8 mx-3"
                   alt="logo"
                 />
-                <span className="bg-white h-[28px] mx-7 rounded-t-md">
+                <span className="bg-white h-[28px] mx-3 rounded-t-md">
                   <img
                     src={`${apiUrl}/resources/images/zalo-logo.png`}
                     alt="zaloIcon"
@@ -487,7 +487,7 @@ const Signup = () => {
                 <img
                   src={`${apiUrl}/resources/images/beta-logo.png`}
                   alt="betaIcon"
-                  className="w-8 h-8 mx-7"
+                  className="w-8 h-8 mx-3"
                 />
               </div>
               <div className="absolute bottom-[5%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">

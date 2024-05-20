@@ -119,7 +119,7 @@ const StockInfo = ({ codeUrl }) => {
                     className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid"
                     colSpan={3}
                   >
-                    <p className="font-semibold">{data.exchange} (%)</p>
+                    <p className="font-semibold">{data.code} (%)</p>
                   </td>
                   <td
                     className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid"

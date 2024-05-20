@@ -67,23 +67,23 @@ function App() {
       );
     }
   );
-  const mapMacroRoute = macroRoutes.map(
-    ({ path, component: Component, children }) => {
-      return (
-        <Route path={path} element={<Component />} key={path}>
-          {children?.map((Item) => {
-            return (
-              <Route
-                path={Item.path}
-                key={Item.path}
-                element={<Item.component />}
-              />
-            );
-          })}
-        </Route>
-      );
-    }
-  );
+  // const mapMacroRoute = macroRoutes.map(
+  //   ({ path, component: Component, children }) => {
+  //     return (
+  //       <Route path={path} element={<Component />} key={path}>
+  //         {children?.map((Item) => {
+  //           return (
+  //             <Route
+  //               path={Item.path}
+  //               key={Item.path}
+  //               element={<Item.component />}
+  //             />
+  //           );
+  //         })}
+  //       </Route>
+  //     );
+  //   }
+  // );
   const mapStockRoute = stockRoutes.map(
     ({ path, component: Component, children }) => {
       return (
@@ -150,7 +150,7 @@ function App() {
             );
           })}
           {mapMarketRoute}
-          {mapMacroRoute}
+          {/* {mapMacroRoute} */}
           {mapNewsCenterRoute}
           {mapStockRoute}
           {mapAuthenRoute}
