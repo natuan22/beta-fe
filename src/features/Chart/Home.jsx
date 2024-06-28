@@ -250,7 +250,7 @@ const Home = () => {
 
             <div>
               <div className="lg:block xl:flex mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
-                <div className="xl:w-[65%]">
+                <div className="w-full">
                   <div className="text-center dark:text-white text-black">
                     <h3 className="p-2 uppercase">
                       Thanh khoản thị trường sàn HSX
@@ -260,19 +260,19 @@ const Home = () => {
                     <AreaChart />
                   </div>
                 </div>
-                <div className="xl:w-[35%]">
+                {/* <div className="xl:w-[35%]">
                   <div className="px-1.5 py-1.5">
                     <TableMarketVolatility />
                   </div>
                   <div className="px-1.5 py-1.5">
                     <TableMarketLiquidity />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div>
               <div className="xl:flex lg:block mx-2 my-3 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
-                <div className="xl:w-[65%]">
+                <div className="w-full">
                   <div>
                     <div className="text-center dark:text-white text-black">
                       <h3 className="p-2 uppercase">Độ rộng thị trường</h3>
@@ -280,7 +280,7 @@ const Home = () => {
                     <StackingAreas />
                   </div>
                 </div>
-                <div className="xl:w-[35%]">
+                {/* <div className="xl:w-[35%]">
                   <div className="">
                     <div className="px-1.5 py-1.5">
                       <TableMarketEvaluation />
@@ -294,7 +294,7 @@ const Home = () => {
                     </div>
                     <CashFlowAllocation />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="mr-2 mx-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">

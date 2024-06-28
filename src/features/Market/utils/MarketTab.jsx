@@ -31,7 +31,7 @@ const MarketTab = () => {
           >
             Dòng tiền thị trường
           </NavLink>
-          <NavLink
+          {/* <NavLink
             className={(params) => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
@@ -54,7 +54,7 @@ const MarketTab = () => {
             to="/thi-truong/thi-truong-quoc-te"
           >
             Thị trường quốc tế
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
 
@@ -85,7 +85,7 @@ const MarketTab = () => {
             Dòng tiền thị trường
           </NavLink>
         </div>
-        <div className="flex justify-around mb-2">
+        {/* <div className="flex justify-around mb-2">
           <NavLink
             className={(params) => {
               if (params.isActive) {
@@ -110,7 +110,7 @@ const MarketTab = () => {
           >
             Thị trường quốc tế
           </NavLink>
-        </div>
+        </div> */}
       </div>
     </>
   );

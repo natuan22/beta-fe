@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   fetchDataAreaChart1,
   fetchDataAreaChart2,
   fetchDataEvents,
   fetchDataGeneralIndustry,
+  fetchDataGoodsDetail,
   fetchDataMacroNews,
   fetchDataNews,
+  fetchDataRateDetail,
   fetchDataTableDetail,
   fetchDataWidthMarket,
 } from "../../Chart/thunk";
@@ -21,9 +23,16 @@ import Events from "../components/IndexMarket/Events";
 import MarketBreadth from "../components/IndexMarket/MarketBreadth";
 import TableLiquidity from "../components/IndexMarket/TableLiquidity";
 import { fetchDataBienDongThiTruong, fetchDataLineChartMarket } from "../thunk";
+import GoodsDetail from "../../Chart/components/GoodsDetail";
+import RateDetail from "../../Chart/components/RateDetail";
 
 const IndexMarket = () => {
   const dispatch = useDispatch();
+  const [activeButton, setActiveButton] = useState("GoodsDetail");
+
+  const handleClick = (button) => {
+    setActiveButton(button);
+  };
 
   useEffect(() => {
     dispatch(fetchDataNews);
@@ -36,6 +45,8 @@ const IndexMarket = () => {
     dispatch(fetchDataAreaChart2);
     dispatch(fetchDataLineChartMarket("VNINDEX", "0"));
     dispatch(fetchDataBienDongThiTruong("VNINDEX"));
+    dispatch(fetchDataGoodsDetail);
+    dispatch(fetchDataRateDetail);
   }, [dispatch]);
 
   return (
@@ -59,8 +70,44 @@ const IndexMarket = () => {
             </div>
           </div>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className="pt-[4px]">
-              <TableLiquidity />
+            <div className="pt-[4px] w-[496px] h-[443px]">
+              <div className="mb-4">
+                <span>
+                  <button
+                    onClick={() => {
+                      handleClick("GoodsDetail");
+                    }}
+                    className={
+                      activeButton === "GoodsDetail"
+                        ? "border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer"
+                        : "border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer"
+                    }
+                  >
+                    Giá hàng hoá
+                  </button>
+                </span>
+                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
+                  <button
+                    onClick={() => {
+                      handleClick("RateDetail");
+                    }}
+                    className={
+                      activeButton === "RateDetail"
+                        ? "border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer"
+                        : "border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer"
+                    }
+                  >
+                    Tỷ giá
+                  </button>
+                </span>
+              </div>
+
+              {activeButton === "GoodsDetail" ? (
+                <GoodsDetail />
+              ) : (
+                <RateDetail />
+              )}
+              {/* <TableLiquidity /> */}
             </div>
             <hr />
             <div>
