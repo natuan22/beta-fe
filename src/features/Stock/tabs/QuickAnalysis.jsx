@@ -44,7 +44,7 @@ const QuickAnalysis = ({ codeUrl }) => {
       {isLoading ? (
         <>
           <div>
-            <div className="xl:flex lg:block py-2">
+            {/* <div className="xl:flex lg:block py-2">
               <div className="xl:w-[40%] lg:w-full">
                 <SpiderWebChart queryApi={queryApi} />
               </div>
@@ -59,6 +59,15 @@ const QuickAnalysis = ({ codeUrl }) => {
                     <FilterCanslim queryApi={queryApi} />
                   </div>
                 </div>
+              </div>
+            </div> */}
+            <div className="xl:flex lg:block py-2 items-center justify-center gap-10">
+              <div>
+                <SpiderWebChart queryApi={queryApi} />
+              </div>
+
+              <div className="xl:w-[576px] lg:w-full">
+                <FilterCanslim queryApi={queryApi} />
               </div>
             </div>
 

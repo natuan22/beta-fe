@@ -23,6 +23,16 @@ const LayOut = (props) => {
     };
   }, []);
 
+  useEffect(() => {
+    const scriptZalo = document.createElement("script");
+    scriptZalo.src = "https://sp.zalo.me/plugins/sdk.js";
+    document.body.appendChild(scriptZalo);
+
+    return () => {
+      document.body.removeChild(scriptZalo);
+    };
+  }, []);
+
   return (
     <div className="relative">
       <header>
@@ -30,7 +40,7 @@ const LayOut = (props) => {
       </header>
       <section className="relative">{props.children}</section>
       {showScrollButton && (
-        <div className="btnBackToTop-container fixed bottom-[10%] right-[2%] z-30 xxs:right-[50%] xxs:bottom-[-4%] xxs:translate-x-[50%] xxs:hover:translate-y-[-20px] opacity-80 transition-all duration-500 hover:opacity-100 ">
+        <div className="btnBackToTop-container fixed bottom-[14%] right-[3.5%] z-30 xxs:right-[50%] xxs:bottom-[-4%] xxs:translate-x-[50%] xxs:hover:translate-y-[-20px] opacity-80 transition-all duration-500 hover:opacity-100 ">
           <button
             style={{ backgroundColor: "orange" }}
             className=" cursor-pointer text-xl text-white rounded-full border-0 z-30 px-2 py-1 bg-transparent  "
@@ -47,6 +57,14 @@ const LayOut = (props) => {
           </div>
         </div>
       )}
+      <div
+        class="zalo-chat-widget"
+        data-oaid="1623670409453822014"
+        data-welcome-message="Rất vui khi được hỗ trợ bạn!"
+        data-autopopup="0"
+        data-width="300"
+        data-height="300"
+      ></div>
     </div>
   );
 };
