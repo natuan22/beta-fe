@@ -192,7 +192,7 @@ const TopROC = () => {
 
   return (
     <>
-      <div className="chart ">
+      <div className="chart">
         <div className="mx-2 mt-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
           <div className="dark:bg-[#151924] bg-gray-100 text-center px-20 pt-[19px]">
             <span className="font-semibold text-base uppercase dark:text-white text-black">
@@ -221,7 +221,7 @@ const TopROC = () => {
                 <HighchartsReact
                   highcharts={Highcharts}
                   options={optionsDecr}
-                  containerProps={{ style: { height: "721px", width: "100%" } }}
+                  containerProps={{ style: { height: "609px", width: "100%" } }}
                 />
               </div>
 
@@ -229,7 +229,7 @@ const TopROC = () => {
                 <HighchartsReact
                   highcharts={Highcharts}
                   options={optionsIncr}
-                  containerProps={{ style: { height: "721px", width: "100%" } }}
+                  containerProps={{ style: { height: "609px", width: "100%" } }}
                 />
               </div>
             </div>

@@ -4,7 +4,7 @@ import Loading from "../utils/Loading";
 import { useState, useEffect } from "react";
 import { getColor } from "../utils/utils";
 
-const GoodsDetail = () => {
+const GoodsDetail = ({ type }) => {
   const dataGoods = useSelector((state) => state.chart.dataGoodsDetail);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,11 @@ const GoodsDetail = () => {
     <section className="bg-blueGray-50">
       <div className="w-full">
         <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 ">
-          <div className="block w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent h-[380px] bg-transparent">
+          <div
+            className={`block w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent ${
+              type === 0 ? "h-[330px]" : "h-[370px]"
+            } bg-transparent`}
+          >
             <table className="items-center w-full border-collapse bg-transparent">
               <thead className="sticky top-0 bg-[#1E5D8B]">
                 <tr className="bg-[#1E5D8B]">

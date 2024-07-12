@@ -1,38 +1,46 @@
+import AnalysisCenter from "../features/AnalysisCenter/AnalysisCenter";
+import BusinessAnalysisReport from "../features/AnalysisCenter/tabs/BusinessAnalysisReport";
+import IndustryReport from "../features/AnalysisCenter/tabs/IndustryReport";
+import MacroeconomicReport from "../features/AnalysisCenter/tabs/MacroeconomicReport";
+import MarketAssessment from "../features/AnalysisCenter/tabs/MarketAssessment";
+import StrategicReport from "../features/AnalysisCenter/tabs/StrategicReport";
+import TechnicalAnalysis from "../features/AnalysisCenter/tabs/TechnicalAnalysis";
+import AuthComponent from "../features/Auth/AuthComponent";
 import Signin from "../features/Auth/Signin";
 import Signup from "../features/Auth/Signup";
 import Home from "../features/Chart/Home";
-import CashFlow from "../features/Market/tabs/CashFlow";
-import MarketForeign from "../features/Market/tabs/MarketForeign";
-import TechAndValuation from "../features/Market/tabs/TechAndValuation";
-import Market from "../features/Market/Market";
-import Nav1 from "../features/Navigation/Nav1";
-import Nav4 from "../features/Navigation/Nav4";
-import IndexMarket from "../features/Market/tabs/IndexMarket";
-import NonIdentifyCash from "../features/Market/tabs/CashFlow/NonIdentifyCash";
-import IdentifyCash from "../features/Market/tabs/CashFlow/IdentifyCash";
-import Technical from "../features/Market/tabs/TechAndValuation/Technical";
-import Efficiency from "../features/Market/tabs/TechAndValuation/Efficiency";
-import ForeignIndex from "../features/Market/tabs/MarketForeign/ForeignIndex";
-import GoodsMarket from "../features/Market/tabs/MarketForeign/GoodsMarket";
-import CryptocurrencyMarket from "../features/Market/tabs/MarketForeign/CryptocurrencyMarket";
-import FinancialHealth from "../features/Market/tabs/TechAndValuation/FinancialHealth";
+import InvestTool from "../features/InvestTool/InvestTool";
+import BetaSmart from "../features/InvestTool/tabs/BetaSmart";
+import InvestKnowledge from "../features/InvestTool/tabs/InvestKnowledge";
+import SignalWarning from "../features/InvestTool/tabs/SignalWarning";
+import StockFilter from "../features/InvestTool/tabs/StockFilter";
+import TradingStrategies from "../features/InvestTool/tabs/TradingStrategies";
+import Watchlist from "../features/InvestTool/tabs/Watchlist";
 import Macro from "../features/Macro/Macro";
 import DomesticMacro from "../features/Macro/Tabs/DomesticMacro";
 import ForeignMacro from "../features/Macro/Tabs/ForeignMacro";
+import Market from "../features/Market/Market";
+import CashFlow from "../features/Market/tabs/CashFlow";
+import IdentifyCash from "../features/Market/tabs/CashFlow/IdentifyCash";
+import NonIdentifyCash from "../features/Market/tabs/CashFlow/NonIdentifyCash";
+import IndexMarket from "../features/Market/tabs/IndexMarket";
+import MarketForeign from "../features/Market/tabs/MarketForeign";
+import CryptocurrencyMarket from "../features/Market/tabs/MarketForeign/CryptocurrencyMarket";
+import ForeignIndex from "../features/Market/tabs/MarketForeign/ForeignIndex";
+import GoodsMarket from "../features/Market/tabs/MarketForeign/GoodsMarket";
+import TechAndValuation from "../features/Market/tabs/TechAndValuation";
+import Efficiency from "../features/Market/tabs/TechAndValuation/Efficiency";
+import FinancialHealth from "../features/Market/tabs/TechAndValuation/FinancialHealth";
+import Technical from "../features/Market/tabs/TechAndValuation/Technical";
+import Nav1 from "../features/Navigation/Nav1";
+import Nav4 from "../features/Navigation/Nav4";
 import NewsCenter from "../features/NewsCenter/NewsCenter";
-import NewsFilterTool from "../features/NewsCenter/tabs/NewsFilterTool";
-import EnterpriseNews from "../features/NewsCenter/tabs/EnterpriseNews";
 import AnalyzeReport from "../features/NewsCenter/tabs/AnalyzeReport";
+import EnterpriseNews from "../features/NewsCenter/tabs/EnterpriseNews";
 import MacroNews from "../features/NewsCenter/tabs/MacroNews";
+import NewsFilterTool from "../features/NewsCenter/tabs/NewsFilterTool";
 import Stock from "../features/Stock/Stock";
 import StockDetail from "../features/Stock/StockDetail";
-import AuthComponent from "../features/Auth/AuthComponent";
-import InvestTool from "../features/InvestTool/InvestTool";
-import StockFilter from "../features/InvestTool/tabs/StockFilter";
-import InvestSimulation from "../features/InvestTool/tabs/InvestSimulation";
-import InvestRecommen from "../features/InvestTool/tabs/InvestRecommen";
-import InvestKnowledge from "../features/InvestTool/tabs/InvestKnowledge";
-import InvestAlgorithm from "../features/InvestTool/tabs/InvestAlgorithm";
 
 export const routes = [
   { path: "/", component: Home },
@@ -52,11 +60,12 @@ export const investToolRoutes = [
     path: "/cong-cu-dau-tu",
     component: InvestTool,
     children: [
-      { path: "bo-loc-co-phieu", component: StockFilter },
-      { path: "gia-lap-dau-tu", component: InvestSimulation },
-      { path: "khuyen-nghi-dau-tu", component: InvestRecommen },
+      { path: "danh-muc-theo-doi", component: Watchlist },
+      { path: "bo-loc", component: StockFilter },
+      { path: "canh-bao-tin-hieu", component: SignalWarning },
+      { path: "chien-luoc-giao-dich", component: TradingStrategies },
+      { path: "beta-smart", component: BetaSmart },
       { path: "kien-thuc-dau-tu", component: InvestKnowledge },
-      { path: "thuat-toan-giao-dich", component: InvestAlgorithm },
     ],
   },
 ];
@@ -140,7 +149,38 @@ export const newsCenterRoutes = [
     ],
   },
 ];
-
+export const analysisCenterRoutes = [
+  {
+    path: "trung-tam-phan-tich",
+    component: AnalysisCenter,
+    children: [
+      {
+        path: "nhan-dinh-thi-truong",
+        component: MarketAssessment,
+      },
+      {
+        path: "phan-tich-doanh-nghiep",
+        component: BusinessAnalysisReport,
+      },
+      {
+        path: "bao-cao-nganh",
+        component: IndustryReport,
+      },
+      {
+        path: "phan-tich-ky-thuat",
+        component: TechnicalAnalysis,
+      },
+      {
+        path: "bao-cao-vi-mo",
+        component: MacroeconomicReport,
+      },
+      {
+        path: "bao-cao-chien-luoc",
+        component: StrategicReport,
+      },
+    ],
+  },
+];
 export const stockRoutes = [
   {
     path: "/co-phieu",

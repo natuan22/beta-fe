@@ -30,17 +30,22 @@ export const fetchDataTableTransactionStatistics =
     }
   };
 
-export const fetchDataFinancialIndicators = (stock, order, type) => async (dispatch) => {
-  try {
-    const res = await stockService.fetchDataFinancialIndicators(stock, order, type);
-    dispatch({
-      type: stockType.FETCH_DATA_FINANCIAL_INDICATORS,
-      payload: res.data.data,
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
+export const fetchDataFinancialIndicators =
+  (stock, order, type) => async (dispatch) => {
+    try {
+      const res = await stockService.fetchDataFinancialIndicators(
+        stock,
+        order,
+        type
+      );
+      dispatch({
+        type: stockType.FETCH_DATA_FINANCIAL_INDICATORS,
+        payload: res.data.data,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 export const fetchDataBusinessResults =
   (stock, order, type) => async (dispatch) => {
     try {
@@ -478,6 +483,66 @@ export const fetchDataFilterCanslim = (stock) => async (dispatch) => {
     const res = await stockService.fetchDataFilterCanslim(stock);
     dispatch({
       type: stockType.FETCH_DATA_FILTER_CANSLIM,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchDataTechnicalIndex = (stock) => async (dispatch) => {
+  try {
+    const res = await stockService.fetchDataTechnicalIndex(stock);
+    dispatch({
+      type: stockType.FETCH_DATA_TECHNICAL_INDEX,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchDataInfoStock = (stock) => async (dispatch) => {
+  try {
+    const res = await stockService.fetchDataInfoStock(stock);
+    dispatch({
+      type: stockType.FETCH_DATA_INFO_STOCK,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchDataPriceFluctuationCorrelation = (stock) => async (dispatch) => {
+  try {
+    const res = await stockService.fetchDataPriceFluctuationCorrelation(stock);
+    dispatch({
+      type: stockType.FETCH_DATA_PRICE_FLUCTUATION_CORRELATION,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchDataPriceFluctuation = (stock) => async (dispatch) => {
+  try {
+    const res = await stockService.fetchDataPriceFluctuation(stock);
+    dispatch({
+      type: stockType.FETCH_DATA_PRICE_FLUCTUATION,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchDataSalesOrderStatistics = (stock) => async (dispatch) => {
+  try {
+    const res = await stockService.fetchDataSalesOrderStatistics(stock);
+    dispatch({
+      type: stockType.FETCH_DATA_SALES_ORDER_STATISTICS,
       payload: res.data.data,
     });
   } catch (err) {

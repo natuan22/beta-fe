@@ -15,9 +15,9 @@ const InvestToolTab = () => {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
               }
             }}
-            to="/cong-cu-dau-tu/bo-loc-co-phieu"
+            to="/cong-cu-dau-tu/danh-muc-theo-doi"
           >
-            Bộ lọc cổ phiếu
+            Danh mục theo dõi
           </NavLink>
           <NavLink
             className={(params) => {
@@ -27,9 +27,9 @@ const InvestToolTab = () => {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
               }
             }}
-            to="/cong-cu-dau-tu/gia-lap-dau-tu"
+            to="/cong-cu-dau-tu/bo-loc"
           >
-            Giả lập đầu tư
+            Bộ lọc
           </NavLink>
           <NavLink
             className={(params) => {
@@ -39,9 +39,33 @@ const InvestToolTab = () => {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
               }
             }}
-            to="/cong-cu-dau-tu/khuyen-nghi-dau-tu"
+            to="/cong-cu-dau-tu/canh-bao-tin-hieu"
           >
-            Theo dõi danh mục
+            Cảnh báo tín hiệu
+          </NavLink>
+          <NavLink
+            className={(params) => {
+              if (params.isActive) {
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+              } else {
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+              }
+            }}
+            to="/cong-cu-dau-tu/chien-luoc-giao-dich"
+          >
+            Chiến lươc giao dịch
+          </NavLink>
+          <NavLink
+            className={(params) => {
+              if (params.isActive) {
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+              } else {
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+              }
+            }}
+            to="/cong-cu-dau-tu/beta-smart"
+          >
+            BETA SMART
           </NavLink>
           <NavLink
             className={(params) => {
@@ -54,18 +78,6 @@ const InvestToolTab = () => {
             to="/cong-cu-dau-tu/kien-thuc-dau-tu"
           >
             Kiến thức đầu tư
-          </NavLink>
-          <NavLink
-            className={(params) => {
-              if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
-              } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
-              }
-            }}
-            to="/cong-cu-dau-tu/thuat-toan-giao-dich"
-          >
-            Thuật toán giao dịch
           </NavLink>
         </div>
       </div>
@@ -80,9 +92,9 @@ const InvestToolTab = () => {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
               }
             }}
-            to="/cong-cu-dau-tu/bo-loc-co-phieu"
+            to="/cong-cu-dau-tu/danh-muc-theo-doi"
           >
-            Bộ lọc cổ phiếu
+            Danh mục theo dõi
           </NavLink>
           <NavLink
             className={(params) => {
@@ -92,9 +104,21 @@ const InvestToolTab = () => {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
               }
             }}
-            to="/cong-cu-dau-tu/gia-lap-dau-tu"
+            to="/cong-cu-dau-tu/bo-loc"
           >
-            Giả lập đầu tư
+            Bộ lọc
+          </NavLink>
+          <NavLink
+            className={(params) => {
+              if (params.isActive) {
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+              } else {
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+              }
+            }}
+            to="/cong-cu-dau-tu/canh-bao-tin-hieu"
+          >
+            Cảnh báo tín hiệu
           </NavLink>
         </div>
         <div className="flex justify-around mb-2">
@@ -106,9 +130,21 @@ const InvestToolTab = () => {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
               }
             }}
-            to="/cong-cu-dau-tu/khuyen-nghi-dau-tu"
+            to="/cong-cu-dau-tu/chien-luoc-giao-dich"
           >
-            Theo dõi danh mục
+            Chiến lươc giao dịch
+          </NavLink>
+          <NavLink
+            className={(params) => {
+              if (params.isActive) {
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+              } else {
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+              }
+            }}
+            to="/cong-cu-dau-tu/beta-smart"
+          >
+            BETA SMART
           </NavLink>
           <NavLink
             className={(params) => {
@@ -121,18 +157,6 @@ const InvestToolTab = () => {
             to="/cong-cu-dau-tu/kien-thuc-dau-tu"
           >
             Kiến thức đầu tư
-          </NavLink>
-          <NavLink
-            className={(params) => {
-              if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
-              } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
-              }
-            }}
-            to="/cong-cu-dau-tu/thuat-toan-giao-dich"
-          >
-            Thuật toán giao dịch
           </NavLink>
         </div>
       </div>

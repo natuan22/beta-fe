@@ -43,6 +43,11 @@ const initialState = {
   dataIndividualInvestorBenefitsStatus: {},
   dataRatingHeader: {},
   dataFilterCanslim: {},
+  dataTechnicalIndex: {},
+  dataInfoStock: {},
+  dataPriceFluctuationCorrelation: {},
+  dataPriceFluctuation: {},
+  dataSalesOrderStatistics: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -172,6 +177,21 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === stockType.FETCH_DATA_FILTER_CANSLIM) {
       draft.dataFilterCanslim = payload;
+    }
+    if (type === stockType.FETCH_DATA_TECHNICAL_INDEX) {
+      draft.dataTechnicalIndex = payload;
+    }
+    if (type === stockType.FETCH_DATA_INFO_STOCK) {
+      draft.dataInfoStock = payload;
+    }
+    if (type === stockType.FETCH_DATA_PRICE_FLUCTUATION_CORRELATION) {
+      draft.dataPriceFluctuationCorrelation = payload;
+    }
+    if (type === stockType.FETCH_DATA_PRICE_FLUCTUATION) {
+      draft.dataPriceFluctuation = payload;
+    }
+    if (type === stockType.FETCH_DATA_SALES_ORDER_STATISTICS) {
+      draft.dataSalesOrderStatistics = payload;
     }
   });
 };
