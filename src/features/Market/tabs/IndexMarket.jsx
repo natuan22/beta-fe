@@ -70,7 +70,7 @@ const IndexMarket = () => {
             </div>
           </div>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className="pt-[4px] w-[496px] h-[443px]">
+            <div className="pt-[4px] lg:w-[496px] md:w-full h-[443px]">
               <div className="mb-4">
                 <span>
                   <button
@@ -103,9 +103,9 @@ const IndexMarket = () => {
               </div>
 
               {activeButton === "GoodsDetail" ? (
-                <GoodsDetail />
+                <GoodsDetail type={1} />
               ) : (
-                <RateDetail />
+                <RateDetail type={1} />
               )}
               {/* <TableLiquidity /> */}
             </div>
@@ -155,7 +155,7 @@ const IndexMarket = () => {
           </div>
         </div>
 
-        <div className="mt-[5px] md:block lg:flex justify-center">
+        {/* <div className="mt-[5px] md:block lg:flex justify-center">
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md lg:w-[48%] xl:w-[500px] 2xl:w-[480px] h-[700px]">
             <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
               <span className="dark:text-white text-black text-[1.2rem] font-bold">
@@ -190,7 +190,7 @@ const IndexMarket = () => {
             </span>
           </div>
           <AnalysisReport />
-        </div>
+        </div> */}
       </div>
     </>
   );

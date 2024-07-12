@@ -262,7 +262,7 @@ const StackingAreas = () => {
   return (
     <>
       {dataStackingChart.data || dataStackingChart?.data?.length ? (
-        <div className="2xl:h-[560px] xl:h-[560px]">
+        <div className="h-[350px]">
           <HighchartsReact
             highcharts={Highcharts}
             options={options}

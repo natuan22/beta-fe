@@ -7,6 +7,7 @@ import {
   routes,
   stockRoutes,
   investToolRoutes,
+  analysisCenterRoutes,
 } from "./app/routes";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -136,6 +137,24 @@ function App() {
     }
   );
 
+  const mapAnalysisCenterRoutes = analysisCenterRoutes.map(
+    ({ path, component: Component, children }) => {
+      return (
+        <Route path={path} element={<Component />} key={path}>
+          {children?.map((Item) => {
+            return (
+              <Route
+                path={Item.path}
+                key={Item.path}
+                element={<Item.component />}
+              />
+            );
+          })}
+        </Route>
+      );
+    }
+  );
+
   const mapAuthenRoute = authenRoute.map(({ path, component: Component }) => {
     return <Route key={path} path={path} element={<Component />}></Route>;
   });
@@ -155,6 +174,7 @@ function App() {
           {mapStockRoute}
           {mapAuthenRoute}
           {mapInvestToolRoutes}
+          {mapAnalysisCenterRoutes}
 
           <Route path="*" element={<Error404 />} />
         </Routes>

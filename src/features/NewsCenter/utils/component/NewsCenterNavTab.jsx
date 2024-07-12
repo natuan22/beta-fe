@@ -60,7 +60,7 @@ const NewsCenterNavTab = () => {
 
       <div className="sm:hidden xs:block">
         <div className="flex justify-around mt-3 mb-2">
-          <NavLink
+          {/* <NavLink
             className={(params) => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
@@ -71,7 +71,7 @@ const NewsCenterNavTab = () => {
             to="/trung-tam-tin-tuc/bao-cao-phan-tich"
           >
             Báo cáo phân tích
-          </NavLink>
+          </NavLink> */}
           <NavLink
             className={(params) => {
               if (params.isActive) {

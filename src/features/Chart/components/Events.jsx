@@ -18,7 +18,7 @@ const Events = () => {
     <section className="bg-blueGray-50">
       <div className="w-full">
         <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
-          <div className="block w-full h-96 scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent">
+          <div className="block w-full xl:h-[693px] lg:h-[330px] scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent">
             <table className="items-center bg-transparent w-full border-collapse">
               <thead className="sticky top-0 bg-[#1E5D8B]">
                 <tr>

@@ -144,9 +144,30 @@ const Home = () => {
                   </div>
                 </div>
 
-                <div className=" xl:w-[40%] xl:translate-x-0 ">
-                  <div className="mx-2 mt-2 px-1.5 py-1.5 shadow-md dark:bg-[#151924] bg-gray-100 xs:h-[438px] md:h-[465px] lg:h-[450px] xl:h-[752px] 2xl:h-[751px]">
-                    <GeneralIndustry />
+                <div className="xl:w-[40%] xl:translate-x-0">
+                  <div className="mx-2 mt-2 mb-4 px-1.5 py-1.5 shadow-md dark:bg-[#151924] bg-gray-100 xs:h-[352px] md:h-[350px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px]">
+                    <div className="w-full">
+                      <div className="text-center dark:text-white text-black text-sm">
+                        <div className="p-2.5 text-center font-semibold uppercase text-sm dark:text-white text-black">
+                          Thanh khoản thị trường sàn HSX
+                        </div>
+                      </div>
+                      <div>
+                        <AreaChart />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mx-2 my-2 px-1.5 py-1.5 shadow-md dark:bg-[#151924] bg-gray-100 xs:h-[375px] sm:h-[375px] md:h-[375px] lg:h-[375px] xl:h-[344px] 2xl:h-[379px]">
+                    <div className="w-full">
+                      <div>
+                        <div className="text-center dark:text-white text-black text-sm">
+                          <div className="p-2.5 text-center font-semibold uppercase text-sm dark:text-white text-black">
+                            Độ rộng thị trường
+                          </div>
+                        </div>
+                        <StackingAreas />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -155,18 +176,8 @@ const Home = () => {
             <div>
               <div className="xl:flex lg:block">
                 <div className="xl:w-[60%]">
-                  <div className="grid gap-0.5 md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
-                    <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[380px] shadow-md">
-                      <GoodsDetail />
-                    </div>
-
-                    <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[380px] shadow-md">
-                      <RateDetail />
-                    </div>
-                  </div>
-
-                  <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[385px] shadow-md">
-                    <Events />
+                  <div className="mx-2 my-2 px-1.5 py-1.5 shadow-md dark:bg-[#151924] bg-gray-100 xs:h-[368px] md:h-[395px] lg:h-[485px] xl:h-[682px] 2xl:h-[681px]">
+                    <GeneralIndustry />
                   </div>
                 </div>
                 <div className="xl:w-[40%] xl:translate-x-0">
@@ -248,8 +259,8 @@ const Home = () => {
               </div>
             </div>
 
-            <div>
-              <div className="lg:block xl:flex mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
+            {/* <div>
+              <div className="lg:block xl:flex mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[633px]">
                 <div className="w-full">
                   <div className="text-center dark:text-white text-black">
                     <h3 className="p-2 uppercase">
@@ -260,18 +271,18 @@ const Home = () => {
                     <AreaChart />
                   </div>
                 </div>
-                {/* <div className="xl:w-[35%]">
+                <div className="xl:w-[35%]">
                   <div className="px-1.5 py-1.5">
                     <TableMarketVolatility />
                   </div>
                   <div className="px-1.5 py-1.5">
                     <TableMarketLiquidity />
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
             <div>
-              <div className="xl:flex lg:block mx-2 my-3 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
+              <div className="xl:flex lg:block mx-2 my-3 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[560px]">
                 <div className="w-full">
                   <div>
                     <div className="text-center dark:text-white text-black">
@@ -280,7 +291,7 @@ const Home = () => {
                     <StackingAreas />
                   </div>
                 </div>
-                {/* <div className="xl:w-[35%]">
+                <div className="xl:w-[35%]">
                   <div className="">
                     <div className="px-1.5 py-1.5">
                       <TableMarketEvaluation />
@@ -294,12 +305,29 @@ const Home = () => {
                     </div>
                     <CashFlowAllocation />
                   </div>
-                </div> */}
+                </div>
               </div>
-            </div>
-            <div className="mr-2 mx-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
+            </div> */}
+            <div className="mr-2 mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
               <div>
                 <NetVolumeTrade />
+              </div>
+            </div>
+            <div>
+              <div className="lg:block xl:flex">
+                <div className="xl:w-[60%] mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 lg:h-[335px] xl:h-[698px] shadow-md">
+                  <Events />
+                </div>
+
+                <div className="xl:w-[40%]">
+                  <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[335px] shadow-md">
+                    <GoodsDetail type={0} />
+                  </div>
+
+                  <div className="mx-2 mt-4 mb-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[335px] shadow-md">
+                    <RateDetail type={0} />
+                  </div>
+                </div>
               </div>
             </div>
             <Footer />

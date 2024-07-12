@@ -137,7 +137,7 @@ function AreaChart() {
   return (
     <>
       {dataPreviousDay.length && dataToday.length ? (
-        <div className="2xl:h-[633px] xl:h-[683px] lg:h-[500px] md:h-[500px] xs:h-[500px]">
+        <div className="h-[320px]">
           <HighchartsReact
             highcharts={Highcharts}
             options={options}

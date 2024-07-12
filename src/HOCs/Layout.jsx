@@ -58,7 +58,7 @@ const LayOut = (props) => {
         </div>
       )}
       <div
-        class="zalo-chat-widget"
+        className="zalo-chat-widget"
         data-oaid="1623670409453822014"
         data-welcome-message="Rất vui khi được hỗ trợ bạn!"
         data-autopopup="0"

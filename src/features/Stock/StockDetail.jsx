@@ -16,6 +16,7 @@ import { useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { useSelector } from "react-redux";
 import test from "./utils/style/muiTabHeader.module.css";
+import TechnicalAnalysisReport from "./tabs/TechnicalAnalysisReport";
 
 const StockDetail = () => {
   const defaultStock = "FPT-CTCP";
@@ -144,8 +145,13 @@ const StockDetail = () => {
                   />
                   <Tab
                     onClick={() => handleTabClick("4")}
-                    label="TIN TỨC VÀ SỰ KIỆN"
+                    label="PHÂN TÍCH KỸ THUẬT"
                     value="4"
+                  />
+                  <Tab
+                    onClick={() => handleTabClick("5")}
+                    label="TIN TỨC VÀ SỰ KIỆN"
+                    value="5"
                   />
                 </TabList>
               </Box>
@@ -162,6 +168,9 @@ const StockDetail = () => {
                 <BusinessFinance codeUrl={codeVal} />
               </TabPanel>
               <TabPanel value="4">
+                <TechnicalAnalysisReport codeUrl={codeVal} />
+              </TabPanel>
+              <TabPanel value="5">
                 <NewsAndEvent codeUrl={codeVal} />
               </TabPanel>
             </TabContext>

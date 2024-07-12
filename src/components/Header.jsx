@@ -33,7 +33,7 @@ const Header = () => {
       <div className=" relative">
         <nav className="dark:bg-black bg-white shadow-md mb-1">
           {/* max-w-[85.5rem] */}
-          <div className="max-w-[76rem] mx-auto px-4 xl:px-7 lg:px-8">
+          <div className="max-w-[87rem] mx-auto px-4 xl:px-7 lg:px-8">
             <div className="flex items-center justify-between w-full h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -149,6 +149,16 @@ const Header = () => {
                       }
                     >
                       Trung tâm tin tức
+                    </NavLink>
+                    <NavLink
+                      to="/trung-tam-phan-tich"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                      }
+                    >
+                      Trung tâm phân tích
                     </NavLink>
                   </div>
                   {/* login */}
@@ -361,6 +371,19 @@ const Header = () => {
                     }
                   >
                     Trung tâm tin tức
+                  </NavLink>
+                  <NavLink
+                    onClick={() => {
+                      if (isOpen) setIsOpen(!isOpen);
+                    }}
+                    to="/trung-tam-phan-tich"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline dark:text-gray-300 text-black block hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                    }
+                  >
+                    Trung tâm phân tích
                   </NavLink>
                   <div className="relative mb-5">
                     {isLogin ? (

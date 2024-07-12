@@ -280,4 +280,39 @@ export const stockService = {
       },
     });
   },
+  fetchDataTechnicalIndex: (stock) => {
+    return https.get("api/v1/report/chi-so-ky-thuat", {
+      params: {
+        stock,
+      },
+    });
+  },
+  fetchDataInfoStock: (stock) => {
+    return https.get("api/v1/report/thong-tin-co-phieu", {
+      params: {
+        stock,
+      },
+    });
+  },
+  fetchDataPriceFluctuationCorrelation: (stock) => {
+    return https.get("api/v1/report/tuong-quan-bien-dong-gia", {
+      params: {
+        stock,
+      },
+    });
+  },
+  fetchDataPriceFluctuation: (stock) => {
+    return https.get("api/v1/report/bien-dong-gia", {
+      params: {
+        stock,
+      },
+    });
+  },
+  fetchDataSalesOrderStatistics: (stock) => {
+    return https.get("api/v1/report/thong-ke-lenh-mua-ban", {
+      params: {
+        stock,
+      },
+    });
+  },
 };
