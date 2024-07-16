@@ -1,53 +1,45 @@
 import React, { useEffect, useState } from "react";
+import LazyLoad from "react-lazyload";
 import { useDispatch } from "react-redux";
+import Footer from "../../components/Footer";
+import LayOut from "../../HOCs/Layout";
+import AreaChart from "./components/AreaChart";
 import Banner from "./components/Banner";
 import BarChartLeft from "./components/BarChartLeft";
 import BarChartRight from "./components/BarChartRight";
-import InternationalIndex from "./components/InternationalIndex";
-import GeneralIndustry from "./components/GeneralIndustry";
 import Events from "./components/Events";
-import Top10Sell from "./components/Top10Sell";
-import Top10Buy from "./components/Top10Buy";
-import LineChart from "./components/LineChart";
-import chartStyle from "./utils/Chart.module.css";
-import TableDetail from "./components/TableDetail";
+import GeneralIndustry from "./components/GeneralIndustry";
 import GoodsDetail from "./components/GoodsDetail";
-import TopROC from "./components/TopROC";
-import RateDetail from "./components/RateDetail";
-import AreaChart from "./components/AreaChart";
-import TableMarketVolatility from "./components/TableMarketVolatility";
-import Footer from "../../components/Footer";
-import StackingAreas from "./components/StackingAreas";
+import InternationalIndex from "./components/InternationalIndex";
+import LineChart from "./components/LineChart";
 import NetVolumeTrade from "./components/NetVolumeTrade";
-import TableMarketLiquidity from "./components/TableMarketLiquidity";
 import News from "./components/News";
-import TableMarketEvaluation from "./components/TableMarketEvaluation";
+import RateDetail from "./components/RateDetail";
+import StackingAreas from "./components/StackingAreas";
+import TableDetail from "./components/TableDetail";
+import Top10Buy from "./components/Top10Buy";
+import Top10Sell from "./components/Top10Sell";
+import TopROC from "./components/TopROC";
+import TreeMapBuy from "./components/TreeMapBuy";
+import TreeMapSell from "./components/TreeMapSell";
 import {
-  fetchDataTableDetail,
-  fetchDataBarChartRight,
-  fetchDataBarChartLeft,
-  fetchDataEvents,
-  fetchDataTopNetForeignChange,
-  fetchDataGoodsDetail,
-  fetchDataRateDetail,
-  fetchDataGeneralIndustry,
-  fetchDataROC5Phien,
-  fetchDataTreeMapSell,
-  fetchDataTreeMapBuy,
   fetchDataAreaChart1,
   fetchDataAreaChart2,
-  fetchDataWidthMarket,
-  fetchDataTableMarketVolatility,
-  fetchDataTableMarketLiquidity,
-  fetchDataMarketEvaluation,
+  fetchDataBarChartLeft,
+  fetchDataBarChartRight,
+  fetchDataEvents,
+  fetchDataGeneralIndustry,
+  fetchDataGoodsDetail,
   fetchDataLineChartHomePage,
-  fetchDataCashFlowAllocation,
+  fetchDataRateDetail,
+  fetchDataROC5Phien,
+  fetchDataTableDetail,
+  fetchDataTopNetForeignChange,
+  fetchDataTreeMapBuy,
+  fetchDataTreeMapSell,
+  fetchDataWidthMarket,
 } from "./thunk";
-import LayOut from "../../HOCs/Layout";
-import CashFlowAllocation from "./components/CashFlowAllocation";
-import TreeMapSell from "./components/TreeMapSell";
-import TreeMapBuy from "./components/TreeMapBuy";
-import LazyLoad from "react-lazyload";
+import chartStyle from "./utils/Chart.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -57,10 +49,7 @@ const Home = () => {
     dispatch(fetchDataRateDetail);
     dispatch(fetchDataTopNetForeignChange("hose"));
     dispatch(fetchDataROC5Phien("hose"));
-    dispatch(fetchDataTableMarketVolatility);
-    dispatch(fetchDataTableMarketLiquidity("0"));
     dispatch(fetchDataGoodsDetail);
-    dispatch(fetchDataMarketEvaluation);
   }, [dispatch]);
 
   useEffect(() => {
@@ -75,7 +64,6 @@ const Home = () => {
     dispatch(fetchDataAreaChart2);
     dispatch(fetchDataWidthMarket("vnindex"));
     dispatch(fetchDataLineChartHomePage("vnindex"));
-    dispatch(fetchDataCashFlowAllocation);
   }, [dispatch]);
 
   useEffect(() => {

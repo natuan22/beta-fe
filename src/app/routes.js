@@ -34,6 +34,7 @@ import FinancialHealth from "../features/Market/tabs/TechAndValuation/FinancialH
 import Technical from "../features/Market/tabs/TechAndValuation/Technical";
 import Nav1 from "../features/Navigation/Nav1";
 import Nav4 from "../features/Navigation/Nav4";
+import TestFiinTrade from "../features/Navigation/TestFiinTrade";
 import NewsCenter from "../features/NewsCenter/NewsCenter";
 import AnalyzeReport from "../features/NewsCenter/tabs/AnalyzeReport";
 import EnterpriseNews from "../features/NewsCenter/tabs/EnterpriseNews";
@@ -43,6 +44,8 @@ import Stock from "../features/Stock/Stock";
 import StockDetail from "../features/Stock/StockDetail";
 
 export const routes = [
+  { path: "/test-fiin-pro", component: TestFiinTrade },
+
   { path: "/", component: Home },
 
   // navigation tab
