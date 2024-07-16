@@ -19,7 +19,7 @@
         ServerUrl: "/RealtimeHub",
         Prefix: "Realtime",
         RegisteredRemoteChanels: [],
-      },
+      }
     ],
     ChanelConfig: {
       TickChanel: "Realtime.Tick",
@@ -43,7 +43,7 @@
     },
   };
 
-  FiinUtils = {
+    FiinUtils = {
     loadScript: function (src) {
       return new Promise(function (resolve, reject) {
         // set document head to varible
@@ -137,10 +137,7 @@
             chanel: message.chanel,
             data: this.preprocessData(message.chanel, message.data),
           });
-          console.log(
-            new Date().toLocaleTimeString(),
-            "signalr receive message"
-          );
+          console.log(new Date().toLocaleTimeString(), 'signalr receive message');
           //this.publish(
           //    message.chanel,
           //    this.preprocessData(message.chanel, message.data),
@@ -164,7 +161,7 @@
           this.remoteChanelToHubs[chanel] = connection;
         });
       });
-      console.log(new Date().toLocaleTimeString(), "all hub init complete");
+      console.log(new Date().toLocaleTimeString(), 'all hub init complete');
     }
 
     async connect(hub) {
@@ -622,18 +619,18 @@
       me.el = el;
       me.group = group;
       me;
-      me.iframe = jQuery(el).children("iframe")[1];
+      me.iframe = jQuery(el).children("iframe")[0];
 
       me.iframe.addEventListener("load", function () {
-        document.querySelector("iframe#preIframe").remove();
-        console.log(new Date().toLocaleTimeString(), "iframe loaded");
+        //document.querySelector('iframe#preIframe').remove();
+        //console.log(new Date().toLocaleTimeString(),"iframe loaded");
         delete me.channel;
 
         me.channel = new MessageChannel();
 
         me.channel.port1.onmessage = me.onMessage;
         me.channel.port1.fiinComponent = me;
-
+     
         me.sendPort();
       });
 
@@ -656,10 +653,7 @@
             },
           })
             .then((response) => {
-              console.log(
-                new Date().toLocaleTimeString(),
-                `fetch data ${message.url} success`
-              );
+				  console.log(new Date().toLocaleTimeString(), `fetch data ${message.url} success`);
               var contentType = response.headers.get("content-type");
 
               if (contentType.indexOf("application/json") !== -1) {
@@ -749,6 +743,7 @@
         default:
           break;
       }
+
     }
 
     sendMessage(message) {
