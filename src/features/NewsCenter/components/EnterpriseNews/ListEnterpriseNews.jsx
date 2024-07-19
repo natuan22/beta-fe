@@ -51,7 +51,10 @@ const ListEnterpriseNews = () => {
 
   return (
     <div className="grid xl:grid-cols-2 lg:grid-cols-none">
-      <div className="h-[800px] overflow-auto" onScroll={handleScroll}>
+      <div
+        className="h-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent"
+        onScroll={handleScroll}
+      >
         {!loading ? (
           Array.isArray(data) &&
           data.map((item, index) => {
@@ -60,17 +63,36 @@ const ListEnterpriseNews = () => {
               <div
                 key={index}
                 onClick={() => handleItemClick(item)}
-                className={`mx-1 my-4 cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-300`}
+                className={`mx-1 my-4 p-2 cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-300`}
               >
-                <div className={`${color}`}>
-                  {item.code} {item.closePrice} {item.change} (
-                  {item.perChange.toFixed(2)}%)
-                </div>
-                <h4 className="dark:text-white text-black mb-1">
-                  {item.code}: {item.title}
-                </h4>
-                <div className="text-[#E7DDB3] text-[0.85rem]">
-                  {moment(item.date).format("DD.MM.YYYY")}
+                <a
+                  className="md:hidden sm:block no-underline"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className={`${color}`}>
+                    {item.code} {item.closePrice} {item.change} (
+                    {item.perChange.toFixed(2)}%)
+                  </div>
+                  <h4 className="dark:text-white text-black mb-1">
+                    {item.code}: {item.title}
+                  </h4>
+                  <div className="text-[#E7DDB3] text-[0.85rem]">
+                    {moment(item.date).format("DD.MM.YYYY")}
+                  </div>
+                </a>
+                <div className="md:block sm:hidden xs:hidden xxs:hidden">
+                  <div className={`${color}`}>
+                    {item.code} {item.closePrice} {item.change} (
+                    {item.perChange.toFixed(2)}%)
+                  </div>
+                  <h4 className="dark:text-white text-black mb-1">
+                    {item.code}: {item.title}
+                  </h4>
+                  <div className="text-[#E7DDB3] text-[0.85rem]">
+                    {moment(item.date).format("DD.MM.YYYY")}
+                  </div>
                 </div>
               </div>
             );

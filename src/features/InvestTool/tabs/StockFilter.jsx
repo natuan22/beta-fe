@@ -170,7 +170,7 @@ const StockFilter = () => {
       filter: updatedFilter,
     });
   };
-
+  
   const toggleKeyInArray = (key) => {
     let updatedArr;
     if (arrSliderCheckbox.includes(key)) {
@@ -351,7 +351,7 @@ const StockFilter = () => {
                 {/* YOUR FILTER */}
                 <Popover
                   content={
-                    <div className="bg-[#034460] text-white overflow-auto border text-center">
+                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center">
                       <div
                         className="border-solid border-b-2 border-t-0 border-x-0 cursor-pointer"
                         onClick={onClickValueYourFilter}
@@ -451,7 +451,7 @@ const StockFilter = () => {
                 {/* EXCHANGE */}
                 <Popover
                   content={
-                    <div className="bg-[#034460] text-white overflow-auto border text-center">
+                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center">
                       {Object.keys(hashTbExchange).map((exchange, index) => (
                         <label
                           key={index}
@@ -548,7 +548,7 @@ const StockFilter = () => {
                 {/* SAMPLE FILTER */}
                 <Popover
                   content={
-                    <div className="bg-[#034460] text-white overflow-auto border text-center">
+                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center">
                       <div
                         className="border-solid border-b-2 border-t-0 border-x-0 cursor-pointer"
                         onClick={onClickSampleFilter}
@@ -642,7 +642,7 @@ const StockFilter = () => {
                 {/* INDUSTRY */}
                 <Popover
                   content={
-                    <div className="bg-[#034460] text-white overflow-auto border text-center h-[120px]">
+                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center h-[120px]">
                       <label className="material-checkbox py-2 px-2 text-white">
                         <input
                           type="checkbox"
