@@ -1,39 +1,32 @@
-import React from "react";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { fetchDataAnalysisCenter } from "../thunk";
+import BuildAnalysisCenter from "../utils/BuildAnalysisCenter";
 
 const TechnicalAnalysis = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    const trimmedPathname = location.pathname.replace("/trung-tam-phan-tich/", "");
+    const pathMap = {
+      "nhan-dinh-thi-truong": "1",
+      "phan-tich-doanh-nghiep": "2",
+      "bao-cao-nganh": "3",
+      "phan-tich-ky-thuat": "4",
+      "bao-cao-vi-mo": "5",
+      "bao-cao-chien-luoc": "6",
+      "bao-cao-trai-phieu-va-tien-te": "7",
+    };
+
+    const analysisType = pathMap[trimmedPathname] || "0";
+    dispatch(fetchDataAnalysisCenter(analysisType));
+  }, [location, dispatch]);
+
   return (
-    <div>
-      <div className="h-auto pt-5 pb-2 flex justify-center ">
-        <div className="flex md:flex-row md:justify-around sm:flex-col sm:items-center xs:flex-col xs:items-center xxs:flex-col xxs:items-center">
-          <div className="px-2 relative">
-            <a
-              href="https://zalo.me/1623670409453822014"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                className="xl:w-[712px] xl:h-[500px] lg:w-[505px] lg:h-[333px] md:w-[370px] md:h-[261px] sm:w-[350px] sm:h-[261px] xs:w-[350px] xs:h-[261px] xxs:w-[223px] xxs:h-[167px]"
-                src={`${apiUrl}/resources/images/banner1.png`}
-                alt="zalo-banner"
-              />
-            </a>
-          </div>
-          <div className="px-2 relative">
-            <a
-              href="https://t.me/betaEmarketbot"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                className="xl:w-[712px] xl:h-[500px] lg:w-[505px] lg:h-[333px] md:w-[370px] md:h-[261px] sm:w-[350px] sm:h-[261px] xs:w-[350px] xs:h-[261px] xxs:w-[223px] xxs:h-[167px]"
-                src={`${apiUrl}/resources/images/banner2.png`}
-                alt="tele-banner"
-              />
-            </a>
-          </div>
-        </div>
-      </div>
+    <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-full pt-2">
+      <BuildAnalysisCenter />
     </div>
   );
 };

@@ -147,13 +147,13 @@ const ForeignMacro = () => {
                 </div>
               </div>
               <div className="lg:col-span-2 md:col-span-full sm:col-span-full xs:col-span-full xxs:col-span-full">
-                <div className="h-[587px] overflow-auto">
+                <div className="h-[587px] overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent">
                   {!loading ? (
                     Array.isArray(data) &&
                     data.slice(7, 53).map((item, index) => (
                       <div
                         key={index}
-                        className="mr-2 mb-3 dark:hover:bg-gray-800 hover:bg-gray-300"
+                        className="mr-2 mb-3 p-1 dark:hover:bg-gray-800 hover:bg-gray-300"
                       >
                         <a
                           href={item.href}

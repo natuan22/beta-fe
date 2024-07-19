@@ -46,14 +46,14 @@ const MarcoNews = () => {
 
   return (
     <div className="grid xl:grid-cols-2 lg:grid-cols-none">
-      <div className="h-[800px] overflow-auto" onScroll={handleScroll}>
+      <div className="h-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent" onScroll={handleScroll}>
         {!loading ? (
           Array.isArray(data) &&
           data.map((item, index) => (
             <div
               key={index}
               onClick={() => handleItemClick(item)}
-              className="mx-1 my-4 cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-300"
+              className="mx-1 my-4 p-2 cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-300"
             >
               <a
                 className="md:hidden sm:block no-underline"

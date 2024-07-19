@@ -5,11 +5,14 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../../components/Footer";
 import AnalysisCenterNavTab from "./utils/AnalysisCenterNavTab";
 import News from "../Chart/components/News";
+import { useDispatch } from "react-redux";
+import { fetchDataAnalysisCenter } from "./thunk";
 const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const AnalysisCenter = () => {
   const location = useLocation();
   const [bannerDisplay, setBannerDisplay] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (location.pathname === "/trung-tam-phan-tich") {
@@ -18,6 +21,8 @@ const AnalysisCenter = () => {
       setBannerDisplay(false);
     }
   }, [location]);
+
+  
 
   return (
     <LayOut>

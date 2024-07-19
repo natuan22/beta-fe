@@ -165,7 +165,7 @@ const NewsFilterTool = () => {
                     </div>
 
                     <div
-                      className="relative industryLv2__tabs overflow-auto ml-1 lg:col-span-2 md:col-span-full"
+                      className="relative industryLv2__tabs overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent ml-1 lg:col-span-2 md:col-span-full"
                       style={{
                         borderRight: "solid 1px gray",
                         borderTop: "solid 3px #147df5",
@@ -220,7 +220,7 @@ const NewsFilterTool = () => {
                     </div>
 
                     <div
-                      className="industryLv4__tabs overflow-auto ml-2 lg:col-span-2 md:col-span-full"
+                      className="industryLv4__tabs overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent ml-2 lg:col-span-2 md:col-span-full"
                       style={{
                         borderRight: "solid 1px gray",
                         borderTop: "solid 3px #147df5",
@@ -264,7 +264,7 @@ const NewsFilterTool = () => {
                     </div>
 
                     <div
-                      className="code__tabs overflow-auto  ml-2 lg:col-span-2 md:col-span-full"
+                      className="code__tabs overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent  ml-2 lg:col-span-2 md:col-span-full"
                       style={{
                         borderRight: "solid 1px gray",
                         borderTop: "solid 3px #147df5",
@@ -341,7 +341,7 @@ const NewsFilterTool = () => {
                     </div>
 
                     <div
-                      className="relative watchList__tabs ml-2 overflow-auto lg:col-span-3 md:col-span-full"
+                      className="relative watchList__tabs ml-2 overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent lg:col-span-3 md:col-span-full"
                       style={{
                         borderRight: "solid 1px gray",
                         borderTop: "solid 3px #147df5",

@@ -1,14 +1,16 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
-import chartReducer from "../features/Chart/chartSlice";
+import analysisCenterReducer from "../features/AnalysisCenter/analysisCenterSlice";
 import authenReducer from "../features/Auth/authenSlice";
-import marketReducer from "../features/Market/marketSlice";
+import chartReducer from "../features/Chart/chartSlice";
+import investToolReducer from "../features/InvestTool/investToolSlice";
 import macroReducer from "../features/Macro/macroSlice";
+import marketReducer from "../features/Market/marketSlice";
 import newsCenterReducer from "../features/NewsCenter/newsCenterSlice";
-import rootColor from "../services/servicesSlice";
 import searchReducer from "../features/Search/searchSlice";
 import stockReducer from "../features/Stock/stockSlice";
-import investToolReducer from "../features/InvestTool/investToolSlice";
+import rootColor from "../services/servicesSlice";
+
 const reducer = combineReducers({
   chart: chartReducer,
   authen: authenReducer,
@@ -19,6 +21,7 @@ const reducer = combineReducers({
   search: searchReducer,
   stock: stockReducer,
   investTool: investToolReducer,
+  analysisCenter: analysisCenterReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

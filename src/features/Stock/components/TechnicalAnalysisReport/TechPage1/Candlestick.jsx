@@ -260,10 +260,10 @@ const Candlestick = ({ data }) => {
   return (
     <div>
       <div className="h-[365px] -translate-y-[8px]">
-        <div className="relative left-[56px] z-10 top-[25px] w-[8px] h-[8px]">
+        <div className="relative left-[66px] z-10 top-[27px] w-[8px] h-[8px]">
           <div className="absolute" id="triangle-topright"></div>
           <div id="triangle-bottomleft"></div>
-          {/* <div className="ml-[22.5rem] absolute -top-[4.8px] opacity-[45%] hover:opacity-[80%] hover:bg-black hover:bg-opacity-10 rounded-sm h-[18px]">
+          <div className="ml-[22.5rem] absolute -top-[4.8px] opacity-[45%] hover:opacity-[80%] hover:bg-black hover:bg-opacity-10 rounded-sm h-[18px]">
             <MdOutlineZoomOutMap
               className="cursor-pointer w-[16px] h-[16px]"
               onClick={showModalZoom}
@@ -278,7 +278,7 @@ const Candlestick = ({ data }) => {
             footer={null}
             className="zoom-conditions"
           >
-            <div className="h-[850px]">
+            <div className="h-[850px] w-[100%]">
               <div className="relative left-[517px] z-10 top-[27px] w-[8px] h-[8px]">
                 <div className="absolute" id="triangle-topright"></div>
                 <div id="triangle-bottomleft"></div>
@@ -290,7 +290,7 @@ const Candlestick = ({ data }) => {
                 containerProps={{ style: { height: "100%", width: "100%" } }}
               />
             </div>
-          </Modal> */}
+          </Modal>
         </div>
         <HighchartsReact
           highcharts={Highcharts}

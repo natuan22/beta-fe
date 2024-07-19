@@ -39,7 +39,7 @@ const News = ({ queryApiNewsEvents }) => {
   };
   return (
     <div className="grid xl:grid-cols-2 lg:grid-cols-none">
-      <div className="h-[800px] overflow-auto " onScroll={handleScroll}>
+      <div className="h-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent" onScroll={handleScroll}>
         {!loading ? (
           Array.isArray(data) &&
           data.map((item, index) => {
@@ -47,7 +47,7 @@ const News = ({ queryApiNewsEvents }) => {
               <div
                 key={index}
                 onClick={() => handleItemClick(item)}
-                className={`mx-2 my-2 cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-300 flex flex-col justify-center h-[59px]`}
+                className={`mx-2 my-2 px-2 cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-300 flex flex-col justify-center h-[59px]`}
               >
                 <h4 className="dark:text-white text-black mb-1">
                   {item.title}
