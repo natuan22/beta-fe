@@ -1,58 +1,73 @@
-import React, { useEffect, useRef, useState } from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
-const hashTbCashFlow = {
-  "Dòng tiền định danh": "dong-tien-dinh-danh",
-  "Dòng tiền phi định danh": "dong-tien-phi-dinh-danh",
-};
+import React from "react";
+import NetVolumeTrade from "../../Chart/components/NetVolumeTrade";
+import CashFlowRatio from "../components/CashFlow/CashFlowRatio";
+import ExchangeableValue from "../components/CashFlow/ExchangeableValue";
+import IndustryCashFlow from "../components/CashFlow/IndustryCashFlow";
+import InvestorCashFlow from "../components/CashFlow/InvestorCashFlow";
+import InvestorTransaction from "../components/CashFlow/InvestorTransaction";
+import LiquidityGrowth from "../components/CashFlow/LiquidityGrowth";
+import TopCashFlow from "../components/CashFlow/TopCashFlow";
+import TransactionValueRatio from "../components/CashFlow/TransactionValueRatio";
 
 const CashFlow = () => {
-  const location = useLocation();
-  const [activeNavlink, setActiveNavlink] = useState();
-  const navRef = useRef([]);
-  const handleActiveNav = (index) => {
-    setActiveNavlink(index);
-  };
-  useEffect(() => {
-    if (
-      location.pathname ===
-      "/thi-truong/dong-tien-thi-truong/dong-tien-dinh-danh"
-    ) {
-      setActiveNavlink(0);
-    } else if (
-      location.pathname ===
-      "/thi-truong/dong-tien-thi-truong/dong-tien-phi-dinh-danh"
-    ) {
-      setActiveNavlink(1);
-    }
-  }, [location.pathname]);
-  useEffect(() => {
-    const activeNav = navRef.current[activeNavlink];
-    const movingBackground = document.querySelector(".moving-background");
-    if (activeNav && movingBackground) {
-      movingBackground.style.left = `${activeNav.offsetLeft}px`;
-      movingBackground.style.width = `${activeNav.offsetWidth}px`;
-    }
-  }, [activeNavlink]);
   return (
     <>
-      <div className="container mx-auto">
-        <div className="relative  flex justify-around mt-5 bg-[#195070] h-auto items-center rounded-full">
-          <div className="moving-background absolute h-full top-0 bg-[#35adf2] transition-all duration-500 rounded-full z-0"></div>
-          {Object.entries(hashTbCashFlow).map(([label, value], index) => (
-            <NavLink
-              ref={(el) => (navRef.current[index] = el)}
-              to={value}
-              key={index}
-              onClick={() => handleActiveNav(index)}
-              className="w-[50%] z-10 text-white rounded-full no-underline text-center leading-8 md:text-lg sm:text-base xs:text-[15px] xxs:text-[13px]"
-            >
-              {label}
-            </NavLink>
-          ))}
-        </div>
-        <div className="h-auto text-white">
-          <Outlet />
-        </div>
+      <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">
+        <>
+          <div className="lg:block xl:flex">
+            <div className="xl:w-[60%]">
+              <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
+                <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                  <LiquidityGrowth />
+                </div>
+
+                <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                  <TransactionValueRatio />
+                </div>
+
+                <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                  <ExchangeableValue />
+                </div>
+
+                <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                  <CashFlowRatio />
+                </div>
+              </div>
+            </div>
+
+            <div className="xl:w-[40%]">
+              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                <IndustryCashFlow />
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:block xl:flex">
+            <div className="xl:w-[60%]">
+              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                <InvestorTransaction />
+              </div>
+            </div>
+
+            <div className="xl:w-[40%]">
+              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                <TopCashFlow />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+              <InvestorCashFlow />
+            </div>
+          </div>
+
+          <div>
+            <div className="mx-1 my-2 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+              <NetVolumeTrade />
+            </div>
+          </div>
+        </>
       </div>
     </>
   );

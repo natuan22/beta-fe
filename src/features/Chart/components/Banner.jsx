@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { BsArrowBarRight, BsArrowBarLeft } from "react-icons/bs";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import { BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs";
+import { apiUrl } from "../../../services/config";
 
 const Banner = () => {
   const [showSidebar, setShowSidebar] = useState(false);

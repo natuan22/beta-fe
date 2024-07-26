@@ -1,7 +1,7 @@
 import React from "react";
 import LayOut from "../../HOCs/Layout";
 import Footer from "../../components/Footer";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import { apiUrl } from "../../services/config";
 
 const Nav1 = () => {
   return (

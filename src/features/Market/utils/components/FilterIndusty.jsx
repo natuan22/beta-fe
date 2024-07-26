@@ -1,9 +1,7 @@
 import { Button, Popover } from "antd";
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Loading from "../../../Chart/utils/Loading";
+import { apiUrl } from "../../../../services/config";
 const hashTb = {
   "Bảo hiểm": "baoHiem",
   "Bất động sản": "batDongSan",
@@ -25,7 +23,6 @@ const hashTb = {
   "Tài nguyên": "taiNguyen",
   "Y tế": "yTe",
 };
-const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const FilterIndusty = ({ onSelectedNamesChange }) => {
   const { dataHotIndustry } = useSelector((state) => state.market);

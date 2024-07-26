@@ -1,19 +1,19 @@
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import Slide from "@mui/material/Slide";
-import { forwardRef, useEffect, useState } from "react";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
-import { useDebounce } from "react-use";
-import { useDispatch, useSelector } from "react-redux";
-import { handleDebounceSearch } from "../../thunk";
-import { NavLink } from "react-router-dom";
-import { ImSearch } from "react-icons/im";
 import CloseIcon from "@mui/icons-material/Close";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import SearchIcon from "@mui/icons-material/Search";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import InputBase from "@mui/material/InputBase";
+import Slide from "@mui/material/Slide";
+import { alpha, styled } from "@mui/material/styles";
+import { forwardRef, useEffect, useState } from "react";
+import { ImSearch } from "react-icons/im";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { useDebounce } from "react-use";
+import { resourceURL } from "../../../../services/config";
+import { handleDebounceSearch } from "../../thunk";
 import imgDefault from "../image/default-image.jpg";
-const resourceURL = process.env.REACT_APP_RESOURCE_URL;
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -132,7 +132,7 @@ export default function SearchDialog() {
     <div>
       <ImSearch
         onClick={handleClickOpen}
-        className="cursor-pointer dark:text-white text-black text-[19px] ml-0.5 hover:dark:text-blue-400 hover:text-blue-400 transition-all duration-200"
+        className="cursor-pointer dark:text-white text-black text-[19px] mt-1 ml-0.5 hover:dark:text-blue-400 hover:text-blue-400 transition-all duration-200"
       />
       <Dialog
         fullScreen

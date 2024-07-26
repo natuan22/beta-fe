@@ -18,16 +18,20 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Error404 from "./features/Navigation/Error404";
 
 function App() {
-  useEffect(() => {
-    const deviceId = JSON.parse(
-      localStorage.getItem(localStorage.getItem("DeviceId"))
-    );
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    const deviceId = JSON.parse(localStorage.getItem("deviceId"));
     if (!deviceId) {
-      localStorage.setItem("DeviceId", JSON.stringify(generateMAC()));
+      localStorage.setItem("deviceId", JSON.stringify(generateMAC()));
+    }
+
+    const _il = localStorage.getItem("_il");
+    if (!_il) {
+      localStorage.setItem("_il", "4E8WL");
     }
   }, []);
-  const dispatch = useDispatch();
+
   useEffect(() => {
     // data local để giữ trạng thái user để call api ở chỉ số thị trường
     localStorage.setItem("userTabCurrent", 0);
@@ -41,6 +45,7 @@ function App() {
     const token = localStorage.getItem("betaToken");
     dispatch(autoLoginWithToken(token));
   }, [dispatch]);
+  
   const mapMarketRoute = marketRoute.map(
     ({ path, component: Component, children }) => {
       return (

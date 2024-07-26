@@ -7,9 +7,9 @@
   background-color: transparent !important;
 }
 
-.ant-table-column-sort {
+/* .ant-table-column-sort {
   background-color: transparent !important;
-}
+} */
 
 .ant-table-cell-row:hover {
   background-color: transparent !important;
@@ -19,9 +19,9 @@
   background-color: transparent !important;
 }
 
-.ant-dropdown-trigger {
+/* .ant-dropdown-trigger {
   color: white !important;
-}
+} */
 
 .ant-table-column-title {
   color: white;

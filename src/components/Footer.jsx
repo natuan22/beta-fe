@@ -10,7 +10,7 @@ import {
 import React from "react";
 import { FaTiktok } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import { apiUrl } from "../services/config";
 
 const Footer = () => {
   return (

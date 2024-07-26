@@ -21,8 +21,6 @@ import DomesticMacro from "../features/Macro/Tabs/DomesticMacro";
 import ForeignMacro from "../features/Macro/Tabs/ForeignMacro";
 import Market from "../features/Market/Market";
 import CashFlow from "../features/Market/tabs/CashFlow";
-import IdentifyCash from "../features/Market/tabs/CashFlow/IdentifyCash";
-import NonIdentifyCash from "../features/Market/tabs/CashFlow/NonIdentifyCash";
 import IndexMarket from "../features/Market/tabs/IndexMarket";
 import MarketForeign from "../features/Market/tabs/MarketForeign";
 import CryptocurrencyMarket from "../features/Market/tabs/MarketForeign/CryptocurrencyMarket";
@@ -84,10 +82,6 @@ export const marketRoute = [
       {
         path: "dong-tien-thi-truong",
         component: CashFlow,
-        children1: [
-          { path: "dong-tien-dinh-danh", component: IdentifyCash },
-          { path: "dong-tien-phi-dinh-danh", component: NonIdentifyCash },
-        ],
       },
       {
         path: "hieu-suat-va-dinh-gia",

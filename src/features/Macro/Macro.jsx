@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
-import LayOut from "../../HOCs/Layout";
-import MacroTabs from "./utils/MacroTabs";
+import { useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
+import Footer from "../../components/Footer";
+import LayOut from "../../HOCs/Layout";
+import { apiUrl } from "../../services/config";
+import Banner from "../Chart/components/Banner";
 import InternationalIndex from "../Chart/components/InternationalIndex";
 import News from "../Chart/components/News";
-import { useSelector } from "react-redux";
-import Footer from "../../components/Footer";
-import Banner from "../Chart/components/Banner";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import MacroTabs from "./utils/MacroTabs";
 
 const Macro = () => {
   const location = useLocation();

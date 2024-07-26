@@ -1,13 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
-import LayOut from "../../HOCs/Layout";
-import InternationalIndex from "../Chart/components/InternationalIndex";
+import { useDispatch } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../../components/Footer";
-import AnalysisCenterNavTab from "./utils/AnalysisCenterNavTab";
+import LayOut from "../../HOCs/Layout";
+import { apiUrl } from "../../services/config";
+import InternationalIndex from "../Chart/components/InternationalIndex";
 import News from "../Chart/components/News";
-import { useDispatch } from "react-redux";
-import { fetchDataAnalysisCenter } from "./thunk";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import AnalysisCenterNavTab from "./utils/AnalysisCenterNavTab";
 
 const AnalysisCenter = () => {
   const location = useLocation();
