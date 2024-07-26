@@ -1,10 +1,10 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import LayOut from "../../HOCs/Layout";
-import NewsCenterNavTab from "./utils/component/NewsCenterNavTab";
-import InternationalIndex from "../Chart/components/InternationalIndex";
 import Footer from "../../components/Footer";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import LayOut from "../../HOCs/Layout";
+import { apiUrl } from "../../services/config";
+import InternationalIndex from "../Chart/components/InternationalIndex";
+import NewsCenterNavTab from "./utils/component/NewsCenterNavTab";
 
 const NewsCenter = () => {
   const location = useLocation();

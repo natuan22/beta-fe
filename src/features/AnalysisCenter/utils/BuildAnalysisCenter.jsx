@@ -106,7 +106,7 @@ const BuildAnalysisCenter = () => {
           </div>
         ) : (
           <div className="h-[800px] flex items-center justify-center dark:text-white text-black uppercase font-bold">
-            Chọn tin để đọc
+            Vui lòng chọn báo cáo để đọc
           </div>
         )}
       </div>

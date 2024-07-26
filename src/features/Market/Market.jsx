@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
-import News from "../Chart/components/News";
-import InternationalIndex from "../Chart/components/InternationalIndex";
 import { Outlet, useLocation } from "react-router-dom";
-import MarketTab from "./utils/MarketTab";
-import Banner from "../Chart/components/Banner";
 import LayOut from "../../HOCs/Layout";
 import Footer from "../../components/Footer";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import { apiUrl } from "../../services/config";
+import Banner from "../Chart/components/Banner";
+import InternationalIndex from "../Chart/components/InternationalIndex";
+import News from "../Chart/components/News";
+import MarketTab from "./utils/MarketTab";
 
 const Market = () => {
   const location = useLocation();
@@ -15,7 +15,6 @@ const Market = () => {
   useEffect(() => {
     if (
       location.pathname === "/thi-truong" ||
-      location.pathname === "/thi-truong/dong-tien-thi-truong" ||
       location.pathname === "/thi-truong/hieu-suat-va-dinh-gia" ||
       location.pathname === "/thi-truong/thi-truong-quoc-te"
     ) {

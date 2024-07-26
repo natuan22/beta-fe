@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import Footer from "../../components/Footer";
 import LayOut from "../../HOCs/Layout";
+import { apiUrl } from "../../services/config";
 import InternationalIndex from "../Chart/components/InternationalIndex";
 import News from "../Chart/components/News";
 import InvestToolTab from "./utils/InvestToolTab";
-import { Outlet, useLocation } from "react-router-dom";
-import Footer from "../../components/Footer";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import "./utils/styles/styleSelectCondition.css";
 
 const InvestTool = () => {
   const location = useLocation();

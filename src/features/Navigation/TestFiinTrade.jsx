@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import LayOut from "../../HOCs/Layout";
-
-const resourceURL = process.env.REACT_APP_RESOURCE_URL;
+import { resourceURL } from "../../services/config";
 
 const TestFiinTrade = () => {
   useEffect(() => {

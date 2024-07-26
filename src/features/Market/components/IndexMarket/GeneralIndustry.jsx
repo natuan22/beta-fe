@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { apiUrl } from "../../../../services/config";
 import { fetchDataGeneralIndustry } from "../../../Chart/thunk";
 import Loading from "../../../Chart/utils/Loading";
 import socket from "../../../Chart/utils/socket";
@@ -7,7 +8,6 @@ import { getColor, getIcon } from "../../../Chart/utils/utils";
 import "../../../Market/utils/tabStyle.css";
 
 const GeneralIndustry = () => {
-  const apiUrl = process.env.REACT_APP_BASE_URL;
   const dispatch = useDispatch();
   const [activeButton, setActiveButton] = useState("ALL");
   const dataGeneral = useSelector((state) => state.chart.dataGeneral);

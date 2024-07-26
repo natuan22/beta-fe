@@ -1,0 +1,28 @@
+.form-auth .ant-input-outlined {
+    background: transparent
+}
+
+.form-auth .ant-input-affix-wrapper {
+    color: white;
+}
+
+.form-auth .ant-input-affix-wrapper .anticon.ant-input-password-icon {
+    color: white;
+}
+
+.form-auth .ant-input-outlined.ant-input-status-error:not(.ant-input-disabled) {
+    background: transparent
+}
+
+.form-auth .ant-input::placeholder {
+    color: white; 
+    opacity: 0.5; 
+}
+
+.form-auth input:-webkit-autofill,
+.form-auth input:-webkit-autofill:hover, 
+.form-auth input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #F1F1F1;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+};

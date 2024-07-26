@@ -1,11 +1,10 @@
-const apiUrl = process.env.REACT_APP_BASE_URL;
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
     screens: {
-      xxs: { 'max': '375px' },
-      xs: '375px',
+      xxs: { max: "375px" },
+      xs: "375px",
       sm: "425px",
       md: "768px",
       lg: "1024px",
@@ -24,37 +23,34 @@ module.exports = {
     extend: {
       keyframes: {
         marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' },
-        }
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
       },
       animation: {
-        marquee: 'marquee 30s linear infinite',
+        marquee: "marquee 30s linear infinite",
       },
       backgroundImage: {
-        'bgMoving': 'linear-gradient(90deg, #7062DF 0%, #0D3D9B 100%)'
+        bgMoving: "linear-gradient(90deg, #7062DF 0%, #0D3D9B 100%)",
       },
       colors: {
-        'signinColor': "rgba(116,99,224,0.25)",
-        'inputBackground1': "rgba(59, 24, 130, 0.75)",
-        'inputBackground2': ' rgba(158, 24, 99, 0.75)',
-        'backgroundBtn': 'rgba(0,0,0,0.4)',
+        signinColor: "rgba(116,99,224,0.25)",
+        inputBackground1: "rgba(59, 24, 130, 0.75)",
+        inputBackground2: " rgba(158, 24, 99, 0.75)",
+        backgroundBtn: "rgba(0,0,0,0.4)",
       },
       height: {
         100: "800px",
       },
       with: {
-        101: '1000px'
+        101: "1000px",
       },
       lineClamp: {
-        15: '15',
+        15: "15",
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-    require('tailwind-scrollbar'),
-  ],
+  plugins: [require("@tailwindcss/line-clamp"), require("tailwind-scrollbar")],
   corePlugins: {
     preflight: false,
   },

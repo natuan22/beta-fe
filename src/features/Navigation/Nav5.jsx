@@ -1,6 +1,6 @@
 import React from "react";
 import LayOut from "../../HOCs/Layout";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import { apiUrl } from "../../services/config";
 
 const Nav5 = () => {
   const [login, setLogin] = useState(false);

@@ -53,7 +53,7 @@ const InvestToolTab = () => {
             }}
             to="/cong-cu-dau-tu/chien-luoc-giao-dich"
           >
-            Chiến lươc giao dịch
+            Chiến lược giao dịch
           </NavLink>
           <NavLink
             className={(params) => {
@@ -132,7 +132,7 @@ const InvestToolTab = () => {
             }}
             to="/cong-cu-dau-tu/chien-luoc-giao-dich"
           >
-            Chiến lươc giao dịch
+            Chiến lược giao dịch
           </NavLink>
           <NavLink
             className={(params) => {

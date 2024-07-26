@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaAngleDoubleRight } from "react-icons/fa";
+import { apiUrl } from "../../services/config";
 
-const apiUrl = process.env.REACT_APP_BASE_URL;
 const AuthComponent = () => {
   return (
     <div

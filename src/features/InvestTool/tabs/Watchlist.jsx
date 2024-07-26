@@ -1,39 +1,99 @@
-import React from "react";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import React, { useEffect, useState } from "react";
+import { getApi } from "../../../helper/getApi";
+import { apiUrl } from "../../../services/config";
+import DialogLogin from "../../Auth/components/DialogLogin";
+import DialogAddWatchList from "./Watchlist/components/DialogAddWatchList";
+import HomeWatchList from "./Watchlist/components/HomeWatchList";
+import "./Watchlist/components/styles/modalStyle.css";
 
 const Watchlist = () => {
+  const [isLogin, setIsLogin] = useState(localStorage.getItem("_il"));
+  const [role, setRole] = useState(localStorage.getItem("2ZW79"));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
+  const [watchlists, setWatchlists] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (isLogin === "7MEvU") {
+      const fetchDataWatchList = async () => {
+        try {
+          const data = await getApi(apiUrl, "/api/v1/watchlist");
+          setWatchlists(data);
+          setLoading(false);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      fetchDataWatchList();
+    } else {
+      setLoading(false);
+    }
+  }, [isLogin]);
+
+  const onSubmitSuccess = () => {
+    setIsLogin(localStorage.getItem("_il"));
+    setRole(localStorage.getItem("2ZW79"));
+    setUser(JSON.parse(localStorage.getItem("user")));
+  };
+
+  const catchWatchlists = (arrText) => {
+    setWatchlists(arrText);
+  };
+
   return (
-    <div>
-      <div className="h-auto pt-5 pb-2 flex justify-center ">
-        <div className="flex md:flex-row md:justify-around sm:flex-col sm:items-center xs:flex-col xs:items-center xxs:flex-col xxs:items-center">
-          <div className="px-2 relative">
-            <a
-              href="https://zalo.me/1623670409453822014"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                className="xl:w-[712px] xl:h-[500px] lg:w-[505px] lg:h-[333px] md:w-[370px] md:h-[261px] sm:w-[350px] sm:h-[261px] xs:w-[350px] xs:h-[261px] xxs:w-[223px] xxs:h-[167px]"
-                src={`${apiUrl}/resources/images/banner1.png`}
-                alt="zalo-banner"
-              />
-            </a>
-          </div>
-          <div className="px-2 relative">
-            <a
-              href="https://t.me/betaEmarketbot"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                className="xl:w-[712px] xl:h-[500px] lg:w-[505px] lg:h-[333px] md:w-[370px] md:h-[261px] sm:w-[350px] sm:h-[261px] xs:w-[350px] xs:h-[261px] xxs:w-[223px] xxs:h-[167px]"
-                src={`${apiUrl}/resources/images/banner2.png`}
-                alt="tele-banner"
-              />
-            </a>
-          </div>
+    <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-full pt-2">
+      {!loading ? (
+        <div>
+          {isLogin === "7MEvU" ? (
+            <div>
+              {watchlists?.length > 0 ? (
+                <HomeWatchList
+                  watchlists={watchlists}
+                  catchWatchlists={catchWatchlists}
+                />
+              ) : (
+                <div className="grid place-content-center h-screen font-medium text-lg">
+                  <div className="flex flex-col justify-center items-center bg-[#D6EBFF] bg-opacity-70 w-[1064px] h-[394px] border-solid border-[#0669FC] border-opacity-20 rounded-[25px]">
+                    <div className="p-7">
+                      Xin chào quý nhà đầu tư{" "}
+                      <span className="font-bold">{user.name}</span>
+                    </div>
+                    <div>
+                      Bạn chưa có watchlist, bạn hãy tạo watchlist để theo dõi
+                      những mã chứng khoán mình quan tâm.
+                    </div>
+                    <div className="mt-14">
+                      <DialogAddWatchList
+                        catchWatchlists={catchWatchlists}
+                        type={1}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="grid place-content-center h-screen font-medium text-lg">
+              <div className="flex flex-col justify-center items-center bg-[#D6EBFF] bg-opacity-70 w-[1064px] h-[394px] border-solid border-[#0669FC] border-opacity-20 rounded-[25px]">
+                <div className="p-7">
+                  Xin chào quý nhà đầu tư <span className="font-bold"></span>
+                </div>
+                <div>
+                  Hãy đăng nhập để quản lý danh sách các mã chứng khoán bạn quan
+                  tâm.
+                </div>
+                <div className="mt-14">
+                  <DialogLogin onSubmitSuccess={onSubmitSuccess} />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };

@@ -1,7 +1,6 @@
-import { https } from "../../../services/config";
+import axios from "axios";
 import Cookies from "js-cookie";
-
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import { apiUrl, https } from "../../../services/config";
 
 export const authenServices = {
   userLogin: (data) => {
@@ -19,11 +18,19 @@ export const authenServices = {
     });
   },
   userLogout: () => {
-    // console.log(Cookies.get('at'))
-    return https.post("api/v1/auth/logout", {
-      headers: {
-        Authorization: "Bearer " + Cookies.get("at"),
-      },
-    });
+    const headers = {
+      mac: localStorage.getItem("deviceId"),
+    };
+
+    const token = Cookies.get("at");
+    if (token) {
+      headers.Authorization = "Bearer " + token;
+    }
+    return axios
+      .create({
+        baseURL: apiUrl,
+        headers: headers,
+      })
+      .post("/api/v1/auth/logout");
   },
 };

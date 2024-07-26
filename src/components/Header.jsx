@@ -1,33 +1,43 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import { BellOutlined, MessageOutlined } from "@ant-design/icons";
 import { Transition } from "@headlessui/react";
-import { useDispatch, useSelector } from "react-redux";
-import { FaUserCircle } from "react-icons/fa";
-import Switcher from "../services/switcher";
-import SearchDialog from "../features/Search/utils/UIcomponent/SearchDialog";
 import { Popover } from "antd";
+import React, { useState } from "react";
 import { BiLogOut } from "react-icons/bi";
+import { FaUserCircle } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
 import { userLogoutAction } from "../features/Auth/thunk";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import SearchDialog from "../features/Search/utils/UIcomponent/SearchDialog";
+import Switcher from "../services/switcher";
+import { apiUrl } from "../services/config";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(
-    JSON.parse(localStorage.getItem("user"))
-  );
+  const [role, setRole] = useState(localStorage.getItem("2ZW79"));
+  const [isLogin, setIsLogin] = useState(localStorage.getItem("_il"));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
   const handleOpenChange = (newOpen) => {
     setOpen(newOpen);
   };
+
   const handleUserLogout = () => {
     if (isLogin) {
       setIsLogin(null);
+      setRole(null);
+      setUser(null);
       dispatch(userLogoutAction());
+      localStorage.setItem("_il", "4E8WL");
+      localStorage.removeItem("2ZW79");
       localStorage.removeItem("user");
+      navigate(0);
     }
   };
+
   return (
     <>
       <div className=" relative">
@@ -161,9 +171,9 @@ const Header = () => {
                       Trung tâm phân tích
                     </NavLink>
                   </div>
-                  {/* login */}
                 </div>
-                <div className="hidden xl:flex items-center ml-3 xl:ml-[250px]">
+                {/* login */}
+                <div className="hidden xl:flex items-center ml-3 xl:ml-[245px]">
                   <div className="flex">
                     <Switcher />
                     <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
@@ -175,7 +185,7 @@ const Header = () => {
                   </span>
                 </div>
                 <div className="hidden xl:block cursor-pointer">
-                  {isLogin ? (
+                  {isLogin === "7MEvU" ? (
                     <div className="relative">
                       <Popover
                         content={
@@ -198,9 +208,9 @@ const Header = () => {
                         open={open}
                         onOpenChange={handleOpenChange}
                       >
-                        <span className="text-white ml-2 text-sm flex items-center font-medium">
-                          <FaUserCircle className="text-white mr-2 text-xl" />
-                          {isLogin.name}
+                        <span className="dark:text-gray-300 text-black ml-2 text-sm flex items-center font-medium">
+                          <FaUserCircle className="dark:text-gray-300 text-black mr-2 text-xl" />
+                          {user.name}
                         </span>
                         <div className="absolute w-2 h-2 rounded-full bg-green-400 bottom-0 left-[18%]"></div>
                       </Popover>
@@ -386,10 +396,9 @@ const Header = () => {
                     Trung tâm phân tích
                   </NavLink>
                   <div className="relative mb-5">
-                    {isLogin ? (
+                    {isLogin === "7MEvU" ? (
                       <Popover
-                        className="absolute"
-                        placement="right"
+                        placement="bottom"
                         content={
                           <div className="flex flex-col justify-around h-[100px]">
                             <button className="bg-transparent font-semibold border-0 cursor-pointer hover:text-blue-500 duration-500">
@@ -398,7 +407,7 @@ const Header = () => {
                             <span className="flex items-center justify-evenly hover:text-red-500 duration-500">
                               <button
                                 onClick={handleUserLogout}
-                                className="bg-transparent border-0 cursor-pointer hover:text-red-500 duration-500  "
+                                className="bg-transparent border-0 cursor-pointer hover:text-red-500 duration-500"
                               >
                                 Đăng xuất{" "}
                               </button>
@@ -410,10 +419,10 @@ const Header = () => {
                         open={open}
                         onOpenChange={handleOpenChange}
                       >
-                        <span className="text-white ml-2 text-sm flex items-center font-medium">
-                          <FaUserCircle className="text-white mr-2 text-xl" />
-                          {isLogin.name}
-                        </span>
+                        <div className="dark:text-gray-300 text-black text-sm flex items-center font-medium px-2 py-2 cursor-pointer">
+                          <FaUserCircle className="dark:text-gray-300 text-black mr-2 text-xl" />
+                          {user.name}
+                        </div>
                       </Popover>
                     ) : (
                       <>

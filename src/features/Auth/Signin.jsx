@@ -1,36 +1,35 @@
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import Button from "@mui/material/Button";
+import { Form, Input } from "antd";
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { apiUrl } from "../../services/config";
 import { userLoginAction } from "./thunk";
 import "./utils/authen.css";
+import "./utils/styleInput.css";
+
 const Signin = () => {
-  const apiUrl = process.env.REACT_APP_BASE_URL;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loginInfo, setLoginInfo] = useState({ phone: "", password: "" });
-  const handleChange = (e) => {
-    setLoginInfo({
-      ...loginInfo,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
+  const loginMessage = useSelector((state) => state.authen.loginMessage);
+  const isLogin = useSelector((state) => state.authen.userData);
+
+  const onFinish = async (values) => {
     // Thay thế số 0 đầu tiên thành 84 trong số điện thoại khi gửi yêu cầu API
-    const modifiedPhone = loginInfo.phone.replace(/^0/, "84");
+    const modifiedPhone = values.phone.replace(/^0/, "84");
 
     // Gửi yêu cầu API với số điện thoại đã được sửa đổi
-    await dispatch(userLoginAction({ ...loginInfo, phone: modifiedPhone }));
-
-    // Clear form
-    setLoginInfo({ phone: "", password: "" });
+    await dispatch(userLoginAction({ ...values, phone: modifiedPhone }));
   };
 
-  const isLogin = useSelector((state) => state.authen.userData);
-  const loginMessage = useSelector((state) => state.authen.loginMessage);
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   useEffect(() => {
     !isLogin?.data ? navigate("/signin") : navigate("/");
   }, [isLogin, navigate]);
@@ -42,128 +41,101 @@ const Signin = () => {
         backgroundImage: `url('${apiUrl}/resources/images/login-background.png')`,
       }}
     >
-      <div className="container mx-auto h-auto pt-[90px] pb-[136px] w-[80%] relative">
-        <nav className="flex justify-around mb-[70px] xs:text-[10px] md:text-base lg:text-base xl:text-base">
-          <NavLink to="/" className="text-white no-underline">
-            Trang chủ
-          </NavLink>
-          <NavLink className="text-white no-underline">
-            Giới thiệu dịch vụ
-          </NavLink>
-          <NavLink className="text-white no-underline">Liên hệ</NavLink>
-          <NavLink className="text-white no-underline">Về chúng tôi</NavLink>
-          <NavLink className="text-white no-underline">Pháp lý</NavLink>
-        </nav>
-
+      <div className="container mx-auto h-auto pt-[90px] pb-[118px] w-[80%] relative">
         {/* phone */}
         <div
-          className="signIn xxs:flex xs:flex lg:hidden flex-col items-center relative mt-8 h-[600px]"
+          className="signIn xxs:flex xs:flex lg:hidden flex-col items-center relative mt-8 h-[600px] rounded-[20px]"
           style={{
             backgroundImage:
               "linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)",
           }}
         >
-          <img
-            className="w-[100px] h-[45px] mt-[70px] mb-[40px]"
-            src={`${apiUrl}/resources/icons/logo-beta-color.png`}
-            alt="Beta logo"
-          />
-          <form className="flex flex-col justify-center items-center w-[60%]">
-            <div className="relative z-0 w-full mb-6 group">
-              <input
-                type="tel"
-                id="floating_email"
-                name="phone"
-                className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                onChange={handleChange}
-                value={loginInfo.phone}
-              />
-              <label
-                htmlFor="floating_email"
-                className="text-white peer-focus:font-medium absolute text-sm dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Số điện thoại
-              </label>
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
-              <input
-                type="password"
-                id="floating_email"
-                name="password"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                onChange={handleChange}
-                value={loginInfo.password}
-              />
-              <label
-                htmlFor="floating_email"
-                className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Mật khẩu
-              </label>
-            </div>
-            <div className="flex items-start mb-6">
-              <div className="flex items-center h-5">
-                <input
-                  id="remember"
-                  type="checkbox"
-                  className="xs:w-3 xs:h-3 md:w-5 md:h-5 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                />
-              </div>
-              <label
-                htmlFor="remember"
-                className="ml-2 xs:text-xs md:text-sm font-medium text-white dark:text-gray-300"
-              >
-                Ghi nhớ đăng nhập
-              </label>
-            </div>
-            <p className="my-2 text-start text-amber-500 absolute">
-              {loginMessage}
-            </p>
-            <button
-              type="submit"
-              className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg xs:text-xs md:text-sm w-full xs:px-6 md:px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              style={{
-                backgroundImage:
-                  " linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)",
+          <a href="/">
+            <img
+              className="w-[100px] h-[45px] mt-[70px] mb-[40px]"
+              src={`${apiUrl}/resources/icons/logo-beta-color.png`}
+              alt="Beta logo"
+            />
+          </a>
+          <div className="flex flex-col justify-center items-center w-[60%] form-auth">
+            <Form
+              initialValues={{
+                remember: true,
               }}
-              onClick={handleSubmit}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              size="large"
             >
-              Đăng nhập
-            </button>
-          </form>
+              <div className="mt-6">
+                <Form.Item
+                  name="phone"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Vui lòng nhập số điện thoại!",
+                    },
+                  ]}
+                >
+                  <Input
+                    prefix={<UserOutlined className="site-form-item-icon" />}
+                    placeholder="Số điện thoại"
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="password"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Vui lòng nhập mật khẩu!",
+                    },
+                  ]}
+                >
+                  <Input.Password
+                    placeholder="Mật khẩu"
+                    prefix={<LockOutlined className="site-form-item-icon" />}
+                  />
+                </Form.Item>
+              </div>
+              <div className="flex items-start justify-center mb-6">
+                <div className="flex items-center h-5">
+                  <input
+                    id="remember"
+                    type="checkbox"
+                    className="xs:w-3 xs:h-3 md:w-5 md:h-5 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                  />
+                </div>
+                <label
+                  htmlFor="remember"
+                  className="ml-2 xs:text-xs md:text-sm font-medium text-white dark:text-gray-300"
+                >
+                  Ghi nhớ đăng nhập
+                </label>
+              </div>
+              <p className="my-2 text-start text-amber-500 absolute">
+                {loginMessage}
+              </p>
+              <Form.Item>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    height: "40px",
+                    backgroundImage:
+                      " linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)",
+                  }}
+                  className="md:w-[370px] sm:w-[250px] xs:w-[230px] xxs:w-[200px]"
+                >
+                  <span className="normal-case">Đăng nhập</span>
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
           <a
             className="text-white xxs:mb-8 xs:mb-14 md:mb-6 "
-            href="bsi.com.vn"
+            href="/trang-khong-ton-tai"
           >
             <i>Quên mật khẩu ?</i>
           </a>
-          <div className="w-[50%] flex justify-around">
-            <img
-              src={`${apiUrl}/resources/images/google-logo.png`}
-              alt="logo"
-              className="w-8 h-8 xs:mx-2 xxs:mx-2"
-            />
-            <img
-              src={`${apiUrl}/resources/images/fb-logo.png`}
-              alt="logo"
-              className="w-8 h-8 xs:mx-2 xxs:mx-2"
-            />
-            <span className="bg-white h-[28px] xs:mx-2 xxs:mx-2 rounded-t-md">
-              <img
-                src={`${apiUrl}/resources/images/zalo-logo.png`}
-                alt="zaloIcon"
-                className="w-8 h-8"
-              />
-            </span>
-
-            <img
-              src={`${apiUrl}/resources/images/beta-logo.png`}
-              alt="betaIcon"
-              className="w-8 h-8 xs:mx-2 xxs:mx-2"
-            />
-          </div>
           <div className="absolute xxs:bottom-[5%] xs:bottom-[5%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
             <NavLink
               to="/signin"
@@ -195,7 +167,7 @@ const Signin = () => {
         </div>
 
         {/* tablet , desktop */}
-        <div className="mt-8 flex bg-signinColor xxs:hidden xs:hidden lg:flex">
+        <div className="mt-8 flex bg-signinColor xxs:hidden xs:hidden lg:flex rounded-[20px]">
           <div className="relative w-[60%] z-10">
             <div className="absolute top-0 left-0 translate-x-[10%] translate-y-[10%]">
               <h1 className="text-[#f2de59]">B-Market</h1>
@@ -221,121 +193,96 @@ const Signin = () => {
             />
           </div>
           <div
-            className="w-[40%] pb-20 flex flex-col items-center relative signIn md:translate-x-[75%] lg:translate-x-0"
+            className="w-[40%] pb-20 flex flex-col items-center relative signIn md:translate-x-[75%] lg:translate-x-0 rounded-r-[20px]"
             style={{
               backgroundImage:
                 " linear-gradient(90deg, rgba(59, 24, 130, 0.75) 0%, rgba(102, 58, 130, 0.75) 35%, rgba(158, 24, 99, 0.75) 100%)  ",
             }}
           >
-            <img
-              className="w-[100px] h-[45px] mt-[70px] mb-[40px]"
-              src={`${apiUrl}/resources/icons/logo-beta-color.png`}
-              alt="Beta logo"
-            />
-            {/* <img
-              src={`${apiUrl}/resources/images/logo1.png`}
-              alt="logoImg"
-              width="180px"
-              height="160px"
-            /> */}
-            <form className="flex flex-col justify-center items-center w-[60%]">
-              <div className="relative z-0 w-full mb-6 group">
-                <input
-                  type="tel"
-                  id="floating_email"
-                  className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  name="phone"
-                  onChange={handleChange}
-                  value={loginInfo.phone}
-                />
-                <label
-                  htmlFor="floating_email"
-                  className="text-white peer-focus:font-medium absolute text-sm  dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Số điện thoại
-                </label>
-              </div>
-              <div className="relative z-0 w-full mb-6 group">
-                <input
-                  type="password"
-                  id="floating_email"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  name="password"
-                  onChange={handleChange}
-                  value={loginInfo.password}
-                />
-                <label
-                  htmlFor="floating_email"
-                  className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Mật khẩu
-                </label>
-              </div>
-              <div className="flex items-start mb-6 mt-3">
-                <div className="flex items-center h-5 ">
-                  <input
-                    id="remember"
-                    type="checkbox"
-                    className=" w-5 h-5 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                  />
+            <a href="/">
+              <img
+                className="w-[100px] h-[45px] mt-[70px] mb-[40px]"
+                src={`${apiUrl}/resources/icons/logo-beta-color.png`}
+                alt="Beta logo"
+              />
+            </a>
+            <div className="flex flex-col justify-center items-center w-[60%] form-auth">
+              <Form
+                initialValues={{
+                  remember: true,
+                }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                className="w"
+                size="large"
+              >
+                <div className="mt-6">
+                  <Form.Item
+                    name="phone"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng nhập số điện thoại!",
+                      },
+                    ]}
+                  >
+                    <Input
+                      prefix={<UserOutlined className="site-form-item-icon" />}
+                      placeholder="Số điện thoại"
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name="password"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Vui lòng nhập mật khẩu!",
+                      },
+                    ]}
+                  >
+                    <Input.Password
+                      placeholder="Mật khẩu"
+                      prefix={<LockOutlined className="site-form-item-icon" />}
+                    />
+                  </Form.Item>
                 </div>
-                <label
-                  htmlFor="remember"
-                  className="ml-2 text-sm font-medium text-white dark:text-gray-300"
-                >
-                  Ghi nhớ đăng nhập
-                </label>
-              </div>
-              {!isLogin?.data ? (
-                <p className="my-2 text-start text-amber-500 absolute z-30">
+                <div className="flex items-start justify-center mb-6">
+                  <div className="flex items-center h-5">
+                    <input
+                      id="remember"
+                      type="checkbox"
+                      className="xs:w-3 xs:h-3 md:w-5 md:h-5 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                    />
+                  </div>
+                  <label
+                    htmlFor="remember"
+                    className="ml-2 xs:text-xs md:text-sm font-medium text-white dark:text-gray-300"
+                  >
+                    Ghi nhớ đăng nhập
+                  </label>
+                </div>
+                <p className="my-2 text-start text-amber-500 absolute">
                   {loginMessage}
                 </p>
-              ) : (
-                ""
-              )}
-
-              <button
-                type="submit"
-                className="border-none mb-6 text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                style={{
-                  backgroundImage:
-                    " linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)",
-                }}
-                onClick={handleSubmit}
-              >
-                Đăng nhập
-              </button>
-            </form>
-            <a className="text-white mb-6" href="bsi.com.vn">
+                <Form.Item>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{
+                      height: "40px",
+                      backgroundImage:
+                        " linear-gradient(45deg,#312A7F 0%, #4C318E 35%, #6C3CA0 100%)",
+                    }}
+                    className="2xl:w-[350px] xl:w-[300px] lg:w-[250px]"
+                  >
+                    <span className="normal-case">Đăng nhập</span>
+                  </Button>
+                </Form.Item>
+              </Form>
+            </div>
+            <a className="text-white mb-6" href="/trang-khong-ton-tai">
               <i>Quên mật khẩu ?</i>
             </a>
-            <div className="w-[60%] flex justify-around ">
-              <img
-                src={`${apiUrl}/resources/images/google-logo.png`}
-                alt="logo"
-                className="w-8 h-8 mx-3"
-              />
-              <img
-                src={`${apiUrl}/resources/images/fb-logo.png`}
-                alt="logo"
-                className="w-8 h-8 mx-3"
-              />
-              <span className="bg-white h-[28px] mx-3 rounded-t-md">
-                <img
-                  src={`${apiUrl}/resources/images/zalo-logo.png`}
-                  alt="zaloIcon"
-                  className="w-8 h-8"
-                />
-              </span>
-
-              <img
-                src={`${apiUrl}/resources/images/beta-logo.png`}
-                alt="betaIcon"
-                className="w-8 h-8 mx-3"
-              />
-            </div>
             <div className="absolute bottom-[4%] w-[80%] bg-backgroundBtn h-auto mt-5 flex justify-around items-center rounded-full">
               <NavLink
                 to="/signin"

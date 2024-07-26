@@ -1,5 +1,5 @@
 import React from "react";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+import { apiUrl } from "../../../../services/config";
 
 const Technical = () => {
   return (

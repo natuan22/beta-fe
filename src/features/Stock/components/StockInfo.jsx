@@ -1,16 +1,15 @@
-import React, { useEffect, useLayoutEffect } from "react";
-import { getColor } from "../../Chart/utils/utils";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchDataInfoHeader } from "../thunk";
-import CandleChart from "./CandleChart";
-import { useNavigate } from "react-router-dom";
-import socket from "../../Chart/utils/socket";
-import { useState } from "react";
-import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
 import { Skeleton } from "@mui/material";
-import imgDefault from "../utils/img/default-image.jpg";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import formatNumberCurrency from "../../../helper/formatNumberCurrency";
-const resourceURL = process.env.REACT_APP_RESOURCE_URL;
+import { resourceURL } from "../../../services/config";
+import socket from "../../Chart/utils/socket";
+import { getColor } from "../../Chart/utils/utils";
+import { fetchDataInfoHeader } from "../thunk";
+import imgDefault from "../utils/img/default-image.jpg";
+import CandleChart from "./CandleChart";
 
 const StockInfo = ({ codeUrl }) => {
   const dispatch = useDispatch();

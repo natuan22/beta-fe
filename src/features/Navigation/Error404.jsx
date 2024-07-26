@@ -1,11 +1,9 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { apiUrl } from "../../services/config";
 
 const Error404 = () => {
-  const apiUrl = process.env.REACT_APP_BASE_URL;
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
   const color = useSelector((state) => state.color.colorTheme);
 
