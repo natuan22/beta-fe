@@ -169,7 +169,7 @@ const TableTechnique = ({
                 columns={columns}
                 dataSource={data}
                 rowClassName={rowClassName}
-                pagination={{ defaultPageSize: 14, showSizeChanger: false }}
+                pagination={{ defaultPageSize: 10, showSizeChanger: false }}
               />
             </div>
           ) : (

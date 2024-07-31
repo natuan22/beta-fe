@@ -11,6 +11,7 @@ import Signup from "../features/Auth/Signup";
 import Home from "../features/Chart/Home";
 import InvestTool from "../features/InvestTool/InvestTool";
 import BetaSmart from "../features/InvestTool/tabs/BetaSmart";
+import Filter from "../features/InvestTool/tabs/Filter";
 import InvestKnowledge from "../features/InvestTool/tabs/InvestKnowledge";
 import SignalWarning from "../features/InvestTool/tabs/SignalWarning";
 import StockFilter from "../features/InvestTool/tabs/StockFilter";
@@ -62,7 +63,7 @@ export const investToolRoutes = [
     component: InvestTool,
     children: [
       { path: "danh-muc-theo-doi", component: Watchlist },
-      { path: "bo-loc", component: StockFilter },
+      { path: "bo-loc", component: Filter },
       { path: "canh-bao-tin-hieu", component: SignalWarning },
       { path: "chien-luoc-giao-dich", component: TradingStrategies },
       { path: "beta-smart", component: BetaSmart },

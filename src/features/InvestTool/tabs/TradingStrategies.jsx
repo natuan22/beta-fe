@@ -3,11 +3,10 @@ import { Checkbox } from "antd";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import { PiChartLineUpBold } from "react-icons/pi";
-import { useDispatch } from "react-redux";
+import StrategyMA from "./TradingStrategies/components/StrategyMA";
+import StrategyMAVVIP from "./TradingStrategies/components/StrategyMAVVIP";
 import { selectTradingStrategy } from "./TradingStrategies/utils/hashTb";
 import "./TradingStrategies/utils/styles/cssDatePicker.css";
-import StrategyMAVVIP from "./TradingStrategies/components/StrategyMAVVIP";
-import StrategyMA from "./TradingStrategies/components/StrategyMA";
 
 const theme = createTheme({
   palette: {
@@ -20,11 +19,7 @@ const theme = createTheme({
 });
 
 const TradingStrategies = () => {
-  const dispatch = useDispatch();
-
-  const [isLogin, setIsLogin] = useState(localStorage.getItem("_il"));
   const [role, setRole] = useState(localStorage.getItem("2ZW79"));
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
   const [selectedStrategy, setSelectedStrategy] = useState("");
   const [selectedMainCategory, setSelectedMainCategory] = useState("");
