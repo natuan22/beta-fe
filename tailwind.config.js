@@ -34,7 +34,7 @@ module.exports = {
         bgMoving: "linear-gradient(90deg, #7062DF 0%, #0D3D9B 100%)",
       },
       colors: {
-        signinColor: "rgba(116,99,224,0.25)",
+        signinColor: "#2728318f",
         inputBackground1: "rgba(59, 24, 130, 0.75)",
         inputBackground2: " rgba(158, 24, 99, 0.75)",
         backgroundBtn: "rgba(0,0,0,0.4)",
