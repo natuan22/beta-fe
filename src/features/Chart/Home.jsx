@@ -28,7 +28,7 @@ import {
   fetchDataBarChartLeft,
   fetchDataBarChartRight,
   fetchDataEvents,
-  fetchDataGeneralIndustry,
+  fetchDataGeneralIndustry, 
   fetchDataGoodsDetail,
   fetchDataLineChartHomePage,
   fetchDataRateDetail,
@@ -164,7 +164,7 @@ const Home = () => {
             <div>
               <div className="xl:flex lg:block">
                 <div className="xl:w-[60%]">
-                  <div className="mx-2 my-2 px-1.5 py-1.5 shadow-md dark:bg-[#151924] bg-gray-100 xs:h-[368px] md:h-[395px] lg:h-[485px] xl:h-[682px] 2xl:h-[681px]">
+                  <div className="mx-2 my-2 px-1.5 py-1.5 shadow-md dark:bg-[#151924] bg-gray-100 xs:h-[368px] md:h-[395px] lg:h-[485px] xl:h-[682px] 2xl:h-[680px]">
                     <GeneralIndustry />
                   </div>
                 </div>
