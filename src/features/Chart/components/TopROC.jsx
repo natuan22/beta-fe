@@ -234,7 +234,7 @@ const TopROC = () => {
               </div>
             </div>
           ) : (
-            <div className="text-center mt-6 h-[698px]">
+            <div className="text-center mt-6 h-[585px]">
               <Loading />
             </div>
           )}
