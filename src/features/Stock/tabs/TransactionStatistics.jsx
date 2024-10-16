@@ -17,6 +17,7 @@ import StatisticsByMonth from "../components/TransactionStatistics/StatisticsByM
 import StatisticsByQuarter from "../components/TransactionStatistics/StatisticsByQuarter";
 import StatisticsByYear from "../components/TransactionStatistics/StatisticsByYear";
 import TradingInvestors from "../components/TransactionStatistics/TradingInvestors";
+import BuySellActive from "../components/TransactionStatistics/BuySellActive";
 
 const contentTotalMatchingVolume = (
   <div>
@@ -61,7 +62,11 @@ const TransactionStatistics = ({ codeUrl }) => {
     <div className="container mx-auto">
       {isLoading ? (
         <div className="mt-4">
-          <div>
+          {/* Mua bán chủ động */}
+          <BuySellActive stock={queryApi.stock} />
+
+          {/* Dữ liệu giao dịch */}
+          <div className="mt-8">
             <div className="lg:flex md:block justify-between items-center">
               <div>
                 {!isChart ? (

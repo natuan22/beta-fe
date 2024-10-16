@@ -18,7 +18,7 @@ const Watchlist = () => {
     if (isLogin === "7MEvU") {
       const fetchDataWatchList = async () => {
         try {
-          const data = await getApi(apiUrl, "/api/v1/watchlist");
+          const data = await getApi("/api/v1/watchlist");
           setWatchlists(data);
           setLoading(false);
         } catch (error) {

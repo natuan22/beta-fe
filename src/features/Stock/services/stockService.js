@@ -1,3 +1,4 @@
+import { getApi } from "../../../helper/getApi";
 import { https } from "../../../services/config";
 
 export const stockService = {
@@ -314,5 +315,8 @@ export const stockService = {
         stock,
       },
     });
+  },
+  fetchDataHistoricalPEPB: (stock, period) => {
+    return getApi(`/api/v1/tcbs/historical-pe-pb?stock=${stock}&period=${period}`);
   },
 };

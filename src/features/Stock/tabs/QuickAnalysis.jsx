@@ -19,11 +19,13 @@ import {
 import { useDispatch } from "react-redux";
 import RatingHeader from "../components/QuickAnalysis/RatingHeader";
 import FilterCanslim from "../components/QuickAnalysis/FilterCanslim";
+import HistoricalPEPB from "../components/QuickAnalysis/HistoricalPEPB";
 
 const QuickAnalysis = ({ codeUrl }) => {
   const dispatch = useDispatch();
   const { queryApi } = useQueryApi(codeUrl);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(true);
@@ -90,6 +92,9 @@ const QuickAnalysis = ({ codeUrl }) => {
               <div>
                 <IndividualInvestorBenefits queryApi={queryApi} />
               </div>
+            </div>
+            <div>
+              <HistoricalPEPB stock={queryApi.stock} />
             </div>
           </div>
         </>

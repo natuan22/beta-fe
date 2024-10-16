@@ -50,7 +50,7 @@ const Footer = () => {
                 </div>
 
                 <div className="mb-10 w-full">
-                  <div className="mb-3 mt-3 flex items-center xs:translate-x-[35px] sm:translate-x-[65px] mb:translate-x-[60px] lg:translate-x-[35px] xl:translate-x-[75px]">
+                  <div className="w-fit mb-3 mt-3 flex items-center xs:translate-x-[35px] sm:translate-x-[65px] mb:translate-x-[60px] lg:translate-x-[35px] xl:translate-x-[75px]">
                     <a
                       href="https://www.facebook.com/congtychungkhoanbeta"
                       target="_blank"

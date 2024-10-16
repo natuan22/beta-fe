@@ -48,6 +48,7 @@ const initialState = {
   dataPriceFluctuationCorrelation: {},
   dataPriceFluctuation: {},
   dataSalesOrderStatistics: {},
+  dataHistoricalPEPB: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -192,6 +193,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === stockType.FETCH_DATA_SALES_ORDER_STATISTICS) {
       draft.dataSalesOrderStatistics = payload;
+    }
+    if (type === stockType.FETCH_DATA_HISTORICAL_PE_PB) {
+      draft.dataHistoricalPEPB = payload;
     }
   });
 };

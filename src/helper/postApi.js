@@ -53,7 +53,7 @@ export const refreshTokenAction = async () => {
   }
 };
 
-export const postApi = async (apiUrl, url, data) => {
+export const postApi = async (url, data) => {
   const headers = {
     mac: localStorage.getItem("deviceId"),
   };

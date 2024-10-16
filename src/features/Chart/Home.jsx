@@ -94,7 +94,7 @@ const Home = () => {
 
   return (
     <LayOut>
-      <div className="px-1.5 sticky top-0 z-20">
+      <div className="px-1.5 sticky top-[64px] z-20">
         <InternationalIndex />
         <News />
       </div>

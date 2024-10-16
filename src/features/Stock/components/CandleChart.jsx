@@ -81,6 +81,20 @@ const CandleChart = ({ code, dataChart }) => {
             color: "green",
           },
         ],
+        dataLabels: {
+          enabled: true,
+          formatter: function () {
+            return this.point.index === this.series.data.length - 1
+              ? +(this.point.y / 1000).toFixed(2)
+              : null;
+          },
+          style: {
+            color: localStorage.getItem("color"),
+            fontSize: "11px",
+            fontWeight: "bold",
+            textOutline: "1px contrast",
+          },
+        },
       },
     ],
     yAxis: {

@@ -3,11 +3,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Skeleton } from "antd";
 import React, { useEffect, useState } from "react";
 import { FiFilePlus } from "react-icons/fi";
-import { useDispatch } from "react-redux";
 import { getApi } from "../../../helper/getApi";
-import { apiUrl } from "../../../services/config";
-import { userLogoutAction } from "../../Auth/thunk";
-import "../utils/styles/skeletonFilter.css";
+import "../../../utils/style/skeletonLoading.css";
 import AddCodeToWatchlist from "./Filter/components/AddCodeToWatchlist";
 import ComponentConditions from "./Filter/components/ComponentConditions";
 import DialogAddConditions from "./Filter/components/DialogAddConditions";
@@ -65,7 +62,7 @@ const Filter = () => {
     if (isLogin === "7MEvU") {
       const fetchDataWatchList = async () => {
         try {
-          const data = await getApi(apiUrl, "/api/v1/watchlist");
+          const data = await getApi("/api/v1/watchlist");
 
           setWatchlists(data);
         } catch (error) {
@@ -75,7 +72,7 @@ const Filter = () => {
 
       const fetchDataFilters = async () => {
         try {
-          const data = await getApi(apiUrl, "/api/v1/investment/your-filter");
+          const data = await getApi("/api/v1/investment/your-filter");
 
           setFilters(data);
         } catch (error) {
@@ -91,7 +88,7 @@ const Filter = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getApi(apiUrl, "/api/v1/filter");
+        const data = await getApi("/api/v1/filter");
         setData(data);
         setLoading(false);
       } catch (error) {
@@ -402,7 +399,7 @@ const Filter = () => {
             </div>
           </div>
         ) : (
-          <div className="filter">
+          <div>
             <div className="2xl:flex xl:block lg:block">
               <div className="2xl:w-[70%] xl:w-full">
                 <Skeleton.Input active block className="mt-1" />

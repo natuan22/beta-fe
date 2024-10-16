@@ -10,7 +10,7 @@ const LayOut = (props) => {
   };
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 300) {
+      if (window.scrollY > 300) {
         setShowScrollButton(true);
       } else {
         setShowScrollButton(false);
@@ -35,12 +35,12 @@ const LayOut = (props) => {
 
   return (
     <div className="relative">
-      <header>
+      <header className="sticky top-0 z-30">
         <Header />
       </header>
       <section className="relative">{props.children}</section>
       {showScrollButton && (
-        <div className="btnBackToTop-container fixed bottom-[14%] right-[3.5%] z-30 xxs:right-[50%] xxs:bottom-[-4%] xxs:translate-x-[50%] xxs:hover:translate-y-[-20px] opacity-80 transition-all duration-500 hover:opacity-100 ">
+        <div className="btnBackToTop-container z-30 fixed bottom-[120px] md:right-[66px] sm:right-[35px] xs:right-[30px] xxs:right-[30px] opacity-80 transition-all duration-500 hover:opacity-100">
           <button
             style={{ backgroundColor: "orange" }}
             className=" cursor-pointer text-xl text-white rounded-full border-0 z-30 px-2 py-1 bg-transparent  "
@@ -48,17 +48,17 @@ const LayOut = (props) => {
           >
             <FaArrowUp />
           </button>
-          <div className="icon-container text-white z-[-1] absolute right-[10%]  xxs:hidden ">
+          <div className="icon-container text-white z-[-1] absolute right-[10%] xxs:hidden">
             <div className="flex flex-col justify-center items-center relative translate-x-[-14px] ">
-              <FaAngleUp className="icon-1 text-xl absolute bottom-0  " />
-              <FaAngleUp className="icon-2 text-2xl absolute bottom-0   " />
-              <FaAngleUp className="icon-3 text-3xl absolute bottom-0   " />
+              <FaAngleUp className="icon-1 text-xl absolute bottom-0" />
+              <FaAngleUp className="icon-2 text-2xl absolute bottom-0" />
+              <FaAngleUp className="icon-3 text-3xl absolute bottom-0" />
             </div>
           </div>
         </div>
       )}
       <div
-        className="zalo-chat-widget"
+        className="zalo-chat-widget !bottom-[52px] md:!right-[52px] sm:!right-[25px] xs:!right-[20px] xxs:!right-[20px]"
         data-oaid="1623670409453822014"
         data-welcome-message="Rất vui khi được hỗ trợ bạn!"
         data-autopopup="0"

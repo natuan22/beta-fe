@@ -29,12 +29,12 @@ const DialogAddWatchList = ({ catchWatchlists }) => {
   };
 
   const onFinish = async (values) => {
-    await postApi(apiUrl, "/api/v1/watchlist/create", values);
+    await postApi("/api/v1/watchlist/create", values);
     setIsModalOpen(false);
 
     const fetchDataWatchList = async () => {
       try {
-        const data = await getApi(apiUrl, "/api/v1/watchlist");
+        const data = await getApi("/api/v1/watchlist");
         catchWatchlists(data);
 
         // Lấy tên của watchlist mới được thêm vào
