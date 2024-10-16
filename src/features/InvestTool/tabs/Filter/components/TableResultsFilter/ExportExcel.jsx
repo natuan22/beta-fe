@@ -15,7 +15,6 @@ import {
 } from "../../utils/hashTbExcel";
 
 const XLSX = require("xlsx");
-const apiUrl = process.env.REACT_APP_BASE_URL;
 
 const ExportExcel = ({ filteredResults, selectedItems, selectParameters }) => {
   const [loadingExcel, setLoadingExcel] = useState(false);
@@ -23,7 +22,7 @@ const ExportExcel = ({ filteredResults, selectedItems, selectParameters }) => {
   const fetchDataAndDownloadCSV = async () => {
     try {
       setLoadingExcel(true);
-      const data = await getApi(apiUrl, "/api/v1/filter");
+      const data = await getApi("/api/v1/filter");
 
       const filteredData = data.filter((item) =>
         filteredResults.map((item) => item.code).includes(item.code)

@@ -49,11 +49,11 @@ const AddCodeToWatchlist = ({
   };
 
   const onFinish = async (values) => {
-    await postApi(apiUrl, "/api/v1/watchlist/create", values);
+    await postApi("/api/v1/watchlist/create", values);
 
     const fetchDataWatchList = async () => {
       try {
-        const data = await getApi(apiUrl, "/api/v1/watchlist");
+        const data = await getApi("/api/v1/watchlist");
         catchWatchlists(data);
         const newWatchlist = data.find(
           (watchlist) => watchlist.name === values.name
@@ -97,10 +97,10 @@ const AddCodeToWatchlist = ({
       ...watchlistActive,
       code: updatedWatchlistCodes,
     };
-    await postApi(apiUrl, "/api/v1/watchlist/update", updatedWatchlist);
+    await postApi("/api/v1/watchlist/update", updatedWatchlist);
 
     // Fetch updated watchlists from the server
-    const data = await getApi(apiUrl, "/api/v1/watchlist");
+    const data = await getApi("/api/v1/watchlist");
     catchWatchlists(data);
 
     setIsModalAddOpen(false);

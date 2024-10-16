@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./styles/btnTabStyle.css";
+import "../../../utils/style/buttonStyle.css";
 
 const InvestToolTab = () => {
   return (
@@ -10,9 +10,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/danh-muc-theo-doi"
@@ -22,9 +22,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/bo-loc"
@@ -34,9 +34,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/canh-bao-tin-hieu"
@@ -46,9 +46,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/chien-luoc-giao-dich"
@@ -58,9 +58,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/beta-smart"
@@ -70,9 +70,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/kien-thuc-dau-tu"
@@ -87,9 +87,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/danh-muc-theo-doi"
@@ -99,9 +99,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/bo-loc"
@@ -111,9 +111,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/canh-bao-tin-hieu"
@@ -125,9 +125,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/chien-luoc-giao-dich"
@@ -137,9 +137,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/beta-smart"
@@ -149,9 +149,9 @@ const InvestToolTab = () => {
           <NavLink
             className={(params) => {
               if (params.isActive) {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center  relative";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-70 ";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
               }
             }}
             to="/cong-cu-dau-tu/kien-thuc-dau-tu"

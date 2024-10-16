@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <>
-      <div className=" relative">
+      <div className="relative">
         <nav className="dark:bg-black bg-white shadow-md mb-1">
           {/* max-w-[85.5rem] */}
           <div className="max-w-[87rem] mx-auto px-4 xl:px-7 lg:px-8">

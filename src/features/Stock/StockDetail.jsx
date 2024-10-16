@@ -63,6 +63,7 @@ const StockDetail = () => {
           break;
         }
       }
+
       setWidth(newWidth);
     }
 

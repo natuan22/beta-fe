@@ -514,17 +514,20 @@ export const fetchDataInfoStock = (stock) => async (dispatch) => {
   }
 };
 
-export const fetchDataPriceFluctuationCorrelation = (stock) => async (dispatch) => {
-  try {
-    const res = await stockService.fetchDataPriceFluctuationCorrelation(stock);
-    dispatch({
-      type: stockType.FETCH_DATA_PRICE_FLUCTUATION_CORRELATION,
-      payload: res.data.data,
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
+export const fetchDataPriceFluctuationCorrelation =
+  (stock) => async (dispatch) => {
+    try {
+      const res = await stockService.fetchDataPriceFluctuationCorrelation(
+        stock
+      );
+      dispatch({
+        type: stockType.FETCH_DATA_PRICE_FLUCTUATION_CORRELATION,
+        payload: res.data.data,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
 export const fetchDataPriceFluctuation = (stock) => async (dispatch) => {
   try {
@@ -544,6 +547,18 @@ export const fetchDataSalesOrderStatistics = (stock) => async (dispatch) => {
     dispatch({
       type: stockType.FETCH_DATA_SALES_ORDER_STATISTICS,
       payload: res.data.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchDataHistoricalPEPB = (stock, period) => async (dispatch) => {
+  try {
+    const res = await stockService.fetchDataHistoricalPEPB(stock, period);
+    dispatch({
+      type: stockType.FETCH_DATA_HISTORICAL_PE_PB,
+      payload: res,
     });
   } catch (err) {
     console.error(err);

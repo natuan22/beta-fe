@@ -29,7 +29,7 @@ const StrategyMAVVIP = () => {
   useEffect(() => {
     const fetchDataStock = async () => {
       try {
-        const data = await getApi(apiUrl, "/api/v1/investment/all-stock");
+        const data = await getApi("/api/v1/investment/all-stock");
         setDataStocks(data);
       } catch (error) {
         console.error(error);
