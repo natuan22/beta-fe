@@ -1,10 +1,11 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataIndexConsumptionStorage } from "../../thunk";
 import Loading from "../../../Chart/utils/Loading";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
+import { fetchDataIndexConsumptionStorage } from "../../thunk";
 import { optionsSelect } from "./utils/optionsSelect";
 
 const IndexConsumptionStorage = () => {
@@ -27,8 +28,8 @@ const IndexConsumptionStorage = () => {
       const uniqueDates = [
         ...new Set(
           dataIndexConsumptionStorage?.map((item) =>
-            moment(item.date, "YYYY/MM/DD").year()
-          )
+            moment(item.date, "YYYY/MM/DD").year(),
+          ),
         ),
       ];
       setTimeLine(uniqueDates);
@@ -126,13 +127,21 @@ const IndexConsumptionStorage = () => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
 
   return (
     <div>
-      <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="md:flex sm:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold xs:text-base xxs:text-sm">
           Chỉ số tiêu thụ & tồn kho SP công nghiệp (%)
         </span>

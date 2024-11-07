@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import Loading from "../utils/Loading";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   timeLineChart15h00,
   timeLineChart9h00,
 } from "../../../helper/dateTime.helper";
-import { useSelector } from "react-redux";
+import Loading from "../utils/Loading";
 import socket from "../utils/socket";
 
 const LineChart = () => {
@@ -120,11 +120,16 @@ const LineChart = () => {
     legend: {
       enabled: false, // Tắt chú thích
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     plotOptions: {
       series: {
         marker: {
           radius: 2,
         },
+        turboThreshold: 100_000_000,
       },
     },
   };
@@ -157,7 +162,7 @@ const LineChart = () => {
   }
 
   return (
-    <div id="chart-container" className="h-[340px]">
+    <div id="chart-container" className="h-[320px]">
       {dataLineChartHomePage?.data?.chart.length ? (
         <HighchartsReact
           highcharts={Highcharts}

@@ -1,7 +1,8 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
+import React from "react";
+import LazyLoad from "react-lazyload";
 
 const ColumnChart = ({ data }) => {
   const max = Math?.ceil(Math?.max(...data?.map((item) => item.value)));
@@ -77,6 +78,15 @@ const ColumnChart = ({ data }) => {
     legend: {
       enabled: false, // Tắt chú thích (legend)
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         name: "Dữ liệu",
@@ -99,13 +109,15 @@ const ColumnChart = ({ data }) => {
   };
 
   return (
-    <div className="w-[230px] h-[130px]">
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-        containerProps={{ style: { height: "100%", width: "100%" } }}
-      />
-    </div>
+    <LazyLoad offset={300} debounce={200} once>
+      <div className="w-[230px] h-[130px]">
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={options}
+          containerProps={{ style: { height: "100%", width: "100%" } }}
+        />
+      </div>
+    </LazyLoad>
   );
 };
 

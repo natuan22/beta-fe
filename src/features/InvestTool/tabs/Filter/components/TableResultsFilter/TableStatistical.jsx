@@ -16,6 +16,9 @@ const TableStatistical = ({
   catchWatchlists,
   isLogin,
 }) => {
+  const rowHeight = 45;
+  const maxHeight = 467;
+
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalAddOpen, setIsModalAddOpen] = useState(false);
   const [isModalCreateOpen, setIsModalCreateOpen] = useState(false);
@@ -31,13 +34,10 @@ const TableStatistical = ({
       return "bg-white";
     }
   };
-  
+
   const handleStockClick = async (code) => {
     try {
-      const response = await getApi(
-        apiUrl,
-        `/api/v1/shares/search?key_search=${code}`
-      );
+      const response = await getApi(`/api/v1/shares/search?key_search=${code}`);
       const type = response[0].type;
       const url = `/co-phieu/${code}-${type}`;
       window.open(url, "_blank");
@@ -153,7 +153,7 @@ const TableStatistical = ({
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.error("Failed:", errorInfo);
   };
 
   const handleAddCodeToWatchlist = async () => {
@@ -187,7 +187,7 @@ const TableStatistical = ({
       title: "Mã CP",
       dataindex: "code",
       fixed: true,
-      width: 200,
+      width: 180,
       align: "center",
       render: (_, record, index) => {
         return (
@@ -464,13 +464,13 @@ const TableStatistical = ({
         const thumbColor = isHighestPrice
           ? "#3dcc91"
           : isLowestPrice
-          ? "#d1686a"
-          : "#137ab9";
+            ? "#d1686a"
+            : "#137ab9";
         const borderTopColor = isHighestPrice
           ? "#3dcc91"
           : isLowestPrice
-          ? "#d1686a"
-          : "#137ab9";
+            ? "#d1686a"
+            : "#137ab9";
 
         return (
           <div className="w-[120px] h-[28px] -translate-y-[5px] translate-x-[7px]">
@@ -536,10 +536,15 @@ const TableStatistical = ({
         <Table
           showSorterTooltip={false}
           columns={columns}
-          scroll={{ x: 2131 }}
           dataSource={filteredResults}
           rowClassName={rowClassName}
-          pagination={{ defaultPageSize: 10, showSizeChanger: false }}
+          // pagination={{ defaultPageSize: 15, showSizeChanger: false }}
+          scroll={
+            filteredResults.length * rowHeight > maxHeight
+              ? { x: 2131, y: maxHeight }
+              : { x: 2131 }
+          }
+          pagination={false}
         />
       </div>
       <Modal
@@ -579,7 +584,7 @@ const TableStatistical = ({
                 className="flex items-center justify-center rounded-md cursor-pointer font-semibold text-[16px]"
                 onClick={showModalCreate}
                 startIcon={<FiPlusCircle />}
-                disabled={isLogin !== "7MEvU"}
+                disabled={isLogin !== process.env.REACT_APP_LG_T}
                 sx={{
                   "&.Mui-disabled": {
                     cursor: "not-allowed",
@@ -649,7 +654,7 @@ const TableStatistical = ({
                 variant="contained"
                 color="xanh"
                 onClick={handleAddCodeToWatchlist}
-                disabled={isLogin !== "7MEvU"}
+                disabled={isLogin !== process.env.REACT_APP_LG_T}
                 sx={{
                   "&.Mui-disabled": {
                     cursor: "not-allowed",

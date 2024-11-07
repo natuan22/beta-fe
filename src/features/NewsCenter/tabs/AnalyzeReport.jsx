@@ -3,7 +3,7 @@ import { hashTbAnalyzeReport } from "../utils/componentChild";
 
 function AnalyzeReport() {
   const [activeTab, setActiveTab] = useState(
-    localStorage.getItem("userAnalyzeReportTabCurrent")
+    localStorage.getItem("userAnalyzeReportTabCurrent"),
   );
   const tabsRef = useRef([]);
 

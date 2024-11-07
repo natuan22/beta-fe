@@ -5,7 +5,11 @@ export const checkUpperCaseAndValue = (name, value) => {
 
   if (name === name.toUpperCase() && !nameArr.includes(name) && value === 0) {
     return <span></span>;
-  } else if (name !== name.toUpperCase() && !nameArr.includes(name) && value === 0) {
+  } else if (
+    name !== name.toUpperCase() &&
+    !nameArr.includes(name) &&
+    value === 0
+  ) {
     return <span>-</span>;
   } else if (name === "ROA" || name === "ROE") {
     return <span>{formatNumberCurrency(value)}%</span>;

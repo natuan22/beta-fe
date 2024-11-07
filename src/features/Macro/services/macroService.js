@@ -120,7 +120,7 @@ export const macroServices = {
   fetchDataAverageSalary: () => {
     return https.get(
       "api/v1/macro/muc-luong-binh-quan-thi-truong-lao-dong",
-      {}
+      {},
     );
   },
   fetchDataLaborRateBySector: () => {
@@ -138,7 +138,7 @@ export const macroServices = {
   fetchDataTableTotalMeansOfPayment: () => {
     return https.get(
       "api/v1/macro/tang-truong-tong-phuong-tien-thanh-toan",
-      {}
+      {},
     );
   },
   fetchDataInternationalBalanceOfPayments: () => {
@@ -153,7 +153,7 @@ export const macroServices = {
   fetchDataStatisticsCreditInstitution: () => {
     return https.get(
       "api/v1/macro/thong-ke-theo-loai-hinh-to-chuc-tin-dung",
-      {}
+      {},
     );
   },
   fetchDataTotalInvestProjects: (order) => {
@@ -202,7 +202,7 @@ export const macroServices = {
   fetchDataTotalOutstandingDebtAndBondInterest: () => {
     return https.get(
       "api/v1/macro/bang-doanh-nghiep-tong-du-no-va-lai-suat-tp-binh-quan",
-      {}
+      {},
     );
   },
   fetchDataEstimatedValueBondsDueDate: () => {
@@ -214,7 +214,7 @@ export const macroServices = {
   fetchDataListOverdueBondObligation: () => {
     return https.get(
       "api/v1/macro/danh-sach-doanh-nghiep-cham-nghia-vu-trai-phieu",
-      {}
+      {},
     );
   },
   fetchDataDebtBalanceStructure: () => {

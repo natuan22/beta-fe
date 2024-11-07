@@ -7,7 +7,7 @@ export const fetchDataTableEvents =
       const res = await newsCenterServices.fetchDataTableEvents(
         page,
         limit,
-        exchange
+        exchange,
       );
       dispatch({
         type: newsCenterType.FETCH_DATA_TABLE_EVENTS,

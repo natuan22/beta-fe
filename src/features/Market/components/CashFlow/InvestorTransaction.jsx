@@ -13,7 +13,7 @@ const InvestorTransaction = () => {
 
   useEffect(() => {
     dispatch(
-      fetchDataInvestorTransaction(queryApi.type, queryApi.investorType)
+      fetchDataInvestorTransaction(queryApi.type, queryApi.investorType),
     );
   }, [dispatch, queryApi]);
 
@@ -27,7 +27,7 @@ const InvestorTransaction = () => {
 
   return (
     <>
-      <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="md:flex sm:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <div>
           <span className="dark:text-white text-black text-[0.9rem] font-semibold">
             Diễn biến giao dịch nhóm nhà đầu tư{" "}
@@ -36,7 +36,7 @@ const InvestorTransaction = () => {
             onChange={(e) => {
               handleQueryApiInvestorType(e.target.value);
             }}
-            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#0097B2] border-0 md:inline sm:hidden xs:hidden xxs:hidden`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#007dc6] border-0 md:inline sm:hidden xs:hidden xxs:hidden`}
           >
             <option value="0">khối ngoại</option>
             <option value="1">tự doanh</option>
@@ -48,7 +48,7 @@ const InvestorTransaction = () => {
             onChange={(e) => {
               handleQueryApiInvestorType(e.target.value);
             }}
-            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#0097B2] border-0 md:hidden sm:inline`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#007dc6] border-0 md:hidden sm:inline`}
           >
             <option value="0">khối ngoại</option>
             <option value="1">tự doanh</option>
@@ -58,7 +58,7 @@ const InvestorTransaction = () => {
             onChange={(e) => {
               handleQueryApiType(e.target.value);
             }}
-            className={`bg-[#1B496D] p-1 ml-2 text-[0.9rem] text-white border-0`}
+            className={`bg-[#0050AD] p-1 ml-2 text-[0.9rem] text-white border-0`}
           >
             <option value="0">Phiên gần nhất</option>
             <option value="1">5 phiên</option>
@@ -70,10 +70,10 @@ const InvestorTransaction = () => {
       <section className="bg-blueGray-50 pt-1.5">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[350px]">
+            <div className="block w-full scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[350px]">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead
-                  className="bg-[#1E5D8B] z-10"
+                  className="bg-[#0050AD] z-10"
                   style={{ position: "sticky", top: 0 }}
                 >
                   <tr>
@@ -127,7 +127,7 @@ const InvestorTransaction = () => {
                               {
                                 minimumFractionDigits: 2,
                                 maximumFractionDigits: 2,
-                              }
+                              },
                             )}
                           </td>
                           <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">
@@ -144,7 +144,7 @@ const InvestorTransaction = () => {
                               {
                                 minimumFractionDigits: 2,
                                 maximumFractionDigits: 2,
-                              }
+                              },
                             )}{" "}
                           </td>
                           <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">

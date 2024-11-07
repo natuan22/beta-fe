@@ -9,7 +9,10 @@ const StrategicReport = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const trimmedPathname = location.pathname.replace("/trung-tam-phan-tich/", "");
+    const trimmedPathname = location.pathname.replace(
+      "/trung-tam-phan-tich/",
+      "",
+    );
     const pathMap = {
       "nhan-dinh-thi-truong": "1",
       "phan-tich-doanh-nghiep": "2",

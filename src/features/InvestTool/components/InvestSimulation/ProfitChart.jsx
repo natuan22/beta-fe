@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
-import Loading from "../../../Chart/utils/Loading";
+import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
+import React, { useEffect, useState } from "react";
+import Loading from "../../../Chart/utils/Loading";
 
 const ProfitChart = ({ data }) => {
   const [timeLine, setTimeLine] = useState();
@@ -105,7 +105,15 @@ const ProfitChart = ({ data }) => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: dataFormat,
   };
   return (

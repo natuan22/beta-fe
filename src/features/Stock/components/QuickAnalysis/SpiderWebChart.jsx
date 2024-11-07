@@ -1,6 +1,7 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
+import React from "react";
 import { useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 
@@ -138,6 +139,15 @@ const SpiderWebChart = ({ queryApi }) => {
         fontFamily: "Roboto", // Sử dụng font chữ "Roboto"
       },
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         name: queryApi.stock,

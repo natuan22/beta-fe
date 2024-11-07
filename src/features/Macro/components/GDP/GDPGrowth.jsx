@@ -1,10 +1,10 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataGDPGrowth } from "../../thunk";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 import Loading from "../../../Chart/utils/Loading";
+import { fetchDataGDPGrowth } from "../../thunk";
 
 const GDPGrowth = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const GDPGrowth = () => {
       transformedData?.forEach((item) => {
         const colorArr = ["#00B4D8", "#0077B6"];
         const existingItem = mappedData.find(
-          (mappedItem) => mappedItem.name === item.date
+          (mappedItem) => mappedItem.name === item.date,
         );
 
         if (existingItem) {
@@ -122,13 +122,21 @@ const GDPGrowth = () => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
 
   return (
     <div>
-      <div className="sm:flex xs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="sm:flex xs:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold md:text-base sm:text-xs xs:text-[15px] xxs:text-[13px]">
           Tăng trưởng GDP theo từng ngành nghề (Tỷ đồng)
         </span>

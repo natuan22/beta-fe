@@ -76,7 +76,7 @@ const StockDetail = () => {
     <LayOut>
       <div className="tab container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%]">
         <StockInfo codeUrl={codeVal} />
-        <div className="pt-4">
+        <div className="pt-2">
           <Box
             sx={{ width: "100%", typography: "body1", bgcolor: "transparent" }}
             className="pt-1"
@@ -103,7 +103,7 @@ const StockDetail = () => {
                           : "#000",
                     },
                     "& .MuiTabs-indicator": {
-                      backgroundColor: "#1D5F8D",
+                      backgroundColor: "#0050AD",
                       height: "48px",
                       zIndex: "-1",
                     },

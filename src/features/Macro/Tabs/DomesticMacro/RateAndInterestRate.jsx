@@ -22,7 +22,7 @@ const RateAndInterestRate = () => {
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className="grid xl:grid-cols-2 lg:grid-cols-none gap-3">
               <div>
-                <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold">
                     Tỷ giá trung tâm USD/VND
                   </span>
@@ -30,7 +30,7 @@ const RateAndInterestRate = () => {
                 <CentralRate />
               </div>
               <div>
-                <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold">
                     Bảng chỉ số tỷ giá
                   </span>
@@ -45,7 +45,7 @@ const RateAndInterestRate = () => {
               <InterestRateVolatility />
             </div>
             <div>
-              <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+              <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black font-semibold">
                   Lãi suất (%)
                 </span>

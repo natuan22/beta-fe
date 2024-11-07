@@ -3,7 +3,7 @@ import { hashTbMarco } from "../utils/componentChild";
 
 function MacroNews() {
   const [activeTab, setActiveTab] = useState(
-    localStorage.getItem("userNewsCenterMacroTabCurrent")
+    localStorage.getItem("userNewsCenterMacroTabCurrent"),
   );
   const tabsRef = useRef([]);
 
@@ -27,8 +27,8 @@ function MacroNews() {
   return (
     <div className="tab">
       <div className="flex flex-col justify-center mt-4">
-        <div className="tab-container w-auto flex justify-evenly bg-[#195070] py-1 rounded-3xl z-0 relative mt-1.5">
-          <div className="moving-background absolute h-full top-0 bg-[#35adf2] transition-all duration-500 rounded-full z-0"></div>
+        <div className="tab-container w-auto flex justify-evenly bg-[#0050AD] py-1 rounded-3xl z-0 relative mt-1.5">
+          <div className="moving-background absolute h-full top-0 bg-[#4fa1ff] transition-all duration-500 rounded-full z-0"></div>
           {tabLabels.map((label, index) => (
             <button
               key={index}

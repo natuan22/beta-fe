@@ -97,7 +97,7 @@ const TechnicalAnalysisReport = ({ codeUrl }) => {
   return (
     <ThemeProvider theme={theme}>
       <div className="container grid grid-cols-12">
-        <div className="col-span-10 grid place-items-center">
+        <div className="col-span-9 grid place-items-center">
           <div ref={pageRefs.page1}>
             <TechPage1 />
           </div>
@@ -109,7 +109,7 @@ const TechnicalAnalysisReport = ({ codeUrl }) => {
           </div>
         </div>
 
-        <div className="col-span-2">
+        <div className="col-span-3">
           <div className="flex justify-evenly my-10">
             <Button variant="contained" color="test" onClick={generatePDF}>
               <span className="text-white">Tải PDF</span>

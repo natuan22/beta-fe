@@ -13,13 +13,13 @@ const InputFloor = ({ data, onFilteredDataChange }) => {
       (prevActive) =>
         prevActive.includes(floor)
           ? prevActive.filter((item) => item !== floor) // Remove if already active
-          : [...prevActive, floor] // Add if not active
+          : [...prevActive, floor], // Add if not active
     );
   };
 
   const filteredData = useMemo(
     () => data?.filter((item) => activeBtnExchange.includes(item.floor)),
-    [data, activeBtnExchange]
+    [data, activeBtnExchange],
   );
 
   useEffect(() => {
@@ -30,7 +30,9 @@ const InputFloor = ({ data, onFilteredDataChange }) => {
     <div className="flex w-[256px] justify-around">
       <button
         className={`filter-btn ${
-          activeBtnExchange.includes("HOSE") ? "filter-active-btn" : "filter-btn-2"
+          activeBtnExchange.includes("HOSE")
+            ? "filter-active-btn"
+            : "filter-btn-2"
         }`}
         onClick={() => handleButtonClick("HOSE")}
       >
@@ -38,7 +40,9 @@ const InputFloor = ({ data, onFilteredDataChange }) => {
       </button>
       <button
         className={`filter-btn ${
-          activeBtnExchange.includes("HNX") ? "filter-active-btn" : "filter-btn-2"
+          activeBtnExchange.includes("HNX")
+            ? "filter-active-btn"
+            : "filter-btn-2"
         }`}
         onClick={() => handleButtonClick("HNX")}
       >
@@ -46,7 +50,9 @@ const InputFloor = ({ data, onFilteredDataChange }) => {
       </button>
       <button
         className={`filter-btn ${
-          activeBtnExchange.includes("UPCOM") ? "filter-active-btn" : "filter-btn-2"
+          activeBtnExchange.includes("UPCOM")
+            ? "filter-active-btn"
+            : "filter-btn-2"
         }`}
         onClick={() => handleButtonClick("UPCOM")}
       >

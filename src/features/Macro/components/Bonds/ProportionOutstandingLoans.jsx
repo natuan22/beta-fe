@@ -8,7 +8,7 @@ import { fetchDataProportionOutstandingLoans } from "../../thunk";
 const ProportionOutstandingLoans = () => {
   const dispatch = useDispatch();
   const { dataProportionOutstandingLoans } = useSelector(
-    (state) => state.macro
+    (state) => state.macro,
   );
   const [data, setData] = useState();
   const [colorText, setColorText] = useState(localStorage.getItem("color"));

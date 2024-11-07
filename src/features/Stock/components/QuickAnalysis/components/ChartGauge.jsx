@@ -1,7 +1,8 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HighchartsMore from "highcharts/highcharts-more";
+
+import React from "react";
 
 HighchartsMore(Highcharts);
 
@@ -25,6 +26,15 @@ const ChartGauge = ({ data }) => {
       center: ["50%", "75%"],
       size: "110%",
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     // the value axis
     yAxis: {
       min: 1,

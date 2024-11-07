@@ -1,7 +1,9 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
+import React from "react";
+import LazyLoad from "react-lazyload";
 
 const StackColumnChart = ({ data }) => {
   const categories = data.map((item) => moment(item.date).format("DD/MM"));
@@ -29,7 +31,7 @@ const StackColumnChart = ({ data }) => {
       tickInterval: Math.ceil(categories?.length / 6),
       tickPositioner: function () {
         const tickPositions = [];
-        const interval = Math.ceil(categories?.length / 5);
+        const interval = Math.ceil(categories?.length / 4);
 
         for (let i = 0; i < categories.length; i += interval) {
           tickPositions.push(i);
@@ -97,8 +99,13 @@ const StackColumnChart = ({ data }) => {
           radius: 1, // Tắt marker
         },
         lineWidth: 2,
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     legend: {
       enabled: true,
       verticalAlign: "top", // Đặt legend ở trên
@@ -153,13 +160,15 @@ const StackColumnChart = ({ data }) => {
   };
 
   return (
-    <div className="h-[150px] translate-y-[-5px]">
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-        containerProps={{ style: { height: "100%", width: "100%" } }}
-      />
-    </div>
+    <LazyLoad offset={300} debounce={200} once>
+      <div className="h-[150px] translate-y-[-5px]">
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={options}
+          containerProps={{ style: { height: "100%", width: "100%" } }}
+        />
+      </div>
+    </LazyLoad>
   );
 };
 

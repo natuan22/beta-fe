@@ -28,10 +28,7 @@ const BtnToExcel = ({ watchlistActive }) => {
     try {
       setLoadingExcel(true);
       // Gọi API để lấy dữ liệu
-      const data = await getApi(
-        apiUrl,
-        `/api/v1/watchlist/${watchlistActive.id}`
-      );
+      const data = await getApi(`/api/v1/watchlist/${watchlistActive.id}`);
 
       //Xử lý dữ liệu đưa vào sheet
       const sheet1Data = data.map(prepareData);
@@ -51,42 +48,42 @@ const BtnToExcel = ({ watchlistActive }) => {
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet1Title, ...sheet1Data]),
-        watchlistActive.name
+        watchlistActive.name,
       );
 
       // Tạo sheet 2
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet2Title, ...sheet2Data]),
-        "Thống kê"
+        "Thống kê",
       );
 
       // Tạo sheet 3
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet3Title, ...sheet3Data]),
-        "Cơ bản"
+        "Cơ bản",
       );
 
       // Tạo sheet 4
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet4Title, ...sheet4Data]),
-        "Kỹ thuật"
+        "Kỹ thuật",
       );
 
       // Tạo sheet 5
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet5Title, ...sheet5Data]),
-        "Tín hiệu cảnh báo"
+        "Tín hiệu cảnh báo",
       );
 
       // Tạo sheet 6
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet6Title, ...sheet6Data]),
-        "Tin tức"
+        "Tin tức",
       );
 
       // Xuất workbook thành file Excel

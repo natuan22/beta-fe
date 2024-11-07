@@ -26,9 +26,12 @@ function App() {
       localStorage.setItem("deviceId", JSON.stringify(generateMAC()));
     }
 
-    const _il = localStorage.getItem("_il");
+    const _il = localStorage.getItem(process.env.REACT_APP_IS_LG);
     if (!_il) {
-      localStorage.setItem("_il", "4E8WL");
+      localStorage.setItem(
+        process.env.REACT_APP_IS_LG,
+        process.env.REACT_APP_LG_F
+      );
     }
   }, []);
 
@@ -45,7 +48,7 @@ function App() {
     const token = localStorage.getItem("betaToken");
     dispatch(autoLoginWithToken(token));
   }, [dispatch]);
-  
+
   const mapMarketRoute = marketRoute.map(
     ({ path, component: Component, children }) => {
       return (

@@ -20,12 +20,12 @@ const RateDetail = ({ type }) => {
       <div className="w-full">
         <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
           <div
-            className={`block w-full bg-transparent  overflow-y-scroll scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent ${
-              type === 0 ? "h-[330px]" : "h-[370px]"
+            className={`block w-full bg-transparent overflow-y-scroll scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent ${
+              type === 0 ? "h-[330px]" : "h-[441px]"
             }`}
           >
             <table className="items-center  w-full border-collapse bg-transparent">
-              <thead className="bg-[#1E5D8B] sticky top-0">
+              <thead className="bg-[#0050AD] sticky top-0">
                 <tr>
                   <th className="text-center align-middle xxs:text-[10px] px-4 py-3 text-sm whitespace-nowrap font-semibold text-white">
                     Tỷ giá

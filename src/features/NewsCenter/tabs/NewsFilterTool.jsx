@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import {
   BsArrowRepeat,
   BsCardList,
   BsFileEarmarkX,
   BsXOctagonFill,
 } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../Chart/utils/Loading";
-import { fetchDataStockInfo, fetchNewsTool } from "../thunk";
-import "../utils/styles/buttonNews.css";
 import ListNewsFilter from "../components/NewsFilterTool/ListNewsFilter";
+import { fetchDataStockInfo, fetchNewsTool } from "../thunk";
 import "../utils/styles/buttonFilter.css";
+import "../utils/styles/buttonNews.css";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
@@ -165,7 +165,7 @@ const NewsFilterTool = () => {
                     </div>
 
                     <div
-                      className="relative industryLv2__tabs overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent ml-1 lg:col-span-2 md:col-span-full"
+                      className="relative industryLv2__tabs overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent ml-1 lg:col-span-2 md:col-span-full"
                       style={{
                         borderRight: "solid 1px gray",
                         borderTop: "solid 3px #147df5",
@@ -186,7 +186,7 @@ const NewsFilterTool = () => {
                               newsTool
                                 .find(
                                   (exchange) =>
-                                    exchange.name === selectedExchange
+                                    exchange.name === selectedExchange,
                                 )
                                 .LV2.map((lv2, index) => (
                                   <div key={index}>
@@ -220,7 +220,7 @@ const NewsFilterTool = () => {
                     </div>
 
                     <div
-                      className="industryLv4__tabs overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent ml-2 lg:col-span-2 md:col-span-full"
+                      className="industryLv4__tabs overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent ml-2 lg:col-span-2 md:col-span-full"
                       style={{
                         borderRight: "solid 1px gray",
                         borderTop: "solid 3px #147df5",
@@ -239,7 +239,7 @@ const NewsFilterTool = () => {
                         {selectedLV2.length > 0 &&
                           newsTool
                             .find(
-                              (exchange) => exchange.name === selectedExchange
+                              (exchange) => exchange.name === selectedExchange,
                             )
                             .LV2.filter((lv2) => selectedLV2.includes(lv2.name))
                             .map((lv2) => lv2.LV4)
@@ -264,7 +264,7 @@ const NewsFilterTool = () => {
                     </div>
 
                     <div
-                      className="code__tabs overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent  ml-2 lg:col-span-2 md:col-span-full"
+                      className="code__tabs overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent  ml-2 lg:col-span-2 md:col-span-full"
                       style={{
                         borderRight: "solid 1px gray",
                         borderTop: "solid 3px #147df5",
@@ -282,7 +282,7 @@ const NewsFilterTool = () => {
                         {selectedLV4.length > 0 &&
                           newsTool
                             .find(
-                              (exchange) => exchange.name === selectedExchange
+                              (exchange) => exchange.name === selectedExchange,
                             )
                             .LV2.filter((lv2) => selectedLV2.includes(lv2.name))
                             .flatMap((lv2) => lv2.LV4)
@@ -333,7 +333,7 @@ const NewsFilterTool = () => {
                                           </span>
                                         </button>
                                       </div>
-                                    )
+                                    ),
                                 )}
                               </div>
                             ))}
@@ -341,7 +341,7 @@ const NewsFilterTool = () => {
                     </div>
 
                     <div
-                      className="relative watchList__tabs ml-2 overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent lg:col-span-3 md:col-span-full"
+                      className="relative watchList__tabs ml-2 overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent lg:col-span-3 md:col-span-full"
                       style={{
                         borderRight: "solid 1px gray",
                         borderTop: "solid 3px #147df5",

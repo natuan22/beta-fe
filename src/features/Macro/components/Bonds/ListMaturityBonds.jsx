@@ -35,29 +35,29 @@ const ListMaturityBonds = () => {
       <section className="bg-blueGray-50 pt-1.5">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block xxs:w-[295px] xs:w-[350px] sm:w-[400px] md:w-[670px] lg:w-[897px] xl:w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent h-[420px]">
+            <div className="block xxs:w-[295px] xs:w-[350px] sm:w-[400px] md:w-[670px] lg:w-[897px] xl:w-full scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent h-[420px]">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead
-                  className="bg-[#1E5D8B] z-10"
+                  className="bg-[#0050AD] z-10"
                   style={{ position: "sticky", top: 0 }}
                 >
                   <tr>
-                    <th className="bg-[#1E5D8B] text-center align-middle px-3 py-[19px] font-semibold whitespace-nowrap text-sm text-white">
+                    <th className="bg-[#0050AD] text-center align-middle px-3 py-[19px] font-semibold whitespace-nowrap text-sm text-white">
                       Doanh nghiệp
                     </th>
-                    <th className="bg-[#1E5D8B] text-center align-middle px-3 py-[19px] font-semibold text-sm text-white">
+                    <th className="bg-[#0050AD] text-center align-middle px-3 py-[19px] font-semibold text-sm text-white">
                       Mã TP
                     </th>
-                    <th className="bg-[#1E5D8B] text-center align-middle px-3 py-[19px] xl:whitespace-normal lg:whitespace-nowrap md:whitespace-nowrap sm:whitespace-nowrap xs:whitespace-nowrap xxs:whitespace-nowrap font-semibold text-sm text-white">
+                    <th className="bg-[#0050AD] text-center align-middle px-3 py-[19px] xl:whitespace-normal lg:whitespace-nowrap md:whitespace-nowrap sm:whitespace-nowrap xs:whitespace-nowrap xxs:whitespace-nowrap font-semibold text-sm text-white">
                       Kỳ hạn còn lại (ngày)
                     </th>
-                    <th className="bg-[#1E5D8B] text-center align-middle px-3 py-[19px] xl:whitespace-normal lg:whitespace-nowrap md:whitespace-nowrap sm:whitespace-nowrap xs:whitespace-nowrap xxs:whitespace-nowrap font-semibold text-sm text-white">
+                    <th className="bg-[#0050AD] text-center align-middle px-3 py-[19px] xl:whitespace-normal lg:whitespace-nowrap md:whitespace-nowrap sm:whitespace-nowrap xs:whitespace-nowrap xxs:whitespace-nowrap font-semibold text-sm text-white">
                       Giá trị phát hành (tỷ VNĐ)
                     </th>
-                    <th className="bg-[#1E5D8B] text-center align-middle px-3 py-[19px] xl:whitespace-normal lg:whitespace-nowrap md:whitespace-nowrap sm:whitespace-nowrap xs:whitespace-nowrap xxs:whitespace-nowrap font-semibold text-sm text-white">
+                    <th className="bg-[#0050AD] text-center align-middle px-3 py-[19px] xl:whitespace-normal lg:whitespace-nowrap md:whitespace-nowrap sm:whitespace-nowrap xs:whitespace-nowrap xxs:whitespace-nowrap font-semibold text-sm text-white">
                       Giá trị lưu hành hiện tại (tỷ VNĐ)
                     </th>
-                    <th className="bg-[#1E5D8B] text-center align-middle px-3 py-[19px] xl:whitespace-normal lg:whitespace-nowrap md:whitespace-nowrap sm:whitespace-nowrap xs:whitespace-nowrap xxs:whitespace-nowrap font-semibold text-sm text-white">
+                    <th className="bg-[#0050AD] text-center align-middle px-3 py-[19px] xl:whitespace-normal lg:whitespace-nowrap md:whitespace-nowrap sm:whitespace-nowrap xs:whitespace-nowrap xxs:whitespace-nowrap font-semibold text-sm text-white">
                       Tổ chức lưu ký
                     </th>
                   </tr>

@@ -14,7 +14,7 @@ const FilterSignal = ({ filter, data, onFilteredDataChange }) => {
 
   const filteredData = useMemo(
     () => data.filter((item) => calSignalText(item[filter.key]) === value),
-    [data, value]
+    [data, value],
   );
 
   useEffect(() => {

@@ -1,10 +1,10 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataLaborForce } from "../../thunk";
-import moment from "moment";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
 import Loading from "../../../Chart/utils/Loading";
+import { fetchDataLaborForce } from "../../thunk";
 
 const LaborForce = () => {
   const dispatch = useDispatch();
@@ -125,6 +125,15 @@ const LaborForce = () => {
         color: localStorage.getItem("color"),
       },
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
 

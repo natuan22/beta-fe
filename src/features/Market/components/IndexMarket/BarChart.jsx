@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchChartTickerContribute } from "../../thunk";
 import Loading from "../../../Chart/utils/Loading";
 import socket from "../../../Chart/utils/socket";
+import { fetchChartTickerContribute } from "../../thunk";
 
 const BarChart = () => {
   const dispatch = useDispatch();
@@ -29,8 +29,8 @@ const BarChart = () => {
       fetchChartTickerContribute(
         queryApi.exchange,
         queryApi.type,
-        queryApi.order
-      )
+        queryApi.order,
+      ),
     );
     setColorText(color);
   }, [dispatch, queryApi, color]);
@@ -162,7 +162,12 @@ const BarChart = () => {
         },
         series: {
           borderRadius: 2,
+          turboThreshold: 100_000_000,
         },
+      },
+      boost: {
+        useGPUTranslations: true,
+        usePreAllocated: true,
       },
       series: [
         {
@@ -254,7 +259,12 @@ const BarChart = () => {
         },
         series: {
           borderRadius: 2,
+          turboThreshold: 100_000_000,
         },
+      },
+      boost: {
+        useGPUTranslations: true,
+        usePreAllocated: true,
       },
       series: [
         {
@@ -274,9 +284,9 @@ const BarChart = () => {
 
   return (
     <>
-      <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[5px]">
+      <div className="md:flex sm:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0 pt-[2px]">
         <div>
-          <span className="dark:text-white text-black text-[0.9rem] pl-[2px] font-semibold">
+          <span className="dark:text-white text-black xl:text-[14px] lg:text-base font-semibold">
             Top đóng góp điểm số theo:{" "}
           </span>
           <select
@@ -284,7 +294,7 @@ const BarChart = () => {
               handleQueryApiType(e.target.value);
               setHandleQueryType(e.target.value);
             }}
-            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-[2px] text-[#0097B2] border-0 md:inline sm:hidden xs:hidden xxs:hidden`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[14px] ml-[2px] text-[#007dc6] border-0 md:inline sm:hidden xs:hidden xxs:hidden`}
           >
             <option value="0">Cổ phiếu</option>
             <option value="1">Ngành LV1</option>
@@ -298,7 +308,7 @@ const BarChart = () => {
               handleQueryApiType(e.target.value);
               setHandleQueryType(e.target.value);
             }}
-            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0 md:hidden sm:inline`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[14px] ml-1.5 text-[#007dc6] border-0 md:hidden sm:inline`}
           >
             <option value="0">Cổ phiếu</option>
             <option value="1">Ngành LV1</option>
@@ -309,7 +319,7 @@ const BarChart = () => {
             onChange={(e) => {
               handleQueryApiOrder(e.target.value);
             }}
-            className={`bg-[#1B496D] p-1 text-[0.9rem] ml-2 text-white border-0`}
+            className={`bg-[#0050AD] p-[2.5px] text-[14px] ml-2 text-white border-0`}
           >
             <option value="0">Phiên gần nhất</option>
             <option value="1">5 phiên</option>

@@ -11,7 +11,7 @@ const TableTransactionStatistics = ({ codeSearch }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const { dataTableTransactionStatistics } = useSelector(
-    (state) => state.stock
+    (state) => state.stock,
   );
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const TableTransactionStatistics = ({ codeSearch }) => {
         return (
           <p
             className={`${getColor(
-              record.perChange
+              record.perChange,
             )} text-center font-semibold whitespace-nowrap`}
           >
             {(record.change * 1000).toLocaleString("vi-VN", {

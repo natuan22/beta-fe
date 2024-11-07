@@ -19,7 +19,9 @@ const theme = createTheme({
 });
 
 const TradingStrategies = () => {
-  const [role, setRole] = useState(localStorage.getItem("2ZW79"));
+  const [role, setRole] = useState(
+    localStorage.getItem(process.env.REACT_APP_USER_ROLE)
+  );
 
   const [selectedStrategy, setSelectedStrategy] = useState("");
   const [selectedMainCategory, setSelectedMainCategory] = useState("");
@@ -54,7 +56,10 @@ const TradingStrategies = () => {
                   {selectedMainCategory === key &&
                     selectTradingStrategy[key]
                       .filter((strategy) => {
-                        if (role === "8Z5M8" || role === "XJ20C") {
+                        if (
+                          role === process.env.REACT_APP_ADMIN ||
+                          role === process.env.REACT_APP_PREMIUM_USER
+                        ) {
                           // Show both "MA VVIP" and "MA đại pháp"
                           return true;
                         } else {

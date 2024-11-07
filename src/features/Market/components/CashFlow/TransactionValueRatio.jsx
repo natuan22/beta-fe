@@ -1,12 +1,13 @@
-import Highcharts from "highcharts/highstock";
-import variablePie from "highcharts/modules/variable-pie.js";
 import HighchartsReact from "highcharts-react-official";
+import Highcharts from "highcharts/highstock";
+
+import variablePie from "highcharts/modules/variable-pie.js";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "../../../Chart/utils/Loading";
-import { fetchDataTransactionValueRatio } from "../../thunk";
-import { getColor, getTextSellBuy } from "../../../Chart/utils/utils";
 import formatNumberCurrency from "../../../../helper/formatNumberCurrency";
+import Loading from "../../../Chart/utils/Loading";
+import { getColor, getTextSellBuy } from "../../../Chart/utils/utils";
+import { fetchDataTransactionValueRatio } from "../../thunk";
 
 variablePie(Highcharts);
 
@@ -66,7 +67,14 @@ const TransactionValueRatio = () => {
           format: "<b>{point.name}</b>: {point.percentage:.1f}%",
         },
       },
+      series: {
+        turboThreshold: 100_000_000,
+      },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         name: "GTGD",
@@ -134,7 +142,7 @@ const TransactionValueRatio = () => {
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
             <div className="block w-full bg-transparent">
               <table className="items-center w-full border-collapse bg-transparent">
-                <thead className="bg-[#1E5D8B]">
+                <thead className="bg-[#0050AD]">
                   <tr>
                     <th className="uppercase text-center align-middle px-2.5 py-3 text-xs whitespace-nowrap font-semibold text-white">
                       Nhóm NĐT
@@ -175,7 +183,7 @@ const TransactionValueRatio = () => {
                         {data &&
                           dataKhoiNgoai.length > 0 &&
                           formatNumberCurrency(
-                            dataKhoiNgoai[0].netVal / 1000000000
+                            dataKhoiNgoai[0].netVal / 1000000000,
                           )}
                       </span>
                     </td>
@@ -185,7 +193,7 @@ const TransactionValueRatio = () => {
                       {data &&
                         dataKhoiNgoai.length > 0 &&
                         formatNumberCurrency(
-                          dataKhoiNgoai[0].buyVal / 1000000000
+                          dataKhoiNgoai[0].buyVal / 1000000000,
                         )}
                     </td>
                     <td
@@ -194,7 +202,7 @@ const TransactionValueRatio = () => {
                       {data &&
                         dataKhoiNgoai.length > 0 &&
                         formatNumberCurrency(
-                          dataKhoiNgoai[0].sellVal / 1000000000
+                          dataKhoiNgoai[0].sellVal / 1000000000,
                         )}
                     </td>
                   </tr>
@@ -218,7 +226,7 @@ const TransactionValueRatio = () => {
                         {data &&
                           dataTuDoanh.length > 0 &&
                           formatNumberCurrency(
-                            dataTuDoanh[0].netVal / 1000000000
+                            dataTuDoanh[0].netVal / 1000000000,
                           )}
                       </span>
                     </td>
@@ -228,7 +236,7 @@ const TransactionValueRatio = () => {
                       {data &&
                         dataTuDoanh.length > 0 &&
                         formatNumberCurrency(
-                          dataTuDoanh[0].buyVal / 1000000000
+                          dataTuDoanh[0].buyVal / 1000000000,
                         )}
                     </td>
                     <td
@@ -237,7 +245,7 @@ const TransactionValueRatio = () => {
                       {data &&
                         dataTuDoanh.length > 0 &&
                         formatNumberCurrency(
-                          dataTuDoanh[0].sellVal / 1000000000
+                          dataTuDoanh[0].sellVal / 1000000000,
                         )}
                     </td>
                   </tr>
@@ -261,7 +269,7 @@ const TransactionValueRatio = () => {
                         {data &&
                           dataCaNhan.length > 0 &&
                           formatNumberCurrency(
-                            dataCaNhan[0].netVal / 1000000000
+                            dataCaNhan[0].netVal / 1000000000,
                           )}
                       </span>
                     </td>
@@ -278,7 +286,7 @@ const TransactionValueRatio = () => {
                       {data &&
                         dataCaNhan.length > 0 &&
                         formatNumberCurrency(
-                          dataCaNhan[0].sellVal / 1000000000
+                          dataCaNhan[0].sellVal / 1000000000,
                         )}
                     </td>
                   </tr>

@@ -7,15 +7,19 @@ import HomeWatchList from "./Watchlist/components/HomeWatchList";
 import "./Watchlist/components/styles/modalStyle.css";
 
 const Watchlist = () => {
-  const [isLogin, setIsLogin] = useState(localStorage.getItem("_il"));
-  const [role, setRole] = useState(localStorage.getItem("2ZW79"));
+  const [isLogin, setIsLogin] = useState(
+    localStorage.getItem(process.env.REACT_APP_IS_LG)
+  );
+  const [role, setRole] = useState(
+    localStorage.getItem(process.env.REACT_APP_USER_ROLE)
+  );
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
   const [watchlists, setWatchlists] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (isLogin === "7MEvU") {
+    if (isLogin === process.env.REACT_APP_LG_T) {
       const fetchDataWatchList = async () => {
         try {
           const data = await getApi("/api/v1/watchlist");
@@ -33,8 +37,8 @@ const Watchlist = () => {
   }, [isLogin]);
 
   const onSubmitSuccess = () => {
-    setIsLogin(localStorage.getItem("_il"));
-    setRole(localStorage.getItem("2ZW79"));
+    setIsLogin(localStorage.getItem(process.env.REACT_APP_IS_LG));
+    setRole(localStorage.getItem(process.env.REACT_APP_USER_ROLE));
     setUser(JSON.parse(localStorage.getItem("user")));
   };
 
@@ -46,7 +50,7 @@ const Watchlist = () => {
     <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-full pt-2">
       {!loading ? (
         <div>
-          {isLogin === "7MEvU" ? (
+          {isLogin === process.env.REACT_APP_LG_T ? (
             <div>
               {watchlists?.length > 0 ? (
                 <HomeWatchList

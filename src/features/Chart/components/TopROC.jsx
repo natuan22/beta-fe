@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDataROC5Phien } from "../thunk";
 import chartStyle from "../utils/Chart.module.css";
-import socket from "../utils/socket";
 import Loading from "../utils/Loading";
+import socket from "../utils/socket";
 
 const TopROC = () => {
   const dispatch = useDispatch();
@@ -103,6 +103,10 @@ const TopROC = () => {
         },
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     plotOptions: {
       bar: {
         borderWidth: 0,
@@ -117,6 +121,7 @@ const TopROC = () => {
       },
       series: {
         borderRadius: 5,
+        turboThreshold: 100_000_000,
       },
     },
   };
@@ -172,6 +177,10 @@ const TopROC = () => {
         },
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     plotOptions: {
       bar: {
         borderWidth: 0,
@@ -186,6 +195,7 @@ const TopROC = () => {
       },
       series: {
         borderRadius: 5,
+        turboThreshold: 100_000_000,
       },
     },
   };
@@ -199,7 +209,7 @@ const TopROC = () => {
               Top 10 cổ phiếu tăng/giảm mạnh nhất sàn
             </span>
             <select
-              className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
+              className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 mx-2 rounded-lg p-1 text-base text-[#007dc6]`}
               onChange={(event) => {
                 disconnectSocket(socketOld);
                 setQuery(event.target.value);

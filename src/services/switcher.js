@@ -7,7 +7,7 @@ export default function Switcher() {
   const dispatch = useDispatch();
   const [colorTheme, setTheme] = useDarkSide();
   const [darkSide, setDarkSide] = useState(
-    colorTheme === "light" ? true : false
+    colorTheme === "light" ? true : false,
   );
 
   const [colorText, setColorText] = useDarkTextChart();

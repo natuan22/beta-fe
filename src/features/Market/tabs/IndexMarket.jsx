@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import LazyLoad from "react-lazyload";
 import {
   fetchDataAreaChart1,
   fetchDataAreaChart2,
@@ -52,113 +53,120 @@ const IndexMarket = () => {
   return (
     <>
       <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-full">
-        <div className="md:block lg:flex justify-center">
-          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div>
-              <ChartInfo />
+        <div className="lg:block xl:flex">
+          <div className="xl:w-[60%]">
+            <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
+              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                <LazyLoad offset={300} debounce={200} once>
+                  <ChartInfo />
+                </LazyLoad>
+              </div>
+
+              <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+                <div>
+                  <LazyLoad offset={300} debounce={200} once>
+                    <BarChart />
+                  </LazyLoad>
+                </div>
+
+                <div>
+                  <LazyLoad offset={300} debounce={200} once>
+                    <MarketBreadth />
+                  </LazyLoad>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="lg:hidden xl:block mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div>
-              <BarChart />
-            </div>
-
-            <div className="md:w-full xl:w-[416px]">
+          <div className="xl:w-[40%]">
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
               <div>
-                <MarketBreadth />
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0 pt-[9px]">
+                  <span className="dark:text-white text-black font-semibold">
+                    Thanh khoản trong phiên
+                  </span>
+                </div>
+                <LazyLoad offset={300} debounce={200} once>
+                  <ThanhKhoan />
+                </LazyLoad>
               </div>
-            </div>
-          </div>
-          <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className="pt-[4px] lg:w-[496px] md:w-full h-[443px]">
-              <div className="mb-4">
-                <span>
-                  <button
-                    onClick={() => {
-                      handleClick("GoodsDetail");
-                    }}
-                    className={
-                      activeButton === "GoodsDetail"
-                        ? "border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer"
-                        : "border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer"
-                    }
-                  >
-                    Giá hàng hoá
-                  </button>
-                </span>
-                <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
-                  <button
-                    onClick={() => {
-                      handleClick("RateDetail");
-                    }}
-                    className={
-                      activeButton === "RateDetail"
-                        ? "border-none bg-transparent relative dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] tabUnderline cursor-pointer"
-                        : "border-none bg-transparent dark:text-white text-black md:text-[1rem] lg:text-[1.1rem] xl:text-[1.1rem] 2xl:text-[1.1rem] cursor-pointer"
-                    }
-                  >
-                    Tỷ giá
-                  </button>
+              <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
+                <span className="dark:text-white text-black font-semibold">
+                  Biến động ngành
                 </span>
               </div>
-
-              {activeButton === "GoodsDetail" ? (
-                <GoodsDetail type={1} />
-              ) : (
-                <RateDetail type={1} />
-              )}
-              {/* <TableLiquidity /> */}
-            </div>
-            <hr />
-            <div>
-              <div className="text-center mb-1 mt-2">
-                <span className="dark:text-white text-black text-[1rem] font-semibold">
-                  Thanh khoản trong phiên
-                </span>
-              </div>
-              <ThanhKhoan />
+              <LazyLoad offset={300} debounce={200} once>
+                <GeneralIndustry />
+              </LazyLoad>
             </div>
           </div>
         </div>
-
-        <div className="xxs:hidden xs:hidden md:hidden lg:flex xl:hidden ">
-          <div className="w-[50%] my-1.5 mx-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className="mt-[11px]">
-              <BarChart />
+        <div className="mt-[5px] lg:block xl:flex">
+          <div className="xl:w-[60%]">
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+              <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0 pt-[6px]">
+                <span className="dark:text-white text-black font-semibold">
+                  Bản đồ thị trường
+                </span>
+              </div>
+              <LazyLoad offset={300} debounce={200} once>
+                <MarketMap />
+              </LazyLoad>
             </div>
           </div>
 
-          <div className="w-[50%] my-1.5 mx-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div>
-              <MarketBreadth />
-            </div>
-          </div>
-        </div>
+          <div className="xl:w-[40%]">
+            <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
+              <div className="h-[481px]">
+                <div className="mb-4">
+                  <span>
+                    <button
+                      onClick={() => {
+                        handleClick("GoodsDetail");
+                      }}
+                      className={
+                        activeButton === "GoodsDetail"
+                          ? "border-none bg-transparent relative dark:text-white text-black md:text-base tabUnderline cursor-pointer font-semibold"
+                          : "border-none bg-transparent dark:text-white text-black md:text-base cursor-pointer"
+                      }
+                    >
+                      Giá hàng hoá
+                    </button>
+                  </span>
+                  <span className="lg:pl-10 md:pl-5 sm:pl-10 xs:pl-10 xxs:pl-5">
+                    <button
+                      onClick={() => {
+                        handleClick("RateDetail");
+                      }}
+                      className={
+                        activeButton === "RateDetail"
+                          ? "border-none bg-transparent relative dark:text-white text-black md:text-base tabUnderline cursor-pointer font-semibold"
+                          : "border-none bg-transparent dark:text-white text-black md:text-base cursor-pointer"
+                      }
+                    >
+                      Tỷ giá
+                    </button>
+                  </span>
+                </div>
 
-        <div className="mt-[5px] md:block xl:flex">
-          <div className="xl:w-[60%] mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
-              <span className="dark:text-white text-black text-[1.2rem] font-bold">
-                Bản đồ thị trường
-              </span>
+                {activeButton === "GoodsDetail" ? (
+                  <LazyLoad offset={300} debounce={200} once>
+                    <GoodsDetail type={1} />
+                  </LazyLoad>
+                ) : (
+                  <LazyLoad offset={300} debounce={200} once>
+                    <RateDetail type={1} />
+                  </LazyLoad>
+                )}
+                {/* <TableLiquidity /> */}
+              </div>
             </div>
-            <MarketMap />
-          </div>
-
-          <div className="xl:w-[40%] mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
-              <span className="dark:text-white text-black text-[1.2rem] font-bold">
-                Biến động ngành
-              </span>
-            </div>
-            <GeneralIndustry />
           </div>
         </div>
 
         {/* <div className="mt-[5px] md:block lg:flex justify-center">
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md lg:w-[48%] xl:w-[500px] 2xl:w-[480px] h-[700px]">
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
-              <span className="dark:text-white text-black text-[1.2rem] font-bold">
+            <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
+              <span className="dark:text-white text-black text-[1.2rem] font-semibold">
                 Tin tức thị trường
               </span>
             </div>
@@ -166,8 +174,8 @@ const IndexMarket = () => {
           </div>
 
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md lg:w-[52%] xl:w-[500px] 2xl:w-[480px] h-[700px]">
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
-              <span className="dark:text-white text-black text-[1.2rem] font-bold">
+            <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
+              <span className="dark:text-white text-black text-[1.2rem] font-semibold">
                 Lịch sự kiện
               </span>
             </div>
@@ -175,8 +183,8 @@ const IndexMarket = () => {
           </div>
 
           <div className="lg:hidden xl:block mx-[5px] my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md xl:w-[500px] 2xl:w-[480px] h-[700px]">
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
-              <span className="dark:text-white text-black text-[1.2rem] font-bold">
+            <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
+              <span className="dark:text-white text-black text-[1.2rem] font-semibold">
                 Báo cáo phân tích
               </span>
             </div>
@@ -184,8 +192,8 @@ const IndexMarket = () => {
           </div>
         </div>
         <div className="xxs:hidden xs:hidden md:hidden lg:block xl:hidden mx-[5px] my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md h-[700px]">
-          <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
-            <span className="dark:text-white text-black text-[1.2rem] font-bold">
+          <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
+            <span className="dark:text-white text-black text-[1.2rem] font-semibold">
               Báo cáo phân tích
             </span>
           </div>

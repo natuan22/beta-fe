@@ -25,7 +25,7 @@ const Bonds = () => {
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className="grid xl:grid-cols-2 lg:grid-cols-none gap-3">
               <div>
-                <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-xs">
                     TPDN phát hành thành công theo từng kỳ (tỷ đồng)
                   </span>
@@ -33,7 +33,7 @@ const Bonds = () => {
                 <BondsIssued />
               </div>
               <div>
-                <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-xs">
                     Ước tính giá trị TPDN đáo hạn theo từng kỳ (tỷ đồng)
                   </span>
@@ -46,7 +46,7 @@ const Bonds = () => {
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className="lg:block xl:flex gap-3">
               <div className="xl:w-[40%] lg:w-full">
-                <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold xs:text-base xxs:text-sm">
                     Lãi suất trái phiếu huy động bình quân (%)
                   </span>
@@ -55,7 +55,7 @@ const Bonds = () => {
               </div>
               <div className="lg:w-full xl:w-[60%] grid md:grid-cols-2 sm:grid-cols-none gap-3">
                 <div>
-                  <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                  <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                     <span className="dark:text-white text-black font-semibold">
                       Cơ cấu dư nợ TPDN (%)
                     </span>
@@ -63,7 +63,7 @@ const Bonds = () => {
                   <DebtBalanceStructure />
                 </div>
                 <div>
-                  <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                  <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                     <span className="dark:text-white text-black font-semibold xl:text-sm lg:text-base xs:text-base xxs:text-sm">
                       Tỷ trọng dư nợ các DN chậm thanh toán (%)
                     </span>
@@ -77,7 +77,7 @@ const Bonds = () => {
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div className="grid xl:grid-cols-2 lg:grid-cols-none gap-3">
               <div>
-                <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold xs:text-base xxs:text-sm">
                     Danh sách tổng dư nợ thị trường trái phiếu
                   </span>
@@ -85,7 +85,7 @@ const Bonds = () => {
                 <TotalOutstandingDebtAndBondInterest />
               </div>
               <div>
-                <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-xs">
                     Danh sách doanh nghiệp chậm nghĩa vụ trái phiếu
                   </span>
@@ -97,7 +97,7 @@ const Bonds = () => {
 
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
             <div>
-              <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+              <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black font-semibold">
                   Danh sách trái phiếu đến kỳ đáo hạn (%)
                 </span>

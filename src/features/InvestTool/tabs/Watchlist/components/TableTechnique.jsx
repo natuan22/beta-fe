@@ -6,7 +6,6 @@ import { getColorBaseOnValue } from "../../../../../helper/getColorBaseOnValue";
 import Loading from "../../../../Chart/utils/Loading";
 import GauChart from "./GauChart";
 import { getApi } from "../../../../../helper/getApi";
-import { apiUrl } from "../../../../../services/config";
 
 const TableTechnique = ({
   data,
@@ -14,6 +13,9 @@ const TableTechnique = ({
   loading,
   loadingTb,
 }) => {
+  const rowHeight = 88;
+  const maxHeight = 646;
+
   const rowClassName = (record, index) => {
     if (index % 2 === 0) {
       // Dòng lẻ màu trắng
@@ -26,10 +28,7 @@ const TableTechnique = ({
 
   const handleStockClick = async (code) => {
     try {
-      const response = await getApi(
-        apiUrl,
-        `/api/v1/shares/search?key_search=${code}`
-      );
+      const response = await getApi(`/api/v1/shares/search?key_search=${code}`);
       const type = response[0].type;
       const url = `/co-phieu/${code}-${type}`;
       window.open(url, "_blank");
@@ -43,7 +42,7 @@ const TableTechnique = ({
       title: "Mã CP",
       dataindex: "code",
       fixed: true,
-      width: 200,
+      width: 180,
       align: "center",
       render: (_, record) => {
         return (
@@ -161,15 +160,20 @@ const TableTechnique = ({
       {!loading && data ? (
         <div>
           {Array.isArray(data) && data?.length > 0 ? (
-            <div className="table-data-watchlist w-[1440px] mt-0.5">
+            <div className="table-data-watchlist w-[1358px] mt-0.5">
               <Table
                 loading={loadingTb}
                 showSorterTooltip={false}
-                scroll={{ x: 1370, y: 580 }}
                 columns={columns}
                 dataSource={data}
                 rowClassName={rowClassName}
-                pagination={{ defaultPageSize: 10, showSizeChanger: false }}
+                // pagination={{ defaultPageSize: 14, showSizeChanger: false }}
+                scroll={
+                  data.length * rowHeight > maxHeight
+                    ? { y: maxHeight }
+                    : { x: 1358, undefined }
+                }
+                pagination={false}
               />
             </div>
           ) : (

@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Loading from "../../../Chart/utils/Loading";
-import HighchartsReact from "highcharts-react-official";
-import treemap from "highcharts/modules/treemap";
 import Highcharts from "highcharts";
-import { fetchDataMarketMap } from "../../thunk";
+import HighchartsReact from "highcharts-react-official";
+
+import treemap from "highcharts/modules/treemap";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import formatNumberCurrency from "../../../../helper/formatNumberCurrency";
+import Loading from "../../../Chart/utils/Loading";
+import { fetchDataMarketMap } from "../../thunk";
 
 treemap(Highcharts);
 
@@ -24,7 +24,7 @@ const buttonStyle = {
   padding: "0.375rem 0.5rem",
 };
 const activeButtonStyle = {
-  backgroundColor: "#275F88",
+  backgroundColor: "#0050AD",
   color: "#fff",
 };
 
@@ -128,7 +128,7 @@ const MarketMap = () => {
         };
         sectorValue += stockPoint.value;
         return stockPoint;
-      }
+      },
     );
 
     sectorPoint.value = Math.round(sectorValue);
@@ -146,7 +146,7 @@ const MarketMap = () => {
         return queryApi.order === "2"
           ? `<b>${this.point.name}</b>: ${this.point.value} (triệu CP)`
           : `<b>${this.point.name}</b>: ${formatNumberCurrency(
-              this.point.value
+              this.point.value,
             )} (tỷ VNĐ)`;
       },
     },
@@ -158,6 +158,15 @@ const MarketMap = () => {
       text: "",
       align: "center",
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         type: "treemap",
@@ -343,8 +352,10 @@ const MarketMap = () => {
             containerProps={{ style: { height: "100%", width: "100%" } }}
           />
         ) : (
-          <div className="mt-24">
-            <Loading />
+          <div className="h-[300px]">
+            <div className="mt-24">
+              <Loading />
+            </div>
           </div>
         )}
       </div>

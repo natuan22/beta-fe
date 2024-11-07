@@ -65,9 +65,9 @@ const News = () => {
       <section className="bg-blueGray-50 pt-1.5">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 rounded ">
-            <div className="block w-full h-[600px] scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-transparent overflow-y-scroll bg-transparent">
+            <div className="block w-full h-[600px] scrollbar-thin scrollbar-thumb-[#0050AD] scrollbar-track-transparent overflow-y-scroll bg-transparent">
               <table className="items-center bg-transparent w-full border-collapse">
-                <thead className="sticky top-0 bg-[#1E5D8B]">
+                <thead className="sticky top-0 bg-[#0050AD]">
                   <tr>
                     <th className="text-center align-middle xxs:text-[10px] px-3 py-3 text-sm whitespace-nowrap font-semibold text-white">
                       Ngày

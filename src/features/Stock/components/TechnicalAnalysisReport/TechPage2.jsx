@@ -11,6 +11,7 @@ import LineChartADX from "./TechPage2/LineChartADX";
 import LineChart2 from "./TechPage2/LineChart2";
 import ColumnChart from "./TechPage2/ColumnChart";
 import Table from "./TechPage2/Table";
+import LazyLoad from "react-lazyload";
 
 const getColorBaseOnName = (value) => {
   if (value === "Tích cực") return "text-green-500";
@@ -23,7 +24,9 @@ const TechPage2 = () => {
   return (
     <div className="h-[1152px] w-[800px] bg-white">
       <div className="header">
-        <HeaderAnalysis />
+        <LazyLoad offset={300} debounce={200} once>
+          <HeaderAnalysis />
+        </LazyLoad>
       </div>
 
       <div className="content w-[800px] flex flex-col items-center h-[990px]">
@@ -62,7 +65,7 @@ const TechPage2 = () => {
                     Đánh giá:{" "}
                     <span
                       className={`${getColorBaseOnName(
-                        dataTechnicalIndex.rsi.rate
+                        dataTechnicalIndex.rsi.rate,
                       )} font-semibold`}
                     >
                       {dataTechnicalIndex.rsi.rate}
@@ -86,7 +89,7 @@ const TechPage2 = () => {
                     Đánh giá:{" "}
                     <span
                       className={`${getColorBaseOnName(
-                        dataTechnicalIndex.cci.rate
+                        dataTechnicalIndex.cci.rate,
                       )} font-semibold`}
                     >
                       {dataTechnicalIndex.cci.rate}
@@ -111,7 +114,7 @@ const TechPage2 = () => {
                     Đánh giá:{" "}
                     <span
                       className={`${getColorBaseOnName(
-                        dataTechnicalIndex.williams.rate
+                        dataTechnicalIndex.williams.rate,
                       )} font-semibold`}
                     >
                       {dataTechnicalIndex.williams.rate}
@@ -143,7 +146,7 @@ const TechPage2 = () => {
                     Đánh giá:{" "}
                     <span
                       className={`${getColorBaseOnName(
-                        dataTechnicalIndex.adx.rate
+                        dataTechnicalIndex.adx.rate,
                       )} font-semibold`}
                     >
                       {dataTechnicalIndex.adx.rate}
@@ -192,7 +195,7 @@ const TechPage2 = () => {
                     Đánh giá:{" "}
                     <span
                       className={`${getColorBaseOnName(
-                        dataTechnicalIndex.stochastic.rate
+                        dataTechnicalIndex.stochastic.rate,
                       )} font-semibold`}
                     >
                       {dataTechnicalIndex.stochastic.rate}
@@ -237,7 +240,7 @@ const TechPage2 = () => {
                     Đánh giá:{" "}
                     <span
                       className={`${getColorBaseOnName(
-                        dataTechnicalIndex.stochasticRsi.rate
+                        dataTechnicalIndex.stochasticRsi.rate,
                       )} font-semibold`}
                     >
                       {dataTechnicalIndex.stochasticRsi.rate}
@@ -279,7 +282,7 @@ const TechPage2 = () => {
                     Đánh giá:{" "}
                     <span
                       className={`${getColorBaseOnName(
-                        dataTechnicalIndex.macd.rate
+                        dataTechnicalIndex.macd.rate,
                       )} font-semibold`}
                     >
                       {dataTechnicalIndex.macd.rate}
@@ -319,7 +322,7 @@ const TechPage2 = () => {
                     Đánh giá:{" "}
                     <span
                       className={`${getColorBaseOnName(
-                        dataTechnicalIndex.macdHistogram.rate
+                        dataTechnicalIndex.macdHistogram.rate,
                       )} font-semibold`}
                     >
                       {dataTechnicalIndex.macdHistogram.rate}

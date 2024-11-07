@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
+
 function AreaChart() {
   const dataToday = useSelector((state) => state.chart.dataChart1);
   const dataPreviousDay = useSelector((state) => state.chart.dataChart2);
@@ -75,6 +76,15 @@ function AreaChart() {
         color: localStorage.getItem("color"),
       },
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         name: "Phiên trước",

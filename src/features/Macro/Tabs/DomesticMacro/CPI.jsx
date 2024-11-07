@@ -20,7 +20,7 @@ const CPI = () => {
         <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
           <div className="grid xl:grid-cols-2 lg:grid-cols-none gap-3">
             <div>
-              <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+              <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black font-semibold">
                   CPI theo các lĩnh vực của nền kinh tế (%)
                 </span>
@@ -28,7 +28,7 @@ const CPI = () => {
               <PerCPIBySectors />
             </div>
             <div>
-              <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+              <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black font-semibold xs:text-base xxs:text-xs">
                   CPI các tháng so với cùng kỳ năm trước (%)
                 </span>
@@ -38,7 +38,7 @@ const CPI = () => {
           </div>
           <div className="lg:block xl:flex gap-3 mt-2">
             <div className="lg:w-full xl:w-[40%] mt-[3px]">
-              <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+              <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black font-semibold">
                   Quyền số CPI theo rổ hàng hóa (%)
                 </span>

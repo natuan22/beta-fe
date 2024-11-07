@@ -21,13 +21,13 @@ const GoodsDetail = ({ type }) => {
       <div className="w-full">
         <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 ">
           <div
-            className={`block w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent ${
-              type === 0 ? "h-[330px]" : "h-[370px]"
+            className={`block w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent ${
+              type === 0 ? "h-[330px]" : "h-[441px]"
             } bg-transparent`}
           >
             <table className="items-center w-full border-collapse bg-transparent">
-              <thead className="sticky top-0 bg-[#1E5D8B]">
-                <tr className="bg-[#1E5D8B]">
+              <thead className="sticky top-0 bg-[#0050AD]">
+                <tr className="bg-[#0050AD]">
                   <th className="align-middle xxs:text-[10px] px-3 py-3 text-sm font-semibold text-center text-white">
                     Hàng hóa
                   </th>

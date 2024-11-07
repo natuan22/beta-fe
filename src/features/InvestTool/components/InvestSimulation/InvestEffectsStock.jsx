@@ -1,10 +1,10 @@
 import { Button, Popover } from "antd";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { RiFilter2Fill } from "react-icons/ri";
 import Loading from "../../../Chart/utils/Loading";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
-import moment from "moment";
 
 const InvestEffectsStock = ({ data }) => {
   const [openFilterCategory, setOpenFilterCategory] = useState(false);
@@ -22,8 +22,8 @@ const InvestEffectsStock = ({ data }) => {
       const uniqueDates = [
         ...new Set(
           data[selectedCategory]?.map((item) =>
-            moment(item.date).format("DD/MM/YYYY")
-          )
+            moment(item.date).format("DD/MM/YYYY"),
+          ),
         ),
       ];
       setTimeLine(uniqueDates);
@@ -102,8 +102,13 @@ const InvestEffectsStock = ({ data }) => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     tooltip: {
       split: true,
     },

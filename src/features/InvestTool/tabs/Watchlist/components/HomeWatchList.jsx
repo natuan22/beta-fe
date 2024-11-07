@@ -22,6 +22,7 @@ import TableNews from "./TableNews";
 import TableSignalWarning from "./TableSignalWarning";
 import TableStatistical from "./TableStatistical";
 import TableTechnique from "./TableTechnique";
+import LazyLoad from "react-lazyload";
 
 const HomeWatchList = ({ watchlists, catchWatchlists }) => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -308,7 +309,7 @@ const HomeWatchList = ({ watchlists, catchWatchlists }) => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.error("Failed:", errorInfo);
   };
 
   const items = [
@@ -594,7 +595,6 @@ const HomeWatchList = ({ watchlists, catchWatchlists }) => {
 
           // Fetch new data for the added code
           newData = await getApi(
-            apiUrl,
             `/api/v1/watchlist/data?stock=${dataSearch[0].code}`
           );
           const newKey = data.length + 1;
@@ -652,71 +652,83 @@ const HomeWatchList = ({ watchlists, catchWatchlists }) => {
       key: "0",
       label: "home",
       children: (
-        <TableBase
-          loading={loading}
-          loadingTb={loadingTb}
-          data={data}
-          handleDelCodeInWatchlist={handleDelCodeInWatchlist}
-        />
+        <LazyLoad offset={300} debounce={200} once>
+          <TableBase
+            loading={loading}
+            loadingTb={loadingTb}
+            data={data}
+            handleDelCodeInWatchlist={handleDelCodeInWatchlist}
+          />
+        </LazyLoad>
       ),
     },
     {
       key: "1",
       label: "Thống kê",
       children: (
-        <TableStatistical
-          loading={loading}
-          loadingTb={loadingTb}
-          data={data}
-          handleDelCodeInWatchlist={handleDelCodeInWatchlist}
-        />
+        <LazyLoad offset={300} debounce={200} once>
+          <TableStatistical
+            loading={loading}
+            loadingTb={loadingTb}
+            data={data}
+            handleDelCodeInWatchlist={handleDelCodeInWatchlist}
+          />
+        </LazyLoad>
       ),
     },
     {
       key: "2",
       label: "Cơ bản",
       children: (
-        <TableBasic
-          loading={loading}
-          loadingTb={loadingTb}
-          data={data}
-          handleDelCodeInWatchlist={handleDelCodeInWatchlist}
-        />
+        <LazyLoad offset={300} debounce={200} once>
+          <TableBasic
+            loading={loading}
+            loadingTb={loadingTb}
+            data={data}
+            handleDelCodeInWatchlist={handleDelCodeInWatchlist}
+          />
+        </LazyLoad>
       ),
     },
     {
       key: "3",
       label: "Kỹ thuật",
       children: (
-        <TableTechnique
-          loading={loading}
-          loadingTb={loadingTb}
-          data={data}
-          handleDelCodeInWatchlist={handleDelCodeInWatchlist}
-        />
+        <LazyLoad offset={300} debounce={200} once>
+          <TableTechnique
+            loading={loading}
+            loadingTb={loadingTb}
+            data={data}
+            handleDelCodeInWatchlist={handleDelCodeInWatchlist}
+          />
+        </LazyLoad>
       ),
     },
     {
       key: "4",
       label: "Tín hiệu cảnh báo",
       children: (
-        <TableSignalWarning
-          loading={loading}
-          loadingTb={loadingTb}
-          data={data}
-          handleDelCodeInWatchlist={handleDelCodeInWatchlist}
-        />
+        <LazyLoad offset={300} debounce={200} once>
+          <TableSignalWarning
+            loading={loading}
+            loadingTb={loadingTb}
+            data={data}
+            handleDelCodeInWatchlist={handleDelCodeInWatchlist}
+          />
+        </LazyLoad>
       ),
     },
     {
       key: "5",
       label: "Tin tức",
       children: (
-        <TableNews
-          loading={loading}
-          data={data}
-          handleDelCodeInWatchlist={handleDelCodeInWatchlist}
-        />
+        <LazyLoad offset={300} debounce={200} once>
+          <TableNews
+            loading={loading}
+            data={data}
+            handleDelCodeInWatchlist={handleDelCodeInWatchlist}
+          />
+        </LazyLoad>
       ),
     },
   ];
@@ -761,7 +773,7 @@ const HomeWatchList = ({ watchlists, catchWatchlists }) => {
   return (
     <>
       {contextHolder}
-      <div className="h-[828px]">
+      <div className="h-[835px]">
         <div className="pt-1">
           <div className="dark:text-[#278AFF] text-[#073882]  text-[15px] font-bold w-fit pb-1">
             Thêm mã CP vào watchlist

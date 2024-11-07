@@ -23,7 +23,7 @@ const StatisticsByYear = ({ stock }) => {
   useEffect(() => {
     if (dataStatisticsByYear.length > 0) {
       setCurrentDate(
-        getYearFromDate(dataStatisticsByYear[currentYearIndex].date)
+        getYearFromDate(dataStatisticsByYear[currentYearIndex].date),
       );
     }
   }, [dataStatisticsByYear, currentYearIndex]);
@@ -48,7 +48,7 @@ const StatisticsByYear = ({ stock }) => {
     <div className="flex justify-center">
       {dataStatisticsByYear?.length > 0 ? (
         <div className="mt-4 xl:w-full lg:w-[411px] md:w-full sm:w-full xs:w-full xxs:w-full">
-          <div className="bg-[#1D5F8D] w-full h-[44px] flex justify-evenly items-center">
+          <div className="bg-[#0050AD] w-full h-[44px] flex justify-evenly items-center">
             <button
               className={` ${
                 currentYearIndex === dataStatisticsByYear.length - 1

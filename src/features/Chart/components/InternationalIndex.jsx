@@ -10,21 +10,21 @@ import Marquee from "react-fast-marquee";
 const InternationalIndex = () => {
   const dispatch = useDispatch();
   const dataInternationalIndex = useSelector(
-    (state) => state.chart.dataInternationalIndex
+    (state) => state.chart.dataInternationalIndex,
   );
 
   useEffect(() => {
     dispatch(fetchDataInternationalIndex);
   }, []);
   return (
-    <div className="dark:bg-black bg-white pt-1">
+    <div className="dark:bg-black bg-white pt-2">
       <Marquee gradient={false} pauseOnHover={true} speed={40}>
         <div className="flex">
           {dataInternationalIndex.data?.map((item, index) => {
             return (
               <div
                 key={index}
-                className="flex flex-col items-center ml-4 bg-gradient-to-b from-[#217EBE] to-black"
+                className="flex flex-col items-center ml-4 bg-gradient-to-b from-[#0050AD] to-black"
                 style={{ padding: "5px" }}
               >
                 <span className="mx-2 text-sm font-semibold text-white">

@@ -34,7 +34,7 @@ function DomesticMacro() {
     localStorage.setItem("userTabCurrent", newValue);
   };
   const [activeTab, setActiveTab] = useState(
-    localStorage.getItem("userTabCurrent")
+    localStorage.getItem("userTabCurrent"),
   );
   const tabsRef = useRef([]);
 

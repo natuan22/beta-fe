@@ -84,7 +84,7 @@ const ForeignInvestIndex = () => {
       render: (_, record) => {
         const colorcmUsd = getColorWithValueReference(
           record.cm_usd_pre,
-          record.cm_usd
+          record.cm_usd,
         );
         return (
           <p className={`${colorcmUsd} text-center font-semibold`}>
@@ -130,7 +130,7 @@ const ForeignInvestIndex = () => {
       render: (_, record) => {
         const colortvUsd = getColorWithValueReference(
           record.tv_usd_pre,
-          record.tv_usd
+          record.tv_usd,
         );
         return (
           <p className={`${colortvUsd} text-center font-semibold`}>
@@ -176,7 +176,7 @@ const ForeignInvestIndex = () => {
       render: (_, record) => {
         const colorgvUsd = getColorWithValueReference(
           record.gv_usd_pre,
-          record.gv_usd
+          record.gv_usd,
         );
         return (
           <p className={`${colorgvUsd} text-center font-semibold`}>
@@ -209,7 +209,7 @@ const ForeignInvestIndex = () => {
       render: (_, record) => {
         const colorTotal = getColorWithValueReference(
           record.total_pre,
-          record.total
+          record.total,
         );
         return (
           <p className={`${colorTotal} text-center font-semibold`}>
@@ -226,7 +226,7 @@ const ForeignInvestIndex = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold xs:text-base xxs:text-[11px]">
           Chỉ số đầu tư nước ngoài
         </span>

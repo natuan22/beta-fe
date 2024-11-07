@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import Highcharts from "highcharts"; // Import highstock module
+import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataCandleChart } from "../thunk";
-import Loading from "../../Chart/utils/Loading";
 import {
-  timeLineChart9h00,
   timeLineChart15h00,
+  timeLineChart9h00,
 } from "../../../helper/dateTime.helper";
+import Loading from "../../Chart/utils/Loading";
+import { fetchDataCandleChart } from "../thunk";
+
 const CandleChart = ({ code, dataChart }) => {
   const dispatch = useDispatch();
   const { dataCandleChart } = useSelector((state) => state.stock);
@@ -63,8 +64,13 @@ const CandleChart = ({ code, dataChart }) => {
         marker: {
           radius: 3,
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         type: "line", // Loại biểu đồ nến

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import { https } from "../../../../services/config";
+import { AgGridReact } from "ag-grid-react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { https } from "../../../../services/config";
 
 const ListNewsFilter = ({ codeTranmission }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -22,7 +22,7 @@ const ListNewsFilter = ({ codeTranmission }) => {
             const response = await https.get(
               `/api/v1/news/bo-loc-tin-tuc?page=${
                 params.startRow / 10 + 1
-              }&limit=20&code=${codeTranmission}`
+              }&limit=20&code=${codeTranmission}`,
             );
 
             if (response.data.data.list.length === 0) {
@@ -31,7 +31,7 @@ const ListNewsFilter = ({ codeTranmission }) => {
               gridApi.hideOverlay();
               params.successCallback(
                 response.data.data.list,
-                response.data.data.total_record
+                response.data.data.total_record,
               );
             }
           } catch (error) {

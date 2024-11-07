@@ -38,7 +38,7 @@ const Footer = () => {
           <div className="md:flex sm:block">
             <div className="md:w-[30%] sm:w-full">
               <div className="w-full">
-                <h4 className="text-[#FFD300] lg:mb-3 md:mb-1 font-semibold uppercase xs:text-xl sm:text-base md:text-sm lg:text-[14px] xl:text-xl">
+                <h4 className="text-[#faad14] lg:mb-3 md:mb-1 font-semibold uppercase xs:text-xl sm:text-base md:text-sm lg:text-[14px] xl:text-xl">
                   Công ty cổ phần chứng khoán BETA
                 </h4>
                 <div className="text-white text-justify md:text-xs lg:text-[15px] xl:text-base">
@@ -90,7 +90,7 @@ const Footer = () => {
             <div className="md:w-[70%] sm:w-full">
               <div className="grid sm:grid-cols-2 xs:grid-cols-none">
                 <div className="md:pl-14 sm:pl-0">
-                  <h4 className="text-[#FFD300] mb-3 font-semibold uppercase xs:text-xl sm:text-base md:text-sm lg:text-[14px] xl:text-xl">
+                  <h4 className="text-[#faad14] mb-3 font-semibold uppercase xs:text-xl sm:text-base md:text-sm lg:text-[14px] xl:text-xl">
                     Trụ sở chính
                   </h4>
                   <div>
@@ -134,7 +134,7 @@ const Footer = () => {
                 </div>
                 <div className="sm:px-3 xs:px-0">
                   <div className="mb-6 w-full">
-                    <h4 className="text-[#FFD300] mb-3 font-semibold uppercase xs:text-xl sm:text-base md:text-sm lg:text-[14px] xl:text-xl">
+                    <h4 className="text-[#faad14] mb-3 font-semibold uppercase xs:text-xl sm:text-base md:text-sm lg:text-[14px] xl:text-xl">
                       Truy cập nhanh
                     </h4>
                     <div className="grid md:grid-cols-2 sm:grid-cols-none xs:grid-cols-2">
@@ -161,7 +161,7 @@ const Footer = () => {
                             </span>
                           </NavLink>
                         </li>
-                        <li>
+                        {/* <li>
                           <NavLink
                             to="/nganh"
                             className="no-underline text-white inline-block leading-loose"
@@ -171,7 +171,7 @@ const Footer = () => {
                               Ngành
                             </span>
                           </NavLink>
-                        </li>
+                        </li> */}
                         <li>
                           <NavLink
                             to="/co-phieu"
@@ -186,7 +186,7 @@ const Footer = () => {
                       </ul>
 
                       <ul className="list-none">
-                        <li>
+                        {/* <li>
                           <NavLink
                             to="/vi-mo"
                             className="no-underline text-white inline-block leading-loose"
@@ -196,7 +196,7 @@ const Footer = () => {
                               Vĩ mô
                             </span>
                           </NavLink>
-                        </li>
+                        </li> */}
                         <li>
                           <NavLink
                             to="/cong-cu-dau-tu"
@@ -216,6 +216,17 @@ const Footer = () => {
                             <DoubleRightOutlined />{" "}
                             <span className="lg:text-base md:text-[11px] xs:text-[14px]">
                               Trung tâm tin tức
+                            </span>
+                          </NavLink>
+                        </li>
+                        <li>
+                          <NavLink
+                            to="/trung-tam-phan-tich"
+                            className="no-underline text-white inline-block leading-loose"
+                          >
+                            <DoubleRightOutlined />{" "}
+                            <span className="lg:text-base md:text-sm">
+                              Trung tâm phân tích
                             </span>
                           </NavLink>
                         </li>

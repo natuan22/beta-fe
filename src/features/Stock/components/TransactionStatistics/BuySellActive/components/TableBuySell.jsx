@@ -52,8 +52,8 @@ const TableBuySell = ({ data }) => {
                           ? item.action === "S"
                             ? "bg-[#ff3747] bg-opacity-20"
                             : item.action === "B"
-                            ? "bg-[#00f4b0] bg-opacity-20"
-                            : "bg-transparent"
+                              ? "bg-[#00f4b0] bg-opacity-20"
+                              : "bg-transparent"
                           : "bg-transparent"
                       }
                     >
@@ -71,17 +71,17 @@ const TableBuySell = ({ data }) => {
                           {item.action === "S"
                             ? "B"
                             : item.action === "B"
-                            ? "M"
-                            : " "}
+                              ? "M"
+                              : " "}
                         </div>
                       </td>
-                      <td className="text-right px-1 py-1 font-semibold w-[17%]">
+                      <td className="text-right px-1 py-1 font-semibold w-[18%]">
                         {formatVolume(item.volume)}
                       </td>
                       <td
                         className={`${getColorWithValueReference(
                           data.prevClosePrice,
-                          item.matchPrice
+                          item.matchPrice,
                         )} text-right px-1 py-1 font-semibold w-[17%]`}
                       >
                         {formatNumber(item.matchPrice)}
@@ -91,7 +91,7 @@ const TableBuySell = ({ data }) => {
                       </td>
                       <td
                         className={`${getColorBaseOnValue(
-                          item.perChangeReference
+                          item.perChangeReference,
                         )} text-right px-3 py-1 w-[17%]`}
                       >
                         {formatNumber(item.perChangeReference)}

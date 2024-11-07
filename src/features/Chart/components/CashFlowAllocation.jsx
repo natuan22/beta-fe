@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import formatNumberCurrency from "../../../helper/formatNumberCurrency";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
-import formatNumberCurrency from "../../../helper/formatNumberCurrency";
 
 const CashFlowAllocation = () => {
   const dataCashFlowAllocation = useSelector(
-    (state) => state.chart.dataCashFlowAllocation
+    (state) => state.chart.dataCashFlowAllocation,
   );
   const [data, setData] = useState([]);
   const [colorText, setColorText] = useState(localStorage.getItem("color"));
@@ -67,6 +67,10 @@ const CashFlowAllocation = () => {
     legend: {
       enabled: false,
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     plotOptions: {
       column: {
         colorByPoint: true, // enable per-point coloring
@@ -86,6 +90,7 @@ const CashFlowAllocation = () => {
       },
       series: {
         borderRadius: 2,
+        turboThreshold: 100_000_000,
       },
     },
     tooltip: {

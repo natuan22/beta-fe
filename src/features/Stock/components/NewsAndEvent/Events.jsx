@@ -11,7 +11,7 @@ const Events = ({ queryApiNewsEvents }) => {
 
   useEffect(() => {
     dispatch(
-      fetchDataNewsAndEvents(queryApiNewsEvents.stock, queryApiNewsEvents.type)
+      fetchDataNewsAndEvents(queryApiNewsEvents.stock, queryApiNewsEvents.type),
     );
   }, [dispatch, queryApiNewsEvents]);
 

@@ -1,8 +1,9 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HighchartsMore from "highcharts/highcharts-more";
+import React from "react";
 import calculateChartValues from "../../../../../helper/calculateChartValues";
+import LazyLoad from "react-lazyload";
 
 HighchartsMore(Highcharts);
 
@@ -136,6 +137,15 @@ const GauChartTech = ({ data }) => {
       center: ["50%", "75%"],
       size: "110%",
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     // the value axis
     yAxis: {
       min: resultMaxMin.min,
@@ -182,13 +192,15 @@ const GauChartTech = ({ data }) => {
 
   return (
     <div className="relative">
-      <div className="h-[200px] w-[250px]">
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={options}
-          containerProps={{ style: { height: "100%", width: "100%" } }}
-        />
-      </div>
+      <LazyLoad offset={300} debounce={200} once>
+        <div className="h-[200px] w-[250px]">
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
+            containerProps={{ style: { height: "100%", width: "100%" } }}
+          />
+        </div>
+      </LazyLoad>
       <div className="absolute bottom-[65px] left-[43px]">
         <p className="m-0 text-[13px] font-bold">Tín Hiệu Chỉ Báo Kỹ Thuật</p>
       </div>

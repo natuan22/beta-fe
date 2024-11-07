@@ -4,7 +4,13 @@ import { InputNumber } from "antd";
 import React, { useEffect, useState } from "react";
 import { arraysAreEqual } from "../../../../../../../helper/arrAreEqual";
 
-const Type6Parameters = ({ filter, selectCondition, data, onFilteredDataChange, selectParameters }) => {
+const Type6Parameters = ({
+  filter,
+  selectCondition,
+  data,
+  onFilteredDataChange,
+  selectParameters,
+}) => {
   const [value, setValue] = useState(null);
   const [valueFrom, setValueFrom] = useState(null);
   const [valueTo, setValueTo] = useState(null);
@@ -47,15 +53,15 @@ const Type6Parameters = ({ filter, selectCondition, data, onFilteredDataChange, 
       filteredData = data.filter(
         (item) =>
           item[filter.key] >= valueFrom &&
-          item[filter.key + selectParameters] <= valueTo
+          item[filter.key + selectParameters] <= valueTo,
       );
     } else if (selectCondition === "bigger" && value !== null) {
       filteredData = data.filter(
-        (item) => item[filter.key + selectParameters] > value
+        (item) => item[filter.key + selectParameters] > value,
       );
     } else if (selectCondition === "less" && value !== null) {
       filteredData = data.filter(
-        (item) => item[filter.key + selectParameters] < value
+        (item) => item[filter.key + selectParameters] < value,
       );
     } else {
       if (previousFilteredData.length !== 0) {
@@ -70,7 +76,15 @@ const Type6Parameters = ({ filter, selectCondition, data, onFilteredDataChange, 
       onFilteredDataChange(filteredData);
       setPreviousFilteredData(filteredData);
     }
-  }, [ data, filter.key, selectCondition, value, valueFrom, valueTo, onFilteredDataChange ]);
+  }, [
+    data,
+    filter.key,
+    selectCondition,
+    value,
+    valueFrom,
+    valueTo,
+    onFilteredDataChange,
+  ]);
   return (
     <div>
       {selectCondition === "about" ? (

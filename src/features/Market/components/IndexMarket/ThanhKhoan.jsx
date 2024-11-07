@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import socket from "../../../Chart/utils/socket";
 import Loading from "../../../Chart/utils/Loading";
+import socket from "../../../Chart/utils/socket";
 
 function ThanhKhoan() {
   const dataToday = useSelector((state) => state.chart.dataChart1);
@@ -72,6 +72,15 @@ function ThanhKhoan() {
         color: localStorage.getItem("color"),
       },
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         name: "Phiên trước",
@@ -124,7 +133,7 @@ function ThanhKhoan() {
   // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59 hoặc là ngày thứ 7/chủ nhật, hiển thị dữ liệu
   if (!isWithinTimeRange || isWeekend) {
     return (
-      <div className="text-center mt-6 dark:text-white text-black">
+      <div className="text-center mt-6 dark:text-white text-black h-[304px]">
         Chưa có dữ liệu giao dịch
       </div>
     );

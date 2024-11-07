@@ -1,6 +1,7 @@
-import moment from "moment";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../../../../Chart/utils/Loading";
@@ -33,7 +34,7 @@ const CurrentPayoutRatio = () => {
         ...new Set(
           transformedData
             .filter((item) => industryQuery.includes(item.industry))
-            .map((item) => item.industry)
+            .map((item) => item.industry),
         ),
       ];
       const mappedData = [];
@@ -42,7 +43,7 @@ const CurrentPayoutRatio = () => {
         if (industryQuery.includes(item.industry)) {
           const colorArr = ["#147DF5", "#E7C64F"];
           const existingItem = mappedData.find(
-            (mappedItem) => mappedItem.name === item.date
+            (mappedItem) => mappedItem.name === item.date,
           );
 
           if (existingItem) {
@@ -128,7 +129,15 @@ const CurrentPayoutRatio = () => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   const handleSelectedNamesChange = (selectedNames) => {
@@ -136,7 +145,7 @@ const CurrentPayoutRatio = () => {
   };
   return (
     <div>
-      <div className="lg:flex md:block sm:flex xs:flex xxs:flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="lg:flex md:block sm:flex xs:flex xxs:flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold xl:text-base lg:text-[13px] md:text-sm xs:text-base xxs:text-[13px]">
           Tỷ số thanh toán hiện hành (Lần)
         </span>

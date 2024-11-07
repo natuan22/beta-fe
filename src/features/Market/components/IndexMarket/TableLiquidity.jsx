@@ -31,7 +31,11 @@ const TableLiquidity = () => {
   }, [queryApi.type]);
   useEffect(() => {
     dispatch(
-      fecthDataTableThanhKhoan(queryApi.exchange, queryApi.type, queryApi.order)
+      fecthDataTableThanhKhoan(
+        queryApi.exchange,
+        queryApi.type,
+        queryApi.order,
+      ),
     );
   }, [dispatch, queryApi]);
 
@@ -86,7 +90,7 @@ const TableLiquidity = () => {
             onChange={(e) => {
               handleQueryApiType(e.target.value);
             }}
-            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#007dc6] border-0`}
           >
             <option value={0}>Cổ phiếu</option>
             <option value={1}>Ngành Lv1</option>
@@ -100,7 +104,7 @@ const TableLiquidity = () => {
             onChange={(e) => {
               handleQueryApiExchange(e.target.value);
             }}
-            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#0097B2] border-0`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] ml-1.5 text-[#007dc6] border-0`}
           >
             <option value="ALL">Toàn thị trường</option>
             <option value="HSX">HSX</option>
@@ -112,10 +116,10 @@ const TableLiquidity = () => {
       <section className="mt-1">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block w-full overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-transparent h-[379px] bg-transparent">
+            <div className="block w-full overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] scrollbar-track-transparent h-[379px] bg-transparent">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead className="sticky top-0">
-                  <tr className="bg-[#1E5D8B]">
+                  <tr className="bg-[#0050AD]">
                     <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-[0.75rem] font-semibold text-white">
                       {title}
                     </th>
@@ -156,7 +160,7 @@ const TableLiquidity = () => {
                           </td>
                           <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">
                             {formatNumberCurrency(
-                              item.totalValueMil / 1000000000
+                              item.totalValueMil / 1000000000,
                             )}
                           </td>
                           <td className="text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold">
@@ -166,14 +170,14 @@ const TableLiquidity = () => {
                             className={`${color} text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold`}
                           >
                             {formatNumberCurrency(
-                              item.supplyDemandVolumeGap / 1000000
+                              item.supplyDemandVolumeGap / 1000000,
                             )}
                           </td>
                           <td
                             className={`${color2} text-center px-1.5 align-middle whitespace-nowrap p-3.5 font-semibold`}
                           >
                             {formatNumberCurrency(
-                              item.supplyDemandValueGap / 1000
+                              item.supplyDemandValueGap / 1000,
                             )}
                           </td>
                         </tr>

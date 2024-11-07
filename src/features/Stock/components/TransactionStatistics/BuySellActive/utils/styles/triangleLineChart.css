@@ -1,15 +1,15 @@
 #triangle-topright-line {
-    width: 0;
-    height: 0;
-    border-top: 11px solid red;
-    border-left: 11px solid transparent;
+  width: 0;
+  height: 0;
+  border-top: 11px solid red;
+  border-left: 11px solid transparent;
 }
 
 #triangle-bottomleft-line {
-    width: 0;
-    height: 0;
-    border-bottom: 11px solid green;
-    border-right: 11px solid transparent;
+  width: 0;
+  height: 0;
+  border-bottom: 11px solid green;
+  border-right: 11px solid transparent;
 }
 
 @keyframes moveLeft {
@@ -33,7 +33,7 @@
     opacity: 1;
   }
 }
-  
+
 .moving-left-div {
   animation: moveLeft 0.25s ease-out forwards; /* Di chuyển 2s khi load */
   animation-delay: 0.3s;

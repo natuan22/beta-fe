@@ -1,8 +1,8 @@
 .animate-marquee:hover {
-    animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 .animate-marquee:not(:hover) {
-    animation-play-state: running;
-    animation-fill-mode: forwards;
+  animation-play-state: running;
+  animation-fill-mode: forwards;
 }

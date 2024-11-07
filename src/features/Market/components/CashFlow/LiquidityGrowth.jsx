@@ -1,5 +1,6 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -112,8 +113,13 @@ const LiquidityGrowth = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     tooltip: {
       split: true,
     },
@@ -138,13 +144,13 @@ const LiquidityGrowth = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black xs:text-base xxs:text-sm font-semibold">
           Mức tăng trưởng thanh khoản (%)
         </span>
         <div>
           <select
-            className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+            className={`bg-[#0050AD] p-1 text-[1rem] text-white border-0`}
             onChange={(event) => {
               dispatch(fetchDataLiquidityGrowth(event.target.value));
             }}

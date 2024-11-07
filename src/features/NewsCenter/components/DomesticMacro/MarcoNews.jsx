@@ -46,7 +46,10 @@ const MarcoNews = () => {
 
   return (
     <div className="grid xl:grid-cols-2 lg:grid-cols-none">
-      <div className="h-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent" onScroll={handleScroll}>
+      <div
+        className="h-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent"
+        onScroll={handleScroll}
+      >
         {!loading ? (
           Array.isArray(data) &&
           data.map((item, index) => (

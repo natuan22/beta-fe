@@ -4,10 +4,12 @@ import { IoIosCloseCircle } from "react-icons/io";
 import formatNumberCurrency from "../../../../../helper/formatNumberCurrency";
 import { getApi } from "../../../../../helper/getApi";
 import { getColorBaseOnValue } from "../../../../../helper/getColorBaseOnValue";
-import { apiUrl } from "../../../../../services/config";
 import Loading from "../../../../Chart/utils/Loading";
 
 const TableBasic = ({ data, handleDelCodeInWatchlist, loading, loadingTb }) => {
+  const rowHeight = 39;
+  const maxHeight = 623;
+
   const rowClassName = (record, index) => {
     if (index % 2 === 0) {
       // Dòng lẻ màu trắng
@@ -20,10 +22,7 @@ const TableBasic = ({ data, handleDelCodeInWatchlist, loading, loadingTb }) => {
 
   const handleStockClick = async (code) => {
     try {
-      const response = await getApi(
-        apiUrl,
-        `/api/v1/shares/search?key_search=${code}`
-      );
+      const response = await getApi(`/api/v1/shares/search?key_search=${code}`);
       const type = response[0].type;
       const url = `/co-phieu/${code}-${type}`;
       window.open(url, "_blank");
@@ -37,7 +36,7 @@ const TableBasic = ({ data, handleDelCodeInWatchlist, loading, loadingTb }) => {
       title: "Mã CP",
       dataindex: "code",
       fixed: true,
-      width: 200,
+      width: 180,
       align: "center",
       render: (_, record) => {
         return (
@@ -332,11 +331,16 @@ const TableBasic = ({ data, handleDelCodeInWatchlist, loading, loadingTb }) => {
               <Table
                 loading={loadingTb}
                 showSorterTooltip={false}
-                scroll={{ x: 1870 }}
                 columns={columns}
                 dataSource={data}
                 rowClassName={rowClassName}
-                pagination={{ defaultPageSize: 10, showSizeChanger: false }}
+                // pagination={{ defaultPageSize: 14, showSizeChanger: false }}
+                scroll={
+                  data.length * rowHeight > maxHeight
+                    ? { x: 1870, y: maxHeight }
+                    : { x: 1870 }
+                }
+                pagination={false}
               />
             </div>
           ) : (

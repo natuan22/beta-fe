@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useDispatch, useSelector } from "react-redux";
+
 import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import socket from "../../../Chart/utils/socket";
 import { fetchDataDoRongThiTruong } from "../../thunk";
@@ -154,7 +155,7 @@ const MarketBreadth = () => {
       enabled: true,
       labelFormatter: function () {
         const hoveredPoint = hoveredValue?.find(
-          (point) => point.name === this.name
+          (point) => point.name === this.name,
         );
         const valueString = hoveredPoint ? `: ${hoveredPoint.value}` : "";
         return `${this.name}${valueString}`;
@@ -219,8 +220,13 @@ const MarketBreadth = () => {
             },
           },
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         name: "Giảm",
@@ -276,8 +282,8 @@ const MarketBreadth = () => {
   if (!isWithinTimeRange || isWeekend) {
     return (
       <>
-        <div className="xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[16px]">
-          <span className="dark:text-white text-black text-[0.9rem]">
+        <div className="xs:flex xxs:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0 pt-[1px]">
+          <span className="dark:text-white text-black xl:text-[0.9rem] lg:text-base">
             Diễn biến độ rộng thị trường
           </span>
           <div className="flex items-center justify-center">
@@ -288,7 +294,7 @@ const MarketBreadth = () => {
                   setFormatDate("DD/MM");
                 }
               }}
-              className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0`}
+              className={`bg-[#0050AD] p-[2.5px] xl:text-[0.9rem] lg:text-base text-white border-0`}
             >
               <option value="0">Phiên gần nhất</option>
               <option value="1">01 tháng</option>
@@ -344,7 +350,7 @@ const MarketBreadth = () => {
             </button>
           </span>
         </div>
-        <div className="text-center mt-6 dark:text-white text-black">
+        <div className="text-center mt-6 dark:text-white text-black h-[327px]">
           Chưa có dữ liệu giao dịch
         </div>
       </>
@@ -352,8 +358,8 @@ const MarketBreadth = () => {
   }
   return (
     <>
-      <div className="xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 pt-[16px]">
-        <span className="dark:text-white text-black text-[0.9rem] font-semibold">
+      <div className="xs:flex xxs:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0 pt-[22px]">
+        <span className="dark:text-white text-black xl:text-[0.9rem] lg:text-base font-semibold">
           Diễn biến độ rộng thị trường
         </span>
         <div className="flex items-center justify-center">
@@ -364,7 +370,7 @@ const MarketBreadth = () => {
                 setFormatDate("DD/MM");
               }
             }}
-            className={`bg-[#1B496D] p-1 text-[0.9rem] text-white border-0`}
+            className={`bg-[#0050AD] p-[2.5px] xl:text-[0.9rem] lg:text-base text-white border-0`}
           >
             <option value="0">Phiên gần nhất</option>
             <option value="1">01 tháng</option>

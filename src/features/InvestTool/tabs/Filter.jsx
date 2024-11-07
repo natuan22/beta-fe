@@ -32,7 +32,9 @@ const theme = createTheme({
 });
 
 const Filter = () => {
-  const [isLogin, setIsLogin] = useState(localStorage.getItem("_il"));
+  const [isLogin, setIsLogin] = useState(
+    localStorage.getItem(process.env.REACT_APP_IS_LG)
+  );
 
   const [selectedItems, setSelectedItems] = useState([
     "floor",
@@ -59,7 +61,7 @@ const Filter = () => {
   }, []);
 
   useEffect(() => {
-    if (isLogin === "7MEvU") {
+    if (isLogin === process.env.REACT_APP_LG_T) {
       const fetchDataWatchList = async () => {
         try {
           const data = await getApi("/api/v1/watchlist");

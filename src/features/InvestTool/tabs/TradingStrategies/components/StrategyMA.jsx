@@ -60,11 +60,10 @@ const StrategyMA = ({ role }) => {
     } else {
       try {
         const data = await getApi(
-          apiUrl,
           `/api/v1/investment/test?stock=${stock}&from=${dayjs(fromDate).format(
-            "YYYY-MM-DD"
+            "YYYY-MM-DD",
           )}&to=${dayjs(toDate).format("YYYY-MM-DD")}`,
-          1
+          1,
         );
         setData(data);
       } catch (error) {
@@ -185,7 +184,9 @@ const StrategyMA = ({ role }) => {
       <div className="mt-2">
         <div className="xl:flex lg:block items-center">
           <div className="code-select mr-10">
-            <div className="mb-[3px] font-medium dark:text-white text-black">Mã</div>
+            <div className="mb-[3px] font-medium dark:text-white text-black">
+              Mã
+            </div>
             <Select
               style={{
                 width: 222,
@@ -203,7 +204,9 @@ const StrategyMA = ({ role }) => {
           </div>
           <div className="md:flex sm:block">
             <div className="mr-5">
-              <div className="mb-[3px] font-medium dark:text-white text-black">Thời gian</div>
+              <div className="mb-[3px] font-medium dark:text-white text-black">
+                Thời gian
+              </div>
               <DatePicker
                 format="DD/MM/YYYY"
                 margin="normal"
@@ -340,7 +343,7 @@ const StrategyMA = ({ role }) => {
                   <p className="m-1">:</p>
                   <p className="m-1 w-[25%] text-end font-semibold text-[#0050AD]">
                     {formatNumberCurrency(
-                      (data.max?.total / data.max?.count) * 100
+                      (data.max?.total / data.max?.count) * 100,
                     )}
                   </p>
                 </div>

@@ -15,7 +15,7 @@ const hashTb = {
 const TableMarketLiquidity = () => {
   const dispatch = useDispatch();
   const dataMarketLiquidity = useSelector(
-    (state) => state.chart.dataTableMarketLiquidity
+    (state) => state.chart.dataTableMarketLiquidity,
   );
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -64,9 +64,9 @@ const TableMarketLiquidity = () => {
       <section className="bg-blueGray-50">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded ">
-            <div className="block w-full bg-transparent scrollbar-thin scrollbar-thumb-[#436FB5] scrollbar-track-transparent h-80 overflow-y-scroll">
+            <div className="block w-full bg-transparent scrollbar-thin scrollbar-thumb-[#0050AD] scrollbar-track-transparent h-80 overflow-y-scroll">
               <table className="items-center w-full border-collapse bg-transparent">
-                <thead className="sticky top-0 bg-[#1E5D8B]">
+                <thead className="sticky top-0 bg-[#0050AD]">
                   <tr>
                     <th className="text-center align-middle xxs:text-[9px] px-4 py-3 uppercase text-xs font-semibold text-white">
                       Mã CK

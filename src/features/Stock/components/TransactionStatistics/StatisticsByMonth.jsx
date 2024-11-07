@@ -27,7 +27,7 @@ const StatisticsByMonth = ({ stock }) => {
   useEffect(() => {
     if (dataStatisticsByMonth.length > 0) {
       setCurrentDate(
-        getFormattedDate(dataStatisticsByMonth[currentMonthIndex].date)
+        getFormattedDate(dataStatisticsByMonth[currentMonthIndex].date),
       );
     }
   }, [dataStatisticsByMonth, currentMonthIndex]);
@@ -51,7 +51,7 @@ const StatisticsByMonth = ({ stock }) => {
     <div className="flex justify-center">
       {dataStatisticsByMonth?.length > 0 ? (
         <div className="mt-4 xl:w-full lg:w-[411px] md:w-full sm:w-full xs:w-full xxs:w-full">
-          <div className="bg-[#1D5F8D] w-full h-[44px] flex justify-evenly items-center">
+          <div className="bg-[#0050AD] w-full h-[44px] flex justify-evenly items-center">
             <button
               className={` ${
                 currentMonthIndex === dataStatisticsByMonth.length - 1

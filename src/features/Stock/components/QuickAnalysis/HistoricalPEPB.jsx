@@ -6,6 +6,7 @@ import { getApi } from "../../../../helper/getApi";
 import { LoadingButton } from "@mui/lab";
 import icon_excel from "../../../../app/asset/img/icon_excel.png";
 import ChartLine from "./components/ChartLine";
+import moment from "moment";
 
 const XLSX = require("xlsx");
 
@@ -41,7 +42,7 @@ const HistoricalPEPB = ({ stock }) => {
   ];
 
   const prepareData = (item) => [
-    item.from,
+    moment(item.from).format("DD/MM/YYYY"), // Format to "DD/MM/YYYY"
     item.indexPb,
     item.indexPe,
     item.industryPb,
@@ -55,7 +56,7 @@ const HistoricalPEPB = ({ stock }) => {
       setLoadingExcel(true);
 
       const data = await getApi(
-        `/api/v1/tcbs/historical-pe-pb?stock=${stock}&period=${period}`
+        `/api/v1/tcbs/historical-pe-pb?stock=${stock}&period=${period}`,
       );
 
       //Xử lý dữ liệu đưa vào sheet
@@ -68,7 +69,7 @@ const HistoricalPEPB = ({ stock }) => {
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheetTitle, ...sheet1Data]),
-        "Historical PE PB"
+        "Historical PE PB",
       );
 
       // Xuất workbook thành file Excel
@@ -83,7 +84,7 @@ const HistoricalPEPB = ({ stock }) => {
   return (
     <ThemeProvider theme={theme}>
       <div className="md:flex sm:block mt-8 items-center">
-        <div className="md:w-[170px] sm:w-[200px] xs:w-[180px] xxs:w-[180px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+        <div className="md:w-[170px] sm:w-[200px] xs:w-[180px] xxs:w-[180px] border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
           <span className="dark:text-white text-black font-semibold uppercase">
             Lịch sử P/E, P/B
           </span>

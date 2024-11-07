@@ -14,7 +14,9 @@ const compareValue = {
 };
 
 const FilterSignalChange = ({ filter, data, onFilteredDataChange }) => {
-  const initialSelectValue = filter.select[4] ? filter.select[4].value : filter.select[0].value;
+  const initialSelectValue = filter.select[4]
+    ? filter.select[4].value
+    : filter.select[0].value;
   const [value, setValue] = useState(initialSelectValue);
 
   const handleChange = (value) => {
@@ -23,7 +25,7 @@ const FilterSignalChange = ({ filter, data, onFilteredDataChange }) => {
 
   const filteredData = useMemo(
     () => data.filter((item) => item[filter.key] === compareValue[value]),
-    [data, value, filter.key]
+    [data, value, filter.key],
   );
 
   useEffect(() => {

@@ -15,7 +15,7 @@ const DialogAddConditions = ({ selectedItems, handleCheckboxChange }) => {
     Object.keys(hashTbStockFilter).reduce((acc, key) => {
       acc[key] = false;
       return acc;
-    }, {})
+    }, {}),
   );
 
   const hideAll = () => {

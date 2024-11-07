@@ -55,7 +55,7 @@ const IndustryCashFlow = () => {
           const matchingItem =
             Array.isArray(dataIndustryCashFlow) &&
             dataIndustryCashFlow.find(
-              (newItem) => newItem.industry === oldItem.industry
+              (newItem) => newItem.industry === oldItem.industry,
             );
           if (matchingItem) {
             return {
@@ -87,19 +87,19 @@ const IndustryCashFlow = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black xs:text-base xxs:text-sm font-semibold">
           Dòng tiền theo ngành
         </span>
         <div>
           <select
-            className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+            className={`bg-[#0050AD] p-1 text-[1rem] text-white border-0`}
             onChange={(event) => {
               dispatch(
-                fetchDataTopNetBuyIndustry(handleExchange, event.target.value)
+                fetchDataTopNetBuyIndustry(handleExchange, event.target.value),
               );
               dispatch(
-                fetchDataIndustryCashFlow(handleExchange, event.target.value)
+                fetchDataIndustryCashFlow(handleExchange, event.target.value),
               );
               dispatch(fetchDataRSI(handleExchange, ENUM[event.target.value]));
               setHandleType(event.target.value);
@@ -190,10 +190,10 @@ const IndustryCashFlow = () => {
       <section className="bg-blueGray-50 pt-1.5">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent xl:h-[728px] lg:h-[460px] md:h-[490px] sm:h-[430px] xs:h-[430px] xxs:h-[430px]">
+            <div className="block w-full scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent xl:h-[728px] lg:h-[460px] md:h-[490px] sm:h-[430px] xs:h-[430px] xxs:h-[430px]">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead
-                  className="bg-[#1E5D8B] z-10"
+                  className="bg-[#0050AD] z-10"
                   style={{ position: "sticky", top: 0 }}
                 >
                   <tr>
@@ -246,7 +246,7 @@ const IndustryCashFlow = () => {
                                   {
                                     minimumFractionDigits: 2,
                                     maximumFractionDigits: 2,
-                                  }
+                                  },
                                 )}
                               %
                             </span>
@@ -364,7 +364,7 @@ const IndustryCashFlow = () => {
                     dataKhoiNgoai.length > 0 &&
                     (dataKhoiNgoai[0].buyVal / 1000000000).toLocaleString(
                       "vi-VN",
-                      { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+                      { minimumFractionDigits: 2, maximumFractionDigits: 2 },
                     )}{" "}
                   tỷ
                 </span>
@@ -376,7 +376,7 @@ const IndustryCashFlow = () => {
                     dataKhoiNgoai.length > 0 &&
                     (dataKhoiNgoai[0].sellVal / 1000000000).toLocaleString(
                       "vi-VN",
-                      { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+                      { minimumFractionDigits: 2, maximumFractionDigits: 2 },
                     )}{" "}
                   tỷ
                 </span>
@@ -389,7 +389,7 @@ const IndustryCashFlow = () => {
                     dataTuDoanh.length > 0 &&
                     (dataTuDoanh[0].buyVal / 1000000000).toLocaleString(
                       "vi-VN",
-                      { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+                      { minimumFractionDigits: 2, maximumFractionDigits: 2 },
                     )}{" "}
                   tỷ
                 </span>
@@ -401,7 +401,7 @@ const IndustryCashFlow = () => {
                     dataTuDoanh.length > 0 &&
                     (dataTuDoanh[0].sellVal / 1000000000).toLocaleString(
                       "vi-VN",
-                      { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+                      { minimumFractionDigits: 2, maximumFractionDigits: 2 },
                     )}{" "}
                   tỷ
                 </span>
@@ -414,7 +414,7 @@ const IndustryCashFlow = () => {
                     dataCaNhan.length > 0 &&
                     (dataCaNhan[0].buyVal / 1000000000).toLocaleString(
                       "vi-VN",
-                      { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+                      { minimumFractionDigits: 2, maximumFractionDigits: 2 },
                     )}{" "}
                   tỷ
                 </span>
@@ -426,7 +426,7 @@ const IndustryCashFlow = () => {
                     dataCaNhan.length > 0 &&
                     (dataCaNhan[0].sellVal / 1000000000).toLocaleString(
                       "vi-VN",
-                      { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+                      { minimumFractionDigits: 2, maximumFractionDigits: 2 },
                     )}{" "}
                   tỷ
                 </span>

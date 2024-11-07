@@ -5,7 +5,6 @@ import { IoIosCloseCircle } from "react-icons/io";
 import formatNumberCurrency from "../../../../../helper/formatNumberCurrency";
 import { getApi } from "../../../../../helper/getApi";
 import { getColorBaseOnValue } from "../../../../../helper/getColorBaseOnValue";
-import { apiUrl } from "../../../../../services/config";
 import Loading from "../../../../Chart/utils/Loading";
 
 const TableStatistical = ({
@@ -14,6 +13,9 @@ const TableStatistical = ({
   loading,
   loadingTb,
 }) => {
+  const rowHeight = 39;
+  const maxHeight = 623;
+
   const rowClassName = (record, index) => {
     if (index % 2 === 0) {
       // Dòng lẻ màu trắng
@@ -26,10 +28,7 @@ const TableStatistical = ({
 
   const handleStockClick = async (code) => {
     try {
-      const response = await getApi(
-        apiUrl,
-        `/api/v1/shares/search?key_search=${code}`
-      );
+      const response = await getApi(`/api/v1/shares/search?key_search=${code}`);
       const type = response[0].type;
       const url = `/co-phieu/${code}-${type}`;
       window.open(url, "_blank");
@@ -43,7 +42,7 @@ const TableStatistical = ({
       title: "Mã CP",
       dataindex: "code",
       fixed: true,
-      width: 200,
+      width: 180,
       align: "center",
       render: (_, record) => {
         return (
@@ -312,13 +311,13 @@ const TableStatistical = ({
         const thumbColor = isHighestPrice
           ? "#3dcc91"
           : isLowestPrice
-          ? "#d1686a"
-          : "#137ab9";
+            ? "#d1686a"
+            : "#137ab9";
         const borderTopColor = isHighestPrice
           ? "#3dcc91"
           : isLowestPrice
-          ? "#d1686a"
-          : "#137ab9";
+            ? "#d1686a"
+            : "#137ab9";
 
         return (
           <div className="w-[120px] h-[28px] -translate-y-[5px] translate-x-[7px]">
@@ -386,11 +385,17 @@ const TableStatistical = ({
               <Table
                 loading={loadingTb}
                 showSorterTooltip={false}
-                scroll={{ x: 2131 }}
                 columns={columns}
                 dataSource={data}
                 rowClassName={rowClassName}
-                pagination={{ defaultPageSize: 10, showSizeChanger: false }}
+                // pagination={{ defaultPageSize: 14, showSizeChanger: false }}
+                // scroll={{ x: 2131, y: 597 }}
+                scroll={
+                  data.length * rowHeight > maxHeight
+                    ? { x: 2130, y: maxHeight }
+                    : { x: 2130 }
+                }
+                pagination={false}
               />
             </div>
           ) : (

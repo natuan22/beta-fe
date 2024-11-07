@@ -13,7 +13,7 @@ const BusinessResults = ({ queryApi }) => {
 
   useEffect(() => {
     dispatch(
-      fetchDataBusinessResults(queryApi.stock, queryApi.order, queryApi.type)
+      fetchDataBusinessResults(queryApi.stock, queryApi.order, queryApi.type),
     );
   }, [dispatch, queryApi]);
 
@@ -47,7 +47,7 @@ const BusinessResults = ({ queryApi }) => {
         newData[item.name].push(item.value / 1000000000);
       });
       setDataTb(
-        Object.entries(newData).map(([name, values]) => ({ name, values }))
+        Object.entries(newData).map(([name, values]) => ({ name, values })),
       );
     }
   }, [dataBusinessResults, queryApi]);
@@ -57,11 +57,11 @@ const BusinessResults = ({ queryApi }) => {
       <section className="pt-4">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block bg-transparent xxs:w-[317px] xs:w-[373px] sm:w-[423px] md:w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent md:overflow-hidden sm:overflow-x-scroll xs:overflow-x-scroll xxs:overflow-x-scroll">
+            <div className="block bg-transparent xxs:w-[317px] xs:w-[373px] sm:w-[423px] md:w-full scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent md:overflow-hidden sm:overflow-x-scroll xs:overflow-x-scroll xxs:overflow-x-scroll">
               <table className="items-center border-collapse bg-transparent w-full h-[294px]">
-                <thead className="bg-[#1D5F8D]">
+                <thead className="bg-[#0050AD]">
                   <tr>
-                    <th className="bg-[#34A3F3] text-center uppercase align-middle px-3 py-[15px] whitespace-nowrap font-extrabold text-black">
+                    <th className="bg-[#4fa1ff] text-center uppercase align-middle px-3 py-[15px] whitespace-nowrap font-extrabold text-black">
                       Kết quả kinh doanh
                     </th>
                     {Array.isArray(dates) &&

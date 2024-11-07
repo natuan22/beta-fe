@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import treemap from "highcharts/modules/treemap";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "../utils/treemapStyleDrillBtn.css";
+import { fetchDataTreeMapBuy } from "../thunk";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
-import { fetchDataTreeMapBuy } from "../thunk";
+import "../utils/treemapStyleDrillBtn.css";
 
 // Khởi tạo module treemap
 treemap(Highcharts);
@@ -107,6 +107,10 @@ const TreeMapBuy = () => {
   }
   // console.log('points', points)
   const options = {
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     plotOptions: {
       series: {
         point: {
@@ -118,6 +122,7 @@ const TreeMapBuy = () => {
             },
           },
         },
+        turboThreshold: 100_000_000,
       },
     },
     accessibility: {
@@ -216,10 +221,10 @@ const TreeMapBuy = () => {
       <>
         <div>
           <div className="text-center py-2">
-            <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs">
+            <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs font-semibold">
               Khối ngoại mua ròng sàn
               <select
-                className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#007dc6]`}
                 onChange={(event) => {
                   disconnectSocket(socketOld);
                   setSocketChanel(event.target.value);
@@ -244,10 +249,10 @@ const TreeMapBuy = () => {
     <>
       <div>
         <div className="text-center py-2">
-          <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs">
+          <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs font-semibold">
             Khối ngoại mua ròng sàn
             <select
-              className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+              className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#007dc6]`}
               onChange={(event) => {
                 disconnectSocket(socketOld);
                 setSocketChanel(event.target.value);

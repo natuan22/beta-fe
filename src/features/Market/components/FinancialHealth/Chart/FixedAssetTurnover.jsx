@@ -31,7 +31,7 @@ const FixedAssetTurnover = () => {
         ...new Set(
           transformedData
             .filter((item) => industryQuery.includes(item.industry))
-            .map((item) => item.industry)
+            .map((item) => item.industry),
         ),
       ];
       const mappedData = [];
@@ -40,7 +40,7 @@ const FixedAssetTurnover = () => {
         if (industryQuery.includes(item.industry)) {
           const colorArr = ["#147DF5", "#E7C64F"];
           const existingItem = mappedData.find(
-            (mappedItem) => mappedItem.name === item.date
+            (mappedItem) => mappedItem.name === item.date,
           );
 
           if (existingItem) {
@@ -126,7 +126,15 @@ const FixedAssetTurnover = () => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   const handleSelectedNamesChange = (selectedNames) => {
@@ -134,7 +142,7 @@ const FixedAssetTurnover = () => {
   };
   return (
     <div>
-      <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold xl:text-base lg:text-sm md:text-sm xs:text-base xxs:text-[13px]">
           Vòng quay Tài sản cố định (Lần)
         </span>

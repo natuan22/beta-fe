@@ -30,7 +30,7 @@ const TableDetail = () => {
             <div className="block w-full xs:h-[342px] sm:h-[320px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px] bg-transparent">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead>
-                  <tr className="bg-[#1E5D8B]">
+                  <tr className="bg-[#0050AD]">
                     <th className="text-center align-middle px-3 py-2 xxs:text-[10px] text-sm font-semibold text-white">
                       Chỉ số
                     </th>

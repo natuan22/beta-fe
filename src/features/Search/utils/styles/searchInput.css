@@ -1,0 +1,17 @@
+.search-dialog.ant-input-affix-wrapper.ant-input-affix-wrapper-lg.ant-input-outlined
+  input::placeholder {
+  color: white;
+  opacity: 0.4;
+}
+
+.search-dialog.ant-input-affix-wrapper-lg {
+  padding: 5.25px 11px;
+}
+
+.search-dialog.ant-input-outlined {
+  border-color: #12418d;
+}
+
+.search-dialog.ant-input-outlined:hover {
+  border-color: #faad14;
+}

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Loading from "../utils/Loading";
-import socket from "../utils/socket";
 import {
   timeStackingChart15h00,
   timeStackingChart9h15,
 } from "../../../helper/dateTime.helper";
+import Loading from "../utils/Loading";
+import socket from "../utils/socket";
 
 const StackingAreas = () => {
   const [colorText, setColorText] = useState(localStorage.getItem("color"));
@@ -17,7 +17,7 @@ const StackingAreas = () => {
     setColorText(color);
   }, [color]);
   const dataStackingChart = useSelector(
-    (state) => state.chart.dataStackingArea
+    (state) => state.chart.dataStackingArea,
   );
   const dataAdvance =
     dataStackingChart &&
@@ -131,7 +131,7 @@ const StackingAreas = () => {
       enabled: true,
       labelFormatter: function () {
         const hoveredPoint = hoveredValue?.find(
-          (point) => point.name === this.name
+          (point) => point.name === this.name,
         );
         const valueString = hoveredPoint ? `: ${hoveredPoint.value}` : "";
         return `${this.name}${valueString}`;
@@ -196,8 +196,13 @@ const StackingAreas = () => {
             },
           },
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         name: "Giảm",

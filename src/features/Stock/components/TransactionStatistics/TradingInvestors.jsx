@@ -1,10 +1,10 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataTradingInvestors } from "../../thunk";
 import Loading from "../../../Chart/utils/Loading";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
+import { fetchDataTradingInvestors } from "../../thunk";
 
 const TradingInvestors = ({ stock }) => {
   const dispatch = useDispatch();
@@ -105,8 +105,8 @@ const TradingInvestors = ({ stock }) => {
       const uniqueDates = [
         ...new Set(
           dataTradingInvestors?.map((item) =>
-            moment(item.date).format("DD/MM/YYYY")
-          )
+            moment(item.date).format("DD/MM/YYYY"),
+          ),
         ),
       ];
       setTimeLine(uniqueDates);
@@ -177,8 +177,13 @@ const TradingInvestors = ({ stock }) => {
         marker: {
           radius: 3, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     legend: {
       enabled: true,
       align: "center",

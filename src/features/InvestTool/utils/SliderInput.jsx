@@ -107,7 +107,7 @@ const SliderInput = ({
         };
         // Cập nhật hoặc thêm key vào formData
         const existingFilterIndex = newFormData.filter.findIndex(
-          (filterItem) => filterItem.key === sliderKey
+          (filterItem) => filterItem.key === sliderKey,
         );
         if (existingFilterIndex !== -1) {
           // Nếu key đã tồn tại, cập nhật giá trị của nó

@@ -14,8 +14,8 @@ const ChartCTCPBusinessReport = ({ queryApiBusinessFinance }) => {
     dispatch(
       fetchDataChartBusinessReport(
         queryApiBusinessFinance.stock,
-        queryApiBusinessFinance.order
-      )
+        queryApiBusinessFinance.order,
+      ),
     );
   }, [dispatch, queryApiBusinessFinance]);
 

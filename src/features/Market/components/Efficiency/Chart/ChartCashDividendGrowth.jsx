@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
+import moment from "moment";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../../../../Chart/utils/Loading";
-import moment from "moment";
 import FilterIndusty from "../../../utils/components/FilterIndusty";
 
 const ChartCashDividendGrowth = (props) => {
@@ -31,7 +32,7 @@ const ChartCashDividendGrowth = (props) => {
         ...new Set(
           transformedData
             .filter((item) => industryQuery.includes(item.industry))
-            .map((item) => item.industry)
+            .map((item) => item.industry),
         ),
       ];
       const mappedData = [];
@@ -60,7 +61,7 @@ const ChartCashDividendGrowth = (props) => {
             " #72C7EC",
           ];
           const existingItem = mappedData.find(
-            (mappedItem) => mappedItem.name === item.date
+            (mappedItem) => mappedItem.name === item.date,
           );
 
           if (existingItem) {
@@ -150,7 +151,15 @@ const ChartCashDividendGrowth = (props) => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   const handleSelectedNamesChange = (selectedNames) => {
@@ -160,7 +169,7 @@ const ChartCashDividendGrowth = (props) => {
     <div>
       {dataChartCashDividendGrowth.length ? (
         <div>
-          <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+          <div className="md:flex sm:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
             <span className="dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-[13px] xxs:text-[11px]">
               Tăng trưởng cổ tức tiền mặt của các ngành qua từng kỳ (%)
             </span>

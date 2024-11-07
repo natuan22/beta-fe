@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import treemap from "highcharts/modules/treemap";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "../utils/treemapStyleDrillBtn.css";
+import { fetchDataTreeMapSell } from "../thunk";
 import Loading from "../utils/Loading";
 import socket from "../utils/socket";
-import { fetchDataTreeMapSell } from "../thunk";
+import "../utils/treemapStyleDrillBtn.css";
 
 // Khởi tạo module treemap
 treemap(Highcharts);
@@ -38,11 +38,11 @@ const TreeMapSell = () => {
       }
       if (total_value_sell >= 1000000000) {
         resultMap[LV2].data[ticker] = (total_value_sell / 1000000000).toFixed(
-          2
+          2,
         );
       } else if (total_value_sell < 1000000000) {
         resultMap[LV2].data[ticker] = (total_value_sell / 1000000000).toFixed(
-          3
+          3,
         );
       }
     });
@@ -113,6 +113,10 @@ const TreeMapSell = () => {
   }
   // console.log('points', points)
   const options = {
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     plotOptions: {
       series: {
         point: {
@@ -124,6 +128,7 @@ const TreeMapSell = () => {
             },
           },
         },
+        turboThreshold: 100_000_000,
       },
     },
     accessibility: {
@@ -221,10 +226,10 @@ const TreeMapSell = () => {
       <>
         <div>
           <div className="text-center py-2">
-            <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs">
+            <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs font-semibold">
               Khối ngoại bán ròng sàn
               <select
-                className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#007dc6]`}
                 onChange={(event) => {
                   disconnectSocket(socketOld);
                   setSocketChanel(event.target.value);
@@ -249,10 +254,10 @@ const TreeMapSell = () => {
     <>
       <div>
         <div className="text-center py-2">
-          <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs">
+          <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs font-semibold">
             Khối ngoại bán ròng sàn
             <select
-              className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+              className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#007dc6]`}
               onChange={(event) => {
                 disconnectSocket(socketOld);
                 setSocketChanel(event.target.value);

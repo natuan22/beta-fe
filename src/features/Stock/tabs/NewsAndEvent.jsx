@@ -4,6 +4,7 @@ import Events from "../components/NewsAndEvent/Events";
 import News from "../components/NewsAndEvent/News";
 import useQueryApi from "../components/Overview/utils/custom/useQueryApi/useQueryApi";
 import "../utils/style/styleButton.css";
+import LazyLoad from "react-lazyload";
 const NewsAndEvent = ({ codeUrl }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { queryApiNewsEvents, handleQueryApiNewsEvents } = useQueryApi(codeUrl);
@@ -21,7 +22,7 @@ const NewsAndEvent = ({ codeUrl }) => {
         <div className="mt-4">
           <div>
             <div className="md:flex sm:block">
-              <div className="w-[150px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+              <div className="w-[150px] border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black font-semibold uppercase">
                   Lịch sự kiện
                 </span>
@@ -62,15 +63,19 @@ const NewsAndEvent = ({ codeUrl }) => {
                 </button>
               </div>
             </div>
-            <Events queryApiNewsEvents={queryApiNewsEvents} />
+            <LazyLoad offset={300} debounce={200} once>
+              <Events queryApiNewsEvents={queryApiNewsEvents} />
+            </LazyLoad>
           </div>
           <div className="mt-4">
-            <div className="w-[150px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+            <div className="w-[150px] border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
               <span className="dark:text-white text-black font-semibold uppercase">
                 Tin tức
               </span>
             </div>
-            <News queryApiNewsEvents={queryApiNewsEvents} />
+            <LazyLoad offset={300} debounce={200} once>
+              <News queryApiNewsEvents={queryApiNewsEvents} />
+            </LazyLoad>
           </div>
         </div>
       ) : (

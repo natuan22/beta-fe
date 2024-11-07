@@ -71,7 +71,7 @@ const AddCodeToWatchlist = ({
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.error("Failed:", errorInfo);
   };
 
   const showModalCreate = () => {
@@ -134,7 +134,7 @@ const AddCodeToWatchlist = ({
             />
           </svg>
         }
-        disabled={isLogin !== "7MEvU"}
+        disabled={isLogin !== process.env.REACT_APP_LG_T}
         sx={{
           "&.Mui-disabled": {
             cursor: "not-allowed",

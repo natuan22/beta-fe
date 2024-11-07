@@ -1,4 +1,5 @@
 import { Skeleton } from "@mui/material";
+import LazyLoad from "react-lazyload";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +17,7 @@ const StockInfo = ({ codeUrl }) => {
   const code = codeUrl.split("-")[0];
   const type = codeUrl.split("-")[1];
   const { dataInfoHeader, dataInfoHeaderStatus } = useSelector(
-    (state) => state.stock
+    (state) => state.stock,
   );
   const [data, setData] = useState();
   const [dataChart, setDataChart] = useState([]);
@@ -80,14 +81,14 @@ const StockInfo = ({ codeUrl }) => {
   return (
     <div>
       {!loading ? (
-        <div>
+        <div className="pt-[30px]">
           <div className="flex mb-7">
             <div
-              className={`bg-[#004FA9] text-white xxs:px-4 xs:px-4 sm:px-9 py-2 rounded-xl font-semibold`}
+              className={`bg-[#0050AD] text-white xxs:px-4 xs:px-4 sm:px-9 py-2 rounded-xl font-semibold`}
             >
               {data.code}
             </div>
-            <div className="bg-[#004FA9] text-white ml-4 xxs:px-4 xs:px-4 sm:px-24 py-2 rounded-xl font-semibold">
+            <div className="bg-[#0050AD] text-white ml-4 xxs:px-4 xs:px-4 sm:px-24 py-2 rounded-xl font-semibold">
               {data.industry}
             </div>
           </div>
@@ -96,16 +97,19 @@ const StockInfo = ({ codeUrl }) => {
               <span className="dark:text-white text-black uppercase font-bold">
                 {data.company}
               </span>
+
               <div className="p-4 flex justify-center">
-                <img
-                  className="object-contain xl:w-[262px] lg:w-[222px] md:w-[262px] sm:w-[262px] xs:w-[262px] xxs:w-[262px] h-[145px]"
-                  src={`${resourceURL}${data.image}`}
-                  onError={(event) => {
-                    event.target.src = imgDefault;
-                    event.onerror = null;
-                  }}
-                  alt="companyImg"
-                />
+                <LazyLoad offset={300} debounce={200} once>
+                  <img
+                    className="object-contain xl:w-[262px] lg:w-[222px] md:w-[262px] sm:w-[262px] xs:w-[262px] xxs:w-[262px] h-[145px]"
+                    src={`${resourceURL}${data.image}`}
+                    onError={(event) => {
+                      event.target.src = imgDefault;
+                      event.onerror = null;
+                    }}
+                    alt="companyImg"
+                  />
+                </LazyLoad>
               </div>
             </div>
             <div className={`lg:col-span-4 md:col-span-full`}>
@@ -149,24 +153,26 @@ const StockInfo = ({ codeUrl }) => {
               </div>
             </div>
             <div className="lg:col-span-5 md:col-span-full">
-              <CandleChart code={code} dataChart={dataChart} />
+              <LazyLoad offset={300} debounce={200} once>
+                <CandleChart code={code} dataChart={dataChart} />
+              </LazyLoad>
             </div>
           </div>
 
           {/* <hr className="h-px my-7 bg-[#34A3F3] border-0"></hr> */}
-          <div className="px-[20px] pt-[30px] overflow-y-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent">
-            <table className="border border-[#34A3F3] border-solid border-collapse w-full">
+          <div className="p-[10px] overflow-y-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent">
+            <table className="border border-[#25558d] border-solid border-collapse w-full">
               <tbody>
                 <tr>
                   <td
-                    className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid"
+                    className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid"
                     rowSpan={3}
                   >
                     <div>
                       <p className="font-semibold">GIÁ</p>
                       <p
                         className={`lg:text-2xl md:text-base lg:leading-[53px] md:leading-10 ${getColor(
-                          data.perChange
+                          data.perChange,
                         )}`}
                       >
                         {formatNumberCurrency(data.closePrice * 1000)}
@@ -188,13 +194,13 @@ const StockInfo = ({ codeUrl }) => {
                     </div>
                   </td>
                   <td
-                    className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid"
+                    className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid"
                     colSpan={3}
                   >
                     <p className="font-semibold">{data.code} (%)</p>
                   </td>
                   <td
-                    className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid"
+                    className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid"
                     rowSpan={3}
                   >
                     <p className="font-semibold">KLGD</p>
@@ -203,7 +209,7 @@ const StockInfo = ({ codeUrl }) => {
                     </p>
                   </td>
                   <td
-                    className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid"
+                    className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid"
                     rowSpan={3}
                   >
                     <p className="font-semibold">P/E</p>
@@ -216,7 +222,7 @@ const StockInfo = ({ codeUrl }) => {
                     </p>
                   </td>
                   <td
-                    className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid"
+                    className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid"
                     rowSpan={3}
                   >
                     <p className="font-semibold">P/B</p>
@@ -229,7 +235,7 @@ const StockInfo = ({ codeUrl }) => {
                     </p>
                   </td>
                   <td
-                    className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid"
+                    className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid"
                     rowSpan={3}
                   >
                     <p className="font-semibold">VỐN HOÁ (TỶ)</p>
@@ -238,7 +244,7 @@ const StockInfo = ({ codeUrl }) => {
                     </p>
                   </td>
                   <td
-                    className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid"
+                    className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid"
                     rowSpan={3}
                   >
                     <p className="font-semibold">ROAE</p>
@@ -252,7 +258,7 @@ const StockInfo = ({ codeUrl }) => {
                     </p>
                   </td>
                   <td
-                    className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid"
+                    className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid"
                     rowSpan={3}
                   >
                     <p className="font-semibold">ROAA</p>
@@ -267,18 +273,18 @@ const StockInfo = ({ codeUrl }) => {
                   </td>
                 </tr>
                 <tr>
-                  <td className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid font-semibold">
+                  <td className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid font-semibold">
                     1W
                   </td>
-                  <td className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid font-semibold">
+                  <td className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid font-semibold">
                     1M
                   </td>
-                  <td className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid font-semibold">
+                  <td className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid font-semibold">
                     1Y
                   </td>
                 </tr>
                 <tr>
-                  <td className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid font-bold">
+                  <td className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid font-bold">
                     <p className={`${getColor(data.p_week)}`}>
                       {data.p_week &&
                         data.p_week.toLocaleString("vi-VN", {
@@ -288,7 +294,7 @@ const StockInfo = ({ codeUrl }) => {
                       %
                     </p>
                   </td>
-                  <td className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid font-bold">
+                  <td className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid font-bold">
                     <p className={`${getColor(data.p_month)}`}>
                       {data.p_month &&
                         data.p_month.toLocaleString("vi-VN", {
@@ -298,7 +304,7 @@ const StockInfo = ({ codeUrl }) => {
                       %
                     </p>
                   </td>
-                  <td className="dark:text-white text-black p-3 text-center border border-[#34A3F3] border-solid font-bold">
+                  <td className="dark:text-white text-black p-3 text-center border border-[#25558d] border-solid font-bold">
                     <p className={`${getColor(data.p_year)}`}>
                       {data.p_year &&
                         data.p_year.toLocaleString("vi-VN", {

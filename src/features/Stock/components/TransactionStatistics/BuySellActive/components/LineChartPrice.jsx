@@ -3,6 +3,7 @@ import HighchartsReact from "highcharts-react-official";
 import React, { useEffect, useState } from "react";
 import "../utils/styles/hide-legend-icon.css";
 import "../utils/styles/triangleLineChart.css";
+import formatNumberCurrency from "../../../../../../helper/formatNumberCurrency";
 
 const LineChartPrice = ({ data }) => {
   const [seriesConfigLineChart, setSeriesConfigLineChart] = useState(0);
@@ -40,8 +41,8 @@ const LineChartPrice = ({ data }) => {
               new Date().getMonth(),
               new Date().getDate(),
               9,
-              30
-            )
+              30,
+            ),
         );
 
       const dataRenderArea = dataReversed.map((item) => {
@@ -78,7 +79,7 @@ const LineChartPrice = ({ data }) => {
             enabled: true,
             formatter: function () {
               return this.point.index === this.series.data.length - 1
-                ? this.point.y.toFixed(2)
+                ? formatNumberCurrency(this.point.y)
                 : null;
             },
             style: {
@@ -104,7 +105,7 @@ const LineChartPrice = ({ data }) => {
             enabled: true,
             formatter: function () {
               return this.point.index === this.series.data.length - 1
-                ? this.point.y.toFixed(2)
+                ? formatNumberCurrency(this.point.y)
                 : null;
             },
             style: {
@@ -132,7 +133,7 @@ const LineChartPrice = ({ data }) => {
             enabled: true,
             formatter: function () {
               return this.point.index === this.series.data.length - 1
-                ? this.point.y.toFixed(2)
+                ? formatNumberCurrency(this.point.y)
                 : null;
             },
             style: {
@@ -172,14 +173,14 @@ const LineChartPrice = ({ data }) => {
         new Date().getMonth(),
         new Date().getDate(),
         9,
-        0
+        0,
       ),
       max: Date.UTC(
         new Date().getFullYear(),
         new Date().getMonth(),
         new Date().getDate(),
         15,
-        0
+        0,
       ),
       labels: {
         rotation: 0,
@@ -191,7 +192,7 @@ const LineChartPrice = ({ data }) => {
         top: "5%",
         height: "50%",
         title: "",
-        gridLineWidth: 0,
+        gridLineWidth: 0.1,
         plotLines: [
           {
             value: data?.prevClosePrice,
@@ -212,8 +213,7 @@ const LineChartPrice = ({ data }) => {
       {
         top: "60%",
         height: "40%",
-        title: "",
-        gridLineWidth: 0,
+        gridLineWidth: 0.1,
         labels: {
           x: 22,
           style: {
@@ -234,7 +234,7 @@ const LineChartPrice = ({ data }) => {
       {
         top: "60%",
         height: "40%",
-        gridLineWidth: 0,
+        gridLineWidth: 0.1,
         title: "",
         labels: {
           style: {
@@ -251,16 +251,22 @@ const LineChartPrice = ({ data }) => {
         marker: { radius: 1 },
         lineWidth: 2,
         color: "#000",
-        turboThreshold: 100_000_000_000,
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     tooltip: {
       shared: true,
       useHTML: true,
       valueSuffix: " ",
       backgroundColor: "#fff",
       pointFormatter: function () {
-        return `<span style="color:${this.color}">●</span> ${this.series.name}: <b>${this.y}</b><br/>`;
+        return `<span style="color:${this.color}">●</span> ${
+          this.series.name
+        }: <b>${formatNumberCurrency(this.y)}</b><br/>`;
       },
     },
     series: seriesData || [null],
