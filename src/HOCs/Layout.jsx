@@ -23,15 +23,15 @@ const LayOut = (props) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const scriptZalo = document.createElement("script");
-  //   scriptZalo.src = "https://sp.zalo.me/plugins/sdk.js";
-  //   document.body.appendChild(scriptZalo);
+  useEffect(() => {
+    const scriptZalo = document.createElement("script");
+    scriptZalo.src = "https://sp.zalo.me/plugins/sdk.js";
+    document.body.appendChild(scriptZalo);
 
-  //   return () => {
-  //     document.body.removeChild(scriptZalo);
-  //   };
-  // }, []);
+    return () => {
+      document.body.removeChild(scriptZalo);
+    };
+  }, []);
 
   return (
     <div className="relative">
