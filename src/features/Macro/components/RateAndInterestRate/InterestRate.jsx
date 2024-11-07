@@ -1,10 +1,11 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataInterestRate } from "../../thunk";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
 import Loading from "../../../Chart/utils/Loading";
+import { fetchDataInterestRate } from "../../thunk";
 
 const InterestRate = () => {
   const dispatch = useDispatch();
@@ -27,8 +28,8 @@ const InterestRate = () => {
       const uniqueDates = [
         ...new Set(
           dataInterestRate?.map((item) =>
-            moment(item.date).format("DD/MM/YYYY")
-          )
+            moment(item.date).format("DD/MM/YYYY"),
+          ),
         ),
       ];
       setTimeLine(uniqueDates);
@@ -115,8 +116,13 @@ const InterestRate = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
 

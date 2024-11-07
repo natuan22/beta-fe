@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
 import highchartsMap from "highcharts/modules/map";
-import "./utils/styles/mapStyle.css";
+import React, { useEffect, useState } from "react";
 import Loading from "../../../Chart/utils/Loading";
+import "./utils/styles/mapStyle.css";
+
 highchartsMap(Highcharts); // Khởi tạo highcharts module map
 const data = [
   {
@@ -91,6 +93,15 @@ export default function ExportAndImportTransferChart({ dataMapExImport }) {
   }, []);
 
   const options = {
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     accessibility: {
       enabled: false,
     },
@@ -119,7 +130,8 @@ export default function ExportAndImportTransferChart({ dataMapExImport }) {
         const exportValue =
           dataMapExImport.find(
             (item) =>
-              item.name.includes(country) || item.name.includes("United States")
+              item.name.includes(country) ||
+              item.name.includes("United States"),
           )?.value || "N/A";
         return `
                     <b>${country}</b>:<br/>

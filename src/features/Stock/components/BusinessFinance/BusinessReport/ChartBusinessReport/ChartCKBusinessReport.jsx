@@ -14,8 +14,8 @@ const ChartCKBusinessReport = ({ queryApiBusinessFinance }) => {
     dispatch(
       fetchDataChartBusinessReport(
         queryApiBusinessFinance.stock,
-        queryApiBusinessFinance.order
-      )
+        queryApiBusinessFinance.order,
+      ),
     );
   }, [dispatch, queryApiBusinessFinance]);
 

@@ -165,7 +165,7 @@ export const prepareData = (item, selectedItems, selectParameters) => {
 
   // Filter the selectedItems to exclude the keys in excludedKeys
   const filteredItems = selectedItems.filter(
-    (key) => !excludedKeys.includes(key)
+    (key) => !excludedKeys.includes(key),
   );
 
   // Additional data based on the filtered selectedItems
@@ -174,13 +174,17 @@ export const prepareData = (item, selectedItems, selectParameters) => {
       return item[key + selectParameters];
     }
 
-    if (key === "trendSignal" || key === "technicalSignal" || key === "generalSignal") {
+    if (
+      key === "trendSignal" ||
+      key === "technicalSignal" ||
+      key === "generalSignal"
+    ) {
       return calSignalText(item[key]);
     }
 
     return item[key];
   });
-  
+
   // Combine default data with additional data
   return [...defaultData, ...additionalData];
 };

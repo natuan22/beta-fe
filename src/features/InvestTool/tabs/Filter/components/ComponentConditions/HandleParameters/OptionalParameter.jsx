@@ -3,7 +3,12 @@ import React, { useEffect, useState } from "react";
 import { arraysAreEqual } from "../../../../../../../helper/arrAreEqual";
 import "../../styles/styleInputParameter.css";
 
-const OptionalParameter = ({ filter, selectCondition, data, onFilteredDataChange }) => {
+const OptionalParameter = ({
+  filter,
+  selectCondition,
+  data,
+  onFilteredDataChange,
+}) => {
   const [value, setValue] = useState(null);
   const [valueFrom, setValueFrom] = useState(null);
   const [valueTo, setValueTo] = useState(null);
@@ -32,7 +37,7 @@ const OptionalParameter = ({ filter, selectCondition, data, onFilteredDataChange
     let filteredData = [];
     if (selectCondition === "about" && valueFrom !== null && valueTo !== null) {
       filteredData = data.filter(
-        (item) => item[filter.key] >= valueFrom && item[filter.key] <= valueTo
+        (item) => item[filter.key] >= valueFrom && item[filter.key] <= valueTo,
       );
     } else if (selectCondition === "bigger" && value !== null) {
       filteredData = data.filter((item) => item[filter.key] > value);
@@ -50,7 +55,15 @@ const OptionalParameter = ({ filter, selectCondition, data, onFilteredDataChange
       onFilteredDataChange(filteredData);
       setPreviousFilteredData(filteredData);
     }
-  }, [data, filter.key, selectCondition, value, valueFrom, valueTo, onFilteredDataChange]);
+  }, [
+    data,
+    filter.key,
+    selectCondition,
+    value,
+    valueFrom,
+    valueTo,
+    onFilteredDataChange,
+  ]);
 
   return (
     <div>

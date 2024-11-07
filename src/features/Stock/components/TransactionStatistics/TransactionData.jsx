@@ -19,8 +19,8 @@ const TransactionData = ({ stock, from, to }) => {
       fetchDataTransactionData(
         stock,
         dayjs(from).format("YYYY-MM-DD"),
-        dayjs(to).format("YYYY-MM-DD")
-      )
+        dayjs(to).format("YYYY-MM-DD"),
+      ),
     );
   }, [dispatch, stock, from, to]);
 
@@ -60,7 +60,7 @@ const TransactionData = ({ stock, from, to }) => {
             return (
               <p
                 className={`${getColor(
-                  record.perChange
+                  record.perChange,
                 )} text-center font-semibold`}
               >
                 {record.perChange.toLocaleString("vi-VN", {
@@ -79,7 +79,7 @@ const TransactionData = ({ stock, from, to }) => {
             return (
               <p
                 className={`${getColor(
-                  record.change
+                  record.change,
                 )} text-center font-semibold`}
               >
                 {record.change}

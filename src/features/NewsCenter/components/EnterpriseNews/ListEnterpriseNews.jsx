@@ -22,7 +22,7 @@ const ListEnterpriseNews = () => {
       setLoading(false);
       setData(
         Array.isArray(dataListEnterpriseNews) &&
-          dataListEnterpriseNews.slice(0, currentPage)
+          dataListEnterpriseNews.slice(0, currentPage),
       );
     }
   }, [dataListEnterpriseNews, currentPage]);
@@ -52,7 +52,7 @@ const ListEnterpriseNews = () => {
   return (
     <div className="grid xl:grid-cols-2 lg:grid-cols-none">
       <div
-        className="h-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent"
+        className="h-[800px] overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent"
         onScroll={handleScroll}
       >
         {!loading ? (

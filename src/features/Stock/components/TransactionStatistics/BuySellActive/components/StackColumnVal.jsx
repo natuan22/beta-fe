@@ -1,27 +1,61 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import React, { useEffect, useState } from "react";
+import formatNumberCurrency from "../../../../../../helper/formatNumberCurrency";
 
 const StackColumnVal = ({ data }) => {
   const [series, setSeries] = useState([]);
   const [hasData, setHasData] = useState(false);
 
   const isValidData = (buyData, sellData) => {
-    return [buyData.large, buyData.medium, buyData.small, sellData.large, sellData.medium, sellData.small].some(val => val >= 0);
+    return [
+      buyData.large,
+      buyData.medium,
+      buyData.small,
+      sellData.large,
+      sellData.medium,
+      sellData.small,
+    ].some((val) => val >= 0);
   };
 
   useEffect(() => {
     if (data) {
       // Destructure buyValData và sellValData
-      const { large: buyLarge = 0, medium: buyMedium = 0, small: buySmall = 0 } = data.buyValData || {};
-      const { large: sellLarge = 0, medium: sellMedium = 0, small: sellSmall = 0 } = data.sellValData || {};
+      const {
+        large: buyLarge = 0,
+        medium: buyMedium = 0,
+        small: buySmall = 0,
+      } = data.buyValData || {};
+      const {
+        large: sellLarge = 0,
+        medium: sellMedium = 0,
+        small: sellSmall = 0,
+      } = data.sellValData || {};
 
       // Kiểm tra tính hợp lệ của dữ liệu
       if (isValidData(data.buyValData || {}, data.sellValData || {})) {
         const dataSeries = [
-          { name: "Lớn",        data: [{ y: +(buyLarge  / 1_000_000_000).toFixed(2), color: "#00d060" }, { y: +(sellLarge  / 1_000_000_000).toFixed(2), color: "#d34037" }]},
-          { name: "Trung bình", data: [{ y: +(buyMedium / 1_000_000_000).toFixed(2), color: "#0c7640" }, { y: +(sellMedium / 1_000_000_000).toFixed(2), color: "#812a24" }]},
-          { name: "Nhỏ",        data: [{ y: +(buySmall  / 1_000_000_000).toFixed(2), color: "#144d31" }, { y: +(sellSmall  / 1_000_000_000).toFixed(2), color: "#572724" }]},
+          {
+            name: "Lớn",
+            data: [
+              { y: +(buyLarge / 1_000_000_000).toFixed(2), color: "#00d060" },
+              { y: +(sellLarge / 1_000_000_000).toFixed(2), color: "#d34037" },
+            ],
+          },
+          {
+            name: "Trung bình",
+            data: [
+              { y: +(buyMedium / 1_000_000_000).toFixed(2), color: "#0c7640" },
+              { y: +(sellMedium / 1_000_000_000).toFixed(2), color: "#812a24" },
+            ],
+          },
+          {
+            name: "Nhỏ",
+            data: [
+              { y: +(buySmall / 1_000_000_000).toFixed(2), color: "#144d31" },
+              { y: +(sellSmall / 1_000_000_000).toFixed(2), color: "#572724" },
+            ],
+          },
         ];
 
         setSeries(dataSeries);
@@ -51,36 +85,41 @@ const StackColumnVal = ({ data }) => {
         style: {
           color: localStorage.getItem("color"),
           fontSize: "12px", // Độ lớn của chữ trục y
-          fontWeight: "bold"
+          fontWeight: "bold",
         },
       },
     },
     yAxis: {
-      title: "",
       min: 0,
-      gridLineWidth: 0,
+      gridLineWidth: 0.1,
       stackLabels: {
         enabled: true,
         formatter: function () {
           const isBuySeries = this.x === 0;
-          const totalValue = data.totalBuyVal + data.totalSellVal;
-          const percentage = isBuySeries ? (data.totalBuyVal / totalValue) * 100 : (data.totalSellVal / totalValue) * 100;
+          const totalValue = data?.totalBuyVal + data?.totalSellVal;
+          const percentage = isBuySeries
+            ? (data?.totalBuyVal / totalValue) * 100
+            : (data?.totalSellVal / totalValue) * 100;
 
-          const color = isBuySeries ? '#22c55e' : '#ef4444';
+          const color = isBuySeries ? "#22c55e" : "#ef4444";
 
-          return `<span style="color: ${color};">${this.total} (${totalValue > 0 ? `${percentage.toFixed(2)}%` : "-"})</span>`;
+          return `<span style="color: ${color};">${formatNumberCurrency(
+            this.total,
+          )} (${
+            totalValue > 0 ? `${formatNumberCurrency(percentage)}%` : "-"
+          })</span>`;
         },
         style: {
           color: localStorage.getItem("color"),
-          fontWeight: "bold"
-        }
+          fontWeight: "bold",
+        },
       },
-      title:{
+      title: {
         text: "Tỷ VNĐ",
         style: {
           color: localStorage.getItem("color"),
           fontSize: "9px", // Độ lớn của chữ trục y
-          fontWeight: "bold"
+          fontWeight: "bold",
         },
       },
       labels: {
@@ -88,7 +127,7 @@ const StackColumnVal = ({ data }) => {
         style: {
           color: localStorage.getItem("color"),
           fontSize: "9px", // Độ lớn của chữ trục y
-          fontWeight: "bold"
+          fontWeight: "bold",
         },
       },
     },
@@ -100,9 +139,23 @@ const StackColumnVal = ({ data }) => {
         stacking: "normal",
         dataLabels: {
           enabled: true,
+          formatter: function () {
+            return this.y !== 0 ? formatNumberCurrency(this.y) : null;
+          },
+          style: {
+            color: localStorage.getItem("color"),
+            fontWeight: "bold",
+          },
         },
       },
+      series: {
+        turboThreshold: 100_000_000,
+      },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: series,
     tooltip: {
       shared: true,
@@ -116,8 +169,8 @@ const StackColumnVal = ({ data }) => {
           '">●</span> ' +
           this.series.name +
           ": <b>" +
-          this.y +
-          "</b> tỷ</span><br/>"
+          formatNumberCurrency(this.y) +
+          "</b> tỷ đồng</span><br/>"
         );
       },
     },

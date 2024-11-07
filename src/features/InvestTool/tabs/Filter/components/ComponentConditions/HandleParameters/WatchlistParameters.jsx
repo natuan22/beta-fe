@@ -2,7 +2,12 @@ import { Select, Tooltip } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import "../../styles/styleInputIndustry.css";
 
-const WatchlistParameters = ({ isLogin, watchlists, data, onFilteredDataChange }) => {
+const WatchlistParameters = ({
+  isLogin,
+  watchlists,
+  data,
+  onFilteredDataChange,
+}) => {
   const [value, setValue] = useState();
   const [selectedWatchList, setSelectedWatchList] = useState();
 
@@ -45,7 +50,7 @@ const WatchlistParameters = ({ isLogin, watchlists, data, onFilteredDataChange }
         color={"linear-gradient(to bottom, #E6EFF9, #61A6F6)"}
       >
         <Select
-          disabled={isLogin !== "7MEvU"}
+          disabled={isLogin !== process.env.REACT_APP_LG_T}
           style={{
             width: 256,
             height: 30,

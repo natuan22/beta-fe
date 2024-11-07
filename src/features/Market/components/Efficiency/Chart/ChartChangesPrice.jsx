@@ -1,18 +1,19 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../../Chart/utils/Loading";
-import FilterIndusty from "../../../utils/components/FilterIndusty";
-import TableChangesPrice from "../Table/TableChangesPrice";
 import { fetchDataTableChangesPrice } from "../../../thunk";
+import FilterIndusty from "../../../utils/components/FilterIndusty";
 import { hashTb } from "../../utils/hashTb";
+import TableChangesPrice from "../Table/TableChangesPrice";
 
 const ChartChangesPrice = () => {
   const dispatch = useDispatch();
   const { dataChartChangesPrice, dataQuery } = useSelector(
-    (state) => state.market
+    (state) => state.market,
   );
   const { exchange } = dataQuery;
   const [data, setData] = useState();
@@ -24,7 +25,7 @@ const ChartChangesPrice = () => {
   useEffect(() => {
     if (dataQuery && industryQuery.length > 0) {
       const industryValues = industryQuery.map((query) =>
-        getIndustryValue(query)
+        getIndustryValue(query),
       );
       dispatch(fetchDataTableChangesPrice(exchange, industryValues.toString()));
     }
@@ -121,14 +122,19 @@ const ChartChangesPrice = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   return (
     <>
       <div>
-        <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 mt-1">
+        <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0 mt-1">
           <span className="dark:text-white text-black font-semibold xs:text-base xxs:text-sm">
             Thay đổi giá của các ngành (%)
           </span>

@@ -56,7 +56,7 @@ const TechAndValuation = () => {
               >
                 {label}
               </NavLink>
-            )
+            ),
           )}
         </div>
         <div className="h-auto text-white">

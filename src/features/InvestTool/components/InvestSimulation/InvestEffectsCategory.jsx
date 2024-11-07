@@ -1,8 +1,8 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Loading from "../../../Chart/utils/Loading";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
-import moment from "moment";
 
 const InvestEffectsCategory = ({ data }) => {
   const [timeLine, setTimeLine] = useState();
@@ -92,9 +92,13 @@ const InvestEffectsCategory = ({ data }) => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
-
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     tooltip: {
       split: true,
     },

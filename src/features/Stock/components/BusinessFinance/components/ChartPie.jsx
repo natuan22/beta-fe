@@ -1,6 +1,7 @@
-import React from "react";
-import Highcharts from "highcharts/highstock";
 import PieChart from "highcharts-react-official";
+import Highcharts from "highcharts/highstock";
+import React from "react";
+import LazyLoad from "react-lazyload";
 import Loading from "../../../../Chart/utils/Loading";
 
 const ChartPie = ({ data }) => {
@@ -51,13 +52,15 @@ const ChartPie = ({ data }) => {
   return (
     <div>
       {data?.length > 0 ? (
-        <div className="h-[400px]">
-          <PieChart
-            highcharts={Highcharts}
-            options={options}
-            containerProps={{ style: { height: "100%", width: "100%" } }}
-          />
-        </div>
+        <LazyLoad offset={300} debounce={200} once>
+          <div className="h-[400px]">
+            <PieChart
+              highcharts={Highcharts}
+              options={options}
+              containerProps={{ style: { height: "100%", width: "100%" } }}
+            />
+          </div>
+        </LazyLoad>
       ) : (
         <div className="h-[400px] flex items-center justify-center">
           <Loading />

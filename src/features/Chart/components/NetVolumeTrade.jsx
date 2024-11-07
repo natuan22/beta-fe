@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useDispatch, useSelector } from "react-redux";
-import Loading from "../utils/Loading";
 import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDataNetVolume } from "../thunk";
-import { useState } from "react";
+import Loading from "../utils/Loading";
 
 const NetVolumeTrade = () => {
   const dispatch = useDispatch();
@@ -21,16 +20,16 @@ const NetVolumeTrade = () => {
 
   const dataExchange = dataNetVolume.data?.map((item) => item.exchange_price);
   const dataForeign = dataNetVolume.data?.map(
-    (item) => +item.net_foreign.toFixed(2)
+    (item) => +item.net_foreign.toFixed(2),
   );
   const dataProprietary = dataNetVolume.data?.map(
-    (item) => +item.net_proprietary.toFixed(2)
+    (item) => +item.net_proprietary.toFixed(2),
   );
   const dataRetail = dataNetVolume.data?.map(
-    (item) => +item.net_retail.toFixed(2)
+    (item) => +item.net_retail.toFixed(2),
   );
   const timeLine = dataNetVolume.data?.map((item) =>
-    moment(item.date).format("DD/MM")
+    moment(item.date).format("DD/MM"),
   );
   // console.log(dataForeign, dataProprietary, dataRetail, dataExchange);
   const options = {
@@ -100,6 +99,15 @@ const NetVolumeTrade = () => {
         color: localStorage.getItem("color"),
       },
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         type: "column",
@@ -140,7 +148,7 @@ const NetVolumeTrade = () => {
             Giá trị giao dịch ròng
           </span>
           <select
-            className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+            className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#007dc6]`}
             onChange={(event) => {
               dispatch(fetchDataNetVolume(event.target.value));
               setTitle(event.target.value);

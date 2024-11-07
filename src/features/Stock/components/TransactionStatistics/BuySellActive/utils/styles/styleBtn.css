@@ -13,11 +13,11 @@
   -moz-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
 }
-  
+
 .btn-2-line {
   border-radius: 6px;
   border: 2px dashed #99c7fc;
-  color:#004797;
+  color: #004797;
   background: #99c7fc;
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
@@ -31,7 +31,7 @@
 }
 
 .btn-2-line::before {
-  content: '';
+  content: "";
   display: block;
   width: 0px;
   height: 80%;
@@ -70,7 +70,7 @@
 }
 
 .active-btn-line::before {
-  content: '';
+  content: "";
   display: block;
   width: 0px;
   height: 80%;
@@ -109,4 +109,3 @@
   -moz-transition: box-shadow 0.2s ease-in;
   transition: box-shadow 0.2s ease-in;
 }
-  

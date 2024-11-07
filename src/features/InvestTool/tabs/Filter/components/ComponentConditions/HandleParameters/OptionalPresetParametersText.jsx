@@ -4,7 +4,11 @@ import { Input } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import "../../styles/styleInputText.css";
 
-const OptionalPresetParametersText = ({ filter, data, onFilteredDataChange }) => {
+const OptionalPresetParametersText = ({
+  filter,
+  data,
+  onFilteredDataChange,
+}) => {
   const [value, setValue] = useState(filter.defaultValue || null);
 
   const onChange = (event) => {
@@ -18,7 +22,7 @@ const OptionalPresetParametersText = ({ filter, data, onFilteredDataChange }) =>
   const filteredData = useMemo(
     () =>
       data.filter((item) => item[filter.key][value?.toLocaleLowerCase()] === 1),
-    [data, value]
+    [data, value],
   );
 
   useEffect(() => {

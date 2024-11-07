@@ -17,7 +17,7 @@ const contentBasicPrice = (
 
 const BasicPrice = ({ queryApi }) => {
   const { dataBasicPrice, dataBasicPriceStatus } = useSelector(
-    (state) => state.stock
+    (state) => state.stock,
   );
   const [showChild, setShowChild] = useState(false);
   const [showChildState, setShowChildState] = useState(null);

@@ -1,6 +1,7 @@
-import moment from "moment";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
@@ -141,7 +142,7 @@ const CashFlowRatio = () => {
       enabled: true,
       labelFormatter: function () {
         const hoveredPoint = hoveredValue?.find(
-          (point) => point.name === this.name
+          (point) => point.name === this.name,
         );
         const valueString = hoveredPoint ? `: ${hoveredPoint.value}` : "";
         return `${this.name}${valueString}`;
@@ -206,8 +207,13 @@ const CashFlowRatio = () => {
             },
           },
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         name: "Tự doanh",
@@ -244,13 +250,13 @@ const CashFlowRatio = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black xs:text-base xxs:text-[13px] font-semibold">
           Tỷ trọng dòng tiền theo nhóm NĐT
         </span>
         <div>
           <select
-            className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+            className={`bg-[#0050AD] p-1 text-[1rem] text-white border-0`}
             onChange={(event) => {
               handleQueryApiType(event.target.value);
             }}

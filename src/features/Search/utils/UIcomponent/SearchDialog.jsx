@@ -1,11 +1,10 @@
-import CloseIcon from "@mui/icons-material/Close";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import SearchIcon from "@mui/icons-material/Search";
+import { IoMdClose, IoIosMore, IoMdSearch } from "react-icons/io";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import InputBase from "@mui/material/InputBase";
 import Slide from "@mui/material/Slide";
 import { alpha, styled } from "@mui/material/styles";
+import { Input } from "antd";
 import { forwardRef, useEffect, useState } from "react";
 import { ImSearch } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +13,7 @@ import { useDebounce } from "react-use";
 import { resourceURL } from "../../../../services/config";
 import { handleDebounceSearch } from "../../thunk";
 import imgDefault from "../image/default-image.jpg";
+import "../styles/searchInput.css";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -34,7 +34,7 @@ const Search = styled("div")(({ theme }) => ({
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
+  padding: theme.spacing(0, 1.5),
   height: "100%",
   position: "absolute",
   pointerEvents: "none",
@@ -82,7 +82,7 @@ export default function SearchDialog() {
     if (searchResult) {
       setDataSearchLength(searchResult);
       setDataSearch(
-        Array.isArray(searchResult) && searchResult?.slice(0, displayLimit)
+        Array.isArray(searchResult) && searchResult?.slice(0, displayLimit),
       );
     }
   }, [searchResult, displayLimit]);
@@ -93,7 +93,7 @@ export default function SearchDialog() {
       setDebouncedValue(val);
     },
     500,
-    [val]
+    [val],
   );
   const handleClickOpen = () => {
     setOpen(true);
@@ -130,10 +130,17 @@ export default function SearchDialog() {
       .sort((a, b) => b.matchedCount - a.matchedCount);
   return (
     <div>
-      <ImSearch
+      <Input
+        size="large"
+        placeholder="Tìm kiếm mã"
+        prefix={<ImSearch />}
+        onClick={handleClickOpen}
+        className="search-dialog 2xl:ml-5 xl:ml-0 text-blue-400 hover:dark:text-[#faad14] hover:text-[#faad14] transition-all duration-200 bg-gradient-to-b from-[#0050AD] to-black text-[15px]"
+      />
+      {/* <ImSearch
         onClick={handleClickOpen}
         className="cursor-pointer dark:text-white text-black text-[19px] mt-1 ml-0.5 hover:dark:text-blue-400 hover:text-blue-400 transition-all duration-200"
-      />
+      /> */}
       <Dialog
         fullScreen
         open={open}
@@ -143,10 +150,10 @@ export default function SearchDialog() {
         <div className="flex justify-around items-center bg-slate-500 p-5">
           <Search>
             <SearchIconWrapper>
-              <SearchIcon />
+              <IoMdSearch className="w-[25px] h-[25px]" />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Tìm kiếm …"
+              placeholder="Tìm kiếm mã"
               autoFocus={true}
               value={val}
               inputProps={{ "aria-label": "search" }}
@@ -155,7 +162,10 @@ export default function SearchDialog() {
               }}
             />
           </Search>
-          <CloseIcon onClick={handleClose} className="cursor-pointer" />
+          <IoMdClose
+            onClick={handleClose}
+            className="cursor-pointer w-[30px] h-[30px]"
+          />
         </div>
         <div className="container mx-auto xl:w-full lg:w-[90%] md:w-[90%]">
           <h4 className="px-4 py-3 text-lg border-solid border-[#f44336] border-b-2 border-t-0 border-x-0">
@@ -178,7 +188,7 @@ export default function SearchDialog() {
               .map((item, index) => {
                 const matchedCount = countMatchedCharacters(
                   debouncedValue,
-                  item.code
+                  item.code,
                 );
                 return { ...item, matchedCount }; // Thêm thuộc tính matchedCount vào mỗi item
               })
@@ -213,7 +223,7 @@ export default function SearchDialog() {
                                 .some(
                                   (debouncedChar) =>
                                     debouncedChar.toLowerCase() ===
-                                    character.toLowerCase()
+                                    character.toLowerCase(),
                                 );
                               return (
                                 <span
@@ -243,7 +253,7 @@ export default function SearchDialog() {
         <div className="grid place-items-center p-2">
           {dataSearchLength?.length > 10 ? (
             <Button variant="outlined" onClick={handleLoadMore}>
-              Xem thêm <MoreHorizIcon />
+              Xem thêm <IoIosMore className="w-[30px] h-[30px] ml-1" />
             </Button>
           ) : (
             <></>

@@ -16,7 +16,7 @@ const ComponentConditions = ({
   filteredData: initialFilteredData,
 }) => {
   const [selectCondition, setSelectCondition] = useState(
-    filter.defaultConditions || "bigger"
+    filter.defaultConditions || "bigger",
   );
   const [selectParameters, setSelectParameters] = useState("5d");
   const [filteredData, setFilteredData] = useState(initialFilteredData);

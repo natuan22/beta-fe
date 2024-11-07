@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "../utils/Loading";
 import { fetchDataBarChartLeft } from "../thunk";
+import Loading from "../utils/Loading";
 import socket from "../utils/socket";
 
 const BarChartLeft = () => {
@@ -104,6 +104,10 @@ const BarChartLeft = () => {
         );
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     plotOptions: {
       column: {
         dataLabels: {
@@ -120,6 +124,7 @@ const BarChartLeft = () => {
       },
       series: {
         borderRadius: 2,
+        turboThreshold: 100_000_000,
       },
     },
     series: [
@@ -145,7 +150,7 @@ const BarChartLeft = () => {
         </span>
 
         <select
-          className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#007dc6]`}
           onChange={(event) => {
             disconnectSocket(socketOld);
             setQuery(event.target.value);

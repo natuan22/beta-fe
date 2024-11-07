@@ -60,10 +60,9 @@ const StrategyMAVVIP = () => {
     } else {
       try {
         const data = await getApi(
-          apiUrl,
           `/api/v1/investment/test?stock=${stock}&from=${dayjs(fromDate).format(
-            "YYYY-MM-DD"
-          )}&to=${dayjs(toDate).format("YYYY-MM-DD")}`
+            "YYYY-MM-DD",
+          )}&to=${dayjs(toDate).format("YYYY-MM-DD")}`,
         );
         setData(data);
       } catch (error) {
@@ -343,7 +342,7 @@ const StrategyMAVVIP = () => {
                   <p className="m-1">:</p>
                   <p className="m-1 w-[25%] text-end font-semibold text-[#0050AD]">
                     {formatNumberCurrency(
-                      (data.max?.total / data.max?.count) * 100
+                      (data.max?.total / data.max?.count) * 100,
                     )}
                   </p>
                 </div>

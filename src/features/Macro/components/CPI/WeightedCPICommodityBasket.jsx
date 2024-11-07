@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
 import variablePie from "highcharts/modules/variable-pie.js";
-import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataWeightedCPICommodityBasket } from "../../thunk";
 
@@ -11,7 +11,7 @@ variablePie(Highcharts);
 const WeightedCPICommodityBasket = () => {
   const dispatch = useDispatch();
   const { dataWeightedCPICommodityBasket } = useSelector(
-    (state) => state.macro
+    (state) => state.macro,
   );
   const [data, setData] = useState();
   const [colorText, setColorText] = useState(localStorage.getItem("color"));
@@ -71,7 +71,14 @@ const WeightedCPICommodityBasket = () => {
           format: "<b>{point.name}</b>: {point.percentage:.1f}%",
         },
       },
+      series: {
+        turboThreshold: 100_000_000,
+      },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
 

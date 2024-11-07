@@ -1,11 +1,12 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
+import LegendBtn from "../../../../utils/Component/BtnLegend";
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataRetailSalesGrowth } from "../../thunk";
-import LegendBtn from "../../../../utils/Component/BtnLegend";
 
 const RetailSalesGrowth = () => {
   const dispatch = useDispatch();
@@ -131,14 +132,19 @@ const RetailSalesGrowth = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
 
   return (
     <div>
-      <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="md:flex sm:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold xs:text-base xxs:text-[13px]">
           Tăng trưởng doanh số bán lẻ tại các lĩnh vực (%)
         </span>

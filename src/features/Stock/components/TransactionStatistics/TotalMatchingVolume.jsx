@@ -1,11 +1,11 @@
 import dayjs from "dayjs";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataTransactionData } from "../../thunk";
 import Loading from "../../../Chart/utils/Loading";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
-import moment from "moment";
+import { fetchDataTransactionData } from "../../thunk";
 
 const TotalMatchingVolume = ({ stock, from, to }) => {
   const dispatch = useDispatch();
@@ -60,8 +60,8 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
       fetchDataTransactionData(
         stock,
         dayjs(from).format("YYYY-MM-DD"),
-        dayjs(to).format("YYYY-MM-DD")
-      )
+        dayjs(to).format("YYYY-MM-DD"),
+      ),
     );
   }, [dispatch, stock, from, to]);
 
@@ -70,8 +70,8 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
       const uniqueDates = [
         ...new Set(
           dataTransactionData?.map((item) =>
-            moment(item.date).format("DD/MM/YYYY")
-          )
+            moment(item.date).format("DD/MM/YYYY"),
+          ),
         ),
       ];
       setTimeLine(uniqueDates.reverse());
@@ -145,8 +145,13 @@ const TotalMatchingVolume = ({ stock, from, to }) => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     legend: {
       enabled: true,
       align: "center",

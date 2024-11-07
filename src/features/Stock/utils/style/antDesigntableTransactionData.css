@@ -1,12 +1,12 @@
 .table-transaction-data .ant-table-thead .ant-table-cell {
-  background-color: #1D5F8D !important;
+  background-color: #0050ad !important;
   color: white !important;
   padding: 5px 5px !important;
   border: solid black 1px !important;
 }
 
 .table-transaction-data .ant-table-thead .ant-table-cell::before {
-  background-color: #1D5F8D !important;
+  background-color: #0050ad !important;
 }
 
 .table-transaction-data .ant-table-row .ant-table-cell {
@@ -38,7 +38,7 @@
 }
 
 .table-transaction-data .ant-pagination {
-  background-color: #1D5F8D !important;
+  background-color: #0050ad !important;
   margin: 0px !important;
   padding: 10px;
   color: white !important;
@@ -53,13 +53,13 @@
   color: white !important;
 }
 
-.table-transaction-data .ant-pagination-prev>button {
-  background-color: #1D5F8D !important;
+.table-transaction-data .ant-pagination-prev > button {
+  background-color: #0050ad !important;
   color: white !important;
 }
 
-.table-transaction-data .ant-pagination-next>button {
-  background-color: #1D5F8D !important;
+.table-transaction-data .ant-pagination-next > button {
+  background-color: #0050ad !important;
   color: white !important;
 }
 
@@ -67,8 +67,8 @@
   color: white !important;
 }
 
-.table-transaction-data .ant-pagination-item>a {
-  background-color: #1D5F8D !important;
+.table-transaction-data .ant-pagination-item > a {
+  background-color: #0050ad !important;
   color: white !important;
 }
 

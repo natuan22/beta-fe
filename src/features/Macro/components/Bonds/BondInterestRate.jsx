@@ -1,10 +1,10 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataBondInterestRate } from "../../thunk";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 
 const BondInterestRate = () => {
   const dispatch = useDispatch();
@@ -110,7 +110,14 @@ const BondInterestRate = () => {
           radius: 1,
         },
       },
+      series: {
+        turboThreshold: 100_000_000,
+      },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     tooltip: {
       split: true,
     },

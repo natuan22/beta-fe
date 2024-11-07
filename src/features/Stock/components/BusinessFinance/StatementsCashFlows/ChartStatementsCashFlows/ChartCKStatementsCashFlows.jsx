@@ -13,8 +13,8 @@ const ChartCKStatementsCashFlows = ({ queryApiBusinessFinance }) => {
     dispatch(
       fetchDataChartStatementsCashFlows(
         queryApiBusinessFinance.stock,
-        queryApiBusinessFinance.order
-      )
+        queryApiBusinessFinance.order,
+      ),
     );
   }, [dispatch, queryApiBusinessFinance]);
 

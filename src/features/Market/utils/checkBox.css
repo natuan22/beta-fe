@@ -1,53 +1,53 @@
 .material-checkbox {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .material-checkbox input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .checkmark {
-    position: relative;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    border: 2px solid #147DF5;
-    border-radius: 4px;
-    transition: all 0.3s;
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 2px solid #147df5;
+  border-radius: 4px;
+  transition: all 0.3s;
 }
 
-.material-checkbox input[type="checkbox"]:checked~.checkmark {
-    background-color: #09347a;
-    border-color: #147DF5;
+.material-checkbox input[type="checkbox"]:checked ~ .checkmark {
+  background-color: #09347a;
+  border-color: #147df5;
 }
 
-.material-checkbox input[type="checkbox"]:checked~.checkmark:after {
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 7px;
-    width: 4px;
-    height: 10px;
-    border: solid #FFD300;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+.material-checkbox input[type="checkbox"]:checked ~ .checkmark:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 7px;
+  width: 4px;
+  height: 10px;
+  border: solid #ffd300;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
-.material-checkbox:hover input[type="checkbox"]~.checkmark {
-    border-color: #8cc0fa;
+.material-checkbox:hover input[type="checkbox"] ~ .checkmark {
+  border-color: #8cc0fa;
 }
 
-.material-checkbox input[type="checkbox"]:disabled~.checkmark {
-    opacity: 0.5;
-    cursor: not-allowed;
+.material-checkbox input[type="checkbox"]:disabled ~ .checkmark {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.material-checkbox input[type="checkbox"]:disabled~.checkmark:hover {
-    border-color: #4d4d4d;
+.material-checkbox input[type="checkbox"]:disabled ~ .checkmark:hover {
+  border-color: #4d4d4d;
 }

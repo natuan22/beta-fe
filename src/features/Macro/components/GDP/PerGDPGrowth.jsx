@@ -1,11 +1,10 @@
-import moment from "moment";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import Loading from "../../../Chart/utils/Loading";
-import { useRef } from "react";
+import moment from "moment";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import LegendBtn from "../../../../utils/Component/BtnLegend";
+import Loading from "../../../Chart/utils/Loading";
 import { fetchDataPerGDPGrowth } from "../../thunk";
 
 const PerGDPGrowth = () => {
@@ -112,8 +111,13 @@ const PerGDPGrowth = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   return (

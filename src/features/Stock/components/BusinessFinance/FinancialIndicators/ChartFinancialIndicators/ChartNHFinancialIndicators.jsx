@@ -18,8 +18,8 @@ const ChartNHFinancialIndicators = ({ queryApiBusinessFinance }) => {
     dispatch(
       fetchDataChartFinancialIndicators(
         queryApiBusinessFinance.stock,
-        queryApiBusinessFinance.order
-      )
+        queryApiBusinessFinance.order,
+      ),
     );
   }, [dispatch, queryApiBusinessFinance]);
 
@@ -74,7 +74,7 @@ const ChartNHFinancialIndicators = ({ queryApiBusinessFinance }) => {
             const Component = slideObj.component;
             const componentLabels = slideObj.labels;
             const filteredData = data?.filter((item) =>
-              componentLabels.includes(hashTbToFilterDataNH[item.name])
+              componentLabels.includes(hashTbToFilterDataNH[item.name]),
             );
             return (
               <SwiperSlide key={index}>

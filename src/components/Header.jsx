@@ -17,8 +17,12 @@ const Header = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [role, setRole] = useState(localStorage.getItem("2ZW79"));
-  const [isLogin, setIsLogin] = useState(localStorage.getItem("_il"));
+  const [role, setRole] = useState(
+    localStorage.getItem(process.env.REACT_APP_USER_ROLE)
+  );
+  const [isLogin, setIsLogin] = useState(
+    localStorage.getItem(process.env.REACT_APP_IS_LG)
+  );
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
   const handleOpenChange = (newOpen) => {
@@ -31,8 +35,11 @@ const Header = () => {
       setRole(null);
       setUser(null);
       dispatch(userLogoutAction());
-      localStorage.setItem("_il", "4E8WL");
-      localStorage.removeItem("2ZW79");
+      localStorage.setItem(
+        process.env.REACT_APP_IS_LG,
+        process.env.REACT_APP_LG_F
+      );
+      localStorage.removeItem(process.env.REACT_APP_USER_ROLE);
       localStorage.removeItem("user");
       navigate(0);
     }
@@ -41,11 +48,11 @@ const Header = () => {
   return (
     <>
       <div className="relative">
-        <nav className="dark:bg-black bg-white shadow-md mb-1">
+        <nav className="dark:bg-black bg-white shadow-md dark:shadow-stone-900 shadow-zinc-400 mb-1">
           {/* max-w-[85.5rem] */}
           <div className="max-w-[87rem] mx-auto px-4 xl:px-7 lg:px-8">
             <div className="flex items-center justify-between w-full h-16">
-              <div className="flex items-center">
+              <div className="flex items-center sm:justify-evenly xs:justify-start w-full">
                 <div className="flex-shrink-0">
                   <a
                     href="http://www.bsi.com.vn"
@@ -69,20 +76,20 @@ const Header = () => {
                       to="/"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
-                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium "
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trang chủ
                     </NavLink>
+                    <div className="lg:translate-x-[11.5rem] md:translate-x-[4.5rem] md:block sm:hidden xs:hidden xxs:hidden">
+                      <SearchDialog />
+                    </div>
                     <div className="xl:flex items-center flex">
                       <div className="flex sm:flex xs:hidden xxs:hidden">
                         <Switcher />
                         <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
                         <MessageOutlined className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black" />
-                        <span className="grid place-items-center">
-                          <SearchDialog />
-                        </span>
                       </div>
                     </div>
                   </div>
@@ -94,8 +101,8 @@ const Header = () => {
                       to="/"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
-                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium "
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trang chủ
@@ -104,8 +111,8 @@ const Header = () => {
                       to="/thi-truong"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
-                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium "
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Thị trường
@@ -114,8 +121,8 @@ const Header = () => {
                       to="/nganh"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium "
-                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium "
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Ngành
@@ -124,8 +131,8 @@ const Header = () => {
                       to="/co-phieu"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Cổ phiếu
@@ -134,8 +141,8 @@ const Header = () => {
                       to="/vi-mo"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Vĩ mô
@@ -144,8 +151,8 @@ const Header = () => {
                       to="/cong-cu-dau-tu"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Công cụ đầu tư
@@ -154,8 +161,8 @@ const Header = () => {
                       to="/trung-tam-tin-tuc"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trung tâm tin tức
@@ -164,28 +171,27 @@ const Header = () => {
                       to="/trung-tam-phan-tich"
                       className={({ isActive }) =>
                         isActive
-                          ? "no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          : "no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                          : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                       }
                     >
                       Trung tâm phân tích
                     </NavLink>
                   </div>
                 </div>
+                <div className="hidden xl:flex">
+                  <SearchDialog />
+                </div>
                 {/* login */}
-                <div className="hidden xl:flex items-center ml-3 xl:ml-[245px]">
+                <div className="hidden xl:flex items-center 2xl:ml-8 xl:ml-[0px]">
                   <div className="flex">
                     <Switcher />
                     <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
                     <MessageOutlined className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black" />
                   </div>
-
-                  <span>
-                    <SearchDialog />
-                  </span>
                 </div>
                 <div className="hidden xl:block cursor-pointer">
-                  {isLogin === "7MEvU" ? (
+                  {isLogin === process.env.REACT_APP_LG_T ? (
                     <div className="relative">
                       <Popover
                         content={
@@ -216,13 +222,13 @@ const Header = () => {
                       </Popover>
                     </div>
                   ) : (
-                    <div>
+                    <div className="ml-2 flex items-baseline space-x-3">
                       <NavLink
                         to="/signin"
                         className={({ isActive }) =>
                           isActive
-                            ? "ml-2 no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                            : "ml-2 no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                         }
                       >
                         Đăng nhập
@@ -231,8 +237,8 @@ const Header = () => {
                         to="/signup"
                         className={({ isActive }) =>
                           isActive
-                            ? "ml-2 no-underline text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                            : "ml-2 no-underline dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            ? "no-underline text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "no-underline dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                         }
                       >
                         Đăng ký
@@ -307,8 +313,8 @@ const Header = () => {
                     to="/thi-truong"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Thị trường
@@ -321,8 +327,8 @@ const Header = () => {
                     to="/nganh"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Ngành
@@ -335,8 +341,8 @@ const Header = () => {
                     to="/co-phieu"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Cổ phiếu
@@ -349,8 +355,8 @@ const Header = () => {
                     to="/vi-mo"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Vĩ mô
@@ -363,8 +369,8 @@ const Header = () => {
                     to="/cong-cu-dau-tu"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Công cụ đầu tư
@@ -376,8 +382,8 @@ const Header = () => {
                     to="/trung-tam-tin-tuc"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline dark:text-gray-300 text-black block hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline dark:text-gray-300 text-black block hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Trung tâm tin tức
@@ -389,14 +395,14 @@ const Header = () => {
                     to="/trung-tam-phan-tich"
                     className={({ isActive }) =>
                       isActive
-                        ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline dark:text-gray-300 text-black block hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        : "no-underline dark:text-gray-300 text-black block hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                     }
                   >
                     Trung tâm phân tích
                   </NavLink>
                   <div className="relative mb-5">
-                    {isLogin === "7MEvU" ? (
+                    {isLogin === process.env.REACT_APP_LG_T ? (
                       <Popover
                         placement="bottom"
                         content={
@@ -433,8 +439,8 @@ const Header = () => {
                           to="/signin"
                           className={({ isActive }) =>
                             isActive
-                              ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                              : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                              ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                              : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                           }
                         >
                           Đăng nhập
@@ -446,8 +452,8 @@ const Header = () => {
                           to="/signup"
                           className={({ isActive }) =>
                             isActive
-                              ? "no-underline block text-white bg-[#1E5D8B] hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                              : "no-underline block dark:text-gray-300 text-black hover:bg-[#1E5D8B] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                              ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                              : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
                           }
                         >
                           Đăng ký
@@ -460,9 +466,9 @@ const Header = () => {
                     <Switcher />
                     <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
                     <MessageOutlined className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black" />
-                    <span className="grid place-items-center">
-                      <SearchDialog />
-                    </span>
+                  </div>
+                  <div className="md:hidden sm:block">
+                    <SearchDialog />
                   </div>
                 </div>
               </div>

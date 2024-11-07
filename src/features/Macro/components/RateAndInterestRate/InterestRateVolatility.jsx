@@ -1,10 +1,11 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataInterestRateVolatility } from "../../thunk";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
 import Loading from "../../../Chart/utils/Loading";
+import { fetchDataInterestRateVolatility } from "../../thunk";
 
 const InterestRateVolatility = () => {
   const dispatch = useDispatch();
@@ -28,8 +29,8 @@ const InterestRateVolatility = () => {
       const uniqueDates = [
         ...new Set(
           dataInterestRateVolatility?.map((item) =>
-            moment(item.date).format("DD/MM/YYYY")
-          )
+            moment(item.date).format("DD/MM/YYYY"),
+          ),
         ),
       ];
       setTimeLine(uniqueDates);
@@ -129,14 +130,19 @@ const InterestRateVolatility = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   // console.log('lai suat', data)
   return (
     <div>
-      <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold">
           Biến động lãi suất với thị trường
         </span>

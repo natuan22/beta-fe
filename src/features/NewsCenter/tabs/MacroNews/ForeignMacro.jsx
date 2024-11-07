@@ -64,7 +64,7 @@ const ForeignMacro = () => {
       {isLoading ? (
         <>
           <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-            <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+            <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
               <span className="dark:text-white text-black font-semibold uppercase">
                 Thế giới
               </span>
@@ -147,7 +147,7 @@ const ForeignMacro = () => {
                 </div>
               </div>
               <div className="lg:col-span-2 md:col-span-full sm:col-span-full xs:col-span-full xxs:col-span-full">
-                <div className="h-[587px] overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent">
+                <div className="h-[587px] overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent">
                   {!loading ? (
                     Array.isArray(data) &&
                     data.slice(7, 53).map((item, index) => (

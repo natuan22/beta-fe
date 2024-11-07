@@ -1,8 +1,8 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataExchangeableValue } from "../../thunk";
@@ -110,8 +110,13 @@ const ExchangeableValue = () => {
     plotOptions: {
       series: {
         stacking: "normal",
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         name: "UPCOM",
@@ -133,7 +138,7 @@ const ExchangeableValue = () => {
 
   return (
     <>
-      <div className="font-semibold mt-[3px] border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 dark:text-white text-black sm:text-base xs:text-sm xxs:text-xs">
+      <div className="font-semibold mt-[3px] border-solid border-[#25558d] border-b-2 border-t-0 border-x-0 dark:text-white text-black sm:text-base xs:text-sm xxs:text-xs">
         Giá trị giao dịch toàn thị trường qua 20 phiên gần nhất
       </div>
       {dataExchangeableValue.length ? (

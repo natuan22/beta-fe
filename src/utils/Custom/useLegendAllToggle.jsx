@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const useLegendAllToggle = (initialState) => {
   const [isAllLegendSelected, setIsAllLegendSelected] = useState(initialState);
   const [title, setTitle] = useState(
-    initialState ? "Bỏ tất cả" : "Chọn tất cả"
+    initialState ? "Bỏ tất cả" : "Chọn tất cả",
   );
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const useLegendAllToggle = (initialState) => {
 
   const toggleLegend = () => {
     setIsAllLegendSelected(
-      (prevIsAllLegendSelected) => !prevIsAllLegendSelected
+      (prevIsAllLegendSelected) => !prevIsAllLegendSelected,
     );
   };
 

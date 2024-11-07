@@ -1,8 +1,8 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataUnemploymentRate } from "../../thunk";
 
@@ -109,8 +109,13 @@ const UnemploymentRate = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
 

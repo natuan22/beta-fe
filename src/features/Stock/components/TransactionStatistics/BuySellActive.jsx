@@ -13,6 +13,8 @@ import StackColumnVal from "./BuySellActive/components/StackColumnVal";
 import TableBuySell from "./BuySellActive/components/TableBuySell";
 import "./BuySellActive/utils/styles/styleBtn.css";
 import "./BuySellActive/utils/styles/styleLoadingBuySell.css";
+import moment from "moment";
+import socket from "../../../Chart/utils/socket";
 
 const XLSX = require("xlsx");
 
@@ -27,6 +29,8 @@ const theme = createTheme({
 });
 
 const BuySellActive = ({ stock }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
   const [data, setData] = useState();
   const [showTable, setShowTable] = useState(1); // Mặc định hiển thị TableBuySell
 
@@ -75,7 +79,7 @@ const BuySellActive = ({ stock }) => {
         }
         return acc;
       },
-      { totalVol: 0, totalVolSell: 0, totalVolBuy: 0 }
+      { totalVol: 0, totalVolSell: 0, totalVolBuy: 0 },
     );
 
     // Tính tổng giá trị buy/sell theo category (small, medium, large)
@@ -101,24 +105,41 @@ const BuySellActive = ({ stock }) => {
     const matchPriceGroups = new Map();
 
     reversedData.forEach((item) => {
-      const group = matchPriceGroups.get(item.matchPrice) || {
-        totalBuy: 0,
-        totalSell: 0,
-        atc: 0,
-        ato: 0,
-      };
-
-      if (item.action === "B") {
-        group.totalBuy += item.value;
-      } else if (item.action === "S") {
-        group.totalSell += item.value;
-      } else if (item.action === "C") {
-        group.atc += item.value;
-      } else if (item.action === "O") {
-        group.ato += item.value;
+      if (!matchPriceGroups.has(item.matchPrice)) {
+        matchPriceGroups.set(item.matchPrice, {
+          totalValBuy: 0,
+          totalValSell: 0,
+          atcVal: 0,
+          atoVal: 0,
+          totalVolBuy: 0,
+          totalVolSell: 0,
+          atcVol: 0,
+          atoVol: 0,
+        });
       }
 
-      matchPriceGroups.set(item.matchPrice, group);
+      const group = matchPriceGroups.get(item.matchPrice);
+
+      switch (item.action) {
+        case "B":
+          group.totalValBuy += item.value;
+          group.totalVolBuy += item.volume;
+          break;
+        case "S":
+          group.totalValSell += item.value;
+          group.totalVolSell += item.volume;
+          break;
+        case "C":
+          group.atcVal += item.value;
+          group.atcVol += item.volume;
+          break;
+        case "O":
+          group.atoVal += item.value;
+          group.atoVol += item.volume;
+          break;
+        default:
+          break;
+      }
     });
 
     // Kết quả cuối cùng sau khi tính toán
@@ -143,7 +164,7 @@ const BuySellActive = ({ stock }) => {
   const fetchData = async () => {
     try {
       const res = await getApi(
-        `/api/v1/investment/ticker-translog?stock=${stock}`
+        `/api/v1/investment/ticker-translog?stock=${stock}`,
       );
       return res; // Return the fetched data
     } catch (error) {
@@ -153,13 +174,26 @@ const BuySellActive = ({ stock }) => {
   };
 
   useEffect(() => {
+    // Page Visibility API
+    const handleVisibilityChange = () => {
+      setIsVisible(document.visibilityState === "visible");
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  useEffect(() => {
     const loadData = async () => {
       const currentTime = new Date();
       const hours = currentTime.getHours();
 
       const fetchedData = await fetchData(); // Call fetchData and wait for the result
 
-      if (fetchedData) {
+      if (fetchedData !== null) {
         const processedData = calData(fetchedData);
 
         setData(processedData);
@@ -178,13 +212,13 @@ const BuySellActive = ({ stock }) => {
 
     loadData();
 
-    // Uncomment this if you want to enable periodic fetching
-    const intervalId = setInterval(loadData, 60000); // 60 seconds
+    /// Set up periodic fetching only if the page is visible
+    const intervalId = isVisible ? setInterval(loadData, 60000) : null;
     return () => clearInterval(intervalId); // Cleanup on unmount or stock change
-  }, [stock]);
+  }, [stock, isVisible]);
 
   const prepareData = (item) => [
-    item.time,
+    moment(item.time, "HH:mm:ss").format("HH:mm:ss"),
     item.action === "S" ? "Bán" : item.action === "B" ? "Mua" : " ",
     item.volume,
     item.matchPrice,
@@ -200,7 +234,7 @@ const BuySellActive = ({ stock }) => {
 
       // Gọi API để lấy dữ liệu
       const data = await getApi(
-        `/api/v1/investment/ticker-translog?stock=${stock}`
+        `/api/v1/investment/ticker-translog?stock=${stock}`,
       );
 
       //Xử lý dữ liệu đưa vào sheet
@@ -213,7 +247,7 @@ const BuySellActive = ({ stock }) => {
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet1Title, ...sheet1Data]),
-        "Mua bán chủ động"
+        "Mua bán chủ động",
       );
 
       // Xuất workbook thành file Excel
@@ -320,7 +354,7 @@ const BuySellActive = ({ stock }) => {
   return (
     <ThemeProvider theme={theme}>
       <div className="md:flex sm:block items-center">
-        <div className="xs:w-[362px] xxs:w-full border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+        <div className="xs:w-[362px] xxs:w-full border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
           <span className="dark:text-white text-black font-semibold uppercase">
             Mua bán chủ động
           </span>
@@ -508,7 +542,7 @@ const BuySellActive = ({ stock }) => {
                 </div>
 
                 <div className="md:flex sm:block justify-evenly mt-1 dark:text-white text-black">
-                  <div className="w-[168px]">
+                  <div className="w-[166px]">
                     Lệnh{" "}
                     <span className="text-red-500 uppercase font-bold">
                       bán (B)

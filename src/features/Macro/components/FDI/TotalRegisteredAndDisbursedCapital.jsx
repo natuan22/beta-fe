@@ -1,16 +1,16 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataTotalRegisteredAndDisbursedCapital } from "../../thunk";
-import Loading from "../../../Chart/utils/Loading";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
 import LegendBtn from "../../../../utils/Component/BtnLegend";
+import Loading from "../../../Chart/utils/Loading";
+import { fetchDataTotalRegisteredAndDisbursedCapital } from "../../thunk";
 
 const TotalRegisteredAndDisbursedCapital = () => {
   const dispatch = useDispatch();
   const { dataTotalRegisteredAndDisbursedCapital } = useSelector(
-    (state) => state.macro
+    (state) => state.macro,
   );
   const [timeLine, setTimeLine] = useState();
   const [data, setData] = useState();
@@ -137,14 +137,19 @@ const TotalRegisteredAndDisbursedCapital = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
 
   return (
     <>
-      <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold sm:text-base xs:text-xs xxs:text-[10px]">
           Tổng vốn đăng ký và giải ngân (triệu USD)
         </span>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import LazyLoad from "react-lazyload";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Loading from "../../Chart/utils/Loading";
 import { IoBarChartSharp } from "react-icons/io5";
@@ -63,14 +64,16 @@ const TransactionStatistics = ({ codeUrl }) => {
       {isLoading ? (
         <div className="mt-4">
           {/* Mua bán chủ động */}
-          <BuySellActive stock={queryApi.stock} />
+          <LazyLoad offset={300} debounce={200} once>
+            <BuySellActive stock={queryApi.stock} />
+          </LazyLoad>
 
           {/* Dữ liệu giao dịch */}
           <div className="mt-8">
             <div className="lg:flex md:block justify-between items-center">
               <div>
                 {!isChart ? (
-                  <span className="border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+                  <span className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                     <span className="dark:text-white text-black font-semibold uppercase">
                       Dữ liệu giao dịch
                     </span>
@@ -84,13 +87,13 @@ const TransactionStatistics = ({ codeUrl }) => {
                     </Popover>
                   </span>
                 ) : (
-                  <span className="border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+                  <span className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                     <span className="dark:text-white text-black font-semibold uppercase">
                       Tổng khối lượng khớp lệnh
                     </span>
                     <Popover content={contentTransactionData}>
                       <span
-                        className="xs:ml-[6.6rem] xxs:ml-12 text-[#0055B6] cursor-pointer text-[22px]"
+                        className="xs:ml-[6.6rem] xxs:ml-12 text-[#0050AD] cursor-pointer text-[22px]"
                         onClick={handleChangeChart}
                       >
                         <ImTable2 />
@@ -169,82 +172,98 @@ const TransactionStatistics = ({ codeUrl }) => {
             </div>
             {!isChart ? (
               <div className="h-[460px]">
-                <TransactionData
-                  stock={queryApi.stock}
-                  from={fromDate}
-                  to={toDate}
-                />
+                <LazyLoad offset={300} debounce={200} once>
+                  <TransactionData
+                    stock={queryApi.stock}
+                    from={fromDate}
+                    to={toDate}
+                  />
+                </LazyLoad>
               </div>
             ) : (
               <div className="h-[460px]">
-                <TotalMatchingVolume
-                  stock={queryApi.stock}
-                  from={fromDate}
-                  to={toDate}
-                />
+                <LazyLoad offset={300} debounce={200} once>
+                  <TotalMatchingVolume
+                    stock={queryApi.stock}
+                    from={fromDate}
+                    to={toDate}
+                  />
+                </LazyLoad>
               </div>
             )}
           </div>
 
           <div className="grid lg:grid-cols-2 md:grid-cols-none lg:gap-40 md:gap-8 sm:gap-8 xs:gap-8 xxs:gap-8 mt-8">
             <div>
-              <div className="xs:w-[362px] xxs:w-full border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+              <div className="xs:w-[362px] xxs:w-full border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black font-semibold uppercase">
                   Biến động giá giao dịch
                 </span>
               </div>
-              <TradingPriceFluctuations stock={queryApi.stock} />
+              <LazyLoad offset={300} debounce={200} once>
+                <TradingPriceFluctuations stock={queryApi.stock} />
+              </LazyLoad>
             </div>
             <div>
-              <div className="xs:w-[362px] xxs:w-full border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+              <div className="xs:w-[362px] xxs:w-full border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black font-semibold uppercase">
                   Khối lượng giao dịch bình quân/ngày
                 </span>
               </div>
-              <AverageTradingVolume stock={queryApi.stock} />
+              <LazyLoad offset={300} debounce={200} once>
+                <AverageTradingVolume stock={queryApi.stock} />
+              </LazyLoad>
             </div>
           </div>
 
           <div className="grid lg:grid-cols-3 md:grid-cols-none xl:gap-32 lg:gap-4 md:gap-4 sm:gap-4 xs:gap-4 xxs:gap-4 mt-10">
             <div>
               <div className="flex justify-center">
-                <span className="border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+                <span className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold uppercase">
                     Thống kê theo các tháng
                   </span>
                 </span>
               </div>
-              <StatisticsByMonth stock={queryApi.stock} />
+              <LazyLoad offset={300} debounce={200} once>
+                <StatisticsByMonth stock={queryApi.stock} />
+              </LazyLoad>
             </div>
             <div>
               <div className="flex justify-center">
-                <span className="border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+                <span className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold uppercase">
                     Thống kê theo các quý
                   </span>
                 </span>
               </div>
-              <StatisticsByQuarter stock={queryApi.stock} />
+              <LazyLoad offset={300} debounce={200} once>
+                <StatisticsByQuarter stock={queryApi.stock} />
+              </LazyLoad>
             </div>
             <div>
               <div className="flex justify-center">
-                <span className="border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+                <span className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold uppercase">
                     Thống kê theo các năm
                   </span>
                 </span>
               </div>
-              <StatisticsByYear stock={queryApi.stock} />
+              <LazyLoad offset={300} debounce={200} once>
+                <StatisticsByYear stock={queryApi.stock} />
+              </LazyLoad>
             </div>
           </div>
 
           <div className="mt-8">
-            <span className="border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+            <span className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
               <span className="dark:text-white text-black font-semibold uppercase">
                 Giao dịch các nhóm nhà đầu tư
               </span>
             </span>
-            <TradingInvestors stock={queryApi.stock} />
+            <LazyLoad offset={300} debounce={200} once>
+              <TradingInvestors stock={queryApi.stock} />
+            </LazyLoad>
           </div>
         </div>
       ) : (

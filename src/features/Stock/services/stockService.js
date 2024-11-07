@@ -317,6 +317,8 @@ export const stockService = {
     });
   },
   fetchDataHistoricalPEPB: (stock, period) => {
-    return getApi(`/api/v1/tcbs/historical-pe-pb?stock=${stock}&period=${period}`);
+    return getApi(
+      `/api/v1/tcbs/historical-pe-pb?stock=${stock}&period=${period}`,
+    );
   },
 };

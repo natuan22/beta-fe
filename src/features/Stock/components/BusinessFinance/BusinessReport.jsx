@@ -46,7 +46,7 @@ const BusinessReport = ({ codeUrl }) => {
             <div className="ml-4">
               <span className="dark:text-white text-black">Thời gian</span>
               <select
-                className={`dark:bg-[#151924] h-[41px] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 p-1 text-base dark:text-white text-black border-[#004FAA] border-[3px] outline-0`}
+                className={`dark:bg-[#151924] h-[41px] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 p-1 text-base dark:text-white text-black border-[#0050AD] border-[3px] outline-0`}
                 onChange={(event) => {
                   handleQueryApiBusinessFinanceOrder(event.target.value);
                 }}
@@ -58,7 +58,7 @@ const BusinessReport = ({ codeUrl }) => {
             <div className="ml-4 sm:mt-0 xs:mt-2 xxs:mt-2">
               <span className="dark:text-white text-black">Đơn vị</span>
               <select
-                className={`dark:bg-[#151924] h-[41px] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 sm:ml-2 xs:ml-[30px] xxs:ml-[30px] p-1 text-base dark:text-white text-black border-[#004FAA] border-[3px] outline-0`}
+                className={`dark:bg-[#151924] h-[41px] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 sm:ml-2 xs:ml-[30px] xxs:ml-[30px] p-1 text-base dark:text-white text-black border-[#0050AD] border-[3px] outline-0`}
                 onChange={(event) => {
                   handleQueryApiBusinessFinanceUnit(event.target.value);
                 }}

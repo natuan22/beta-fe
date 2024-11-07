@@ -14,7 +14,7 @@ import BetaSmart from "../features/InvestTool/tabs/BetaSmart";
 import Filter from "../features/InvestTool/tabs/Filter";
 import InvestKnowledge from "../features/InvestTool/tabs/InvestKnowledge";
 import SignalWarning from "../features/InvestTool/tabs/SignalWarning";
-import StockFilter from "../features/InvestTool/tabs/StockFilter";
+// import StockFilter from "../features/InvestTool/tabs/StockFilter";
 import TradingStrategies from "../features/InvestTool/tabs/TradingStrategies";
 import Watchlist from "../features/InvestTool/tabs/Watchlist";
 import Macro from "../features/Macro/Macro";

@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Loading from "../../../../Chart/utils/Loading";
 import FilterIndusty from "../../../utils/components/FilterIndusty";
 import TableAverageDebtRatio from "../Table/TableAverageDebtRatio";
+
 const ChartAverageDebtRatio = () => {
   const { dataChartAverageDebitIndustry, dataQuery } = useSelector(
-    (state) => state.market
+    (state) => state.market,
   );
   const { exchange } = dataQuery;
   const [industryQuery, setIndustryQuery] = useState([]);
@@ -114,8 +115,13 @@ const ChartAverageDebtRatio = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   const handleSelectedNamesChange = (selectedNames) => {
@@ -123,7 +129,7 @@ const ChartAverageDebtRatio = () => {
   };
   return (
     <div>
-      <div className="xs:flex xxs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="xs:flex xxs:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold md:text-base sm:text-[15px] xs:text-[12.5px] xxs:text-[14px]">
           Lãi suất vay nợ bình quân của các ngành (%)
         </span>

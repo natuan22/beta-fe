@@ -1,13 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const Top10Sell = () => {
   const dataTopNetForeignChange = useSelector(
-    (state) => state.chart.dataTopNetForeignChange
+    (state) => state.chart.dataTopNetForeignChange,
   );
   const [data, setData] = useState([]);
   const [colorText, setColorText] = useState(localStorage.getItem("color"));
@@ -76,6 +74,10 @@ const Top10Sell = () => {
         },
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     plotOptions: {
       bar: {
         borderWidth: 0,
@@ -90,6 +92,7 @@ const Top10Sell = () => {
       },
       series: {
         borderRadius: 5,
+        turboThreshold: 100_000_000,
       },
     },
   };
@@ -100,7 +103,7 @@ const Top10Sell = () => {
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsSell}
-          containerProps={{ style: { height: "654px", width: "100%" } }}
+          containerProps={{ style: { height: "653px", width: "100%" } }}
         />
       </div>
     </>

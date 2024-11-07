@@ -1,9 +1,9 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../../../../Chart/utils/Loading";
 import FilterIndusty from "../../../utils/components/FilterIndusty";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 
 const NetProfitMargin = () => {
   const { dataChartNetProfitMargin } = useSelector((state) => state.market);
@@ -31,7 +31,7 @@ const NetProfitMargin = () => {
         ...new Set(
           transformedData
             .filter((item) => industryQuery.includes(item.industry))
-            .map((item) => item.industry)
+            .map((item) => item.industry),
         ),
       ];
       const mappedData = [];
@@ -60,7 +60,7 @@ const NetProfitMargin = () => {
             " #72C7EC",
           ];
           const existingItem = mappedData.find(
-            (mappedItem) => mappedItem.name === item.date
+            (mappedItem) => mappedItem.name === item.date,
           );
 
           if (existingItem) {
@@ -147,7 +147,15 @@ const NetProfitMargin = () => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   const handleSelectedNamesChange = (selectedNames) => {
@@ -155,7 +163,7 @@ const NetProfitMargin = () => {
   };
   return (
     <div>
-      <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="md:flex sm:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold md:text-base xs:text-sm xxs:text-[11.8px]">
           Hệ số thanh toán lãi vay nợ bình quân của các ngành (%)
         </span>

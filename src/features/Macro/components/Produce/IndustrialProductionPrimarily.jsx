@@ -1,16 +1,17 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
-import { optionsSelect3 } from "./utils/optionsSelect";
 import { fetchDataIndustrialProductionPrimarily } from "../../thunk";
+import { optionsSelect3 } from "./utils/optionsSelect";
 
 const IndustrialProductionPrimarily = () => {
   const dispatch = useDispatch();
   const { dataIndustrialProductionPrimarily } = useSelector(
-    (state) => state.macro
+    (state) => state.macro,
   );
   const [timeLine, setTimeLine] = useState();
   const [data, setData] = useState();
@@ -29,8 +30,8 @@ const IndustrialProductionPrimarily = () => {
       const uniqueDates = [
         ...new Set(
           dataIndustrialProductionPrimarily?.map((item) =>
-            moment(item.date, "YYYY/MM/DD").year()
-          )
+            moment(item.date, "YYYY/MM/DD").year(),
+          ),
         ),
       ];
       setTimeLine(uniqueDates);
@@ -128,12 +129,20 @@ const IndustrialProductionPrimarily = () => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   return (
     <>
-      <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="md:flex sm:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold xs:text-base xxs:text-[14px]">
           Sản lượng công nghiệp các sản phẩm chủ yếu
         </span>
@@ -142,7 +151,7 @@ const IndustrialProductionPrimarily = () => {
             className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
             onChange={(event) => {
               dispatch(
-                fetchDataIndustrialProductionPrimarily(event.target.value)
+                fetchDataIndustrialProductionPrimarily(event.target.value),
               );
             }}
           >

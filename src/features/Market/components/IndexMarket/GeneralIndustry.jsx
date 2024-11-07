@@ -87,7 +87,7 @@ const GeneralIndustry = () => {
 
   return (
     <>
-      <div className="pt-3 mb-3 dark:text-white text-black">
+      <div className="pt-[5px] mb-2 dark:text-white text-black">
         <span>
           <button
             onClick={() => {
@@ -160,10 +160,10 @@ const GeneralIndustry = () => {
       <section className="bg-blueGray-50 pt-1.5">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block w-full scrollbar-thin scrollbar-thumb-[#217EBE] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[313px]">
+            <div className="block w-full scrollbar-thin scrollbar-thumb-[#0050AD] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[313px]">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead
-                  className="bg-[#1E5D8B] z-10"
+                  className="bg-[#0050AD] z-10"
                   style={{ position: "sticky", top: 0 }}
                 >
                   <tr>
@@ -247,7 +247,7 @@ const GeneralIndustry = () => {
                                 {
                                   minimumFractionDigits: 2,
                                   maximumFractionDigits: 2,
-                                }
+                                },
                               )}
                               %
                             </span>
@@ -264,7 +264,7 @@ const GeneralIndustry = () => {
                                 {
                                   minimumFractionDigits: 2,
                                   maximumFractionDigits: 2,
-                                }
+                                },
                               )}
                               %
                             </span>

@@ -19,10 +19,10 @@ const TableMiningProfitMargin = () => {
     <section className="bg-blueGray-50 pt-1.5">
       <div className="w-full">
         <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-          <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[350px]">
+          <div className="block w-full scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll bg-transparent h-[350px]">
             <table className="items-center w-full border-collapse bg-transparent">
               <thead
-                className="bg-[#1E5D8B] z-10"
+                className="bg-[#0050AD] z-10"
                 style={{ position: "sticky", top: 0 }}
               >
                 <tr>
@@ -60,7 +60,7 @@ const TableMiningProfitMargin = () => {
                         </th>
                         <td
                           className={`${getColor(
-                            item.gpm
+                            item.gpm,
                           )} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}
                         >
                           {item.gpm.toLocaleString("vi-VN", {
@@ -70,7 +70,7 @@ const TableMiningProfitMargin = () => {
                         </td>
                         <td
                           className={`${getColor(
-                            item.npm
+                            item.npm,
                           )} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}
                         >
                           {item.npm.toLocaleString("vi-VN", {
@@ -80,7 +80,7 @@ const TableMiningProfitMargin = () => {
                         </td>
                         <td
                           className={`${getColor(
-                            item.roa
+                            item.roa,
                           )} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}
                         >
                           {item.roa.toLocaleString("vi-VN", {
@@ -90,7 +90,7 @@ const TableMiningProfitMargin = () => {
                         </td>
                         <td
                           className={`${getColor(
-                            item.roe
+                            item.roe,
                           )} text-center align-middle whitespace-nowrap px-1 py-2.5 font-semibold md:text-base sm:text-sm xs:text-sm xxs:text-xs`}
                         >
                           {item.roe.toLocaleString("vi-VN", {

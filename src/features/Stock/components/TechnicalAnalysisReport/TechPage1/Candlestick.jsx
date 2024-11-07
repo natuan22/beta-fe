@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import Highcharts from "highcharts/highstock";
-import HighchartsReact from "highcharts-react-official";
-import { MdOutlineZoomOutMap } from "react-icons/md";
 import { Modal } from "antd";
+import HighchartsReact from "highcharts-react-official";
+import Highcharts from "highcharts/highstock";
+
+import React, { useState } from "react";
+import { MdOutlineZoomOutMap } from "react-icons/md";
+import LazyLoad from "react-lazyload";
 
 const Candlestick = ({ data }) => {
   const maxVolume = Math.max(...data.map((item) => item.volume));
@@ -134,7 +136,14 @@ const Candlestick = ({ data }) => {
         lineColor: "red", // Màu của candlestick khi giá mở cao hơn giá đóng
         upLineColor: "green", // Màu của viền candlestick khi giá đóng cao hơn giá mở
       },
+      series: {
+        turboThreshold: 100_000_000,
+      },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         type: "candlestick",
@@ -259,46 +268,50 @@ const Candlestick = ({ data }) => {
 
   return (
     <div>
-      <div className="h-[365px] -translate-y-[8px]">
-        <div className="relative left-[66px] z-10 top-[27px] w-[8px] h-[8px]">
-          <div className="absolute" id="triangle-topright"></div>
-          <div id="triangle-bottomleft"></div>
-          <div className="ml-[22.5rem] absolute -top-[4.8px] opacity-[45%] hover:opacity-[80%] hover:bg-black hover:bg-opacity-10 rounded-sm h-[18px]">
-            <MdOutlineZoomOutMap
-              className="cursor-pointer w-[16px] h-[16px]"
-              onClick={showModalZoom}
-            />
-          </div>
-          <Modal
-            centered
-            width={1400}
-            open={isModalZoomOpen}
-            onOk={handleZoomOk}
-            onCancel={handleZoomCancel}
-            footer={null}
-            className="zoom-conditions"
-          >
-            <div className="h-[850px] w-[100%]">
-              <div className="relative left-[517px] z-10 top-[27px] w-[8px] h-[8px]">
-                <div className="absolute" id="triangle-topright"></div>
-                <div id="triangle-bottomleft"></div>
-              </div>
-              <HighchartsReact
-                highcharts={Highcharts}
-                constructorType={"stockChart"}
-                options={options}
-                containerProps={{ style: { height: "100%", width: "100%" } }}
+      <LazyLoad offset={300} debounce={200} once>
+        <div className="h-[365px] -translate-y-[8px]">
+          <div className="relative left-[56px] z-10 top-[25px] w-[8px] h-[8px]">
+            <div className="absolute" id="triangle-topright"></div>
+            <div id="triangle-bottomleft"></div>
+            <div className="ml-[22.5rem] absolute -top-[4.8px] opacity-[45%] hover:opacity-[80%] hover:bg-black hover:bg-opacity-10 rounded-sm h-[18px]">
+              <MdOutlineZoomOutMap
+                className="cursor-pointer w-[16px] h-[16px]"
+                onClick={showModalZoom}
               />
             </div>
-          </Modal>
+            <Modal
+              centered
+              width={1400}
+              open={isModalZoomOpen}
+              onOk={handleZoomOk}
+              onCancel={handleZoomCancel}
+              footer={null}
+              className="zoom-conditions"
+            >
+              <div className="h-[850px] w-[100%]">
+                <div className="relative left-[509px] z-10 top-[25px] w-[8px] h-[8px]">
+                  <div className="absolute" id="triangle-topright"></div>
+                  <div id="triangle-bottomleft"></div>
+                </div>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  constructorType={"stockChart"}
+                  options={options}
+                  containerProps={{
+                    style: { height: "100%", width: "100%" },
+                  }}
+                />
+              </div>
+            </Modal>
+          </div>
+          <HighchartsReact
+            highcharts={Highcharts}
+            constructorType={"stockChart"}
+            options={options}
+            containerProps={{ style: { height: "100%", width: "100%" } }}
+          />
         </div>
-        <HighchartsReact
-          highcharts={Highcharts}
-          constructorType={"stockChart"}
-          options={options}
-          containerProps={{ style: { height: "100%", width: "100%" } }}
-        />
-      </div>
+      </LazyLoad>
     </div>
   );
 };

@@ -16,6 +16,9 @@ const TableTechnique = ({
   catchWatchlists,
   isLogin,
 }) => {
+  const rowHeight = 88;
+  const maxHeight = 467;
+
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalAddOpen, setIsModalAddOpen] = useState(false);
   const [isModalCreateOpen, setIsModalCreateOpen] = useState(false);
@@ -31,13 +34,10 @@ const TableTechnique = ({
       return "bg-white";
     }
   };
-  
+
   const handleStockClick = async (code) => {
     try {
-      const response = await getApi(
-        apiUrl,
-        `/api/v1/shares/search?key_search=${code}`
-      );
+      const response = await getApi(`/api/v1/shares/search?key_search=${code}`);
       const type = response[0].type;
       const url = `/co-phieu/${code}-${type}`;
       window.open(url, "_blank");
@@ -153,7 +153,7 @@ const TableTechnique = ({
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.error("Failed:", errorInfo);
   };
 
   const handleAddCodeToWatchlist = async () => {
@@ -315,10 +315,15 @@ const TableTechnique = ({
         <Table
           showSorterTooltip={false}
           columns={columns}
-          scroll={{ x: 1370 }}
           dataSource={filteredResults}
           rowClassName={rowClassName}
-          pagination={{ defaultPageSize: 10, showSizeChanger: false }}
+          // pagination={{ defaultPageSize: 15, showSizeChanger: false }}
+          scroll={
+            filteredResults.length * rowHeight > maxHeight
+              ? { y: maxHeight }
+              : { x: 1370, undefined }
+          }
+          pagination={false}
         />
       </div>
       <Modal
@@ -358,7 +363,7 @@ const TableTechnique = ({
                 className="flex items-center justify-center rounded-md cursor-pointer font-semibold text-[16px]"
                 onClick={showModalCreate}
                 startIcon={<FiPlusCircle />}
-                disabled={isLogin !== "7MEvU"}
+                disabled={isLogin !== process.env.REACT_APP_LG_T}
                 sx={{
                   "&.Mui-disabled": {
                     cursor: "not-allowed",
@@ -428,7 +433,7 @@ const TableTechnique = ({
                 variant="contained"
                 color="xanh"
                 onClick={handleAddCodeToWatchlist}
-                disabled={isLogin !== "7MEvU"}
+                disabled={isLogin !== process.env.REACT_APP_LG_T}
                 sx={{
                   "&.Mui-disabled": {
                     cursor: "not-allowed",

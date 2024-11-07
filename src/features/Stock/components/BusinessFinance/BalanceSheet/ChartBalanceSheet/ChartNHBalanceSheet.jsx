@@ -13,8 +13,8 @@ const ChartNHBalanceSheet = ({ queryApiBusinessFinance }) => {
     dispatch(
       fetchDataChartBalanceSheet(
         queryApiBusinessFinance.stock,
-        queryApiBusinessFinance.order
-      )
+        queryApiBusinessFinance.order,
+      ),
     );
   }, [dispatch, queryApiBusinessFinance]);
 

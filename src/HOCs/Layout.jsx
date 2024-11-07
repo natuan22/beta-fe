@@ -23,19 +23,19 @@ const LayOut = (props) => {
     };
   }, []);
 
-  useEffect(() => {
-    const scriptZalo = document.createElement("script");
-    scriptZalo.src = "https://sp.zalo.me/plugins/sdk.js";
-    document.body.appendChild(scriptZalo);
+  // useEffect(() => {
+  //   const scriptZalo = document.createElement("script");
+  //   scriptZalo.src = "https://sp.zalo.me/plugins/sdk.js";
+  //   document.body.appendChild(scriptZalo);
 
-    return () => {
-      document.body.removeChild(scriptZalo);
-    };
-  }, []);
+  //   return () => {
+  //     document.body.removeChild(scriptZalo);
+  //   };
+  // }, []);
 
   return (
     <div className="relative">
-      <header className="sticky top-0 z-30">
+      <header className="sticky top-0 z-40">
         <Header />
       </header>
       <section className="relative">{props.children}</section>
@@ -43,7 +43,7 @@ const LayOut = (props) => {
         <div className="btnBackToTop-container z-30 fixed bottom-[120px] md:right-[66px] sm:right-[35px] xs:right-[30px] xxs:right-[30px] opacity-80 transition-all duration-500 hover:opacity-100">
           <button
             style={{ backgroundColor: "orange" }}
-            className=" cursor-pointer text-xl text-white rounded-full border-0 z-30 px-2 py-1 bg-transparent  "
+            className="cursor-pointer text-xl text-white rounded-full border-0 z-30 px-2 py-1 bg-transparent"
             onClick={handleScrollToTop}
           >
             <FaArrowUp />

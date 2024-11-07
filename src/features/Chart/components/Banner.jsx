@@ -15,10 +15,9 @@ const Banner = () => {
         <div className="text-center ">
           <button
             onClick={toggleSidebar}
-            className={`fixed top-[50%] left-[-20px]
-             text-white bg-[#1E5D8B] z-40
-             ${showSidebar ? "translate-x-[390%] ease-in-out duration-300" : ""}
-             font-semibold rounded-lg text-base px-5 py-2.5 mr-2 bg-[#1E5D8B] text-white dark:text-white focus:outline-none focus:ring-blue-800`}
+            className={`fixed sm:top-[50%] xs:top-[65%] xxs:top-[65%] left-[-20px] text-white bg-[#0050AD] z-40 ${
+              showSidebar ? "translate-x-[390%] ease-in-out duration-300" : ""
+            } font-semibold rounded-lg text-base px-5 py-2.5 mr-2 bg-[#0050AD] text-white dark:text-white focus:outline-none focus:ring-blue-800`}
             type="button"
             data-drawer-target="drawer-navigation"
             data-drawer-show="drawer-navigation"

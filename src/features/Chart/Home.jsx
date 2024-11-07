@@ -28,7 +28,7 @@ import {
   fetchDataBarChartLeft,
   fetchDataBarChartRight,
   fetchDataEvents,
-  fetchDataGeneralIndustry, 
+  fetchDataGeneralIndustry,
   fetchDataGoodsDetail,
   fetchDataLineChartHomePage,
   fetchDataRateDetail,
@@ -109,24 +109,32 @@ const Home = () => {
                 <div className="xl:w-[60%]">
                   <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
                     <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
-                      <TableDetail />
+                      <LazyLoad offset={300} debounce={200} once>
+                        <TableDetail />
+                      </LazyLoad>
                     </div>
 
                     <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] shadow-md bg-gray-100 xs:h-[352px] md:h-[336px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px]">
-                      <div className="text-center font-semibold uppercase text-sm dark:text-white text-black">
+                      <div className="p-[4.5px] text-center font-semibold uppercase text-sm dark:text-white text-black">
                         Diễn biến chỉ số VNINDEX trong phiên
                       </div>
-                      <LineChart />
+                      <LazyLoad offset={300} debounce={200} once>
+                        <LineChart />
+                      </LazyLoad>
                     </div>
                     <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                       <div className="text-center dark:bg-[#151924] bg-gray-100">
-                        <BarChartLeft />
+                        <LazyLoad offset={300} debounce={200} once>
+                          <BarChartLeft />
+                        </LazyLoad>
                       </div>
                     </div>
 
                     <div className="text-center mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
                       <div className="dark:bg-[#151924] bg-gray-100">
-                        <BarChartRight />
+                        <LazyLoad offset={300} debounce={200} once>
+                          <BarChartRight />
+                        </LazyLoad>
                       </div>
                     </div>
                   </div>
@@ -136,12 +144,14 @@ const Home = () => {
                   <div className="mx-2 mt-2 mb-4 px-1.5 py-1.5 shadow-md dark:bg-[#151924] bg-gray-100 xs:h-[352px] md:h-[350px] lg:h-[350px] xl:h-[344px] 2xl:h-[344px]">
                     <div className="w-full">
                       <div className="text-center dark:text-white text-black text-sm">
-                        <div className="p-2.5 text-center font-semibold uppercase text-sm dark:text-white text-black">
+                        <div className="p-[4.5px] text-center font-semibold uppercase text-sm dark:text-white text-black">
                           Thanh khoản thị trường sàn HSX
                         </div>
                       </div>
                       <div>
-                        <AreaChart />
+                        <LazyLoad offset={300} debounce={200} once>
+                          <AreaChart />
+                        </LazyLoad>
                       </div>
                     </div>
                   </div>
@@ -149,11 +159,13 @@ const Home = () => {
                     <div className="w-full">
                       <div>
                         <div className="text-center dark:text-white text-black text-sm">
-                          <div className="p-2.5 text-center font-semibold uppercase text-sm dark:text-white text-black">
+                          <div className="p-[4.5px] text-center font-semibold uppercase text-sm dark:text-white text-black">
                             Độ rộng thị trường
                           </div>
                         </div>
-                        <StackingAreas />
+                        <LazyLoad offset={300} debounce={200} once>
+                          <StackingAreas />
+                        </LazyLoad>
                       </div>
                     </div>
                   </div>
@@ -165,11 +177,15 @@ const Home = () => {
               <div className="xl:flex lg:block">
                 <div className="xl:w-[60%]">
                   <div className="mx-2 my-2 px-1.5 py-1.5 shadow-md dark:bg-[#151924] bg-gray-100 xs:h-[368px] md:h-[395px] lg:h-[485px] xl:h-[682px] 2xl:h-[680px]">
-                    <GeneralIndustry />
+                    <LazyLoad offset={300} debounce={200} once>
+                      <GeneralIndustry />
+                    </LazyLoad>
                   </div>
                 </div>
                 <div className="xl:w-[40%] xl:translate-x-0">
-                  <TopROC />
+                  <LazyLoad offset={300} debounce={200} once>
+                    <TopROC />
+                  </LazyLoad>
                 </div>
               </div>
             </div>
@@ -180,12 +196,12 @@ const Home = () => {
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[725px]">
                     <div className="treemap grid grid-cols-2 gap-0.5">
                       <div>
-                        <LazyLoad>
+                        <LazyLoad offset={300} debounce={200} once>
                           <TreeMapBuy />
                         </LazyLoad>
                       </div>
                       <div>
-                        <LazyLoad>
+                        <LazyLoad offset={300} debounce={200} once>
                           <TreeMapSell />
                         </LazyLoad>
                       </div>
@@ -200,12 +216,12 @@ const Home = () => {
                         Top 10 khối ngoại mua/bán nhiều nhất sàn
                       </span>
                       <select
-                        className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 mx-2 rounded-lg p-1 text-base text-[#0097B2]`}
+                        className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 mx-2 rounded-lg p-1 text-base text-[#007dc6]`}
                         onChange={(event) => {
                           dispatch(
                             dispatch(
-                              fetchDataTopNetForeignChange(event.target.value)
-                            )
+                              fetchDataTopNetForeignChange(event.target.value),
+                            ),
                           );
                         }}
                       >
@@ -217,13 +233,17 @@ const Home = () => {
                         qua 05 phiên gần nhất
                       </span>
                     </div>
-                    <div className="grid grid-cols-2 dark:bg-[#151924] bg-gray-100">
+                    <div className="grid grid-cols-2 dark:bg-[#151924] bg-gray-100 h-[653px]">
                       <div className="text-center mx-2">
-                        <Top10Sell />
+                        <LazyLoad offset={300} debounce={200} once>
+                          <Top10Sell />
+                        </LazyLoad>
                       </div>
 
                       <div className="text-center mx-2">
-                        <Top10Buy />
+                        <LazyLoad offset={300} debounce={200} once>
+                          <Top10Buy />
+                        </LazyLoad>
                       </div>
                     </div>
                   </div>
@@ -232,12 +252,12 @@ const Home = () => {
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md xxs:h-[765px] xs:h-[745px] sm:h-[750px] md:h-[725px] lg:h-[725px]">
                     <div className="grid grid-cols-2 gap-0.5 treemap">
                       <div>
-                        <LazyLoad>
+                        <LazyLoad offset={300} debounce={200} once>
                           <TreeMapBuy />
                         </LazyLoad>
                       </div>
                       <div>
-                        <LazyLoad>
+                        <LazyLoad offset={300} debounce={200} once>
                           <TreeMapSell />
                         </LazyLoad>
                       </div>
@@ -296,24 +316,32 @@ const Home = () => {
                 </div>
               </div>
             </div> */}
-            <div className="mr-2 mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md">
+            <div className="mr-2 mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 shadow-md h-[450px]">
               <div>
-                <NetVolumeTrade />
+                <LazyLoad offset={300} debounce={200} once>
+                  <NetVolumeTrade />
+                </LazyLoad>
               </div>
             </div>
             <div>
               <div className="lg:block xl:flex">
                 <div className="xl:w-[60%] mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 lg:h-[335px] xl:h-[698px] shadow-md">
-                  <Events />
+                  <LazyLoad offset={300} debounce={200} once>
+                    <Events />
+                  </LazyLoad>
                 </div>
 
                 <div className="xl:w-[40%]">
                   <div className="mx-2 my-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[335px] shadow-md">
-                    <GoodsDetail type={0} />
+                    <LazyLoad offset={300} debounce={200} once>
+                      <GoodsDetail type={0} />
+                    </LazyLoad>
                   </div>
 
                   <div className="mx-2 mt-4 mb-2 px-1.5 py-1.5 dark:bg-[#151924] bg-gray-100 h-[335px] shadow-md">
-                    <RateDetail type={0} />
+                    <LazyLoad offset={300} debounce={200} once>
+                      <RateDetail type={0} />
+                    </LazyLoad>
                   </div>
                 </div>
               </div>

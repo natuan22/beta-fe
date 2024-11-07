@@ -1,356 +1,207 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchDataCashFlowInvestor, fetchDataTotalMarket } from "../../thunk";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
-import Loading from "../../../Chart/utils/Loading";
 import moment from "moment";
-import { hashTb } from "./utils/constant";
-import LegendBtn from "../../../../utils/Component/BtnLegend";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../../Chart/utils/Loading";
+import { fetchDataCashFlowInvestor, fetchDataTotalMarket } from "../../thunk";
+import ColumnPerChart from "./components/InvestorCashFlow/ColumnPerChart";
+import ColumnValueChart from "./components/InvestorCashFlow/ColumnValueChart";
+import "./utils/btnStyle.css";
+
 const buttonStyle = {
   backgroundColor: "transparent",
   color: "#fff",
   border: "none",
-  cursor: "pointer",
   padding: "0.375rem 0.5rem",
 };
 
-const activeButtonStyle = {
-  backgroundColor: "#275F88",
-  color: "#fff",
-};
+const activeButtonStyle = { backgroundColor: "#0050AD", color: "#fff" };
 
 const InvestorCashFlow = () => {
-  const [configChart, setConfigChart] = useState(null);
-  const [configChartArea, setConfigChartArea] = useState(null);
-  const { dataCashFlowInvestor, dataTotalMarket } = useSelector(
-    (state) => state.market
-  );
-  const [data, setData] = useState();
-  const [dataToMap, setDataToMap] = useState();
-  const [dataAbs, setDataAbs] = useState();
-  const [timeLine, setTimeLine] = useState();
-  const [isAllMarket, setIsAllMarket] = useState(true);
   const dispatch = useDispatch();
+
+  const { dataCashFlowInvestor, dataTotalMarket } = useSelector(
+    (state) => state.market,
+  );
+  const [dataToMap, setDataToMap] = useState();
+
+  const [data, setData] = useState();
+  const [dataPer, setDataPer] = useState();
+  const [timeLine, setTimeLine] = useState();
+
+  const [isAllMarket, setIsAllMarket] = useState(true);
   const [activeButton, setActiveButton] = useState("all");
   const [activeButton2, setActiveButton2] = useState(1);
   const [activeButton3, setActiveButton3] = useState(8);
+
   const [canTouch, setCanTouch] = useState(true);
+
   const [param, setParam] = useState("buyVal");
   const [queryApi, setQueryApi] = useState({
     type: 2,
     investorType: 1,
     exchange: "all",
   });
-  const [colorText, setColorText] = useState(localStorage.getItem("color"));
-  const color = useSelector((state) => state.color.colorText);
+
+  const [showValue, setShowValue] = useState(0);
 
   useEffect(() => {
     dispatch(
       fetchDataCashFlowInvestor(
         queryApi.type,
         queryApi.investorType,
-        queryApi.exchange
-      )
+        queryApi.exchange,
+      ),
     );
     dispatch(fetchDataTotalMarket(queryApi.exchange, queryApi.type));
-    setColorText(color);
   }, [queryApi, dispatch]);
 
-  const sortedDataArray = data?.sort((a, b) => {
-    const aIndex = Object.keys(hashTb).findIndex(
-      (key) => hashTb[key] === a.name
-    );
-    const bIndex = Object.keys(hashTb).findIndex(
-      (key) => hashTb[key] === b.name
-    );
-    return aIndex - bIndex;
-  });
-  // console.log({ sortedDataArray })
-  const sortedDataAbsArray = dataAbs?.sort((a, b) => {
-    const aIndex = Object.keys(hashTb).findIndex(
-      (key) => hashTb[key] === a.name
-    );
-    const bIndex = Object.keys(hashTb).findIndex(
-      (key) => hashTb[key] === b.name
-    );
-    return aIndex - bIndex;
-  });
   useEffect(() => {
     if (!isAllMarket && dataCashFlowInvestor?.length > 0) {
       setDataToMap(dataCashFlowInvestor);
-      const uniqueDates = [
-        ...new Set(dataToMap?.map((item) => moment(item.date).format("DD/MM"))),
-      ];
-      setTimeLine(uniqueDates);
-      // Khởi tạo đối tượng kết quả là một mảng rỗng
-      const result = [];
-      const resultAbs = [];
-      // Lặp qua mảng dữ liệu
-      dataToMap?.forEach((item) => {
-        const industry = item.industry;
-        const value = +(item[param] / 1000000000).toFixed(2);
-        const color = item.color;
-        // Tạo đối tượng mới với key "name" và value là tên ngành
-        // cùng key "data" và value là mảng giá trị của ngành
-        const newObj = {
-          name: industry,
-          data: [value],
-          color,
-        };
-        const newObjAbs = {
-          name: industry,
-          data: [Math.abs(value)],
-          color,
-        };
-        // Tìm xem ngành đã tồn tại trong đối tượng kết quả hay chưa
-        const existingObj = result.find((obj) => obj.name === industry);
-        const existingObjAbs = resultAbs.find((obj) => obj.name === industry);
-
-        if (existingObj) {
-          // Nếu ngành đã tồn tại, thêm giá trị vào mảng "data" của ngành đó
-          existingObjAbs.data.push(Math.abs(value));
-          existingObj.data.push(value);
-        } else {
-          // Nếu ngành chưa tồn tại, thêm đối tượng mới vào mảng kết quả
-          resultAbs.push(newObjAbs);
-          result.push(newObj);
-        }
-      });
-      // Gán mảng kết quả vào biến "output"
-      const output = result.sort((a, b) => {
-        const indexA = Object.keys(hashTb).indexOf(a.name);
-        const indexB = Object.keys(hashTb).indexOf(b.name);
-        return indexA - indexB;
-      });
-      const outputAbs = resultAbs.sort((a, b) => {
-        const indexA = Object.keys(hashTb).indexOf(a.name);
-        const indexB = Object.keys(hashTb).indexOf(b.name);
-        return indexA - indexB;
-      });
-      setData(output);
-      setDataAbs(outputAbs);
-    } else if (isAllMarket && dataTotalMarket.length > 0) {
+    } else if (isAllMarket && dataTotalMarket?.length > 0) {
       setDataToMap(dataTotalMarket);
+    }
+  }, [dataCashFlowInvestor, dataTotalMarket, isAllMarket]);
+
+  useEffect(() => {
+    const processData = (dataMap) => {
       const uniqueDates = [
-        ...new Set(dataToMap?.map((item) => moment(item.date).format("DD/MM"))),
+        ...new Set(dataMap?.map((item) => moment(item.date).format("DD/MM"))),
       ];
       setTimeLine(uniqueDates);
-      // Khởi tạo đối tượng kết quả là một mảng rỗng
+
+      const totalTransValByDate = dataMap?.reduce((acc, curr) => {
+        acc[curr.date] = (acc[curr.date] || 0) + Math.abs(curr[param]);
+        return acc;
+      }, {});
+
+      const dataWithPercent = dataMap?.map((item) => ({
+        ...item,
+        percentNew: +Math.abs(
+          (item[param] / totalTransValByDate[item.date]) * 100,
+        ).toFixed(2),
+      }));
+
       const result = [];
-      const resultAbs = [];
-      // Lặp qua mảng dữ liệu
-      dataToMap?.forEach((item) => {
-        const industry = item.industry;
-        const value = item[param] / 1000000000;
-        const color = item.color;
-        // Tạo đối tượng mới với key "name" và value là tên ngành
-        // cùng key "data" và value là mảng giá trị của ngành
-        const newObj = {
-          name: industry,
-          data: [value],
-          color,
-        };
-        const newObjAbs = {
-          name: industry,
-          data: [Math.abs(value)],
-          color,
-        };
-        // Tìm xem ngành đã tồn tại trong đối tượng kết quả hay chưa
+      const resultPer = [];
+
+      dataWithPercent?.forEach((item) => {
+        const { industry, color } = item;
+        const value = +(item[param] / 1_000_000_000).toFixed(2);
+        const valuePer = item.percentNew;
+
         const existingObj = result.find((obj) => obj.name === industry);
-        const existingObjAbs = resultAbs.find((obj) => obj.name === industry);
+        const existingObjPer = resultPer.find((obj) => obj.name === industry);
 
         if (existingObj) {
-          // Nếu ngành đã tồn tại, thêm giá trị vào mảng "data" của ngành đó
-          existingObjAbs.data.push(Math.abs(value));
           existingObj.data.push(value);
+          existingObjPer.data.push(valuePer);
         } else {
-          // Nếu ngành chưa tồn tại, thêm đối tượng mới vào mảng kết quả
-          resultAbs.push(newObjAbs);
-          result.push(newObj);
+          result.push({ name: industry, data: [value], color });
+          resultPer.push({ name: industry, data: [valuePer], color });
         }
       });
-      // Gán mảng kết quả vào biến "output"
-      const output = result.sort((a, b) => {
-        const indexA = Object.keys(hashTb).indexOf(a.name);
-        const indexB = Object.keys(hashTb).indexOf(b.name);
-        return indexA - indexB;
-      });
-      const outputAbs = resultAbs.sort((a, b) => {
-        const indexA = Object.keys(hashTb).indexOf(a.name);
-        const indexB = Object.keys(hashTb).indexOf(b.name);
-        return indexA - indexB;
-      });
 
+      return { output: result, outputPer: resultPer };
+    };
+
+    if (dataToMap?.length > 0) {
+      const { output, outputPer } = processData(dataToMap);
       setData(output);
-      setDataAbs(outputAbs);
+      setDataPer(outputPer);
     }
-  }, [
-    param,
-    dataCashFlowInvestor,
-    queryApi,
-    dataToMap,
-    dataTotalMarket,
-    isAllMarket,
-  ]);
+  }, [dataToMap, param]);
+
   useEffect(() => {
     if (activeButton3 === 8) setActiveButton2(4);
     setParam("transVal");
   }, [activeButton3]);
+
   // hàm xử lý nút
   const handleClick = (button) => {
     setActiveButton(button);
   };
+
   const handleClick2 = (button) => {
     setActiveButton2(button);
   };
+
   const handleClick3 = (button) => {
     setActiveButton3(button);
   };
 
-  const callBackHighchart = (chart) => {
-    setConfigChart(chart);
-  };
-  const callBackHighchartArea = (chart) => {
-    setConfigChartArea(chart);
-  };
-
-  // config chart
-  const options = {
-    accessibility: {
-      enabled: false,
-    },
-    credits: false,
-    chart: {
-      type: "column",
-      backgroundColor: "transparent",
-    },
-    title: {
-      text: "",
-    },
-    xAxis: {
-      categories: timeLine,
-      labels: {
-        style: {
-          color: localStorage.getItem("color"),
-        },
-      },
-    },
-    yAxis: {
-      // min: minValue ,
-      title: {
-        text: "Giá trị (tỷ VND)",
-        style: {
-          color: localStorage.getItem("color"),
-        },
-      },
-      stackLabels: {
-        enabled: false,
-      },
-      labels: {
-        style: {
-          color: localStorage.getItem("color"),
-        },
-      },
-      gridLineWidth: 0.1,
-    },
-    legend: {
-      enabled: false,
-      itemStyle: {
-        color: localStorage.getItem("color"),
-        fontWeight: "bold",
-      },
-    },
-    plotOptions: {
-      column: {
-        stacking: "normal",
-        dataLabels: {
-          enabled: false,
-        },
-      },
-    },
-
-    series: data,
-  };
   // config area chart
-  // Cấu hình biểu đồ area stacking
-  const optionAreaChart = {
-    accessibility: {
-      enabled: false,
-    },
-    credits: false,
-    chart: {
-      min: 0,
-      type: "area",
-      backgroundColor: "transparent",
-    },
-    legend: {
-      enabled: false,
-      itemStyle: {
-        color: localStorage.getItem("color"),
-        fontWeight: "bold",
-      },
-    },
-    title: {
-      text: "",
-    },
-    xAxis: {
-      categories: timeLine,
-      labels: {
-        style: {
-          color: localStorage.getItem("color"),
-        },
-      },
-    },
-    yAxis: {
-      max: 100,
-      min: 0,
-      title: {
-        text: "",
-        style: {
-          color: localStorage.getItem("color"),
-        },
-      },
-      labels: {
-        style: {
-          color: localStorage.getItem("color"),
-        },
-        formatter: function () {
-          return this.value + "%";
-        },
-      },
-      gridLineWidth: 0.1,
-    },
-    plotOptions: {
-      area: {
-        stacking: "percent", // Thay đổi giá trị stacking thành 'percent'
-        dataLabels: {
-          enabled: false,
-        },
-      },
-      series: {
-        marker: {
-          radius: 2, // Giá trị bán kính marker
-        },
-        tooltip: {
-          headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",
-          pointFormat:
-            "<span style='color:black'>{series.name}: <b>{point.percentage:.1f}%</b></span><br/>", // Thay đổi format để hiển thị phần trăm
-          valueDecimals: 3,
-        },
-      },
-    },
-    series: dataAbs,
-  };
+  // const optionAreaChart = {
+  //   accessibility: { enabled: false },
+  //   credits: false,
+  //   chart: {
+  //     min: 0,
+  //     type: "area",
+  //     backgroundColor: "transparent",
+  //   },
+  //   legend: {
+  //     enabled: false,
+  //     itemStyle: { color: localStorage.getItem("color"), fontWeight: "bold" },
+  //   },
+  //   title: { text: "" },
+  //   xAxis: {
+  //     categories: timeLine,
+  //     labels: { style: { color: localStorage.getItem("color") }},
+  //   },
+  //   yAxis: {
+  //     max: 100,
+  //     min: 0,
+  //     title: {
+  //       text: "",
+  //       style: {
+  //         color: localStorage.getItem("color"),
+  //       },
+  //     },
+  //     labels: {
+  //       style: {
+  //         color: localStorage.getItem("color"),
+  //       },
+  //       formatter: function () {
+  //         return this.value + "%";
+  //       },
+  //     },
+  //     gridLineWidth: 0.1,
+  //   },
+  //   plotOptions: {
+  //     area: {
+  //       stacking: "normal", // Thay đổi giá trị stacking thành 'percent'
+  //       dataLabels: {
+  //         enabled: false,
+  //       },
+  //     },
+  //     series: {
+  //       marker: {
+  //         radius: 2, // Giá trị bán kính marker
+  //       },
+  //       tooltip: {
+  //         headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",
+  //         pointFormat:"<span style='color:black'>{series.name}: <b>{point.percentage:.1f}%</b></span><br/>", // Thay đổi format để hiển thị phần trăm
+  //         valueDecimals: 3,
+  //       },
+  //       turboThreshold: 100_000_000,
+  //     },
+  //   },
+  //   // boost: {
+  //   //   useGPUTranslations: true,
+  //   //   usePreAllocated: true,
+  //   // },
+  //   series: dataNew,
+  // };
+
   return (
     <div>
-      <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black sm:text-base xs:text-[14px] xxs:text-[11px] font-semibold">
           Dòng tiền nhà đầu tư theo các nhóm ngành
         </span>
         <div>
           <select
-            className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+            className={`bg-[#0050AD] p-1 text-[1rem] text-white border-0`}
             onChange={(event) => {
               setQueryApi({ ...queryApi, type: event.target.value });
             }}
@@ -437,7 +288,7 @@ const InvestorCashFlow = () => {
                 handleClick2(1);
                 setParam("buyVal");
               }}
-              className="rounded-tl-xl rounded-bl-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]"
+              className={`rounded-tl-xl rounded-bl-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px] ${canTouch ? "cursor-not-allowed" : "cursor-pointer"}`}
             >
               Giá trị mua
             </button>
@@ -452,7 +303,7 @@ const InvestorCashFlow = () => {
                 handleClick2(2);
                 setParam("sellVal");
               }}
-              className="lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]"
+              className={`lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px] ${canTouch ? "cursor-not-allowed" : "cursor-pointer"}`}
             >
               Giá trị bán
             </button>
@@ -467,7 +318,7 @@ const InvestorCashFlow = () => {
                 handleClick2(3);
                 setParam("netVal");
               }}
-              className="lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]"
+              className={`lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px] ${canTouch ? "cursor-not-allowed" : "cursor-pointer"}`}
             >
               Giá trị ròng
             </button>
@@ -481,7 +332,7 @@ const InvestorCashFlow = () => {
                 handleClick2(4);
                 setParam("transVal");
               }}
-              className="rounded-tr-xl rounded-br-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]"
+              className="rounded-tr-xl rounded-br-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px] cursor-pointer"
             >
               Tổng giá trị GD
             </button>
@@ -501,7 +352,7 @@ const InvestorCashFlow = () => {
                 setCanTouch(false);
                 setQueryApi({ ...queryApi, investorType: 1 });
               }}
-              className="rounded-tl-xl rounded-bl-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]"
+              className="rounded-tl-xl rounded-bl-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px] cursor-pointer"
             >
               Tự doanh
             </button>
@@ -517,7 +368,7 @@ const InvestorCashFlow = () => {
                 setCanTouch(false);
                 setQueryApi({ ...queryApi, investorType: 0 });
               }}
-              className="lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]"
+              className="lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px] cursor-pointer"
             >
               Khối ngoại
             </button>
@@ -533,7 +384,7 @@ const InvestorCashFlow = () => {
                 setCanTouch(false);
                 setQueryApi({ ...queryApi, investorType: 2 });
               }}
-              className="lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]"
+              className="lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px] cursor-pointer"
             >
               Cá nhân & TC
             </button>
@@ -549,41 +400,37 @@ const InvestorCashFlow = () => {
                 setCanTouch(true);
                 setDataToMap(dataTotalMarket);
               }}
-              className="rounded-tr-xl rounded-br-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px]"
+              className="rounded-tr-xl rounded-br-xl lg:text-[16px] md:text-[13px] sm:text-sm xs:text-[12px] xxs:text-[10px] cursor-pointer"
             >
               Toàn thị trường
             </button>
           </div>
         </div>
       </div>
+
       <div>
         {dataCashFlowInvestor?.length > 0 && dataTotalMarket?.length > 0 ? (
           <>
-            <div>
-              <div className="h-[450px]">
-                <HighchartsReact
-                  highcharts={Highcharts}
-                  options={options}
-                  callback={callBackHighchart}
-                  containerProps={{ style: { height: "100%", width: "100%" } }}
-                />
-              </div>
-              <div className="legendArea ml-[65px]">
-                <LegendBtn chart={configChart} data={sortedDataArray} />
-              </div>
+            <div className="mt-1">
+              <button
+                onClick={() => setShowValue(0)}
+                className={`custom-btn-line-cash-flow cursor-pointer ${showValue === 0 ? "active-btn-line-cash-flow" : "btn-2-line-cash-flow"}`}
+              >
+                Giá trị
+              </button>
+              <button
+                onClick={() => setShowValue(1)}
+                className={`custom-btn-line-cash-flow cursor-pointer ${showValue === 1 ? "active-btn-line-cash-flow" : "btn-2-line-cash-flow"} ml-3 xs:mt-0 xxs:mt-4`}
+              >
+                Tỷ trọng
+              </button>
             </div>
-            <div>
-              <div className="h-[450px]">
-                <HighchartsReact
-                  highcharts={Highcharts}
-                  options={optionAreaChart}
-                  callback={callBackHighchartArea}
-                  containerProps={{ style: { height: "100%", width: "100%" } }}
-                />
-              </div>
-              <div className="legendArea ml-[65px]">
-                <LegendBtn chart={configChartArea} data={sortedDataAbsArray} />
-              </div>
+            <div className="mt-3">
+              {showValue === 0 ? (
+                <ColumnValueChart data={data} timeLine={timeLine} />
+              ) : (
+                <ColumnPerChart dataPer={dataPer} timeLine={timeLine} />
+              )}
             </div>
           </>
         ) : (

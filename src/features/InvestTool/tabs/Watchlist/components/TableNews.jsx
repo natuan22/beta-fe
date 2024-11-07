@@ -9,7 +9,7 @@ import Loading from "../../../../Chart/utils/Loading";
 import "./styles/closeButton.css";
 import "./styles/selectCodeNews.css";
 import { getApi } from "../../../../../helper/getApi";
-import { apiUrl } from "../../../../../services/config";
+import LazyLoad from "react-lazyload";
 
 const TableNews = ({ data, loading }) => {
   const [clickItem, setClickItem] = useState(null);
@@ -49,10 +49,7 @@ const TableNews = ({ data, loading }) => {
 
   const handleStockClick = async (code) => {
     try {
-      const response = await getApi(
-        apiUrl,
-        `/api/v1/shares/search?key_search=${code}`
-      );
+      const response = await getApi(`/api/v1/shares/search?key_search=${code}`);
       const type = response[0].type;
       const url = `/co-phieu/${code}-${type}`;
       window.open(url, "_blank");
@@ -63,7 +60,7 @@ const TableNews = ({ data, loading }) => {
 
   return (
     <div className="shadow-lg">
-      <div className="mx-1 mt-3">
+      <div className="mx-1 mt-2">
         <Select
           mode="multiple"
           allowClear
@@ -78,7 +75,7 @@ const TableNews = ({ data, loading }) => {
         />
       </div>
       <div className="my-2 grid grid-cols-2">
-        <div className="h-[646px] 2xl:w-[716px] xl:w-[644px] lg:w-[384px] md:w-[330px] overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent">
+        <div className="h-[650px] 2xl:w-[716px] xl:w-[644px] lg:w-[384px] md:w-[330px] overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent">
           {!loading ? (
             Array.isArray(filteredData) &&
             filteredData.map((item, index) => {
@@ -100,7 +97,7 @@ const TableNews = ({ data, loading }) => {
                     <div
                       onClick={() => handleStockClick(item.code)}
                       className={`${getColorBaseOnValue(
-                        item.perChange
+                        item.perChange,
                       )} px-2 py-1 font-semibold text-lg z-10 sticky top-0 bg-[#d9e9fd] rounded-lg shadow-lg border border-[#2D4CEF] border-solid cursor-pointer`}
                     >
                       {item.code}:{" "}

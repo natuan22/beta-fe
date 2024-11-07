@@ -47,7 +47,7 @@ const Signup = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.error("Failed:", errorInfo);
   };
 
   const userSchema = object({
@@ -137,6 +137,8 @@ const Signup = () => {
                     <div className="relative">
                       <Form.Item name="phone">
                         <Input
+                          autoFocus
+                          tabIndex={1}
                           prefix={
                             <UserOutlined className="site-form-item-icon" />
                           }
@@ -154,6 +156,7 @@ const Signup = () => {
                     <div className="relative">
                       <Form.Item name="password">
                         <Input.Password
+                          tabIndex={2}
                           placeholder="Mật khẩu"
                           prefix={
                             <LockOutlined className="site-form-item-icon" />
@@ -171,6 +174,7 @@ const Signup = () => {
                     <div className="relative">
                       <Form.Item name="confirm_password">
                         <Input.Password
+                          tabIndex={3}
                           placeholder="Xác nhận lại mật khẩu"
                           prefix={
                             <LockOutlined className="site-form-item-icon" />
@@ -189,6 +193,7 @@ const Signup = () => {
                       <div className="relative">
                         <Form.Item name="last_name">
                           <Input
+                            tabIndex={4}
                             placeholder="Họ"
                             onBlur={handleBlur}
                             onChange={handleChange}
@@ -204,6 +209,7 @@ const Signup = () => {
                       <div className="relative">
                         <Form.Item name="first_name">
                           <Input
+                            tabIndex={5}
                             placeholder="Tên"
                             onBlur={handleBlur}
                             onChange={handleChange}
@@ -218,6 +224,7 @@ const Signup = () => {
                     </div>
                     <Form.Item>
                       <Button
+                        tabIndex={6}
                         type="submit"
                         variant="contained"
                         color="signup"
@@ -291,6 +298,8 @@ const Signup = () => {
                       <div className="relative">
                         <Form.Item name="phone">
                           <Input
+                            autoFocus
+                            tabIndex={1}
                             prefix={
                               <UserOutlined className="site-form-item-icon" />
                             }
@@ -308,6 +317,7 @@ const Signup = () => {
                       <div className="relative">
                         <Form.Item name="password">
                           <Input.Password
+                            tabIndex={2}
                             placeholder="Mật khẩu"
                             prefix={
                               <LockOutlined className="site-form-item-icon" />
@@ -325,6 +335,7 @@ const Signup = () => {
                       <div className="relative">
                         <Form.Item name="confirm_password">
                           <Input.Password
+                            tabIndex={3}
                             placeholder="Xác nhận lại mật khẩu"
                             prefix={
                               <LockOutlined className="site-form-item-icon" />
@@ -344,6 +355,7 @@ const Signup = () => {
                         <div className="relative">
                           <Form.Item name="last_name">
                             <Input
+                              tabIndex={4}
                               placeholder="Họ"
                               onBlur={handleBlur}
                               onChange={handleChange}
@@ -359,6 +371,7 @@ const Signup = () => {
                         <div className="relative">
                           <Form.Item name="first_name">
                             <Input
+                              tabIndex={5}
                               placeholder="Tên"
                               onBlur={handleBlur}
                               onChange={handleChange}
@@ -373,6 +386,7 @@ const Signup = () => {
                       </div>
                       <Form.Item>
                         <Button
+                          tabIndex={6}
                           type="submit"
                           variant="contained"
                           color="signup"

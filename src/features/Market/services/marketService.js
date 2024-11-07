@@ -143,7 +143,7 @@ export const marketServices = {
           exchange,
           industry,
         },
-      }
+      },
     );
   },
   fetchDataChartLiquidityGrowth: (exchange, type, order) => {
@@ -173,7 +173,7 @@ export const marketServices = {
           type,
           order,
         },
-      }
+      },
     );
   },
   fetchDataChartLiabilitiesGrowth: (exchange, type, order) => {
@@ -193,7 +193,7 @@ export const marketServices = {
           exchange,
           industry,
         },
-      }
+      },
     );
   },
   fetchDataTableLiabilitiesGrowth: (exchange, industry) => {
@@ -204,7 +204,7 @@ export const marketServices = {
           exchange,
           industry,
         },
-      }
+      },
     );
   },
   fetchDataChartNetRevenueGrowth: (exchange, type, order) => {
@@ -216,7 +216,7 @@ export const marketServices = {
           type,
           order,
         },
-      }
+      },
     );
   },
   fetchDataChartGrossProfitGrowth: (exchange, type, order) => {
@@ -228,7 +228,7 @@ export const marketServices = {
           type,
           order,
         },
-      }
+      },
     );
   },
   fetchDataChartEBITDAGrowth: (exchange, type, order) => {
@@ -258,7 +258,7 @@ export const marketServices = {
           type,
           order,
         },
-      }
+      },
     );
   },
   fetchDataChartCashDividendGrowth: (exchange, type, order) => {
@@ -348,7 +348,7 @@ export const marketServices = {
           type,
           order,
         },
-      }
+      },
     );
   },
   fetchDataChartInterestCoverageRatio: (exchange, type, order) => {
@@ -386,7 +386,7 @@ export const marketServices = {
           exchange,
           order,
         },
-      }
+      },
     );
   },
 };

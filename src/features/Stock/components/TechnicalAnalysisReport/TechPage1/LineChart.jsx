@@ -1,7 +1,8 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
+import React from "react";
+import LazyLoad from "react-lazyload";
 
 const LineChart = ({ data }) => {
   // Tạo mảng các ngày duy nhất
@@ -105,21 +106,28 @@ const LineChart = ({ data }) => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     tooltip: {
       split: true,
     },
     series: series,
   };
   return (
-    <div className={`h-[300px] translate-y-[-15px]`}>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-        containerProps={{ style: { height: "100%", width: "100%" } }}
-      />
-    </div>
+    <LazyLoad offset={300} debounce={200} once>
+      <div className={`h-[300px] translate-y-[-15px]`}>
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={options}
+          containerProps={{ style: { height: "100%", width: "100%" } }}
+        />
+      </div>
+    </LazyLoad>
   );
 };
 

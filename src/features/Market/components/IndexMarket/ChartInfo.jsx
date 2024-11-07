@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useDispatch, useSelector } from "react-redux";
-import socket from "../../../Chart/utils/socket";
+
 import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../../Chart/utils/Loading";
+import socket from "../../../Chart/utils/socket";
+import { getColor } from "../../../Chart/utils/utils";
 import {
   fetchDataBienDongThiTruong,
   fetchDataLineChartMarket,
 } from "../../thunk";
-import Loading from "../../../Chart/utils/Loading";
-import { getColor } from "../../../Chart/utils/utils";
 
 const ChartInfo = () => {
   const dispatch = useDispatch();
@@ -164,12 +165,21 @@ const ChartInfo = () => {
         moment(item.tradingDate)
           .utc()
           .subtract(1, "days")
-          .format(localStorage.getItem("typeTime"))
+          .format(localStorage.getItem("typeTime")),
       ),
     },
     legend: {
       enabled: false, // Tắt chú thích
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
   };
 
   const vnindexData = dataInfo && dataInfo[dataInfo.length - 1];
@@ -178,18 +188,18 @@ const ChartInfo = () => {
   return (
     <>
       <div>
-        <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
-          <div className="w-[345px]">
-            <span className="dark:text-white text-black xxs:text-[12px] xs:text-[1.2rem] sm:text-[1.4rem] md:text-[1.6rem] pl-[10px]">
+        <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
+          <div>
+            <span className="dark:text-white text-black xxs:text-[12px] xs:text-[1.1rem] sm:text-[1.3rem] md:text-[1.5rem] xl:pl-[5px] lg:pl-[10px] md:pl-0">
               {vnindexData && vnindexData.comGroupCode}
             </span>
             <span
-              className={`${colorChange} text-white xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[30px] xs:pl-[20px] xxs:pl-[10px]`}
+              className={`${colorChange} text-white xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.9rem] md:text-[1rem] lg:text-[0.9rem] xl:text-[0.9rem] xl:pl-[12px] lg:pl-[20px] sm:pl-[15px] md:pl-[30px] xs:pl-[15px] xxs:pl-[5px]`}
             >
               {vnindexData && vnindexData.indexValue.toFixed(2)}
             </span>
             <span
-              className={`${colorChange} xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.8rem] md:text-[1rem] md:pl-[25px] xs:pl-[15px] xxs:pl-[5px]`}
+              className={`${colorChange} xxs:text-[11px] xs:text-[0.7rem] sm:text-[0.9rem] md:text-[1rem] lg:text-[0.9rem] xl:text-[0.9rem] xl:pl-[12px] lg:pl-[20px] sm:pl-[15px] md:pl-[30px] xs:pl-[15px] xxs:pl-[5px]`}
             >
               {vnindexData && vnindexData.indexChange.toFixed(2)}/{" "}
               {vnindexData && vnindexData.percentIndexChange.toFixed(2)}%
@@ -197,12 +207,12 @@ const ChartInfo = () => {
           </div>
           <div>
             <select
-              className={`bg-[#1B496D] p-1 text-[1rem] text-white border-0`}
+              className={`bg-[#0050AD] p-[4.5px] text-[1rem] text-white border-0`}
               onChange={(event) => {
                 localStorage.setItem("typeApi", event.target.value);
                 setQuery(event.target.value);
                 dispatch(
-                  fetchDataLineChartMarket(exchange, event.target.value)
+                  fetchDataLineChartMarket(exchange, event.target.value),
                 );
               }}
             >
@@ -223,7 +233,7 @@ const ChartInfo = () => {
               />
             </div>
           ) : (
-            <div className="text-center mt-12 h-[365px]">
+            <div className="text-center mt-12 h-[348px]">
               <Loading />
             </div>
           )}
@@ -279,20 +289,20 @@ const ChartInfo = () => {
               <div className="block w-full bg-transparent xs:min-h-[300px] md:min-h-[300px] lg:min-h-[300px] xl:min-h-[300px] 2xl:min-h-[300px]">
                 <table className="items-center w-full border-collapse bg-transparent">
                   <thead>
-                    <tr className="bg-[#1E5D8B]">
-                      <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-sm font-semibold text-white">
+                    <tr className="bg-[#0050AD]">
+                      <th className="text-center align-middle xxs:text-[10px] px-[2.7px] py-2 text-sm font-semibold text-white">
                         Chỉ số
                       </th>
-                      <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-sm font-semibold text-white">
+                      <th className="text-center align-middle xxs:text-[10px] px-[2.7px] py-2 text-sm font-semibold text-white">
                         Điểm số
                       </th>
-                      <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-xs font-semibold text-white">
+                      <th className="text-center align-middle xxs:text-[10px] px-[2.7px] py-2 text-xs font-semibold text-white">
                         % Thay đổi
                       </th>
-                      <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-xs font-semibold text-white">
+                      <th className="text-center align-middle xxs:text-[10px] px-[2.7px] py-2 text-xs font-semibold text-white">
                         Khối lượng (triệu CP)
                       </th>
-                      <th className="text-center align-middle xxs:text-[10px] px-1.5 py-2 text-xs font-semibold text-white">
+                      <th className="text-center align-middle xxs:text-[10px] px-[2.7px] py-2 text-xs font-semibold text-white">
                         Giá trị (tỷ VNĐ)
                       </th>
                     </tr>
@@ -308,14 +318,14 @@ const ChartInfo = () => {
                             onClick={() => {
                               if (!localStorage.getItem("typeApi")) {
                                 dispatch(
-                                  fetchDataLineChartMarket(`${item.code}`, "0")
+                                  fetchDataLineChartMarket(`${item.code}`, "0"),
                                 );
                               } else {
                                 dispatch(
                                   fetchDataLineChartMarket(
                                     `${item.code}`,
-                                    localStorage.getItem("typeApi")
-                                  )
+                                    localStorage.getItem("typeApi"),
+                                  ),
                                 );
                               }
                               setExchange(item.code);
@@ -355,7 +365,7 @@ const ChartInfo = () => {
                                   {
                                     minimumFractionDigits: 2,
                                     maximumFractionDigits: 2,
-                                  }
+                                  },
                                 )}
                             </td>
                             <td
@@ -367,7 +377,7 @@ const ChartInfo = () => {
                                   {
                                     minimumFractionDigits: 2,
                                     maximumFractionDigits: 2,
-                                  }
+                                  },
                                 )}
                             </td>
                           </tr>

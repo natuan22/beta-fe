@@ -2,15 +2,20 @@ import React from "react";
 import banner from "../../../../app/asset/img/bannerPTKT.png";
 import FooterAnalysis from "./FooterAnalysis";
 import HeaderAnalysis from "./HeaderAnalysis";
+import LazyLoad from "react-lazyload";
 
 const TechPage3 = () => {
   return (
     <div className="h-[1136px] w-[800px] bg-white">
       <div className="header">
-        <HeaderAnalysis />
+        <LazyLoad offset={300} debounce={200} once>
+          <HeaderAnalysis />
+        </LazyLoad>
       </div>
       <div className="banner flex flex-col items-center mt-[10px]">
-        <img src={banner} alt="banner" width={760} height={350} />
+        <LazyLoad offset={300} debounce={200} once>
+          <img src={banner} alt="banner" width={760} height={350} />
+        </LazyLoad>
       </div>
       <div className="content flex flex-col items-center mt-2">
         <div className=" h-[620px] w-[760px]">

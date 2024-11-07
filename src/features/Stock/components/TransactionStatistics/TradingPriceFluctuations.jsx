@@ -21,7 +21,7 @@ const TradingPriceFluctuations = ({ stock }) => {
           </span>
           <span
             className={`${getColor(
-              dataTradingPriceFluctuations.p_week
+              dataTradingPriceFluctuations.p_week,
             )} xs:text-base xxs:text-xs`}
           >
             {dataTradingPriceFluctuations.p_week &&
@@ -35,7 +35,7 @@ const TradingPriceFluctuations = ({ stock }) => {
           </div>
           <span
             className={`${getColor(
-              dataTradingPriceFluctuations.p_month
+              dataTradingPriceFluctuations.p_month,
             )} xs:text-base xxs:text-xs`}
           >
             {dataTradingPriceFluctuations.p_month &&
@@ -49,7 +49,7 @@ const TradingPriceFluctuations = ({ stock }) => {
           </div>
           <span
             className={`${getColor(
-              dataTradingPriceFluctuations.p_quarter
+              dataTradingPriceFluctuations.p_quarter,
             )} xs:text-base xxs:text-xs`}
           >
             {dataTradingPriceFluctuations.p_quarter &&
@@ -63,7 +63,7 @@ const TradingPriceFluctuations = ({ stock }) => {
           </div>
           <span
             className={`${getColor(
-              dataTradingPriceFluctuations.p_year
+              dataTradingPriceFluctuations.p_year,
             )} xs:text-base xxs:text-xs`}
           >
             {dataTradingPriceFluctuations.p_year &&
@@ -78,7 +78,7 @@ const TradingPriceFluctuations = ({ stock }) => {
           <span className="dark:text-white text-black xs:text-base xxs:text-xs">
             {dataTradingPriceFluctuations.max_price &&
               formatNumberCurrency(
-                dataTradingPriceFluctuations.max_price * 1000
+                dataTradingPriceFluctuations.max_price * 1000,
               )}
           </span>
         </div>
@@ -89,7 +89,7 @@ const TradingPriceFluctuations = ({ stock }) => {
           <span className="dark:text-white text-black xs:text-base xxs:text-xs">
             {dataTradingPriceFluctuations.min_price &&
               formatNumberCurrency(
-                dataTradingPriceFluctuations.min_price * 1000
+                dataTradingPriceFluctuations.min_price * 1000,
               )}
           </span>
         </div>

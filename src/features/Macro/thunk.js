@@ -124,9 +124,8 @@ export const fetchDataWeightedCPICommodityBasket = async (dispatch) => {
 export const fetchDataIndexIndustrialProduction =
   (industry) => async (dispatch) => {
     try {
-      const res = await macroServices.fetchDataIndexIndustrialProduction(
-        industry
-      );
+      const res =
+        await macroServices.fetchDataIndexIndustrialProduction(industry);
       dispatch({
         type: macroType.FETCH_DATA_INDEX_INDUSTRIAL_PRODUCTION,
         payload: res.data.data,
@@ -151,9 +150,8 @@ export const fetchDataTableIndexIndustrialProduction = async (dispatch) => {
 export const fetchDataIndexConsumptionStorage =
   (industry) => async (dispatch) => {
     try {
-      const res = await macroServices.fetchDataIndexConsumptionStorage(
-        industry
-      );
+      const res =
+        await macroServices.fetchDataIndexConsumptionStorage(industry);
       dispatch({
         type: macroType.FETCH_DATA_INDEX_CONSUMPTION_STORAGE,
         payload: res.data.data,
@@ -168,7 +166,7 @@ export const fetchDataIndexIndustrialProductionByIndustry =
     try {
       const res =
         await macroServices.fetchDataIndexIndustrialProductionByIndustry(
-          industry
+          industry,
         );
       dispatch({
         type: macroType.FETCH_DATA_INDEX_INDUSTRIAL_PRODUCTION_BY_INDUSTRY,
@@ -182,9 +180,8 @@ export const fetchDataIndexIndustrialProductionByIndustry =
 export const fetchDataIndustrialProductionPrimarily =
   (industry) => async (dispatch) => {
     try {
-      const res = await macroServices.fetchDataIndustrialProductionPrimarily(
-        industry
-      );
+      const res =
+        await macroServices.fetchDataIndustrialProductionPrimarily(industry);
       dispatch({
         type: macroType.FETCH_DATA_INDUSTRIAL_PRODUCTION_PRIMARILY,
         payload: res.data.data,
@@ -464,9 +461,8 @@ export const fetchDataTotalRegisteredAndDisbursedCapital =
 export const fetchDataAccumulatedAndTotalInvestment =
   (order) => async (dispatch) => {
     try {
-      const res = await macroServices.fetchDataAccumulatedAndTotalInvestment(
-        order
-      );
+      const res =
+        await macroServices.fetchDataAccumulatedAndTotalInvestment(order);
       dispatch({
         type: macroType.FETCH_DATA_ACCUMULATED_AND_TOTAL_INVESTMENT,
         payload: res.data.data,
@@ -515,7 +511,7 @@ export const fetchDataBondInterestRate = async (dispatch) => {
 };
 
 export const fetchDataTotalOutstandingDebtAndBondInterest = async (
-  dispatch
+  dispatch,
 ) => {
   try {
     const res =

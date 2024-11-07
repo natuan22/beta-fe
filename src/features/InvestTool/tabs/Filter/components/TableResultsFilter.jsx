@@ -7,9 +7,16 @@ import TableStatistical from "./TableResultsFilter/TableStatistical";
 import TableTechnique from "./TableResultsFilter/TableTechnique";
 import "./styles/styleTabs.css";
 import ExportExcel from "./TableResultsFilter/ExportExcel";
-import "./styles/tableFilter.css"
+import "./styles/tableFilter.css";
 
-const TableResultsFilter = ({ filteredResults, watchlists, catchWatchlists, selectedItems, selectParameters, isLogin }) => {
+const TableResultsFilter = ({
+  filteredResults,
+  watchlists,
+  catchWatchlists,
+  selectedItems,
+  selectParameters,
+  isLogin,
+}) => {
   const [activeKey, setActiveKey] = useState("0");
 
   const onChange = (key) => {
@@ -20,22 +27,52 @@ const TableResultsFilter = ({ filteredResults, watchlists, catchWatchlists, sele
     {
       key: "0",
       label: "Kết quả",
-      children: <TableResults isLogin={isLogin} selectParameters={selectParameters} filteredResults={filteredResults} watchlists={watchlists} catchWatchlists={catchWatchlists} selectedItems={selectedItems} />,
+      children: (
+        <TableResults
+          isLogin={isLogin}
+          selectParameters={selectParameters}
+          filteredResults={filteredResults}
+          watchlists={watchlists}
+          catchWatchlists={catchWatchlists}
+          selectedItems={selectedItems}
+        />
+      ),
     },
     {
       key: "1",
       label: "Thống kê",
-      children: <TableStatistical isLogin={isLogin} filteredResults={filteredResults} watchlists={watchlists} catchWatchlists={catchWatchlists} />,
+      children: (
+        <TableStatistical
+          isLogin={isLogin}
+          filteredResults={filteredResults}
+          watchlists={watchlists}
+          catchWatchlists={catchWatchlists}
+        />
+      ),
     },
     {
       key: "2",
       label: "Cơ bản",
-      children: <TableBasic isLogin={isLogin} filteredResults={filteredResults} watchlists={watchlists} catchWatchlists={catchWatchlists} />,
+      children: (
+        <TableBasic
+          isLogin={isLogin}
+          filteredResults={filteredResults}
+          watchlists={watchlists}
+          catchWatchlists={catchWatchlists}
+        />
+      ),
     },
     {
       key: "3",
       label: "Kỹ thuật",
-      children: <TableTechnique isLogin={isLogin} filteredResults={filteredResults} watchlists={watchlists} catchWatchlists={catchWatchlists} />,
+      children: (
+        <TableTechnique
+          isLogin={isLogin}
+          filteredResults={filteredResults}
+          watchlists={watchlists}
+          catchWatchlists={catchWatchlists}
+        />
+      ),
     },
   ];
 
@@ -47,7 +84,7 @@ const TableResultsFilter = ({ filteredResults, watchlists, catchWatchlists, sele
       if (tabsNavList) {
         // Kiểm tra và xóa phần tử div cũ nếu nó tồn tại
         const oldDivElement = tabsNavList.querySelector(
-          "#export-excel-container"
+          "#export-excel-container",
         );
         if (oldDivElement) {
           tabsNavList.removeChild(oldDivElement);
@@ -58,7 +95,13 @@ const TableResultsFilter = ({ filteredResults, watchlists, catchWatchlists, sele
         divElement.id = "export-excel-container"; // Đặt id để nhận diện
         const root = createRoot(divElement);
 
-        root.render(<ExportExcel filteredResults={filteredResults} selectedItems={selectedItems} selectParameters={selectParameters} />);
+        root.render(
+          <ExportExcel
+            filteredResults={filteredResults}
+            selectedItems={selectedItems}
+            selectParameters={selectParameters}
+          />,
+        );
 
         // Thêm phần tử div mới vào danh sách
         tabsNavList.appendChild(divElement);

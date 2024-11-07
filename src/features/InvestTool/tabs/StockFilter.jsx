@@ -89,7 +89,7 @@ const StockFilter = () => {
     let updatedSelectedIndustry;
     if (selectedIndustry.includes(name)) {
       updatedSelectedIndustry = selectedIndustry.filter(
-        (item) => item !== name
+        (item) => item !== name,
       );
     } else {
       updatedSelectedIndustry = [...selectedIndustry, name];
@@ -97,7 +97,7 @@ const StockFilter = () => {
 
     // Kiểm tra xem tất cả các ngành có được chọn không
     const allSelected = Object.keys(hashTbIndustry).every((industry) =>
-      updatedSelectedIndustry.includes(industry)
+      updatedSelectedIndustry.includes(industry),
     );
 
     // Cập nhật trạng thái của nút "Chọn tất cả"
@@ -154,14 +154,14 @@ const StockFilter = () => {
   const handleDelElement = (keyToDelete) => {
     const updatedArr = arrSliderInput.filter((key) => key !== keyToDelete);
     const updateArrCheckbox = arrSliderCheckbox.filter(
-      (key) => key !== keyToDelete
+      (key) => key !== keyToDelete,
     );
     setArrSliderCheckbox(updateArrCheckbox);
     setArrSliderInput(updatedArr);
 
     // Xóa object tương ứng trong mảng filter của formData
     const updatedFilter = formData.filter.filter(
-      (filterItem) => filterItem.key !== keyToDelete
+      (filterItem) => filterItem.key !== keyToDelete,
     );
 
     // Cập nhật formData với mảng filter mới
@@ -170,7 +170,7 @@ const StockFilter = () => {
       filter: updatedFilter,
     });
   };
-  
+
   const toggleKeyInArray = (key) => {
     let updatedArr;
     if (arrSliderCheckbox.includes(key)) {
@@ -186,7 +186,7 @@ const StockFilter = () => {
 
     // Cập nhật formData.filter dựa trên arrSliderCheckbox
     const updatedFilter = formData.filter.filter((filterItem) =>
-      updatedArr.includes(filterItem.key)
+      updatedArr.includes(filterItem.key),
     );
     setFormData({
       ...formData,
@@ -351,7 +351,7 @@ const StockFilter = () => {
                 {/* YOUR FILTER */}
                 <Popover
                   content={
-                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center">
+                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center">
                       <div
                         className="border-solid border-b-2 border-t-0 border-x-0 cursor-pointer"
                         onClick={onClickValueYourFilter}
@@ -451,7 +451,7 @@ const StockFilter = () => {
                 {/* EXCHANGE */}
                 <Popover
                   content={
-                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center">
+                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center">
                       {Object.keys(hashTbExchange).map((exchange, index) => (
                         <label
                           key={index}
@@ -548,7 +548,7 @@ const StockFilter = () => {
                 {/* SAMPLE FILTER */}
                 <Popover
                   content={
-                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center">
+                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center">
                       <div
                         className="border-solid border-b-2 border-t-0 border-x-0 cursor-pointer"
                         onClick={onClickSampleFilter}
@@ -642,7 +642,7 @@ const StockFilter = () => {
                 {/* INDUSTRY */}
                 <Popover
                   content={
-                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center h-[120px]">
+                    <div className="bg-[#034460] text-white overflow-auto scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent border text-center h-[120px]">
                       <label className="material-checkbox py-2 px-2 text-white">
                         <input
                           type="checkbox"

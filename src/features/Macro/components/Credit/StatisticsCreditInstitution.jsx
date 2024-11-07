@@ -1,15 +1,15 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataStatisticsCreditInstitution } from "../../thunk";
 
 const StatisticsCreditInstitution = () => {
   const dispatch = useDispatch();
   const { dataStatisticsCreditInstitution } = useSelector(
-    (state) => state.macro
+    (state) => state.macro,
   );
   const [timeLine, setTimeLine] = useState();
   const [data, setData] = useState();
@@ -112,13 +112,18 @@ const StatisticsCreditInstitution = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   return (
     <>
-      <div className="sm:flex xs:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="sm:flex xs:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold md:text-base sm:text-[13px]">
           Thống kê theo loại hình tổ chức tín dụng
         </span>

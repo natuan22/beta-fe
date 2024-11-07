@@ -1,18 +1,22 @@
 @keyframes filter-ant-skeleton-loading {
-    0% {
-        background-position:100% 50%;
-    }
-    100% {
-        background-position:0 50%;
-    }
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
 .ant-skeleton.ant-skeleton-active .ant-skeleton-input {
-   background: linear-gradient(90deg, rgba(220,220,220, 0.5) 25%, rgba(220,220,220, 0.2) 37%, rgba(220,220,220, 0.5) 63%);
-   background-size: 400% 100%;
-   animation-name: filter-ant-skeleton-loading;
-   animation-duration: 1.4s;
-   animation-timing-function: ease;
-   animation-iteration-count: infinite;
+  background: linear-gradient(
+    90deg,
+    rgba(220, 220, 220, 0.5) 25%,
+    rgba(220, 220, 220, 0.2) 37%,
+    rgba(220, 220, 220, 0.5) 63%
+  );
+  background-size: 400% 100%;
+  animation-name: filter-ant-skeleton-loading;
+  animation-duration: 1.4s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
 }
-

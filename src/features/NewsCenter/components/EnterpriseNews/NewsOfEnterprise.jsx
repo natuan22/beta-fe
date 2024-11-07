@@ -19,7 +19,7 @@ const ExchangeFilterHeader = ({ value, onFilterChange }) => {
     <div>
       <span className="text-white">Sàn:</span>
       <select
-        className={`bg-[#1E5D8B] text-[0.9rem] ml-1.5 text-white border-0 font-bold`}
+        className={`bg-[#0050AD] text-[0.9rem] ml-1.5 text-white border-0 font-bold`}
         value={filterValue}
         onChange={handleFilterChange}
       >
@@ -43,7 +43,7 @@ const TypeEventFilterHeader = ({ value, onFilterChange }) => {
     <div>
       <span className="text-white">Loại sự kiện:</span>
       <select
-        className={`bg-[#1E5D8B] text-[0.9rem] ml-1.5 text-white border-0 font-bold`}
+        className={`bg-[#0050AD] text-[0.9rem] ml-1.5 text-white border-0 font-bold`}
         value={typeEventValue}
         onChange={handleFilterChange}
       >
@@ -155,11 +155,11 @@ const NewsOfEnterprise = () => {
             const response = await https.get(
               `/api/v1/news/event?page=${
                 params.startRow / 10 + 1
-              }&limit=20&exchange=${filterValue}&type=${typeEventValue}`
+              }&limit=20&exchange=${filterValue}&type=${typeEventValue}`,
             );
             params.successCallback(
               response.data.data.list,
-              response.data.data.total_record
+              response.data.data.total_record,
             );
           } catch (error) {
             console.error("Error:", error);

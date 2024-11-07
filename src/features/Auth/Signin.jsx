@@ -38,7 +38,7 @@ const Signin = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.error("Failed:", errorInfo);
   };
 
   useEffect(() => {
@@ -78,6 +78,8 @@ const Signin = () => {
                     ]}
                   >
                     <Input
+                      autoFocus
+                      tabIndex={1}
                       prefix={<UserOutlined className="site-form-item-icon" />}
                       placeholder="Số điện thoại"
                     />
@@ -92,6 +94,7 @@ const Signin = () => {
                     ]}
                   >
                     <Input.Password
+                      tabIndex={2}
                       placeholder="Mật khẩu"
                       prefix={<LockOutlined className="site-form-item-icon" />}
                     />
@@ -117,6 +120,7 @@ const Signin = () => {
                 </p>
                 <Form.Item>
                   <Button
+                    tabIndex={3}
                     type="submit"
                     variant="contained"
                     color="signin"
@@ -203,10 +207,12 @@ const Signin = () => {
                       ]}
                     >
                       <Input
+                        autoFocus
                         prefix={
                           <UserOutlined className="site-form-item-icon" />
                         }
                         placeholder="Số điện thoại"
+                        tabIndex={1}
                       />
                     </Form.Item>
                     <Form.Item
@@ -223,6 +229,7 @@ const Signin = () => {
                         prefix={
                           <LockOutlined className="site-form-item-icon" />
                         }
+                        tabIndex={2}
                       />
                     </Form.Item>
                   </div>
@@ -246,6 +253,7 @@ const Signin = () => {
                   </p>
                   <Form.Item>
                     <Button
+                      tabIndex={3}
                       type="submit"
                       variant="contained"
                       color="signin"

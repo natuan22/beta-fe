@@ -1,10 +1,11 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataCentralRate } from "../../thunk";
 import Loading from "../../../Chart/utils/Loading";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
-import moment from "moment";
+import { fetchDataCentralRate } from "../../thunk";
 
 const CentralRate = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,9 @@ const CentralRate = () => {
     if (dataCentralRate?.length > 0) {
       const uniqueDates = [
         ...new Set(
-          dataCentralRate?.map((item) => moment(item.date).format("DD/MM/YYYY"))
+          dataCentralRate?.map((item) =>
+            moment(item.date).format("DD/MM/YYYY"),
+          ),
         ),
       ];
       setTimeLine(uniqueDates);
@@ -98,6 +101,15 @@ const CentralRate = () => {
         color: localStorage.getItem("color"),
       },
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
   };
 
   return (

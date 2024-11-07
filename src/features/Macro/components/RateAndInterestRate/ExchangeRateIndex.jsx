@@ -45,7 +45,7 @@ const ExchangeRateIndex = () => {
         return (
           <p
             className={`${getColor(
-              record.day_change
+              record.day_change,
             )} text-center font-semibold`}
           >
             {record.day_price.toLocaleString("vi-VN", {
@@ -62,7 +62,7 @@ const ExchangeRateIndex = () => {
         return (
           <p
             className={`${getColor(
-              record.day_change
+              record.day_change,
             )} text-center font-semibold`}
           >
             {record.day_change.toLocaleString("vi-VN", {
@@ -81,7 +81,7 @@ const ExchangeRateIndex = () => {
         return (
           <p
             className={`${getColor(
-              record.month_change
+              record.month_change,
             )} text-center font-semibold`}
           >
             {record.month_price.toLocaleString("vi-VN", {
@@ -98,7 +98,7 @@ const ExchangeRateIndex = () => {
         return (
           <p
             className={`${getColor(
-              record.quarter_change
+              record.quarter_change,
             )} text-center font-semibold`}
           >
             {record.quarter_price.toLocaleString("vi-VN", {
@@ -115,7 +115,7 @@ const ExchangeRateIndex = () => {
         return (
           <p
             className={`${getColor(
-              record.year_change
+              record.year_change,
             )} text-center font-semibold`}
           >
             {record.year_price.toLocaleString("vi-VN", {

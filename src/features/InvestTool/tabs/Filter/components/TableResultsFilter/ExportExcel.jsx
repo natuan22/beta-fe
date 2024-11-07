@@ -25,12 +25,12 @@ const ExportExcel = ({ filteredResults, selectedItems, selectParameters }) => {
       const data = await getApi("/api/v1/filter");
 
       const filteredData = data.filter((item) =>
-        filteredResults.map((item) => item.code).includes(item.code)
+        filteredResults.map((item) => item.code).includes(item.code),
       );
 
       //Xử lý dữ liệu đưa vào sheet
       const sheet1Data = filteredData.map((item) =>
-        prepareData(item, selectedItems, selectParameters)
+        prepareData(item, selectedItems, selectParameters),
       );
       const sheet2Data = filteredData.map(prepareData2);
       const sheet3Data = filteredData.map(prepareData3);
@@ -43,27 +43,27 @@ const ExportExcel = ({ filteredResults, selectedItems, selectParameters }) => {
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet1Title(selectedItems), ...sheet1Data]),
-        "Kết quả"
+        "Kết quả",
       );
       // Tạo sheet 2
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet2Title, ...sheet2Data]),
-        "Thống kê"
+        "Thống kê",
       );
 
       // Tạo sheet 3
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet3Title, ...sheet3Data]),
-        "Cơ bản"
+        "Cơ bản",
       );
 
       // Tạo sheet 4
       XLSX.utils.book_append_sheet(
         workbook,
         XLSX.utils.aoa_to_sheet([sheet4Title, ...sheet4Data]),
-        "Kỹ thuật"
+        "Kỹ thuật",
       );
 
       // Xuất workbook thành file Excel

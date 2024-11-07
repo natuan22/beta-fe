@@ -1,7 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
+import React, { useEffect, useState } from "react";
 import "../styles/average-legend.css";
 
 const ChartLine = ({ stock, data, chartKey }) => {
@@ -9,7 +9,7 @@ const ChartLine = ({ stock, data, chartKey }) => {
   const [dataChart, setDataChart] = useState([]);
   const [dataAverage, setDataAverage] = useState([]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (data?.data?.length > 0) {
       const uniqueDates = [
         ...new Set(
@@ -317,6 +317,7 @@ const ChartLine = ({ stock, data, chartKey }) => {
           color: localStorage.getItem("color"),
           fontSize: "9px",
         },
+        rotation: -45,
       },
       tickInterval: Math.ceil(timeLine?.length / 7),
       tickPositioner: function () {
@@ -345,7 +346,7 @@ const ChartLine = ({ stock, data, chartKey }) => {
             color: localStorage.getItem("color"), // màu cho các nhãn trục y
           },
         },
-        gridLineWidth: 0.5,
+        gridLineWidth: 0.1,
       },
     ],
     legend: {
@@ -368,8 +369,13 @@ const ChartLine = ({ stock, data, chartKey }) => {
         marker: {
           radius: 2,
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     tooltip: {
       shared: true,
       useHTML: true,
@@ -393,11 +399,11 @@ const ChartLine = ({ stock, data, chartKey }) => {
                 <div style="display: flex; align-items: center; margin-bottom: 3px;">
                     <div style="width: 10px; height: 10px; background-color: ${color}; margin-right: 5px;"></div>
                     <span style="color:${color}; width: 65px">${removeParentheses(
-              point.series.name
-            )}</span>
+                      point.series.name,
+                    )}</span>
                     <span style="width: 60px;"><b>${point.y}</b></span>
                     <span><b>${dataAverage[seriesIndex].data[0].toFixed(
-                      1
+                      1,
                     )}</b></span>
                     <br/>
                 </div>`;

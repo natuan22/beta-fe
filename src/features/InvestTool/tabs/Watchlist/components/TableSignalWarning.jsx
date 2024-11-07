@@ -3,7 +3,6 @@ import React from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import Loading from "../../../../Chart/utils/Loading";
 import { getApi } from "../../../../../helper/getApi";
-import { apiUrl } from "../../../../../services/config";
 
 const TableSignalWarning = ({
   data,
@@ -11,6 +10,9 @@ const TableSignalWarning = ({
   loading,
   loadingTb,
 }) => {
+  const rowHeight = 39;
+  const maxHeight = 646;
+
   const rowClassName = (record, index) => {
     if (index % 2 === 0) {
       // Dòng lẻ màu trắng
@@ -20,13 +22,10 @@ const TableSignalWarning = ({
       return "bg-[#d9e9fd] ";
     }
   };
-  
+
   const handleStockClick = async (code) => {
     try {
-      const response = await getApi(
-        apiUrl,
-        `/api/v1/shares/search?key_search=${code}`
-      );
+      const response = await getApi(`/api/v1/shares/search?key_search=${code}`);
       const type = response[0].type;
       const url = `/co-phieu/${code}-${type}`;
       window.open(url, "_blank");
@@ -40,7 +39,7 @@ const TableSignalWarning = ({
       title: "Mã CP",
       dataindex: "code",
       fixed: true,
-      width: 200,
+      width: 180,
       align: "center",
       render: (_, record) => {
         return (
@@ -86,11 +85,16 @@ const TableSignalWarning = ({
               <Table
                 loading={loadingTb}
                 showSorterTooltip={false}
-                scroll={{ x: 1000 }}
                 columns={columns}
                 dataSource={data}
                 rowClassName={rowClassName}
-                pagination={{ defaultPageSize: 10, showSizeChanger: false }}
+                // pagination={{ defaultPageSize: 14, showSizeChanger: false }}
+                scroll={
+                  data.length * rowHeight > maxHeight
+                    ? { y: maxHeight }
+                    : undefined
+                }
+                pagination={false}
               />
             </div>
           ) : (

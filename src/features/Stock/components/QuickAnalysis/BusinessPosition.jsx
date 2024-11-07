@@ -16,7 +16,7 @@ const contentFinancialHealthAnalysis = (
 
 const BusinessPosition = ({ queryApi }) => {
   const { dataBusinessPosition, dataBusinessPositionStatus } = useSelector(
-    (state) => state.stock
+    (state) => state.stock,
   );
   const [showChild, setShowChild] = useState(false);
   const [showChildStates, setShowChildStates] = useState([]);

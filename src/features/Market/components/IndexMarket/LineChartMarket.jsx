@@ -1,7 +1,8 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
+import React from "react";
 import Loading from "../../../Chart/utils/Loading";
 
 const LineChartMarket = (props) => {
@@ -56,12 +57,21 @@ const LineChartMarket = (props) => {
         props.data &&
         props.data?.length &&
         props.data?.map((item) =>
-          moment(item.tradingDate).utc().format(props.fmtDay)
+          moment(item.tradingDate).utc().format(props.fmtDay),
         ),
     },
     legend: {
       enabled: false, // Tắt chú thích
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
   };
 
   return (

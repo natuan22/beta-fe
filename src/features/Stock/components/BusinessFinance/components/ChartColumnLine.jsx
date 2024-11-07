@@ -1,7 +1,9 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
+import React from "react";
 import Loading from "../../../../Chart/utils/Loading";
+import LazyLoad from "react-lazyload";
 
 const ChartColumnLine = ({ data, timeLine }) => {
   const options = {
@@ -72,19 +74,29 @@ const ChartColumnLine = ({ data, timeLine }) => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   return (
     <div>
       {data?.length > 0 ? (
-        <div className="h-[321px]">
-          <HighchartsReact
-            highcharts={Highcharts}
-            options={options}
-            containerProps={{ style: { height: "100%", width: "100%" } }}
-          />
-        </div>
+        <LazyLoad offset={300} debounce={200} once>
+          <div className="h-[321px]">
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={options}
+              containerProps={{ style: { height: "100%", width: "100%" } }}
+            />
+          </div>
+        </LazyLoad>
       ) : (
         <div className="h-[321px] flex items-center justify-center">
           <Loading />

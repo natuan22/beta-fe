@@ -1,17 +1,17 @@
+import { Button, Popover } from "antd";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
-import { Button, Popover } from "antd";
 import { fetchDataAccumulatedAndTotalInvestment } from "../../thunk";
 import "./utils/style/buttonExchange.css";
 
 const AccumulatedAndTotalInvestment = () => {
   const dispatch = useDispatch();
   const { dataAccumulatedAndTotalInvestment } = useSelector(
-    (state) => state.macro
+    (state) => state.macro,
   );
   const [timeLine, setTimeLine] = useState();
   const [data, setData] = useState();
@@ -57,7 +57,7 @@ const AccumulatedAndTotalInvestment = () => {
       }
       uniqueDates = [...new Set(modifiedArray?.map((item) => item.date))];
       sortIndustry = [...new Set(modifiedArray?.map((item) => item.name))].map(
-        (name) => ({ name: name, value: name })
+        (name) => ({ name: name, value: name }),
       );
       setButton(sortIndustry);
       setTimeLine(uniqueDates);
@@ -84,7 +84,7 @@ const AccumulatedAndTotalInvestment = () => {
           });
         }
         const existingLineObj = result.find(
-          (obj) => obj.type === "spline" && obj.name === name
+          (obj) => obj.type === "spline" && obj.name === name,
         );
 
         if (existingLineObj) {
@@ -100,7 +100,7 @@ const AccumulatedAndTotalInvestment = () => {
         }
       });
       const dataFiltered = result.filter((item) =>
-        selectedNames.includes(item.name)
+        selectedNames.includes(item.name),
       );
       setData(dataFiltered);
     }
@@ -109,7 +109,7 @@ const AccumulatedAndTotalInvestment = () => {
   const handleClick = (name) => {
     if (selectedNames.includes(name)) {
       setSelectedNames(
-        selectedNames.filter((selectedName) => selectedName !== name)
+        selectedNames.filter((selectedName) => selectedName !== name),
       );
     } else {
       setSelectedNames([...selectedNames, name]);
@@ -185,8 +185,13 @@ const AccumulatedAndTotalInvestment = () => {
         marker: {
           radius: 2, // Giá trị bán kính marker
         },
+        turboThreshold: 100_000_000,
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     legend: {
       enabled: false,
       align: "center",
@@ -201,7 +206,7 @@ const AccumulatedAndTotalInvestment = () => {
   };
   return (
     <>
-      <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="md:flex sm:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-xs xxs:text-[11px]">
           Lũy kế số dự án cấp mới và tổng vốn đầu tư từ năm 1988
         </span>

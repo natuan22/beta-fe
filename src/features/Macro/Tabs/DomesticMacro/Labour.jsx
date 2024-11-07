@@ -25,7 +25,7 @@ const Labour = () => {
               <div className="grid xl:grid-cols-2 lg:grid-cols-none gap-3">
                 <div>
                   <div>
-                    <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                    <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                       <span className="dark:text-white text-black font-semibold">
                         Lực lượng lao động ( triệu người)
                       </span>
@@ -33,7 +33,7 @@ const Labour = () => {
                     <LaborForce />
                   </div>
                   <div>
-                    <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                    <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                       <span className="dark:text-white text-black font-semibold xs:text-base xxs:text-[15px]">
                         Tỷ lệ thất nghiệp tại các nhóm lao động (%){" "}
                       </span>
@@ -45,7 +45,7 @@ const Labour = () => {
                 <div>
                   <div className="grid xl:grid-cols-2 lg:grid-cols-none gap-3">
                     <div>
-                      <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                      <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                         <span className="dark:text-white text-black font-semibold">
                           Tỷ lệ lao động theo lĩnh vực (%)
                         </span>
@@ -53,7 +53,7 @@ const Labour = () => {
                       <LaborRateBySector />
                     </div>
                     <div>
-                      <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                      <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                         <span className="dark:text-white text-black font-semibold">
                           Tỷ lệ lao động phi chính thức (%)
                         </span>
@@ -63,7 +63,7 @@ const Labour = () => {
                   </div>
                   <div>
                     <div>
-                      <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                      <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                         <span className="dark:text-white text-black font-semibold md:text-base sm:text-[13px] xs:text-[12px] xxs:text-[10px]">
                           Mức lương bình quân trên thị trường lao động (triệu
                           VND/tháng)
@@ -77,7 +77,7 @@ const Labour = () => {
             </div>
             <div className="xl:w-[20%] lg:w-full">
               <div>
-                <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold">
                     Biến động việc làm so với cùng kỳ
                   </span>

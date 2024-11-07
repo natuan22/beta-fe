@@ -1,4 +1,5 @@
 import React from "react";
+import LazyLoad from "react-lazyload";
 import NetVolumeTrade from "../../Chart/components/NetVolumeTrade";
 import CashFlowRatio from "../components/CashFlow/CashFlowRatio";
 import ExchangeableValue from "../components/CashFlow/ExchangeableValue";
@@ -18,26 +19,36 @@ const CashFlow = () => {
             <div className="xl:w-[60%]">
               <div className="grid xs:grid-cols-none md:grid-cols-none lg:grid-cols-2 xl:grid-cols-2">
                 <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                  <LiquidityGrowth />
+                  <LazyLoad offset={300} debounce={200} once>
+                    <LiquidityGrowth />
+                  </LazyLoad>
                 </div>
 
                 <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                  <TransactionValueRatio />
+                  <LazyLoad offset={300} debounce={200} once>
+                    <TransactionValueRatio />
+                  </LazyLoad>
                 </div>
 
                 <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                  <ExchangeableValue />
+                  <LazyLoad offset={300} debounce={200} once>
+                    <ExchangeableValue />
+                  </LazyLoad>
                 </div>
 
                 <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                  <CashFlowRatio />
+                  <LazyLoad offset={300} debounce={200} once>
+                    <CashFlowRatio />
+                  </LazyLoad>
                 </div>
               </div>
             </div>
 
             <div className="xl:w-[40%]">
               <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                <IndustryCashFlow />
+                <LazyLoad offset={300} debounce={200} once>
+                  <IndustryCashFlow />
+                </LazyLoad>
               </div>
             </div>
           </div>
@@ -45,26 +56,34 @@ const CashFlow = () => {
           <div className="lg:block xl:flex">
             <div className="xl:w-[60%]">
               <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                <InvestorTransaction />
+                <LazyLoad offset={300} debounce={200} once>
+                  <InvestorTransaction />
+                </LazyLoad>
               </div>
             </div>
 
             <div className="xl:w-[40%]">
               <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-                <TopCashFlow />
+                <LazyLoad offset={300} debounce={200} once>
+                  <TopCashFlow />
+                </LazyLoad>
               </div>
             </div>
           </div>
 
           <div>
             <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-              <InvestorCashFlow />
+              <LazyLoad offset={300} debounce={200} once>
+                <InvestorCashFlow />
+              </LazyLoad>
             </div>
           </div>
 
           <div>
             <div className="mx-1 my-2 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
-              <NetVolumeTrade />
+              <LazyLoad offset={300} debounce={200} once>
+                <NetVolumeTrade />
+              </LazyLoad>
             </div>
           </div>
         </>

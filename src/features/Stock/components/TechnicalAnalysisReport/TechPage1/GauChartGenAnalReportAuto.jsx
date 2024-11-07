@@ -1,9 +1,10 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HighchartsMore from "highcharts/highcharts-more";
-import "../../../utils/style/triangle.css";
+import React from "react";
 import calculateChartValues from "../../../../../helper/calculateChartValues";
+import "../../../utils/style/triangle.css";
+import LazyLoad from "react-lazyload";
 
 HighchartsMore(Highcharts);
 
@@ -131,6 +132,15 @@ const GauChartGenAnalReportAuto = ({ data }) => {
       center: ["50%", "75%"],
       size: "110%",
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     // the value axis
     yAxis: {
       min: resultMaxMin.min,
@@ -177,13 +187,15 @@ const GauChartGenAnalReportAuto = ({ data }) => {
 
   return (
     <div className="relative">
-      <div className="h-[180px]">
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={options}
-          containerProps={{ style: { height: "100%", width: "100%" } }}
-        />
-      </div>
+      <LazyLoad offset={300} debounce={200} once>
+        <div className="h-[180px]">
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
+            containerProps={{ style: { height: "100%", width: "100%" } }}
+          />
+        </div>
+      </LazyLoad>
       <div className="flex justify-between translate-y-[-35px] z-40">
         <div className="flex flex-col items-center text-red-400 font-semibold">
           <p className="m-0 text-[13px]">Tiêu cực</p>

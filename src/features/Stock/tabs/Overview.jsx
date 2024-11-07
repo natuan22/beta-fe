@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import LazyLoad from "react-lazyload";
 import { DoubleRightOutlined } from "@ant-design/icons";
 import TableTransactionStatistics from "../components/Overview/TableTransactionStatistics";
 import "../utils/style/styleButton.css";
@@ -57,7 +58,7 @@ const Overview = ({ handleTabClick, codeUrl }) => {
       {isLoading ? (
         <div className="mt-4">
           <div>
-            <span className="border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+            <span className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
               <span className="dark:text-white text-black font-semibold uppercase">
                 Thống kê giao dịch
               </span>
@@ -70,13 +71,15 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                 </span>
               </Popover>
             </span>
-            <TableTransactionStatistics codeSearch={queryApi.stock} />
+            <LazyLoad offset={300} debounce={200} once>
+              <TableTransactionStatistics codeSearch={queryApi.stock} />
+            </LazyLoad>
           </div>
           <div>
             <div className="grid xl:grid-cols-2 lg:grid-cols-none mt-8 gap-10">
               <div>
                 <div className="flex">
-                  <div className="w-[115px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+                  <div className="w-[115px] border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                     <span className="dark:text-white text-black font-semibold uppercase">
                       Tài chính
                     </span>
@@ -106,26 +109,34 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                 </div>
 
                 <div>
-                  <BusinessResults queryApi={queryApi} />
+                  <LazyLoad offset={300} debounce={200} once>
+                    <BusinessResults queryApi={queryApi} />
+                  </LazyLoad>
                 </div>
 
                 <div className="xl:mt-[10px] lg:mt-4">
-                  <BalanceSheet queryApi={queryApi} />
+                  <LazyLoad offset={300} debounce={200} once>
+                    <BalanceSheet queryApi={queryApi} />
+                  </LazyLoad>
                 </div>
 
                 <div className="xl:mt-[54.5px] lg:mt-4">
-                  <CashFlow queryApi={queryApi} />
+                  <LazyLoad offset={300} debounce={200} once>
+                    <CashFlow queryApi={queryApi} />
+                  </LazyLoad>
                 </div>
 
                 <div className="xl:mt-[9px] lg:mt-4">
-                  <FinancialIndicators queryApi={queryApi} />
+                  <LazyLoad offset={300} debounce={200} once>
+                    <FinancialIndicators queryApi={queryApi} />
+                  </LazyLoad>
                 </div>
               </div>
 
               <div>
                 <div>
                   <div className="md:flex sm:block">
-                    <div className="w-[317px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+                    <div className="w-[317px] border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                       <span className="dark:text-white text-black font-semibold uppercase">
                         Doanh nghiệp cùng ngành
                       </span>
@@ -167,12 +178,14 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                     </div>
                   </div>
                   <div className="xxs:w-[317px] xs:w-[373px] sm:w-[423px] md:w-full">
-                    <SameIndustry queryApi={queryApiSameIndustry} />
+                    <LazyLoad offset={300} debounce={200} once>
+                      <SameIndustry queryApi={queryApiSameIndustry} />
+                    </LazyLoad>
                   </div>
                 </div>
 
                 <div className="xl:mt-6 lg:mt-4">
-                  <span className="border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+                  <span className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                     <span className="dark:text-white text-black font-semibold uppercase">
                       Lịch sự kiện
                     </span>
@@ -186,20 +199,22 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                     </Popover>
                   </span>
                   <div className="xxs:w-[317px] xs:w-[373px] sm:w-[423px] md:w-full">
-                    <Events codeSearch={queryApi.stock} />
+                    <LazyLoad offset={300} debounce={200} once>
+                      <Events codeSearch={queryApi.stock} />
+                    </LazyLoad>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="mt-4">
-            <div className="sm:w-[373px] xs:w-[200px] xxs:w-[200px] border-solid border-[#34A3F3] border-b-2 border-t-0 border-x-0">
+          {/* <div className="mt-4">
+            <div className="sm:w-[373px] xs:w-[200px] xxs:w-[200px] border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
               <span className="dark:text-white text-black font-semibold uppercase">
                 Hồ sơ doanh nghiệp
               </span>
             </div>
             <div className="h-[344px] bg-[#78898B] mt-4"></div>
-          </div>
+          </div> */}
         </div>
       ) : (
         <div className="h-[300px] flex items-center justify-center">

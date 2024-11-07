@@ -21,8 +21,8 @@ const ChartCKFinancialIndicators = ({ queryApiBusinessFinance }) => {
     dispatch(
       fetchDataChartFinancialIndicators(
         queryApiBusinessFinance.stock,
-        queryApiBusinessFinance.order
-      )
+        queryApiBusinessFinance.order,
+      ),
     );
   }, [dispatch, queryApiBusinessFinance]);
 
@@ -77,7 +77,7 @@ const ChartCKFinancialIndicators = ({ queryApiBusinessFinance }) => {
             const Component = slideObj.component;
             const componentLabels = slideObj.labels;
             const filteredData = data?.filter((item) =>
-              componentLabels.includes(hashTbToFilterData[item.name])
+              componentLabels.includes(hashTbToFilterData[item.name]),
             );
             return (
               <SwiperSlide key={index}>

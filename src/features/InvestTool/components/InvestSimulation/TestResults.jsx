@@ -20,7 +20,7 @@ const TestResults = ({ data }) => {
       <section className="bg-blueGray-50 pt-1.5">
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 break-words bg-transparent w-full rounded">
-            <div className="block w-full scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent">
+            <div className="block w-full scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-x-scroll bg-transparent">
               <table className="items-center w-full border-collapse bg-transparent">
                 <thead className="bg-[#1D5F8D] z-10">
                   <tr>

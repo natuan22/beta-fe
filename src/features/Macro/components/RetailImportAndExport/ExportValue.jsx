@@ -1,11 +1,12 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+
 import moment from "moment";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataExportValue } from "../../thunk";
-import HighchartsReact from "highcharts-react-official";
-import Highcharts from "highcharts";
-import Loading from "../../../Chart/utils/Loading";
 import LegendBtn from "../../../../utils/Component/BtnLegend";
+import Loading from "../../../Chart/utils/Loading";
+import { fetchDataExportValue } from "../../thunk";
 
 const ExportValue = () => {
   const dispatch = useDispatch();
@@ -146,12 +147,19 @@ const ExportValue = () => {
           enabled: false,
         },
       },
+      series: {
+        turboThreshold: 100_000_000,
+      },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   return (
     <div>
-      <div className="flex items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="flex items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold sm:text-base xs:text-sm xxs:text-xs">
           Giá trị xuất khẩu các loại mặt hàng chính
         </span>

@@ -21,7 +21,7 @@ const GDP = () => {
         <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
           <div className="grid xl:grid-cols-2 lg:grid-cols-none gap-3">
             <div>
-              <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+              <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black font-semibold md:text-base sm:text-[15px] xs:text-[15px] xxs:text-[13px]">
                   Giá trị GDP theo các nhóm ngành chính (Tỷ đồng)
                 </span>
@@ -29,7 +29,7 @@ const GDP = () => {
               <GDPByIndustry />
             </div>
             <div>
-              <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+              <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                 <span className="dark:text-white text-black font-semibold md:text-base sm:text-[15px] xs:text-[15px] xxs:text-[13px]">
                   GDP theo giá cố định và giá hiện hành (Tỷ đồng)
                 </span>
@@ -41,7 +41,7 @@ const GDP = () => {
           <div className="grid xl:grid-cols-2 lg:grid-cols-none gap-3 mt-1">
             <div>
               <div>
-                <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0 mt-[3px]">
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0 mt-[3px]">
                   <span className="dark:text-white text-black font-semibold md:text-base sm:text-[15px] xs:text-[13px] xxs:text-[11px]">
                     Tỷ trọng đóng góp GDP theo các nhóm ngành chính (%)
                   </span>
@@ -49,7 +49,7 @@ const GDP = () => {
                 <GDPContributionRatio />
               </div>
               <div className="mt-1">
-                <div className="border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+                <div className="border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
                   <span className="dark:text-white text-black font-semibold md:text-base sm:text-[15px] xs:text-[15px] xxs:text-[14px]">
                     Tăng trưởng GDP theo từng ngành nghề (%)
                   </span>

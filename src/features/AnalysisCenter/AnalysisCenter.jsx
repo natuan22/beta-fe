@@ -21,8 +21,6 @@ const AnalysisCenter = () => {
     }
   }, [location]);
 
-  
-
   return (
     <LayOut>
       <div>

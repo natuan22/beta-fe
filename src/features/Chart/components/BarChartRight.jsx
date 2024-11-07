@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import socket from "../utils/socket";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDataBarChartRight } from "../thunk";
 import Loading from "../utils/Loading";
+import socket from "../utils/socket";
 
 const BarChartRight = () => {
   const dispatch = useDispatch();
   const dataBarChartRight = useSelector(
-    (state) => state.chart.dataBarChartRight
+    (state) => state.chart.dataBarChartRight,
   );
   const [data, setData] = useState(dataBarChartRight?.data ?? []);
   const [colorText, setColorText] = useState(localStorage.getItem("color"));
@@ -38,7 +38,7 @@ const BarChartRight = () => {
   const conSocket = (key) => {
     socket.on(`listen-top-foreign-${key}`, (newData) => {
       setData(
-        newData.sort((a, b) => b.net_value_foreign - a.net_value_foreign)
+        newData.sort((a, b) => b.net_value_foreign - a.net_value_foreign),
       );
     });
   };
@@ -79,11 +79,11 @@ const BarChartRight = () => {
       },
       min: Math.min(
         ...data?.map((item) => item.net_value_foreign / 1000000000),
-        0
+        0,
       ),
       max: Math.max(
         ...data?.map((item) => item.net_value_foreign / 1000000000),
-        0
+        0,
       ),
       gridLineWidth: 0.1,
     },
@@ -109,6 +109,10 @@ const BarChartRight = () => {
         );
       },
     },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     plotOptions: {
       column: {
         dataLabels: {
@@ -125,6 +129,7 @@ const BarChartRight = () => {
       },
       series: {
         borderRadius: 2,
+        turboThreshold: 100_000_000,
       },
     },
     series: [
@@ -143,12 +148,12 @@ const BarChartRight = () => {
 
   return (
     <>
-      <div className="h-[29px]">
+      <div>
         <span className="font-semibold uppercase text-sm dark:text-white text-black">
           Top nước ngoài mua bán ròng
         </span>
         <select
-          className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#0097B2]`}
+          className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#007dc6]`}
           onChange={(event) => {
             disconnectSocket(socketOld);
             setQuery(event.target.value);

@@ -52,7 +52,7 @@ const PopUpOTP = ({ open, userID }) => {
         `${apiUrl}/api/v1/auth/verify-otp/${userID}`,
         {
           verifyOTP,
-        }
+        },
       );
       // console.log(response);
       setIsOpen(false);

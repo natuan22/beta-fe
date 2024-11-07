@@ -9,14 +9,16 @@
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   outline: none;
   font-size: 15px;
 }
 
 .custom-btn {
-  width: 80px;
+  width: 85px;
   height: 30px;
   color: white;
   border-radius: 10px;
@@ -26,8 +28,10 @@
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   outline: none;
   font-size: 15px;
 }
@@ -35,7 +39,7 @@
 .btn-2 {
   border-radius: 10px;
   border: 1.65px solid #000;
-  background: #004A9E;
+  background: #0050ad;
   box-shadow: 0px 6.60156px 6.60156px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
@@ -45,14 +49,15 @@
 }
 
 .btn-2:hover {
-  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+  box-shadow:
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
 .active-btn {
   border-radius: 10px;
   border: 1.65px solid #000;
-  background: #FF7317;
+  background: #ff7317;
   box-shadow: 0px 6.60156px 6.60156px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
@@ -62,7 +67,8 @@
 }
 
 .active-btn:hover {
-  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+  box-shadow:
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
@@ -77,16 +83,18 @@
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   outline: none;
   font-size: 14px;
 }
 
 .statementsCashFlows-btn-2 {
-  background: #FFF7D4;
-  background: linear-gradient(0deg, #FFF7D4 0%, #FFF7D4 100%);
-  border: solid 5px #0E79F5;
+  background: #fff7d4;
+  background: linear-gradient(0deg, #fff7d4 0%, #fff7d4 100%);
+  border: solid 4px #0e79f5;
 }
 
 .btn-2:before {
@@ -95,7 +103,8 @@
 }
 
 .statementsCashFlows-btn-2:hover {
-  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+  box-shadow:
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
@@ -103,8 +112,9 @@
   background: #000000;
   color: white;
   background: linear-gradient(0deg, #000000 0%, #000000 100%);
-  border: solid 5px #0E79F5;
-  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+  border: solid 4px #0e79f5;
+  box-shadow:
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
@@ -114,6 +124,7 @@
 }
 
 .statementsCashFlows-active-btn:hover {
-  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+  box-shadow:
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }

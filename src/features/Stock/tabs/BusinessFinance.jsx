@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import StatementsCashFlows from "../components/BusinessFinance/StatementsCashFlows";
-import BusinessReport from "../components/BusinessFinance/BusinessReport";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import React, { useState } from "react";
 import BalanceSheet from "../components/BusinessFinance/BalanceSheet";
+import BusinessReport from "../components/BusinessFinance/BusinessReport";
 import FinancialIndicators from "../components/BusinessFinance/FinancialIndicators";
+import StatementsCashFlows from "../components/BusinessFinance/StatementsCashFlows";
 
 const BusinessFinance = ({ codeUrl }) => {
   const [activeTab, setActiveTab] = useState("0");
@@ -39,7 +39,7 @@ const BusinessFinance = ({ codeUrl }) => {
                     borderRadius: "10px",
                   },
                   "& .MuiButtonBase-root .MuiTouchRipple-root": {
-                    backgroundColor: "#1D5F8D",
+                    backgroundColor: "#0050AD",
                     height: "200px",
                     zIndex: "-1",
                   },

@@ -11,7 +11,7 @@ import ChartPie from "../../components/ChartPie";
 const ChartCTCPBalanceSheet = ({ queryApiBusinessFinance }) => {
   const dispatch = useDispatch();
   const { dataChartBalanceSheet, dataChartPieBalanceSheet } = useSelector(
-    (state) => state.stock
+    (state) => state.stock,
   );
   const [timeLine, setTimeLine] = useState();
   const [data, setData] = useState();
@@ -22,14 +22,14 @@ const ChartCTCPBalanceSheet = ({ queryApiBusinessFinance }) => {
     dispatch(
       fetchDataChartBalanceSheet(
         queryApiBusinessFinance.stock,
-        queryApiBusinessFinance.order
-      )
+        queryApiBusinessFinance.order,
+      ),
     );
     dispatch(
       fetchDataChartPieBalanceSheet(
         queryApiBusinessFinance.stock,
-        queryApiBusinessFinance.order
-      )
+        queryApiBusinessFinance.order,
+      ),
     );
   }, [dispatch, queryApiBusinessFinance]);
 

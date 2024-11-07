@@ -7,7 +7,7 @@ export const fecthDataTableThanhKhoan =
       const res = await marketServices.fetchTableThanhKhoanData(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_TABLE_THANH_KHOAN,
@@ -24,7 +24,7 @@ export const fetchChartTickerContribute =
       const res = await marketServices.fetchChartTickerContribute(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_TICKER_CONTRIBUTE,
@@ -52,7 +52,7 @@ export const fetchDataInvestorTransaction =
     try {
       const res = await marketServices.fetchDataInvestorTransaction(
         type,
-        investorType
+        investorType,
       );
       dispatch({
         type: marketType.FETCH_DATA_INVESTOR_TRANSACTION,
@@ -153,7 +153,7 @@ export const fetchDataIndustryCashFlow =
     try {
       const res = await marketServices.fetchDataIndustryCashFlow(
         exchange,
-        type
+        type,
       );
       dispatch({
         type: marketType.FETCH_DATA_INDUSTRY_CASH_FLOW,
@@ -181,7 +181,7 @@ export const fetchDataTopNetBuyIndustry =
     try {
       const res = await marketServices.fetchDataTopNetBuyIndustry(
         exchange,
-        type
+        type,
       );
       dispatch({
         type: marketType.FETCH_DATA_TOP_NET_BUY_INDUSTRY,
@@ -198,7 +198,7 @@ export const fetchDataCashFlowInvestor =
       const res = await marketServices.fetchDataCashFlowInvestor(
         type,
         investorType,
-        exchange
+        exchange,
       );
       dispatch({
         type: marketType.FETCH_DATA_CASHFLOW_INVESTOR,
@@ -238,7 +238,7 @@ export const fetchDataTableChangesPrice =
     try {
       const res = await marketServices.fetchDataTableChangesPrice(
         exchange,
-        industry
+        industry,
       );
       dispatch({
         type: marketType.FETCH_DATA_TABLE_CHANGES_PRICE,
@@ -254,7 +254,7 @@ export const fetchDataTableLiquidityGrowth =
     try {
       const res = await marketServices.fetchDataTableLiquidityGrowth(
         exchange,
-        industry
+        industry,
       );
       dispatch({
         type: marketType.FETCH_DATA_TABLE_LIQUIDITY_GROWTH,
@@ -271,7 +271,7 @@ export const fetchDataChartLiquidityGrowth =
       const res = await marketServices.fetchDataChartLiquidityGrowth(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_LIQUIDITYGROWTH,
@@ -288,7 +288,7 @@ export const fetchDataChartChangesPrice =
       const res = await marketServices.fetchDataChartChangesPrice(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_CHANGES_PRICE,
@@ -305,7 +305,7 @@ export const fetchDataChartEquityGrowth =
       const res = await marketServices.fetchDataChartEquityGrowth(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_EQUITY_GROWTH,
@@ -322,7 +322,7 @@ export const fetchDataChartLiabilitiesGrowth =
       const res = await marketServices.fetchDataChartLiabilitiesGrowth(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_LIABILITIES_GROWTH,
@@ -338,7 +338,7 @@ export const fetchDataTableEquityGrowth =
     try {
       const res = await marketServices.fetchDataTableEquityGrowth(
         exchange,
-        industry
+        industry,
       );
       dispatch({
         type: marketType.FETCH_DATA_TABLE_EQUITY_GROWTH,
@@ -354,7 +354,7 @@ export const fetchDataTableLiabilitiesGrowth =
     try {
       const res = await marketServices.fetchDataTableLiabilitiesGrowth(
         exchange,
-        industry
+        industry,
       );
       dispatch({
         type: marketType.FETCH_DATA_TABLE_LIABILITIES_GROWTH,
@@ -371,7 +371,7 @@ export const fetchDataChartNetRevenueGrowth =
       const res = await marketServices.fetchDataChartNetRevenueGrowth(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_NET_REVENUE_GROWTH,
@@ -388,7 +388,7 @@ export const fetchDataChartGrossProfitGrowth =
       const res = await marketServices.fetchDataChartGrossProfitGrowth(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_GROSS_PROFIT_GROWTH,
@@ -405,7 +405,7 @@ export const fetchDataChartEBITDAGrowth =
       const res = await marketServices.fetchDataChartEBITDAGrowth(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_EBITDA_GROWTH,
@@ -422,7 +422,7 @@ export const fetchDataChartEPSGrowth =
       const res = await marketServices.fetchDataChartEPSGrowth(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_EPS_GROWTH,
@@ -439,7 +439,7 @@ export const fetchDataChartOperatingProfitGrowth =
       const res = await marketServices.fetchDataChartOperatingProfitGrowth(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_OPERATING_PROFIT_GROWTH,
@@ -456,7 +456,7 @@ export const fetchDataChartCashDividendGrowth =
       const res = await marketServices.fetchDataChartCashDividendGrowth(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_CASH_DIVIDEND_GROWTH,
@@ -485,7 +485,7 @@ export const fetchDataChartAveragePE =
       const res = await marketServices.fetchDataChartAveragePE(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_AVERAGE_PE,
@@ -501,7 +501,7 @@ export const fetchDataChartAveragePB =
       const res = await marketServices.fetchDataChartAveragePB(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_AVERAGE_PB,
@@ -516,7 +516,7 @@ export const fetchDataTableAveragePE =
     try {
       const res = await marketServices.fetchDataTableAveragePE(
         exchange,
-        industry
+        industry,
       );
       dispatch({
         type: marketType.FETCH_DATA_TABLE_AVERAGE_PE,
@@ -532,7 +532,7 @@ export const fetchDataTableAveragePB =
     try {
       const res = await marketServices.fetchDataTableAveragePB(
         exchange,
-        industry
+        industry,
       );
       dispatch({
         type: marketType.FETCH_DATA_TABLE_AVERAGE_PB,
@@ -548,7 +548,7 @@ export const fetchDataChartPayoutRatio =
     try {
       const res = await marketServices.fetchDataChartPayoutRatio(
         exchange,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_PAYOUT_RATIO,
@@ -564,7 +564,7 @@ export const fetchDataChartCashPayoutRatio =
     try {
       const res = await marketServices.fetchDataChartCashPayoutRatio(
         exchange,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_CASH_PAYOUT_RATIO,
@@ -580,7 +580,7 @@ export const fetchDataChartAssetTurnoverRatio =
     try {
       const res = await marketServices.fetchDataChartAssetTurnoverRatio(
         exchange,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_ASSET_TURNOVER_RATIO,
@@ -596,7 +596,7 @@ export const fetchDataTableAverageDebtRatio =
     try {
       const res = await marketServices.fetchDataTableAverageDebtRatio(
         exchange,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_TABLE_AVERAGE_DEBT_RATIO,
@@ -613,7 +613,7 @@ export const fetchDataChartMiningProfitMargin =
       const res = await marketServices.fetchDataChartMiningProfitMargin(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_MINING_PROFIT_MARGIN,
@@ -630,7 +630,7 @@ export const fetchDataChartInterestCoverageRatio =
       const res = await marketServices.fetchDataChartInterestCoverageRatio(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_INTEREST_COVERAGE_RATIO,
@@ -647,7 +647,7 @@ export const fetchDataChartAverageDebitIndustry =
       const res = await marketServices.fetchDataChartAverageDebitIndustry(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_AVERAGE_DEBIT_INDUSTRY,
@@ -664,7 +664,7 @@ export const fetchDataChartNetProfitMargin =
       const res = await marketServices.fetchDataChartNetProfitMargin(
         exchange,
         type,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_CHART_NET_PROFIT_MARGIN,
@@ -680,7 +680,7 @@ export const fetchDataTableMiningProfitMargin =
     try {
       const res = await marketServices.fetchDataTableMiningProfitMargin(
         exchange,
-        order
+        order,
       );
       dispatch({
         type: marketType.FETCH_DATA_TABLE_MINING_PROFIT_MARGIN,

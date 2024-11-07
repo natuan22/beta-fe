@@ -36,7 +36,7 @@ export const fetchDataFinancialIndicators =
       const res = await stockService.fetchDataFinancialIndicators(
         stock,
         order,
-        type
+        type,
       );
       dispatch({
         type: stockType.FETCH_DATA_FINANCIAL_INDICATORS,
@@ -52,7 +52,7 @@ export const fetchDataBusinessResults =
       const res = await stockService.fetchDataBusinessResults(
         stock,
         order,
-        type
+        type,
       );
       dispatch({
         type: stockType.FETCH_DATA_BUSINESS_RESULTS,
@@ -227,7 +227,7 @@ export const fetchDataTableStatementsCashFlows =
     try {
       const res = await stockService.fetchDataTableStatementsCashFlows(
         stock,
-        order
+        order,
       );
       dispatch({
         type: stockType.FETCH_DATA_TABLE_STATEMENTS_CASH_FLOWS,
@@ -243,7 +243,7 @@ export const fetchDataChartStatementsCashFlows =
     try {
       const res = await stockService.fetchDataChartStatementsCashFlows(
         stock,
-        order
+        order,
       );
       dispatch({
         type: stockType.FETCH_DATA_CHART_STATEMENTS_CASH_FLOWS,
@@ -323,7 +323,7 @@ export const fetchDataChartPieBalanceSheet =
     try {
       const res = await stockService.fetchDataChartPieBalanceSheet(
         stock,
-        order
+        order,
       );
       dispatch({
         type: stockType.FETCH_DATA_CHART_PIE_BALANCE_SHEET,
@@ -339,7 +339,7 @@ export const fetchDataTableFinancialIndicators =
     try {
       const res = await stockService.fetchDataTableFinancialIndicators(
         stock,
-        order
+        order,
       );
       dispatch({
         type: stockType.FETCH_DATA_TABLE_FINANCIAL_INDICATORS,
@@ -355,7 +355,7 @@ export const fetchDataChartFinancialIndicators =
     try {
       const res = await stockService.fetchDataChartFinancialIndicators(
         stock,
-        order
+        order,
       );
       dispatch({
         type: stockType.FETCH_DATA_CHART_FINANCIAL_INDICATORS,
@@ -517,9 +517,8 @@ export const fetchDataInfoStock = (stock) => async (dispatch) => {
 export const fetchDataPriceFluctuationCorrelation =
   (stock) => async (dispatch) => {
     try {
-      const res = await stockService.fetchDataPriceFluctuationCorrelation(
-        stock
-      );
+      const res =
+        await stockService.fetchDataPriceFluctuationCorrelation(stock);
       dispatch({
         type: stockType.FETCH_DATA_PRICE_FLUCTUATION_CORRELATION,
         payload: res.data.data,

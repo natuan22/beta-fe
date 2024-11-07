@@ -1,8 +1,9 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HighchartsMore from "highcharts/highcharts-more";
+import React from "react";
 import calculateChartValues from "../../../../../helper/calculateChartValues";
+import LazyLoad from "react-lazyload";
 
 HighchartsMore(Highcharts);
 
@@ -151,6 +152,15 @@ const GauChart = ({ data }) => {
       lineWidth: 0,
       plotBands: colorBands,
     },
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: [
       {
         name: "",

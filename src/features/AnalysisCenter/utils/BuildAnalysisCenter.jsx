@@ -5,7 +5,7 @@ import Loading from "../../Chart/utils/Loading";
 
 const BuildAnalysisCenter = () => {
   const dataAnalysisCenter = useSelector(
-    (state) => state.analysisCenter.dataAnalysisCenter
+    (state) => state.analysisCenter.dataAnalysisCenter,
   );
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -26,7 +26,7 @@ const BuildAnalysisCenter = () => {
 
   return (
     <div className="grid xl:grid-cols-5 lg:grid-cols-none">
-      <div className="xl:col-span-2 h-[800px] scrollbar-thin scrollbar-thumb-[#436FB5] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll">
+      <div className="xl:col-span-2 h-[800px] scrollbar-thin scrollbar-thumb-[#0050AD] dark:scrollbar-track-[#151924] scrollbar-track-transparent overflow-y-scroll">
         {loading ? (
           <div className="h-[800px] flex items-center justify-center">
             <Loading />
@@ -53,7 +53,7 @@ const BuildAnalysisCenter = () => {
                       />
                     </div>
                     <div className="w-[80%]">
-                      <div className="text-[#2094c5] font-semibold px-2 py-1">
+                      <div className="text-[#77b7ff] font-semibold px-2 py-1">
                         {item.title}
                       </div>
                       <div className="dark:text-white text-black font-medium text-sm px-2 py-1">
@@ -72,7 +72,7 @@ const BuildAnalysisCenter = () => {
                       />
                     </div>
                     <div className="w-[80%]">
-                      <div className="text-[#2094c5] font-semibold px-2 py-1">
+                      <div className="text-[#77b7ff] font-semibold px-2 py-1">
                         {item.title}
                       </div>
                       <div className="dark:text-white text-black font-medium text-sm px-2 py-1">

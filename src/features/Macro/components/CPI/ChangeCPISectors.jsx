@@ -1,8 +1,8 @@
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataChangeCPISectors } from "../../thunk";
 
@@ -42,7 +42,7 @@ const ChangeCPISectors = () => {
       transformedData?.forEach((item) => {
         const colorArr = ["#00B4D8", "#0077B6"];
         const existingItem = mappedData.find(
-          (mappedItem) => mappedItem.name === item.date
+          (mappedItem) => mappedItem.name === item.date,
         );
 
         if (existingItem) {
@@ -129,12 +129,20 @@ const ChangeCPISectors = () => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   return (
     <>
-      <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+      <div className="md:flex sm:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
         <span className="dark:text-white text-black font-semibold xs:text-base xxs:text-sm">
           Thay đổi CPI các lĩnh vực của nền kinh tế{" "}
         </span>

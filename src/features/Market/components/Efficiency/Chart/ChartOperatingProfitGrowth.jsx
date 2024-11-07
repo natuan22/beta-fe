@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../../../../Chart/utils/Loading";
 import FilterIndusty from "../../../utils/components/FilterIndusty";
 
 const ChartOperatingProfitGrowth = (props) => {
   const { dataChartOperatingProfitGrowth } = useSelector(
-    (state) => state.market
+    (state) => state.market,
   );
   const [data, setData] = useState();
   const [category, setCategory] = useState();
@@ -32,7 +32,7 @@ const ChartOperatingProfitGrowth = (props) => {
         ...new Set(
           transformedData
             .filter((item) => industryQuery.includes(item.industry))
-            .map((item) => item.industry)
+            .map((item) => item.industry),
         ),
       ];
       const mappedData = [];
@@ -62,7 +62,7 @@ const ChartOperatingProfitGrowth = (props) => {
             " #72C7EC",
           ];
           const existingItem = mappedData.find(
-            (mappedItem) => mappedItem.name === item.date
+            (mappedItem) => mappedItem.name === item.date,
           );
 
           if (existingItem) {
@@ -152,7 +152,15 @@ const ChartOperatingProfitGrowth = (props) => {
         color: localStorage.getItem("color"),
       },
     },
-
+    plotOptions: {
+      series: {
+        turboThreshold: 100_000_000,
+      },
+    },
+    // boost: {
+    //   useGPUTranslations: true,
+    //   usePreAllocated: true,
+    // },
     series: data,
   };
   const handleSelectedNamesChange = (selectedNames) => {
@@ -162,7 +170,7 @@ const ChartOperatingProfitGrowth = (props) => {
     <div>
       {dataChartOperatingProfitGrowth.length ? (
         <div>
-          <div className="md:flex sm:block items-center justify-between border-solid border-[#436FB5] border-b-2 border-t-0 border-x-0">
+          <div className="md:flex sm:block items-center justify-between border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
             <span className="dark:text-white text-black font-semibold md:text-base sm:text-sm xs:text-[13px] xxs:text-[11px]">
               Tăng trưởng lợi nhuận hoạt động các ngành qua từng kỳ (%)
             </span>
