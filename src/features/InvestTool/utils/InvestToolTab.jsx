@@ -55,7 +55,7 @@ const InvestToolTab = () => {
           >
             Chiến lược giao dịch
           </NavLink>
-          <NavLink
+          {/* <NavLink
             className={(params) => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
@@ -66,7 +66,7 @@ const InvestToolTab = () => {
             to="/cong-cu-dau-tu/beta-smart"
           >
             BETA SMART
-          </NavLink>
+          </NavLink> */}
           <NavLink
             className={(params) => {
               if (params.isActive) {
@@ -134,7 +134,7 @@ const InvestToolTab = () => {
           >
             Chiến lược giao dịch
           </NavLink>
-          <NavLink
+          {/* <NavLink
             className={(params) => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
@@ -145,7 +145,7 @@ const InvestToolTab = () => {
             to="/cong-cu-dau-tu/beta-smart"
           >
             BETA SMART
-          </NavLink>
+          </NavLink> */}
           <NavLink
             className={(params) => {
               if (params.isActive) {

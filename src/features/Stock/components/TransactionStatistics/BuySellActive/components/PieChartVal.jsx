@@ -9,53 +9,32 @@ const PieChartVal = ({ data }) => {
   const [hasData, setHasData] = useState(false);
 
   const isValidData = (buyData, sellData) => {
-    return (
-      [buyData.large, buyData.medium, buyData.small].every((val) => val >= 0) &&
-      [sellData.large, sellData.medium, sellData.small].every((val) => val >= 0)
-    );
+    return ([buyData?.large, buyData?.medium, buyData?.small].every((val) => val >= 0) && 
+            [sellData?.large, sellData?.medium, sellData?.small].every((val) => val >= 0));
   };
 
   useEffect(() => {
-    if (!data) {
+    if (!data || !data.totals) {
       setHasData(false);
       return;
     }
 
+    const { buy = {}, sell = {} } = data.totals;
     const totalVal = data?.totalBuyVal + data?.totalSellVal;
 
     // Kiểm tra tính hợp lệ của dữ liệu
-    if (isValidData(data.buyValData || {}, data.sellValData || {})) {
+    if (isValidData(buy, sell)) {
       const createDataPie = (buyOrSellData, colorSet) => {
         return [
-          {
-            name: "Lớn",
-            y: (buyOrSellData.large / totalVal) * 100,
-            color: colorSet[0],
-          },
-          {
-            name: "Trung bình",
-            y: (buyOrSellData.medium / totalVal) * 100,
-            color: colorSet[1],
-          },
-          {
-            name: "Nhỏ",
-            y: (buyOrSellData.small / totalVal) * 100,
-            color: colorSet[2],
-          },
+          { name: "Lớn",        y: (buyOrSellData.large  / totalVal) * 100, color: colorSet[0] },
+          { name: "Trung bình", y: (buyOrSellData.medium / totalVal) * 100, color: colorSet[1] },
+          { name: "Nhỏ",        y: (buyOrSellData.small  / totalVal) * 100, color: colorSet[2] },
         ];
       };
-
-      const dataPieSell = createDataPie(data.sellValData, [
-        "#d34037",
-        "#812a24",
-        "#572724",
-      ]);
-      const dataPieBuy = createDataPie(data.buyValData, [
-        "#00d060",
-        "#0c7640",
-        "#144d31",
-      ]);
-
+    
+      const dataPieSell = createDataPie(sell, ["#d34037", "#812a24", "#572724"]);
+      const dataPieBuy = createDataPie(buy, ["#00d060", "#0c7640", "#144d31"]);
+    
       const combinedDataPie = [...dataPieSell, ...dataPieBuy];
 
       setDataPie(combinedDataPie);
@@ -77,11 +56,7 @@ const PieChartVal = ({ data }) => {
         cursor: "pointer",
         dataLabels: {
           enabled: true,
-          formatter: function () {
-            return this.y !== 0
-              ? `${formatNumberCurrency(this.percentage)}%`
-              : null;
-          },
+          formatter: function () { return this.y !== 0 ? `${formatNumberCurrency(this.percentage)}%` : null },
           connector: { enabled: true, lineWidth: 0.5 },
           distance: 4,
           style: {
@@ -120,7 +95,7 @@ const PieChartVal = ({ data }) => {
   return (
     <div>
       {hasData ? (
-        <div className="h-[335px]">
+        <div className="h-[313px]">
           <PieChart
             highcharts={Highcharts}
             options={options}
@@ -128,7 +103,7 @@ const PieChartVal = ({ data }) => {
           />
         </div>
       ) : (
-        <div className="h-[329px] text-center mt-5 font-semibold dark:text-white text-black">
+        <div className="h-[297px] text-center mt-5 font-semibold dark:text-white text-black">
           Chưa có dữ liệu giao dịch
         </div>
       )}

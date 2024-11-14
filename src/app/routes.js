@@ -66,7 +66,7 @@ export const investToolRoutes = [
       { path: "bo-loc", component: Filter },
       { path: "canh-bao-tin-hieu", component: SignalWarning },
       { path: "chien-luoc-giao-dich", component: TradingStrategies },
-      { path: "beta-smart", component: BetaSmart },
+      // { path: "beta-smart", component: BetaSmart },
       { path: "kien-thuc-dau-tu", component: InvestKnowledge },
     ],
   },
