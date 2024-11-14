@@ -1,5 +1,6 @@
 .form-auth .ant-input-outlined {
   background: transparent;
+  color: white;
 }
 
 .form-auth .ant-input-affix-wrapper {
@@ -17,6 +18,10 @@
 .form-auth .ant-input::placeholder {
   color: white;
   opacity: 0.5;
+}
+
+.form-auth .ant-form-item {
+  margin-bottom: 44px;
 }
 
 .form-auth input:-webkit-autofill,
