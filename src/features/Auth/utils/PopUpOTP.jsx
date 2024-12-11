@@ -54,7 +54,6 @@ const PopUpOTP = ({ open, userID }) => {
           verifyOTP,
         },
       );
-      // console.log(response);
       setIsOpen(false);
       warning("Đăng ký thành công");
       setTimeout(() => {

@@ -11,9 +11,41 @@ const Events = ({ queryApiNewsEvents }) => {
 
   useEffect(() => {
     dispatch(
-      fetchDataNewsAndEvents(queryApiNewsEvents.stock, queryApiNewsEvents.type),
+      fetchDataNewsAndEvents(queryApiNewsEvents.stock, queryApiNewsEvents.type)
     );
   }, [dispatch, queryApiNewsEvents]);
+
+  useEffect(() => {
+    // Hàm thêm style trực tiếp vào các phần tử có class 'ant-dropdown'
+    const applyCustomStyles = () => {
+      const dropdowns = document.querySelectorAll(".ant-dropdown-menu-light");
+      dropdowns.forEach((dropdown) => {
+        dropdown.style.removeProperty("background-color");
+        // Áp dụng các style trực tiếp nếu chưa có
+        if (!dropdown.style.getPropertyValue("inset")) {
+          dropdown.style.setProperty("background-color", "white", "important");
+        }
+      });
+    };
+
+    // Gọi hàm applyCustomStyles lần đầu tiên khi component mount
+    applyCustomStyles();
+
+    // Nếu bạn muốn lắng nghe sự thay đổi DOM (khi phần tử mới xuất hiện)
+    const observer = new MutationObserver(applyCustomStyles);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Dọn dẹp observer và xóa style khi component unmount
+    return () => {
+      const dropdowns = document.querySelectorAll(".ant-dropdown-menu-light");
+      dropdowns.forEach((dropdown) => {
+        // Xóa style khi component unmount
+        dropdown.style.removeProperty("background-color");
+      });
+      // Dừng việc quan sát DOM khi component unmount
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (dataNewsAndEvents) {

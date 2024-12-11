@@ -16,7 +16,6 @@ export const fetchRangeMinMax = () => async (dispatch) => {
 export const fetchDataStockFilter = (formData) => async (dispatch) => {
   try {
     const res = await investToolService.fetchDataStockFilter(formData);
-    // console.log(res.data.data)
     dispatch({
       type: investToolType.FETCH_DATA_STOCK_FILTER,
       payload: res.data.data,
@@ -38,15 +37,15 @@ export const fetchStockList = (stock) => async (dispatch) => {
   }
 };
 
-export const fetchDataInvestSimulation = (formData) => async (dispatch) => {
+export const fetchDataCateInvestKnowledge = () => async (dispatch) => {
   try {
-    const res = await investToolService.fetchDataInvestSimulation(formData);
-    // console.log(res.data.data)
+    const res = await investToolService.fetchDataCateInvestKnowledge();
     dispatch({
-      type: investToolType.FETCH_DATA_INVEST_SIMULATION,
+      type: investToolType.FETCH_DATA_CATE_INVEST_KNOWLEDGE,
       payload: res.data.data,
     });
   } catch (err) {
     console.error(err);
   }
 };
+

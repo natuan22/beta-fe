@@ -64,57 +64,62 @@ const QuickAnalysis = ({ codeUrl }) => {
                 </div>
               </div>
             </div> */}
-            <div className="xl:flex lg:block py-2 items-center justify-center gap-10">
-              <div>
-                <LazyLoad offset={300} debounce={200} once>
-                  <SpiderWebChart queryApi={queryApi} />
-                </LazyLoad>
+            <div className="relative">
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                <p className="text-black dark:text-white text-3xl font-semibold">Dữ liệu đang được cập nhật</p>
+              </div>
+              <div className="xl:flex lg:block py-2 items-center justify-center gap-10" style={{ filter: "blur(10px)" }}>
+                <div>
+                  <LazyLoad offset={300} debounce={200} once>
+                    <SpiderWebChart queryApi={queryApi} />
+                  </LazyLoad>
+                </div>
+
+                <div className="xl:w-[576px] lg:w-full">
+                  <LazyLoad offset={300} debounce={200} once>
+                    <FilterCanslim queryApi={queryApi} />
+                  </LazyLoad>
+                </div>
               </div>
 
-              <div className="xl:w-[576px] lg:w-full">
-                <LazyLoad offset={300} debounce={200} once>
-                  <FilterCanslim queryApi={queryApi} />
-                </LazyLoad>
+              <div className="grid xl:grid-cols-3 lg:grid-cols-none gap-5" style={{ filter: "blur(10px)" }}>
+                <div>
+                  <LazyLoad offset={300} debounce={200} once>
+                    <FinancialHealthAnalysis queryApi={queryApi} />
+                  </LazyLoad>
+                </div>
+                <div>
+                  <LazyLoad offset={300} debounce={200} once>
+                    <BussinessAnalysis queryApi={queryApi} />
+                  </LazyLoad>
+                </div>
+                <div>
+                  <LazyLoad offset={300} debounce={200} once>
+                    <BusinessPosition queryApi={queryApi} />
+                  </LazyLoad>
+                </div>
+                <div>
+                  <LazyLoad offset={300} debounce={200} once>
+                    <BasicPrice queryApi={queryApi} />
+                  </LazyLoad>
+                </div>
+                <div>
+                  <LazyLoad offset={300} debounce={200} once>
+                    <TechnicalAnalysis queryApi={queryApi} />
+                  </LazyLoad>
+                </div>
+                <div>
+                  <LazyLoad offset={300} debounce={200} once>
+                    <IndividualInvestorBenefits queryApi={queryApi} />
+                  </LazyLoad>
+                </div>
               </div>
             </div>
-
-            <div className="grid xl:grid-cols-3 lg:grid-cols-none gap-5">
-              <div>
-                <LazyLoad offset={300} debounce={200} once>
-                  <FinancialHealthAnalysis queryApi={queryApi} />
-                </LazyLoad>
-              </div>
-              <div>
-                <LazyLoad offset={300} debounce={200} once>
-                  <BussinessAnalysis queryApi={queryApi} />
-                </LazyLoad>
-              </div>
-              <div>
-                <LazyLoad offset={300} debounce={200} once>
-                  <BusinessPosition queryApi={queryApi} />
-                </LazyLoad>
-              </div>
-              <div>
-                <LazyLoad offset={300} debounce={200} once>
-                  <BasicPrice queryApi={queryApi} />
-                </LazyLoad>
-              </div>
-              <div>
-                <LazyLoad offset={300} debounce={200} once>
-                  <TechnicalAnalysis queryApi={queryApi} />
-                </LazyLoad>
-              </div>
-              <div>
-                <LazyLoad offset={300} debounce={200} once>
-                  <IndividualInvestorBenefits queryApi={queryApi} />
-                </LazyLoad>
-              </div>
-            </div>
-            <div>
-              <LazyLoad offset={300} debounce={200} once>
-                <HistoricalPEPB stock={queryApi.stock} />
-              </LazyLoad>
-            </div>
+          </div>
+          <div>
+            <LazyLoad offset={300} debounce={200} once>
+              <HistoricalPEPB stock={queryApi.stock} />
+            </LazyLoad>
           </div>
         </>
       ) : (

@@ -41,7 +41,6 @@ const TreeMapBuy = () => {
         resultMap[LV2].data[ticker] = (total_value_buy / 1000000000).toFixed(3);
       }
     });
-    // console.log('resultMap', resultMap);
     setDataTreeMap(resultMap);
   }, [dataSocket]);
 
@@ -105,7 +104,6 @@ const TreeMapBuy = () => {
     points.push(sectorPoint);
     sectorIndex++;
   }
-  // console.log('points', points)
   const options = {
     // boost: {
     //   useGPUTranslations: true,

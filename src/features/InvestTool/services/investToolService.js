@@ -17,4 +17,7 @@ export const investToolService = {
   fetchDataInvestSimulation: (formData) => {
     return https.post("/api/v1/investment/emulator", formData);
   },
+  fetchDataCateInvestKnowledge: () => {
+    return https.get("/api/v1/blogs-user/category");
+  },
 };

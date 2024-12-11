@@ -157,7 +157,7 @@ const BuySellActive = ({ stock }) => {
             item.action !== "B" && item.action !== "S" && data[index + 1]
               ? moment(data[index + 1].time, "HH:mm:ss")
               : moment(item.time, "HH:mm:ss");
-          const cutoffTime = startTime.clone().subtract(30, "minutes"); // Subtract 30 minutes
+          const cutoffTime = startTime.clone().subtract(timeFrame === 0 ? 30 : 2, timeFrame === 0 ? "minutes" : "hours");
 
           // Process items within the 30-minute window
           data.forEach((innerItem) => {

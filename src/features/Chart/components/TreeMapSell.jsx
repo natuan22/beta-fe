@@ -14,7 +14,6 @@ treemap(Highcharts);
 const TreeMapSell = () => {
   const dispatch = useDispatch();
   const { dataTreemapSell } = useSelector((state) => state.chart);
-  // console.log(dataTreemapSell)
   const [dataTreeMap, setDataTreeMap] = useState();
   const [dataSocket, setDataSocket] = useState([]);
   const [socketChanel, setSocketChanel] = useState("hose");
@@ -25,7 +24,6 @@ const TreeMapSell = () => {
 
   useEffect(() => {
     socket.on(`listen-foreign-sell-${socketChanel}`, (newData) => {
-      // console.log('newData', newData);
       setDataSocket(newData);
     });
     setSocketOld(socketChanel);
@@ -47,7 +45,6 @@ const TreeMapSell = () => {
       }
     });
 
-    // console.log('resultMap', resultMap);
     setDataTreeMap(resultMap);
   }, [dataSocket]);
 
@@ -111,7 +108,6 @@ const TreeMapSell = () => {
     points.push(sectorPoint);
     sectorIndex++;
   }
-  // console.log('points', points)
   const options = {
     // boost: {
     //   useGPUTranslations: true,

@@ -79,8 +79,9 @@ export const postApi = async (url, data) => {
           headers: headers,
         })
         .post(url, data);
+      return response.data;
     } else {
-      console.error(err);
+      return err.response.data;
     }
   }
 };

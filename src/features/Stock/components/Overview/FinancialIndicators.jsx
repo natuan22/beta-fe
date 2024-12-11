@@ -55,7 +55,6 @@ const FinancialIndicators = ({ queryApi }) => {
       );
     }
   }, [dataFinancialIndicator]);
-  // console.log(dataFinancialIndicator)
   return (
     <div>
       <section className="pt-4">

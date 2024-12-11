@@ -14,7 +14,6 @@ const Nav5 = () => {
         userName: name,
       },
     }).then((res) => {
-      // console.log(res)
       localStorage.setItem("userLogin", res.data.data);
       setLogin(true);
     });

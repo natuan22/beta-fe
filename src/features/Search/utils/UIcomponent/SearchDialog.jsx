@@ -89,7 +89,6 @@ export default function SearchDialog() {
   // debounce
   const [, cancel] = useDebounce(
     () => {
-      // console.log("do sth")
       setDebouncedValue(val);
     },
     500,

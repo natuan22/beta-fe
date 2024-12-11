@@ -31,7 +31,6 @@ const NetVolumeTrade = () => {
   const timeLine = dataNetVolume.data?.map((item) =>
     moment(item.date).format("DD/MM"),
   );
-  // console.log(dataForeign, dataProprietary, dataRetail, dataExchange);
   const options = {
     chart: {
       backgroundColor: "transparent", // màu nền của biểu đồ
