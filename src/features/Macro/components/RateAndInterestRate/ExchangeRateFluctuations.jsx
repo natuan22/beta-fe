@@ -137,7 +137,6 @@ const ExchangeRateFluctuations = () => {
     // },
     series: data,
   };
-  // console.log('ty gia', data)
 
   return (
     <div>

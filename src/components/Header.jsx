@@ -48,7 +48,7 @@ const Header = () => {
   return (
     <>
       <div className="relative">
-        <nav className="dark:bg-black bg-white shadow-md dark:shadow-stone-900 shadow-zinc-400 mb-1">
+        <nav className="dark:bg-black bg-white shadow-md dark:shadow-gray-100/10 shadow-[#0e1015]/10 mb-1">
           {/* max-w-[85.5rem] */}
           <div className="max-w-[87rem] mx-auto px-4 xl:px-7 lg:px-8">
             <div className="flex items-center justify-between w-full h-16">

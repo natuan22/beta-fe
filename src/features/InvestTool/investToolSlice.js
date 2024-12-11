@@ -6,6 +6,7 @@ const initialState = {
   dataStockFilter: {},
   dataStockList: {},
   dataInvestSimulation: {},
+  dataCateInvestKnowledge: []
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -21,6 +22,9 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     if (type === investToolType.FETCH_DATA_INVEST_SIMULATION) {
       draft.dataInvestSimulation = payload;
+    }
+    if (type === investToolType.FETCH_DATA_CATE_INVEST_KNOWLEDGE) {
+      draft.dataCateInvestKnowledge = payload;
     }
   });
 };

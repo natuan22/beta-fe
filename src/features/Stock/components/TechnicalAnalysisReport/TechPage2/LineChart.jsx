@@ -7,7 +7,6 @@ import LazyLoad from "react-lazyload";
 const LineChart = ({ data, type }) => {
   const max = Math?.ceil(Math?.max(...data?.map((item) => item.value)));
   const min = Math?.floor(Math?.min(...data?.map((item) => item.value)));
-  // console.log(max)
   const date = data?.map((item) => moment(item.date).format("DD/MM"));
   // Lấy giá trị đầu tiên và cuối cùng của mảng date
 

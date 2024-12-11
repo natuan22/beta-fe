@@ -46,6 +46,41 @@ const Watchlist = () => {
     setWatchlists(arrText);
   };
 
+  useEffect(() => {
+    // Hàm thêm style trực tiếp vào các phần tử có class 'ant-dropdown'
+    const applyCustomStyles = () => {
+      const dropdowns = document.querySelectorAll(".ant-dropdown");
+      dropdowns.forEach((dropdown) => {
+        dropdown.style.removeProperty('inset');
+        dropdown.style.removeProperty('z-index');
+        // Áp dụng các style trực tiếp nếu chưa có
+        if (!dropdown.style.getPropertyValue('inset')) {
+          dropdown.style.setProperty('inset', '425px auto auto 232px', 'important');
+          dropdown.style.setProperty('z-index', '900', 'important');
+        }
+      });
+    };
+
+    // Gọi hàm applyCustomStyles lần đầu tiên khi component mount
+    applyCustomStyles();
+
+    // Nếu bạn muốn lắng nghe sự thay đổi DOM (khi phần tử mới xuất hiện)
+    const observer = new MutationObserver(applyCustomStyles);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Dọn dẹp observer và xóa style khi component unmount
+    return () => {
+      const dropdowns = document.querySelectorAll(".ant-dropdown");
+      dropdowns.forEach((dropdown) => {
+        // Xóa style khi component unmount
+        dropdown.style.removeProperty('inset');
+        dropdown.style.removeProperty('z-index');
+      });
+      // Dừng việc quan sát DOM khi component unmount
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-full pt-2">
       {!loading ? (

@@ -14,7 +14,6 @@ const TableMiningProfitMargin = () => {
       setData(dataTableMiningProfitMargin);
     }
   }, [dataTableMiningProfitMargin]);
-  // console.log(dataTableMiningProfitMargin)
   return (
     <section className="bg-blueGray-50 pt-1.5">
       <div className="w-full">

@@ -19,7 +19,6 @@ const LineChart = () => {
   useEffect(() => {
     setColorText(color);
   }, [color]);
-  // console.log({ dataRealTime })
   useEffect(() => {
     if (dataLineChartHomePage?.data?.chart?.length) {
       setDataRealTime(dataLineChartHomePage.data.chart);

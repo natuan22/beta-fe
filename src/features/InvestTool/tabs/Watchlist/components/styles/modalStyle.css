@@ -78,11 +78,6 @@
   font-size: 15px;
 }
 
-.ant-dropdown {
-  inset: 423px auto auto 232px !important;
-  z-index: 900;
-}
-
 /* tooltip */
 .ant-tooltip {
   max-width: fit-content;
