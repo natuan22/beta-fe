@@ -81,6 +81,10 @@ const Watchlist = () => {
     };
   }, []);
 
+  useEffect(() => {
+    document.title = `B-Info | Danh mục theo dõi`;
+  }, []);
+
   return (
     <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-full pt-2">
       {!loading ? (

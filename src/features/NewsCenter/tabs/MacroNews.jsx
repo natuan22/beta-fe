@@ -6,7 +6,9 @@ function MacroNews() {
     localStorage.getItem("userNewsCenterMacroTabCurrent"),
   );
   const tabsRef = useRef([]);
-
+  useEffect(() => {
+    document.title = `B-Info | Tin tức vĩ mô`;
+  }, []);
   const handleTabClick = (index) => {
     setActiveTab(index);
     localStorage.setItem("userNewsCenterMacroTabCurrent", index);

@@ -20,7 +20,9 @@ const AnalysisCenter = () => {
       setBannerDisplay(false);
     }
   }, [location]);
-
+  useEffect(() => {
+    document.title = `B-Info | Trung tâm phân tích`;
+  }, []);
   return (
     <LayOut>
       <div>

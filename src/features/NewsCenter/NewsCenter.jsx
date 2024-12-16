@@ -17,7 +17,9 @@ const NewsCenter = () => {
       setBannerDisplay(false);
     }
   }, [location]);
-
+  useEffect(() => {
+    document.title = `B-Info | Trung tâm tin tức`;
+  }, []);
   return (
     <LayOut>
       <div>

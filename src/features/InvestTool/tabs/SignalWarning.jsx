@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { apiUrl } from "../../../services/config";
 
 const SignalWarning = () => {
+  useEffect(() => {
+    document.title = `B-Info | Cảnh báo tín hiệu`;
+  }, []);
   return (
     <div>
       <div className="h-auto pt-5 pb-2 flex justify-center ">

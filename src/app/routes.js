@@ -9,6 +9,7 @@ import AuthComponent from "../features/Auth/AuthComponent";
 import Signin from "../features/Auth/Signin";
 import Signup from "../features/Auth/Signup";
 import Home from "../features/Chart/Home";
+import BlogPost from "../features/InvestTool/components/InvestKnowledge/BlogPost";
 import InvestTool from "../features/InvestTool/InvestTool";
 import BetaSmart from "../features/InvestTool/tabs/BetaSmart";
 import Filter from "../features/InvestTool/tabs/Filter";
@@ -68,6 +69,7 @@ export const investToolRoutes = [
       { path: "chien-luoc-giao-dich", component: TradingStrategies },
       // { path: "beta-smart", component: BetaSmart },
       { path: "kien-thuc-dau-tu", component: InvestKnowledge },
+      { path: "kien-thuc-dau-tu/:title/:id", component: BlogPost },
     ],
   },
 ];
@@ -80,10 +82,7 @@ export const marketRoute = [
     component: Market,
     children: [
       { path: "chi-so-thi-truong", component: IndexMarket },
-      {
-        path: "dong-tien-thi-truong",
-        component: CashFlow,
-      },
+      { path: "dong-tien-thi-truong", component: CashFlow },
       {
         path: "hieu-suat-va-dinh-gia",
         component: TechAndValuation,

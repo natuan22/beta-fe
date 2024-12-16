@@ -1,7 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Checkbox } from "antd";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PiChartLineUpBold } from "react-icons/pi";
 import StrategyMA from "./TradingStrategies/components/StrategyMA";
 import StrategyMAVVIP from "./TradingStrategies/components/StrategyMAVVIP";
@@ -34,6 +34,10 @@ const TradingStrategies = () => {
   const handleStrategyChange = (key) => {
     setSelectedStrategy((prev) => (prev === key ? "" : key));
   };
+
+  useEffect(() => {
+    document.title = `B-Info | Chiến lược giao dịch`;
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

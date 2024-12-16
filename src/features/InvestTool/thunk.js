@@ -49,3 +49,14 @@ export const fetchDataCateInvestKnowledge = () => async (dispatch) => {
   }
 };
 
+export const fetchDataListPosts = (categories, tags) => async (dispatch) => {
+  try {
+    const res = await investToolService.fetchDataListPosts(categories, tags);
+    dispatch({
+      type: investToolType.FETCH_DATA_LIST_POSTS,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};

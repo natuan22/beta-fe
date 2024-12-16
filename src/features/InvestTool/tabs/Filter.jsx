@@ -57,9 +57,9 @@ const Filter = () => {
   const [filtersActive, setFiltersActive] = useState("");
 
   useEffect(() => {
-    document.title = "Bộ lọc";
+    document.title = `B-Info | Bộ lọc cổ phiếu`;
   }, []);
-
+  
   useEffect(() => {
     if (isLogin === process.env.REACT_APP_LG_T) {
       const fetchDataWatchList = async () => {

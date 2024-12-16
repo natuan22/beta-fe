@@ -13,6 +13,10 @@ const Market = () => {
   const [bannerDisplay, setBannerDisplay] = useState(false);
 
   useEffect(() => {
+    document.title = `B-Info | Thị trường`;
+  }, []);
+
+  useEffect(() => {
     if (
       location.pathname === "/thi-truong" ||
       location.pathname === "/thi-truong/hieu-suat-va-dinh-gia" ||

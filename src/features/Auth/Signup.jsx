@@ -30,7 +30,9 @@ const Signup = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [openOTP, setOpenOTP] = useState(false);
   const [userID, setUserID] = useState(null);
-
+  useEffect(() => {
+    document.title = `B-Info | Đăng ký`;
+  }, []);
   const normalizePhone = (value) => {
     // Chuẩn hóa số điện thoại: thêm '84' nếu bắt đầu bằng '0'
     if (value.startsWith("0")) {

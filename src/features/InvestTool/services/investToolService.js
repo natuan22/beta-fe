@@ -20,4 +20,11 @@ export const investToolService = {
   fetchDataCateInvestKnowledge: () => {
     return https.get("/api/v1/blogs-user/category");
   },
+  fetchDataListPosts: (categories, tags) => {
+    const params = {};
+    if (categories && categories !== "all") params.categories = categories;
+    if (tags) params.tags = tags;
+
+    return https.get("/api/v1/blogs-user/post", { params });
+  },
 };
