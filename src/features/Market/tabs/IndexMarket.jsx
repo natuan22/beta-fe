@@ -36,6 +36,10 @@ const IndexMarket = () => {
   };
 
   useEffect(() => {
+    document.title = `B-Info | Chỉ số thị trường`;
+  }, []);
+  
+  useEffect(() => {
     dispatch(fetchDataNews);
     dispatch(fetchDataGeneralIndustry("all"));
     dispatch(fetchDataTableDetail);

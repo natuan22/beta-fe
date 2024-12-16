@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LazyLoad from "react-lazyload";
 import NetVolumeTrade from "../../Chart/components/NetVolumeTrade";
 import CashFlowRatio from "../components/CashFlow/CashFlowRatio";
@@ -11,6 +11,11 @@ import TopCashFlow from "../components/CashFlow/TopCashFlow";
 import TransactionValueRatio from "../components/CashFlow/TransactionValueRatio";
 
 const CashFlow = () => {
+
+  useEffect(() => {
+    document.title = `B-Info | Dòng tiền thị trường`;
+  }, []);
+
   return (
     <>
       <div className="container mx-auto mt-2 md:w-[90%] lg:w-[90%] xl:w-full">

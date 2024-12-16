@@ -25,7 +25,9 @@ const theme = createTheme({
 const Signin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  useEffect(() => {
+    document.title = `B-Info | Đăng nhập`;
+  }, []);
   const loginMessage = useSelector((state) => state.authen.loginMessage);
   const isLogin = useSelector((state) => state.authen.userData);
 

@@ -28,6 +28,10 @@ const StockDetail = () => {
   const [activeTab, setActiveTab] = useState("1");
 
   useEffect(() => {
+    document.title = `B-Info | Cổ phiếu ${codeVal.split("-")[0]}`;
+  }, [codeVal]);
+
+  useEffect(() => {
     setTheme(color);
   }, [color]);
 

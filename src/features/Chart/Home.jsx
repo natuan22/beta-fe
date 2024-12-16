@@ -92,6 +92,10 @@ const Home = () => {
     }
   }, [shouldLoadApi, dispatch]);
 
+  useEffect(() => {
+    document.title = `B-Info | BSI - Chứng khoán BETA`;
+  }, []);
+
   return (
     <LayOut>
       <div className="px-1.5 sticky top-[64px] z-20">
@@ -220,8 +224,8 @@ const Home = () => {
                         onChange={(event) => {
                           dispatch(
                             dispatch(
-                              fetchDataTopNetForeignChange(event.target.value),
-                            ),
+                              fetchDataTopNetForeignChange(event.target.value)
+                            )
                           );
                         }}
                       >

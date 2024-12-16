@@ -20,6 +20,10 @@ const InvestTool = () => {
     }
   }, [location]);
 
+  useEffect(() => {
+    document.title = `B-Info | Công cụ đầu tư`;
+  }, []);
+
   return (
     <LayOut>
       <div>

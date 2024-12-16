@@ -31,6 +31,9 @@ const NewsFilterTool = () => {
   const [selectedCode, setSelectedCode] = useState([]);
   const [codeTranmission, setCodeTranmission] = useState("all");
   useEffect(() => {
+    document.title = `B-Info | Bộ lọc tin tức`;
+  }, []);
+  useEffect(() => {
     dispatch(fetchNewsTool);
     dispatch(fetchDataStockInfo);
   }, [dispatch]);
