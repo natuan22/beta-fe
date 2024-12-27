@@ -208,7 +208,7 @@ const InvestKnowledge = () => {
                           </div>
 
                           <div className="card-img md:w-[25%] sm:w-[40%]">
-                            <div className="flex sm:justify-end xs:justify-center xxs:justify-center h-[130px]">
+                            <div className="flex sm:justify-end xs:justify-center xxs:justify-center h-[110px]">
                               <img
                                 src={`${resourceURL}${item.thumbnail}`}
                                 alt={item.title}

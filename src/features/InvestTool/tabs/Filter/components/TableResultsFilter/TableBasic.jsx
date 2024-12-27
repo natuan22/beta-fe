@@ -7,17 +7,14 @@ import formatNumberCurrency from "../../../../../../helper/formatNumberCurrency"
 import { getApi } from "../../../../../../helper/getApi";
 import { getColorBaseOnValue } from "../../../../../../helper/getColorBaseOnValue";
 import { postApi } from "../../../../../../helper/postApi";
-import { apiUrl } from "../../../../../../services/config";
 
 const TableBasic = ({
+  loadingTb,
   filteredResults,
   watchlists,
   catchWatchlists,
   isLogin,
 }) => {
-  const rowHeight = 45;
-  const maxHeight = 467;
-
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalAddOpen, setIsModalAddOpen] = useState(false);
   const [isModalCreateOpen, setIsModalCreateOpen] = useState(false);
@@ -484,18 +481,14 @@ const TableBasic = ({
     <div>
       {contextHolder}
       <div className="table-data-watchlist mt-0.5">
-        <Table
+      <Table
+          loading={loadingTb}
           showSorterTooltip={false}
           columns={columns}
           dataSource={filteredResults}
           rowClassName={rowClassName}
-          // pagination={{ defaultPageSize: 15, showSizeChanger: false }}
-          scroll={
-            filteredResults.length * rowHeight > maxHeight
-              ? { x: 1870, y: maxHeight }
-              : { x: 1870 }
-          }
-          pagination={false}
+          scroll={{ x: 1840 }}
+          pagination={{ defaultPageSize: 10, showSizeChanger: false }}
         />
       </div>
       <Modal

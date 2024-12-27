@@ -205,7 +205,7 @@ const BlogPost = () => {
           <img
             src={`${resourceURL}${dataPost?.thumbnail}`}
             alt={`${dataPost?.title}-thumbnail`}
-            className="my-1 block float-none align-top relative max-w-[100%]"
+            className="my-1 block float-none align-top relative max-w-[65%]"
           ></img>
         </div>
         <div

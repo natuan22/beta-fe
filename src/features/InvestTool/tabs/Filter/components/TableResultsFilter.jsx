@@ -10,6 +10,7 @@ import ExportExcel from "./TableResultsFilter/ExportExcel";
 import "./styles/tableFilter.css";
 
 const TableResultsFilter = ({
+  loadingTb,
   filteredResults,
   watchlists,
   catchWatchlists,
@@ -29,6 +30,7 @@ const TableResultsFilter = ({
       label: "Kết quả",
       children: (
         <TableResults
+          loadingTb={loadingTb}
           isLogin={isLogin}
           selectParameters={selectParameters}
           filteredResults={filteredResults}
@@ -43,6 +45,7 @@ const TableResultsFilter = ({
       label: "Thống kê",
       children: (
         <TableStatistical
+          loadingTb={loadingTb}
           isLogin={isLogin}
           filteredResults={filteredResults}
           watchlists={watchlists}
@@ -55,6 +58,7 @@ const TableResultsFilter = ({
       label: "Cơ bản",
       children: (
         <TableBasic
+          loadingTb={loadingTb}
           isLogin={isLogin}
           filteredResults={filteredResults}
           watchlists={watchlists}
@@ -67,6 +71,7 @@ const TableResultsFilter = ({
       label: "Kỹ thuật",
       children: (
         <TableTechnique
+          loadingTb={loadingTb}
           isLogin={isLogin}
           filteredResults={filteredResults}
           watchlists={watchlists}
