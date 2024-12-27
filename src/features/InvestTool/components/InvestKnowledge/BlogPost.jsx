@@ -53,7 +53,7 @@ const BlogPost = () => {
   const { id } = useParams();
   const [dataPost, setDataPost] = useState(null);
   const [relatedBlogs, setRelatedBlogs] = useState(null);
-  const [visibleBlogsCount, setVisibleBlogsCount] = useState(5);
+  const [visibleBlogsCount, setVisibleBlogsCount] = useState(3);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const BlogPost = () => {
   }, [pathname]);
 
   const handleShowMore = () => {
-    setVisibleBlogsCount((prevCount) => prevCount + 5);
+    setVisibleBlogsCount((prevCount) => prevCount + 3);
   };
 
   const fetchDataPost = async (id) => {
@@ -177,7 +177,7 @@ const BlogPost = () => {
               <div>
                 <NavLink
                   to={`/cong-cu-dau-tu/kien-thuc-dau-tu?category=${dataPost?.category.name}`}
-                  className="no-underline text-[#00b71f] font-medium md:text-lg sm:text-base"
+                  className="no-underline text-[#faad14] font-medium md:text-lg sm:text-base"
                 >
                   {dataPost?.category.name}
                 </NavLink>
@@ -205,7 +205,7 @@ const BlogPost = () => {
           <img
             src={`${resourceURL}${dataPost?.thumbnail}`}
             alt={`${dataPost?.title}-thumbnail`}
-            className="my-1 block float-none align-top relative max-w-[100%]"
+            className="my-1 block float-none align-top relative max-w-[65%]"
           ></img>
         </div>
         <div
@@ -213,19 +213,18 @@ const BlogPost = () => {
           dangerouslySetInnerHTML={{ __html: processedContent }}
         ></div>
       </div>
-      <div id="footer-blogs" className="container-blogs mx-auto">
+      <div id="footer-blogs">
         <hr className="h-px mt-7 border-0 bg-gray-600/50"></hr>
         <div>
-          <div className="flex items-center gap-2 dark:text-gray-300 text-black">
-            <div className="min-w-[3px] h-[35px] bg-[#0050AD] rounded-t-[100px]"></div>
-            <h2 className="my-5">Bài viết liên quan</h2>
+          <div className="flex items-center justify-center gap-2 dark:text-gray-300 text-black">
+            <h2 className="my-7">Bài viết liên quan</h2>
           </div>
-          <div>
+          <div className="w-[65%] mx-auto grid grid-cols-9 gap-4">
             {relatedBlogs && relatedBlogs.length > 0 ? (
               <>
                 {relatedBlogs.slice(0, visibleBlogsCount).map((item, index) => (
                   <motion.div
-                    className="p-3"
+                    className="col-span-3 flex flex-col gap-4 px-2"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     whileHover={{
@@ -233,26 +232,41 @@ const BlogPost = () => {
                       transition: { duration: 0.4 },
                     }}
                   >
-                    <div className="flex gap-3">
-                      {item.tags.map((tag, tagIndex) => (
-                        <NavLink
-                          to={`/cong-cu-dau-tu/kien-thuc-dau-tu?tags=${tag.name}`}
-                          key={tagIndex}
-                          className="no-underline text-[#0050AD] text-base"
-                        >
-                          <motion.div whileHover={{ scale: 1.1 }}>
-                            #{tag.name}
-                          </motion.div>
-                        </NavLink>
-                      ))}
+                    <div className="h-[200px]">
+                      <NavLink
+                        to={`/cong-cu-dau-tu/kien-thuc-dau-tu/${formatTitle(item.title)}/${item.id}`}
+                        className="no-underline text-[#0050AD] text-xs"
+                      >
+                        <motion.img
+                          src={`${resourceURL}${item.thumbnail}`}
+                          alt={item.title}
+                          className="w-full h-full block float-none align-top relative rounded"
+                          whileHover={{
+                            scale: 1.04,
+                            transition: { duration: 0.3 },
+                          }}
+                        ></motion.img>
+                      </NavLink>
                     </div>
-                    <NavLink
-                      to={`/cong-cu-dau-tu/kien-thuc-dau-tu/${formatTitle(item.title)}/${item.id}`}
-                      key={index}
-                      className="no-underline flex flex-col rounded-lg"
-                    >
-                      <div className="flex sm:flex-row xs:flex-col xxs:flex-col gap-3">
-                        <div className="md:w-[75%] sm:w-[60%] flex flex-col gap-3">
+                    <div>
+                      <div className="flex gap-[6px]">
+                        {item.tags.map((tag, tagIndex) => (
+                          <NavLink
+                            to={`/cong-cu-dau-tu/kien-thuc-dau-tu?tags=${tag.name}`}
+                            key={tagIndex}
+                            className="no-underline text-[#faad14] text-[13px]"
+                          >
+                            <motion.div whileHover={{ scale: 1.1 }}>
+                              #{tag.name}
+                            </motion.div>
+                          </NavLink>
+                        ))}
+                      </div>
+                      <NavLink
+                        to={`/cong-cu-dau-tu/kien-thuc-dau-tu/${formatTitle(item.title)}/${item.id}`}
+                        className="no-underline text-[#0050AD] text-xs"
+                      >
+                        <div className="flex flex-col gap-2">
                           <div className="text-lg font-medium text-[#2989f9] line-clamp-2">
                             {item.title}
                           </div>
@@ -263,35 +277,14 @@ const BlogPost = () => {
                             {moment(item.created_at).format("DD/MM/YYYY")}
                           </div>
                         </div>
-
-                        <motion.div
-                          className="card-img md:w-[25%] sm:w-[40%]"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.5 }}
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          <div className="flex sm:justify-end xs:justify-center xxs:justify-center h-[130px]">
-                            <motion.img
-                              src={`${resourceURL}${item.thumbnail}`}
-                              alt={item.title}
-                              className="max-w-[100%] block float-none align-top relative h-full rounded"
-                              whileHover={{
-                                scale: 1.04,
-                                transition: { duration: 0.3 },
-                              }}
-                            ></motion.img>
-                          </div>
-                        </motion.div>
-                      </div>
-                    </NavLink>
-                    <div className="border-solid border-b-[1px] border-x-0 border-t-0 border-gray-600/50 mt-2"></div>
+                      </NavLink>
+                    </div>
                   </motion.div>
                 ))}
 
                 {visibleBlogsCount < relatedBlogs.length && (
                   <div
-                    className="flex justify-center items-center py-2"
+                    className="col-span-full flex justify-center items-center py-2"
                     onClick={handleShowMore}
                     whileHover={{ scale: 1.1 }}
                   >
@@ -306,7 +299,7 @@ const BlogPost = () => {
                 )}
               </>
             ) : (
-              <div className="p-3 text-lg dark:text-gray-300 text-black font-medium">
+              <div className="mx-auto col-span-full p-3 text-lg dark:text-gray-300 text-black font-medium">
                 Không có bài viết liên quan nào
               </div>
             )}

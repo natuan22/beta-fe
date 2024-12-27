@@ -8,17 +8,14 @@ import formatNumberCurrency from "../../../../../../helper/formatNumberCurrency"
 import { getApi } from "../../../../../../helper/getApi";
 import { getColorBaseOnValue } from "../../../../../../helper/getColorBaseOnValue";
 import { postApi } from "../../../../../../helper/postApi";
-import { apiUrl } from "../../../../../../services/config";
 
 const TableStatistical = ({
+  loadingTb,
   filteredResults,
   watchlists,
   catchWatchlists,
   isLogin,
 }) => {
-  const rowHeight = 45;
-  const maxHeight = 467;
-
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalAddOpen, setIsModalAddOpen] = useState(false);
   const [isModalCreateOpen, setIsModalCreateOpen] = useState(false);
@@ -515,7 +512,7 @@ const TableStatistical = ({
       },
     },
     {
-      title: "beta",
+      title: "Beta",
       dataindex: "beta",
       align: "center",
       render: (_, record) => {
@@ -534,17 +531,13 @@ const TableStatistical = ({
       {contextHolder}
       <div className="table-data-watchlist mt-0.5">
         <Table
+          loading={loadingTb}
           showSorterTooltip={false}
           columns={columns}
           dataSource={filteredResults}
           rowClassName={rowClassName}
-          // pagination={{ defaultPageSize: 15, showSizeChanger: false }}
-          scroll={
-            filteredResults.length * rowHeight > maxHeight
-              ? { x: 2131, y: maxHeight }
-              : { x: 2131 }
-          }
-          pagination={false}
+          scroll={{ x: 2150 }}
+          pagination={{ defaultPageSize: 10, showSizeChanger: false }}
         />
       </div>
       <Modal

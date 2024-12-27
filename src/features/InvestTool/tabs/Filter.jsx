@@ -230,6 +230,8 @@ const Filter = () => {
     }
   };
 
+  const [loadingTb, setLoadingTb] = useState(false); // Thêm state loading
+
   const findCommonCodes = (data) => {
     let commonCodes = [];
 
@@ -252,16 +254,26 @@ const Filter = () => {
 
     return commonCodes;
   };
-
+  
   useEffect(() => {
-    let commonCodes = findCommonCodes(totalFilteredData);
-    const dataWithKey =
-      Array.isArray(commonCodes) &&
-      commonCodes?.map((item, index) => ({
-        ...item,
-        key: index,
-      }));
-    setFilteredResults(dataWithKey);
+    setLoadingTb(true);
+
+    const timer = setTimeout(() => {
+      let commonCodes = findCommonCodes(totalFilteredData);
+      const dataWithKey =
+        Array.isArray(commonCodes) &&
+        commonCodes.map((item, index) => ({
+          ...item,
+          key: index,
+        }));
+
+      setFilteredResults(dataWithKey);
+      setLoadingTb(false);
+    }, 750);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [totalFilteredData]);
 
   const catchWatchlists = (arrText) => {
@@ -391,6 +403,7 @@ const Filter = () => {
             </div>
             <div className="mt-2">
               <TableResultsFilter
+                loadingTb={loadingTb}
                 isLogin={isLogin}
                 selectParameters={selectParameters}
                 filteredResults={filteredResults}
