@@ -58,7 +58,7 @@ const Banner = () => {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="bsi.com.vn"
+                    href="cong-cu-dau-tu/danh-muc-theo-doi"
                     className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
                   >
                     <img
@@ -71,7 +71,7 @@ const Banner = () => {
                     </span>
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     href="bsi.com.vn"
                     className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
@@ -85,10 +85,10 @@ const Banner = () => {
                       Dòng tiền thị trường
                     </span>
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <a
-                    href="bsi.com.vn"
+                    href="/cong-cu-dau-tu/bo-loc"
                     className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
                   >
                     <img
@@ -103,8 +103,10 @@ const Banner = () => {
                 </li>
                 <li>
                   <a
-                    href="bsi.com.vn"
+                    href="https://trading.bsi.com.vn/"
                     className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <img
                       src={`${apiUrl}/resources/icon-sidebar/icon-sidebar-4.png`}
@@ -118,7 +120,7 @@ const Banner = () => {
                 </li>
                 <li>
                   <a
-                    href="bsi.com.vn"
+                    href="/cong-cu-dau-tu/chien-luoc-giao-dich"
                     className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
                   >
                     <img
@@ -131,7 +133,7 @@ const Banner = () => {
                     </span>
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a
                     href="bsi.com.vn"
                     className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
@@ -145,26 +147,13 @@ const Banner = () => {
                       Tài khoản giao dịch
                     </span>
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <a
-                    href="bsi.com.vn"
+                    href="https://zalo.me/1623670409453822014"
                     className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
-                  >
-                    <img
-                      src={`${apiUrl}/resources/icon-sidebar/icon-sidebar-7.png`}
-                      alt="sidebarLogo1"
-                      className="w-[25px] h-[25px]"
-                    />
-                    <span className="ml-3 dark:text-white text-black">
-                      Danh mục cá nhân
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="bsi.com.vn"
-                    className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <img
                       src={`${apiUrl}/resources/icon-sidebar/icon-sidebar-8.png`}
@@ -178,8 +167,10 @@ const Banner = () => {
                 </li>
                 <li>
                   <a
-                    href="bsi.com.vn"
+                    href="https://www.bsi.com.vn/vn/ve-beta/lien-he"
                     className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <img
                       src={`${apiUrl}/resources/icon-sidebar/icon-sidebar-9.png`}
