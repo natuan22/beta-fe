@@ -7,6 +7,7 @@ import { apiUrl } from "../../services/config";
 import InternationalIndex from "../Chart/components/InternationalIndex";
 import News from "../Chart/components/News";
 import AnalysisCenterNavTab from "./utils/AnalysisCenterNavTab";
+import Banner from "../Chart/components/Banner";
 
 const AnalysisCenter = () => {
   const location = useLocation();
@@ -31,6 +32,8 @@ const AnalysisCenter = () => {
       </div>
       <div className="container mx-auto">
         <div>
+          <Banner />
+
           <div>
             <AnalysisCenterNavTab />
           </div>

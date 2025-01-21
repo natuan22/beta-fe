@@ -7,6 +7,7 @@ import InternationalIndex from "../Chart/components/InternationalIndex";
 import News from "../Chart/components/News";
 import InvestToolTab from "./utils/InvestToolTab";
 import "./utils/styles/styleSelectCondition.css";
+import Banner from "../Chart/components/Banner";
 
 const InvestTool = () => {
   const location = useLocation();
@@ -32,6 +33,8 @@ const InvestTool = () => {
       </div>
       <div className="nav_bar container mx-auto">
         <div>
+          <Banner />
+
           <div className="px-11">
             <InvestToolTab />
           </div>

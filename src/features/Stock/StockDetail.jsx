@@ -17,6 +17,7 @@ import Footer from "../../components/Footer";
 import { useSelector } from "react-redux";
 import test from "./utils/style/muiTabHeader.module.css";
 import TechnicalAnalysisReport from "./tabs/TechnicalAnalysisReport";
+import Banner from "../Chart/components/Banner";
 
 const StockDetail = () => {
   const defaultStock = "FPT-CTCP";
@@ -79,6 +80,8 @@ const StockDetail = () => {
   return (
     <LayOut>
       <div className="tab container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%]">
+        <Banner />
+        
         <StockInfo codeUrl={codeVal} />
         <div className="pt-2">
           <Box

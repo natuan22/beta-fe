@@ -5,6 +5,7 @@ import LayOut from "../../HOCs/Layout";
 import { apiUrl } from "../../services/config";
 import InternationalIndex from "../Chart/components/InternationalIndex";
 import NewsCenterNavTab from "./utils/component/NewsCenterNavTab";
+import Banner from "../Chart/components/Banner";
 
 const NewsCenter = () => {
   const location = useLocation();
@@ -27,6 +28,8 @@ const NewsCenter = () => {
       </div>
       <div className="container mx-auto">
         <div>
+          <Banner />
+
           <div>
             <NewsCenterNavTab />
           </div>
