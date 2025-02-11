@@ -1,12 +1,12 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { fetchDataHistoricalPEPB } from "../../thunk";
-import { getApi } from "../../../../helper/getApi";
 import { LoadingButton } from "@mui/lab";
-import icon_excel from "../../../../app/asset/img/icon_excel.png";
-import ChartLine from "./components/ChartLine";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import icon_excel from "../../../../app/asset/img/icon_excel.png";
+import { getApi } from "../../../../helper/getApi";
+import { fetchDataHistoricalPEPB } from "../../thunk";
+import ChartLine from "./components/ChartLine";
 
 const XLSX = require("xlsx");
 
@@ -147,8 +147,8 @@ const HistoricalPEPB = ({ stock }) => {
         </div>
       </div>
       <div className="mt-5 grid xl:grid-cols-2 lg:grid-cols-none">
-        <ChartLine stock={stock} data={dataHistoricalPEPB} chartKey="P/E" />
-        <ChartLine stock={stock} data={dataHistoricalPEPB} chartKey="P/B" />
+        <ChartLine stock={stock} data={dataHistoricalPEPB} chartKey="P/E" period={period}/>
+        <ChartLine stock={stock} data={dataHistoricalPEPB} chartKey="P/B" period={period}/>
       </div>
     </ThemeProvider>
   );

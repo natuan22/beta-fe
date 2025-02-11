@@ -131,11 +131,11 @@ const StockDetail = () => {
                     },
                   }}
                 >
-                  <Tab
+                  {/* <Tab
                     onClick={() => handleTabClick("0")}
                     label="PHÂN TÍCH NHANH"
                     value="0"
-                  />
+                  /> */}
                   <Tab
                     onClick={() => handleTabClick("1")}
                     label="TỔNG QUAN"
@@ -163,9 +163,9 @@ const StockDetail = () => {
                   />
                 </TabList>
               </Box>
-              <TabPanel value="0">
+              {/* <TabPanel value="0">
                 <QuickAnalysis codeUrl={codeVal} />
-              </TabPanel>
+              </TabPanel> */}
               <TabPanel value="1">
                 <Overview codeUrl={codeVal} handleTabClick={handleTabClick} />
               </TabPanel>

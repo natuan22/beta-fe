@@ -20,7 +20,6 @@ import {
 import { useDispatch } from "react-redux";
 import RatingHeader from "../components/QuickAnalysis/RatingHeader";
 import FilterCanslim from "../components/QuickAnalysis/FilterCanslim";
-import HistoricalPEPB from "../components/QuickAnalysis/HistoricalPEPB";
 
 const QuickAnalysis = ({ codeUrl }) => {
   const dispatch = useDispatch();
@@ -116,11 +115,11 @@ const QuickAnalysis = ({ codeUrl }) => {
               </div>
             </div>
           </div>
-          <div>
+          {/* <div>
             <LazyLoad offset={300} debounce={200} once>
               <HistoricalPEPB stock={queryApi.stock} />
             </LazyLoad>
-          </div>
+          </div> */}
         </>
       ) : (
         <div className="h-[300px] flex items-center justify-center">

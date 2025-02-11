@@ -12,6 +12,7 @@ import Events from "../components/Overview/Events";
 import Loading from "../../Chart/utils/Loading";
 import useQueryApi from "../components/Overview/utils/custom/useQueryApi/useQueryApi";
 import { Popover } from "antd";
+import HistoricalPEPB from "../components/Overview/HistoricalPEPB";
 
 const contentTransactionStatistics = (
   <div>
@@ -206,6 +207,11 @@ const Overview = ({ handleTabClick, codeUrl }) => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="mt-4">
+            <LazyLoad offset={300} debounce={200} once>
+              <HistoricalPEPB stock={queryApi.stock} />
+            </LazyLoad>
           </div>
           {/* <div className="mt-4">
             <div className="sm:w-[373px] xs:w-[200px] xxs:w-[200px] border-solid border-[#25558d] border-b-2 border-t-0 border-x-0">
