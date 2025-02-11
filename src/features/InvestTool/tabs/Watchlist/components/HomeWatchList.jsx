@@ -24,7 +24,7 @@ import TableStatistical from "./TableStatistical";
 import TableTechnique from "./TableTechnique";
 import LazyLoad from "react-lazyload";
 
-const HomeWatchList = ({ watchlists, catchWatchlists }) => {
+const HomeWatchList = ({ loadingSignal, yourSignalWarnings, dataSignal, watchlists, catchWatchlists }) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalAddOpen, setIsModalAddOpen] = useState(false);
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
@@ -710,8 +710,11 @@ const HomeWatchList = ({ watchlists, catchWatchlists }) => {
       children: (
         <LazyLoad offset={300} debounce={200} once>
           <TableSignalWarning
+            yourSignalWarnings={yourSignalWarnings}
+            dataSignal={dataSignal}
             loading={loading}
             loadingTb={loadingTb}
+            loadingSignal={loadingSignal}
             data={data}
             handleDelCodeInWatchlist={handleDelCodeInWatchlist}
           />
