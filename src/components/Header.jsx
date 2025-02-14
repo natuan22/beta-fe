@@ -1,6 +1,6 @@
 import { BellOutlined, MessageOutlined } from "@ant-design/icons";
 import { Transition } from "@headlessui/react";
-import { Popover } from "antd";
+import { notification, Popover } from "antd";
 import React, { useState } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
@@ -29,8 +29,21 @@ const Header = () => {
     setOpen(newOpen);
   };
 
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (description) => {
+    api.open({
+      type: "success",
+      message: `Đăng xuất thành công`,
+      description: `Đã đăng xuất tài khoản ${description} thành công`,
+      placement: "topRight",
+      showProgress: true,
+    });
+  };
+
   const handleUserLogout = () => {
     if (isLogin) {
+      openNotification(user.name);
       setIsLogin(null);
       setRole(null);
       setUser(null);
@@ -41,12 +54,15 @@ const Header = () => {
       );
       localStorage.removeItem(process.env.REACT_APP_USER_ROLE);
       localStorage.removeItem("user");
-      navigate(0);
+      setTimeout(() => {
+        navigate(0);
+      }, 1000);
     }
   };
 
   return (
     <>
+      {contextHolder}
       <div className="relative">
         <nav className="dark:bg-black bg-white shadow-md dark:shadow-gray-100/10 shadow-[#0e1015]/10 mb-1">
           {/* max-w-[85.5rem] */}

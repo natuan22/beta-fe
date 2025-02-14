@@ -1,21 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs";
 import { apiUrl } from "../../../services/config";
 
 const Banner = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const sidebarRef = useRef(null);
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
 
+  // Đóng sidebar khi click bên ngoài
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setShowSidebar(false);
+      }
+    };
+
+    if (showSidebar) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSidebar]);
+
   return (
     <div style={{ height: "0px", position: "relative" }}>
       <div>
-        <div className="text-center ">
+        <div className="text-center">
           <button
             onClick={toggleSidebar}
-            className={`fixed sm:top-[50%] xs:top-[65%] xxs:top-[65%] left-[-20px] text-white bg-[#0050AD] z-40 ${
+            className={`cursor-pointer fixed sm:top-[50%] xs:top-[65%] xxs:top-[65%] left-[-20px] text-white bg-[#0050AD] z-40 ${
               showSidebar ? "translate-x-[390%] ease-in-out duration-300" : ""
             } font-semibold rounded-lg text-base px-5 py-2.5 mr-2 bg-[#0050AD] text-white dark:text-white focus:outline-none focus:ring-blue-800`}
             type="button"
@@ -28,6 +48,7 @@ const Banner = () => {
         </div>
         <div
           id="drawer-navigation"
+          ref={sidebarRef}
           className={` dark:bg-[#151924] bg-gray-100 fixed top-0 left-0 z-40 w-auto h-screen p-4 overflow-y-auto transition-transform ${
             showSidebar ? "" : "translate-x-[-100%]  ease-in-out duration-300"
           }   flex flex-col items-center justify-center`}
@@ -58,8 +79,8 @@ const Banner = () => {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="cong-cu-dau-tu/danh-muc-theo-doi"
-                    className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
+                    href="/cong-cu-dau-tu/danh-muc-theo-doi"
+                    className="no-underline flex items-center p-2.5 text-base font-normal text-gray-900 rounded-lg hover:bg-[#0050AD]/70"
                   >
                     <img
                       src={`${apiUrl}/resources/icon-sidebar/icon-sidebar-1.png`}
@@ -74,7 +95,7 @@ const Banner = () => {
                 {/* <li>
                   <a
                     href="bsi.com.vn"
-                    className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
+                    className="no-underline flex items-center p-2.5 text-base font-normal text-gray-900 rounded-lg hover:bg-[#0050AD]/70"
                   >
                     <img
                       src={`${apiUrl}/resources/icon-sidebar/icon-sidebar-2.png`}
@@ -89,7 +110,7 @@ const Banner = () => {
                 <li>
                   <a
                     href="/cong-cu-dau-tu/bo-loc"
-                    className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
+                    className="no-underline flex items-center p-2.5 text-base font-normal text-gray-900 rounded-lg hover:bg-[#0050AD]/70"
                   >
                     <img
                       src={`${apiUrl}/resources/icon-sidebar/icon-sidebar-3.png`}
@@ -103,8 +124,23 @@ const Banner = () => {
                 </li>
                 <li>
                   <a
+                    href="/cong-cu-dau-tu/chien-luoc-giao-dich"
+                    className="no-underline flex items-center p-2.5 text-base font-normal text-gray-900 rounded-lg hover:bg-[#0050AD]/70"
+                  >
+                    <img
+                      src={`${apiUrl}/resources/icon-sidebar/icon-sidebar-5.png`}
+                      alt="sidebarLogo1"
+                      className="w-[25px] h-[25px]"
+                    />
+                    <span className="ml-3 dark:text-white text-black">
+                      Chiến lược đầu tư
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="https://trading.bsi.com.vn/"
-                    className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
+                    className="no-underline flex items-center p-2.5 text-base font-normal text-gray-900 rounded-lg hover:bg-[#0050AD]/70"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -118,25 +154,10 @@ const Banner = () => {
                     </span>
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="/cong-cu-dau-tu/chien-luoc-giao-dich"
-                    className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
-                  >
-                    <img
-                      src={`${apiUrl}/resources/icon-sidebar/icon-sidebar-5.png`}
-                      alt="sidebarLogo1"
-                      className="w-[25px] h-[25px]"
-                    />
-                    <span className="ml-3 dark:text-white text-black">
-                      Chiến lược đầu tư
-                    </span>
-                  </a>
-                </li>
                 {/* <li>
                   <a
                     href="bsi.com.vn"
-                    className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
+                    className="no-underline flex items-center p-2.5 text-base font-normal text-gray-900 rounded-lg hover:bg-[#0050AD]/70"
                   >
                     <img
                       src={`${apiUrl}/resources/icon-sidebar/icon-sidebar-6.png`}
@@ -151,7 +172,7 @@ const Banner = () => {
                 <li>
                   <a
                     href="https://zalo.me/1623670409453822014"
-                    className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
+                    className="no-underline flex items-center p-2.5 text-base font-normal text-gray-900 rounded-lg hover:bg-[#0050AD]/70"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -168,7 +189,7 @@ const Banner = () => {
                 <li>
                   <a
                     href="https://www.bsi.com.vn/vn/ve-beta/lien-he"
-                    className="no-underline flex items-center p-2 text-base font-normal text-gray-900 rounded-lg "
+                    className="no-underline flex items-center p-2.5 text-base font-normal text-gray-900 rounded-lg hover:bg-[#0050AD]/70"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

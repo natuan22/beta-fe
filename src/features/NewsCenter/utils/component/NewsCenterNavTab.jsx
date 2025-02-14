@@ -12,7 +12,7 @@ const NewsCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-tin-tuc/bao-cao-phan-tich"
@@ -24,7 +24,7 @@ const NewsCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-tin-tuc/bo-loc-tin-tuc"
@@ -36,7 +36,7 @@ const NewsCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-tin-tuc/tin-doanh-nghiep"
@@ -48,7 +48,7 @@ const NewsCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-tin-tuc/tin-tuc-vi-mo"
@@ -65,7 +65,7 @@ const NewsCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-tin-tuc/bao-cao-phan-tich"
@@ -77,7 +77,7 @@ const NewsCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-tin-tuc/bo-loc-tin-tuc"
@@ -91,7 +91,7 @@ const NewsCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-tin-tuc/tin-doanh-nghiep"
@@ -103,7 +103,7 @@ const NewsCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-tin-tuc/tin-tuc-vi-mo"
