@@ -135,7 +135,7 @@ const ForeignMacro = () => {
                                 <div className="line-clamp-3 px-2 text-[0.7rem] dark:text-white text-black text-justify items-center justify-center mt-1.5">
                                   {item.sub_title}
                                 </div>
-                                <div className="text-[#FFD300] text-[0.8rem] text-right absolute bottom-0 right-0">
+                                <div className="dark:text-[#FFD300] text-[#faad14] text-[0.8rem] text-right absolute bottom-0 right-0">
                                   {moment(item.date).format("DD.MM.YYYY")}
                                 </div>
                               </div>
@@ -176,7 +176,7 @@ const ForeignMacro = () => {
                               <div className="line-clamp-3 px-2 text-[0.7rem] dark:text-white text-black text-justify items-center justify-center mt-1.5">
                                 {item.sub_title}
                               </div>
-                              <div className="text-[#FFD300] text-[0.8rem] text-right absolute bottom-0 right-0">
+                              <div className="dark:text-[#FFD300] text-[#faad14] text-[0.8rem] text-right absolute bottom-0 right-0">
                                 {moment(item.date).format("DD.MM.YYYY")}
                               </div>
                             </div>

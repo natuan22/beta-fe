@@ -12,7 +12,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/danh-muc-theo-doi"
@@ -24,7 +24,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/bo-loc"
@@ -36,7 +36,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/canh-bao-tin-hieu"
@@ -48,7 +48,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/chien-luoc-giao-dich"
@@ -60,7 +60,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/beta-smart"
@@ -72,7 +72,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/kien-thuc-dau-tu"
@@ -89,7 +89,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/danh-muc-theo-doi"
@@ -101,7 +101,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/bo-loc"
@@ -113,7 +113,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/canh-bao-tin-hieu"
@@ -127,7 +127,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/chien-luoc-giao-dich"
@@ -139,7 +139,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/beta-smart"
@@ -151,7 +151,7 @@ const InvestToolTab = () => {
               if (params.isActive) {
                 return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center";
               } else {
-                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "no-underline buttonStyle text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/cong-cu-dau-tu/kien-thuc-dau-tu"

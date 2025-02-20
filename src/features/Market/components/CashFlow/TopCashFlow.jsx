@@ -22,7 +22,7 @@ const TopCashFlow = () => {
             onChange={(e) => {
               dispatch(fetchDataCashValue(e.target.value));
             }}
-            className={`bg-[#0050AD] p-1 text-[0.9rem] text-white border-0`}
+            className={`bg-[#0050AD] p-1 text-[0.9rem] text-white border-0 cursor-pointer`}
           >
             <option value="0">Phiên gần nhất</option>
             <option value="1">5 phiên</option>

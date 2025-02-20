@@ -294,7 +294,7 @@ const BarChart = () => {
               handleQueryApiType(e.target.value);
               setHandleQueryType(e.target.value);
             }}
-            className={`dark:bg-[#151924] bg-gray-100 text-[14px] ml-[2px] text-[#007dc6] border-0 md:inline sm:hidden xs:hidden xxs:hidden`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[14px] ml-[2px] text-[#007dc6] border-0 md:inline sm:hidden xs:hidden xxs:hidden cursor-pointer`}
           >
             <option value="0">Cổ phiếu</option>
             <option value="1">Ngành LV1</option>
@@ -308,7 +308,7 @@ const BarChart = () => {
               handleQueryApiType(e.target.value);
               setHandleQueryType(e.target.value);
             }}
-            className={`dark:bg-[#151924] bg-gray-100 text-[14px] ml-1.5 text-[#007dc6] border-0 md:hidden sm:inline`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[14px] ml-1.5 text-[#007dc6] border-0 md:hidden sm:inline cursor-pointer`}
           >
             <option value="0">Cổ phiếu</option>
             <option value="1">Ngành LV1</option>
@@ -319,7 +319,7 @@ const BarChart = () => {
             onChange={(e) => {
               handleQueryApiOrder(e.target.value);
             }}
-            className={`bg-[#0050AD] p-[2.5px] text-[14px] ml-2 text-white border-0`}
+            className={`bg-[#0050AD] p-[2.5px] text-[14px] ml-2 text-white border-0 cursor-pointer`}
           >
             <option value="0">Phiên gần nhất</option>
             <option value="1">5 phiên</option>

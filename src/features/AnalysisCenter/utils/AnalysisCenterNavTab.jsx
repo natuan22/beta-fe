@@ -12,7 +12,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-phan-tich/nhan-dinh-thi-truong"
@@ -24,7 +24,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative !text-[11px]";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 !text-[11px]";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100 !text-[11px]";
               }
             }}
             to="/trung-tam-phan-tich/phan-tich-doanh-nghiep"
@@ -36,7 +36,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-phan-tich/bao-cao-nganh"
@@ -48,7 +48,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-phan-tich/phan-tich-ky-thuat"
@@ -60,7 +60,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-phan-tich/bao-cao-vi-mo"
@@ -72,7 +72,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-phan-tich/bao-cao-chien-luoc"
@@ -89,7 +89,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-phan-tich/nhan-dinh-thi-truong"
@@ -101,7 +101,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative !text-[11px]";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 !text-[11px]";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100 !text-[11px]";
               }
             }}
             to="/trung-tam-phan-tich/phan-tich-doanh-nghiep"
@@ -113,7 +113,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-phan-tich/bao-cao-nganh"
@@ -127,7 +127,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-phan-tich/phan-tich-ky-thuat"
@@ -139,7 +139,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-phan-tich/bao-cao-vi-mo"
@@ -151,7 +151,7 @@ const AnalysisCenterNavTab = () => {
               if (params.isActive) {
                 return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center relative";
               } else {
-                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60";
+                return "buttonStyle no-underline text-white mx-1 font-bold w-[30%] text-center opacity-60 hover:opacity-100";
               }
             }}
             to="/trung-tam-phan-tich/bao-cao-chien-luoc"

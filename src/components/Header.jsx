@@ -1,7 +1,7 @@
 import { BellOutlined, MessageOutlined } from "@ant-design/icons";
 import { Transition } from "@headlessui/react";
-import { Popover } from "antd";
-import React, { useState } from "react";
+import { notification, Popover } from "antd";
+import React, { useRef, useState } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
@@ -14,6 +14,7 @@ import { apiUrl } from "../services/config";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const divRefMobile = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
@@ -29,8 +30,21 @@ const Header = () => {
     setOpen(newOpen);
   };
 
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (description) => {
+    api.open({
+      type: "success",
+      message: `Đăng xuất thành công`,
+      description: `Đã đăng xuất tài khoản ${description} thành công`,
+      placement: "topRight",
+      showProgress: true,
+    });
+  };
+
   const handleUserLogout = () => {
     if (isLogin) {
+      openNotification(user.name);
       setIsLogin(null);
       setRole(null);
       setUser(null);
@@ -41,12 +55,15 @@ const Header = () => {
       );
       localStorage.removeItem(process.env.REACT_APP_USER_ROLE);
       localStorage.removeItem("user");
-      navigate(0);
+      setTimeout(() => {
+        navigate(0);
+      }, 1000);
     }
   };
 
   return (
     <>
+      {contextHolder}
       <div className="relative">
         <nav className="dark:bg-black bg-white shadow-md dark:shadow-gray-100/10 shadow-[#0e1015]/10 mb-1">
           {/* max-w-[85.5rem] */}
@@ -196,17 +213,14 @@ const Header = () => {
                       <Popover
                         content={
                           <div className="flex flex-col justify-around h-[100px]">
-                            <button className="bg-transparent font-semibold border-0 cursor-pointer hover:text-blue-500 duration-500">
+                            <button className="bg-transparent font-semibold border-0"> {/* cursor-pointer hover:text-blue-500 duration-500 */}
                               Thông tin cá nhân
                             </button>
-                            <span className="flex items-center justify-evenly hover:text-red-500 duration-500">
-                              <button
-                                onClick={handleUserLogout}
-                                className="bg-transparent border-0 cursor-pointer hover:text-red-500 duration-500  "
-                              >
-                                Đăng xuất{" "}
-                              </button>
-                              <BiLogOut />
+                            <span
+                              className="flex items-center justify-evenly hover:text-red-500 duration-500 hover:bg-[#0050AD] px-2 py-2 rounded-md cursor-pointer font-medium"
+                              onClick={handleUserLogout}
+                            >
+                              Đăng xuất <BiLogOut />
                             </span>
                           </div>
                         }
@@ -303,24 +317,26 @@ const Header = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            {(ref) => (
-              <div className="xl:hidden" id="mobile-menu">
-                <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-2">
-                  <NavLink
-                    onClick={() => {
-                      if (isOpen) setIsOpen(!isOpen);
-                    }}
-                    to="/thi-truong"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                    }
-                  >
-                    Thị trường
-                  </NavLink>
+            <div className="xl:hidden" id="mobile-menu">
+              <div
+                ref={divRefMobile}
+                className="px-2 pt-2 pb-3 space-y-1 sm:px-2"
+              >
+                <NavLink
+                  onClick={() => {
+                    if (isOpen) setIsOpen(!isOpen);
+                  }}
+                  to="/thi-truong"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                      : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                  }
+                >
+                  Thị trường
+                </NavLink>
 
-                  {/* <NavLink
+                {/* <NavLink
                     onClick={() => {
                       if (isOpen) setIsOpen(!isOpen);
                     }}
@@ -334,21 +350,21 @@ const Header = () => {
                     Ngành
                   </NavLink> */}
 
-                  <NavLink
-                    onClick={() => {
-                      if (isOpen) setIsOpen(!isOpen);
-                    }}
-                    to="/co-phieu"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                    }
-                  >
-                    Cổ phiếu
-                  </NavLink>
+                <NavLink
+                  onClick={() => {
+                    if (isOpen) setIsOpen(!isOpen);
+                  }}
+                  to="/co-phieu"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                      : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                  }
+                >
+                  Cổ phiếu
+                </NavLink>
 
-                  {/* <NavLink
+                {/* <NavLink
                     onClick={() => {
                       if (isOpen) setIsOpen(!isOpen);
                     }}
@@ -362,117 +378,101 @@ const Header = () => {
                     Vĩ mô
                   </NavLink> */}
 
-                  <NavLink
-                    onClick={() => {
-                      if (isOpen) setIsOpen(!isOpen);
-                    }}
-                    to="/cong-cu-dau-tu"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                    }
-                  >
-                    Công cụ đầu tư
-                  </NavLink>
-                  <NavLink
-                    onClick={() => {
-                      if (isOpen) setIsOpen(!isOpen);
-                    }}
-                    to="/trung-tam-tin-tuc"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline dark:text-gray-300 text-black block hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                    }
-                  >
-                    Trung tâm tin tức
-                  </NavLink>
-                  <NavLink
-                    onClick={() => {
-                      if (isOpen) setIsOpen(!isOpen);
-                    }}
-                    to="/trung-tam-phan-tich"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                        : "no-underline dark:text-gray-300 text-black block hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                    }
-                  >
-                    Trung tâm phân tích
-                  </NavLink>
-                  <div className="relative mb-5">
-                    {isLogin === process.env.REACT_APP_LG_T ? (
-                      <Popover
-                        placement="bottom"
-                        content={
-                          <div className="flex flex-col justify-around h-[100px]">
-                            <button className="bg-transparent font-semibold border-0 cursor-pointer hover:text-blue-500 duration-500">
-                              Thông tin cá nhân
-                            </button>
-                            <span className="flex items-center justify-evenly hover:text-red-500 duration-500">
-                              <button
-                                onClick={handleUserLogout}
-                                className="bg-transparent border-0 cursor-pointer hover:text-red-500 duration-500"
-                              >
-                                Đăng xuất{" "}
-                              </button>
-                              <BiLogOut />
-                            </span>
-                          </div>
-                        }
-                        trigger="click"
-                        open={open}
-                        onOpenChange={handleOpenChange}
+                <NavLink
+                  onClick={() => {
+                    if (isOpen) setIsOpen(!isOpen);
+                  }}
+                  to="/cong-cu-dau-tu"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                      : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                  }
+                >
+                  Công cụ đầu tư
+                </NavLink>
+                <NavLink
+                  onClick={() => {
+                    if (isOpen) setIsOpen(!isOpen);
+                  }}
+                  to="/trung-tam-tin-tuc"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                      : "no-underline dark:text-gray-300 text-black block hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                  }
+                >
+                  Trung tâm tin tức
+                </NavLink>
+                <NavLink
+                  onClick={() => {
+                    if (isOpen) setIsOpen(!isOpen);
+                  }}
+                  to="/trung-tam-phan-tich"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                      : "no-underline dark:text-gray-300 text-black block hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                  }
+                >
+                  Trung tâm phân tích
+                </NavLink>
+                <div className="relative mb-5">
+                  {isLogin === process.env.REACT_APP_LG_T ? (
+                    <div className="dark:text-gray-300 text-black text-base flex items-center font-medium px-2 py-2 cursor-pointer hover:bg-[#0050AD] hover:text-white rounded-md gap-1">
+                      <FaUserCircle className="text-xl" />
+                      <span>{user.name}</span>
+                      <span>/</span>
+                      <span
+                        onClick={handleUserLogout}
+                        className="cursor-pointer flex items-center gap-0.5 justify-evenly dark:text-gray-300 text-black hover:text-red-500 dark:hover:text-red-500 duration-500"
                       >
-                        <div className="dark:text-gray-300 text-black text-sm flex items-center font-medium px-2 py-2 cursor-pointer">
-                          <FaUserCircle className="dark:text-gray-300 text-black mr-2 text-xl" />
-                          {user.name}
-                        </div>
-                      </Popover>
-                    ) : (
-                      <>
-                        <NavLink
-                          onClick={() => {
-                            if (isOpen) setIsOpen(!isOpen);
-                          }}
-                          to="/signin"
-                          className={({ isActive }) =>
-                            isActive
-                              ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                              : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          }
-                        >
-                          Đăng nhập
-                        </NavLink>
-                        <NavLink
-                          onClick={() => {
-                            if (isOpen) setIsOpen(!isOpen);
-                          }}
-                          to="/signup"
-                          className={({ isActive }) =>
-                            isActive
-                              ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                              : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
-                          }
-                        >
-                          Đăng ký
-                        </NavLink>
-                      </>
-                    )}
-                  </div>
+                        <span>Đăng xuất</span>
+                        <BiLogOut />
+                      </span>
+                    </div>
+                  ) : (
+                    <>
+                      <NavLink
+                        onClick={() => {
+                          if (isOpen) setIsOpen(!isOpen);
+                        }}
+                        to="/signin"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        }
+                      >
+                        Đăng nhập
+                      </NavLink>
+                      <NavLink
+                        onClick={() => {
+                          if (isOpen) setIsOpen(!isOpen);
+                        }}
+                        to="/signup"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "no-underline block text-white bg-[#0050AD] hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                            : "no-underline block dark:text-gray-300 text-black hover:bg-[#0050AD] hover:text-white px-2 py-2 rounded-md text-base font-medium"
+                        }
+                      >
+                        Đăng ký
+                      </NavLink>
+                    </>
+                  )}
+                </div>
 
-                  <div className="flex sm:hidden xs:flex xxs:flex px-2 py-2">
-                    <Switcher />
-                    <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
-                    <MessageOutlined className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black" />
-                  </div>
-                  <div className="md:hidden sm:block">
-                    <SearchDialog />
-                  </div>
+                <div className="flex sm:hidden xs:flex xxs:flex px-2 py-2">
+                  <Switcher />
+                  <BellOutlined className="ml-2 mt-1 text-[20px] dark:text-white text-black" />
+                  <MessageOutlined className="ml-2 mr-2 mt-1 text-[20px] dark:text-white text-black" />
+                </div>
+                <div className="md:hidden sm:block">
+                  <SearchDialog />
                 </div>
               </div>
-            )}
+            </div>
           </Transition>
         </nav>
       </div>

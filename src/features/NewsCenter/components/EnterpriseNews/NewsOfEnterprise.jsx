@@ -19,7 +19,7 @@ const ExchangeFilterHeader = ({ value, onFilterChange }) => {
     <div>
       <span className="text-white">Sàn:</span>
       <select
-        className={`bg-[#0050AD] text-[0.9rem] ml-1.5 text-white border-0 font-bold`}
+        className={`bg-[#0050AD] text-[0.9rem] ml-1.5 text-white border-0 font-bold cursor-pointer`}
         value={filterValue}
         onChange={handleFilterChange}
       >
@@ -43,7 +43,7 @@ const TypeEventFilterHeader = ({ value, onFilterChange }) => {
     <div>
       <span className="text-white">Loại sự kiện:</span>
       <select
-        className={`bg-[#0050AD] text-[0.9rem] ml-1.5 text-white border-0 font-bold`}
+        className={`bg-[#0050AD] text-[0.9rem] ml-1.5 text-white border-0 font-bold cursor-pointer`}
         value={typeEventValue}
         onChange={handleFilterChange}
       >

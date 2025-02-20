@@ -17,6 +17,7 @@ import ListNewsFilter from "../components/NewsFilterTool/ListNewsFilter";
 import { fetchDataStockInfo, fetchNewsTool } from "../thunk";
 import "../utils/styles/buttonFilter.css";
 import "../utils/styles/buttonNews.css";
+import { notification } from "antd";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
@@ -30,6 +31,18 @@ const NewsFilterTool = () => {
   const [selectedLV4, setSelectedLV4] = useState([]);
   const [selectedCode, setSelectedCode] = useState([]);
   const [codeTranmission, setCodeTranmission] = useState("all");
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (message, description) => {
+    api.open({
+      type: "success",
+      message,
+      description,
+      placement: "topRight",
+      showProgress: true,
+    });
+  };
+
   useEffect(() => {
     document.title = `B-Info | Bộ lọc tin tức`;
   }, []);
@@ -94,9 +107,14 @@ const NewsFilterTool = () => {
     setOpen(false);
 
     setCodeTranmission(selectedCode?.map((item) => item.code).toString());
+
+    openNotification("Áp dụng bộ lọc thành công", "Tin tức đã được lọc");
   };
+
+  
   return (
     <div className="container mx-auto md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-full pt-2">
+      {contextHolder}
       <div className="mx-1 my-1 px-[8px] py-[8px] dark:bg-[#151924] bg-gray-100 shadow-md">
         <button className="Btn" onClick={handleClickOpen}>
           <span className="text">Bộ lọc tin tức</span>
@@ -360,7 +378,10 @@ const NewsFilterTool = () => {
                           </button>
                         </div>
                         <div>
-                          <button className="text-xs px-2 py-1  flex items-center cursor-pointer  rounded-full border-0 font-semibold">
+                          <button 
+                            onClick={() => { setOpen(false); setCodeTranmission("all"); openNotification("Tải lại tin tức", "Tin tức đã được tải lại")}}
+                            className="text-xs px-2 py-1  flex items-center cursor-pointer  rounded-full border-0 font-semibold"
+                          >
                             <span>Tải lại tin tức</span>
                             <BsArrowRepeat className="ml-1" />
                           </button>

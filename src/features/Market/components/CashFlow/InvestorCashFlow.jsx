@@ -201,7 +201,7 @@ const InvestorCashFlow = () => {
         </span>
         <div>
           <select
-            className={`bg-[#0050AD] p-1 text-[1rem] text-white border-0`}
+            className={`bg-[#0050AD] p-1 text-[1rem] text-white border-0 cursor-pointer`}
             onChange={(event) => {
               setQueryApi({ ...queryApi, type: event.target.value });
             }}

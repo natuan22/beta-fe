@@ -78,7 +78,7 @@ const ListEnterpriseNews = () => {
                   <h4 className="dark:text-white text-black mb-1">
                     {item.code}: {item.title}
                   </h4>
-                  <div className="text-[#E7DDB3] text-[0.85rem]">
+                  <div className="dark:text-[#E7DDB3] text-[#faad14] text-[0.85rem]">
                     {moment(item.date).format("DD.MM.YYYY")}
                   </div>
                 </a>
@@ -90,7 +90,7 @@ const ListEnterpriseNews = () => {
                   <h4 className="dark:text-white text-black mb-1">
                     {item.code}: {item.title}
                   </h4>
-                  <div className="text-[#E7DDB3] text-[0.85rem]">
+                  <div className="dark:text-[#E7DDB3] text-[#faad14] text-[0.85rem]">
                     {moment(item.date).format("DD.MM.YYYY")}
                   </div>
                 </div>
