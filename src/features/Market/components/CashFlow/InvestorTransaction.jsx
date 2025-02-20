@@ -36,7 +36,7 @@ const InvestorTransaction = () => {
             onChange={(e) => {
               handleQueryApiInvestorType(e.target.value);
             }}
-            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#007dc6] border-0 md:inline sm:hidden xs:hidden xxs:hidden`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#007dc6] border-0 md:inline sm:hidden xs:hidden xxs:hidden cursor-pointer`}
           >
             <option value="0">khối ngoại</option>
             <option value="1">tự doanh</option>
@@ -48,7 +48,7 @@ const InvestorTransaction = () => {
             onChange={(e) => {
               handleQueryApiInvestorType(e.target.value);
             }}
-            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#007dc6] border-0 md:hidden sm:inline`}
+            className={`dark:bg-[#151924] bg-gray-100 text-[0.9rem] text-[#007dc6] border-0 md:hidden sm:inline cursor-pointer`}
           >
             <option value="0">khối ngoại</option>
             <option value="1">tự doanh</option>
@@ -58,7 +58,7 @@ const InvestorTransaction = () => {
             onChange={(e) => {
               handleQueryApiType(e.target.value);
             }}
-            className={`bg-[#0050AD] p-1 ml-2 text-[0.9rem] text-white border-0`}
+            className={`bg-[#0050AD] p-1 ml-2 text-[0.9rem] text-white border-0 cursor-pointer`}
           >
             <option value="0">Phiên gần nhất</option>
             <option value="1">5 phiên</option>

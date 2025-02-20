@@ -209,7 +209,7 @@ const TopROC = () => {
               Top 10 cổ phiếu tăng/giảm mạnh nhất sàn
             </span>
             <select
-              className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 mx-2 rounded-lg p-1 text-base text-[#007dc6]`}
+              className={`${chartStyle.selectStyle} dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 mx-2 rounded-lg p-1 cursor-pointer text-base text-[#007dc6]`}
               onChange={(event) => {
                 disconnectSocket(socketOld);
                 setQuery(event.target.value);

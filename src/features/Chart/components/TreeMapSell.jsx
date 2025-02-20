@@ -225,7 +225,7 @@ const TreeMapSell = () => {
             <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs font-semibold">
               Khối ngoại bán ròng sàn
               <select
-                className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#007dc6]`}
+                className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 cursor-pointer text-base text-[#007dc6]`}
                 onChange={(event) => {
                   disconnectSocket(socketOld);
                   setSocketChanel(event.target.value);
@@ -253,7 +253,7 @@ const TreeMapSell = () => {
           <span className="dark:text-white text-black uppercase sm:text-base xs:text-xs font-semibold">
             Khối ngoại bán ròng sàn
             <select
-              className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#007dc6]`}
+              className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 cursor-pointer text-base text-[#007dc6]`}
               onChange={(event) => {
                 disconnectSocket(socketOld);
                 setSocketChanel(event.target.value);

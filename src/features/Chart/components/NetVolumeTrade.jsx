@@ -147,7 +147,7 @@ const NetVolumeTrade = () => {
             Giá trị giao dịch ròng
           </span>
           <select
-            className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 text-base text-[#007dc6]`}
+            className={`dark:bg-[#151924] bg-gray-100 dark:hover:bg-gray-900 hover:bg-gray-300 ml-2 rounded-lg p-1 cursor-pointer text-base text-[#007dc6]`}
             onChange={(event) => {
               dispatch(fetchDataNetVolume(event.target.value));
               setTitle(event.target.value);

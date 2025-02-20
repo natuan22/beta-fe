@@ -294,7 +294,7 @@ const MarketBreadth = () => {
                   setFormatDate("DD/MM");
                 }
               }}
-              className={`bg-[#0050AD] p-[2.5px] xl:text-[0.9rem] lg:text-base text-white border-0`}
+              className={`bg-[#0050AD] p-[2.5px] xl:text-[0.9rem] lg:text-base text-white border-0 cursor-pointer`}
             >
               <option value="0">Phiên gần nhất</option>
               <option value="1">01 tháng</option>
@@ -370,7 +370,7 @@ const MarketBreadth = () => {
                 setFormatDate("DD/MM");
               }
             }}
-            className={`bg-[#0050AD] p-[2.5px] xl:text-[0.9rem] lg:text-base text-white border-0`}
+            className={`bg-[#0050AD] p-[2.5px] xl:text-[0.9rem] lg:text-base text-white border-0 cursor-pointer`}
           >
             <option value="0">Phiên gần nhất</option>
             <option value="1">01 tháng</option>

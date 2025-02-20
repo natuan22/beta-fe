@@ -207,7 +207,7 @@ const ChartInfo = () => {
           </div>
           <div>
             <select
-              className={`bg-[#0050AD] p-[4.5px] text-[1rem] text-white border-0`}
+              className={`bg-[#0050AD] p-[4.5px] text-[1rem] text-white border-0 cursor-pointer`}
               onChange={(event) => {
                 localStorage.setItem("typeApi", event.target.value);
                 setQuery(event.target.value);

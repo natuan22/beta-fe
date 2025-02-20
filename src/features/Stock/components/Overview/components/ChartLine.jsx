@@ -14,7 +14,7 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
     if (data?.data?.length > 0) {
       const uniqueDates = [
         ...new Set(
-          data.data.map((item) => moment(item.from).format("DD/MM/YYYY"))
+          data.data.map((item) => moment(item.date).format("DD/MM/YYYY"))
         ),
       ];
       setTimeLine(uniqueDates);
@@ -92,7 +92,7 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
                 // Nếu không có series nào là " (Trung bình)", hiển thị giá trị cuối luôn
                 if (!hasAverageSeries) {
                   return this.point.index === this.series.data.length - 1
-                    ? this.point.y.toFixed(1)
+                    ? this.point.y.toFixed(2)
                     : null;
                 }
 
@@ -115,7 +115,7 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
                 // Hiển thị nhãn chỉ khi tất cả các series có cùng tên cơ bản
                 if (isAllBaseNamesSame) {
                   return this.point.index === this.series.data.length - 1
-                    ? this.point.y.toFixed(1) // Hiển thị giá trị cuối cùng
+                    ? this.point.y.toFixed(2) // Hiển thị giá trị cuối cùng
                     : null;
                 }
 
@@ -180,7 +180,7 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
                 // Nếu không có series nào là " (Trung bình)", hiển thị giá trị cuối luôn
                 if (!hasAverageSeries) {
                   return this.point.index === this.series.data.length - 1
-                    ? this.point.y.toFixed(1)
+                    ? this.point.y.toFixed(2)
                     : null;
                 }
 
@@ -203,7 +203,7 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
                 // Hiển thị nhãn chỉ khi tất cả các series có cùng tên cơ bản
                 if (isAllBaseNamesSame) {
                   return this.point.index === this.series.data.length - 1
-                    ? this.point.y.toFixed(1) // Hiển thị giá trị cuối cùng
+                    ? this.point.y.toFixed(2) // Hiển thị giá trị cuối cùng
                     : null;
                 }
 
@@ -237,7 +237,7 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
       const peAverageData = peData.map((series) => ({
         name: `${series.name} (Trung bình)`,
         data: Array(uniqueDates.length).fill(
-          +calculateAverage(series.data, true).toFixed(1)
+          +calculateAverage(series.data, true).toFixed(2)
         ),
         color: series.color,
         dashStyle: "dot",
@@ -247,7 +247,7 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
           formatter: function () {
             // Display data labels only for the last point in the series
             return this.point.index === this.series.data.length - 1
-              ? this.point.y.toFixed(1)
+              ? this.point.y.toFixed(2)
               : null; // Return null to hide the label
           },
           style: {
@@ -263,7 +263,7 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
       const pbAverageData = pbData.map((series) => ({
         name: `${series.name} (Trung bình)`,
         data: Array(uniqueDates.length).fill(
-          +calculateAverage(series.data).toFixed(1)
+          +calculateAverage(series.data).toFixed(2)
         ),
         color: series.color,
         dashStyle: "dot",
@@ -273,7 +273,7 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
           formatter: function () {
             // Display data labels only for the last point in the series
             return this.point.index === this.series.data.length - 1
-              ? this.point.y.toFixed(1)
+              ? this.point.y.toFixed(2)
               : null; // Return null to hide the label
           },
           style: {
@@ -284,7 +284,7 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
           },
         },
       }));
-
+      
       if (chartKey === "P/E") {
         setDataChart(peData);
         setDataAverage(peAverageData);
@@ -399,13 +399,9 @@ const ChartLine = ({ stock, data, chartKey, period }) => {
             tooltip += `
                 <div style="display: flex; align-items: center; margin-bottom: 3px;">
                     <div style="width: 10px; height: 10px; background-color: ${color}; margin-right: 5px;"></div>
-                    <span style="color:${color}; width: 65px">${removeParentheses(
-                      point.series.name,
-                    )}</span>
-                    <span style="width: 60px;"><b>${point.y}</b></span>
-                    <span><b>${dataAverage[seriesIndex].data[0].toFixed(
-                      1,
-                    )}</b></span>
+                    <span style="color:${color}; width: 65px">${removeParentheses(point.series.name)}</span>
+                    <span style="width: 60px;"><b>${formatNumberCurrency(point.y)}</b></span>
+                    <span><b>${formatNumberCurrency(dataAverage[seriesIndex].data[0])}</b></span>
                     <br/>
                 </div>`;
           }
