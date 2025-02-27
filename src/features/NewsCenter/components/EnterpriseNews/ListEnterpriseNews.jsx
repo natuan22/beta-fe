@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { getColor } from "../../../Chart/utils/utils";
 import { fetchDataListEnterpriseNews } from "../../thunk";
+import { apiUrl } from "../../../../services/config";
 
 const ListEnterpriseNews = () => {
   const dispatch = useDispatch();
@@ -112,7 +113,7 @@ const ListEnterpriseNews = () => {
               onClick={handleCloseIframe}
             />
             <iframe
-              src={selectedItem.href}
+              src={apiUrl + '/api/v1/news/proxy?url=' + selectedItem.href}
               title={selectedItem.title}
               className="2xl:w-[704px] xl:w-[632px] lg:w-[890px] md:w-[660px] sm:w-[393px] xs:w-[343px] xxs:w-[290px] h-[796px]"
             />

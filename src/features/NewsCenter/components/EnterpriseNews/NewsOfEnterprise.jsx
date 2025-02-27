@@ -154,7 +154,7 @@ const NewsOfEnterprise = () => {
           try {
             const response = await https.get(
               `/api/v1/news/event?page=${
-                params.startRow / 10 + 1
+                params.startRow / 20 + 1
               }&limit=20&exchange=${filterValue}&type=${typeEventValue}`,
             );
             params.successCallback(

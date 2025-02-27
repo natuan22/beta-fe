@@ -142,7 +142,7 @@ const Footer = () => {
                         <li>
                           <NavLink
                             to="/"
-                            className="no-underline text-white inline-block leading-loose"
+                            className="no-underline text-white inline-block leading-loose hover:text-[#faad14]"
                           >
                             <DoubleRightOutlined />{" "}
                             <span className="lg:text-base md:text-sm">
@@ -153,7 +153,7 @@ const Footer = () => {
                         <li>
                           <NavLink
                             to="/thi-truong"
-                            className="no-underline text-white inline-block leading-loose"
+                            className="no-underline text-white inline-block leading-loose hover:text-[#faad14]"
                           >
                             <DoubleRightOutlined />{" "}
                             <span className="lg:text-base md:text-sm">
@@ -164,7 +164,7 @@ const Footer = () => {
                         {/* <li>
                           <NavLink
                             to="/nganh"
-                            className="no-underline text-white inline-block leading-loose"
+                            className="no-underline text-white inline-block leading-loose hover:text-[#faad14]"
                           >
                             <DoubleRightOutlined />{" "}
                             <span className="lg:text-base md:text-sm">
@@ -175,7 +175,7 @@ const Footer = () => {
                         <li>
                           <NavLink
                             to="/co-phieu"
-                            className="no-underline text-white inline-block leading-loose"
+                            className="no-underline text-white inline-block leading-loose hover:text-[#faad14]"
                           >
                             <DoubleRightOutlined />{" "}
                             <span className="lg:text-base md:text-sm">
@@ -189,7 +189,7 @@ const Footer = () => {
                         {/* <li>
                           <NavLink
                             to="/vi-mo"
-                            className="no-underline text-white inline-block leading-loose"
+                            className="no-underline text-white inline-block leading-loose hover:text-[#faad14]"
                           >
                             <DoubleRightOutlined />{" "}
                             <span className="lg:text-base md:text-sm">
@@ -200,7 +200,7 @@ const Footer = () => {
                         <li>
                           <NavLink
                             to="/cong-cu-dau-tu"
-                            className="no-underline text-white inline-block leading-loose"
+                            className="no-underline text-white inline-block leading-loose hover:text-[#faad14]"
                           >
                             <DoubleRightOutlined />{" "}
                             <span className="lg:text-base md:text-xs">
@@ -211,7 +211,7 @@ const Footer = () => {
                         <li>
                           <NavLink
                             to="/trung-tam-tin-tuc"
-                            className="no-underline text-white inline-block leading-loose"
+                            className="no-underline text-white inline-block leading-loose hover:text-[#faad14]"
                           >
                             <DoubleRightOutlined />{" "}
                             <span className="lg:text-base md:text-[11px] xs:text-[14px]">
@@ -222,7 +222,7 @@ const Footer = () => {
                         <li>
                           <NavLink
                             to="/trung-tam-phan-tich"
-                            className="no-underline text-white inline-block leading-loose"
+                            className="no-underline text-white inline-block leading-loose hover:text-[#faad14]"
                           >
                             <DoubleRightOutlined />{" "}
                             <span className="lg:text-base md:text-sm">
