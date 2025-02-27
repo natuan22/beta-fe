@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataNews } from "../../thunk";
+import { apiUrl } from "../../../../services/config";
 
 const News = ({ queryApiNewsEvents }) => {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const News = ({ queryApiNewsEvents }) => {
               onClick={handleCloseIframe}
             />
             <iframe
-              src={selectedItem.href}
+              src={apiUrl + '/api/v1/news/proxy?url=' + selectedItem.href}
               title={selectedItem.title}
               className="2xl:w-[704px] xl:w-[632px] lg:w-[1014px] md:w-[758px] sm:w-[415px] xs:w-[365px] xxs:w-[310px] h-[796px]"
             />

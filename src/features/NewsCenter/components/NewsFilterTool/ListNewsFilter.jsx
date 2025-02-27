@@ -3,7 +3,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import { AgGridReact } from "ag-grid-react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { https } from "../../../../services/config";
+import { apiUrl, https } from "../../../../services/config";
 
 const ListNewsFilter = ({ codeTranmission }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -21,17 +21,16 @@ const ListNewsFilter = ({ codeTranmission }) => {
           try {
             const response = await https.get(
               `/api/v1/news/bo-loc-tin-tuc?page=${
-                params.startRow / 10 + 1
-              }&limit=20&code=${codeTranmission}`,
+                params.startRow / 20 + 1
+              }&limit=20&code=${codeTranmission}`
             );
-
             if (response.data.data.list.length === 0) {
               gridApi.showNoRowsOverlay();
             } else {
               gridApi.hideOverlay();
               params.successCallback(
                 response.data.data.list,
-                response.data.data.total_record,
+                response.data.data.total_record
               );
             }
           } catch (error) {
@@ -101,7 +100,7 @@ const ListNewsFilter = ({ codeTranmission }) => {
   return (
     <div className="grid xl:grid-cols-2 lg:grid-cols-none">
       <div
-        className={`${
+        className={`table-news ${
           localStorage.getItem("theme") === "dark"
             ? "ag-theme-alpine-dark"
             : "ag-theme-alpine"
@@ -130,7 +129,7 @@ const ListNewsFilter = ({ codeTranmission }) => {
               onClick={handleCloseIframe}
             />
             <iframe
-              src={selectedItem.href}
+              src={apiUrl + "/api/v1/news/proxy?url=" + selectedItem.href}
               title={selectedItem.title}
               className="2xl:w-[704px] xl:w-[632px] lg:w-[890px] md:w-[660px] sm:w-[393px] xs:w-[343px] xxs:w-[290px] h-[796px]"
             />

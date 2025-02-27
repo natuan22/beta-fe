@@ -10,6 +10,7 @@ import "./styles/closeButton.css";
 import "./styles/selectCodeNews.css";
 import { getApi } from "../../../../../helper/getApi";
 import LazyLoad from "react-lazyload";
+import { apiUrl } from "../../../../../services/config";
 
 const TableNews = ({ data, loading }) => {
   const [clickItem, setClickItem] = useState(null);
@@ -174,7 +175,7 @@ const TableNews = ({ data, loading }) => {
                 onClick={handleCloseIframe}
               />
               <iframe
-                src={clickItem.href}
+                src={apiUrl + '/api/v1/news/proxy?url=' + clickItem.href}
                 title={clickItem.title}
                 className="h-[646px] 2xl:w-[716px] xl:w-[644px] lg:w-[384px] md:w-[330px]"
               />

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import { fetchDataDomesticMacro } from "../../thunk";
 import "../../utils/closeButton.css";
+import { apiUrl } from "../../../../services/config";
 
 const MarcoNews = () => {
   const dispatch = useDispatch();
@@ -122,7 +123,7 @@ const MarcoNews = () => {
               onClick={handleCloseIframe}
             />
             <iframe
-              src={selectedItem.href}
+              src={apiUrl + '/api/v1/news/proxy?url=' + selectedItem.href}
               title={selectedItem.title}
               className="2xl:w-[704px] xl:w-[632px] lg:w-[890px] md:w-[660px] sm:w-[393px] xs:w-[343px] xxs:w-[290px] h-[796px]"
             />
