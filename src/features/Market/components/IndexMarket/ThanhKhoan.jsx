@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../../../Chart/utils/Loading";
 import socket from "../../../Chart/utils/socket";
+import { checkHoliday } from "../../../../helper/checkHoliday";
 
 function ThanhKhoan() {
   const dataToday = useSelector((state) => state.chart.dataChart1);
@@ -121,17 +122,22 @@ function ThanhKhoan() {
   // Lấy ngày trong tuần (0: Chủ nhật, 1: Thứ 2, ..., 6: Thứ 7)
   const currentDay = currentTime.getDay();
 
-  // Kiểm tra xem thời gian có nằm trong khoảng từ 9h15 đến 23h59 không
-  const isWithinTimeRange =
-    currentHour > 9 ||
-    (currentHour === 9 && currentMinute >= 15) ||
-    currentHour === 0;
+  // Lấy ngày và tháng hiện tại
+  const currentDate = currentTime.getDate();
+  const currentMonth = currentTime.getMonth() + 1; // getMonth() trả về 0-11
+
+  // Kiểm tra xem ngày hiện tại có phải là ngày lễ không
+  const isHoliday = checkHoliday(currentDate, currentMonth);
 
   // Kiểm tra xem ngày là thứ 7 hoặc chủ nhật
   const isWeekend = currentDay === 0 || currentDay === 6;
 
-  // Nếu thời gian nằm ngoài khoảng từ 9h15 đến 23h59 hoặc là ngày thứ 7/chủ nhật, hiển thị dữ liệu
-  if (!isWithinTimeRange || isWeekend) {
+  // Kiểm tra xem thời gian có nằm trong khoảng từ 8h đến 9h15 không
+  const isNoDataTimeRange =
+    currentHour === 8 || (currentHour === 9 && currentMinute <= 15);
+
+  // Nếu là thời gian không có dữ liệu (8h-9h15) và không phải cuối tuần hoặc ngày lễ, hiển thị thông báo
+  if (isNoDataTimeRange && !isWeekend && !isHoliday) {
     return (
       <div className="text-center mt-6 dark:text-white text-black h-[304px]">
         Chưa có dữ liệu giao dịch
@@ -142,7 +148,7 @@ function ThanhKhoan() {
   return (
     <>
       {dataPreviousDay?.length && dataToday?.length ? (
-        <div className="lg:h-[365px] xl:h-[345px] 2xl:h-[344px]">
+        <div className="xl:h-[357px] lg:h-[365px]">
           <HighchartsReact
             highcharts={Highcharts}
             options={options}

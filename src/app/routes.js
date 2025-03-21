@@ -11,7 +11,6 @@ import Signup from "../features/Auth/Signup";
 import Home from "../features/Chart/Home";
 import BlogPost from "../features/InvestTool/components/InvestKnowledge/BlogPost";
 import InvestTool from "../features/InvestTool/InvestTool";
-import BetaSmart from "../features/InvestTool/tabs/BetaSmart";
 import Filter from "../features/InvestTool/tabs/Filter";
 import InvestKnowledge from "../features/InvestTool/tabs/InvestKnowledge";
 import SignalWarning from "../features/InvestTool/tabs/SignalWarning";
@@ -67,7 +66,6 @@ export const investToolRoutes = [
       { path: "bo-loc", component: Filter },
       { path: "canh-bao-tin-hieu", component: SignalWarning },
       { path: "chien-luoc-giao-dich", component: TradingStrategies },
-      // { path: "beta-smart", component: BetaSmart },
       { path: "kien-thuc-dau-tu", component: InvestKnowledge },
       { path: "kien-thuc-dau-tu/:title/:id", component: BlogPost },
     ],
